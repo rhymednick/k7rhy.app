@@ -51,17 +51,18 @@ export const DocProcedure: React.FC<DocProcedureProps> = (props: DocProcedurePro
                 </div>
                 {step.children}
                 {step.substeps?.map((substep: DocProcedureSubstep, substepIndex: number) => (
-                <div key={substepIndex} className="mb-2 mt-2 mr-2 ml-4">
-                    <h4 className={cn("text-lg font-bold tracking-tight")}>
-                    ({String.fromCharCode(97 + substepIndex)}) {substep.text}
-                    </h4>
-                    <div className="flex items-center">
-                    <div className="mr-2">
-                        {substep.description}
-                    </div>
-                    <div>
-                        {substep.image && <Image src={substep.image} alt={substep.text} width={200} height={200} />}
-                    </div>
+                <div key={substepIndex} className="mb-4 mt-4 mr-2 ml-4">
+
+                    <div className="flex items-start">
+                        <div className="mr-4 w-3/4 align-text-top">
+                            <h4 className={cn("text-lg font-bold tracking-tight")}>
+                                ({String.fromCharCode(97 + substepIndex)}) {substep.text}
+                            </h4>
+                            {substep.description}
+                        </div>
+                        <div>
+                            {substep.image && <Image src={substep.image} alt={substep.text} width={200} height={200} />}
+                        </div>
                     </div>
                     {substep.children}
                 </div>
