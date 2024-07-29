@@ -19,7 +19,7 @@ export default function Home() {
 <div className="mb-2"><span className="font-bold">Coming soon:</span>
 <ul className="ml-8 list-disc">
 <li>Dummy load with SMA connector</li>
-<li>Dummy load with automatic OLED power output display, and multiple connector options</li>
+<li>Dummy load with OLED power output display and multiple connector options</li>
 <li>Alternate kit form factors</li>
 </ul>
 </div><div className="mb-2">
