@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
   },
@@ -41,6 +42,7 @@
     "lucide-react": "^0.416.0",
     "mdx-components": "^1.0.1",
     "next": "14.2.5",
+    "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "npm": "^10.8.2",
     "probe-image-size": "^7.2.3",
