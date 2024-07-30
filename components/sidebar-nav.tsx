@@ -1,4 +1,5 @@
 "use client"
+import React from 'react';
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -14,9 +15,7 @@ export interface DocsSidebarNavProps {
 export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
   const pathname = usePathname()
 
-  const items = pathname?.startsWith("/charts")
-    ? config.chartsNav
-    : config.sidebarNav
+  const items = config.sidebarNav
 
   return items.length ? (
     <div className="w-full">
