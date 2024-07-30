@@ -12,9 +12,9 @@ const docAssemblyGuideProps: DocIndexCardProps = {
   description: 'Collection of assembly guides for the K7RHY ham radio kits.',
   items: [
     {
-      title: '20W Dummy Load (BNC)',
+      title: '20W Dummy Load',
       href: '/docs/dl20w_bnc',
-      description: 'How to assemble the 20W Dummy Load (BNC) kit.',
+      description: 'How to assemble the 20W Dummy Load Kit.',
       type: DocIndexItemType.Internal,
     },
   ],

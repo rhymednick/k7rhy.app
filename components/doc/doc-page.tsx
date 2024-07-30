@@ -45,7 +45,7 @@ export function MyBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 }
 
 export function DocPage(props: DocPageProps) {
-    const subTitle = props.subTitle ? <p className="text-base text-muted-foreground"><Balancer>{props.subTitle}</Balancer></p> : null;
+    const subTitle = props.subTitle ? <p className="text-base text-muted-foreground"><Balancer ratio={0.85} preferNative={false}>{props.subTitle}</Balancer></p> : null;
     const breadcrumbs = props.breadcrumbs ? <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">{props.breadcrumbs}</div> : null;
   return (
     <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">

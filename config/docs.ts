@@ -21,30 +21,9 @@ export const docsConfig: DocsConfig = {
       title: "Assembly Guides",
       items: [
         {
-          title: "20W Dummy Load (BNC)",
+          title: "20W Dummy Load",
           href: "/docs/dl20w_bnc",
-          items: [
-            {
-              title: "Introduction",
-              href: "/docs/dl20w_bnc",
-              items: [],
-            },
-            {
-              title: "Bill of Materials",
-              href: "/docs/dl20w_bnc/bom",
-              items: [],
-            },
-            {
-              title: "Assembly Steps",
-              href: "/docs/dl20w_bnc/assembly",
-              items: [],
-            },
-            {
-              title: "Testing",
-              href: "/docs/dl20w_bnc/testing",
-              items: [],
-            },
-          ],
+          items: [],
         },
       ],
     },

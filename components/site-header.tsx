@@ -20,14 +20,23 @@ export function SiteHeader() {
           </div>
           <nav className="flex items-center">
             
-            
+          <Link
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div className="pl-2 pr-2">
+                <Icons.gitHub className="h-4 w-4 fill-current" />
+                <span className="sr-only">Github</span>
+              </div>
+            </Link>
+
             <Link
               href={siteConfig.links.twitter}
               target="_blank"
               rel="noreferrer"
             >
-              <div className="pl-2 pr-2"
-              >
+              <div className="pl-2 pr-2">
                 <Icons.twitter className="h-4 w-4 fill-current" />
                 <span className="sr-only">Twitter</span>
               </div>
