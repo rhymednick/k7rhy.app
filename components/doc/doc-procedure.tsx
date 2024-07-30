@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import Image from 'next/image'
-import { Balancer } from "react-wrap-balancer"
 import { cn } from "@/lib/utils"
 
 export interface DocProcedureSubstep {

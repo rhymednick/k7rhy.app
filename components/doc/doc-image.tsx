@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import {
     AlertDialog,
@@ -12,7 +11,6 @@ import {
   } from "@/components/ui/alert-dialog"
 
 import Image from 'next/image'
-import getImageSize from 'probe-image-size'
 
 export interface DocImageProps {
     title: string

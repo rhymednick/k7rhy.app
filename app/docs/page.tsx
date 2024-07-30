@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import { DocPage } from "@/components/doc/doc-page"
-import { DocIndexCard, DocIndexItem, DocIndexItemType, DocIndexCardProps } from '@/components/doc/doc-index-card';
+import { DocIndexCard, DocIndexItemType, DocIndexCardProps } from '@/components/doc/doc-index-card';
 
 
 const DocTitle = 'Documentation';
