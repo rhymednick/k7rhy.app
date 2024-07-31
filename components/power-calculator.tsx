@@ -50,7 +50,8 @@ const PowerCalculator = () => {
               />
             </div>
             <div className="flex flex-col w-1/2">
-              <label htmlFor="rf-band" className='font-bold mb-2'>Frequency Band:</label>
+              <label htmlFor="rf-band" className='font-bold mb-2'>
+                <span className='hidden md:inline'>Frequency</span> Band:</label>
               <Select value={band} onValueChange={(value) => {
                 setBand(value);
               }}>
