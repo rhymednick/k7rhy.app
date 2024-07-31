@@ -18,7 +18,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Separator } from "@/components/ui/separator"
-
+import Link from 'next/link';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Terminal } from "lucide-react"
 
 const breadcrumbItems = [
   { href: '/docs', label: 'Docs' },
@@ -29,7 +31,7 @@ const breadcrumbItems = [
 const Page=() => {
   return (
     <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
-      <h2 className={cn("text-2xl font-bold tracking-tight mt-6")}>Power Calculator Tool</h2>
+      <h2 id="#power_calculator_tool" className={cn("text-2xl font-bold tracking-tight mt-6")}>Power Calculator Tool</h2>
       <div>
         If you're not interested in learning the theory or working the math by hand, I've got you.
         Enter your voltage measurement here and I'll tell you how much power your radio is transmitting
@@ -123,9 +125,33 @@ const Page=() => {
       <div>
         <BlockMath math="P = \frac{(V+0.3)^2}{25}" />
       </div>
-      <div>This is the equation used by the <b>Power Calculator Tool</b> at the top of this page. For 
-      VHF or UHF frequencies, you'll need to calculate the power manually using the values in the 
-      impedance table (don't forget to divide them in half).</div>
+      <div>This is the equation used by the <Link className="no-underline hover:underline" href="#assembly_instructions">
+      <b>Power Calculator Tool</b></Link> for HF frequencies. When you select a different band, it adjusts 
+      the resistance variable based on lab-measured approximations for the dummy load kit.</div>
+
+      <div className='mt-4'>
+        <Alert>
+          <Terminal className="h-4 w-4" />
+          <AlertTitle>About the use of approximations</AlertTitle>
+          <AlertDescription>
+            <div className='mt-2'>As an engineer and a perfectionist, I'm not a fan of approximations. In fact, I feel physical discomfort
+            from suggesting that you use them. However, the goal of this project is to provide a practical 
+            tool for hams to measure power. The approximations used in the tool are based on lab measurements of
+            the exact hardware used in the kit you've been provided. The approximations are accurate enough for
+            practical use. I could design a kit that would make computations based on real-time internal measurments, 
+            but that kit would be prohibitively expensive and provide no additional operational value.</div>
+
+            <div className='mt-2'>The bottom line is, radio transmitters do not transmit at precise, stable power levels across their 
+              supported frequency range. The power output of a transmitter is a function of the input power and the component
+              efficiency. Once leaving the transmitter, the power is further attenuated by the feedline, the load, and the 
+              environment. For the purposes of ham radio, it's good to know that your transmitter is operating within a certain 
+              range of its rated power, but there's little value in knowing the exact, momentary power output. 
+            </div>
+
+          </AlertDescription>
+        </Alert>
+      </div>
+    
     </DocPage>
   );
 };
