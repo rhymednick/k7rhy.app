@@ -14,10 +14,11 @@ const PowerCalculator = () => {
   const [power, setPower] = useState<number | null>(null);
 
   const handleCalculate = () => {
-    const resistance = 50; // Replace with the resistance of your dummy load in ohms
+    const resistance = 25; // Replace with the impedance of your dummy load in ohms
+    const voltageDrop = 0.3;
     const voltageNum = parseFloat(voltage);
     if (!isNaN(voltageNum)) {
-      const powerCalc = (voltageNum ** 2) / resistance;
+      const powerCalc = ((voltageDrop + 0.3) ** 2) / resistance;
       setPower(powerCalc);
     } else {
       setPower(null);
