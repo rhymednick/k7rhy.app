@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image'
 import { cn } from "@/lib/utils"
+import { DocImage } from '@/components/doc/doc-image';  
+
 
 export interface DocProcedureSubstep {
     text: string;
@@ -26,7 +28,7 @@ export interface DocProcedureProps {
 export const DocProcedure: React.FC<DocProcedureProps> = (props: DocProcedureProps) => {
     const renderStep = (step: DocProcedureStep, stepIndex: number): React.ReactNode => {
         const description: React.ReactNode = step.description ? step.description : null;
-        const image: React.ReactNode = step.image ? <Image src={step.image} alt={step.text} width={400} height={400} /> : null;
+        const image: React.ReactNode = step.image ? <DocImage src={step.image} title={step.text} alt={step.text} triggerImageSize={400} popupImageSize={1000} /> : null;
 
         return (
             <div key={stepIndex} className="mb-2 md:mb-4 pl-1 relative flex items-start">
@@ -61,7 +63,7 @@ export const DocProcedure: React.FC<DocProcedureProps> = (props: DocProcedurePro
                             
                         </div>
                         <div className='ml-4 md:ml-0'>
-                            {substep.image && <Image src={substep.image} alt={substep.text} width={200} height={200} />}
+                            {substep.image && <DocImage title={substep.text} src={substep.image} alt={substep.text} triggerImageSize={200} popupImageSize={1000} />}
                         </div>
                     </div>
                     {substep.children}

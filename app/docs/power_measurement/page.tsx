@@ -55,14 +55,14 @@ const Page=() => {
       of the dummy load. At HF frequencies the reactance is negligible, but this is not the case at VHF and UHF frequencies.
        To illustrate this point, the following table shows the measured impedance of a dummy load at various frequencies.
         For reference, the resistance of this dummy load was measured at <b>49.3 ohms</b> by a multimeter.
-      <div className="flex justify-center mt-2 md:mt-4">
-        <div className="flex flex-col md:flex-row space-x-4 md:space-x-8">
-          <div className="w-[250px]">
+      <div className="flex justify-center mb-2 mt-2 md:mb-4 md:mt-4">
+        <div className="flex flex-col md:flex-row  md:space-x-8">
+          <div className="w-[225px]">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Frequency</TableHead>
-                  <TableHead>Impedance |Z|</TableHead>
+                  <TableHead>Impedance</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -81,14 +81,18 @@ const Page=() => {
               </TableBody>
             </Table>
           </div>
-          <Separator orientation="vertical" />
-
-          <div className="w-[250px]">
+          <div className='hidden md:block'>
+            <Separator orientation="vertical" />
+          </div>
+          <div className='block md:hidden my-4'>
+            <Separator orientation="horizontal" />
+          </div>
+          <div className="w-[225px]">
             <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Frequency</TableHead>
-                  <TableHead>Impedance |Z|</TableHead>
+                  <TableHead>Impedance</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
