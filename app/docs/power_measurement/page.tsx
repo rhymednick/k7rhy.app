@@ -143,7 +143,7 @@ const Page=() => {
 
             <div className='mt-2'>The bottom line is, radio transmitters do not transmit at precise, stable power levels across their 
               supported frequency range. The power output of a transmitter is a function of the input power and the component
-              efficiency. Once leaving the transmitter, the power is further attenuated by the feedline, the load, and the 
+              efficiency, which itself varies with frequency. Once leaving the transmitter, the power is further attenuated by the feedline, the load, and the 
               environment. For the purposes of ham radio, it's good to know that your transmitter is operating within a certain 
               range of its rated power, but there's little value in knowing the exact, momentary power output. 
             </div>
