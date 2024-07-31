@@ -56,8 +56,8 @@ const Page=() => {
        To illustrate this point, the following table shows the measured impedance of a dummy load at various frequencies.
         For reference, the resistance of this dummy load was measured at <b>49.3 ohms</b> by a multimeter.
       <div className="flex justify-center mt-2 md:mt-4">
-        <div className="flex flex-row space-x-4 md:space-x-8">
-          <div className="w-[50%] md:w-[250px]">
+        <div className="flex flex-col md:flex-row space-x-4 md:space-x-8">
+          <div className="w-[250px]">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -83,7 +83,7 @@ const Page=() => {
           </div>
           <Separator orientation="vertical" />
 
-          <div className="w-[50%] md:w-[250px]">
+          <div className="w-[250px]">
             <Table>
               <TableHeader>
                 <TableRow>
