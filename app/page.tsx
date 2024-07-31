@@ -7,9 +7,9 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pl-24 pr-24 pt-12">
+    <main className="flex min-h-screen flex-col items-center justify-between pl-8 pr-8 pt-4 md:pl-24 md:pr-24 md:pt-12">
 <div className="space-y-2">
-    <h1 className={cn("scroll-m-20 text-3xl pb-6 font-bold tracking-tight")}>Welcome to my store</h1>
+    <h1 className={cn("scroll-m-20 text-3xl pb-2 md:pb-6 font-bold tracking-tight")}>Welcome to my store</h1>
     <Balancer>
       <div className="mb-2">
     I'm a US-based amateur radio operator operating on Whidbey Island, WA. I have been a software development professional for over 30 years. I've always been drawn to electronics and embedded systems, so amateur radio was a natrual fit for me. My recent focus has been on user education, so I'm excited to merge my interests here and share my kits and assembly guides with you.

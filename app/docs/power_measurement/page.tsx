@@ -31,18 +31,18 @@ const breadcrumbItems = [
 const Page=() => {
   return (
     <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
-      <h2 id="#power_calculator_tool" className={cn("text-2xl font-bold tracking-tight mt-6")}>Power Calculator Tool</h2>
+      <h2 id="#power_calculator_tool" className={cn("text-2xl font-bold tracking-tight mt-3 md:mt-6")}>Power Calculator Tool</h2>
       <div>
         If you're not interested in learning the theory or working the math by hand, I've got you.
         Enter your voltage measurement here and I'll tell you how much power your radio is transmitting
         into the dummy load.
       </div>
       <div className='container mx-auto p-4'>
-        <div className='shadow-lg mr-20'>
+        <div className='shadow-lg mr-5 md:mr-20'>
           <PowerCalculator />
         </div>
       </div>
-      <h2  className={cn("text-2xl font-bold tracking-tight mt-6")}>Computing the Power</h2>
+      <h2  className={cn("text-2xl font-bold tracking-tight mt-3 md:mt-6")}>Computing the Power</h2>
       <div>Power is calculated according to Ohm's Law, which states that power is equal to the 
         square of the voltage divided by the resistance.</div>
 
@@ -55,9 +55,9 @@ const Page=() => {
       of the dummy load. At HF frequencies the reactance is negligible, but this is not the case at VHF and UHF frequencies.
        To illustrate this point, the following table shows the measured impedance of a dummy load at various frequencies.
         For reference, the resistance of this dummy load was measured at <b>49.3 ohms</b> by a multimeter.
-      <div className="flex justify-center mt-4">
-        <div className="flex flex-row space-x-8">
-          <div className="w-[250px]">
+      <div className="flex justify-center mt-2 md:mt-4">
+        <div className="flex flex-row space-x-4 md:space-x-8">
+          <div className="w-[50%] md:w-[250px]">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -83,7 +83,7 @@ const Page=() => {
           </div>
           <Separator orientation="vertical" />
 
-          <div className="w-[250px]">
+          <div className="w-[50%] md:w-[250px]">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -129,7 +129,7 @@ const Page=() => {
       <b>Power Calculator Tool</b></Link> for HF frequencies. When you select a different band, it adjusts 
       the resistance variable based on lab-measured approximations for the dummy load kit.</div>
 
-      <div className='mt-4'>
+      <div className='mt-2 md:mt-4'>
         <Alert>
           <Terminal className="h-4 w-4" />
           <AlertTitle>About the use of approximations</AlertTitle>

@@ -38,13 +38,13 @@ import { ExternalLink } from "lucide-react"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col  justify-between pl-24 pr-24 pt-12">
+    <main className="flex min-h-screen flex-col justify-between pl-8 pr-8 pt-4 md:pl-24 md:pr-24 md:pt-12">
     <div className="space-y-2">
-        <h1 className={cn("scroll-m-20 text-3xl pb-6 font-bold tracking-tight")}>Products</h1>
-        <Card className="mb-4 mt-4">
+        <h1 className={cn("scroll-m-20 text-3xl pb-3 md:pb-6 font-bold tracking-tight")}>Products</h1>
+        <Card className="mb-2 mt-2 md:mb-4 md:mt-4">
             <CardHeader>
                 <CardTitle>20W Dummy Load Kit (BNC)
-                <Button asChild variant="default" className="ml-8">
+                <Button asChild variant="default" className="ml-4 md:ml-8">
                         <Link target="_blank" href="https://ca0f39-2e.myshopify.com/products/20w-dummy-load-kit?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"> 
                             <ExternalLink className="mr-2 h-4 w-4" /> Buy Now
                         </Link>
@@ -52,7 +52,7 @@ export default function Home() {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <CardDescription className="mb-4">
+                <CardDescription className="mb-2 md:mb-4">
                     <Balancer>
                         Unleash the full potential of your ham radio setup with our 20W Dummy Load Kit, designed for 
                         both novice and experienced operators. Whether you’re testing, adjusting, or simply 
@@ -63,7 +63,7 @@ export default function Home() {
 
                 </CardDescription>
                 
-                <Carousel orientation="horizontal" className="m-8"
+                <Carousel orientation="horizontal" className="m-4 md:m-8"
                 opts={{
                     align: "start",
                     loop: true,
@@ -85,7 +85,7 @@ export default function Home() {
                     <CarouselNext/>
                 </Carousel>
             
-                <h2 className={cn("scroll-m-20 text-2xl pb-2 font-bold tracking-tight")}>
+                <h2 className={cn("text-2xl pb-2 font-bold tracking-tight")}>
                     Key Features
                 </h2>
                 <Balancer>
@@ -99,7 +99,7 @@ export default function Home() {
                     </ul>
                 </Balancer>
 
-                <h2 className={cn("scroll-m-20 text-2xl pt-6 pb-2 font-bold tracking-tight")}>
+                <h2 className={cn("scroll-m-20 text-2xl pt-3 md:pt-6 pb-2 font-bold tracking-tight")}>
                     Specifications
                 </h2>
                 <ul className="ml-8 list-disc">

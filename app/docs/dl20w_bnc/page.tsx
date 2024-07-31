@@ -213,8 +213,8 @@ const Page=() => {
   return (
     <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
       <div className='text-med text-muted-foreground mt-2 mb-6'>
-        <div className="flex h-9 items-center space-x-2 bg-slate-100">
-          <div className='ml-2 mr-4'>In this topic:</div>
+        <div className="flex pt-2 pb-2 items-center space-x-2 bg-slate-100">
+          <div className='ml-2 mr-2 md:mr-4'>In this topic:</div>
           
           <div>
             <Link href="#assembly_instructions">
@@ -245,34 +245,34 @@ const Page=() => {
           </Link>
         </div>
       </h2>
-      <div className='mt-4'>
+      <div className='mt-2 md:mt-4'>
         A dummy load is a device used to simulate an electrical load. In amateur radio, 
         this allows you to safely test and calibrate equipment without broadcasting signals. 
         This dummy load is a resistor array designed to dissipate power without radiating radio 
         frequency (RF) signals. It is rated for 20 watts of power (continuous operation), but it can handle more for short
         periods. 
       </div>
-      <div className='mt-4'>
+      <div className='mt-2 md:mt-4'>
         To use the dummy load, connect it to your radio's antenna port using a BNC cable or BNC 
         cable adapter. The first time you use it, start with low power and verify that the dummy 
         load is working correctly. You will know it's working correctly because the SWR will stay
         under 1.5 for HF frequencies. 
       </div>
 
-      <div className='mt-4'>
+      <div className='mt-2 md:mt-4'>
         The dummy load has components and test pads that allow you to measure the power being 
         transmitted by your radio. For more information, 
         see <Link className="no-underline hover:underline" href='/docs/power-measurement'>Measuring Power</Link>. 
       </div>
 
-      <h3 className={cn("text-xl font-bold tracking-tight mt-6")}>Precautions</h3>
-      <div className='mt-4'>
+      <h3 className={cn("text-xl font-bold tracking-tight mt-3 md:mt-6")}>Precautions</h3>
+      <div className='mt-2 md:mt-4'>
         Energy is dissipated as heat in the resistors. Therefore, the dummy load will get hot during use. 
         The more energy you put into it, the hotter it will get. Keep this in mind and do not touch the 
         dummy load while it is in use. Allow it to cool before handling it.
       </div>
 
-      <div className='mt-4'>
+      <div className='mt-2 md:mt-4'>
         If mounting the dummy load in an enclosure, ensure that the enclosure is well-ventilated.
       </div>
     </DocPage>
