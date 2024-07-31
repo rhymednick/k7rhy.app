@@ -5,7 +5,7 @@ import 'katex/dist/katex.min.css';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 
 const DocTitle = 'Measuring Power';
-const DocSubTitle = 'How to measure RF power using a multimeter on dummy load kits and understanding the electronics theory behind it.';
+const DocSubTitle = 'How to measure RF power using a multimeter on dummy load kits and understanding how to apply the electronics theory behind it.';
 import { cn } from "@/lib/utils"
 import PowerCalculator from '@/components/power-calculator';
 import { BlockMath } from 'react-katex';

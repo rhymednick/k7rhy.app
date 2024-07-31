@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image'
 import { cn } from "@/lib/utils"
 import { DocImage } from '@/components/doc/doc-image';  
 

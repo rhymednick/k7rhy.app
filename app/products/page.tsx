@@ -44,11 +44,13 @@ export default function Home() {
         <Card className="mb-2 mt-2 md:mb-4 md:mt-4">
             <CardHeader>
                 <CardTitle>20W Dummy Load Kit (BNC)
-                <Button asChild variant="default" className="ml-4 md:ml-8">
-                        <Link target="_blank" href="https://ca0f39-2e.myshopify.com/products/20w-dummy-load-kit?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"> 
-                            <ExternalLink className="mr-2 h-4 w-4" /> Buy Now
-                        </Link>
-                    </Button>
+                    <div className="block md:inline">
+                        <Button asChild variant="default" className="mt-4 md:mt-0 md:ml-8">
+                            <Link target="_blank" href="https://ca0f39-2e.myshopify.com/products/20w-dummy-load-kit?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"> 
+                                <ExternalLink className="mr-2 h-4 w-4" /> Buy Now
+                            </Link>
+                        </Button>
+                    </div>
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -116,6 +118,14 @@ export default function Home() {
                         <li>&lt;1.3 for 70cm band</li>
                     </ul>
                 </ul>
+
+                <div>
+                    <Button asChild variant="default" className="mt-8 ml-4">
+                        <Link target="_blank" href="https://ca0f39-2e.myshopify.com/products/20w-dummy-load-kit?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web"> 
+                            <ExternalLink className="mr-2 h-4 w-4" /> Buy Now
+                        </Link>
+                    </Button>
+                </div>
             </CardContent>
         </Card>
     </div>
