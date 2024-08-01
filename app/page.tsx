@@ -28,10 +28,10 @@ export default function Home() {
 </div>
 </Balancer>
 <div className="mb-2">
-If you have questions or ideas for kits that you'd like to see, send me an email and tell me about it - 
-<Link className="hover:underline" href="mailto:de.k7rhy@gmail.com">
- de.k7rhy@gmail.com.
-</Link>
+If you have questions or ideas for kits that you'd like to see, send me an email and tell me about it. I'd love to hear from you!  
+</div>
+<div className="mb-2">
+<Link className="hover:underline" href="mailto:de.k7rhy@gmail.com">de.k7rhy@gmail.com</Link>
 </div>
 </div>
     </main>
