@@ -4,7 +4,6 @@ import React from 'react';
 import 'katex/dist/katex.min.css';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 import { DocProcedure, DocProcedureProps } from "@/components/doc/doc-procedure"
-import { cn } from "@/lib/utils"
 import PowerCalculator from '@/components/power-calculator';
 import { BlockMath } from 'react-katex';
 import {
