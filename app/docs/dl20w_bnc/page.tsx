@@ -204,7 +204,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
 ];
 
 const docProcedure: DocProcedureProps = {
-  title: 'Assembly Instructions',
+  title: 'Assembly Procedure',
   docProcedureSteps: docProcedureSteps,
 };
 
