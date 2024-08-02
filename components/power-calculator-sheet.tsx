@@ -88,19 +88,19 @@ const PowerCalculatorSheet = () => {
                         </div>
                     </div>
                     
-                    <div className="grid grid-cols-4 items-center gap-4 bg-slate-200 p-4 overflow-hidden rounded-lg">
+                    <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="wattage" className='col-span-2 font-bold text-right'>Power (W):</Label>
-                        <Label htmlFor="wattage" className='col-span-2'>
+                        <Label htmlFor="wattage" className='p-3 col-span-2 font-bold text-black bg-blue-200 overflow-hidden rounded-lg'>
                             {power !== null && (
-                                <div className='ml-2'>
+                                <div className='ml-1'>
                                     {power.toFixed(1)}
                                 </div>
                             )}
                         </Label>
                     </div>
 
-                    <Button onClick={handleCalculate}>Calculate Power</Button>
-                    
+                    <Button  onClick={handleCalculate}>Calculate Power</Button>
+
                 </div>
             
             
