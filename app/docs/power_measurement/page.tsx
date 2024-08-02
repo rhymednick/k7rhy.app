@@ -4,7 +4,6 @@ import React from 'react';
 import 'katex/dist/katex.min.css';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 import { DocProcedure, DocProcedureProps } from "@/components/doc/doc-procedure"
-import PowerCalculator from '@/components/power-calculator';
 import { BlockMath } from 'react-katex';
 import {
   Table,
@@ -15,7 +14,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Separator } from "@/components/ui/separator"
-import Link from 'next/link';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import Image from 'next/image';
@@ -55,7 +53,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     description: '',
     children: (
       <div className='-mt-2'>
-        Using the <Link className="no-underline hover:underline" href="#power_calculator_tool"><b>Power Calculator Tool</b></Link> below, 
+        Using the <PowerCalculatorSheet /> below, 
         enter the voltage you measured and your transmission band, and the tool will calculate the power in watts.
       </div>
     )
@@ -87,17 +85,6 @@ const Page=() => {
       </div>
       
       <DocProcedure {...docProcedure} />
-
-
-      <div id="#power_calculator_tool" >
-        <h2 className='text-2xl font-bold tracking-tight mt-3 md:mt-6'>Power Calculator Tool</h2>
-      </div>
-      <div className='container mx-auto p-4'>
-        <div className='shadow-lg mr-5 md:mr-20'>
-          <PowerCalculator />
-        </div>
-      </div>
-
 
       <h2 className='text-2xl font-bold tracking-tight mb-2 mt-3 md:mt-6'>Understanding the Power Calculation</h2>
       <div>Power is calculated according to Ohm's Law, which states that power is equal to the 

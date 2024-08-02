@@ -9,7 +9,6 @@ import {
     Sheet,
     SheetContent,
     SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -40,6 +39,7 @@ const PowerCalculatorSheet = () => {
         setPower(null);
       }
     };
+
     
     return (
         <Sheet>
@@ -69,7 +69,7 @@ const PowerCalculatorSheet = () => {
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="rf-band" className='col-span-2 font-bold text-right'>
-                            Frequency Band:
+                            Band:
                         </Label>
                         <div className='col-span-2'>
                             <Select value={band} onValueChange={(value) => {
@@ -88,15 +88,19 @@ const PowerCalculatorSheet = () => {
                         </div>
                     </div>
                     
+                    <div className="grid grid-cols-4 items-center gap-4 bg-slate-200 p-4 overflow-hidden rounded-lg">
+                        <Label htmlFor="wattage" className='col-span-2 font-bold text-right'>Power (W):</Label>
+                        <Label htmlFor="wattage" className='col-span-2'>
+                            {power !== null && (
+                                <div className='ml-2'>
+                                    {power.toFixed(1)}
+                                </div>
+                            )}
+                        </Label>
+                    </div>
+
                     <Button onClick={handleCalculate}>Calculate Power</Button>
                     
-                    <SheetFooter>
-                        {power !== null && (
-                            <div className="mt-4">
-                                <p><b>Power Output:</b> {power.toFixed(1)} Watts</p>
-                            </div>
-                        )}
-                    </SheetFooter>
                 </div>
             
             

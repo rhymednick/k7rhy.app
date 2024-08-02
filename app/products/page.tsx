@@ -38,7 +38,7 @@ import { ExternalLink } from "lucide-react"
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between pl-8 pr-8 pt-4 md:pl-24 md:pr-24 md:pt-12">
+    <main className="flex min-h-screen flex-col justify-between pl-4 pr-4 pt-4 md:pl-24 md:pr-24 md:pt-12">
     <div className="space-y-2">
         <h1 className={cn("scroll-m-20 text-3xl pb-3 md:pb-6 font-bold tracking-tight")}>Products</h1>
         <Card className="mb-2 mt-2 md:mb-4 md:mt-4">
