@@ -38,7 +38,7 @@ export function MainNav() {
         >
           Docs
         </Link>
-        <Link
+        {/* <Link
           href="/contact"
           className={cn(
             "transition-colors hover:text-foreground/80",
@@ -46,7 +46,7 @@ export function MainNav() {
           )}
         >
           Contact
-        </Link>
+        </Link> */}
       </nav>
     </div>
   )

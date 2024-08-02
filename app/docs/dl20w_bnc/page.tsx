@@ -3,7 +3,7 @@ import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
-import {ArrowUpToLine} from "lucide-react"
+import {ArrowUpToLine, Lightbulb, Signpost} from "lucide-react"
 
 import { DocProcedure, DocProcedureProps } from "@/components/doc/doc-procedure"
 import {
@@ -22,6 +22,13 @@ import {
 } from "@/components/ui/tooltip"
 import { DocImage } from '@/components/doc/doc-image';  
 import Link from "next/link"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
 const DocTitle = '20W Dummy Load Kit Assembly Guide';
 const DocSubTitle = 'How to assemble and use the K7RHY 20W Dummy Load Kit.';
 
@@ -111,8 +118,22 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Insert resistors R1-R4',
-        description: 'Insert the first four resistors into the PCB at the location marked R1-R4. The resistor can go in either way; there is no polarity to worry about. Once installed, bend the leads outward slightly to hold the resistors in place. The resistors should be flush with the PCB and on the printed side of the board.',
+        description: 'Insert the first four resistors into the PCB at the location marked R1-R4. The resistors can go in either way; there is no polarity to worry about. Once installed, bend the leads outward slightly to hold the resistors in place. The resistors should be flush with the PCB and on the printed side of the board.',
         image: '/images/dl20w_bnc/guide/bend-back.jpg',
+        children: (
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+              <AccordionTrigger><div><Signpost className='inline mr-2'/>Understand your options</div></AccordionTrigger>
+              <AccordionContent>
+                There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the airflow
+                around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the 
+                resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the 
+                device and increasing its efficiency. This is a trade-off that I made based on my personal preferences and you 
+                are welcome to make other choices. 
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )
       },
       {
         text: 'Solder the resistors',
@@ -121,7 +142,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Trim the leads',
-        description: 'Use the wire cutters to trim the excess leads from the resistor. ',
+        description: 'Use the wire cutters to trim the excess leads from the resistor on the back of the PCB. ',
         image: '/images/dl20w_bnc/guide/trim-resistors.jpg',
       },
       {
@@ -163,12 +184,12 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Solder the BNC connector',
-        description: 'Begin by soldering one of the mounting posts of the BNC connector. Hold the soldering iron to the pad and the post of the BNC connector on the back of the PCB to heat it up, and apply solder. The posts are thick, so they will take a little longer to heat up. The posts are not connected to the circuit and are only for mechanical support. Once the posts are soldered, solder the connector leads. The leads will not need to be trimmed.',
+        description: 'Soldering one of the mounting posts of the BNC connector before soldering the leads. Hold the soldering iron to the pad and the post of the BNC connector on the back of the PCB to heat it up, and apply solder. The posts are thick, so they will take a little longer to heat up. The posts are not connected to the circuit and are only for mechanical support. Once the posts are soldered, solder the connector leads. The leads will not need to be trimmed.',
         image: '/images/dl20w_bnc/guide/secure-bnc.jpg',
       },
       {
         text: 'Appreciate your work',
-        description: 'The assembly stage is complete. Take a step back and appreciate your work before moving on to testing.',
+        description: "Congratulations! The assembly is complete. Now it's time to test your build. Testing is an important step that ensures your dummy load will work correctly when connected to your radio.",
         image: '/images/dl20w_bnc/guide/all-installed.jpg',
       },
     ],
@@ -184,17 +205,17 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Inspect solder joints',
-        description: 'Inspect all solder joints to ensure that they are shiny and smooth. If not shiny, apply your soldering iron to the joint to reflow the solder. There should be no solder bridges between adjacent pads, and no solder balls should be present on the board.',
+        description: 'Inspect all solder joints to ensure that they are shiny and smooth. If not shiny, apply your soldering iron to the joint to reflow the solder. There should be no solder bridges between adjacent pads, and no solder balls should be present on the PCB.',
         image: '/images/dl20w_bnc/guide/check-solder.jpg',
       },
       {
         text: 'Verify resistance',
-        description: 'Using a multimeter, measure the resistance between the two leads on the back of the BNC connector where it connects to the circuit board. The resistance should measure between 47.5 and 52.5 Ohms.',
+        description: 'Using a multimeter, measure the resistance between the two leads on the back of the BNC connector where it connects to the top of the PCB. The resistance should measure between 47.5 and 52.5 ohms. Slight deviations from that range are acceptable, but any major deviations may indicate a problem with the assembly or components.',
         image: '/images/dl20w_bnc/guide/resistance-measurement.jpg',
       },
       {
         text: 'Check diode orientation',
-        description: 'Verify that the black line on the diode matches the white line on the PCB silkscreen. The diode should be oriented with the black line closest to the edge of the board facing away from the resistors.',
+        description: "Verify that the black line on the diode matches the white line on the PCB silkscreen. The diode should be oriented with the black line closest to the edge of the board facing away from the resistors, with the lead going trough the hole labeled K.",
         image: '/images/dl20w_bnc/guide/diode-installed.jpg',
       },
     ],
@@ -246,7 +267,7 @@ const Page=() => {
         </div>
       </h2>
       <div className='mt-2 md:mt-4'>
-        A dummy load is a device used to simulate an electrical load. In amateur radio, 
+        A dummy load is a device used to simulate an electrical load (like an antenna). In amateur radio, 
         this allows you to safely test and calibrate equipment without broadcasting signals. 
         This dummy load is a resistor array designed to dissipate power without radiating radio 
         frequency (RF) signals. It is rated for 20 watts of power (continuous operation), but it can handle more for short
@@ -262,7 +283,7 @@ const Page=() => {
       <div className='mt-2 md:mt-4'>
         The dummy load has components and test pads that allow you to measure the power being 
         transmitted by your radio. For more information, 
-        see <Link className="no-underline hover:underline" href='/docs/power-measurement'>Measuring Power</Link>. 
+        see <Link className="no-underline hover:underline font-bold" href='/docs/power-measurement'>Measuring Power</Link>. 
       </div>
 
       <h3 className={cn("text-xl font-bold tracking-tight mt-3 md:mt-6")}>Precautions</h3>

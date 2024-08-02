@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/table"
 import { Separator } from "@/components/ui/separator"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { Terminal } from "lucide-react"
+import { Terminal, AlertCircle, TriangleAlert } from "lucide-react"
 import Image from 'next/image';
 import PowerCalculatorSheet from '@/components/power-calculator-sheet';
 
@@ -36,25 +36,37 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
   {
     text: 'Attach the transmitter',
     description: 
-      "Connect your transmitter output to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.",
+      "Connect your transmitter output (antenna port) to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.",
   },
   {
     text: 'Connect the multimeter',
-    description: "Connect to the multimeter probes to the test pads (TP1 and TP2) on the dummy load. " +
+    description: "Connect to the multimeter probes to the test pads, TP1 and TP2, on the dummy load. " +
     "They can be held in place by hand if you don't have aligator clips. The polarity of the probes does not matter. " +
     "The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.",
   },
   {
     text: 'Transmit a signal and measure the voltage',
     description: 'Transmit a signal from your radio and measure the voltage on the multimeter. The voltage may take a few seconds to stabilize. ',
+    children: (
+      <Alert variant="destructive">
+        <TriangleAlert className="h-4 w-4" />
+        <AlertTitle>Do not exceed 20W</AlertTitle>
+        <AlertDescription>
+          The dummy load can handle momentary loads above 20W, but the diode which allows you to measure power 
+          as a voltage cannot handle arbitrary large voltages. While there is a large buffer zone factored
+          into the design, you will damage the diode if you go to far. The failure point varies based on the RF frequency. 
+          Keep the power below 20W and you won't risk damaging your equipment.
+        </AlertDescription>
+      </Alert>    
+    )
   },
   {
     text: 'Convert the voltage to power',
     description: '',
     children: (
       <div className='-mt-2'>
-        Using the <PowerCalculatorSheet /> below, 
-        enter the voltage you measured and your transmission band, and the tool will calculate the power in watts.
+        Using the <PowerCalculatorSheet />, enter the voltage you measured and your transmission band, 
+        and the tool will calculate the power in watts.
       </div>
     )
   },
@@ -162,7 +174,7 @@ const Page=() => {
       The test pad on the dummy load that is used for measuring the voltage is connected to the center
        of the resistor network. Therefore, the impedance at that point is half the impedance measured 
        at the RF connector. For HF frequencies, we can make a reasonably accurate calculation of 
-       power if we <b>set R to 25 ohms</b>.  
+       power if we <b>set R to 25 ohms</b> because the reactance is low.  
       </div>
       <div>
       We're close to being able to rewrite the formula for this dummy load specifically, but we need to make one more

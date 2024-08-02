@@ -18,9 +18,10 @@ import { Label } from './ui/label';
 
 const PowerCalculatorSheet = () => {
     const [voltage, setVoltage] = useState('');
-    const [power, setPower] = useState<number | null>(null);
+    const [power, setPower] = useState<number>(0);
     const [band, setBand] = useState('180-10m');
   
+    
     const handleCalculate = () => {
       const resistanceValues: { [key: string]: number } = {
         '180-10m': 25,
@@ -36,7 +37,8 @@ const PowerCalculatorSheet = () => {
         const powerCalc = ((voltageNum + voltageDrop) ** 2) / resistance;
         setPower(powerCalc);
       } else {
-        setPower(null);
+        //setPower(null);
+        setPower(0);
       }
     };
 
