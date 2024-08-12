@@ -1,33 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
-import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
-import {ArrowUpToLine, Lightbulb, Signpost} from "lucide-react"
+import { Signpost } from "lucide-react"
 
 import { DocProcedure, DocProcedureProps } from "@/components/doc/doc-procedure"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { DocImage } from '@/components/doc/doc-image';  
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { DocImage } from '@/components/doc/doc-image';
 import Link from "next/link"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { DocSection } from '@/components/doc/doc-section';
 
 const DocTitle = '20W Dummy Load Kit Assembly Guide';
 const DocSubTitle = 'How to assemble and use the K7RHY 20W Dummy Load Kit.';
@@ -50,28 +31,28 @@ function buildInventoryTable() {
     <div>
       <Table>
         <TableHeader>
-            <TableRow>
-              <TableHead className='w-[50px]'>Count</TableHead>
-              <TableHead>Item</TableHead>
-              <TableHead>Image</TableHead>
-            </TableRow>
+          <TableRow>
+            <TableHead className='w-[50px]'>Count</TableHead>
+            <TableHead>Item</TableHead>
+            <TableHead>Image</TableHead>
+          </TableRow>
         </TableHeader>
         <TableBody>
           {inventoryTableItems.map((item, index) => (
             <TableRow key={index}>
-                <TableCell className="font-medium text-center" >{item.count}</TableCell>
-                <TableCell className="font-medium" >{item.text}</TableCell>
-                <TableCell >
-                  <DocImage 
-                    title="Printed circuit board" 
-                    triggerImageSize={item.triggerImageSize} 
-                    popupImageSize={item.popupImageSize} 
-                    src={item.image} 
-                    alt={item.text} />
-                </TableCell>
+              <TableCell className="font-medium text-center" >{item.count}</TableCell>
+              <TableCell className="font-medium" >{item.text}</TableCell>
+              <TableCell >
+                <DocImage
+                  title="Printed circuit board"
+                  triggerImageSize={item.triggerImageSize}
+                  popupImageSize={item.popupImageSize}
+                  src={item.image}
+                  alt={item.text} />
+              </TableCell>
             </TableRow>
           ))}
-                    
+
         </TableBody>
       </Table>
       <div>
@@ -101,14 +82,14 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     children: (
       buildInventoryTable()
     ),
-    
+
   },
   {
     text: 'Prepare and install the reistors',
-    description: 
+    description:
       "Install the resistors on the PCB at the locations marked R1-R8. All of the resistors are identical," +
-      " so they can go in any of the marked spaces; orientation isn't important since the resistors are not polarized. " + 
-      "If you're experienced with electronics, you can install all of the resistors on your own now. " + 
+      " so they can go in any of the marked spaces; orientation isn't important since the resistors are not polarized. " +
+      "If you're experienced with electronics, you can install all of the resistors on your own now. " +
       "If you're new to soldering, follow along with my instructions.",
     substeps: [
       {
@@ -123,13 +104,13 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
         children: (
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger><div><Signpost className='inline mr-2'/>Understand your options</div></AccordionTrigger>
+              <AccordionTrigger><div><Signpost className='inline mr-2' />Understand your options</div></AccordionTrigger>
               <AccordionContent>
                 There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the airflow
-                around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the 
-                resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the 
-                device and increasing its efficiency. This is a trade-off that I made based on my personal preferences and you 
-                are welcome to make other choices. 
+                around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the
+                resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the
+                device and increasing its efficiency. This is a trade-off that I made based on my personal preferences and you
+                are welcome to make other choices.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -221,7 +202,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     ],
   },
 
-  
+
 ];
 
 const docProcedure: DocProcedureProps = {
@@ -230,73 +211,63 @@ const docProcedure: DocProcedureProps = {
 };
 
 
-const Page=() => {
+const Page = () => {
   return (
     <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
-      <div className='text-med text-muted-foreground mt-2 mb-6'>
-        <div className="flex pt-2 pb-2 items-center space-x-2 bg-slate-100">
-          <div className='ml-2 mr-2 md:mr-4'>In this topic:</div>
-          
+      {/* <div className='text-med text-muted-foreground mt-2 mb-6'>
+        <div className="flex pt-2 pb-2 items-center space-x-2 bg-slate-100 border border-slate-300 rounded-lg overflow-hidden">
+          <div className='ml-4 mr-4'>In this topic:</div>
+
           <div>
             <Link href="#assembly_instructions">
               Assembly Instructions
             </Link>
           </div>
-          <Separator orientation="vertical" />
+          <div className='text-slate-300 max-sm:hidden '>|</div>
           <div>
             <Link href="#operating_instructions">
               Operating Instructions
             </Link>
           </div>
         </div>
-      </div>
-      <div id="#assembly_instructions" /> 
+      </div> */}
+      <div id="#assembly_instructions" />
       <DocProcedure {...docProcedure} />
-      
-      <h2 id="operating_instructions" className={cn("flex items-center text-2xl font-bold tracking-tight")}>
-        <div>Operating Instructions</div> 
-        <div className='ml-4'>
-          <Link href="#top" >
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild><ArrowUpToLine /></TooltipTrigger>
-                <TooltipContent>Back to top</TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </Link>
+      <DocSection title="Operating Instructions" bookmarkId="operating_instructions">
+
+        <div>
+          A dummy load is a device used to simulate an electrical load (like an antenna). In amateur radio,
+          this allows you to safely test and calibrate equipment without broadcasting signals.
+          This dummy load is a resistor array designed to dissipate power without radiating radio
+          frequency (RF) signals. It is rated for 20 watts of power (continuous operation), but it can handle more for short
+          periods.
         </div>
-      </h2>
-      <div className='mt-2 md:mt-4'>
-        A dummy load is a device used to simulate an electrical load (like an antenna). In amateur radio, 
-        this allows you to safely test and calibrate equipment without broadcasting signals. 
-        This dummy load is a resistor array designed to dissipate power without radiating radio 
-        frequency (RF) signals. It is rated for 20 watts of power (continuous operation), but it can handle more for short
-        periods. 
-      </div>
-      <div className='mt-2 md:mt-4'>
-        To use the dummy load, connect it to your radio's antenna port using a BNC cable or BNC 
-        cable adapter. The first time you use it, start with low power and verify that the dummy 
-        load is working correctly. You will know it's working correctly because the SWR will stay
-        under 1.5 for HF frequencies. 
-      </div>
+        <div className='mt-2'>
+          To use the dummy load, connect it to your radio's antenna port using a BNC cable or BNC
+          cable adapter. The first time you use it, start with low power and verify that the dummy
+          load is working correctly. You will know it's working correctly because the SWR will stay
+          under 1.5 for HF frequencies.
+        </div>
 
-      <div className='mt-2 md:mt-4'>
-        The dummy load has components and test pads that allow you to measure the power being 
-        transmitted by your radio. For more information, 
-        see <Link className="no-underline hover:underline font-bold" href='/docs/power-measurement'>Measuring Power</Link>. 
-      </div>
+        <div className='mt-2'>
+          The dummy load has components and test pads that allow you to measure the power being
+          transmitted by your radio. For more information,
+          see <Link className="no-underline hover:underline font-bold" href='/docs/power_measurement'>Measuring Power</Link>.
+        </div>
 
-      <h3 className={cn("text-xl font-bold tracking-tight mt-3 md:mt-6")}>Precautions</h3>
-      <div className='mt-2 md:mt-4'>
-        Energy is dissipated as heat in the resistors. Therefore, the dummy load will get hot during use. 
-        The more energy you put into it, the hotter it will get. Keep this in mind and do not touch the 
-        dummy load while it is in use. Allow it to cool before handling it.
-      </div>
+        <DocSection title="Precautions">
+          <div className='mt-2'>
+            Energy is dissipated as heat in the resistors. Therefore, the dummy load will get hot during use.
+            The more energy you put into it, the hotter it will get. Keep this in mind and do not touch the
+            dummy load while it is in use. Allow it to cool before handling it.
+          </div>
 
-      <div className='mt-2 md:mt-4'>
-        If mounting the dummy load in an enclosure, ensure that the enclosure is well-ventilated.
-      </div>
-    </DocPage>
+          <div className='mt-2'>
+            If mounting the dummy load in an enclosure, ensure that the enclosure is well-ventilated.
+          </div>
+        </DocSection>
+      </DocSection>
+    </DocPage >
   );
 };
 

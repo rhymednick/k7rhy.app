@@ -1,21 +1,21 @@
 import React from 'react';
 
 import { Balancer } from "react-wrap-balancer"
-import { cn } from "@/lib/utils"
 import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-  } from "@/components/ui/breadcrumb"
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import { DocSection } from './doc-section';
 
 interface DocPageProps {
-    title: string
-    subTitle?: string
-    breadcrumbs?: React.JSX.Element
-    children?: React.ReactNode
+  title: string
+  subTitle?: string
+  breadcrumbs?: React.JSX.Element
+  children?: React.ReactNode
 }
 
 export interface BreadcrumbItem {
@@ -45,22 +45,21 @@ export function MyBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 }
 
 export function DocPage(props: DocPageProps) {
-    const subTitle = props.subTitle ? <p className="text-base text-muted-foreground"><Balancer ratio={0.85} preferNative={false}>{props.subTitle}</Balancer></p> : null;
-    const breadcrumbs = props.breadcrumbs ? <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">{props.breadcrumbs}</div> : null;
+  const subTitle = props.subTitle ? <div className="-mt-4 mb-6 text-base text-muted-foreground"><Balancer ratio={0.85} preferNative={false}>{props.subTitle}</Balancer></div> : null;
+  const breadcrumbs = props.breadcrumbs ? <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">{props.breadcrumbs}</div> : null;
   return (
     <main className="relative py-2 md:py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-        <div className="mx-auto w-full min-w-0">
-            {breadcrumbs}
-            <div className="space-y-2">
-                <h1 className={cn("scroll-m-20 text-3xl font-bold tracking-tight")}>
-                {props.title}
-                </h1>
-                {subTitle}
-                <div className="max-w-[800px] justify-between ">
-                    {props.children}
-                </div>
+      <div className="mx-auto w-full min-w-0">
+        {breadcrumbs}
+        <div className="space-y-2">
+          <DocSection title={props.title} className='scroll-m-20'>
+            {subTitle}
+            <div className="max-w-[800px] justify-between ">
+              {props.children}
             </div>
+          </DocSection>
         </div>
+      </div>
     </main>
   )
 }
