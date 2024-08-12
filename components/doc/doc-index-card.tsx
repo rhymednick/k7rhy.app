@@ -1,21 +1,21 @@
 import React from 'react';
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link"
 import { FileTextIcon, ExternalLinkIcon } from "lucide-react"
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
 } from "@/components/ui/table"
 import { Balancer } from "react-wrap-balancer"
 
@@ -29,7 +29,7 @@ export interface DocIndexItem {
     href: string
     description: string
     type?: DocIndexItemType
-  }
+}
 
 export interface DocIndexCardProps {
     title: string
@@ -39,7 +39,7 @@ export interface DocIndexCardProps {
 
 export function DocIndexCard(props: DocIndexCardProps) {
     const description = props.description ? <CardDescription className="mb-4"><Balancer>{props.description}</Balancer></CardDescription> : null;
-    
+
     return (
         <div>
             <Card className="mb-4 mt-4">
@@ -61,9 +61,9 @@ export function DocIndexCard(props: DocIndexCardProps) {
                                 <TableRow key={index}>
                                     <TableCell>
                                         {item.type === DocIndexItemType.External ? (
-                                            <ExternalLinkIcon/>
+                                            <ExternalLinkIcon />
                                         ) : (
-                                            <FileTextIcon/>
+                                            <FileTextIcon />
                                         )}
                                     </TableCell>
                                     <TableCell className="font-medium">
@@ -82,8 +82,8 @@ export function DocIndexCard(props: DocIndexCardProps) {
                             ))}
                         </TableBody>
                     </Table>
-                </CardContent> 
-            </Card>           
+                </CardContent>
+            </Card>
         </div>
     )
 }

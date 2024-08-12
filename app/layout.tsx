@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 
 
-const inter = Inter({ subsets: ["latin"],variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 import React from 'react';
 
 
@@ -45,7 +45,7 @@ export default function RootLayout({
             <div vaul-drawer-wrapper="">
               <div className="relative flex min-h-screen flex-col bg-background">
                 <SiteHeader />
-                  {children}
+                {children}
                 <SiteFooter />
               </div>
             </div>

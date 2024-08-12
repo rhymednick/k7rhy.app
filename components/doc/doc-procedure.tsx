@@ -1,8 +1,6 @@
 import React from 'react';
-import { cn } from "@/lib/utils"
 import { DocImage } from '@/components/doc/doc-image';
 import { DocSection } from "@/components/doc/doc-section";
-
 
 export interface DocProcedureSubstep {
     text: string;

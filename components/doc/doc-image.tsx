@@ -8,7 +8,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog"
 
 import Image from 'next/image'
 
@@ -24,33 +24,33 @@ export interface DocImageProps {
 
 export async function DocImage(props: DocImageProps) {
 
-    
+
     return (
         <div>
             <AlertDialog>
                 <AlertDialogTrigger>
-                    <Image 
-                        src={props.src} 
-                        alt={props.alt || ''} 
-                        width={props.triggerImageSize} 
+                    <Image
+                        src={props.src}
+                        alt={props.alt || ''}
+                        width={props.triggerImageSize}
                         height={props.triggerImageSize} />
                 </AlertDialogTrigger>
                 <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle>{props.title}</AlertDialogTitle>
-                    <AlertDialogDescription>
-                        <Image 
-                            src={props.src} 
-                            alt={props.alt || ''}  
-                            width={props.popupImageSize} 
-                            height={props.popupImageSize} />
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>Done</AlertDialogCancel>
-                </AlertDialogFooter>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{props.title}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            <Image
+                                src={props.src}
+                                alt={props.alt || ''}
+                                width={props.popupImageSize}
+                                height={props.popupImageSize} />
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Done</AlertDialogCancel>
+                    </AlertDialogFooter>
                 </AlertDialogContent>
-            </AlertDialog>          
+            </AlertDialog>
         </div>
     )
 }

@@ -32,7 +32,7 @@ const docTechGuideProps: DocIndexCardProps = {
 };
 
 export default async function Page() {
-  
+
   return (
     <DocPage title={DocTitle} >
       <DocIndexCard {...docAssemblyGuideProps} />

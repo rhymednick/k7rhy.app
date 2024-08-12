@@ -2,8 +2,8 @@ import { useState } from 'react';
 import React from 'react';
 
 import {
-    Card,
-    CardContent,
+  Card,
+  CardContent,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -40,13 +40,13 @@ const PowerCalculator = () => {
           <div className="flex space-x-4 items-start mt-4">
             <div className="flex flex-col w-1/2">
               <label htmlFor="voltage" className='font-bold mb-2'>Voltage (V):</label>
-              <Input 
+              <Input
                 id="voltage"
                 name="voltage"
-                type="text" 
-                placeholder="Voltage (V)" 
-                value={voltage} 
-                onChange={(e) => setVoltage(e.target.value)} 
+                type="text"
+                placeholder="Voltage (V)"
+                value={voltage}
+                onChange={(e) => setVoltage(e.target.value)}
               />
             </div>
             <div className="flex flex-col w-1/2">
