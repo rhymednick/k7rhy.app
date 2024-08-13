@@ -1,24 +1,37 @@
 import React from 'react';
-
-import { docsConfig } from "@/config/docs"
-import { DocsSidebarNav } from "@/components/sidebar-nav"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { docsConfig } from "@/config/docs";
+import { DocsSidebarNav } from "@/components/sidebar-nav";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { PageNavigation } from "@/components/page-navigation";
 
 interface DocsLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export default function DocsLayout({ children }: DocsLayoutProps) {
   return (
-    <div className="border-b">
-      <div className="container flex-1 items-start md:grid md:grid-cols-[180px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10">
-        <aside className="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block">
+    <div className="border-b" >
+      <div className="container flex flex-col lg:flex-row lg:items-start">
+        {/* Sidebar for large screens */}
+        <aside className="w-full lg:w-1/4 lg:sticky lg:top-14 lg:-ml-2">
           <ScrollArea className="h-full py-6 pr-6 lg:py-8">
             <DocsSidebarNav config={docsConfig} />
           </ScrollArea>
         </aside>
-        {children}
+
+        {/* Main content and navigation */}
+        <div className="flex flex-col lg:flex-row lg:flex-1 lg:gap-10">
+          {/* Documentation Content */}
+          <main className="flex-1">
+            {children}
+          </main>
+
+          {/* Page Navigation */}
+          <div className="lg:w-64 lg:ml-1">
+            <PageNavigation />
+          </div>
+        </div>
       </div>
     </div>
-  )
+  );
 }
