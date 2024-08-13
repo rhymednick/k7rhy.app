@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
 import {
     Accordion,
     AccordionContent,
@@ -8,11 +7,8 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 
-
 export const PageNavigation = () => {
     const [headings, setHeadings] = useState<Element[]>([]);
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
 
     useEffect(() => {
         const h2AndH3Elements = Array.from(document.querySelectorAll("h2, h3"));
@@ -22,7 +18,7 @@ export const PageNavigation = () => {
                 !heading.classList.contains('no-nav')
         );
         setHeadings(filteredHeadings);
-    }, [pathname, searchParams]);
+    }, []);
 
     // Adjust scroll position after navigation
     useEffect(() => {
