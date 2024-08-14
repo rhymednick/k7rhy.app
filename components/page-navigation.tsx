@@ -1,5 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+
 import {
     Accordion,
     AccordionContent,
@@ -9,6 +11,7 @@ import {
 
 export const PageNavigation = () => {
     const [headings, setHeadings] = useState<Element[]>([]);
+    const pathname = usePathname(); // Get the current pathname
 
     useEffect(() => {
         const h2AndH3Elements = Array.from(document.querySelectorAll("h2, h3"));
@@ -18,7 +21,7 @@ export const PageNavigation = () => {
                 !heading.classList.contains('no-nav')
         );
         setHeadings(filteredHeadings);
-    }, []);
+    }, [pathname]);
 
     // Adjust scroll position after navigation
     useEffect(() => {
