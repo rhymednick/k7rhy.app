@@ -54,6 +54,7 @@ export function DocPage(props: DocPageProps) {
     const headings = document.querySelectorAll('h2, h3');
     headings.forEach((heading) => {
       if (!heading.id) {
+        // eslint-disable-next-line no-useless-escape
         heading.id = heading.textContent?.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '') || '';
       }
     });
