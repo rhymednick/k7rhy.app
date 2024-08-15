@@ -1,0 +1,102 @@
+/* eslint-disable react/no-children-prop */
+import React, { useState } from 'react';
+import { Highlight, themes } from 'prism-react-renderer';
+
+interface CodeBlockProps {
+    className?: string;
+    children: React.ReactNode;
+    showLineNumbers?: boolean;
+}
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ className, children, showLineNumbers = false }) => {
+    const [copied, setCopied] = useState(false);
+    const language = className?.replace(/language-/, '') || 'javascript';
+
+    // Convert children to a string if necessary
+    const code = Array.isArray(children)
+        ? children.map(child => (typeof child === 'string' ? child : JSON.stringify(child))).join('')
+        : typeof children === 'string'
+        ? children.trim()
+        : JSON.stringify(children);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(code);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
+    return (
+        <div style={{ position: 'relative', marginBottom: '1rem', border: '1px solid #ddd', borderRadius: '5px' }}>
+            {/* Header with Language Label and Copy Button */}
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    padding: '5px 10px',
+                    backgroundColor: '#f5f5f5',
+                    borderTopLeftRadius: '5px',
+                    borderTopRightRadius: '5px',
+                    borderBottom: '1px solid #ddd',
+                }}
+            >
+                <div style={{ fontSize: '0.8rem', color: '#888' }}>{language.toUpperCase()}</div>
+                <button
+                    onClick={handleCopy}
+                    style={{
+                        background: 'transparent',
+                        color: copied ? 'green' : '#888',
+                        border: 'none',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: 0,
+                    }}
+                >
+                    <span style={{ marginRight: '5px' }}>📋</span> {copied ? 'Copied!' : 'Copy'}
+                </button>
+            </div>
+
+            {/* Highlighted Code Block */}
+            {React.createElement(Highlight, {
+                code: code,
+                language: language,
+                theme: themes.github,
+                children: ({ className, style, tokens, getLineProps, getTokenProps }) => (
+                    <pre
+                        className={className}
+                        style={{
+                            ...style,
+                            display: 'flex',
+                            padding: '10px',
+                            overflowX: 'auto',
+                            borderBottomLeftRadius: '5px',
+                            borderBottomRightRadius: '5px',
+                        }}
+                    >
+                        {showLineNumbers && (
+                            <div style={{ paddingRight: '10px', textAlign: 'right', userSelect: 'none' }}>
+                                {tokens.map((_, i) => (
+                                    <div key={i} style={{ paddingRight: '10px', color: '#999' }}>
+                                        {i + 1}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        <div>
+                            {tokens.map((line, i) => (
+                                <div {...getLineProps({ line, key: i })} key={i}>
+                                    {line.map((token, key) => (
+                                        <span {...getTokenProps({ token, key })} key={key} />
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </pre>
+                ),
+            })}
+        </div>
+    );
+};
+
+export default CodeBlock;

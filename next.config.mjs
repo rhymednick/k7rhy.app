@@ -1,10 +1,9 @@
-import withMDX from '@next/mdx';
-
+import createMDX from '@next/mdx'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure `pageExtensions` to include MDX files
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx', 'md'],
 
   // Add the redirects function
   async redirects() {
@@ -20,5 +19,5 @@ const nextConfig = {
   // Optionally, add any other Next.js config below
 };
 
-const withMDXConfig = withMDX()(nextConfig);
-export default withMDXConfig;
+const withMDX = createMDX()
+export default withMDX(nextConfig)
