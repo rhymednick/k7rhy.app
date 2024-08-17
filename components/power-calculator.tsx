@@ -1,3 +1,4 @@
+"use client"
 import { useState } from 'react';
 import React from 'react';
 
@@ -34,7 +35,7 @@ const PowerCalculator = () => {
   };
 
   return (
-    <Card>
+    <Card className="max-w-96">
       <CardContent>
         <div className="flex flex-col space-y-4">
           <div className="flex space-x-4 items-start mt-4">

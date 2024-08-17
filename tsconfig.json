@@ -24,12 +24,16 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "content-collections": [
+        "./.content-collections/generated"
       ]
     },
     "typeRoots": [
       "./node_modules/@types",
       "./declarations.d.ts"
     ],
+    "baseUrl": "./",
   },
   "include": [
     "next-env.d.ts",

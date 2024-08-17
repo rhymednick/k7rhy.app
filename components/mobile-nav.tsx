@@ -5,7 +5,7 @@ import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 //import { ViewVerticalIcon } from "@radix-ui/react-icons"
 
-import { docsConfig } from "@/config/docs"
+import { navConfig } from "@/config/navigation"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
@@ -66,7 +66,7 @@ export function MobileNav() {
         </MobileLink>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="flex flex-col space-y-3">
-            {docsConfig.mainNav?.map(
+            {navConfig.mainNav?.map(
               (item) =>
                 item.href && (
                   <MobileLink
@@ -80,13 +80,13 @@ export function MobileNav() {
             )}
           </div>
           <div className="flex flex-col space-y-2">
-            {docsConfig.sidebarNav.map((item, index) => (
+            {navConfig.docNav.map((item, index) => (
               <div key={index} className="flex flex-col space-y-3 pt-6">
                 <h4 className="font-medium">{item.title}</h4>
                 {item?.items?.length &&
                   item.items.map((item) => (
                     <React.Fragment key={item.href}>
-                      {!item.disabled &&
+                      {
                         (item.href ? (
                           <MobileLink
                             href={item.href}

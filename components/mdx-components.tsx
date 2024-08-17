@@ -1,8 +1,7 @@
-"use client"
-
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import type { MDXComponents } from "mdx/types"
 // import { useMDXComponent } from "next-contentlayer/hooks"
 //import { NpmCommands } from "types/unist"
 
@@ -40,9 +39,10 @@ import { DocImage } from "@/components/doc/doc-image"
 import { DocIndexCard } from "@/components/doc/doc-index-card"
 import { Icons } from "@/components/icons"
 import PowerCalculator from "@/components/power-calculator"
+import CodeBlock from "@/components/code-block"
 //import { Style } from "@/registry/styles"
 
-const components = {
+const components: MDXComponents = {
     Accordion,
     AccordionContent,
     AccordionItem,
@@ -170,6 +170,17 @@ const components = {
             {...props}
         />
     ),
+    code: ({ className, children }) => {
+        const showLineNumbers = className?.includes('(show-line-numbers)') || false;
+        const languageClassName = className?.replace('(show-line-numbers)', '').trim();
+        // console.log('showLineNumbers', showLineNumbers);
+        // console.log('languageClassName', languageClassName);
+        // console.log('className', className);
+        if (typeof children === 'string') {
+            return <CodeBlock className={languageClassName} showLineNumbers={showLineNumbers}>{children.trim()}</CodeBlock>;
+        }
+        return <code className={languageClassName}>{children}</code>;
+    },
     Image,
     Callout,
     AspectRatio,

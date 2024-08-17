@@ -42,7 +42,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <div vaul-drawer-wrapper="">
+            <div>
               <div className="relative flex min-h-screen flex-col bg-background">
                 <SiteHeader />
                 {children}

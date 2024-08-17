@@ -1,3 +1,5 @@
+import { Meta } from "@content-collections/core"
+
 export interface LinksProperties {
     doc?: string
     api?: string
@@ -14,4 +16,5 @@ export interface Doc {
     component?: boolean
     toc?: boolean
 }
+
 

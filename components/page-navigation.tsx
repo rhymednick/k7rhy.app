@@ -49,30 +49,38 @@ export const PageNavigation = () => {
         };
     }, []);
 
+    // Return null if no headings are found. Having an empty "on this page" 
+    // section is not useful in that case.
+    if (headings.length === 0) {
+        return null;
+    }
+
     return (
-        <nav className="fixed top-20 right-2 hidden lg:block w-64">
-            <Accordion defaultValue="page-nav" type="single" collapsible>
-                <AccordionItem value="page-nav">
-                    <AccordionTrigger className="font-bold hover:no-underline">On this page</AccordionTrigger>
-                    <AccordionContent>
-                        <ul className="space-y-2 p-4 bg-white ">
-                            {headings.map((heading, index) => {
-                                const isH2 = heading.tagName === "H2";
-                                return (
-                                    <li key={index} className={`pl-${isH2 ? 0 : 4}`}>
-                                        <a
-                                            href={`#${heading.id}`}
-                                            className={`text-sm font-medium ${isH2 ? 'text-gray-700 hover:text-blue-600' : 'text-gray-500 hover:text-blue-400'}`}
-                                        >
-                                            {heading.textContent}
-                                        </a>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+        <nav className="sticky top-20 right-2 hidden lg:block w-64 ml-1">
+            <aside>
+                <Accordion defaultValue="page-nav" type="single" collapsible>
+                    <AccordionItem value="page-nav">
+                        <AccordionTrigger className="font-bold hover:no-underline">On this page</AccordionTrigger>
+                        <AccordionContent>
+                            <ul className="space-y-2 p-4 ">
+                                {headings.map((heading, index) => {
+                                    const isH2 = heading.tagName === "H2";
+                                    return (
+                                        <li key={index} className={`pl-${isH2 ? 0 : 4}`}>
+                                            <a
+                                                href={`#${heading.id}`}
+                                                className={`text-sm font-medium ${isH2 ? 'dark:text-gray-500 text-gray-700 dark:hover:text-blue-400 hover:text-blue-600' : 'text-gray-500 hover:text-blue-400'}`}
+                                            >
+                                                {heading.textContent}
+                                            </a>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </aside>
         </nav>
     );
 };
