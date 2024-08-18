@@ -46,7 +46,7 @@ const PowerCalculatorSheet = () => {
     return (
         <Sheet>
             <SheetTrigger asChild>
-                <div className='inline font-bold no-underline hover:underline'>Power Calculator Tool </div>
+                <div className='inline font-bold no-underline hover:underline'>Power Calculator Tool</div>
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>

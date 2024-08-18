@@ -41,8 +41,8 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
   },
   {
     text: 'Connect the multimeter',
-    description: "Connect to the multimeter probes to the test pads, TP1 and TP2, on the dummy load. " +
-      "They can be held in place by hand if you don't have aligator clips. The polarity of the probes does not matter. " +
+    description: "Connect the multimeter probes to the test pads, TP1 and TP2, on the dummy load. " +
+      "They can be held in place by hand if you don't have alligator clips. The polarity of the probes does not matter. " +
       "The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.",
   },
   {
@@ -84,7 +84,7 @@ const Page = () => {
   return (
     <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
       <div>
-        All K7RHY dummy load kits are designed with test pads that are used measure the output power
+        All K7RHY dummy load kits are designed with test pads that are used to measure the output power
         of your radio with a multimeter. The power is measured, while transmitting, as a voltage that is
         converted to watts using a formula derived from Ohm's Law.
       </div>
@@ -109,7 +109,7 @@ const Page = () => {
         You'd be forgiven for thinking that the resistance is equal to the value of the dummy load's resistor network,
         but it's not. The resistance in this formula is the impedance of the dummy load, which is a combination of
         resistance and reactance. The reactance changes with the frequency, based on the composition and construction
-        of the dummy load and it's component parts. At HF frequencies the reactance is negligible, but that's not the case at VHF and UHF frequencies.
+        of the dummy load and it's component parts. At HF frequencies, the reactance is negligible, but that's not the case at VHF and UHF frequencies.
         To illustrate this point, the following table shows the measured impedance of a dummy load at various frequencies.
         For reference, the resistance of this dummy load was measured at <b>49.3 ohms</b> by a multimeter at the RF connector.
         <div className="flex justify-center mb-2 mt-2 md:mb-4 md:mt-4">
@@ -199,12 +199,12 @@ const Page = () => {
                 from suggesting that you use them. However, the goal of this project is to provide a practical
                 tool for hams to measure power. The approximations used in the tool are based on lab measurements of
                 the exact hardware used in the kit you've been provided. The approximations are accurate enough for
-                practical use. I could design a kit that would make computations based on real-time internal measurments,
+                practical use. I could design a kit that would make computations based on real-time internal measurements,
                 but that kit would be prohibitively expensive and provide no additional operational value.</div>
 
               <div className='mt-2'>The bottom line is, radio transmitters do not transmit at precise, stable power levels across their
                 supported frequency range. The power output of a transmitter is a function of the input power and the component
-                efficiency, which itself varies with frequency. Once leaving the transmitter, the power is further attenuated by the feedline
+                efficiency, which itself varies with frequency. Once leaving the transmitter, the power is further attenuated by the feed line
                 (including insertion losses), the load, and the
                 environment. For the purposes of ham radio, it's good to know that your transmitter is operating within a certain
                 range of its rated power, but there's little value in knowing the exact, momentary power output.
