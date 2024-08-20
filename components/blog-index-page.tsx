@@ -31,6 +31,8 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                             key={post._meta.path}
                             className={`relative group ${post.publish === false ? 'opacity-60' : ''}`}
                         >
+                            <div className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/60" />
+                            <svg viewBox="0 0 9 9" className="hidden absolute right-full mr-6 top-2 text-slate-200 dark:text-slate-600 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block"><circle cx="4.5" cy="4.5" r="4.5" stroke="currentColor" className="fill-white dark:fill-slate-900" strokeWidth="2"></circle></svg>
                             {post.publish === false && (
                                 <div className="absolute inset-0 flex items-center justify-center opacity-10 text-red-500 font-bold text-6xl z-0">
                                     Unpublished

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-
-import * as lucideIcons from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import * as lucideIcons from "lucide-react";
 import { cn } from '@/lib/utils';
 
 export enum Level {
@@ -13,46 +12,48 @@ export enum Level {
     Choice = "choice",
 }
 
-
 export interface DocAlertProps {
-    title?: string
-    level?: Level
-    icon?: keyof typeof lucideIcons
-    overrideTitleClass?: string
-    overrideDescriptionClass?: string
-    appendTitleClass?: string
-    appendDescriptionClass?: string
-    children?: React.ReactNode | string
+    title?: string;
+    level?: Level;
+    icon?: keyof typeof lucideIcons;
+    overrideTitleClass?: string;
+    overrideDescriptionClass?: string;
+    appendTitleClass?: string;
+    appendDescriptionClass?: string;
+    children?: React.ReactNode | string;
 }
 
-const DocAlert: React.FC<DocAlertProps> = ({ ...props }) => {
-
-    // Pick the correct icon
-    if (!props.icon) {
-        switch (props.level) {
-            case Level.Important:
-                props.icon = "Info"
-                break
-            case Level.Warning:
-                props.icon = "AlertTriangle"
-                break
-            case Level.Critical:
-                props.icon = "Ban"
-                break
-            case Level.Question:
-                props.icon = "CircleHelp"
-                break
-            case Level.Choice:
-                props.icon = "ArrowLeftRight"
-                break
-            case Level.Default:
-                props.icon = "Terminal"
-                break;
-            default:
-            //don't set a new value - keep it empty - no icon
-        }
-
+const selectIcon = (level?: Level): keyof typeof lucideIcons => {
+    switch (level) {
+        case Level.Important:
+            return "Info";
+        case Level.Warning:
+            return "AlertTriangle";
+        case Level.Critical:
+            return "Ban";
+        case Level.Question:
+            return "HelpCircle"; // Updated to a correct icon name
+        case Level.Choice:
+            return "ArrowLeftRight";
+        case Level.Default:
+        default:
+            return "Terminal";
     }
+};
+
+const DocAlert: React.FC<DocAlertProps> = ({
+    title,
+    level = Level.Default,
+    icon,
+    overrideTitleClass,
+    appendTitleClass,
+    overrideDescriptionClass,
+    appendDescriptionClass,
+    children,
+}) => {
+    const iconName = icon || selectIcon(level);
+    const IconComponent = lucideIcons[iconName] as React.ElementType; // Ensure the component is treated as a valid React component
+    const Placeholder = lucideIcons["Terminal"] as React.ElementType; // Ensure the placeholder is treated as a valid React component
 
     const titleColor = {
         [Level.Important]: "text-blue-500",
@@ -61,36 +62,33 @@ const DocAlert: React.FC<DocAlertProps> = ({ ...props }) => {
         [Level.Question]: "text-purple-500",
         [Level.Choice]: "text-green-500",
         [Level.Default]: "text-gray-900 dark:text-slate-200",
-    }
+    };
 
+    const titleClass = overrideTitleClass
+        ? overrideTitleClass
+        : `${titleColor[level]} ${appendTitleClass || ''}`;
 
-    const titleClass = (props.overrideTitleClass) ?
-        props.overrideTitleClass :
-        `${titleColor[props.level || Level.Default]} ${props.appendTitleClass}`
-
-    const descriptionClass = (props.overrideDescriptionClass) ?
-        props.overrideDescriptionClass :
-        `prose ${props.appendDescriptionClass}`
-
-    const IconComponent = props.icon ? lucideIcons[props.icon] : null;
-
-    const Placeholder = lucideIcons["Terminal"]
+    const descriptionClass = overrideDescriptionClass
+        ? overrideDescriptionClass
+        : `prose ${appendDescriptionClass || ''}`;
 
     return (
         <Alert>
             {IconComponent ? (
                 <IconComponent className="mr-2 h-4 w-4" />
             ) : (
-                // Placeholder to maintain formatting
                 <Placeholder className="mr-2 h-4 w-4 invisible" />
             )}
-            <AlertTitle className={titleClass}>
-                {props.title}
-            </AlertTitle>
-            <AlertDescription className={descriptionClass}>
-                {props.children}
-            </AlertDescription>
+            <div>
+                <AlertTitle className={cn(titleClass)}>
+                    {title}
+                </AlertTitle>
+                <AlertDescription className={cn(descriptionClass)}>
+                    {children}
+                </AlertDescription>
+            </div>
         </Alert>
-    )
-}
-export default DocAlert
+    );
+};
+
+export default DocAlert;
