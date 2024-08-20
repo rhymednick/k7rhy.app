@@ -64,6 +64,7 @@ const renderSubsteps = (substeps?: DocProcedureSubstep[]): React.ReactNode => {
     );
 };
 
+
 export const DocProcedure: React.FC<DocProcedureProps> = (props: DocProcedureProps) => {
     const renderStep = (step: DocProcedureStep, stepIndex: number): React.ReactNode => {
         const description: React.ReactNode = step.description ? step.description : null;

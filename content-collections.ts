@@ -6,7 +6,7 @@ const blog = defineCollection({
   include: "blog/**/*.mdx", // Pattern to include MDX files
   schema: (z) => ({
     title: z.string(),
-    date: z.string().date(),
+    date: z.string().date("Invalid date string in blog entry."),
     summary: z.string().optional(),
     tags: z.array(z.string()).optional(),
     publish: z.boolean().optional().default(false),

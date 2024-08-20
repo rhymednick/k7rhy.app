@@ -15,7 +15,6 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
         : posts; // Show all posts in non-production environments
 
     return (
-
         <main className="lg:py-12 mx-auto max-w-2xl px-4 pb-28 sm:px-6 md:px-8 xl:px-12">
             <header className="py-8 sm:text-center">
                 <h1 className="mb-4 text-3xl sm:text-4xl tracking-tight text-slate-900 font-bold dark:text-slate-200">
@@ -28,31 +27,47 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                 <div className="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-slate-800 sm:block" />
                 <div className="space-y-8"> {/* space between articles */}
                     {filteredPosts.map((post) => (
-                        <article key={post._meta.path} className="relative group">
-                            <div className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50" />
-                            <svg viewBox="0 0 9 9" className="hidden absolute right-full mr-6 top-2 text-slate-200 dark:text-slate-600 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block"><circle cx="4.5" cy="4.5" r="4.5" stroke="currentColor" className="fill-white dark:fill-slate-900" strokeWidth="2"></circle></svg>
-                            <div className="relative">
-                                <h3 className="text-base md:text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-200 pt-8 lg:pt-0">
-                                    {post.title}
-                                    {!post.publish && (
-                                        <span className="opacity-70 ml-2 rounded-md bg-red-300 px-1.5 py-0.5 text-base leading-none text-[#000000] no-underline group-hover:no-underline">
-                                            Unpublished
-                                        </span>
+                        <article
+                            key={post._meta.path}
+                            className={`relative group ${post.publish === false ? 'opacity-60' : ''}`}
+                        >
+                            {post.publish === false && (
+                                <div className="absolute inset-0 flex items-center justify-center opacity-10 text-red-500 font-bold text-6xl z-0">
+                                    Unpublished
+                                </div>
+                            )}
+                            <div className="relative z-10">
+                                <div className="flex flex-col lg:flex-row lg:items-center">
+                                    <h3 className="text-base md:text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-200 pt-8 lg:pt-0">
+                                        {post.title}
+                                    </h3>
+                                    {post.tags && (
+                                        <div className="mt-1 lg:mt-0 lg:ml-4 space-x-2 text-xs text-slate-400 dark:text-slate-500 flex flex-wrap lg:flex-nowrap">
+                                            {post.tags.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className="inline-block bg-blue-100 text-blue-600 text-xs font-medium mr-1 px-2 py-0.5 rounded"
+                                                >
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
                                     )}
-                                </h3>
+                                </div>
                                 <div className="mt-2 mb-4 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-2">
                                     {post.summary}
                                 </div>
                                 <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)] opacity-60">
                                     <dt className="sr-only">Date</dt>
                                     <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
-                                        <time dateTime={new Date(post.date).toISOString()}>{new Date(post.date).toLocaleDateString('en-US', {
-                                            year: 'numeric',
-                                            month: 'long',
-                                            day: 'numeric',
-                                        })}</time>
+                                        <time dateTime={new Date(post.date).toISOString()}>
+                                            {new Date(post.date).toLocaleDateString('en-US', {
+                                                year: 'numeric',
+                                                month: 'short', // Abbreviated month name
+                                                day: 'numeric',
+                                            })}
+                                        </time>
                                     </dd>
-
                                 </dl>
                             </div>
 

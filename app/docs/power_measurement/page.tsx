@@ -19,7 +19,8 @@ import { Terminal, TriangleAlert } from "lucide-react"
 import Image from 'next/image';
 import PowerCalculatorSheet from '@/components/power-calculator-sheet';
 import { DocSection } from "@/components/doc/doc-section";
-
+import DocAlert, { Level } from "@/components/doc/doc-alert";
+import Markdown from '@/components/markdown';
 const DocTitle = 'Measuring Power';
 const DocSubTitle = 'How to measure RF power using a multimeter on dummy load kits and understanding how to apply the electronics theory behind it.';
 
@@ -186,32 +187,29 @@ const Page = () => {
         <div>
           <BlockMath math="P = \frac{(V+0.3)^2}{25}" />
         </div>
-        <div>This is the equation used by the <PowerCalculatorSheet />
-          for HF frequencies. When you select a different band, it adjusts
+        <div>This is the equation used by the <PowerCalculatorSheet /> for
+          HF frequencies. When you select a different band, it adjusts
           the resistance variable based on lab-measured averages for this dummy load kit.</div>
 
         <div className='mt-2 md:mt-4'>
-          <Alert>
-            <Terminal className="h-4 w-4" />
-            <AlertTitle>About the use of approximations</AlertTitle>
-            <AlertDescription>
-              <div className='mt-2'>As an engineer and a perfectionist, I'm not a fan of approximations. In fact, I feel physical discomfort
-                from suggesting that you use them. However, the goal of this project is to provide a practical
-                tool for hams to measure power. The approximations used in the tool are based on lab measurements of
-                the exact hardware used in the kit you've been provided. The approximations are accurate enough for
-                practical use. I could design a kit that would make computations based on real-time internal measurements,
-                but that kit would be prohibitively expensive and provide no additional operational value.</div>
+          <DocAlert title="About the use of approximations" level={Level.Important}>
 
-              <div className='mt-2'>The bottom line is, radio transmitters do not transmit at precise, stable power levels across their
-                supported frequency range. The power output of a transmitter is a function of the input power and the component
-                efficiency, which itself varies with frequency. Once leaving the transmitter, the power is further attenuated by the feed line
-                (including insertion losses), the load, and the
-                environment. For the purposes of ham radio, it's good to know that your transmitter is operating within a certain
-                range of its rated power, but there's little value in knowing the exact, momentary power output.
-              </div>
+            <div className='mt-2'>As an engineer and a perfectionist, I'm not a fan of approximations. In fact, I feel physical discomfort
+              from suggesting that you use them. However, the goal of this project is to provide a practical
+              tool for hams to measure power. The approximations used in the tool are based on lab measurements of
+              the exact hardware used in the kit you've been provided. The approximations are accurate enough for
+              practical use. I could design a kit that would make computations based on real-time internal measurements,
+              but that kit would be prohibitively expensive and provide no additional operational value.</div>
 
-            </AlertDescription>
-          </Alert>
+            <div className='mt-2'>The bottom line is, radio transmitters do not transmit at precise, stable power levels across their
+              supported frequency range. The power output of a transmitter is a function of the input power and the component
+              efficiency, which itself varies with frequency. Once leaving the transmitter, the power is further attenuated by the feed line
+              (including insertion losses), the load, and the
+              environment. For the purposes of ham radio, it's good to know that your transmitter is operating within a certain
+              range of its rated power, but there's little value in knowing the exact, momentary power output.
+            </div>
+
+          </DocAlert>
         </div>
       </DocSection>
     </DocPage>

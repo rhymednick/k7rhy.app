@@ -40,6 +40,7 @@ import { DocIndexCard } from "@/components/doc/doc-index-card"
 import { Icons } from "@/components/icons"
 import PowerCalculator from "@/components/power-calculator"
 import CodeBlock from "@/components/code-block"
+import DocAlert from "./doc/doc-alert"
 //import { Style } from "@/registry/styles"
 
 const components: MDXComponents = {
@@ -259,6 +260,7 @@ const components: MDXComponents = {
     DocSection,
     Icons,
     PowerCalculator,
+    DocAlert,
 }
 
 // interface MdxProps {

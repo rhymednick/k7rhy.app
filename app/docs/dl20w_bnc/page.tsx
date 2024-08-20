@@ -1,15 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
-import { Signpost } from "lucide-react"
+import { ArrowUpDown, CircleHelp } from "lucide-react"
 
 import { DocProcedure, DocProcedureProps } from "@/components/doc/doc-procedure"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { DocImage } from '@/components/doc/doc-image';
 import Link from "next/link"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { DocSection } from '@/components/doc/doc-section';
-
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 const DocTitle = '20W Dummy Load Kit Assembly Guide';
 const DocSubTitle = 'How to assemble and use the K7RHY 20W Dummy Load Kit.';
 
@@ -78,18 +77,18 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
   },
   {
     text: 'Inventory the parts',
-    description: 'Open your project bag and verify that all of the components are there. You will have the following:',
+    description: 'Open your project bag and verify that all the components are there. You will have the following:',
     children: (
       buildInventoryTable()
     ),
 
   },
   {
-    text: 'Prepare and install the reistors',
+    text: 'Prepare and install the resistors',
     description:
-      "Install the resistors on the PCB at the locations marked R1-R8. All of the resistors are identical," +
+      "Install the resistors on the PCB at the locations marked R1-R8. All the resistors are identical," +
       " so they can go in any of the marked spaces; orientation isn't important since the resistors are not polarized. " +
-      "If you're experienced with electronics, you can install all of the resistors on your own now. " +
+      "If you're experienced with electronics, you can install all the resistors on your own now. " +
       "If you're new to soldering, follow along with my instructions.",
     substeps: [
       {
@@ -102,23 +101,23 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
         description: 'Insert the first four resistors into the PCB at the location marked R1-R4. The resistors can go in either way; there is no polarity to worry about. Once installed, bend the leads outward slightly to hold the resistors in place. The resistors should be flush with the PCB and on the printed side of the board.',
         image: '/images/dl20w_bnc/guide/bend-back.jpg',
         children: (
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger><div><Signpost className='inline mr-2' />Understand your options</div></AccordionTrigger>
-              <AccordionContent>
-                There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the airflow
-                around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the
-                resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the
-                device and increasing its efficiency. This is a trade-off that I made based on my personal preferences and you
-                are welcome to make other choices.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <Alert>
+            <ArrowUpDown className='h-4 w-4' />
+            <AlertTitle>Understanding Your Options - Resistor Height</AlertTitle>
+            <AlertDescription>
+              There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the air
+              flowing around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping
+              the resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the
+              device at higher frequencies and increasing its efficiency. This is a trade-off that I made based on my personal
+              preferences; you are welcome to make other choices.
+            </AlertDescription>
+          </Alert>
+
         )
       },
       {
         text: 'Solder the resistors',
-        description: 'Hold the soldering iron to the pad and the lead of the resistor on the back of the PCB. Touch the solder to the joint, not the iron. The solder will flow onto the pad and the lead. Remove the solder first, then the iron. The joint should be shiny and smooth. Repeat this process for all of the resistors.',
+        description: 'Hold the soldering iron to the pad and the lead of the resistor on the back of the PCB. Touch the solder to the joint, not the iron. The solder will flow onto the pad and the lead. Remove the solder first, then the iron. The joint should be shiny and smooth. Repeat this process for all the resistors.',
         image: '/images/dl20w_bnc/guide/four-at-a-time.jpg',
       },
       {
@@ -160,7 +159,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Insert the BNC connector into the PCB',
-        description: 'Begin by inserting the leads of the BNC connector into the PCB at an angle into the location marked J1. They are very short, so starting this way will make sure that everything is aligned correctly. Once aligned, press the connector down flat on the PCB. It will fit snugly.',
+        description: 'Begin by inserting the leads of the BNC connector into the PCB at an angle, into the location marked J1. They are very short, so starting this way will make sure that everything is aligned correctly. Once aligned, press the connector down flat on the PCB. It will fit snugly.',
         image: '/images/dl20w_bnc/guide/insert-bnc-at-angle.jpg',
       },
       {
@@ -196,7 +195,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
       },
       {
         text: 'Check diode orientation',
-        description: "Verify that the black line on the diode matches the white line on the PCB silkscreen. The diode should be oriented with the black line closest to the edge of the board facing away from the resistors, with the lead going trough the hole labeled K.",
+        description: "Verify that the black line on the diode matches the white line on the PCB silkscreen. The diode should be oriented with the black line closest to the edge of the board facing away from the resistors, with the lead going through the hole labeled K.",
         image: '/images/dl20w_bnc/guide/diode-installed.jpg',
       },
     ],
