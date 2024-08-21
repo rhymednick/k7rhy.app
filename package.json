@@ -39,6 +39,7 @@
     "@types/mathjax": "^0.0.40",
     "@types/mdx": "^2.0.13",
     "@types/react-mathjax": "^1.0.4",
+    "axios": "^1.7.4",
     "base-cli-process": "^0.1.19",
     "base-generators": "^0.4.6",
     "base-pkg": "^1.0.0",

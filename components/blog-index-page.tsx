@@ -29,9 +29,9 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                     {filteredPosts.map((post) => (
                         <article
                             key={post._meta.path}
-                            className={`relative group cursor-pointer ${post.publish === false ? 'opacity-60' : ''}`}
+                            className={`relative group `}
                         >
-                            <div className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/60" />
+                            <div className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-blue-100/60 dark:group-hover:bg-slate-800/60" />
                             <svg viewBox="0 0 9 9" className="hidden absolute right-full mr-6 top-2 text-slate-200 dark:text-slate-600 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block"><circle cx="4.5" cy="4.5" r="4.5" stroke="currentColor" className="fill-white dark:fill-slate-900" strokeWidth="2"></circle></svg>
                             {post.publish === false && (
                                 <div className="absolute inset-0 flex items-center justify-center opacity-10 text-red-500 font-bold text-6xl z-0">
@@ -40,7 +40,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                             )}
                             <div className="relative z-10">
                                 <div className="flex flex-col lg:flex-row lg:items-center">
-                                    <h3 className="text-base md:text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-200 pt-8 lg:pt-0">
+                                    <h3 className={`text-base md:text-xl font-semibold tracking-tight ${post.publish === false ? 'opacity-60' : ''} text-slate-900 dark:text-slate-200 pt-8 lg:pt-0`}>
                                         {post.title}
                                     </h3>
                                     {post.tags && (
@@ -48,17 +48,26 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                                             {post.tags.map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="inline-block bg-blue-100 text-blue-600 text-xs font-medium mr-1 px-2 py-0.5 rounded"
+                                                    className="inline-block bg-green-100 text-green-700 text-xs font-medium mr-1 px-2 py-0.5 rounded"
                                                 >
                                                     #{tag}
                                                 </span>
                                             ))}
                                         </div>
                                     )}
+                                    {post.isAISummary && (
+                                        <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold ml-auto px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
+                                            AI-Generated Summary
+                                        </span>
+                                    )}
                                 </div>
-                                <div className="mt-2 mb-4 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark line-clamp-2">
+                                <div className="mt-2 mb-4 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark">
                                     {post.summary}
+                                    <div className="text-xs text-gray-400 dark:text-gray-600 italic pt-2">
+                                        <span>{`Word Count: ${post.wordCount}`}</span> | <span>{`Estimated Reading Time: ${post.readingTime} min.`}</span>
+                                    </div>
                                 </div>
+
                                 <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)] opacity-60">
                                     <dt className="sr-only">Date</dt>
                                     <dd className="whitespace-nowrap text-sm leading-6 dark:text-slate-400">
@@ -73,7 +82,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                                 </dl>
                             </div>
 
-                            <Link href={`/${post._meta.path}`} className='flex items-center text-sm text-blue-400 font-medium'>
+                            <Link href={`/blog/${post._meta.path}`} className='flex items-center text-sm text-blue-400 font-medium cursor-pointer'>
                                 <span className="absolute -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl"></span>
                                 <span className="relative">
                                     Read more

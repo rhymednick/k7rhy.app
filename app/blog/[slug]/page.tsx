@@ -8,6 +8,7 @@ import components from '@/components/mdx-components'; // Ensure the correct path
 import { BlogPage } from '@/components/blog-page';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
+import DocAlert, { Level } from '@/components/doc/doc-alert';
 
 
 type BlogProps = {
@@ -27,14 +28,12 @@ export async function generateStaticParams() {
 
 const unpublishedAlert = () => {
     return (
-        <Alert variant="destructive" className='dark:text-red-600 max-w-[450px] mx-auto'>
-            <AlertCircle className='h-4 w-4' />
-            <AlertTitle className='dark:font-bold'>Unpublished Topic Warning</AlertTitle>
-            <AlertDescription className='text-slate-800 dark:text-slate-200 pt-1'>
-                <p>This topic is not published and not visible to the public.</p>
-                <p>Publish by adding <code className='p-1 bg-slate-200 font-bold text-slate-600 dark:text-slate-400 '>publish: true</code> to the frontmatter.</p>
-            </AlertDescription>
-        </Alert>
+        <DocAlert level={Level.Critical} title='Unpublished Topic Warning'>
+
+            This topic is not published and not visible to the public. Publish by
+            adding <code className='p-1 bg-slate-200 font-bold text-slate-600 dark:text-slate-400 '>publish: true</code> to the frontmatter.
+
+        </DocAlert >
     );;
 }
 const Page = ({ params }: BlogProps) => {
