@@ -1,7 +1,7 @@
 import { Blog } from '@/.content-collections/generated';
 import Link from 'next/link';
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+//import { ShieldCheck } from 'lucide-react';
 
 interface BlogIndexPageProps {
     posts: Blog[];

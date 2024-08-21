@@ -1,12 +1,10 @@
-import Link from "next/link"
 import React from 'react';
 
-import { siteConfig } from "@/config/site"
-//import { CommandMenu } from "@/components/command-menu"
-import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
-import { ModeToggle } from "@/components/ui/mode-toggle"
+import DarkModeToggle from "@/components/dark-mode-toggle"
+import { SocialsDrawer } from '@/components/socials-drawer';
+import ViewportDebugLabel from '@/components/ViewportDebugLabel';
 
 export function SiteHeader() {
   return (
@@ -16,35 +14,20 @@ export function SiteHeader() {
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none">
+            <ViewportDebugLabel />
+          </div>
+          <div>
+
+
+
+            <SocialsDrawer>
+
+              <DarkModeToggle />
+            </SocialsDrawer>
 
           </div>
-          <nav className="flex items-center">
-
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="pl-2 pr-2">
-                <Icons.gitHub className="h-4 w-4 fill-current" />
-                <span className="sr-only">Github</span>
-              </div>
-            </Link>
-
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="pl-2 pr-2">
-                <Icons.twitter className="h-4 w-4 fill-current" />
-                <span className="sr-only">Twitter</span>
-              </div>
-            </Link>
-            <ModeToggle />
-          </nav>
         </div>
       </div>
-    </header>
+    </header >
   )
 }

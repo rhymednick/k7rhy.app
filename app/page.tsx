@@ -3,6 +3,8 @@ import { Balancer } from "react-wrap-balancer"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
 import React from 'react';
+import { SocialsDrawer } from "@/components/socials-drawer";
+import DarkModeToggle from "@/components/dark-mode-toggle";
 
 
 export default function Home() {
@@ -27,6 +29,7 @@ export default function Home() {
             </ul>
           </div>
         </Balancer>
+
         <div className="mb-2">
 
           If you have questions or ideas for kits that you'd like to see, send me an email at <Link className="hover:underline" href="mailto:de.k7rhy@gmail.com">de.k7rhy@gmail.com</Link>. I'd love to hear from you!
@@ -37,6 +40,6 @@ export default function Home() {
       </div>
 
 
-    </main>
+    </main >
   );
 }
