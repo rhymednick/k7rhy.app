@@ -1,6 +1,7 @@
 import { Blog } from '@/.content-collections/generated';
 import Link from 'next/link';
 import React from 'react';
+import { ShieldCheck } from 'lucide-react';
 
 interface BlogIndexPageProps {
     posts: Blog[];
@@ -39,26 +40,25 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                                 </div>
                             )}
                             <div className="relative z-10">
-                                <div className="flex flex-col lg:flex-row lg:items-center">
+                                <div className="flex flex-col ">
                                     <h3 className={`text-base md:text-xl font-semibold tracking-tight ${post.publish === false ? 'opacity-60' : ''} text-slate-900 dark:text-slate-200 pt-8 lg:pt-0`}>
                                         {post.title}
                                     </h3>
                                     {post.tags && (
-                                        <div className="mt-1 lg:mt-0 lg:ml-4 space-x-2 text-xs text-slate-400 dark:text-slate-500 flex flex-wrap lg:flex-nowrap">
+                                        <div className="mt-1 space-x-2 text-xs text-slate-400 dark:text-slate-500 flex flex-wrap ">
+                                            {post.isAISummary && (
+                                                <span className="inline-block bg-blue-100 text-blue-700 text-xs font-medium mr-1 px-2 py-0.5 rounded">#AI-generated Summary</span>
+                                            )}
                                             {post.tags.map((tag) => (
                                                 <span
                                                     key={tag}
-                                                    className="inline-block bg-green-100 text-green-700 text-xs font-medium mr-1 px-2 py-0.5 rounded"
-                                                >
+                                                    className="inline-block bg-green-100 text-green-700 text-xs font-medium mr-1 px-2 py-0.5 rounded">
                                                     #{tag}
                                                 </span>
+
                                             ))}
+
                                         </div>
-                                    )}
-                                    {post.isAISummary && (
-                                        <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold ml-auto px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800">
-                                            AI-Generated Summary
-                                        </span>
                                     )}
                                 </div>
                                 <div className="mt-2 mb-4 prose prose-slate prose-a:relative prose-a:z-10 dark:prose-dark">
@@ -67,6 +67,8 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                                         <span>{`Word Count: ${post.wordCount}`}</span> | <span>{`Estimated Reading Time: ${post.readingTime} min.`}</span>
                                     </div>
                                 </div>
+
+
 
                                 <dl className="absolute left-0 top-0 lg:left-auto lg:right-full lg:mr-[calc(6.5rem+1px)] opacity-60">
                                     <dt className="sr-only">Date</dt>
