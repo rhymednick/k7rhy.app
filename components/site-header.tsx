@@ -4,7 +4,7 @@ import { MainNav } from "@/components/main-nav"
 import { MobileNav } from "@/components/mobile-nav"
 import DarkModeToggle from "@/components/dark-mode-toggle"
 import { SocialsDrawer } from '@/components/socials-drawer';
-import ViewportDebugLabel from '@/components/ViewportDebugLabel';
+import ViewportDebugLabel from '@/components/viewport-debug-label';
 
 export function SiteHeader() {
   return (
