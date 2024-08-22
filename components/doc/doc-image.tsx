@@ -8,23 +8,19 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from '@/components/ui/alert-dialog';
 
-import Image from 'next/image'
+import Image from 'next/image';
 
 export interface DocImageProps {
-    title: string
-    triggerImageSize: number
-    popupImageSize: number
-    src: string
-    alt?: string
+    title: string;
+    triggerImageSize: number;
+    popupImageSize: number;
+    src: string;
+    alt?: string;
 }
 
-
-
 export async function DocImage(props: DocImageProps) {
-
-
     return (
         <div>
             <AlertDialog>
@@ -33,7 +29,8 @@ export async function DocImage(props: DocImageProps) {
                         src={props.src}
                         alt={props.alt || ''}
                         width={props.triggerImageSize}
-                        height={props.triggerImageSize} />
+                        height={props.triggerImageSize}
+                    />
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
@@ -43,7 +40,8 @@ export async function DocImage(props: DocImageProps) {
                                 src={props.src}
                                 alt={props.alt || ''}
                                 width={props.popupImageSize}
-                                height={props.popupImageSize} />
+                                height={props.popupImageSize}
+                            />
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -52,5 +50,5 @@ export async function DocImage(props: DocImageProps) {
                 </AlertDialogContent>
             </AlertDialog>
         </div>
-    )
+    );
 }

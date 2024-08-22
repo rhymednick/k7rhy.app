@@ -1,10 +1,15 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Switch } from "@/components/ui/switch"; // Adjust the import path as needed
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import React, { useEffect, useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Switch } from '@/components/ui/switch'; // Adjust the import path as needed
+import {
+    Tooltip,
+    TooltipProvider,
+    TooltipTrigger,
+    TooltipContent,
+} from '@/components/ui/tooltip';
 
 const DarkModeToggle = () => {
     const { theme, setTheme } = useTheme();
@@ -17,10 +22,10 @@ const DarkModeToggle = () => {
 
     if (!mounted) return null;
 
-    const isDarkMode = theme === "dark";
+    const isDarkMode = theme === 'dark';
 
     const handleToggle = () => {
-        setTheme(isDarkMode ? "light" : "dark");
+        setTheme(isDarkMode ? 'light' : 'dark');
     };
 
     return (
@@ -33,15 +38,21 @@ const DarkModeToggle = () => {
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger>
-                        <Switch checked={isDarkMode} onCheckedChange={handleToggle} />
-
+                        <Switch
+                            checked={isDarkMode}
+                            onCheckedChange={handleToggle}
+                        />
                     </TooltipTrigger>
                     <TooltipContent>
-                        <span>{isDarkMode ? "Switch to light mode " : "Switch to dark mode "}</span>
+                        <span>
+                            {isDarkMode
+                                ? 'Switch to light mode '
+                                : 'Switch to dark mode '}
+                        </span>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
-        </div >
+        </div>
     );
 };
 

@@ -8,7 +8,9 @@ export interface MarkdownProps {
 }
 
 const Markdown: React.FC<MarkdownProps> = ({ children }) => {
-    const [source, setSource] = React.useState<MDXRemoteSerializeResult | null>(null);
+    const [source, setSource] = React.useState<MDXRemoteSerializeResult | null>(
+        null
+    );
 
     React.useEffect(() => {
         const renderMDX = async () => {
@@ -18,11 +20,7 @@ const Markdown: React.FC<MarkdownProps> = ({ children }) => {
         renderMDX();
     }, [children]);
 
-    return (
-        <div className="prose">
-            {source && <MDXRemote {...source} />}
-        </div>
-    );
+    return <div className="prose">{source && <MDXRemote {...source} />}</div>;
 };
 
 export default Markdown;

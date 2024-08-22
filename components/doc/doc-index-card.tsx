@@ -6,9 +6,9 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-} from "@/components/ui/card"
-import Link from "next/link"
-import { FileTextIcon, ExternalLinkIcon } from "lucide-react"
+} from '@/components/ui/card';
+import Link from 'next/link';
+import { FileTextIcon, ExternalLinkIcon } from 'lucide-react';
 import {
     Table,
     TableBody,
@@ -16,8 +16,8 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table"
-import { Balancer } from "react-wrap-balancer"
+} from '@/components/ui/table';
+import { Balancer } from 'react-wrap-balancer';
 
 export enum DocIndexItemType {
     Internal, // Displays a doc page icon
@@ -25,20 +25,24 @@ export enum DocIndexItemType {
 }
 
 export interface DocIndexItem {
-    title: string
-    href: string
-    description: string
-    type?: DocIndexItemType
+    title: string;
+    href: string;
+    description: string;
+    type?: DocIndexItemType;
 }
 
 export interface DocIndexCardProps {
-    title: string
-    description?: string
-    items?: DocIndexItem[]
+    title: string;
+    description?: string;
+    items?: DocIndexItem[];
 }
 
 export function DocIndexCard(props: DocIndexCardProps) {
-    const description = props.description ? <CardDescription className="mb-4"><Balancer>{props.description}</Balancer></CardDescription> : null;
+    const description = props.description ? (
+        <CardDescription className="mb-4">
+            <Balancer>{props.description}</Balancer>
+        </CardDescription>
+    ) : null;
 
     return (
         <div>
@@ -60,15 +64,20 @@ export function DocIndexCard(props: DocIndexCardProps) {
                             {props.items?.map((item, index) => (
                                 <TableRow key={index}>
                                     <TableCell>
-                                        {item.type === DocIndexItemType.External ? (
+                                        {item.type ===
+                                        DocIndexItemType.External ? (
                                             <ExternalLinkIcon />
                                         ) : (
                                             <FileTextIcon />
                                         )}
                                     </TableCell>
                                     <TableCell className="font-medium">
-                                        {item.type === DocIndexItemType.External ? (
-                                            <Link href={item.href} target="_blank">
+                                        {item.type ===
+                                        DocIndexItemType.External ? (
+                                            <Link
+                                                href={item.href}
+                                                target="_blank"
+                                            >
                                                 {item.title}
                                             </Link>
                                         ) : (
@@ -85,5 +94,5 @@ export function DocIndexCard(props: DocIndexCardProps) {
                 </CardContent>
             </Card>
         </div>
-    )
+    );
 }

@@ -1,15 +1,15 @@
 import React from 'react';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import * as lucideIcons from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import * as lucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export enum Level {
-    Default = "default",
-    Important = "important",
-    Warning = "warning",
-    Critical = "critical",
-    Question = "question",
-    Choice = "choice",
+    Default = 'default',
+    Important = 'important',
+    Warning = 'warning',
+    Critical = 'critical',
+    Question = 'question',
+    Choice = 'choice',
 }
 
 export interface DocAlertProps {
@@ -26,18 +26,18 @@ export interface DocAlertProps {
 const selectIcon = (level?: Level): keyof typeof lucideIcons => {
     switch (level) {
         case Level.Important:
-            return "Info";
+            return 'Info';
         case Level.Warning:
-            return "AlertTriangle";
+            return 'AlertTriangle';
         case Level.Critical:
-            return "Ban";
+            return 'Ban';
         case Level.Question:
-            return "HelpCircle"; // Updated to a correct icon name
+            return 'HelpCircle'; // Updated to a correct icon name
         case Level.Choice:
-            return "ArrowLeftRight";
+            return 'ArrowLeftRight';
         case Level.Default:
         default:
-            return "Terminal";
+            return 'Terminal';
     }
 };
 
@@ -53,15 +53,15 @@ const DocAlert: React.FC<DocAlertProps> = ({
 }) => {
     const iconName = icon || selectIcon(level);
     const IconComponent = lucideIcons[iconName] as React.ElementType; // Ensure the component is treated as a valid React component
-    const Placeholder = lucideIcons["Terminal"] as React.ElementType; // Ensure the placeholder is treated as a valid React component
+    const Placeholder = lucideIcons['Terminal'] as React.ElementType; // Ensure the placeholder is treated as a valid React component
 
     const titleColor = {
-        [Level.Important]: "text-blue-500",
-        [Level.Warning]: "text-yellow-500",
-        [Level.Critical]: "text-red-500",
-        [Level.Question]: "text-purple-500",
-        [Level.Choice]: "text-green-500",
-        [Level.Default]: "text-gray-900 dark:text-slate-200",
+        [Level.Important]: 'text-blue-500',
+        [Level.Warning]: 'text-yellow-500',
+        [Level.Critical]: 'text-red-500',
+        [Level.Question]: 'text-purple-500',
+        [Level.Choice]: 'text-green-500',
+        [Level.Default]: 'text-gray-900 dark:text-slate-200',
     };
 
     const titleClass = overrideTitleClass
@@ -80,9 +80,7 @@ const DocAlert: React.FC<DocAlertProps> = ({
                 <Placeholder className="mr-2 h-4 w-4 invisible" />
             )}
             <div>
-                <AlertTitle className={cn(titleClass)}>
-                    {title}
-                </AlertTitle>
+                <AlertTitle className={cn(titleClass)}>{title}</AlertTitle>
                 <AlertDescription className={cn(descriptionClass)}>
                     {children}
                 </AlertDescription>

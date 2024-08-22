@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
@@ -22,8 +22,9 @@ export function SocialsDrawer(props: SocialsDrawerProps) {
             <div className="relative overflow-hidden">
                 <div
                     id="socialsDrawer"
-                    className={`flex items-center transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-[150%]'
-                        }`}
+                    className={`flex items-center transition-transform duration-500 ${
+                        isOpen ? 'translate-x-0' : 'translate-x-[150%]'
+                    }`}
                 >
                     <SocialIcon
                         target="_blank"
@@ -64,15 +65,16 @@ export function SocialsDrawer(props: SocialsDrawerProps) {
                 </div>
             </div>
 
-            <button onClick={toggleDrawer} className="ml-1 text-foreground/60 ">
+            <button
+                onClick={toggleDrawer}
+                className="ml-1 text-foreground/60 "
+            >
                 {isOpen ? <ChevronRight /> : <ChevronLeft />}
             </button>
             <div className="mr-4 text-foreground/60 text-sm">
                 Social Networks
             </div>
-            <div>
-                {props.children}
-            </div>
+            <div>{props.children}</div>
         </nav>
     );
 }

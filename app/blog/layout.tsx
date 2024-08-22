@@ -4,9 +4,5 @@ interface BlogLayoutProps {
 }
 
 export default function BlogLayout({ children }: BlogLayoutProps) {
-    return (
-        <div className="border-b" >
-            {children}
-        </div>
-    );
+    return <div className="border-b">{children}</div>;
 }
