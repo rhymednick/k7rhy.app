@@ -16,18 +16,6 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
     // State for selected tags
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-    // Extract and sort tags by frequency
-    const sortedTags = useMemo(() => {
-        const tagCount: Record<string, number> = {};
-        posts.forEach((post) =>
-            post.tags?.forEach((tag) => {
-                tagCount[tag] = (tagCount[tag] || 0) + 1;
-            })
-        );
-
-        return Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
-    }, [posts]);
-
     // Filter and sort posts based on environment, publish status, selected tags (exclusive filtering), and date
     const filteredPosts = useMemo(() => {
         const basePosts =
@@ -47,6 +35,17 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
         );
     }, [posts, environment, selectedTags]);
+    // Extract and sort tags by frequency
+    const sortedTags = useMemo(() => {
+        const tagCount: Record<string, number> = {};
+        filteredPosts.forEach((post) =>
+            post.tags?.forEach((tag) => {
+                tagCount[tag] = (tagCount[tag] || 0) + 1;
+            })
+        );
+
+        return Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
+    }, [posts]);
 
     // Handle tag selection
     const toggleTag = (tag: string) => {
