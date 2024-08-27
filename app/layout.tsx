@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster'; // Import Toaster
+import InlineCommentHandler from '@/components/inline-comment-handler'; // Import InlineCommentHandler
 
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
@@ -72,10 +74,13 @@ export default function RootLayout({
                         <div>
                             <div className="relative flex min-h-screen flex-col bg-background">
                                 <SiteHeader />
+                                <InlineCommentHandler />{' '}
+                                {/* Keep InlineCommentHandler here for site-wide functionality */}
                                 {children}
                                 <SiteFooter />
                             </div>
                         </div>
+                        <Toaster /> {/* Include the Toaster component here */}
                     </ThemeProvider>
                 </body>
             </html>

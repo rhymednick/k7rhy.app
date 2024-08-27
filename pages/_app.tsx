@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import components from '@/components/mdx-components';
+import { Toaster } from '@/components/ui/toaster'; // Import Toaster component
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -71,6 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
                         <SiteFooter />
                     </div>
+                    <Toaster />
                 </div>
             </ThemeProvider>
         </>
