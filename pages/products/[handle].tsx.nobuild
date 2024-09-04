@@ -1,0 +1,111 @@
+// pages/products/[handle].tsx
+
+import React from 'react';
+import { GetServerSideProps } from 'next';
+import { shopifyClient } from '@/lib/shopify';
+import { ShopifyProduct } from '@/types/shopify';
+import { Balancer } from 'react-wrap-balancer';
+import Image from 'next/image';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+
+interface ProductProps {
+    product: ShopifyProduct | null;
+    error?: string;
+}
+
+const ProductDetailPage: React.FC<ProductProps> = ({ product, error }) => {
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
+    if (!product) {
+        return <div>No product found</div>;
+    }
+
+    return (
+        <Card className="m-4 p-4">
+            <CardHeader>
+                <CardTitle className="text-2xl font-bold">
+                    {product.title}
+                </CardTitle>
+            </CardHeader>
+            <CardContent>
+                {product.images.edges.map((image, index) => (
+                    <Image
+                        key={index}
+                        src={image.node.src}
+                        alt={image.node.altText || 'Product image'}
+                        width={400}
+                        height={400}
+                        className="rounded-md"
+                    />
+                ))}
+                <Balancer>
+                    <p className="mt-4">{product.description}</p>
+                </Balancer>
+                <div className="mt-4">
+                    <Button asChild>
+                        <Link href="/">Back to Products</Link>
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
+
+export default ProductDetailPage;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const { handle } = context.params;
+
+    console.log('Running getServerSideProps for handle:', handle); // Log each invocation
+
+    if (typeof handle !== 'string' || handle === '') {
+        return { props: { error: 'Invalid product handle' } };
+    }
+
+    const query = `
+        query($handle: String!) {
+            product(handle: $handle) {
+                id
+                title
+                description
+                images(first: 5) {
+                    edges {
+                        node {
+                            src
+                            altText
+                        }
+                    }
+                }
+            }
+        }
+    `;
+
+    try {
+        const response = await shopifyClient.request(query, { handle });
+
+        console.log('GraphQL response:', response); // Log the full response
+
+        if (response.errors) {
+            console.error('GraphQL Errors:', response.errors.graphQLErrors); // Log GraphQL errors for inspection
+            return {
+                props: {
+                    product: null,
+                    error: 'Failed to fetch product due to GraphQL errors.',
+                },
+            };
+        }
+
+        const product = response.product || null;
+        if (!product) {
+            return { props: { product: null, error: 'Product not found' } };
+        }
+        return { props: { product } };
+    } catch (error: any) {
+        console.error('Error fetching product:', error);
+        return { props: { product: null, error: 'Failed to fetch product.' } };
+    }
+};

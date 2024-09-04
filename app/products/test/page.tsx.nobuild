@@ -1,0 +1,76 @@
+// app/products/page.tsx
+'use client';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { shopifyClient } from '@/lib/shopify';
+import { ShopifyProduct } from '@/types/shopify';
+import ProductTeaser from '@/components/product-teaser'; // Import the new component
+
+export default function ProductsPage() {
+    const [products, setProducts] = useState<ShopifyProduct[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            const query = `
+                {
+                    products(first: 10) {
+                        edges {
+                            node {
+                                id
+                                title
+                                handle
+                                images(first: 1) {
+                                    edges {
+                                        node {
+                                            src
+                                            altText
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            `;
+
+            try {
+                const response = await shopifyClient.request(query);
+                const fetchedProducts = response.data.products.edges.map(
+                    (edge) => ({
+                        id: edge.node.id,
+                        title: edge.node.title,
+                        handle: edge.node.handle,
+                        images: edge.node.images.edges.map((imgEdge) => ({
+                            src: imgEdge.node.src,
+                            altText: imgEdge.node.altText,
+                        })),
+                    })
+                );
+                setProducts(fetchedProducts);
+                setLoading(false);
+            } catch (error: any) {
+                console.error('Error fetching products:', error);
+                setError(error.message || 'Failed to fetch products.');
+                setLoading(false);
+            }
+        }
+
+        fetchProducts();
+    }, []);
+
+    if (loading) return <div>Loading products...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    return (
+        <main className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+            {products.map((product) => (
+                <ProductTeaser
+                    key={product.id}
+                    product={product}
+                />
+            ))}
+        </main>
+    );
+}

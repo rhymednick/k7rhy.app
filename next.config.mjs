@@ -1,3 +1,5 @@
+// next.config.mjs
+
 import createMDX from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -8,6 +10,10 @@ const nextConfig = {
     // Configure `pageExtensions` to include MDX files
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx', 'md'],
 
+    // Configure the image domains
+    images: {
+        domains: ['cdn.shopify.com'],
+    },
     // Add the redirects function
     async redirects() {
         return [
