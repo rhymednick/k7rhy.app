@@ -32,6 +32,11 @@ import { Icons } from '@/components/icons';
 import PowerCalculator from '@/components/power-calculator';
 import CodeBlock from '@/components/code-block';
 import DocAlert from './doc/doc-alert';
+import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
+import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
+import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
+import { ArrowUpDown, CircleHelp } from 'lucide-react';
+
 //import { Style } from "@/registry/styles"
 
 const components: MDXComponents = {
@@ -110,25 +115,25 @@ const components: MDXComponents = {
         ...props
     }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p
-            className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}
+            className={cn('prose [&:not(:first-child)]:mt-2', className)}
             {...props}
         />
     ),
     ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
         <ul
-            className={cn('my-6 ml-6 list-disc', className)}
+            className={cn('my-2 ml-6 list-disc', className)}
             {...props}
         />
     ),
     ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
         <ol
-            className={cn('my-6 ml-6 list-decimal', className)}
+            className={cn('my-2 ml-6 list-decimal', className)}
             {...props}
         />
     ),
     li: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <li
-            className={cn('mt-2', className)}
+            className={cn('', className)}
             {...props}
         />
     ),
@@ -311,6 +316,11 @@ const components: MDXComponents = {
     Icons,
     PowerCalculator,
     DocAlert,
+    MdxDocProcedure,
+    MdxDocProcedureStep,
+    MdxDocProcedureSubstepGroup,
+    ArrowUpDown,
+    CircleHelp,
 };
 
 // interface MdxProps {
@@ -329,5 +339,7 @@ const components: MDXComponents = {
 //         </div>
 //     )
 // }
-
+declare global {
+    type MDXProvidedComponents = typeof components;
+}
 export default components;

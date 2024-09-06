@@ -16,6 +16,7 @@ interface DocPageProps {
     title: string;
     subTitle?: string;
     breadcrumbs?: React.JSX.Element;
+    date?: string;
     children?: React.ReactNode;
 }
 
