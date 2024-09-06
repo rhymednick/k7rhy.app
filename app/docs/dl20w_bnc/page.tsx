@@ -1,20 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
-import { ArrowUpDown, CircleHelp } from 'lucide-react';
+import { ArrowUpDown } from 'lucide-react';
 
-import {
-    DocProcedure,
-    DocProcedureProps,
-} from '@/components/doc/doc-procedure';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
+import { DocProcedure, DocProcedureProps } from '@/components/doc/doc-procedure';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DocImage } from '@/components/doc/doc-image';
 import Link from 'next/link';
 import { DocSection } from '@/components/doc/doc-section';
@@ -76,12 +66,8 @@ function buildInventoryTable() {
                 <TableBody>
                     {inventoryTableItems.map((item, index) => (
                         <TableRow key={index}>
-                            <TableCell className="font-medium text-center">
-                                {item.count}
-                            </TableCell>
-                            <TableCell className="font-medium">
-                                {item.text}
-                            </TableCell>
+                            <TableCell className="font-medium text-center">{item.count}</TableCell>
+                            <TableCell className="font-medium">{item.text}</TableCell>
                             <TableCell>
                                 <DocImage
                                     title="Printed circuit board"
@@ -96,8 +82,7 @@ function buildInventoryTable() {
                 </TableBody>
             </Table>
             <div>
-                If anything in your kit is missing or damaged, please contact me
-                at{' '}
+                If anything in your kit is missing or damaged, please contact me at{' '}
                 <Link
                     className="no-underline hover:underline"
                     href="mailto:de.k7rhy@gmail.com"
@@ -121,17 +106,13 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
                 <li>Small wire cutters</li>
                 <li>Needle-nose pliers (optional)</li>
                 <li>Multimeter for testing (optional)</li>
-                <li>
-                    Helping hands, or similar device, to hold the components
-                    while soldering
-                </li>
+                <li>Helping hands, or similar device, to hold the components while soldering</li>
             </ul>
         ),
     },
     {
         text: 'Inventory the parts',
-        description:
-            'Open your project bag and verify that all the components are there. You will have the following:',
+        description: 'Open your project bag and verify that all the components are there. You will have the following:',
         children: buildInventoryTable(),
     },
     {
@@ -156,20 +137,14 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
                 children: (
                     <Alert>
                         <ArrowUpDown className="h-4 w-4" />
-                        <AlertTitle>
-                            Understanding Your Options - Resistor Height
-                        </AlertTitle>
+                        <AlertTitle>Understanding Your Options - Resistor Height</AlertTitle>
                         <AlertDescription>
-                            There is a balancing act in play here. By placing
-                            the resistors flush with the PCB, we're limiting the
-                            air flowing around them, which limits the amount of
-                            heat/power they're able to passively dissipate.
-                            However, by keeping the resistor leads short, we're
-                            reducing the parasitic inductance in the circuit,
-                            thereby lowering the SWR of the device at higher
-                            frequencies and increasing its efficiency. This is a
-                            trade-off that I made based on my personal
-                            preferences; you are welcome to make other choices.
+                            There is a balancing act in play here. By placing the resistors flush with the PCB, we're
+                            limiting the air flowing around them, which limits the amount of heat/power they're able to
+                            passively dissipate. However, by keeping the resistor leads short, we're reducing the
+                            parasitic inductance in the circuit, thereby lowering the SWR of the device at higher
+                            frequencies and increasing its efficiency. This is a trade-off that I made based on my
+                            personal preferences; you are welcome to make other choices.
                         </AlertDescription>
                     </Alert>
                 ),
@@ -182,8 +157,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
             },
             {
                 text: 'Trim the leads',
-                description:
-                    'Use the wire cutters to trim the excess leads from the resistor on the back of the PCB. ',
+                description: 'Use the wire cutters to trim the excess leads from the resistor on the back of the PCB. ',
                 image: '/images/dl20w_bnc/guide/trim-resistors.jpg',
             },
             {
@@ -246,8 +220,7 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     },
     {
         text: 'Verify the build',
-        description:
-            'Before connecting the device to your radio, perform a final inspection of the assembly.',
+        description: 'Before connecting the device to your radio, perform a final inspection of the assembly.',
         substeps: [
             {
                 text: 'Check for missing parts',
@@ -313,27 +286,21 @@ const Page = () => {
                 bookmarkId="operating_instructions"
             >
                 <div>
-                    A dummy load is a device used to simulate an electrical load
-                    (like an antenna). In amateur radio, this allows you to
-                    safely test and calibrate equipment without broadcasting
-                    signals. This dummy load is a resistor array designed to
-                    dissipate power without radiating radio frequency (RF)
-                    signals. It is rated for 20 watts of power (continuous
-                    operation), but it can handle more for short periods.
+                    A dummy load is a device used to simulate an electrical load (like an antenna). In amateur radio,
+                    this allows you to safely test and calibrate equipment without broadcasting signals. This dummy load
+                    is a resistor array designed to dissipate power without radiating radio frequency (RF) signals. It
+                    is rated for 20 watts of power (continuous operation), but it can handle more for short periods.
                 </div>
                 <div className="mt-2">
-                    To use the dummy load, connect it to your radio's antenna
-                    port using a BNC cable or BNC cable adapter. The first time
-                    you use it, start with low power and verify that the dummy
-                    load is working correctly. You will know it's working
-                    correctly because the SWR will stay under 1.5 for HF
+                    To use the dummy load, connect it to your radio's antenna port using a BNC cable or BNC cable
+                    adapter. The first time you use it, start with low power and verify that the dummy load is working
+                    correctly. You will know it's working correctly because the SWR will stay under 1.5 for HF
                     frequencies.
                 </div>
 
                 <div className="mt-2">
-                    The dummy load has components and test pads that allow you
-                    to measure the power being transmitted by your radio. For
-                    more information, see{' '}
+                    The dummy load has components and test pads that allow you to measure the power being transmitted by
+                    your radio. For more information, see{' '}
                     <Link
                         className="no-underline hover:underline font-bold"
                         href="/docs/power_measurement"
@@ -345,16 +312,13 @@ const Page = () => {
 
                 <DocSection title="Precautions">
                     <div className="mt-2">
-                        Energy is dissipated as heat in the resistors.
-                        Therefore, the dummy load will get hot during use. The
-                        more energy you put into it, the hotter it will get.
-                        Keep this in mind and do not touch the dummy load while
-                        it is in use. Allow it to cool before handling it.
+                        Energy is dissipated as heat in the resistors. Therefore, the dummy load will get hot during
+                        use. The more energy you put into it, the hotter it will get. Keep this in mind and do not touch
+                        the dummy load while it is in use. Allow it to cool before handling it.
                     </div>
 
                     <div className="mt-2">
-                        If mounting the dummy load in an enclosure, ensure that
-                        the enclosure is well-ventilated.
+                        If mounting the dummy load in an enclosure, ensure that the enclosure is well-ventilated.
                     </div>
                 </DocSection>
             </DocSection>
