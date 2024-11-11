@@ -83,7 +83,7 @@ const components: MDXComponents = {
     ),
     a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
         <a
-            className={cn('font-medium underline underline-offset-4', className)}
+            className={cn('font-medium no-underline hover:underline underline-offset-2', className)}
             {...props}
         />
     ),

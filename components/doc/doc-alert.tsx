@@ -64,13 +64,11 @@ const DocAlert: React.FC<DocAlertProps> = ({
         [Level.Default]: 'text-gray-900 dark:text-slate-200',
     };
 
-    const titleClass = overrideTitleClass
-        ? overrideTitleClass
-        : `${titleColor[level]} ${appendTitleClass || ''}`;
+    const titleClass = overrideTitleClass ? overrideTitleClass : `mb-2 ${titleColor[level]} ${appendTitleClass || ''}`;
 
     const descriptionClass = overrideDescriptionClass
         ? overrideDescriptionClass
-        : `prose ${appendDescriptionClass || ''}`;
+        : `prose space-y-2 ${appendDescriptionClass || ''}`;
 
     return (
         <Alert>
@@ -80,9 +78,9 @@ const DocAlert: React.FC<DocAlertProps> = ({
                 <Placeholder className="mr-2 h-4 w-4 invisible" />
             )}
             <div>
-                <AlertTitle className={cn(titleClass)}>{title}</AlertTitle>
-                <AlertDescription className={cn(descriptionClass)}>
-                    {children}
+                <AlertTitle className={titleClass}>{title}</AlertTitle>
+                <AlertDescription>
+                    <div className={descriptionClass}>{children}</div>
                 </AlertDescription>
             </div>
         </Alert>
