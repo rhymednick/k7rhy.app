@@ -1,0 +1,37 @@
+---
+title: 'Designing the First Product - 20W Dummy Load'
+date: 2024-09-03
+summary: ''
+tags: ['development', 'background', 'product', 'blog']
+publish: true
+---
+
+Now that the store has officially been open for a few weeks, and I've had a chance to get all of the sales channels running smoothly, let me tell you about the development process for my first product, the 20W Dummy Load.
+
+### Background (the why)
+
+When I got to the point where I was ready to start programming my first radios, I felt insecure about doing it correctly. I wanted to run tests between my base station and my HT without actually transmitting something that my whole neighborhood could hear. The folks in the local club are helpful, but they're not above a little good-natured ribbing of the new guy. I didn't want to attract attention to myself by making a mistake, so I asked ChatGPT for advice. It suggested that I transmit into a dummy load.
+
+I liked that idea, so I started looking for one. I found a few options, but they were all shockingly expensive. I looked into the theory behind them and realized that they were just a resistor in a box. I could build one of those! While I had most of the parts handy, I saw some very inexpensive kits online, and I ordered the cheapest one I could find. I'm not going to call anyone out and tell you where I got it, but I will say that it was a frustratingly complex thing to build, and unnecessarily so. I got it assembled, but it didn't work (SWR off the charts), and it was designed in such a way that it was impossible to troubleshoot and find my mistake. I knew that I could do better, and probably cheaper. So I got to work.
+
+At this point, I wasn't considering selling anything; I just wanted a cheap device that worked. I'm not a stranger to designing and building my own circuit boards (PCBs), but my gear was pretty old, and copper had gotten expensive, so the equipment needed to build my own from scratch was too costly for a project like this. An electrical engineer friend said that I could probably get one made overseas for next to nothing, so I checked it out. He was right. I had to buy them in sets of five, but it was still much cheaper than etching them myself, and the quality was orders of magnitude better. I knew this was the solution I was looking for, but better than that, I knew this solution would be useful to others. At that point, I knew I'd be producing and selling these kits. I wasn't expecting to make a living from it, but I hoped I could make enough to fund the experimentation on other potential kits. Well, that was optimistic, but it was enough to convince my wife that it wasn't a complete folly, and it's hard for me to enjoy something when she's not on board with it.
+
+### The Design Process
+
+I started by looking for every dummy load schematic I could find, and there were many. There were decades' worth of designs, in dozens of languages, and various formats. Most were simple, some were complex, but they were all basically the same thing—a device that absorbed RF energy and dissipated it as heat. The complexity came from the need to manage the impedance of the device to ensure that it would absorb the energy, and not reflect it back to the transmitter, for the frequencies that amateur radio operators use.
+
+I investigated which resistors would be best, ideally those designed for RF operation, and quickly learned that they were much too expensive. I started experimenting with the ones I had in my shop, and I learned that they were good enough for use on HF frequencies. Feeling encouraged, I designed a circuit board and uploaded it to an overseas manufacturer to build me a prototype. At the same time, I sent my design to my EE friends to show them what I was up to. They were supportive but had concerns with the PCB design. They were afraid that the traces would interact with each other and impact the overall impedance at different RF frequencies. They were right. That first board wasn't exactly a disaster, but it would only work on frequencies up to 30 MHz, and I wanted it to function in the UHF bands too.
+
+The next few months were spent investigating the different ways I could lay out the components on the board to minimize the interaction between them, and to try out different components. I was curious to know how much variation there would be in components sourced from different manufacturers. I was surprised to find that there was a lot of variation, but that the design of the PCB was the biggest factor in the overall performance of the device.
+
+In the end, I was able to come up with a design that worked really well for all HF bands and the 70 cm band, but only _good enough_ for the 2 m band. It's not ideal, but I learned that this is common for all devices that use common (non-RF) resistors to handle the load. I was able to alter the design to extend the low SWR curve into the 2 m band, but it was at the expense of the 70 cm band.
+
+Ultimately, I decided that it was better to produce a board that would cover all HF frequencies, plus 2 m and 70 cm, even if 2 m wasn't perfect. This is the design I'm selling now. I'm proud of it, and I think it's a good value for the money. I hope you think so too.
+
+### The Future
+
+I've been working on the next version of the board and I've settled on a design that allows you to select the frequency trade-off yourself. With the same PCB, you will be able to use the same frequencies as the current board, or add a capacitor to improve 2 m performance while eliminating the 70 cm band. With this new version, you'll also be able to select between different connector options (BNC or SMA). I'm currently testing the prototype, and I hope to have it available for sale soon. If course, since it's more complex and has more components, it will be slightly more expensive, but I think it's worth the trade-off.
+
+Come back soon to see the new version, and let me know what you think. I'm always looking for feedback. Also, if you have any ideas that you'd like me to integrate into a new product, I'd love to hear about them.
+
+_73, [K7RHY](mailto:de.k7rhy@gmail.com)_
