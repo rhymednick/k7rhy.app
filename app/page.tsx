@@ -36,18 +36,19 @@ export default function Home() {
                         >
                             <b>20W Dummy Load</b>
                         </Link>
-                        , with more on the way:
+                        , with more on the way.
                     </div>
+
                     <div className="mb-2">
-                        <span className="font-bold">Coming soon:</span>
-                        <ul className="ml-8 list-disc">
-                            <li>Dummy load with SMA connector</li>
-                            <li>
-                                Dummy load with automatic OLED power output
-                                display, and multiple connector options
-                            </li>
-                            <li>Alternate kit form factors</li>
-                        </ul>
+                        While you're here, take a few minutes to check out the{' '}
+                        <Link
+                            className="hover:underline"
+                            href="/blog"
+                        >
+                            <b>blog</b>
+                        </Link>{' '}
+                        to read about how the products are developed, and to see
+                        what's coming.
                     </div>
                 </Balancer>
 
