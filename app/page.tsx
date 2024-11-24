@@ -3,8 +3,6 @@ import { Balancer } from 'react-wrap-balancer';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
-import { SocialsDrawer } from '@/components/socials-drawer';
-import DarkModeToggle from '@/components/dark-mode-toggle';
 
 export default function Home() {
     return (
