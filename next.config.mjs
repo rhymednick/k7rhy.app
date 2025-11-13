@@ -41,8 +41,16 @@ const shortCommitHash =
     (/^[0-9a-f]{7,40}$/i.test(commitHash) ? commitHash.slice(0, 7) : commitHash);
 
 const buildTimestamp = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? new Date().toISOString();
-const isPublicBuild =
-    process.env.NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC ?? (process.env.VERCEL ? 'true' : 'false');
+const inferredPublic =
+    process.env.VERCEL ||
+    process.env.NETLIFY ||
+    process.env.GITHUB_ACTIONS ||
+    process.env.CI === 'true' ||
+    process.env.CI === '1'
+        ? 'true'
+        : 'false';
+
+const isPublicBuild = process.env.NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC ?? inferredPublic;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
