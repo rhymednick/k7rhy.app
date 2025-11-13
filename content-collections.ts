@@ -2,21 +2,25 @@ import { defineCollection, defineConfig } from '@content-collections/core';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import axios from 'axios';
+import { z } from 'zod';
+
+const blogSchema = z.object({
+    title: z.string(),
+    date: z.string().date('Invalid date string in blog entry.'),
+    summary: z.string().optional().default(''), // Ensure summary defaults to an empty string
+    tags: z.array(z.string()).optional(),
+    publish: z.boolean().optional().default(false),
+    wordCount: z.number().optional().default(0),
+    readingTime: z.number().optional().default(0),
+    isAISummary: z.boolean().optional().default(false), // Track AI-generated summaries
+    content: z.string(), // Explicit content property for markdown content
+});
 
 const blog = defineCollection({
     name: 'blog',
     directory: 'content/blog',
     include: '**/*.mdx',
-    schema: (z) => ({
-        title: z.string(),
-        date: z.string().date('Invalid date string in blog entry.'),
-        summary: z.string().optional().default(''), // Ensure summary defaults to an empty string
-        tags: z.array(z.string()).optional(),
-        publish: z.boolean().optional().default(false),
-        wordCount: z.number().optional().default(0),
-        readingTime: z.number().optional().default(0),
-        isAISummary: z.boolean().optional().default(false), // Track AI-generated summaries
-    }),
+    schema: blogSchema,
     transform: async (data, context) => {
         console.log(`Starting transformation for: ${data.title}`);
 
