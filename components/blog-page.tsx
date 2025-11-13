@@ -49,7 +49,7 @@ export function BlogPage(props: BlogPageProps) {
                                 strokeLinejoin="round"
                             ></path>
                         </svg>
-                        Go back
+                        Back to Lab Notes
                     </Link>
                 </div>
             </div>

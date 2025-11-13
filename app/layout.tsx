@@ -14,7 +14,7 @@ import React from 'react';
 
 export const metadata: Metadata = {
     title: 'K7RHY',
-    description: 'Ham radio electronics kits and projects',
+    description: 'Resonant electronics — radio kits and crafted instruments from K7RHY.',
 };
 
 export default function RootLayout({

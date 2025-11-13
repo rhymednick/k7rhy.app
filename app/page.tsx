@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Balancer } from 'react-wrap-balancer';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
@@ -23,8 +24,8 @@ export default function Home() {
                         electronics and embedded systems development naturally
                         led me to amateur radio. For the past 15 years, my focus
                         has been on technical user education, and I'm excited to
-                        merge my interests here by sharing my kits and assembly
-                        guides with you!
+                        merge my interests here by sharing resonance-driven RF
+                        projects and crafted instruments with you.
                     </div>
                     <div className="mb-2">
                         I've just released my first kit, a{' '}
@@ -34,32 +35,47 @@ export default function Home() {
                         >
                             <b>20W Dummy Load</b>
                         </Link>
-                        , with more on the way.
+                        , and I'm developing new ways to explore resonance—
+                        including 3D-printed guitars tuned for rich, sustained
+                        tones.
                     </div>
-
-                    <div className="mb-2">
-                        While you're here, take a few minutes to check out the{' '}
+                    <div className="mb-6">
+                        Stop by the{' '}
                         <Link
                             className="hover:underline"
                             href="/blog"
                         >
-                            <b>blog</b>
+                            <b>lab notes</b>
                         </Link>{' '}
-                        to read about how the products are developed, and to see
-                        what's coming.
+                        to follow prototypes, discoveries, and what’s coming next.
                     </div>
                 </Balancer>
-
+                <div className="mb-6 flex flex-col gap-3 sm:flex-row">
+                    <Button
+                        asChild
+                        size="lg"
+                    >
+                        <Link href="https://discord.gg/BuUxCG4W6w">
+                            Join the K7RHY Discord
+                        </Link>
+                    </Button>
+                    <Button
+                        asChild
+                        size="lg"
+                        variant="outline"
+                    >
+                        <Link href="/products">Browse Resonant Gear</Link>
+                    </Button>
+                </div>
                 <div className="mb-2">
-                    If you have questions or ideas for kits that you'd like to
-                    see, send me an email at{' '}
+                    Have an idea for a radio kit or build? Hop into the{' '}
                     <Link
                         className="hover:underline"
-                        href="mailto:de.k7rhy@gmail.com"
+                        href="https://discord.gg/BuUxCG4W6w"
                     >
-                        de.k7rhy@gmail.com
-                    </Link>
-                    . I'd love to hear from you!
+                        K7RHY Discord
+                    </Link>{' '}
+                    and let’s explore it together.
                 </div>
                 <div className="italic">73, K7RHY</div>
             </div>

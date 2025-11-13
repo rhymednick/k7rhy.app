@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <title>K7RHY</title>
                 <meta
                     name="description"
-                    content="Ham radio electronics kits and projects"
+                    content="Resonant electronics — radio kits and crafted instruments from K7RHY."
                 />
                 <link
                     rel="apple-touch-icon"
