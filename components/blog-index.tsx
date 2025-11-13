@@ -45,7 +45,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
         );
 
         return Object.keys(tagCount).sort((a, b) => tagCount[b] - tagCount[a]);
-    }, [posts]);
+    }, [filteredPosts]);
 
     // Handle tag selection
     const toggleTag = (tag: string) => {

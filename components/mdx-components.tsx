@@ -151,14 +151,33 @@ const components: MDXComponents = {
     img: ({
         className,
         alt,
-        ...props
-    }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <img
-            className={cn('rounded-md mt-2 mb-2', className)}
-            alt={alt}
-            {...props}
-        />
-    ),
+        src,
+        width,
+        height,
+        ...rest
+    }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+        const numericWidth =
+            typeof width === 'number' ? width : width ? Number(width) : 800;
+        const numericHeight =
+            typeof height === 'number' ? height : height ? Number(height) : 600;
+
+        const imageSrc = typeof src === 'string' ? src : undefined;
+
+        if (!imageSrc) {
+            return null;
+        }
+
+        return (
+            <Image
+                className={cn('rounded-md mt-2 mb-2', className)}
+                alt={alt ?? ''}
+                src={imageSrc}
+                width={numericWidth}
+                height={numericHeight}
+                {...rest}
+            />
+        );
+    },
     hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
         <hr
             className="my-4 md:my-8"

@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
+import Link from 'next/link';
 
 import { DocSection } from '@/components/doc/doc-section';
 import { formatDate } from '@/lib/utils';
@@ -31,7 +32,7 @@ export function BlogPage(props: BlogPageProps) {
         <div className="overflow-hidden">
             <div className="max-w-8xl mx-auto">
                 <div className="flex px-4 pt-8 pb-10 lg:px-8">
-                    <a
+                    <Link
                         className="group flex font-semibold text-sm leading-6 text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white"
                         href="/blog"
                     >
@@ -49,7 +50,7 @@ export function BlogPage(props: BlogPageProps) {
                             ></path>
                         </svg>
                         Go back
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className="px-4 sm:px-6 md:px-8">
