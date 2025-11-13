@@ -37,7 +37,7 @@ const DarkModeToggle = () => {
             )}
             <TooltipProvider>
                 <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger asChild>
                         <Switch
                             checked={isDarkMode}
                             onCheckedChange={handleToggle}
