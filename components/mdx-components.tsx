@@ -28,7 +28,6 @@ import { DocProcedure } from '@/components/doc/doc-procedure';
 import { DocSection } from '@/components/doc/doc-section';
 import { DocImage } from '@/components/doc/doc-image';
 import { DocIndexCard } from '@/components/doc/doc-index-card';
-import { Icons } from '@/components/icons';
 import PowerCalculator from '@/components/power-calculator';
 import CodeBlock from '@/components/code-block';
 import DocAlert from './doc/doc-alert';
@@ -316,7 +315,6 @@ const components: MDXComponents = {
     DocIndexCard,
     DocProcedure,
     DocSection,
-    Icons,
     PowerCalculator,
     DocAlert,
     Proc: MdxDocProcedure,

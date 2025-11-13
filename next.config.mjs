@@ -10,9 +10,14 @@ const nextConfig = {
     // Configure `pageExtensions` to include MDX files
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx', 'md'],
 
-    // Configure the image domains
+    // Configure the image remote patterns (Next.js 15+ requires remotePatterns instead of domains)
     images: {
-        domains: ['cdn.shopify.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'cdn.shopify.com',
+            },
+        ],
     },
     // Add the redirects function
     async redirects() {

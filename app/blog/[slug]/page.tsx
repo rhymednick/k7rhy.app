@@ -11,9 +11,9 @@ import { AlertCircle } from 'lucide-react';
 import DocAlert, { Level } from '@/components/doc/doc-alert';
 
 type BlogProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -39,10 +39,10 @@ const unpublishedAlert = () => {
     </DocAlert>
   );
 };
-const Page = ({ params }: BlogProps) => {
+const Page = async ({ params }: BlogProps) => {
   const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
-  const { slug } = params;
+  const { slug } = await params;
   const filePath = path.join(process.cwd(), 'content/blog', `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {

@@ -8,9 +8,9 @@ import components from '@/components/mdx-components'; // Ensure the correct path
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 
 type MdxDocProps = {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 };
 
 export async function generateStaticParams() {
@@ -21,10 +21,10 @@ export async function generateStaticParams() {
     }));
 }
 
-const Page = ({ params }: MdxDocProps) => {
+const Page = async ({ params }: MdxDocProps) => {
     //const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
 
-    const { slug } = params;
+    const { slug } = await params;
     const filePath = path.join(process.cwd(), 'content/docs', `${slug}.mdx`);
 
     if (!fs.existsSync(filePath)) {
