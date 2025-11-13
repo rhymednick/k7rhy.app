@@ -45,7 +45,7 @@ export const navConfig: NavigationConfig = {
             href: '/docs',
         },
         {
-            title: 'Blog',
+            title: 'Lab Notes',
             href: '/blog',
         },
     ],

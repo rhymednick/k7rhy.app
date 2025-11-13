@@ -1,10 +1,11 @@
 export const siteConfig = {
-    name: 'K7RHY Ham Radio Kits',
+    name: 'K7RHY Resonance Lab',
     url: 'https://k7rhy.app',
     ogImage: 'https://k7rhy.app/favicon.ico',
-    description: 'Ham radio kits for the amateur radio operator.',
+    description:
+        'Exploring resonance across radio experiments and crafted instruments.',
     links: {
-        twitter: 'https://twitter.com/de_k7rhy',
+        discord: 'https://discord.gg/BuUxCG4W6w',
         github: 'https://github.com/rhymednick/k7rhy.app',
         linkedin: 'https://www.linkedin.com/company/k7rhy',
         facebook: 'https://www.facebook.com/k7rhy',
