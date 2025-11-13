@@ -18,34 +18,43 @@ export function SocialsDrawer(props: SocialsDrawerProps) {
     };
 
     const socials = [
-        siteConfig.links.discord && {
+        siteConfig.links.discord
+            ? {
             key: 'discord',
             url: siteConfig.links.discord,
-        },
-        siteConfig.links.linkedin && {
+            }
+            : null,
+        siteConfig.links.linkedin
+            ? {
             key: 'linkedin',
             url: siteConfig.links.linkedin,
-        },
-        siteConfig.links.facebook && {
+            }
+            : null,
+        siteConfig.links.facebook
+            ? {
             key: 'facebook',
             url: siteConfig.links.facebook,
-        },
-        siteConfig.links.instagram && {
+            }
+            : null,
+        siteConfig.links.instagram
+            ? {
             key: 'instagram',
             url: siteConfig.links.instagram,
-        },
-        siteConfig.links.threads && {
+            }
+            : null,
+        siteConfig.links.threads
+            ? {
             key: 'threads',
             url: siteConfig.links.threads,
-        },
-        siteConfig.links.github && {
+            }
+            : null,
+        siteConfig.links.github
+            ? {
             key: 'github',
             url: siteConfig.links.github,
-        },
-    ].filter(
-        (item): item is { key: string; url: string } =>
-            Boolean(item?.url && item?.url.length)
-    );
+            }
+            : null,
+    ].filter((item): item is { key: string; url: string } => item !== null);
 
     return (
         <nav className="flex items-center">
