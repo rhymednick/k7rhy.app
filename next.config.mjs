@@ -1,9 +1,48 @@
 // next.config.mjs
 
+import { execSync } from 'node:child_process';
 import createMDX from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import { withContentCollections } from '@content-collections/next';
+
+function resolveCommitHash() {
+    if (process.env.NEXT_PUBLIC_GIT_COMMIT_SHA) {
+        return process.env.NEXT_PUBLIC_GIT_COMMIT_SHA;
+    }
+    if (process.env.VERCEL_GIT_COMMIT_SHA) {
+        return process.env.VERCEL_GIT_COMMIT_SHA;
+    }
+    if (process.env.GIT_COMMIT_SHA) {
+        return process.env.GIT_COMMIT_SHA;
+    }
+    try {
+        return execSync('git rev-parse HEAD').toString().trim();
+    } catch {
+        return 'local-dev';
+    }
+}
+
+function normalizeRepoUrl(url) {
+    if (!url) {
+        return undefined;
+    }
+    return url.replace(/\.git$/, '').replace(/\/+$/, '');
+}
+
+const repositoryUrl =
+    process.env.NEXT_PUBLIC_GITHUB_REPO_URL ??
+    process.env.VERCEL_GIT_REPO_URL ??
+    'https://github.com/rhymednick/k7rhy.app';
+
+const commitHash = resolveCommitHash();
+const shortCommitHash =
+    process.env.NEXT_PUBLIC_GIT_COMMIT_SHORT_SHA ??
+    (/^[0-9a-f]{7,40}$/i.test(commitHash) ? commitHash.slice(0, 7) : commitHash);
+
+const buildTimestamp = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? new Date().toISOString();
+const isPublicBuild =
+    process.env.NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC ?? (process.env.VERCEL ? 'true' : 'false');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -31,6 +70,13 @@ const nextConfig = {
     },
 
     // Optionally, add any other Next.js config below
+    env: {
+        NEXT_PUBLIC_GITHUB_REPO_URL: normalizeRepoUrl(repositoryUrl),
+        NEXT_PUBLIC_GIT_COMMIT_SHA: commitHash,
+        NEXT_PUBLIC_GIT_COMMIT_SHORT_SHA: shortCommitHash,
+        NEXT_PUBLIC_BUILD_TIMESTAMP: buildTimestamp,
+        NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC: isPublicBuild,
+    },
 };
 
 const withMDX = createMDX({
