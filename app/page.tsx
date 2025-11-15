@@ -69,7 +69,7 @@ export default function Home() {
                             and let's prototype it together.
                         </div>
                         <div className="text-sm italic text-slate-600 dark:text-slate-400">
-                            Stay resonant, K7RHY
+                            Catch you on the airwaves—K7RHY
                         </div>
                     </div>
                     <div className="w-full max-w-md rounded-2xl border border-white/70 bg-white/70 p-6 shadow-xl backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/60">
