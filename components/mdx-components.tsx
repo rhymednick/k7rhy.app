@@ -33,6 +33,14 @@ import CodeBlock from '@/components/code-block';
 import DocAlert from './doc/doc-alert';
 import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
 import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
+import {
     MdxDocProcedureStep,
     StepDescription,
 } from '@/components/doc/mdx-doc-procedure-step';
@@ -336,6 +344,12 @@ const components: MDXComponents = {
     DocSection,
     PowerCalculator,
     DocAlert,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
     Proc: MdxDocProcedure,
     ProcStep: MdxDocProcedureStep,
     Desc: StepDescription,
