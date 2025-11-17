@@ -5,7 +5,7 @@ import { Balancer } from 'react-wrap-balancer';
 // Product metadata
 const product: Guitar = {
     slug: 'rainbow-tele',
-    name: 'Rainbow Telecaster-style Guitar',
+    name: 'Rainbow Telecaster-Style Guitar',
     category: ProductCategory.GUITARS,
     description: "A Telecaster-style electric guitar built with 3D-printed construction methods, combining a carbon-fiber reinforced PETG core for structural stability with an ABS and PETG shell for durability and visual appeal.",
     images: [
