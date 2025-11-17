@@ -38,6 +38,33 @@ const blog = defineCollection({
             const contentWithoutFrontMatter = content
                 .replace(/---\s*[\s\S]*?\s*---/, '')
                 .trim();
+            
+            // Strip JSX components for AI summary generation
+            // This removes JSX tags and their content, keeping only plain text
+            const stripJSX = (text: string): string => {
+                // Remove JSX components (handles both self-closing and with children)
+                // This regex matches JSX tags and their content recursively
+                let result = text;
+                let previousResult = '';
+                
+                // Keep removing JSX until no more changes occur
+                while (result !== previousResult) {
+                    previousResult = result;
+                    // Remove JSX components with children (handles nested components)
+                    result = result.replace(/<[A-Z][a-zA-Z0-9]*[^>]*>[\s\S]*?<\/[A-Z][a-zA-Z0-9]*>/g, '');
+                    // Remove self-closing JSX components
+                    result = result.replace(/<[A-Z][a-zA-Z0-9]*[^>]*\/>/g, '');
+                    // Remove JSX fragments
+                    result = result.replace(/<>[\s\S]*?<\/>/g, '');
+                }
+                
+                // Clean up any remaining JSX syntax artifacts
+                result = result.replace(/<[^>]+>/g, '');
+                
+                return result.trim();
+            };
+            
+            const plainTextContent = stripJSX(contentWithoutFrontMatter);
             const wordCount = contentWithoutFrontMatter.split(/\s+/).length;
             const wordsPerMinute = 200;
             const readingTime = Math.ceil(wordCount / wordsPerMinute);
@@ -57,7 +84,7 @@ const blog = defineCollection({
                 try {
                     const response = await axios.post(
                         'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
-                        { inputs: contentWithoutFrontMatter },
+                        { inputs: plainTextContent },
                         {
                             headers: {
                                 Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,

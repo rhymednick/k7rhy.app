@@ -133,8 +133,7 @@ export function HamRadioKitPage({ product }: HamRadioKitPageProps) {
                                     <b>Impedance:</b> 50 ohms
                                 </li>
                                 <li>
-                                    <b>Dimensions:</b> 4.5" x 2" x 0.75" (12cm x 5cm
-                                    x 2cm)
+                                    <b>Dimensions:</b> 4.5" x 2" x 0.75" (12cm x 5cm x 2cm)
                                 </li>
                                 <li>
                                     <b>Frequency Range:</b> 0-455 MHz
