@@ -2,7 +2,7 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { ProductPage } from '@/components/product/product-page';
 import { ProductCategory } from '@/types/product';
-import { getProduct, getAllProducts } from '@/config/products';
+import { getProduct, getAllProducts, getProductDescription } from '@/config/products';
 
 type ProductPageRouteProps = {
     params: Promise<{
@@ -40,6 +40,9 @@ export default async function Page({ params }: ProductPageRouteProps) {
         notFound();
     }
 
-    return <ProductPage product={product} />;
+    // Load Description component if available
+    const Description = getProductDescription(category as ProductCategory, slug);
+
+    return <ProductPage product={product} Description={Description} />;
 }
 

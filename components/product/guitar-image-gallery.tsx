@@ -70,7 +70,7 @@ export function GuitarImageGallery({
 
     return (
         <>
-            <div className="relative px-12">
+            <div className="relative">
                 <Carousel
                     orientation="horizontal"
                     className="w-full"
@@ -79,8 +79,8 @@ export function GuitarImageGallery({
                         loop: true,
                     }}
                 >
-                    <CarouselPrevious />
-                    <CarouselContent>
+                    <CarouselPrevious className="left-2" />
+                    <CarouselContent className="-ml-2 md:-ml-4">
                     {normalizedImages.map((image, index) => {
                         const hasError = imageErrors.has(index);
                         const showPlaceholder = hasError;
@@ -88,7 +88,7 @@ export function GuitarImageGallery({
                         return (
                             <CarouselItem
                                 key={index}
-                                className="md:basis-1/2 lg:basis-1/3"
+                                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
                             >
                                 <div className="space-y-2">
                                     <div
@@ -125,7 +125,7 @@ export function GuitarImageGallery({
                                         )}
                                     </div>
                                     {image.description && (
-                                        <p className="text-sm text-muted-foreground text-center px-2">
+                                        <p className="text-sm text-muted-foreground text-center">
                                             {image.description}
                                         </p>
                                     )}
@@ -134,7 +134,7 @@ export function GuitarImageGallery({
                         );
                     })}
                     </CarouselContent>
-                    <CarouselNext />
+                    <CarouselNext className="right-2" />
                 </Carousel>
             </div>
 

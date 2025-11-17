@@ -2,6 +2,8 @@
  * Product type definitions for the guitar product system
  */
 
+import type React from 'react';
+
 export enum ProductCategory {
     GUITARS = 'guitars',
     HAM_RADIO_KITS = 'ham-radio-kits',
@@ -100,11 +102,18 @@ export interface Product {
     slug: string;
     name: string;
     category: ProductCategory;
-    description: string; // Sales-focused
+    description: string; // Sales-focused (used for teasers and fallback)
     images: string[] | ProductImage[]; // Support both string array (backward compat) and ProductImage array
     price?: number;
     purchaseLink?: string;
     relatedBlogTag?: string; // Tag to filter related posts
+}
+
+// Product config structure for TSX components
+// Configs export both product metadata and an optional Description component
+export interface ProductConfig {
+    product: Product;
+    Description?: React.ComponentType; // Optional React component for rich description formatting
 }
 
 export interface Guitar extends Product {

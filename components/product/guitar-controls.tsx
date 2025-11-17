@@ -6,6 +6,7 @@ import {
 } from '@/config/guitar-options';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
+import { Sliders } from 'lucide-react';
 
 interface GuitarControlsProps {
     guitar: Guitar;
@@ -24,8 +25,11 @@ export function GuitarControls({ guitar }: GuitarControlsProps) {
     };
 
     return (
-        <div>
-            <h2 className={cn('text-xl font-semibold mb-2')}>Controls</h2>
+        <div className="p-6">
+            <div className="flex items-center gap-2 mb-4">
+                <Sliders className="h-5 w-5 text-primary" />
+                <h2 className={cn('text-xl font-semibold')}>Controls</h2>
+            </div>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -49,12 +53,12 @@ export function GuitarControls({ guitar }: GuitarControlsProps) {
                         }
 
                         return (
-                            <TableRow key={index}>
-                                <TableCell className="font-medium py-2">
+                            <TableRow key={index} className="hover:bg-muted/50 transition-colors">
+                                <TableCell className="font-medium py-3">
                                     {getControlTypeLabel(control.type)}
                                 </TableCell>
-                                <TableCell className="py-2">{control.usage}</TableCell>
-                                <TableCell className="py-2">
+                                <TableCell className="py-3">{control.usage}</TableCell>
+                                <TableCell className="py-3">
                                     {details.length > 0 ? (
                                         <div className="space-y-1">
                                             {details.map((detail, i) => (
