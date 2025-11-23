@@ -2,12 +2,12 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '@/components/shared/theme-provider';
 import { Toaster } from '@/components/ui/toaster'; // Import Toaster
-import InlineCommentHandler from '@/components/inline-comment-handler'; // Import InlineCommentHandler
+import InlineCommentHandler from '@/components/features/inline-comment-handler'; // Import InlineCommentHandler
 
-import { SiteFooter } from '@/components/site-footer';
-import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/navigation/site-footer';
+import { SiteHeader } from '@/components/navigation/site-header';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 import React from 'react';

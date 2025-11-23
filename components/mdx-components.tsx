@@ -28,7 +28,7 @@ import { DocProcedure } from '@/components/doc/doc-procedure';
 import { DocSection } from '@/components/doc/doc-section';
 import { DocImage } from '@/components/doc/doc-image';
 import { DocIndexCard } from '@/components/doc/doc-index-card';
-import PowerCalculator from '@/components/power-calculator';
+import PowerCalculator from '@/components/features/power-calculator';
 import CodeBlock from '@/components/code-block';
 import DocAlert from './doc/doc-alert';
 import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
@@ -57,68 +57,82 @@ const components: MDXComponents = {
     Alert,
     AlertTitle,
     AlertDescription,
-    h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h1: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h1
             className={cn(
                 'font-heading mt-2 scroll-m-20 text-4xl font-bold',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h1>
     ),
-    h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h2: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h2
             className={cn(
                 'font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h2>
     ),
-    h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h3: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h3
             className={cn(
                 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h3>
     ),
-    h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h4: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h4
             className={cn(
                 'font-heading mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h4>
     ),
-    h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h5: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h5
             className={cn(
                 'mt-8 scroll-m-20 text-lg font-semibold tracking-tight',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h5>
     ),
-    h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+    h6: ({ className, children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h6
             className={cn(
                 'mt-8 scroll-m-20 text-base font-semibold tracking-tight',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h6>
     ),
-    a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+    a: ({ className, children, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
         <a
             className={cn(
                 'font-medium no-underline hover:underline underline-offset-2',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </a>
     ),
     p: ({
         className,
@@ -260,14 +274,16 @@ const components: MDXComponents = {
     Image,
     Callout,
     AspectRatio,
-    Step: ({ className, ...props }: React.ComponentProps<'h3'>) => (
+    Step: ({ className, children, ...props }: React.ComponentProps<'h3'>) => (
         <h3
             className={cn(
                 'font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight',
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+        </h3>
     ),
     Steps: ({ ...props }) => (
         <div

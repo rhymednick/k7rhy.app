@@ -44,6 +44,12 @@ Here's what we have in the site so far:
 
 ---
 
+## Contributing
+
+Interested in contributing? Please read the [Contributing Guide](CONTRIBUTING.md) for details on how to set up your development environment.
+
+---
+
 For any questions or support, please reach out via the repository's issue tracker or contact me directly.
 
 - Rhy Mednick (73, K7RHY)

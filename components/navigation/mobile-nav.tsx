@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { navConfig } from '@/config/navigation';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/components/icons';
+import { Icons } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';

@@ -81,58 +81,65 @@ export function GuitarImageGallery({
                 >
                     <CarouselPrevious className="left-2" />
                     <CarouselContent className="-ml-2 md:-ml-4">
-                    {normalizedImages.map((image, index) => {
-                        const hasError = imageErrors.has(index);
-                        const showPlaceholder = hasError;
+                        {normalizedImages.map((image, index) => {
+                            const hasError = imageErrors.has(index);
+                            const showPlaceholder = hasError;
 
-                        return (
-                            <CarouselItem
-                                key={index}
-                                className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
-                            >
-                                <div className="space-y-2">
-                                    <div
-                                        className="relative aspect-square cursor-pointer group"
-                                        onClick={() => handleImageClick(image)}
-                                    >
-                                        {showPlaceholder ? (
-                                            <div className="w-full h-full bg-muted rounded-md flex items-center justify-center border-2 border-dashed border-muted-foreground/20">
-                                                <div className="text-center p-4">
-                                                    <ImageIcon className="w-12 h-12 mx-auto mb-2 text-muted-foreground/40" />
-                                                    <p className="text-sm text-muted-foreground">
-                                                        Image not found
-                                                    </p>
+                            return (
+                                <CarouselItem
+                                    key={index}
+                                    className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3"
+                                >
+                                    <div className="space-y-2">
+                                        <div
+                                            className="relative aspect-square cursor-pointer group"
+                                            onClick={() => handleImageClick(image)}
+                                            role="button"
+                                            tabIndex={0}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' || e.key === ' ') {
+                                                    handleImageClick(image);
+                                                }
+                                            }}
+                                        >
+                                            {showPlaceholder ? (
+                                                <div className="w-full h-full bg-muted rounded-md flex items-center justify-center border-2 border-dashed border-muted-foreground/20">
+                                                    <div className="text-center p-4">
+                                                        <ImageIcon className="w-12 h-12 mx-auto mb-2 text-muted-foreground/40" />
+                                                        <p className="text-sm text-muted-foreground">
+                                                            Image not found
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ) : (
-                                            <>
-                                                <Image
-                                                    src={image.src}
-                                                    width={350}
-                                                    height={350}
-                                                    alt={image.alt || ''}
-                                                    className="rounded-md object-cover transition-opacity group-hover:opacity-90"
-                                                    onError={() =>
-                                                        handleImageError(index)
-                                                    }
-                                                />
-                                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-md transition-colors flex items-center justify-center">
-                                                    <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-medium bg-black/50 px-3 py-1 rounded transition-opacity">
-                                                        Click to enlarge
-                                                    </span>
-                                                </div>
-                                            </>
+                                            ) : (
+                                                <>
+                                                    <Image
+                                                        src={image.src}
+                                                        width={350}
+                                                        height={350}
+                                                        alt={image.alt || ''}
+                                                        className="rounded-md object-cover transition-opacity group-hover:opacity-90"
+                                                        onError={() =>
+                                                            handleImageError(index)
+                                                        }
+                                                    />
+                                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 rounded-md transition-colors flex items-center justify-center">
+                                                        <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-medium bg-black/50 px-3 py-1 rounded transition-opacity">
+                                                            Click to enlarge
+                                                        </span>
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                        {image.description && (
+                                            <p className="text-sm text-muted-foreground text-center">
+                                                {image.description}
+                                            </p>
                                         )}
                                     </div>
-                                    {image.description && (
-                                        <p className="text-sm text-muted-foreground text-center">
-                                            {image.description}
-                                        </p>
-                                    )}
-                                </div>
-                            </CarouselItem>
-                        );
-                    })}
+                                </CarouselItem>
+                            );
+                        })}
                     </CarouselContent>
                     <CarouselNext className="right-2" />
                 </Carousel>
@@ -164,14 +171,14 @@ export function GuitarImageGallery({
                                         (img) => img.src === selectedImage.src
                                     );
                                     return imageErrors.has(selectedIndex) ? (
-                                    <div className="w-full h-full bg-muted flex items-center justify-center">
-                                        <div className="text-center p-4">
-                                            <ImageIcon className="w-16 h-16 mx-auto mb-2 text-muted-foreground/40" />
-                                            <p className="text-muted-foreground">
-                                                Image not found
-                                            </p>
+                                        <div className="w-full h-full bg-muted flex items-center justify-center">
+                                            <div className="text-center p-4">
+                                                <ImageIcon className="w-16 h-16 mx-auto mb-2 text-muted-foreground/40" />
+                                                <p className="text-muted-foreground">
+                                                    Image not found
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
                                     ) : (
                                         <Image
                                             src={selectedImage.src}

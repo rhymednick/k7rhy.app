@@ -4,9 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { siteConfig } from '../config/site';
+import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/components/icons';
+import { Icons } from '@/components/shared/icons';
 import { navConfig } from '@/config/navigation';
 
 export function MainNav() {

@@ -4,9 +4,9 @@ import { AppProps } from 'next/app';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
 import '../app/globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
-import { SiteFooter } from '@/components/site-footer';
-import { SiteHeader } from '@/components/site-header';
+import { ThemeProvider } from '@/components/shared/theme-provider';
+import { SiteFooter } from '@/components/navigation/site-footer';
+import { SiteHeader } from '@/components/navigation/site-header';
 import components from '@/components/mdx-components';
 import { Toaster } from '@/components/ui/toaster'; // Import Toaster component
 

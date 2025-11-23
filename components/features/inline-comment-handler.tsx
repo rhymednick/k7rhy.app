@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ContextMenu from '@/components/context-menu';
-import FeedbackSheet from '@/components/feedback-sheet';
+import FeedbackSheet from '@/components/features/feedback-sheet';
 import { useToast } from '@/components/ui/use-toast';
 import Link from 'next/link';
 import CopyToClipboardButton from '@/components/copy-to-clipboard-button';

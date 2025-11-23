@@ -17,7 +17,7 @@ import { Separator } from "@/components/ui/separator"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal, TriangleAlert } from "lucide-react"
 import Image from 'next/image';
-import PowerCalculatorSheet from '@/components/power-calculator-sheet';
+import PowerCalculatorSheet from '@/components/features/power-calculator-sheet';
 import { DocSection } from "@/components/doc/doc-section";
 import DocAlert, { Level } from "@/components/doc/doc-alert";
 import Markdown from '@/components/markdown';

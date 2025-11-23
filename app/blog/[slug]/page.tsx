@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import components from '@/components/mdx-components'; // Ensure the correct path to your mdx-components.tsx
-import { BlogPage } from '@/components/blog-page';
+import { BlogPage } from '@/components/blog/blog-page';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import DocAlert, { Level } from '@/components/doc/doc-alert';

@@ -18,7 +18,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { Label } from './ui/label';
+import { Label } from '@/components/ui/label';
 
 const PowerCalculatorSheet = () => {
     const [voltage, setVoltage] = useState('');

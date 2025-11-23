@@ -3,7 +3,7 @@ import React from 'react';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { NavItemWithChildren } from '../types/nav';
+import { NavItemWithChildren } from '@/types/nav';
 
 import { cn } from '@/lib/utils';
 import { env } from 'process';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { navConfig } from '@/config/navigation';
-import { DocsSidebarNav } from '@/components/sidebar-nav';
+import { DocsSidebarNav } from '@/components/navigation/sidebar-nav';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PageNavigation } from '@/components/page-navigation';
 
