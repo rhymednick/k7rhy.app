@@ -19,13 +19,12 @@ export const MdxDocProcedure: React.FC<MdxDocProcedureProps> = (props: MdxDocPro
         <div>
             <DocSection title={props.title}>
                 <div className="mb-2 md:mb-4">{description}</div>
-                <ol
-                    className="relative space-y-2 mb-8"
-                    style={{ counterReset: 'step 0' }}
-                >
+                <ol className="relative space-y-2 mb-8" style={{ counterReset: 'step 0' }}>
                     {React.Children.map(props.children, (child) => {
                         if (React.isValidElement(child) && child.type === MdxDocProcedureStep) {
-                            return React.cloneElement(child, { isSubstep: false } as React.Attributes); // Pass context prop with type assertion
+                            return React.cloneElement(child, {
+                                isSubstep: false,
+                            } as React.Attributes); // Pass context prop with type assertion
                         } else {
                             console.log('Ignoring invalid child in MdxDocProcedure');
                         }

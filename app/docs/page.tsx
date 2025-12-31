@@ -1,11 +1,7 @@
 import React from 'react';
 
 import { DocPage } from '@/components/doc/doc-page';
-import {
-    DocIndexCard,
-    DocIndexItemType,
-    DocIndexCardProps,
-} from '@/components/doc/doc-index-card';
+import { DocIndexCard, DocIndexItemType, DocIndexCardProps } from '@/components/doc/doc-index-card';
 
 const DocTitle = 'Documentation';
 
@@ -23,14 +19,12 @@ const docAssemblyGuideProps: DocIndexCardProps = {
 };
 const docTechGuideProps: DocIndexCardProps = {
     title: 'Technical Guides',
-    description:
-        'Background technical information related to the operation of the K7RHY ham radio kits.',
+    description: 'Background technical information related to the operation of the K7RHY ham radio kits.',
     items: [
         {
             title: 'Measuring Power',
             href: '/docs/power_measurement',
-            description:
-                'How to measure RF power using a multimeter on dummy load kits.',
+            description: 'How to measure RF power using a multimeter on dummy load kits.',
             type: DocIndexItemType.Internal,
         },
     ],

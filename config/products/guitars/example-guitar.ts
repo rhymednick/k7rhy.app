@@ -79,4 +79,3 @@ export const exampleGuitar: Guitar = {
     purchaseLink: 'https://example.com/purchase',
     relatedBlogTag: 'guitar', // This tag will be used to filter related blog posts
 };
-

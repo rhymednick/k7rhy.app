@@ -4,12 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Switch } from '@/components/ui/switch'; // Adjust the import path as needed
-import {
-    Tooltip,
-    TooltipProvider,
-    TooltipTrigger,
-    TooltipContent,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const DarkModeToggle = () => {
     const { theme, setTheme } = useTheme();
@@ -30,25 +25,14 @@ const DarkModeToggle = () => {
 
     return (
         <div className="flex items-center space-x-2">
-            {isDarkMode ? (
-                <Moon className="text-gray-800 dark:text-gray-200" />
-            ) : (
-                <Sun className="text-yellow-500 dark:text-yellow-400" />
-            )}
+            {isDarkMode ? <Moon className="text-gray-800 dark:text-gray-200" /> : <Sun className="text-yellow-500 dark:text-yellow-400" />}
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Switch
-                            checked={isDarkMode}
-                            onCheckedChange={handleToggle}
-                        />
+                        <Switch checked={isDarkMode} onCheckedChange={handleToggle} />
                     </TooltipTrigger>
                     <TooltipContent>
-                        <span>
-                            {isDarkMode
-                                ? 'Switch to light mode '
-                                : 'Switch to dark mode '}
-                        </span>
+                        <span>{isDarkMode ? 'Switch to light mode ' : 'Switch to dark mode '}</span>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>

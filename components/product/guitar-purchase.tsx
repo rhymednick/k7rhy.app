@@ -15,20 +15,10 @@ export function GuitarPurchase({ guitar }: GuitarPurchaseProps) {
 
     return (
         <div className="flex items-center gap-4">
-            {guitar.price && (
-                <span className="text-2xl font-bold">
-                    ${guitar.price.toLocaleString()}
-                </span>
-            )}
+            {guitar.price && <span className="text-2xl font-bold">${guitar.price.toLocaleString()}</span>}
             {guitar.purchaseLink && (
-                <Button
-                    asChild
-                    variant="default"
-                >
-                    <Link
-                        target="_blank"
-                        href={guitar.purchaseLink}
-                    >
+                <Button asChild variant="default">
+                    <Link target="_blank" href={guitar.purchaseLink}>
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Buy Now
                     </Link>
@@ -37,4 +27,3 @@ export function GuitarPurchase({ guitar }: GuitarPurchaseProps) {
         </div>
     );
 }
-

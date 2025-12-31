@@ -35,15 +35,11 @@ export function Description() {
     return (
         <div className="text-base text-muted-foreground space-y-4">
             <Balancer>
-                <p>
-                    Unleash the full potential of your ham radio setup with our 20W Dummy Load Kit, designed for both novice and experienced operators. Whether you're testing, adjusting, or simply experimenting with your equipment, this kit provides the perfect solution for ensuring your transmitter is optimally configured without transmitting signals on the air.
-                </p>
+                <p>Unleash the full potential of your ham radio setup with our 20W Dummy Load Kit, designed for both novice and experienced operators. Whether you're testing, adjusting, or simply experimenting with your equipment, this kit provides the perfect solution for ensuring your transmitter is optimally configured without transmitting signals on the air.</p>
             </Balancer>
-            
+
             <Balancer>
-                <p>
-                    The kit is shipped unassembled and without an enclosure.
-                </p>
+                <p>The kit is shipped unassembled and without an enclosure.</p>
             </Balancer>
         </div>
     );
@@ -54,4 +50,3 @@ export const dummyLoad20wBncConfig: ProductConfig = {
     product,
     Description,
 };
-

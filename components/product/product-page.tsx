@@ -21,4 +21,3 @@ export function ProductPage({ product, Description }: ProductPageProps) {
     // Fallback generic page (shouldn't happen with current categories)
     return null;
 }
-

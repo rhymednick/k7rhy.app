@@ -18,22 +18,12 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
             {product.price && (
                 <div className="text-right">
                     <div className="text-sm text-muted-foreground">Price</div>
-                    <span className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-                        ${product.price.toLocaleString()}
-                    </span>
+                    <span className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">${product.price.toLocaleString()}</span>
                 </div>
             )}
             {product.purchaseLink && (
-                <Button
-                    asChild
-                    variant="default"
-                    size="lg"
-                    className="shadow-lg hover:shadow-xl transition-shadow"
-                >
-                    <Link
-                        target="_blank"
-                        href={product.purchaseLink}
-                    >
+                <Button asChild variant="default" size="lg" className="shadow-lg hover:shadow-xl transition-shadow">
+                    <Link target="_blank" href={product.purchaseLink}>
                         <ShoppingCart className="mr-2 h-4 w-4" />
                         Buy Now
                         <ExternalLink className="ml-2 h-4 w-4" />
@@ -43,4 +33,3 @@ export function ProductPurchase({ product }: ProductPurchaseProps) {
         </div>
     );
 }
-

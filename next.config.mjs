@@ -30,25 +30,13 @@ function normalizeRepoUrl(url) {
     return url.replace(/\.git$/, '').replace(/\/+$/, '');
 }
 
-const repositoryUrl =
-    process.env.NEXT_PUBLIC_GITHUB_REPO_URL ??
-    process.env.VERCEL_GIT_REPO_URL ??
-    'https://github.com/rhymednick/k7rhy.app';
+const repositoryUrl = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? process.env.VERCEL_GIT_REPO_URL ?? 'https://github.com/rhymednick/k7rhy.app';
 
 const commitHash = resolveCommitHash();
-const shortCommitHash =
-    process.env.NEXT_PUBLIC_GIT_COMMIT_SHORT_SHA ??
-    (/^[0-9a-f]{7,40}$/i.test(commitHash) ? commitHash.slice(0, 7) : commitHash);
+const shortCommitHash = process.env.NEXT_PUBLIC_GIT_COMMIT_SHORT_SHA ?? (/^[0-9a-f]{7,40}$/i.test(commitHash) ? commitHash.slice(0, 7) : commitHash);
 
 const buildTimestamp = process.env.NEXT_PUBLIC_BUILD_TIMESTAMP ?? new Date().toISOString();
-const inferredPublic =
-    process.env.VERCEL ||
-    process.env.NETLIFY ||
-    process.env.GITHUB_ACTIONS ||
-    process.env.CI === 'true' ||
-    process.env.CI === '1'
-        ? 'true'
-        : 'false';
+const inferredPublic = process.env.VERCEL || process.env.NETLIFY || process.env.GITHUB_ACTIONS || process.env.CI === 'true' || process.env.CI === '1' ? 'true' : 'false';
 
 const isPublicBuild = process.env.NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC ?? inferredPublic;
 

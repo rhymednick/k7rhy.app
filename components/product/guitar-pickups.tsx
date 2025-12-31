@@ -1,9 +1,6 @@
 import React from 'react';
 import { Guitar } from '@/types/product';
-import {
-    PICKUP_TYPE_LABELS,
-    PICKUP_POSITION_LABELS,
-} from '@/config/guitar-options';
+import { PICKUP_TYPE_LABELS, PICKUP_POSITION_LABELS } from '@/config/guitar-options';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 import { Radio } from 'lucide-react';
@@ -35,17 +32,9 @@ export function GuitarPickups({ guitar }: GuitarPickupsProps) {
                 <TableBody>
                     {guitar.pickups.map((pickup, index) => (
                         <TableRow key={index} className="hover:bg-muted/50 transition-colors">
-                            <TableCell className="font-medium py-3">
-                                {PICKUP_POSITION_LABELS[pickup.position]}
-                            </TableCell>
-                            <TableCell className="py-3">
-                                {PICKUP_TYPE_LABELS[pickup.type]}
-                            </TableCell>
-                            <TableCell className="py-3">
-                                {pickup.resistance
-                                    ? `${pickup.resistance} Ω`
-                                    : '—'}
-                            </TableCell>
+                            <TableCell className="font-medium py-3">{PICKUP_POSITION_LABELS[pickup.position]}</TableCell>
+                            <TableCell className="py-3">{PICKUP_TYPE_LABELS[pickup.type]}</TableCell>
+                            <TableCell className="py-3">{pickup.resistance ? `${pickup.resistance} Ω` : '—'}</TableCell>
                             <TableCell className="py-3">{pickup.brand || '—'}</TableCell>
                         </TableRow>
                     ))}
@@ -54,4 +43,3 @@ export function GuitarPickups({ guitar }: GuitarPickupsProps) {
         </div>
     );
 }
-

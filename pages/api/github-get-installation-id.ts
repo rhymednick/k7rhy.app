@@ -3,10 +3,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'GET') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
@@ -16,11 +13,9 @@ export default async function handler(
         const privateKey = process.env.GITHUB_PRIVATE_KEY;
 
         if (!appId || !privateKey) {
-            return res
-                .status(500)
-                .json({
-                    message: 'GitHub App ID or Private Key is not defined.',
-                });
+            return res.status(500).json({
+                message: 'GitHub App ID or Private Key is not defined.',
+            });
         }
 
         const payload = {
@@ -31,17 +26,14 @@ export default async function handler(
 
         const jwtToken = jwt.sign(payload, privateKey, { algorithm: 'RS256' });
 
-        const response = await fetch(
-            'https://api.github.com/app/installations',
-            {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        const response = await fetch('https://api.github.com/app/installations', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${jwtToken}`,
+                Accept: 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+            },
+        });
 
         if (!response.ok) {
             throw new Error('Failed to list installations');

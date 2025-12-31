@@ -5,13 +5,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import {
-    Select,
-    SelectTrigger,
-    SelectValue,
-    SelectContent,
-    SelectItem,
-} from '@/components/ui/select';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 const PowerCalculator = () => {
     const [voltage, setVoltage] = useState('');
@@ -43,30 +37,14 @@ const PowerCalculator = () => {
                 <div className="flex flex-col space-y-4">
                     <div className="flex space-x-4 items-start mt-4">
                         <div className="flex flex-col w-1/2">
-                            <label
-                                htmlFor="voltage"
-                                className="font-bold mb-2"
-                            >
+                            <label htmlFor="voltage" className="font-bold mb-2">
                                 Voltage (V):
                             </label>
-                            <Input
-                                id="voltage"
-                                name="voltage"
-                                type="text"
-                                placeholder="Voltage (V)"
-                                value={voltage}
-                                onChange={(e) => setVoltage(e.target.value)}
-                            />
+                            <Input id="voltage" name="voltage" type="text" placeholder="Voltage (V)" value={voltage} onChange={(e) => setVoltage(e.target.value)} />
                         </div>
                         <div className="flex flex-col w-1/2">
-                            <label
-                                htmlFor="rf-band"
-                                className="font-bold mb-2"
-                            >
-                                <span className="hidden md:inline">
-                                    Frequency
-                                </span>{' '}
-                                Band:
+                            <label htmlFor="rf-band" className="font-bold mb-2">
+                                <span className="hidden md:inline">Frequency</span> Band:
                             </label>
                             <Select
                                 value={band}
@@ -74,18 +52,11 @@ const PowerCalculator = () => {
                                     setBand(value);
                                 }}
                             >
-                                <SelectTrigger
-                                    id="rf-band"
-                                    name="rf-band"
-                                >
-                                    <SelectValue placeholder="Select Band">
-                                        {band}
-                                    </SelectValue>
+                                <SelectTrigger id="rf-band" name="rf-band">
+                                    <SelectValue placeholder="Select Band">{band}</SelectValue>
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="180-10m">
-                                        180-10m
-                                    </SelectItem>
+                                    <SelectItem value="180-10m">180-10m</SelectItem>
                                     <SelectItem value="6m">6m</SelectItem>
                                     <SelectItem value="2m">2m</SelectItem>
                                     <SelectItem value="70cm">70cm</SelectItem>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { MainNav } from '@/components/main-nav';
-import { MobileNav } from '@/components/mobile-nav';
-import DarkModeToggle from '@/components/dark-mode-toggle';
-import { SocialsDrawer } from '@/components/socials-drawer';
+import { MainNav } from '@/components/navigation/main-nav';
+import { MobileNav } from '@/components/navigation/mobile-nav';
+import DarkModeToggle from '@/components/shared/dark-mode-toggle';
+import { SocialsDrawer } from '@/components/navigation/socials-drawer';
 import ViewportDebugLabel from '@/components/viewport-debug-label';
 
 export function SiteHeader() {

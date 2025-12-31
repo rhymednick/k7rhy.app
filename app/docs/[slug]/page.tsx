@@ -34,22 +34,11 @@ const Page = async ({ params }: MdxDocProps) => {
 
     const source = fs.readFileSync(filePath, 'utf-8');
     const { content, data } = matter(source);
-    const breadcrumbItems = [
-        { href: '/docs', label: 'Docs' },
-        { label: data.title },
-    ];
+    const breadcrumbItems = [{ href: '/docs', label: 'Docs' }, { label: data.title }];
 
     return (
-        <DocPage
-            title={data.title}
-            subTitle={data.subTitle}
-            date={data.date}
-            breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}
-        >
-            <MDXRemote
-                source={content}
-                components={components}
-            />
+        <DocPage title={data.title} subTitle={data.subTitle} date={data.date} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
+            <MDXRemote source={content} components={components} />
         </DocPage>
     );
 };

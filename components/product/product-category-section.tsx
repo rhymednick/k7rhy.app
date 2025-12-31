@@ -12,12 +12,7 @@ interface ProductCategorySectionProps {
     showViewAll?: boolean;
 }
 
-export function ProductCategorySection({
-    category,
-    products,
-    title,
-    showViewAll = true,
-}: ProductCategorySectionProps) {
+export function ProductCategorySection({ category, products, title, showViewAll = true }: ProductCategorySectionProps) {
     if (products.length === 0) {
         return null;
     }
@@ -26,17 +21,8 @@ export function ProductCategorySection({
 
     return (
         <div className="group">
-            <Link
-                href={categoryUrl}
-                className="flex items-center justify-between mb-3 hover:opacity-80 transition-opacity"
-            >
-                <h2
-                    className={cn(
-                        'scroll-m-20 text-xl pb-2 font-bold tracking-tight group-hover:text-primary transition-colors'
-                    )}
-                >
-                    {title}
-                </h2>
+            <Link href={categoryUrl} className="flex items-center justify-between mb-3 hover:opacity-80 transition-opacity">
+                <h2 className={cn('scroll-m-20 text-xl pb-2 font-bold tracking-tight group-hover:text-primary transition-colors')}>{title}</h2>
                 {showViewAll && (
                     <div className="flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
                         <span>View all</span>
@@ -46,14 +32,9 @@ export function ProductCategorySection({
             </Link>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {products.map((product) => (
-                    <ProductTeaserCard
-                        key={product.slug}
-                        product={product}
-                        category={category}
-                    />
+                    <ProductTeaserCard key={product.slug} product={product} category={category} />
                 ))}
             </div>
         </div>
     );
 }
-

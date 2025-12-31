@@ -3,13 +3,7 @@
  * These enums and constants make data entry easier and ensure consistency
  */
 
-import {
-    PickupType,
-    PickupPosition,
-    SwitchType,
-    KnobType,
-    Material,
-} from '@/types/product';
+import { PickupType, PickupPosition, SwitchType, KnobType, Material } from '@/types/product';
 
 /**
  * All available pickup types
@@ -111,4 +105,3 @@ export const MATERIAL_LABELS: Record<Material, string> = {
     [Material.NYLON]: 'Nylon',
     [Material.WOOD_FILLED_PLA]: 'Wood-filled PLA',
 };
-

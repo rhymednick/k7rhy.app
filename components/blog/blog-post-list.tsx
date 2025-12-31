@@ -10,10 +10,7 @@ const BlogPostList: React.FC<PostListProps> = ({ posts }) => {
     return (
         <div className="space-y-8">
             {posts.map((post) => (
-                <BlogPostItem
-                    key={post._meta.path}
-                    post={post}
-                />
+                <BlogPostItem key={post._meta.path} post={post} />
             ))}
         </div>
     );

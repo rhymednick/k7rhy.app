@@ -25,17 +25,9 @@ function getRelatedPosts(guitar: Guitar): Blog[] {
     }
 
     const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
-    const allPosts =
-        environment === 'production'
-            ? allBlogs.filter((post) => post.publish)
-            : allBlogs;
+    const allPosts = environment === 'production' ? allBlogs.filter((post) => post.publish) : allBlogs;
 
-    return allPosts
-        .filter((post) => post.tags?.includes(guitar.relatedBlogTag!))
-        .sort(
-            (a, b) =>
-                new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+    return allPosts.filter((post) => post.tags?.includes(guitar.relatedBlogTag!)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function GuitarPage({ guitar, Description }: GuitarPageProps) {
@@ -54,11 +46,10 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                                 <GuitarIcon className="h-6 w-6 text-white" />
                             </div>
                             <div>
-                                <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>
-                                    {guitar.name}
-                                </h1>
+                                <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{guitar.name}</h1>
                                 <Badge variant="secondary" className="mt-2">
-                                    {guitar.pickups.length} Pickup{guitar.pickups.length !== 1 ? 's' : ''}
+                                    {guitar.pickups.length} Pickup
+                                    {guitar.pickups.length !== 1 ? 's' : ''}
                                 </Badge>
                             </div>
                         </div>
@@ -73,10 +64,7 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                         {guitar.images.length > 0 && (
                             <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
                                 <CardContent className="p-6">
-                                    <GuitarImageGallery
-                                        images={guitar.images}
-                                        alt={guitar.name}
-                                    />
+                                    <GuitarImageGallery images={guitar.images} alt={guitar.name} />
                                 </CardContent>
                             </Card>
                         )}
@@ -129,10 +117,7 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <GuitarRelatedPosts
-                                guitar={guitar}
-                                relatedPosts={relatedPosts}
-                            />
+                            <GuitarRelatedPosts guitar={guitar} relatedPosts={relatedPosts} />
                         </CardContent>
                     </Card>
                 )}
@@ -140,4 +125,3 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
         </main>
     );
 }
-

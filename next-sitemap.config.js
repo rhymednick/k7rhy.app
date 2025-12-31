@@ -19,11 +19,7 @@ const config = {
 
         // If in production, filter out unpublished blogs
         if (isProduction) {
-            const publishedSlugs = new Set(
-                allBlogs
-                    .filter((blog) => blog.publish)
-                    .map((blog) => `/blog/${blog._meta.path}`)
-            );
+            const publishedSlugs = new Set(allBlogs.filter((blog) => blog.publish).map((blog) => `/blog/${blog._meta.path}`));
 
             // Check if the path belongs to an unpublished blog post
             if (path.startsWith('/blog/') && !publishedSlugs.has(path)) {

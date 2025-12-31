@@ -2,12 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-} from '@/components/ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const PageNavigation = () => {
     const [headings, setHeadings] = useState<Element[]>([]);
@@ -15,20 +10,14 @@ export const PageNavigation = () => {
 
     useEffect(() => {
         const h2AndH3Elements = Array.from(document.querySelectorAll('h2, h3'));
-        const filteredHeadings = h2AndH3Elements.filter(
-            (heading) =>
-                !heading.hasAttribute('exclude-from-page-nav') &&
-                !heading.classList.contains('no-nav')
-        );
+        const filteredHeadings = h2AndH3Elements.filter((heading) => !heading.hasAttribute('exclude-from-page-nav') && !heading.classList.contains('no-nav'));
         setHeadings(filteredHeadings);
     }, [pathname]);
 
     // Adjust scroll position after navigation
     useEffect(() => {
         const handleHashChange = () => {
-            const target = document.getElementById(
-                window.location.hash.slice(1)
-            );
+            const target = document.getElementById(window.location.hash.slice(1));
             if (target) {
                 const offset = 50; // Adjust this value to match your fixed header height
                 const bodyRect = document.body.getBoundingClientRect().top;
@@ -60,32 +49,16 @@ export const PageNavigation = () => {
     return (
         <nav className="sticky top-20 right-2 hidden lg:block w-64 ml-1">
             <aside>
-                <Accordion
-                    defaultValue="page-nav"
-                    type="single"
-                    collapsible
-                >
+                <Accordion defaultValue="page-nav" type="single" collapsible>
                     <AccordionItem value="page-nav">
-                        <AccordionTrigger className="font-bold hover:no-underline">
-                            On this page
-                        </AccordionTrigger>
+                        <AccordionTrigger className="font-bold hover:no-underline">On this page</AccordionTrigger>
                         <AccordionContent>
                             <ul className="space-y-2 p-4 ">
                                 {headings.map((heading, index) => {
                                     const isH2 = heading.tagName === 'H2';
                                     return (
-                                        <li
-                                            key={index}
-                                            className={`pl-${isH2 ? 0 : 4}`}
-                                        >
-                                            <a
-                                                href={`#${heading.id}`}
-                                                className={`text-sm font-medium ${
-                                                    isH2
-                                                        ? 'dark:text-gray-500 text-gray-700 dark:hover:text-blue-400 hover:text-blue-600'
-                                                        : 'text-gray-500 hover:text-blue-400'
-                                                }`}
-                                            >
+                                        <li key={index} className={`pl-${isH2 ? 0 : 4}`}>
+                                            <a href={`#${heading.id}`} className={`text-sm font-medium ${isH2 ? 'dark:text-gray-500 text-gray-700 dark:hover:text-blue-400 hover:text-blue-600' : 'text-gray-500 hover:text-blue-400'}`}>
                                                 {heading.textContent}
                                             </a>
                                         </li>

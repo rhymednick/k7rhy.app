@@ -14,4 +14,3 @@ export function GET() {
         isPublicBuild: buildMetadata.isPublicBuild,
     });
 }
-

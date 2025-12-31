@@ -89,10 +89,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <main className="flex min-h-screen flex-col justify-between pl-4 pr-4 pt-4 md:pl-24 md:pr-24 md:pt-12">
             <div className="space-y-6">
                 {/* Back link */}
-                <Link
-                    href="/products"
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <Link href="/products" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                     <ChevronLeft className="h-4 w-4" />
                     Back to All Products
                 </Link>
@@ -107,20 +104,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             <Icon className="h-6 w-6 text-white" />
                         </div>
                         <div>
-                            <h1
-                                className={cn(
-                                    'scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300'
-                                )}
-                            >
-                                {info.title}
-                            </h1>
-                            {info.description && (
-                                <p className="mt-2 text-muted-foreground">
-                                    {info.description}
-                                </p>
-                            )}
+                            <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{info.title}</h1>
+                            {info.description && <p className="mt-2 text-muted-foreground">{info.description}</p>}
                             <Badge variant="secondary" className="mt-2">
-                                {products.length} Product{products.length !== 1 ? 's' : ''}
+                                {products.length} Product
+                                {products.length !== 1 ? 's' : ''}
                             </Badge>
                         </div>
                     </div>
@@ -130,22 +118,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 {products.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {products.map((product) => (
-                            <ProductTeaserCard
-                                key={product.slug}
-                                product={product}
-                                category={categoryEnum}
-                            />
+                            <ProductTeaserCard key={product.slug} product={product} category={categoryEnum} />
                         ))}
                     </div>
                 ) : (
                     <div className="rounded-lg border border-border bg-card p-8 text-center">
-                        <p className="text-muted-foreground">
-                            No products available in this category yet.
-                        </p>
+                        <p className="text-muted-foreground">No products available in this category yet.</p>
                     </div>
                 )}
             </div>
         </main>
     );
 }
-

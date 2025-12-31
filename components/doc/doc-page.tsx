@@ -2,14 +2,7 @@
 import React, { useEffect } from 'react';
 
 import { Balancer } from 'react-wrap-balancer';
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 import { DocSection } from './doc-section';
 
 interface DocPageProps {
@@ -31,15 +24,7 @@ export function MyBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
             <BreadcrumbList>
                 {items.map((item, index) => (
                     <React.Fragment key={index}>
-                        <BreadcrumbItem>
-                            {item.href ? (
-                                <BreadcrumbLink href={item.href}>
-                                    {item.label}
-                                </BreadcrumbLink>
-                            ) : (
-                                <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                            )}
-                        </BreadcrumbItem>
+                        <BreadcrumbItem>{item.href ? <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink> : <BreadcrumbPage>{item.label}</BreadcrumbPage>}</BreadcrumbItem>
                         {index < items.length - 1 && <BreadcrumbSeparator />}
                     </React.Fragment>
                 ))}
@@ -51,19 +36,12 @@ export function MyBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 export function DocPage(props: DocPageProps) {
     const subTitle = props.subTitle ? (
         <div className="-mt-4 mb-6 text-base text-muted-foreground">
-            <Balancer
-                ratio={0.85}
-                preferNative={false}
-            >
+            <Balancer ratio={0.85} preferNative={false}>
                 {props.subTitle}
             </Balancer>
         </div>
     ) : null;
-    const breadcrumbs = props.breadcrumbs ? (
-        <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
-            {props.breadcrumbs}
-        </div>
-    ) : null;
+    const breadcrumbs = props.breadcrumbs ? <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">{props.breadcrumbs}</div> : null;
 
     useEffect(() => {
         const headings = document.querySelectorAll('h2, h3');
@@ -84,14 +62,9 @@ export function DocPage(props: DocPageProps) {
             <div className="mx-auto w-full min-w-0">
                 {breadcrumbs}
                 <div className="space-y-2">
-                    <DocSection
-                        title={props.title}
-                        className="scroll-m-20"
-                    >
+                    <DocSection title={props.title} className="scroll-m-20">
                         {subTitle}
-                        <div className="max-w-[800px] justify-between ">
-                            {props.children}
-                        </div>
+                        <div className="max-w-[800px] justify-between ">{props.children}</div>
                     </DocSection>
                 </div>
             </div>

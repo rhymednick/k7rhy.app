@@ -3,10 +3,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
@@ -31,17 +28,14 @@ export default async function handler(
 
         // Fetch the installation access token
         const installationId = process.env.GITHUB_INSTALLATION_ID; // Make sure to set this in your environment variables
-        const response = await fetch(
-            `https://api.github.com/app/installations/${installationId}/access_tokens`,
-            {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${jwtToken}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        const response = await fetch(`https://api.github.com/app/installations/${installationId}/access_tokens`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${jwtToken}`,
+                Accept: 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+            },
+        });
 
         if (!response.ok) {
             throw new Error('Failed to get installation access token');

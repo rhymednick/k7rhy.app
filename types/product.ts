@@ -122,4 +122,3 @@ export interface Guitar extends Product {
     pickups: Pickup[];
     controls: Control[];
 }
-
