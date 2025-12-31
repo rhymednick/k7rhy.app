@@ -22,17 +22,9 @@ function getRelatedPosts(product: Product): Blog[] {
     }
 
     const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
-    const allPosts =
-        environment === 'production'
-            ? allBlogs.filter((post) => post.publish)
-            : allBlogs;
+    const allPosts = environment === 'production' ? allBlogs.filter((post) => post.publish) : allBlogs;
 
-    return allPosts
-        .filter((post) => post.tags?.includes(product.relatedBlogTag!))
-        .sort(
-            (a, b) =>
-                new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+    return allPosts.filter((post) => post.tags?.includes(product.relatedBlogTag!)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) {
@@ -55,9 +47,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                                 <Radio className="h-6 w-6 text-white" />
                             </div>
                             <div>
-                                <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>
-                                    {product.name}
-                                </h1>
+                                <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{product.name}</h1>
                                 <Badge variant="secondary" className="mt-2">
                                     Ham Radio Kit
                                 </Badge>
@@ -71,10 +61,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                 {product.images.length > 0 && (
                     <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
-                            <GuitarImageGallery
-                                images={product.images}
-                                alt={product.name}
-                            />
+                            <GuitarImageGallery images={product.images} alt={product.name} />
                         </CardContent>
                     </Card>
                 )}
@@ -98,8 +85,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                                         <b>Easy Assembly:</b> With clear, step-by-step instructions, you can assemble your dummy load in no time. No advanced tools required—just a soldering iron and some basic electronics skills.
                                     </li>
                                     <li>
-                                        <b>Integrated Power Measurement:</b>{' '}
-                                        Equipped with on-board measurement components, this kit allows for accurate measurement of power output via test pads with a multimeter (not included), ensuring your equipment operates at its best.
+                                        <b>Integrated Power Measurement:</b> Equipped with on-board measurement components, this kit allows for accurate measurement of power output via test pads with a multimeter (not included), ensuring your equipment operates at its best.
                                     </li>
                                     <li>
                                         <b>Compact and Efficient:</b> The sleek, compact design makes it easy to integrate into any ham radio setup without taking up unnecessary space.
@@ -128,8 +114,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                         <CardContent>
                             <ul className="ml-8 list-disc space-y-2">
                                 <li>
-                                    <b>Power Handling:</b> 20W continuous, 100W peak
-                                    (momentary)
+                                    <b>Power Handling:</b> 20W continuous, 100W peak (momentary)
                                 </li>
                                 <li>
                                     <b>Impedance:</b> 50 ohms
@@ -187,10 +172,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <ProductRelatedPosts
-                                product={product}
-                                relatedPosts={relatedPosts}
-                            />
+                            <ProductRelatedPosts product={product} relatedPosts={relatedPosts} />
                         </CardContent>
                     </Card>
                 )}
@@ -198,4 +180,3 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
         </main>
     );
 }
-

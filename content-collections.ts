@@ -42,20 +42,13 @@ const blog = defineCollection({
     transform: async (data, context) => {
         console.log(`Starting transformation for: ${data.title}`);
 
-        const contentFilePath = join(
-            process.cwd(),
-            'content',
-            'blog',
-            data._meta.fileName
-        );
+        const contentFilePath = join(process.cwd(), 'content', 'blog', data._meta.fileName);
 
         try {
             const content = readFileSync(contentFilePath, 'utf8');
             console.log(`Content read successfully for: ${data.title}`);
 
-            const contentWithoutFrontMatter = content
-                .replace(/---\s*[\s\S]*?\s*---/, '')
-                .trim();
+            const contentWithoutFrontMatter = content.replace(/---\s*[\s\S]*?\s*---/, '').trim();
 
             // Strip JSX components for AI summary generation
             // This removes JSX tags and their content, keeping only plain text
@@ -87,9 +80,7 @@ const blog = defineCollection({
             const wordsPerMinute = 200;
             const readingTime = Math.ceil(wordCount / wordsPerMinute);
 
-            console.log(
-                `Word count: ${wordCount}, Reading time: ${readingTime} for: ${data.title}`
-            );
+            console.log(`Word count: ${wordCount}, Reading time: ${readingTime} for: ${data.title}`);
 
             // AI Summary generation logic
             let summary = data.summary?.trim() || ''; // Trim the summary to catch any empty string
@@ -105,9 +96,7 @@ const blog = defineCollection({
                     summary = cache[cacheKey];
                     isAISummary = true;
                 } else {
-                    console.log(
-                        `No summary found, generating AI summary for: ${data.title}`
-                    );
+                    console.log(`No summary found, generating AI summary for: ${data.title}`);
                     try {
                         if (!process.env.HUGGING_FACE_API_TOKEN) {
                             throw new Error('HUGGING_FACE_API_TOKEN is not set');
@@ -122,32 +111,20 @@ const blog = defineCollection({
                                 },
                             }
                         );
-                        summary =
-                            response.data[0]?.summary_text ||
-                            'AI summary generation failed';
+                        summary = response.data[0]?.summary_text || 'AI summary generation failed';
                         isAISummary = true;
-                        console.log(
-                            `AI summary generated successfully for: ${data.title}`
-                        );
+                        console.log(`AI summary generated successfully for: ${data.title}`);
 
                         // Update cache
                         cache[cacheKey] = summary;
                         saveCache(cache);
-
                     } catch (error) {
-                        console.error(
-                            `Error generating AI summary for file: ${contentFilePath}`,
-                            error
-                        );
+                        console.error(`Error generating AI summary for file: ${contentFilePath}`, error);
 
                         if (error instanceof Error) {
-                            summary =
-                                process.env.NODE_ENV === 'development'
-                                    ? `AI summary generation failed: ${error.message}`
-                                    : '';
+                            summary = process.env.NODE_ENV === 'development' ? `AI summary generation failed: ${error.message}` : '';
                         } else {
-                            summary =
-                                'AI summary generation failed due to an unknown error';
+                            summary = 'AI summary generation failed due to an unknown error';
                         }
                     }
                 }

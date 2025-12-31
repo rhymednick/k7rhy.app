@@ -20,15 +20,8 @@ const CopyToClipboardButton: React.FC<{
     };
 
     return (
-        <button
-            onClick={handleCopy}
-            className="flex text-xs items-center justify-center p-2 mt-2 border border-solid border-slate-500/50 rounded bg-slate-200 hover:bg-gray-300 text-black"
-        >
-            {copied ? (
-                <ClipboardCheck className="mr-2" />
-            ) : (
-                <Clipboard className="mr-2" />
-            )}
+        <button onClick={handleCopy} className="flex text-xs items-center justify-center p-2 mt-2 border border-solid border-slate-500/50 rounded bg-slate-200 hover:bg-gray-300 text-black">
+            {copied ? <ClipboardCheck className="mr-2" /> : <Clipboard className="mr-2" />}
             {copied ? 'Copied!' : label}
         </button>
     );

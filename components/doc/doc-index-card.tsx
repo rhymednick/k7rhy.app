@@ -1,22 +1,9 @@
 import React from 'react';
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 import { FileTextIcon, ExternalLinkIcon } from 'lucide-react';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Balancer } from 'react-wrap-balancer';
 
 export enum DocIndexItemType {
@@ -63,27 +50,14 @@ export function DocIndexCard(props: DocIndexCardProps) {
                         <TableBody>
                             {props.items?.map((item, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>
-                                        {item.type ===
-                                        DocIndexItemType.External ? (
-                                            <ExternalLinkIcon />
-                                        ) : (
-                                            <FileTextIcon />
-                                        )}
-                                    </TableCell>
+                                    <TableCell>{item.type === DocIndexItemType.External ? <ExternalLinkIcon /> : <FileTextIcon />}</TableCell>
                                     <TableCell className="font-medium">
-                                        {item.type ===
-                                        DocIndexItemType.External ? (
-                                            <Link
-                                                href={item.href}
-                                                target="_blank"
-                                            >
+                                        {item.type === DocIndexItemType.External ? (
+                                            <Link href={item.href} target="_blank">
                                                 {item.title}
                                             </Link>
                                         ) : (
-                                            <Link href={item.href}>
-                                                {item.title}
-                                            </Link>
+                                            <Link href={item.href}>{item.title}</Link>
                                         )}
                                     </TableCell>
                                     <TableCell>{item.description}</TableCell>

@@ -20,8 +20,7 @@ Breadboards are not the best for RF work, so I needed to test this another way. 
 
 ### Dummy Load with Power Display Prototype 2
 
-There are a few things here worth pointing out, so I've numbered them for reference.
-![The second attempt at a power display](/images/LoadWithDisplay.png 'Dummy Load with Power Display Prototype 2')
+There are a few things here worth pointing out, so I've numbered them for reference. ![The second attempt at a power display](/images/LoadWithDisplay.png 'Dummy Load with Power Display Prototype 2')
 
 1. **Input capacitor** - This capacitor bridges the two components of the coax feedline. It flattens the SWR curve as the RF frequency increases through the 2m band. Beyond 2m, it increases sharply, effectively putting 2m as the upper limit for this dummy load. With the capacitor removed, it functions exactly as the original dummy load. Below it is a SMA connector that I was testing as an alternative input connector.
 2. **OLED display** - It took me far too long to figure out why this little guy wasn't working. I had the data and clock lines reversed in the PCB. That's why it has those fancy jumper wires sticking out from the back.

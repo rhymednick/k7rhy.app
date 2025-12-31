@@ -45,4 +45,3 @@ export default async function Page({ params }: ProductPageRouteProps) {
 
     return <ProductPage product={product} Description={Description} />;
 }
-

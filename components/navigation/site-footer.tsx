@@ -11,26 +11,15 @@ export function SiteFooter() {
             <div className="container flex flex-col items-center justify-between gap-2 md:h-24 md:flex-row md:gap-4">
                 <p className="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
                     Built by{' '}
-                    <a
-                        href={siteConfig.links.discord || siteConfig.links.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="font-medium underline underline-offset-4"
-                    >
+                    <a href={siteConfig.links.discord || siteConfig.links.github} target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
                         K7RHY
                     </a>{' '}
-                    using Next.js and shadcn. Copyright {copyrightYear}. All
-                    rights reserved.
+                    using Next.js and shadcn. Copyright {copyrightYear}. All rights reserved.
                 </p>
                 <p className="text-center text-sm leading-loose text-muted-foreground md:text-right">
                     Version{' '}
                     {buildMetadata.commitUrl ? (
-                        <a
-                            href={buildMetadata.commitUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="font-medium underline underline-offset-4"
-                        >
+                        <a href={buildMetadata.commitUrl} target="_blank" rel="noreferrer" className="font-medium underline underline-offset-4">
                             {buildMetadata.shortCommitHash}
                         </a>
                     ) : (

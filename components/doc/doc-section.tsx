@@ -28,25 +28,15 @@ export interface DocSectionProps {
 // an H1, second-level sections with an H2, and so on.
 const SectionDepthContext = createContext<number>(1);
 
-function generateSectionHeading(
-    headingLevel: number,
-    title: string,
-    bookmarkId?: string
-): React.ReactElement {
+function generateSectionHeading(headingLevel: number, title: string, bookmarkId?: string): React.ReactElement {
     headingLevel = Math.min(headingLevel, 6);
     const level = 'h' + headingLevel;
-    const style = config.docSectionFormats.find(
-        (item: DocSectionFormat) => item.level === headingLevel
-    )?.style;
+    const style = config.docSectionFormats.find((item: DocSectionFormat) => item.level === headingLevel)?.style;
     if (!style) {
         throw new Error(`Heading style not found for level ${headingLevel}`);
     }
 
-    return React.createElement(
-        level,
-        { className: style, id: bookmarkId },
-        title
-    );
+    return React.createElement(level, { className: style, id: bookmarkId }, title);
 }
 
 export function DocSection(props: DocSectionProps) {
@@ -56,9 +46,7 @@ export function DocSection(props: DocSectionProps) {
         <div className={props.className}>
             {generateSectionHeading(currentDepth, props.title)}
             {/* Increase the heading depth for child sections */}
-            <SectionDepthContext.Provider value={currentDepth + 1}>
-                {props.children}
-            </SectionDepthContext.Provider>
+            <SectionDepthContext.Provider value={currentDepth + 1}>{props.children}</SectionDepthContext.Provider>
         </div>
     );
 }

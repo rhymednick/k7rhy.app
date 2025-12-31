@@ -23,17 +23,10 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
                 ? posts.filter((post) => post.publish) // Only show published posts in production
                 : posts; // Show all posts in non-production environments
 
-        const filtered =
-            selectedTags.length === 0
-                ? basePosts
-                : basePosts.filter((post) =>
-                      selectedTags.every((tag) => post.tags?.includes(tag))
-                  );
+        const filtered = selectedTags.length === 0 ? basePosts : basePosts.filter((post) => selectedTags.every((tag) => post.tags?.includes(tag)));
 
         // Sort posts by date, newest first
-        return filtered.sort(
-            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-        );
+        return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
     }, [posts, environment, selectedTags]);
     // Extract and sort tags by frequency
     const sortedTags = useMemo(() => {
@@ -49,11 +42,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
 
     // Handle tag selection
     const toggleTag = (tag: string) => {
-        setSelectedTags((prevSelected) =>
-            prevSelected.includes(tag)
-                ? prevSelected.filter((t) => t !== tag)
-                : [...prevSelected, tag]
-        );
+        setSelectedTags((prevSelected) => (prevSelected.includes(tag) ? prevSelected.filter((t) => t !== tag) : [...prevSelected, tag]));
     };
 
     // Clear all selected tags
@@ -63,10 +52,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
     const disabledTags = useMemo(() => {
         return sortedTags.filter((tag) => {
             const potentialSelectedTags = [...selectedTags, tag];
-            return posts.every(
-                (post) =>
-                    !potentialSelectedTags.every((t) => post.tags?.includes(t))
-            );
+            return posts.every((post) => !potentialSelectedTags.every((t) => post.tags?.includes(t)));
         });
     }, [sortedTags, selectedTags, posts]);
 
@@ -75,13 +61,7 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
             <BlogHeader />
 
             {/* Use TagFilter Component */}
-            <TagFilter
-                tags={sortedTags}
-                selectedTags={selectedTags}
-                disabledTags={disabledTags}
-                onToggleTag={toggleTag}
-                onClearTags={clearTags}
-            />
+            <TagFilter tags={sortedTags} selectedTags={selectedTags} disabledTags={disabledTags} onToggleTag={toggleTag} onClearTags={clearTags} />
 
             {/* Use PostList Component */}
             <div className="relative sm:pb-12">

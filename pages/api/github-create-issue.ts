@@ -8,10 +8,7 @@ interface IssuePayload {
 }
 type FeedbackType = 'comment' | 'question' | 'report';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
@@ -25,9 +22,7 @@ export default async function handler(
 
         // Validation
         if (!title || !body) {
-            return res
-                .status(400)
-                .json({ message: 'Title and body are required.' });
+            return res.status(400).json({ message: 'Title and body are required.' });
         }
 
         // Determine protocol and construct the base URL
@@ -35,25 +30,17 @@ export default async function handler(
         const baseUrl = `${protocol}://${req.headers.host}`;
 
         // Fetch the installation access token dynamically
-        const tokenResponse = await fetch(
-            `${baseUrl}/api/github-installation-token`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        const tokenResponse = await fetch(`${baseUrl}/api/github-installation-token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
         if (!tokenResponse.ok) {
             const errorText = await tokenResponse.text();
-            console.error(
-                'Failed to fetch installation access token:',
-                errorText
-            );
-            return res
-                .status(500)
-                .json({ message: 'Failed to fetch installation access token' });
+            console.error('Failed to fetch installation access token:', errorText);
+            return res.status(500).json({ message: 'Failed to fetch installation access token' });
         }
 
         const { token: installationAccessToken } = await tokenResponse.json();
@@ -62,8 +49,7 @@ export default async function handler(
         const repo = process.env.GITHUB_USER_REPO;
 
         // Determine if we are on the dev server
-        const isDevServer =
-            process.env.NEXT_PUBLIC_ENVIRONMENT !== 'production';
+        const isDevServer = process.env.NEXT_PUBLIC_ENVIRONMENT !== 'production';
 
         // Create the issue payload with type IssuePayload
         const issuePayload: IssuePayload = {
@@ -90,18 +76,15 @@ export default async function handler(
             issuePayload.labels.push('ignore_development_test');
         }
 
-        const response = await fetch(
-            `https://api.github.com/repos/${repo}/issues`,
-            {
-                method: 'POST',
-                headers: {
-                    'Authorization': `token ${installationAccessToken}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(issuePayload),
-            }
-        );
+        const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
+            method: 'POST',
+            headers: {
+                Authorization: `token ${installationAccessToken}`,
+                Accept: 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(issuePayload),
+        });
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -113,8 +96,7 @@ export default async function handler(
         res.status(201).json(data); // Returns the created issue details
     } catch (error) {
         console.error(error);
-        const errorMessage =
-            error instanceof Error ? error.message : 'Internal Server Error';
+        const errorMessage = error instanceof Error ? error.message : 'Internal Server Error';
         res.status(500).json({
             message: errorMessage,
         });

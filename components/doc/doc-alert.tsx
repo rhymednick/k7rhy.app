@@ -41,16 +41,7 @@ const selectIcon = (level?: Level): keyof typeof lucideIcons => {
     }
 };
 
-const DocAlert: React.FC<DocAlertProps> = ({
-    title,
-    level = Level.Default,
-    icon,
-    overrideTitleClass,
-    appendTitleClass,
-    overrideDescriptionClass,
-    appendDescriptionClass,
-    children,
-}) => {
+const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon, overrideTitleClass, appendTitleClass, overrideDescriptionClass, appendDescriptionClass, children }) => {
     const iconName = icon || selectIcon(level);
     const IconComponent = lucideIcons[iconName] as React.ElementType; // Ensure the component is treated as a valid React component
     const Placeholder = lucideIcons['Terminal'] as React.ElementType; // Ensure the placeholder is treated as a valid React component
@@ -66,17 +57,11 @@ const DocAlert: React.FC<DocAlertProps> = ({
 
     const titleClass = overrideTitleClass ? overrideTitleClass : `mb-2 ${titleColor[level]} ${appendTitleClass || ''}`;
 
-    const descriptionClass = overrideDescriptionClass
-        ? overrideDescriptionClass
-        : `prose space-y-2 ${appendDescriptionClass || ''}`;
+    const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : `prose space-y-2 ${appendDescriptionClass || ''}`;
 
     return (
         <Alert>
-            {IconComponent ? (
-                <IconComponent className="mr-2 h-4 w-4" />
-            ) : (
-                <Placeholder className="mr-2 h-4 w-4 invisible" />
-            )}
+            {IconComponent ? <IconComponent className="mr-2 h-4 w-4" /> : <Placeholder className="mr-2 h-4 w-4 invisible" />}
             <div>
                 <AlertTitle className={titleClass}>{title}</AlertTitle>
                 <AlertDescription>

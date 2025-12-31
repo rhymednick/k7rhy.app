@@ -53,13 +53,7 @@ const InlineCommentHandler = () => {
         }
     };
 
-    const handleSubmitFeedback = async (
-        title: string,
-        body: string,
-        feedbackType: FeedbackType,
-        selectedText: string,
-        pageUrl: string
-    ) => {
+    const handleSubmitFeedback = async (title: string, body: string, feedbackType: FeedbackType, selectedText: string, pageUrl: string) => {
         try {
             const response = await fetch('/api/github-create-issue', {
                 method: 'POST',
@@ -89,22 +83,12 @@ const InlineCommentHandler = () => {
                 description: (
                     <>
                         <p>Your feedback has been sent.</p>
-                        <Link
-                            href={issueUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 underline"
-                        >
+                        <Link href={issueUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
                             View issue on GitHub
                         </Link>
                     </>
                 ),
-                action: (
-                    <CopyToClipboardButton
-                        label="Copy Link"
-                        textToCopy={issueUrl}
-                    />
-                ),
+                action: <CopyToClipboardButton label="Copy Link" textToCopy={issueUrl} />,
             });
         } catch (err) {
             console.error('Error submitting feedback:', err); // Log the caught error
@@ -117,12 +101,7 @@ const InlineCommentHandler = () => {
 
     return (
         <>
-            {showMenu && (
-                <ContextMenu
-                    onSelectOption={handleOptionSelect}
-                    position={menuPosition}
-                />
-            )}
+            {showMenu && <ContextMenu onSelectOption={handleOptionSelect} position={menuPosition} />}
             <FeedbackSheet
                 onSubmit={handleSubmitFeedback}
                 selectedText={selectedText} // Pass the selected text

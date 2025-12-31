@@ -1,7 +1,7 @@
 /**
  * Product configuration loader
  * This file exports all product configurations organized by category
- * 
+ *
  * Product configs can be either:
  * - Old format: Just export a Product/Guitar object
  * - New format: Export both product metadata and optional Description component
@@ -55,10 +55,7 @@ export function getProductsByCategory(category: ProductCategory): Product[] {
 }
 
 // Get a product config (with Description component) by slug and category
-export function getProductConfig(
-    category: ProductCategory,
-    slug: string
-): (Product | Guitar | ProductConfig) | undefined {
+export function getProductConfig(category: ProductCategory, slug: string): (Product | Guitar | ProductConfig) | undefined {
     const configs = configsByCategory[category] || [];
     return configs.find((config) => {
         const product = extractProduct(config);
@@ -67,20 +64,14 @@ export function getProductConfig(
 }
 
 // Get a product by slug and category (backward compatibility)
-export function getProduct(
-    category: ProductCategory,
-    slug: string
-): Product | undefined {
+export function getProduct(category: ProductCategory, slug: string): Product | undefined {
     const config = getProductConfig(category, slug);
     if (!config) return undefined;
     return extractProduct(config) as Product;
 }
 
 // Get Description component for a product
-export function getProductDescription(
-    category: ProductCategory,
-    slug: string
-): React.ComponentType | undefined {
+export function getProductDescription(category: ProductCategory, slug: string): React.ComponentType | undefined {
     const config = getProductConfig(category, slug);
     if (!config) return undefined;
     return extractDescription(config);
@@ -90,4 +81,3 @@ export function getProductDescription(
 export function getAllProducts(): Product[] {
     return Object.values(productsByCategory).flat();
 }
-

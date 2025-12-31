@@ -27,15 +27,11 @@ export function GuitarSpecs({ guitar }: GuitarSpecsProps) {
                 <TableBody>
                     <TableRow className="hover:bg-muted/50 transition-colors">
                         <TableCell className="font-semibold py-3">Body Core</TableCell>
-                        <TableCell className="py-3">
-                            {formatMaterials(guitar.bodyCore)}
-                        </TableCell>
+                        <TableCell className="py-3">{formatMaterials(guitar.bodyCore)}</TableCell>
                     </TableRow>
                     <TableRow className="hover:bg-muted/50 transition-colors">
                         <TableCell className="font-semibold py-3">Body Shell</TableCell>
-                        <TableCell className="py-3">
-                            {formatMaterials(guitar.bodyShell)}
-                        </TableCell>
+                        <TableCell className="py-3">{formatMaterials(guitar.bodyShell)}</TableCell>
                     </TableRow>
                     {guitar.pickups.length > 0 && (
                         <TableRow className="hover:bg-muted/50 transition-colors">
@@ -54,4 +50,3 @@ export function GuitarSpecs({ guitar }: GuitarSpecsProps) {
         </div>
     );
 }
-

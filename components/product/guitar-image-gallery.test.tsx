@@ -6,9 +6,9 @@ import { GuitarImageGallery } from './guitar-image-gallery';
 
 // Mock ResizeObserver
 class ResizeObserver {
-    observe() { }
-    unobserve() { }
-    disconnect() { }
+    observe() {}
+    unobserve() {}
+    disconnect() {}
 }
 global.ResizeObserver = ResizeObserver;
 
@@ -22,10 +22,7 @@ vi.mock('@/components/ui/carousel', () => ({
 }));
 
 describe('GuitarImageGallery', () => {
-    const mockImages = [
-        'https://example.com/image1.jpg',
-        'https://example.com/image2.jpg',
-    ];
+    const mockImages = ['https://example.com/image1.jpg', 'https://example.com/image2.jpg'];
 
     it('renders images', () => {
         render(<GuitarImageGallery images={mockImages} alt="Test Guitar" />);
@@ -45,11 +42,11 @@ describe('GuitarImageGallery', () => {
         // We added role="button" to it in a previous step
         const imageButtons = screen.getAllByRole('button');
         // Filter out the carousel nav buttons
-        const galleryImage = imageButtons.find(btn => !['Next', 'Previous'].includes(btn.textContent || ''));
+        const galleryImage = imageButtons.find((btn) => !['Next', 'Previous'].includes(btn.textContent || ''));
 
         if (galleryImage) {
             fireEvent.click(galleryImage);
-            // Dialog should be open. 
+            // Dialog should be open.
             // Radix Dialog renders into a portal, but testing-library should find it.
             // We look for the dialog content or title.
             // Since our mock images are strings, the alt text is generated.

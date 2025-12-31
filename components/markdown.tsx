@@ -8,9 +8,7 @@ export interface MarkdownProps {
 }
 
 const Markdown: React.FC<MarkdownProps> = ({ children }) => {
-    const [source, setSource] = React.useState<MDXRemoteSerializeResult | null>(
-        null
-    );
+    const [source, setSource] = React.useState<MDXRemoteSerializeResult | null>(null);
 
     React.useEffect(() => {
         const renderMDX = async () => {

@@ -25,7 +25,7 @@ describe('PowerCalculator', () => {
         const voltageInput = screen.getByLabelText(/Voltage/i);
         fireEvent.change(voltageInput, { target: { value: '12' } });
 
-        // Select band (mocking select interaction might be tricky with Radix UI, 
+        // Select band (mocking select interaction might be tricky with Radix UI,
         // so we'll assume default or try to find the trigger)
         // For simplicity in this unit test, let's just check if the input updates
         expect(voltageInput).toHaveValue('12');

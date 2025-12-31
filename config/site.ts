@@ -2,8 +2,7 @@ export const siteConfig = {
     name: 'K7RHY Resonance Lab',
     url: 'https://k7rhy.app',
     ogImage: 'https://k7rhy.app/favicon.ico',
-    description:
-        'Exploring resonance across radio experiments and crafted instruments.',
+    description: 'Exploring resonance across radio experiments and crafted instruments.',
     links: {
         discord: 'https://discord.gg/BuUxCG4W6w',
         github: 'https://github.com/rhymednick/k7rhy.app',
