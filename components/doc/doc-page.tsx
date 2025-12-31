@@ -35,7 +35,7 @@ export function MyBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
 
 export function DocPage(props: DocPageProps) {
     const subTitle = props.subTitle ? (
-        <div className="-mt-4 mb-6 text-base text-muted-foreground">
+        <div className="mt-0.5 mb-6 text-base text-muted-foreground">
             <Balancer ratio={0.85} preferNative={false}>
                 {props.subTitle}
             </Balancer>

@@ -20,16 +20,18 @@ export function ProductCategorySection({ category, products, title, showViewAll 
     const categoryUrl = `/products/${category}`;
 
     return (
-        <div className="group">
-            <Link href={categoryUrl} className="flex items-center justify-between mb-3 hover:opacity-80 transition-opacity">
-                <h2 className={cn('scroll-m-20 text-xl pb-2 font-bold tracking-tight group-hover:text-primary transition-colors')}>{title}</h2>
+        <div className="group flex flex-col">
+            <div className="flex items-baseline gap-3 mb-3">
+                <Link href={categoryUrl} className="hover:opacity-80 transition-opacity">
+                    <h2 className={cn('scroll-m-20 text-xl pb-2 font-bold tracking-tight group-hover:text-primary transition-colors')}>{title}</h2>
+                </Link>
                 {showViewAll && (
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                    <Link href={categoryUrl} className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap">
                         <span>View all</span>
                         <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    </Link>
                 )}
-            </Link>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {products.map((product) => (
                     <ProductTeaserCard key={product.slug} product={product} category={category} />

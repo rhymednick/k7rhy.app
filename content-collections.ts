@@ -99,33 +99,58 @@ const blog = defineCollection({
                     console.log(`No summary found, generating AI summary for: ${data.title}`);
                     try {
                         if (!process.env.HUGGING_FACE_API_TOKEN) {
-                            throw new Error('HUGGING_FACE_API_TOKEN is not set');
-                        }
-
-                        const response = await axios.post(
-                            'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6',
-                            { inputs: plainTextContent },
-                            {
-                                headers: {
-                                    Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
-                                },
-                            }
-                        );
-                        summary = response.data[0]?.summary_text || 'AI summary generation failed';
-                        isAISummary = true;
-                        console.log(`AI summary generated successfully for: ${data.title}`);
-
-                        // Update cache
-                        cache[cacheKey] = summary;
-                        saveCache(cache);
-                    } catch (error) {
-                        console.error(`Error generating AI summary for file: ${contentFilePath}`, error);
-
-                        if (error instanceof Error) {
-                            summary = process.env.NODE_ENV === 'development' ? `AI summary generation failed: ${error.message}` : '';
+                            console.warn(`Skipping AI summary generation for ${data.title}: HUGGING_FACE_API_TOKEN is not set`);
+                            summary = '';
                         } else {
-                            summary = 'AI summary generation failed due to an unknown error';
+                            // Truncate content to ~800 words to stay within model limits (distilbart-cnn-12-6 has ~1024 token limit)
+                            // Approximate: 1 word ≈ 1.3 tokens, so 800 words ≈ 1040 tokens (safe margin)
+                            const words = plainTextContent.split(/\s+/);
+                            const maxWords = 800;
+                            const truncatedContent = words.length > maxWords 
+                                ? words.slice(0, maxWords).join(' ') 
+                                : plainTextContent;
+
+                            if (words.length > maxWords) {
+                                console.log(`Content truncated from ${words.length} to ${maxWords} words for AI summary generation`);
+                            }
+
+                            const response = await axios.post(
+                                'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6',
+                                { inputs: truncatedContent },
+                                {
+                                    headers: {
+                                        Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
+                                        'Content-Type': 'application/json',
+                                    },
+                                    timeout: 30000, // 30 second timeout
+                                }
+                            );
+
+                            if (response.data && Array.isArray(response.data) && response.data[0]?.summary_text) {
+                                summary = response.data[0].summary_text;
+                                isAISummary = true;
+                                console.log(`AI summary generated successfully for: ${data.title}`);
+
+                                // Update cache
+                                cache[cacheKey] = summary;
+                                saveCache(cache);
+                            } else {
+                                console.warn(`Unexpected response format from AI summary API for: ${data.title}`);
+                                summary = '';
+                            }
                         }
+                    } catch (error: any) {
+                        // More detailed error logging
+                        if (error.response) {
+                            console.error(`AI summary API error for ${data.title}: ${error.response.status} ${error.response.statusText}`, error.response.data);
+                        } else if (error.request) {
+                            console.error(`AI summary API request failed for ${data.title}: No response received`, error.message);
+                        } else {
+                            console.error(`Error generating AI summary for ${data.title}:`, error.message);
+                        }
+                        
+                        // Set empty summary on error (non-fatal)
+                        summary = '';
                     }
                 }
             }
