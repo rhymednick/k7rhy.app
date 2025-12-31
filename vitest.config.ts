@@ -12,5 +12,8 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, './'),
         },
+        // Use forks pool to avoid jsdom/webidl-conversions compatibility issues in CI environments
+        // This isolates each test file in its own process, preventing module loading conflicts
+        pool: 'forks',
     },
 });
