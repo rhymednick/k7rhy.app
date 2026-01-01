@@ -153,9 +153,20 @@ const blog = defineCollection({
                                 console.log(`Content further truncated to ${maxChars} characters for AI summary generation`);
                             }
 
+                            // Use a prompt-based approach to generate a description rather than a summary
+                            // This asks the model to describe what the post is about, not summarize it
+                            const prompt = `Write a brief, engaging description (2-3 sentences) that tells readers what this blog post is about, to help them decide if they want to read it. Focus on the topic and value, not a summary of the content.\n\nBlog post content:\n${finalContent}\n\nDescription:`;
+
                             const response = await axios.post(
-                                'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6',
-                                { inputs: finalContent },
+                                'https://router.huggingface.co/hf-inference/models/google/flan-t5-base',
+                                { 
+                                    inputs: prompt,
+                                    parameters: {
+                                        max_length: 150, // Limit description length
+                                        temperature: 0.7, // Some creativity but not too much
+                                        do_sample: true,
+                                    }
+                                },
                                 {
                                     headers: {
                                         Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
@@ -165,16 +176,49 @@ const blog = defineCollection({
                                 }
                             );
 
-                            if (response.data && Array.isArray(response.data) && response.data[0]?.summary_text) {
-                                summary = response.data[0].summary_text;
-                                isAISummary = true;
-                                console.log(`AI summary generated successfully for: ${data.title}`);
-
-                                // Update cache
-                                cache[cacheKey] = summary;
-                                saveCache(cache);
+                            // Handle different response formats from text generation models
+                            let generatedText: string | undefined;
+                            
+                            if (Array.isArray(response.data)) {
+                                // Array format: could be [{generated_text: "..."}] or ["text1", "text2"]
+                                const firstItem = response.data[0];
+                                if (typeof firstItem === 'string') {
+                                    generatedText = firstItem;
+                                } else if (firstItem?.generated_text) {
+                                    generatedText = firstItem.generated_text;
+                                }
+                            } else if (typeof response.data === 'string') {
+                                // Direct string response
+                                generatedText = response.data;
+                            } else if (response.data?.generated_text) {
+                                // Object with generated_text property
+                                generatedText = response.data.generated_text;
+                            } else if (response.data?.[0]?.generated_text) {
+                                // Nested array format
+                                generatedText = response.data[0].generated_text;
+                            }
+                            
+                            if (generatedText && typeof generatedText === 'string' && generatedText.trim()) {
+                                // Clean up the response - remove the prompt if it's included
+                                summary = generatedText
+                                    .replace(prompt, '')
+                                    .replace(/^Description:\s*/i, '')
+                                    .replace(/^Write a brief[\s\S]*?Description:\s*/i, '') // Remove any remaining prompt fragments
+                                    .trim();
+                                
+                                if (summary) {
+                                    isAISummary = true;
+                                    console.log(`AI description generated successfully for: ${data.title}`);
+                                    
+                                    // Update cache
+                                    cache[cacheKey] = summary;
+                                    saveCache(cache);
+                                } else {
+                                    console.warn(`Generated text was empty after cleaning for: ${data.title}`);
+                                    summary = '';
+                                }
                             } else {
-                                console.warn(`Unexpected response format from AI summary API for: ${data.title}`, response.data);
+                                console.warn(`Unexpected response format from AI description API for: ${data.title}`, JSON.stringify(response.data).substring(0, 200));
                                 summary = '';
                             }
                         }
