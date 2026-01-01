@@ -123,21 +123,39 @@ const blog = defineCollection({
                             console.warn(`Skipping AI summary generation for ${data.title}: HUGGING_FACE_API_TOKEN is not set`);
                             summary = '';
                         } else {
-                            // Truncate content to ~800 words to stay within model limits (distilbart-cnn-12-6 has ~1024 token limit)
-                            // Approximate: 1 word ≈ 1.3 tokens, so 800 words ≈ 1040 tokens (safe margin)
-                            const words = plainTextContent.split(/\s+/);
-                            const maxWords = 800;
+                            // Clean and normalize content for better model compatibility
+                            // Remove excessive whitespace, normalize line breaks, and clean special characters
+                            let cleanedContent = plainTextContent
+                                .replace(/\s+/g, ' ') // Normalize whitespace
+                                .replace(/\n+/g, ' ') // Replace line breaks with spaces
+                                .trim();
+
+                            // Truncate content to ~600 words to stay well within model limits
+                            // distilbart-cnn-12-6 has ~1024 token limit, but we use 600 words (~780 tokens) for safety
+                            // Some content may have more tokens per word due to special characters
+                            const words = cleanedContent.split(/\s+/).filter(word => word.length > 0);
+                            const maxWords = 600;
                             const truncatedContent = words.length > maxWords 
                                 ? words.slice(0, maxWords).join(' ') 
-                                : plainTextContent;
+                                : cleanedContent;
 
                             if (words.length > maxWords) {
                                 console.log(`Content truncated from ${words.length} to ${maxWords} words for AI summary generation`);
                             }
 
+                            // Additional safety: limit character length (some models have character limits too)
+                            const maxChars = 4000;
+                            const finalContent = truncatedContent.length > maxChars 
+                                ? truncatedContent.substring(0, maxChars).trim()
+                                : truncatedContent;
+
+                            if (truncatedContent.length > maxChars) {
+                                console.log(`Content further truncated to ${maxChars} characters for AI summary generation`);
+                            }
+
                             const response = await axios.post(
                                 'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6',
-                                { inputs: truncatedContent },
+                                { inputs: finalContent },
                                 {
                                     headers: {
                                         Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
@@ -163,7 +181,18 @@ const blog = defineCollection({
                     } catch (error: any) {
                         // More detailed error logging
                         if (error.response) {
-                            console.error(`AI summary API error for ${data.title}: ${error.response.status} ${error.response.statusText}`, error.response.data);
+                            const errorData = error.response.data;
+                            const errorMessage = typeof errorData === 'object' && errorData.error 
+                                ? errorData.error 
+                                : JSON.stringify(errorData);
+                            
+                            console.error(`AI summary API error for ${data.title}: ${error.response.status} ${error.response.statusText}`);
+                            console.error(`Error details: ${errorMessage}`);
+                            
+                            // Handle specific "index out of range" error - content might be too long or malformed
+                            if (errorMessage.includes('index out of range')) {
+                                console.warn(`Content may be too long or contain problematic formatting. Consider reducing content length or checking for special characters.`);
+                            }
                         } else if (error.request) {
                             console.error(`AI summary API request failed for ${data.title}: No response received`, error.message);
                         } else {
