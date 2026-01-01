@@ -21,6 +21,19 @@ const CACHE_DIR = join(process.cwd(), '.content-collections', 'cache');
 const CACHE_FILE = join(CACHE_DIR, 'ai-summary.json');
 
 function getCache() {
+    // Allow clearing cache via environment variable
+    if (process.env.CLEAR_AI_SUMMARY_CACHE === 'true') {
+        if (existsSync(CACHE_FILE)) {
+            console.log('Clearing AI summary cache (CLEAR_AI_SUMMARY_CACHE=true)');
+            try {
+                writeFileSync(CACHE_FILE, '{}');
+            } catch (error) {
+                console.warn('Failed to clear cache file:', error);
+            }
+        }
+        return {};
+    }
+
     if (!existsSync(CACHE_FILE)) return {};
     try {
         return JSON.parse(readFileSync(CACHE_FILE, 'utf8'));
