@@ -91,12 +91,20 @@ const blog = defineCollection({
                 const contentHash = crypto.createHash('md5').update(plainTextContent).digest('hex');
                 const cacheKey = `${data._meta.fileName}:${contentHash}`;
 
-                if (cache[cacheKey]) {
+                // Check for exact match first
+                if (cache[cacheKey] && cache[cacheKey].trim()) {
                     console.log(`Using cached summary for: ${data.title}`);
                     summary = cache[cacheKey];
                     isAISummary = true;
                 } else {
-                    console.log(`No summary found, generating AI summary for: ${data.title}`);
+                    // Check if there's an old cache entry for this file (content may have changed)
+                    const oldCacheKey = Object.keys(cache).find(key => key.startsWith(`${data._meta.fileName}:`));
+                    if (oldCacheKey) {
+                        console.log(`Found old cache entry for ${data.title} (content hash changed), generating new summary...`);
+                    } else {
+                        console.log(`No summary found, generating AI summary for: ${data.title}`);
+                    }
+
                     try {
                         if (!process.env.HUGGING_FACE_API_TOKEN) {
                             console.warn(`Skipping AI summary generation for ${data.title}: HUGGING_FACE_API_TOKEN is not set`);
@@ -135,7 +143,7 @@ const blog = defineCollection({
                                 cache[cacheKey] = summary;
                                 saveCache(cache);
                             } else {
-                                console.warn(`Unexpected response format from AI summary API for: ${data.title}`);
+                                console.warn(`Unexpected response format from AI summary API for: ${data.title}`, response.data);
                                 summary = '';
                             }
                         }
