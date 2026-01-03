@@ -131,8 +131,8 @@ const blog = defineCollection({
                     // Some content may have more tokens per word due to special characters
                     const words = cleanedContent.split(/\s+/).filter(word => word.length > 0);
                     const maxWords = 600;
-                    const truncatedContent = words.length > maxWords 
-                        ? words.slice(0, maxWords).join(' ') 
+                    const truncatedContent = words.length > maxWords
+                        ? words.slice(0, maxWords).join(' ')
                         : cleanedContent;
 
                     if (words.length > maxWords) {
@@ -141,7 +141,7 @@ const blog = defineCollection({
 
                     // Additional safety: limit character length (some models have character limits too)
                     const maxChars = 4000;
-                    const finalContent = truncatedContent.length > maxChars 
+                    const finalContent = truncatedContent.length > maxChars
                         ? truncatedContent.substring(0, maxChars).trim()
                         : truncatedContent;
 
@@ -150,23 +150,19 @@ const blog = defineCollection({
                     }
 
                     try {
-                        if (!process.env.HUGGING_FACE_API_TOKEN) {
-                            console.warn(`Skipping AI summary generation for ${data.title}: HUGGING_FACE_API_TOKEN is not set`);
+                        if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+                            console.warn(`Skipping AI summary generation for ${data.title}: GOOGLE_GENERATIVE_AI_API_KEY is not set`);
                             summary = '';
                         } else {
-                            // Extract content in two parts: first paragraph (primary) + full content (context)
-                            const paragraphs = plainTextContent.split(/\n\n+/).filter(p => p.trim().length > 0);
-                            const firstParagraph = paragraphs[0] || plainTextContent.substring(0, 400);
-                            
-                            // Limit first paragraph to ~150 words (primary source)
-                            const firstParagraphWords = firstParagraph.split(/\s+/);
-                            const firstParagraphExcerpt = firstParagraphWords.slice(0, 150).join(' ');
-                            
-                            // Use truncated full content for context (already truncated above to finalContent)
-                            // Combine them for the prompt
-                            const combinedContent = `${firstParagraphExcerpt}\n\n${finalContent}`;
+                            const { GoogleGenerativeAI } = await import('@google/generative-ai');
+                            const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
+                            const model = genAI.getGenerativeModel(
+                                { model: 'gemma-3-27b-it' }
+                            );
 
-                            // Create the user's specified instructional prompt
+                            // Add a small randomized delay
+                            await new Promise(resolve => setTimeout(resolve, Math.random() * 2000));
+
                             const prompt = `You are writing a short summary for a blog index page.
 
 The goal is not to restate the article, but to help a reader quickly decide whether this post is worth reading.
@@ -175,108 +171,38 @@ Write 2–3 sentences, plain language, no hype.
 
 The summary must:
 	•	Clearly state what problem, question, or idea the post addresses
+	•	Indicate who the post is for (skill level, role, or mindset)
 	•	Hint at what the reader will walk away understanding or able to do
 
-Write in a neutral, factual tone. The blog content is ${combinedContent}`;
+The summary must not:
+	•	Use marketing language, emojis, or buzzwords
+	•	Include calls to action (“you’ll love,” “must-read,” etc.)
+	•	Assume the reader agrees with the author
 
-                            // Use the working summarization model with the user's specified prompt format
-                            // Since instruction-following models aren't available, we'll use the summarization
-                            // model. It won't follow instructions perfectly, but the prompt structure may help guide output
-                            console.log(`Using summarization model with structured prompt for: ${data.title}`);
-                            
-                            // Use the user's specified instructional prompt format
-                            // The summarization model will extract key points, which we format as a description
-                            const descriptionPrompt = `You are writing a short summary for a blog index page.
+Write in a neutral, factual tone. The content is:
+${finalContent}`;
 
-The goal is not to restate the article, but to help a reader quickly decide whether this post is worth reading.
+                            console.log(`Generating Gemini summary for: ${data.title}`);
 
-Write 2–3 sentences, plain language, no hype.
+                            const result = await model.generateContent(prompt);
+                            const response = await result.response;
+                            const text = response.text().trim();
 
-The summary must:
-	•	Clearly state what problem, question, or idea the post addresses
-	•	Hint at what the reader will walk away understanding or able to do
+                            if (text) {
+                                summary = text.replace(/\s+/g, ' ').trim();
+                                isAISummary = true;
+                                console.log(`AI description generated successfully for: ${data.title}`);
 
-Write in a neutral, factual tone. The blog content is ${combinedContent}`;
-                            
-                            const response = await axios.post(
-                                'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6',
-                                { inputs: descriptionPrompt },
-                                {
-                                    headers: {
-                                        Authorization: `Bearer ${process.env.HUGGING_FACE_API_TOKEN}`,
-                                        'Content-Type': 'application/json',
-                                    },
-                                    timeout: 30000,
-                                }
-                            );
-
-                            // Handle summarization model response
-                            if (response.data && Array.isArray(response.data) && response.data[0]?.summary_text) {
-                                let rawSummary = response.data[0].summary_text.trim();
-                                
-                                // Clean up the summary
-                                rawSummary = rawSummary.replace(/\s+/g, ' ').trim();
-                                
-                                // The summarization model extracts key sentences
-                                // Format them into a proper description following the user's requirements
-                                const sentences = rawSummary.split(/[.!?]+\s+/).filter((s: string) => {
-                                    const trimmed = s.trim();
-                                    return trimmed.length > 10 && trimmed.length < 250;
-                                });
-                                
-                                if (sentences.length > 0) {
-                                    // Take first 2-3 sentences and format as description
-                                    const descriptionSentences = sentences.slice(0, 3);
-                                    summary = descriptionSentences
-                                        .map((s: string, idx: number) => {
-                                            let sentence = s.trim();
-                                            // Ensure proper capitalization
-                                            sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1);
-                                            // Ensure it ends with punctuation
-                                            if (!sentence.match(/[.!?]$/)) {
-                                                sentence += '.';
-                                            }
-                                            return sentence;
-                                        })
-                                        .join(' ');
-                                    
-                                    isAISummary = true;
-                                    console.log(`AI description generated successfully for: ${data.title}`);
-                                    
-                                    // Update cache
-                                    cache[cacheKey] = summary;
-                                    saveCache(cache);
-                                } else {
-                                    console.warn(`No valid sentences extracted from summary for: ${data.title}`);
-                                    summary = '';
-                                }
+                                // Update cache
+                                cache[cacheKey] = summary;
+                                saveCache(cache);
                             } else {
-                                console.warn(`Unexpected response format from AI description API for: ${data.title}`, JSON.stringify(response.data).substring(0, 200));
+                                console.warn(`Empty response from Gemini for: ${data.title}`);
                                 summary = '';
                             }
                         }
                     } catch (error: any) {
-                        // More detailed error logging
-                        if (error.response) {
-                            const errorData = error.response.data;
-                            const errorMessage = typeof errorData === 'object' && errorData.error 
-                                ? errorData.error 
-                                : JSON.stringify(errorData);
-                            
-                            if (error.response.status === 404) {
-                                console.error(`AI description generation failed for ${data.title}: Instruction-following models not available via router endpoint (404).`);
-                                console.error(`All attempted models returned 404. Summary left blank - please write manually.`);
-                            } else {
-                                console.error(`AI description API error for ${data.title}: ${error.response.status} ${error.response.statusText}`);
-                                console.error(`Error details: ${errorMessage}`);
-                            }
-                        } else if (error.request) {
-                            console.error(`AI description API request failed for ${data.title}: No response received`, error.message);
-                        } else {
-                            console.error(`Error generating AI description for ${data.title}:`, error.message);
-                        }
-                        
-                        // Leave summary blank if generation fails - user will write it manually
+                        console.error(`Error generating AI description for ${data.title}:`, error.message);
                         summary = '';
                     }
                 }
@@ -286,7 +212,7 @@ Write in a neutral, factual tone. The blog content is ${combinedContent}`;
                 ...data,
                 wordCount,
                 readingTime,
-                summary, // summary is guaranteed to be a string
+                summary,
                 isAISummary,
             };
         } catch (error) {
@@ -295,7 +221,7 @@ Write in a neutral, factual tone. The blog content is ${combinedContent}`;
                 ...data,
                 wordCount: 0,
                 readingTime: 0,
-                summary: '', // Ensure summary is an empty string if there's an error
+                summary: '',
                 isAISummary: false,
             };
         }
