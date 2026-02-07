@@ -3,7 +3,6 @@ import React from 'react';
 import { MainNav } from '@/components/navigation/main-nav';
 import { MobileNav } from '@/components/navigation/mobile-nav';
 import DarkModeToggle from '@/components/shared/dark-mode-toggle';
-import { SocialsDrawer } from '@/components/navigation/socials-drawer';
 import ViewportDebugLabel from '@/components/viewport-debug-label';
 
 export function SiteHeader() {
@@ -16,11 +15,7 @@ export function SiteHeader() {
                     <div className="w-full flex-1 md:w-auto md:flex-none">
                         <ViewportDebugLabel />
                     </div>
-                    <div>
-                        <SocialsDrawer>
-                            <DarkModeToggle />
-                        </SocialsDrawer>
-                    </div>
+                    <DarkModeToggle />
                 </div>
             </div>
         </header>

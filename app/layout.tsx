@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unknown-property */
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/shared/theme-provider';
 import { Toaster } from '@/components/ui/toaster'; // Import Toaster
@@ -8,8 +7,7 @@ import InlineCommentHandler from '@/components/features/inline-comment-handler';
 
 import { SiteFooter } from '@/components/navigation/site-footer';
 import { SiteHeader } from '@/components/navigation/site-header';
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+import { fontSans } from '@/lib/fonts';
 import React from 'react';
 
 export const metadata: Metadata = {
@@ -34,7 +32,7 @@ export default function RootLayout({
                     <meta name="msapplication-TileColor" content="#da532c" />
                     <meta name="theme-color" content="#ffffff" />
                 </head>
-                <body className={inter.className}>
+                <body className={fontSans.className}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
                         <div>
                             <div className="relative flex min-h-screen flex-col bg-background">
