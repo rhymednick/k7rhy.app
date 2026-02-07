@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { Switch } from '@/components/ui/switch'; // Adjust the import path as needed
+import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 
 const DarkModeToggle = () => {
@@ -24,19 +24,19 @@ const DarkModeToggle = () => {
     };
 
     return (
-        <div className="flex items-center space-x-2">
-            {isDarkMode ? <Moon className="text-gray-800 dark:text-gray-200" /> : <Sun className="text-yellow-500 dark:text-yellow-400" />}
-            <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <Switch checked={isDarkMode} onCheckedChange={handleToggle} />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <span>{isDarkMode ? 'Switch to light mode ' : 'Switch to dark mode '}</span>
-                    </TooltipContent>
-                </Tooltip>
-            </TooltipProvider>
-        </div>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Button variant="outline" size="icon" onClick={handleToggle} className="h-9 w-9">
+                        {isDarkMode ? <Moon className="h-5 w-5 text-sky-400" /> : <Sun className="h-5 w-5 text-amber-500" />}
+                        <span className="sr-only">{isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <span>{isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
     );
 };
 
