@@ -24,7 +24,7 @@ Welcome! Thank you for your interest in contributing to k7rhy.app. This document
     ```
 
     Required variables:
-    - `HUGGING_FACE_API_TOKEN`: Required for AI summary generation. You can get a free token from [Hugging Face](https://huggingface.co/settings/tokens).
+    - `GOOGLE_GENERATIVE_AI_API_KEY`: Required for AI summary generation. You can get an API key from [Google AI Studio](https://aistudio.google.com/apikey).
 
 4.  **Start the development server:**
     ```bash
