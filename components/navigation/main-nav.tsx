@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/components/shared/icons';
 import { navConfig } from '@/config/navigation';
 
 export function MainNav() {
@@ -15,7 +15,7 @@ export function MainNav() {
     return (
         <div className="mr-2 md:mr-4 hidden md:flex">
             <Link href="/" className="mr-2 md:mr-4 flex items-center space-x-2 lg:mr-6">
-                <Icons.logo className="h-9 w-9" />
+                <Image src="/images/k7rhy_logo.png" alt="K7RHY logo" width={36} height={36} className="dark:invert" />
                 <span className="hidden text-lg font-bold lg:inline-block">{siteConfig.name}</span>
             </Link>
             <nav className="flex items-center gap-4 text-sm lg:gap-6">

@@ -1,14 +1,13 @@
 'use client';
 
 import * as React from 'react';
+import Image from 'next/image';
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
-//import { ViewVerticalIcon } from "@radix-ui/react-icons"
 
 import { navConfig } from '@/config/navigation';
 import { siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
-import { Icons } from '@/components/shared/icons';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -30,7 +29,7 @@ export function MobileNav() {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0">
                 <MobileLink href="/" className="flex items-center" onOpenChange={setOpen}>
-                    <Icons.logo className="mr-2 h-4 w-4" />
+                    <Image src="/images/k7rhy_logo.png" alt="K7RHY logo" width={16} height={16} className="dark:invert mr-2" />
                     <span className="font-bold">{siteConfig.name}</span>
                 </MobileLink>
                 <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
