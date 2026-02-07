@@ -35,23 +35,23 @@ export default {
         },
         {
             level: 2, //H2
-            style: 'text-2xl font-bold tracking-tight pb-2 pt-2  text-slate-700',
+            style: 'text-2xl font-bold tracking-tight pb-2 pt-2 text-foreground/90',
         },
         {
             level: 3, //H3
-            style: 'text-xl font-bold tracking-tight pt-2  text-slate-600',
+            style: 'text-xl font-bold tracking-tight pt-2 text-foreground/80',
         },
         {
             level: 4, //H4
-            style: 'text-l font-bold tracking-tight pt-2 text-slate-500',
+            style: 'text-l font-bold tracking-tight pt-2 text-foreground/70',
         },
         {
             level: 5, //H5
-            style: 'text-l font-bold tracking-tight pt-2 text-slate-400',
+            style: 'text-l font-bold tracking-tight pt-2 text-foreground/60',
         },
         {
             level: 6, //H6
-            style: 'text-l font-bold italic tracking-tight pt-2 text-slate-400',
+            style: 'text-l font-bold italic tracking-tight pt-2 text-foreground/60',
         },
     ],
 } as DocSectionConfig;

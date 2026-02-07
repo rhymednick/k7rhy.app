@@ -2,9 +2,8 @@
 
 import { Blog } from '@/.content-collections/generated';
 import React, { useState, useMemo } from 'react';
-import TagFilter from './tag-filter'; // Adjusted naming convention
-import BlogPostList from './blog-post-list'; // Adjusted naming convention
-import BlogHeader from './blog-header';
+import TagFilter from './tag-filter';
+import { BlogCard } from './blog-card';
 
 interface BlogIndexPageProps {
     posts: Blog[];
@@ -57,17 +56,23 @@ const BlogIndex: React.FC<BlogIndexPageProps> = ({ posts }) => {
     }, [sortedTags, selectedTags, posts]);
 
     return (
-        <main className="lg:py-12 mx-auto max-w-2xl px-4 pb-28 sm:px-6 md:px-8 xl:px-12">
-            <BlogHeader />
+        <main className="mx-auto max-w-6xl px-4 pb-28 pt-8 sm:px-6 md:px-8 lg:py-12 xl:px-12">
+            <header className="mb-8">
+                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Lab Notes</h1>
+                <p className="mt-2 text-lg text-muted-foreground">Field logs from personal experiments, prototypes, and builds in progress.</p>
+            </header>
 
-            {/* Use TagFilter Component */}
             <TagFilter tags={sortedTags} selectedTags={selectedTags} disabledTags={disabledTags} onToggleTag={toggleTag} onClearTags={clearTags} />
 
-            {/* Use PostList Component */}
-            <div className="relative sm:pb-12">
-                <div className="hidden absolute top-3 bottom-0 right-full mr-7 md:mr-[3.25rem] w-px bg-slate-200 dark:bg-slate-800 sm:block" />
-                <BlogPostList posts={filteredPosts} />
-            </div>
+            {filteredPosts.length > 0 ? (
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {filteredPosts.map((post) => (
+                        <BlogCard key={post._meta.path} post={post} />
+                    ))}
+                </div>
+            ) : (
+                <p className="py-12 text-center text-muted-foreground">No posts match the selected filters.</p>
+            )}
         </main>
     );
 };
