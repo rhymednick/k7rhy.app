@@ -3,77 +3,83 @@ import React from 'react';
 import { DocImage } from '@/components/doc/doc-image';
 import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
 
-export const StepDescription: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    return <>{children}</>;
-};
-
 export interface MdxDocProcedureStepProps {
     text: string;
     image?: string;
     isSubstep?: boolean;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
-export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, image, isSubstep = false, children }: MdxDocProcedureStepProps) => {
-    const nonSubStepChildren: React.ReactNode[] = [];
+export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, image, isSubstep = false, children }) => {
+    const descriptionChildren: React.ReactNode[] = [];
     let substepGroup: React.ReactNode | null = null;
-    let stepDescription: React.ReactNode | null = null;
 
-    console.log('Child count for step:', React.Children.count(children));
     React.Children.forEach(children, (child) => {
-        if (React.isValidElement(child)) {
-            console.log('>>TypeName:', child.type);
-
-            if (child.type === MdxDocProcedureSubstepGroup) {
-                // console.log('child is MdxDocProcedureSubstepGroup');
-                if (substepGroup) {
-                    throw new Error('Only one MdxDocProcedureSubstepGroup is allowed per MdxDocProcedureStep.');
-                }
-                substepGroup = child;
-            } else if (child.type === MdxDocProcedureStep) {
-                console.log("[MdxDocProcedureStep/Child_Ingored] MdxDocProcedureStep isn't a valid child.");
-            } else if (child.type === StepDescription) {
-                // console.log('child is StepDescription');
-                if (stepDescription) {
-                    throw new Error('Only one StepDescription is allowed per MdxDocProcedureStep.');
-                }
-                stepDescription = child;
-            } else {
-                // console.log('child is not MdxDocProcedureStep');
-                nonSubStepChildren.push(child);
-            }
+        if (React.isValidElement(child) && child.type === MdxDocProcedureSubstepGroup) {
+            substepGroup = child;
         } else {
-            console.log('child is not valid element');
-            nonSubStepChildren.push(child);
+            descriptionChildren.push(child);
         }
     });
 
-    console.log('substepGroupContext for', text, isSubstep);
     if (isSubstep) {
         return (
-            <li style={{ counterIncrement: 'substep 1' }} className="relative pl-8 gap-16 before:content-[counter(substep,lower-alpha)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-sm before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/5 before:bg-blue-100 dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-4 last:pb-0 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-200 dark:after:bg-slate-200/5">
-                <div className="col-span-2">
-                    <h4 className="text-lg leading-6 text-slate-900 font-semibold mb-2 dark:text-slate-200">{text}</h4>
-                    <div className="flex flex-col md:flex-row md:items-start">
-                        <div className="prose prose-slate prose-sm dark:prose-dark align-text-top mb-2 md:w-3/4 md:mr-4">{stepDescription}</div>
-                        <div>{image && <DocImage title={text} src={image} alt={text} triggerImageSize={200} popupImageSize={1000} />}</div>
+            <li
+                style={{ counterIncrement: 'substep 1' }}
+                className="relative pl-10 pb-4 last:pb-0
+                    before:content-[counter(substep,lower-alpha)] before:absolute before:left-0 before:top-0
+                    before:w-[26px] before:h-[26px] before:rounded-full
+                    before:bg-violet-100 before:text-violet-700 before:text-xs before:font-bold
+                    before:border before:border-violet-300
+                    before:flex before:items-center before:justify-center
+                    dark:before:bg-violet-900/40 dark:before:text-violet-300 dark:before:border-violet-700
+                    after:absolute after:top-[26px] after:bottom-0 after:left-[12px] after:w-[1.5px]
+                    after:bg-gradient-to-b after:from-violet-300 after:to-violet-300/5
+                    last:after:hidden"
+            >
+                <div>
+                    <h4 className="text-sm font-semibold text-violet-900 mb-2 dark:text-violet-200">{text}</h4>
+                    <div className="flex flex-col md:flex-row md:items-start gap-3">
+                        <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
+                            {descriptionChildren}
+                        </div>
+                        {image && (
+                            <div className="flex-shrink-0">
+                                <DocImage title={text} src={image} alt={text} triggerImageSize={80} popupImageSize={1000} />
+                            </div>
+                        )}
                     </div>
-
-                    {nonSubStepChildren}
                 </div>
             </li>
         );
     }
 
     return (
-        <li style={{ counterIncrement: 'step 1' }} className="last:pb-0 relative pl-8  gap-6 before:content-[counter(step)] before:absolute before:left-0 before:flex before:items-center before:justify-center before:w-[calc(1.375rem+1px)] before:h-[calc(1.375rem+1px)] before:text-sm before:font-bold before:text-slate-700 before:rounded-md before:shadow-sm before:ring-1 before:ring-slate-900/6 dark:before:bg-slate-700 dark:before:text-slate-200 dark:before:ring-0 dark:before:shadow-none dark:before:highlight-white/5 pb-2 after:absolute after:top-[calc(1.875rem+1px)] after:bottom-0 after:left-[0.6875rem] after:w-px after:bg-slate-300 dark:after:bg-slate-200/4">
-            <div className="col-span-2">
-                <h3 className="text-xl leading-6 text-slate-700 font-semibold mb-2 dark:text-slate-200">{text}</h3>
-                <div className="flex items-center ">
-                    <div className="prose prose-slate prose-sm dark:prose-dark">{stepDescription}</div>
-                    {image && <DocImage title={text} src={image} alt={text} triggerImageSize={400} popupImageSize={1000} />}
+        <li
+            style={{ counterIncrement: 'step 1' }}
+            className="relative pl-12 pb-8 last:pb-0
+                before:content-[counter(step)] before:absolute before:left-0 before:top-0
+                before:w-[34px] before:h-[34px] before:rounded-full
+                before:bg-gradient-to-br before:from-indigo-500 before:to-violet-500
+                before:text-white before:text-sm before:font-bold
+                before:flex before:items-center before:justify-center
+                before:shadow-[0_2px_8px_rgba(99,102,241,0.35)]
+                after:absolute after:top-[34px] after:bottom-0 after:left-[16px] after:w-[2px]
+                after:bg-gradient-to-b after:from-violet-500 after:to-violet-500/5
+                last:after:hidden"
+        >
+            <div>
+                <h3 className="text-base font-bold text-indigo-950 mb-2 mt-1 dark:text-slate-100">{text}</h3>
+                <div className="flex flex-col md:flex-row md:items-start gap-3">
+                    <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
+                        {descriptionChildren}
+                    </div>
+                    {image && (
+                        <div className="flex-shrink-0">
+                            <DocImage title={text} src={image} alt={text} triggerImageSize={120} popupImageSize={1000} />
+                        </div>
+                    )}
                 </div>
-                {nonSubStepChildren}
                 {substepGroup}
             </div>
         </li>
