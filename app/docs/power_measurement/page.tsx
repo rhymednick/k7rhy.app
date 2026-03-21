@@ -18,41 +18,6 @@ const DocSubTitle = 'How to measure RF power using a multimeter on dummy load ki
 
 const breadcrumbItems = [{ href: '/docs', label: 'Docs' }, { label: DocTitle }];
 
-const docProcedureSteps: Array<any> = [
-    {
-        text: 'Configure your multimeter',
-        description: 'Set your multimeter to measure DC voltage. If you keep your transmitted power below 20W,' + ' you will not exceed 35V. Verify that your multimeter is set to read in the correct voltage range.',
-    },
-    {
-        text: 'Attach the transmitter',
-        description: 'Connect your transmitter output (antenna port) to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.',
-    },
-    {
-        text: 'Connect the multimeter',
-        description: 'Connect the multimeter probes to the test pads, TP1 and TP2, on the dummy load. ' + "They can be held in place by hand if you don't have alligator clips. The polarity of the probes does not matter. " + 'The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.',
-    },
-    {
-        text: 'Transmit a signal and measure the voltage',
-        description: 'Transmit a signal from your radio and measure the voltage on the multimeter. The voltage may take a few seconds to stabilize. ',
-        children: (
-            <Alert variant="destructive">
-                <TriangleAlert className="h-4 w-4" />
-                <AlertTitle>Do not exceed 20W</AlertTitle>
-                <AlertDescription>The dummy load can handle momentary loads above 20W, but the diode which allows you to measure power as a voltage cannot handle arbitrary large voltages. While there is a large buffer zone factored into the design, you will damage the diode if you go to far. The failure point varies based on the RF frequency. Keep the power below 20W and you won't risk damaging your equipment.</AlertDescription>
-            </Alert>
-        ),
-    },
-    {
-        text: 'Convert the voltage to power',
-        description: '',
-        children: (
-            <div className="-mt-2">
-                Using the <PowerCalculatorSheet />, enter the voltage you measured and your transmission band, and the tool will calculate the power in watts.
-            </div>
-        ),
-    },
-];
-
 const Page = () => {
     return (
         <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
