@@ -14,12 +14,7 @@ const TagFilter: React.FC<TagFilterProps> = ({ tags, selectedTags, disabledTags,
             <h2 className="mb-2 text-sm font-semibold text-foreground">Filter by Tags:</h2>
             <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                    <button
-                        key={tag}
-                        onClick={() => onToggleTag(tag)}
-                        disabled={disabledTags.includes(tag) && !selectedTags.includes(tag)}
-                        className={`rounded-full border px-2.5 py-1 text-xs font-medium transition-colors ${selectedTags.includes(tag) ? 'border-sky-500 bg-sky-500 text-white' : 'border-border bg-background text-foreground hover:bg-accent'} ${disabledTags.includes(tag) && !selectedTags.includes(tag) ? 'cursor-not-allowed opacity-50' : ''}`}
-                    >
+                    <button key={tag} onClick={() => onToggleTag(tag)} disabled={disabledTags.includes(tag) && !selectedTags.includes(tag)} className={`rounded-full border px-2.5 py-1 text-xs font-medium transition-colors ${selectedTags.includes(tag) ? 'border-sky-500 bg-sky-500 text-white' : 'border-border bg-background text-foreground hover:bg-accent'} ${disabledTags.includes(tag) && !selectedTags.includes(tag) ? 'cursor-not-allowed opacity-50' : ''}`}>
                         #{tag}
                     </button>
                 ))}

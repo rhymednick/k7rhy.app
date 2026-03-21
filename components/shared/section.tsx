@@ -13,15 +13,7 @@ interface SectionProps {
 
 export function Section({ background = 'default', title, description, icon: Icon, children, className }: SectionProps) {
     return (
-        <section
-            className={cn(
-                'rounded-2xl px-6 py-10 md:px-10',
-                background === 'muted' && 'bg-muted/50',
-                background === 'gradient' && 'bg-gradient-to-br from-sky-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-950 dark:to-indigo-950',
-                background === 'default' && '',
-                className
-            )}
-        >
+        <section className={cn('rounded-2xl px-6 py-10 md:px-10', background === 'muted' && 'bg-muted/50', background === 'gradient' && 'bg-gradient-to-br from-sky-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-950 dark:to-indigo-950', background === 'default' && '', className)}>
             {(title || description) && (
                 <div className="mb-8 text-center">
                     {Icon && (

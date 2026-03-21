@@ -17,7 +17,11 @@ export function BlogCard({ post }: BlogCardProps) {
     return (
         <Link href={`/blog/${post._meta.path}`} className="group relative block">
             <article className="relative flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all group-hover:shadow-md group-hover:scale-[1.02]">
-                {post.publish === false && <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-background/60 backdrop-blur-[2px]"><span className="text-3xl font-bold text-destructive/40">Unpublished</span></div>}
+                {post.publish === false && (
+                    <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-background/60 backdrop-blur-[2px]">
+                        <span className="text-3xl font-bold text-destructive/40">Unpublished</span>
+                    </div>
+                )}
                 <div className="flex items-center gap-3 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                         <Calendar className="h-3 w-3" />

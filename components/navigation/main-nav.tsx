@@ -22,14 +22,7 @@ export function MainNav() {
                 {navConfig.mainNav.map((item) => {
                     const isActive = item.href && pathname.startsWith(item.href);
                     return (
-                        <Link
-                            key={item.href}
-                            href={item.href || ''}
-                            className={cn(
-                                'relative transition-colors hover:text-foreground/80',
-                                isActive ? 'font-medium text-foreground after:absolute after:inset-x-0 after:-bottom-2 after:h-0.5 after:bg-gradient-to-r after:from-sky-500 after:to-emerald-600' : 'text-foreground/60'
-                            )}
-                        >
+                        <Link key={item.href} href={item.href || ''} className={cn('relative transition-colors hover:text-foreground/80', isActive ? 'font-medium text-foreground after:absolute after:inset-x-0 after:-bottom-2 after:h-0.5 after:bg-gradient-to-r after:from-sky-500 after:to-emerald-600' : 'text-foreground/60')}>
                             {item.title}
                         </Link>
                     );

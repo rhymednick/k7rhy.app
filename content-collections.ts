@@ -111,7 +111,7 @@ const blog = defineCollection({
                     isAISummary = true;
                 } else {
                     // Check if there's an old cache entry for this file (content may have changed)
-                    const oldCacheKey = Object.keys(cache).find(key => key.startsWith(`${data._meta.fileName}:`));
+                    const oldCacheKey = Object.keys(cache).find((key) => key.startsWith(`${data._meta.fileName}:`));
                     if (oldCacheKey) {
                         console.log(`Found old cache entry for ${data.title} (content hash changed), generating new summary...`);
                     } else {
@@ -129,11 +129,9 @@ const blog = defineCollection({
                     // Truncate content to ~600 words to stay well within model limits
                     // distilbart-cnn-12-6 has ~1024 token limit, but we use 600 words (~780 tokens) for safety
                     // Some content may have more tokens per word due to special characters
-                    const words = cleanedContent.split(/\s+/).filter(word => word.length > 0);
+                    const words = cleanedContent.split(/\s+/).filter((word) => word.length > 0);
                     const maxWords = 600;
-                    const truncatedContent = words.length > maxWords
-                        ? words.slice(0, maxWords).join(' ')
-                        : cleanedContent;
+                    const truncatedContent = words.length > maxWords ? words.slice(0, maxWords).join(' ') : cleanedContent;
 
                     if (words.length > maxWords) {
                         console.log(`Content truncated from ${words.length} to ${maxWords} words for AI summary generation`);
@@ -141,9 +139,7 @@ const blog = defineCollection({
 
                     // Additional safety: limit character length (some models have character limits too)
                     const maxChars = 4000;
-                    const finalContent = truncatedContent.length > maxChars
-                        ? truncatedContent.substring(0, maxChars).trim()
-                        : truncatedContent;
+                    const finalContent = truncatedContent.length > maxChars ? truncatedContent.substring(0, maxChars).trim() : truncatedContent;
 
                     if (truncatedContent.length > maxChars) {
                         console.log(`Content further truncated to ${maxChars} characters for AI summary generation`);
@@ -156,12 +152,10 @@ const blog = defineCollection({
                         } else {
                             const { GoogleGenerativeAI } = await import('@google/generative-ai');
                             const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
-                            const model = genAI.getGenerativeModel(
-                                { model: 'gemma-3-27b-it' }
-                            );
+                            const model = genAI.getGenerativeModel({ model: 'gemma-3-27b-it' });
 
                             // Add a small randomized delay
-                            await new Promise(resolve => setTimeout(resolve, Math.random() * 2000));
+                            await new Promise((resolve) => setTimeout(resolve, Math.random() * 2000));
 
                             const prompt = `You are writing a short summary for a blog index page.
 

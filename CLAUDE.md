@@ -24,6 +24,7 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 **Routing:** Primarily App Router (`app/`). A legacy `pages/` directory still exists (contact page, some API routes) during migration.
 
 **Content pipeline:** Blog posts are MDX files in `content/blog/`. The `content-collections.ts` config (using @content-collections/core) processes them at build time:
+
 - Extracts word count and reading time
 - Strips JSX from content for clean text
 - Generates AI summaries via Google Generative AI (Gemma 3 27B) when no summary is provided in frontmatter
@@ -53,8 +54,8 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 title: 'Post Title'
 date: '2024-01-15'
 summary: 'Optional. AI generates one if omitted.'
-tags: ['radio', 'electronics']  # Optional. Used for filtering and product association.
-publish: true                    # Must be true to appear on the site
+tags: ['radio', 'electronics'] # Optional. Used for filtering and product association.
+publish: true # Must be true to appear on the site
 ---
 ```
 
