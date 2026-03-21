@@ -7,12 +7,14 @@ import { BlockMath } from 'react-katex';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Terminal, TriangleAlert } from 'lucide-react';
+import { TriangleAlert } from 'lucide-react';
 import Image from 'next/image';
 import PowerCalculatorSheet from '@/components/features/power-calculator-sheet';
 import { DocSection } from '@/components/doc/doc-section';
 import DocAlert, { Level } from '@/components/doc/doc-alert';
 import Markdown from '@/components/markdown';
+import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
+import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 const DocTitle = 'Measuring Power';
 const DocSubTitle = 'How to measure RF power using a multimeter on dummy load kits and understanding how to apply the electronics theory behind it.';
 
@@ -30,6 +32,31 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+
+            <MdxDocProcedure title="Measurement Procedure">
+                <MdxDocProcedureStep text="Configure your multimeter">
+                    Set your multimeter to measure DC voltage. If you keep your transmitted power below 20W, you will not exceed 35V. Verify that your multimeter is set to read in the correct voltage range.
+                </MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Attach the transmitter">
+                    Connect your transmitter output (antenna port) to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.
+                </MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Connect the multimeter">
+                    Connect the multimeter probes to the test pads, TP1 and TP2, on the dummy load. They can be held in place by hand if you don't have alligator clips. The polarity of the probes does not matter. The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.
+                </MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Transmit a signal and measure the voltage">
+                    Transmit a signal from your radio and measure the voltage on the multimeter. The voltage may take a few seconds to stabilize.
+                    <Alert variant="destructive">
+                        <TriangleAlert className="h-4 w-4" />
+                        <AlertTitle>Do not exceed 20W</AlertTitle>
+                        <AlertDescription>The dummy load can handle momentary loads above 20W, but the diode which allows you to measure power as a voltage cannot handle arbitrary large voltages. While there is a large buffer zone factored into the design, you will damage the diode if you go to far. The failure point varies based on the RF frequency. Keep the power below 20W and you won't risk damaging your equipment.</AlertDescription>
+                    </Alert>
+                </MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Convert the voltage to power">
+                    <div className="-mt-2">
+                        Using the <PowerCalculatorSheet />, enter the voltage you measured and your transmission band, and the tool will calculate the power in watts.
+                    </div>
+                </MdxDocProcedureStep>
+            </MdxDocProcedure>
 
             <DocSection title="Understanding the Power Calculation">
                 <div>Power is calculated according to Ohm's Law, which states that power is equal to the square of the voltage divided by the resistance.</div>
