@@ -1,7 +1,6 @@
 # Doc Components Redesign — Design Spec
 
-**Date:** 2026-03-21
-**Status:** Approved
+**Date:** 2026-03-21 **Status:** Approved
 
 ---
 
@@ -45,6 +44,7 @@ Keep existing `DocAlert` component and level system unchanged. Visual improvemen
 ### Dark Mode
 
 Maintain existing dark mode support using Tailwind `dark:` variants. Map new light-mode colors to appropriate dark equivalents:
+
 - `#1e1b4b` → `dark:text-slate-100`
 - `#4b5563` → `dark:text-slate-300`
 - `#ede9fe` callout background → `dark:bg-violet-900/30`
@@ -65,19 +65,17 @@ Maintain existing dark mode support using Tailwind `dark:` variants. Map new lig
 ### Remove `<Desc>` wrapper
 
 **Before:**
+
 ```mdx
 <ProcStep text="Prepare the resistors">
-  <Desc>
-    Bend the leads of the resistor...
-  </Desc>
+    <Desc>Bend the leads of the resistor...</Desc>
 </ProcStep>
 ```
 
 **After:**
+
 ```mdx
-<ProcStep text="Prepare the resistors">
-  Bend the leads of the resistor...
-</ProcStep>
+<ProcStep text="Prepare the resistors">Bend the leads of the resistor...</ProcStep>
 ```
 
 `MdxDocProcedureStep` will treat all non-`MdxDocProcedureSubstepGroup` children as description content, rendered together inside the `prose` wrapper div (replacing both the old `stepDescription` slot and the `nonSubStepChildren` slot — these are merged into one). The `substepGroup` is still rendered after the prose block. The `StepDescription` / `Desc` component is removed from `mdx-doc-procedure-step.tsx` and its `Desc` alias is removed from `components/mdx-components.tsx`.
@@ -96,15 +94,15 @@ The MDX shorthand aliases (`Proc`, `ProcStep`, `ProcSubgroup`, `DocAlert`, etc.)
 
 ## Files to Change
 
-| File | Change |
-|------|--------|
-| `components/doc/mdx-doc-procedure-step.tsx` | New visual style; remove `StepDescription`/`Desc` handling; treat non-subgroup children as description; remove leftover `console.log` debug statements |
-| `components/doc/mdx-doc-procedure-substep-group.tsx` | New substep rail + letter badge style |
-| `components/doc/mdx-doc-procedure.tsx` | New step list styles (spacing, counter reset) |
-| `components/doc/doc-image.tsx` | Rounded corners, border, shadow, hover overlay with zoom icon |
-| `components/doc/doc-procedure.tsx` | **Delete** (replaced by MDX component) |
-| `components/mdx-components.tsx` | Remove `Desc`/`StepDescription` alias and import; remove `DocProcedure` import and alias |
-| `content/docs/dl20w_sma.mdx` | Remove all `<Desc>` wrapper tags (only known file using them) |
+| File                                                 | Change                                                                                                                                                 |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `components/doc/mdx-doc-procedure-step.tsx`          | New visual style; remove `StepDescription`/`Desc` handling; treat non-subgroup children as description; remove leftover `console.log` debug statements |
+| `components/doc/mdx-doc-procedure-substep-group.tsx` | New substep rail + letter badge style                                                                                                                  |
+| `components/doc/mdx-doc-procedure.tsx`               | New step list styles (spacing, counter reset)                                                                                                          |
+| `components/doc/doc-image.tsx`                       | Rounded corners, border, shadow, hover overlay with zoom icon                                                                                          |
+| `components/doc/doc-procedure.tsx`                   | **Delete** (replaced by MDX component)                                                                                                                 |
+| `components/mdx-components.tsx`                      | Remove `Desc`/`StepDescription` alias and import; remove `DocProcedure` import and alias                                                               |
+| `content/docs/dl20w_sma.mdx`                         | Remove all `<Desc>` wrapper tags (only known file using them)                                                                                          |
 
 ---
 

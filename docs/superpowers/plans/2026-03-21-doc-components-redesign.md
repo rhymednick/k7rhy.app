@@ -12,23 +12,24 @@
 
 ## File Map
 
-| File | Action | Responsibility |
-|------|--------|----------------|
-| `components/doc/doc-image.tsx` | Modify | Thumbnail polish: rounded corners, indigo border/shadow, CSS hover zoom overlay |
-| `components/doc/mdx-doc-procedure-step.tsx` | Modify | New gradient circle badges, fading connectors, substep lettering; remove `StepDescription`/`Desc`; merge all non-subgroup children into prose block |
-| `components/doc/mdx-doc-procedure-substep-group.tsx` | Modify | New left-rail border, violet substep styles |
-| `components/doc/mdx-doc-procedure.tsx` | Modify | Updated `<ol>` container styles |
-| `components/doc/doc-procedure.tsx` | **Delete** | Replaced by MDX component path |
-| `components/mdx-components.tsx` | Modify | Remove `DocProcedure` import/alias, remove `StepDescription`/`Desc` import/alias |
-| `content/docs/dl20w_sma.mdx` | Modify | Remove all `<Desc>` wrapper tags |
-| `components/doc/doc-image.test.tsx` | Create | Tests for new thumbnail styles |
-| `components/doc/mdx-doc-procedure-step.test.tsx` | Create | Tests for Desc-free rendering and new layout |
+| File                                                 | Action     | Responsibility                                                                                                                                      |
+| ---------------------------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components/doc/doc-image.tsx`                       | Modify     | Thumbnail polish: rounded corners, indigo border/shadow, CSS hover zoom overlay                                                                     |
+| `components/doc/mdx-doc-procedure-step.tsx`          | Modify     | New gradient circle badges, fading connectors, substep lettering; remove `StepDescription`/`Desc`; merge all non-subgroup children into prose block |
+| `components/doc/mdx-doc-procedure-substep-group.tsx` | Modify     | New left-rail border, violet substep styles                                                                                                         |
+| `components/doc/mdx-doc-procedure.tsx`               | Modify     | Updated `<ol>` container styles                                                                                                                     |
+| `components/doc/doc-procedure.tsx`                   | **Delete** | Replaced by MDX component path                                                                                                                      |
+| `components/mdx-components.tsx`                      | Modify     | Remove `DocProcedure` import/alias, remove `StepDescription`/`Desc` import/alias                                                                    |
+| `content/docs/dl20w_sma.mdx`                         | Modify     | Remove all `<Desc>` wrapper tags                                                                                                                    |
+| `components/doc/doc-image.test.tsx`                  | Create     | Tests for new thumbnail styles                                                                                                                      |
+| `components/doc/mdx-doc-procedure-step.test.tsx`     | Create     | Tests for Desc-free rendering and new layout                                                                                                        |
 
 ---
 
 ## Task 1: DocImage — visual polish
 
 **Files:**
+
 - Modify: `components/doc/doc-image.tsx`
 - Create: `components/doc/doc-image.test.tsx`
 
@@ -67,6 +68,7 @@ describe('DocImage', () => {
 ```bash
 npx vitest run components/doc/doc-image.test.tsx
 ```
+
 Expected: FAIL — `rounded-lg` not found on current component.
 
 - [ ] **Step 3: Implement new DocImage**
@@ -75,11 +77,7 @@ Replace the full content of `components/doc/doc-image.tsx`:
 
 ```tsx
 import React from 'react';
-import {
-    AlertDialog, AlertDialogCancel, AlertDialogContent,
-    AlertDialogDescription, AlertDialogFooter, AlertDialogHeader,
-    AlertDialogTitle, AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { ZoomIn } from 'lucide-react';
 import Image from 'next/image';
 
@@ -97,13 +95,7 @@ export async function DocImage(props: DocImageProps) {
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <div className="group relative inline-block cursor-pointer rounded-lg overflow-hidden border border-indigo-200 shadow-[0_2px_8px_rgba(99,102,241,0.15)] dark:border-indigo-900">
-                        <Image
-                            src={props.src}
-                            alt={props.alt || ''}
-                            width={props.triggerImageSize}
-                            height={props.triggerImageSize}
-                            className="block"
-                        />
+                        <Image src={props.src} alt={props.alt || ''} width={props.triggerImageSize} height={props.triggerImageSize} className="block" />
                         <div className="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/10 transition-colors duration-200 flex items-center justify-center">
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-white/90 dark:bg-slate-800/90 rounded-full w-8 h-8 flex items-center justify-center shadow">
                                 <ZoomIn className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
@@ -129,6 +121,7 @@ export async function DocImage(props: DocImageProps) {
 ```
 
 Key changes from current:
+
 - `AlertDialogTrigger asChild` — delegates click to the inner `div`
 - `group` on the wrapper div enables `group-hover:` on children
 - Rounded corners, indigo border and shadow on trigger div
@@ -140,6 +133,7 @@ Key changes from current:
 ```bash
 npx vitest run components/doc/doc-image.test.tsx
 ```
+
 Expected: PASS (2 tests).
 
 - [ ] **Step 5: Commit**
@@ -154,6 +148,7 @@ git commit -m "feat: redesign DocImage thumbnail with indigo border, shadow, and
 ## Task 2: MdxDocProcedureStep — new styles + remove Desc
 
 **Files:**
+
 - Modify: `components/doc/mdx-doc-procedure-step.tsx`
 - Create: `components/doc/mdx-doc-procedure-step.test.tsx`
 
@@ -168,29 +163,17 @@ import '@testing-library/jest-dom/vitest';
 import { MdxDocProcedureStep } from './mdx-doc-procedure-step';
 
 // Wrap in <ol> with counter-reset so CSS counters work
-const Wrapper = ({ children }: { children: React.ReactNode }) => (
-    <ol style={{ counterReset: 'step 0' }}>{children}</ol>
-);
-const SubstepWrapper = ({ children }: { children: React.ReactNode }) => (
-    <ol style={{ counterReset: 'substep 0' }}>{children}</ol>
-);
+const Wrapper = ({ children }: { children: React.ReactNode }) => <ol style={{ counterReset: 'step 0' }}>{children}</ol>;
+const SubstepWrapper = ({ children }: { children: React.ReactNode }) => <ol style={{ counterReset: 'substep 0' }}>{children}</ol>;
 
 describe('MdxDocProcedureStep', () => {
     it('renders step title', () => {
-        render(
-            <MdxDocProcedureStep text="Prepare the resistors">Direct text</MdxDocProcedureStep>,
-            { wrapper: Wrapper }
-        );
+        render(<MdxDocProcedureStep text="Prepare the resistors">Direct text</MdxDocProcedureStep>, { wrapper: Wrapper });
         expect(screen.getByText('Prepare the resistors')).toBeDefined();
     });
 
     it('renders direct text children as description without Desc wrapper', () => {
-        render(
-            <MdxDocProcedureStep text="Step title">
-                This is the description text written directly.
-            </MdxDocProcedureStep>,
-            { wrapper: Wrapper }
-        );
+        render(<MdxDocProcedureStep text="Step title">This is the description text written directly.</MdxDocProcedureStep>, { wrapper: Wrapper });
         expect(screen.getByText('This is the description text written directly.')).toBeDefined();
     });
 
@@ -208,10 +191,7 @@ describe('MdxDocProcedureStep', () => {
     it('does not render Desc wrapper content when given direct children', () => {
         // Regression: previously children had to be wrapped in <Desc>.
         // This confirms plain text renders directly without any wrapper.
-        const { container } = render(
-            <MdxDocProcedureStep text="Step">Plain child text</MdxDocProcedureStep>,
-            { wrapper: Wrapper }
-        );
+        const { container } = render(<MdxDocProcedureStep text="Step">Plain child text</MdxDocProcedureStep>, { wrapper: Wrapper });
         expect(container.textContent).toContain('Plain child text');
     });
 });
@@ -222,6 +202,7 @@ describe('MdxDocProcedureStep', () => {
 ```bash
 npx vitest run components/doc/mdx-doc-procedure-step.test.tsx
 ```
+
 Expected: FAIL — `StepDescription` test fails (it currently exists), and the direct-text test may fail depending on current render path.
 
 - [ ] **Step 3: Implement new MdxDocProcedureStep**
@@ -271,9 +252,7 @@ export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, 
                 <div>
                     <h4 className="text-sm font-semibold text-violet-900 mb-2 dark:text-violet-200">{text}</h4>
                     <div className="flex flex-col md:flex-row md:items-start gap-3">
-                        <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
-                            {descriptionChildren}
-                        </div>
+                        <div className="prose prose-slate prose-sm dark:prose-invert flex-1">{descriptionChildren}</div>
                         {image && (
                             <div className="flex-shrink-0">
                                 <DocImage title={text} src={image} alt={text} triggerImageSize={80} popupImageSize={1000} />
@@ -302,9 +281,7 @@ export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, 
             <div>
                 <h3 className="text-base font-bold text-indigo-950 mb-2 mt-1 dark:text-slate-100">{text}</h3>
                 <div className="flex flex-col md:flex-row md:items-start gap-3">
-                    <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
-                        {descriptionChildren}
-                    </div>
+                    <div className="prose prose-slate prose-sm dark:prose-invert flex-1">{descriptionChildren}</div>
                     {image && (
                         <div className="flex-shrink-0">
                             <DocImage title={text} src={image} alt={text} triggerImageSize={120} popupImageSize={1000} />
@@ -319,6 +296,7 @@ export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, 
 ```
 
 Changes from current:
+
 - `StepDescription` export **removed** — no more `Desc` wrapper
 - Child dispatch simplified: everything that isn't `MdxDocProcedureSubstepGroup` goes into `descriptionChildren`
 - All debug `console.log` statements removed
@@ -331,6 +309,7 @@ Changes from current:
 ```bash
 npx vitest run components/doc/mdx-doc-procedure-step.test.tsx
 ```
+
 Expected: PASS (4 tests).
 
 - [ ] **Step 5: Commit**
@@ -345,6 +324,7 @@ git commit -m "feat: redesign MdxDocProcedureStep with gradient badges, fading c
 ## Task 3: MdxDocProcedureSubstepGroup — new rail styles
 
 **Files:**
+
 - Modify: `components/doc/mdx-doc-procedure-substep-group.tsx`
 
 - [ ] **Step 1: Implement**
@@ -361,10 +341,7 @@ export interface MdxDocProcedureSubstepGroupProps {
 
 export const MdxDocProcedureSubstepGroup: React.FC<MdxDocProcedureSubstepGroupProps> = ({ children }) => {
     return (
-        <ol
-            className="relative mt-4 border-l-2 border-violet-100 pl-4 dark:border-violet-900/40"
-            style={{ counterReset: 'substep 0' }}
-        >
+        <ol className="relative mt-4 border-l-2 border-violet-100 pl-4 dark:border-violet-900/40" style={{ counterReset: 'substep 0' }}>
             {React.Children.map(children, (child) => {
                 if (React.isValidElement(child) && child.type === MdxDocProcedureStep) {
                     return React.cloneElement(child, { isSubstep: true } as React.Attributes);
@@ -384,6 +361,7 @@ Changes from current: `space-y-2 mt-4` replaced with `mt-4 border-l-2 border-vio
 ```bash
 npx vitest run
 ```
+
 Expected: All previous tests still PASS.
 
 - [ ] **Step 3: Commit**
@@ -398,6 +376,7 @@ git commit -m "feat: add violet left-rail border to substep group"
 ## Task 4: MdxDocProcedure — container styles
 
 **Files:**
+
 - Modify: `components/doc/mdx-doc-procedure.tsx`
 
 - [ ] **Step 1: Implement**
@@ -420,9 +399,7 @@ export const MdxDocProcedure: React.FC<MdxDocProcedureProps> = (props) => {
     return (
         <div>
             <DocSection title={props.title}>
-                {props.description && (
-                    <div className="mb-4 prose prose-slate prose-sm dark:prose-invert">{props.description}</div>
-                )}
+                {props.description && <div className="mb-4 prose prose-slate prose-sm dark:prose-invert">{props.description}</div>}
                 <ol className="relative mb-8" style={{ counterReset: 'step 0' }}>
                     {React.Children.map(props.children, (child) => {
                         if (React.isValidElement(child) && child.type === MdxDocProcedureStep) {
@@ -443,6 +420,7 @@ Changes from current: removes `space-y-2` (spacing is now managed by `pb-8` on e
 ```bash
 npx vitest run
 ```
+
 Expected: PASS.
 
 - [ ] **Step 3: Commit**
@@ -457,6 +435,7 @@ git commit -m "refactor: update MdxDocProcedure container styles, remove stale i
 ## Task 5: Delete DocProcedure + clean up mdx-components.tsx
 
 **Files:**
+
 - Delete: `components/doc/doc-procedure.tsx`
 - Modify: `components/mdx-components.tsx`
 
@@ -465,6 +444,7 @@ git commit -m "refactor: update MdxDocProcedure container styles, remove stale i
 ```bash
 grep -r "DocProcedure" content/
 ```
+
 Expected: no output (it's only registered in `mdx-components.tsx`, never used in `.mdx` files).
 
 - [ ] **Step 2: Delete the file**
@@ -478,17 +458,20 @@ rm components/doc/doc-procedure.tsx
 Make these three edits to `components/mdx-components.tsx`:
 
 **Remove line 22** (DocProcedure import):
+
 ```diff
 - import { DocProcedure } from '@/components/doc/doc-procedure';
 ```
 
 **Remove StepDescription from line 31**:
+
 ```diff
 - import { MdxDocProcedureStep, StepDescription } from '@/components/doc/mdx-doc-procedure-step';
 + import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 ```
 
 **Remove lines 138 and 150** from the `components` object:
+
 ```diff
 - DocProcedure,
   ...
@@ -500,6 +483,7 @@ Make these three edits to `components/mdx-components.tsx`:
 ```bash
 npx tsc --noEmit
 ```
+
 Expected: no errors.
 
 - [ ] **Step 5: Run tests**
@@ -507,6 +491,7 @@ Expected: no errors.
 ```bash
 npx vitest run
 ```
+
 Expected: PASS.
 
 - [ ] **Step 6: Commit**
@@ -522,6 +507,7 @@ git commit -m "refactor: delete legacy DocProcedure component and remove Desc/St
 ## Task 6: Update dl20w_sma.mdx — remove Desc tags
 
 **Files:**
+
 - Modify: `content/docs/dl20w_sma.mdx`
 
 - [ ] **Step 1: Confirm Desc usage in the project**
@@ -529,6 +515,7 @@ git commit -m "refactor: delete legacy DocProcedure component and remove Desc/St
 ```bash
 grep -rn "<Desc>" content/
 ```
+
 Expected: only `content/docs/dl20w_sma.mdx` appears.
 
 - [ ] **Step 2: Remove all `<Desc>` and `</Desc>` tags**
@@ -548,6 +535,7 @@ There are approximately 15 `<Desc>` blocks in this file. Remove all of them.
 ```bash
 grep -n "<Desc\|</Desc>" content/docs/dl20w_sma.mdx
 ```
+
 Expected: no output.
 
 - [ ] **Step 4: Build to verify**
@@ -555,6 +543,7 @@ Expected: no output.
 ```bash
 npm run build
 ```
+
 Expected: successful build with no MDX compilation errors.
 
 - [ ] **Step 5: Commit**
@@ -573,6 +562,7 @@ git commit -m "docs: remove Desc wrapper tags from dl20w_sma.mdx"
 ```bash
 npx vitest run
 ```
+
 Expected: all tests PASS.
 
 - [ ] **Step 2: Confirm no remaining Desc usage anywhere**
@@ -580,6 +570,7 @@ Expected: all tests PASS.
 ```bash
 grep -rn "StepDescription\|<Desc" --include="*.tsx" --include="*.ts" --include="*.mdx" .
 ```
+
 Expected: no output.
 
 - [ ] **Step 3: Start dev server and visually verify the assembly guide**
@@ -589,6 +580,7 @@ npm run dev
 ```
 
 Navigate to the assembly guide doc page (the `dl20w_sma` route). Verify:
+
 - Step numbers show as indigo→violet gradient circles
 - Connector lines fade gracefully between steps
 - Substep badges show violet-outlined circles with letters a, b, c…

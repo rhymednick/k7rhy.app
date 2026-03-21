@@ -67,7 +67,9 @@ export function SiteFooter() {
 
                 {/* Bottom bar */}
                 <div className="mt-8 flex flex-col items-center justify-between gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row">
-                    <p>Copyright {copyrightYear} {siteConfig.name}. All rights reserved.</p>
+                    <p>
+                        Copyright {copyrightYear} {siteConfig.name}. All rights reserved.
+                    </p>
                     <p>
                         Version{' '}
                         {buildMetadata.commitUrl ? (

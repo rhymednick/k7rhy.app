@@ -13,9 +13,7 @@ export const MdxDocProcedure: React.FC<MdxDocProcedureProps> = (props) => {
     return (
         <div>
             <DocSection title={props.title}>
-                {props.description && (
-                    <div className="mb-4 prose prose-slate prose-sm dark:prose-invert">{props.description}</div>
-                )}
+                {props.description && <div className="mb-4 prose prose-slate prose-sm dark:prose-invert">{props.description}</div>}
                 <ol className="relative mb-8" style={{ counterReset: 'step 0' }}>
                     {React.Children.map(props.children, (child) => {
                         if (React.isValidElement(child) && child.type === MdxDocProcedureStep) {

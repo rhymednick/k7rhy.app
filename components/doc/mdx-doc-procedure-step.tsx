@@ -40,9 +40,7 @@ export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, 
                 <div>
                     <h4 className="text-sm font-semibold text-violet-900 mb-2 dark:text-violet-200">{text}</h4>
                     <div className="flex flex-col md:flex-row md:items-start gap-3">
-                        <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
-                            {descriptionChildren}
-                        </div>
+                        <div className="prose prose-slate prose-sm dark:prose-invert flex-1">{descriptionChildren}</div>
                         {image && (
                             <div className="flex-shrink-0">
                                 <DocImage title={text} src={image} alt={text} triggerImageSize={80} popupImageSize={1000} />
@@ -71,9 +69,7 @@ export const MdxDocProcedureStep: React.FC<MdxDocProcedureStepProps> = ({ text, 
             <div>
                 <h3 className="text-base font-bold text-indigo-950 mb-2 mt-1 dark:text-slate-100">{text}</h3>
                 <div className="flex flex-col md:flex-row md:items-start gap-3">
-                    <div className="prose prose-slate prose-sm dark:prose-invert flex-1">
-                        {descriptionChildren}
-                    </div>
+                    <div className="prose prose-slate prose-sm dark:prose-invert flex-1">{descriptionChildren}</div>
                     {image && (
                         <div className="flex-shrink-0">
                             <DocImage title={text} src={image} alt={text} triggerImageSize={120} popupImageSize={1000} />
