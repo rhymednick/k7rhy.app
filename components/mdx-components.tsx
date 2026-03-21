@@ -19,7 +19,6 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DocProcedure } from '@/components/doc/doc-procedure';
 import { DocSection } from '@/components/doc/doc-section';
 import { DocImage } from '@/components/doc/doc-image';
 import { DocIndexCard } from '@/components/doc/doc-index-card';
@@ -28,7 +27,7 @@ import CodeBlock from '@/components/code-block';
 import DocAlert from './doc/doc-alert';
 import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { MdxDocProcedureStep, StepDescription } from '@/components/doc/mdx-doc-procedure-step';
+import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
 import { ArrowUpDown, CircleHelp } from 'lucide-react';
 
@@ -135,7 +134,6 @@ const components: MDXComponents = {
     LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn('flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10', className)} {...props} />,
     DocImage,
     DocIndexCard,
-    DocProcedure,
     DocSection,
     PowerCalculator,
     DocAlert,
@@ -147,7 +145,6 @@ const components: MDXComponents = {
     TableRow,
     Proc: MdxDocProcedure,
     ProcStep: MdxDocProcedureStep,
-    Desc: StepDescription,
     ProcSubgroup: MdxDocProcedureSubstepGroup,
     ArrowUpDown,
     CircleHelp,

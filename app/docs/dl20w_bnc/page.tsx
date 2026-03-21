@@ -3,7 +3,6 @@ import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 import { ArrowUpDown } from 'lucide-react';
 
-import { DocProcedure, DocProcedureProps } from '@/components/doc/doc-procedure';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DocImage } from '@/components/doc/doc-image';
 import Link from 'next/link';
@@ -85,7 +84,7 @@ function buildInventoryTable() {
         </div>
     );
 }
-const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
+const docProcedureSteps: Array<any> = [
     {
         text: 'Prepare your workspace',
         description: 'Find a clean, well-lit area to work. Collect your kit components and tools. You will need the following:',
@@ -213,11 +212,6 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     },
 ];
 
-const docProcedure: DocProcedureProps = {
-    title: 'Assembly Procedure',
-    docProcedureSteps: docProcedureSteps,
-};
-
 const Page = () => {
     return (
         <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
@@ -239,7 +233,6 @@ const Page = () => {
         </div>
       </div> */}
             <div id="#assembly_instructions" />
-            <DocProcedure {...docProcedure} />
             <DocSection title="Operating Instructions" bookmarkId="operating_instructions">
                 <div>A dummy load is a device used to simulate an electrical load (like an antenna). In amateur radio, this allows you to safely test and calibrate equipment without broadcasting signals. This dummy load is a resistor array designed to dissipate power without radiating radio frequency (RF) signals. It is rated for 20 watts of power (continuous operation), but it can handle more for short periods.</div>
                 <div className="mt-2">To use the dummy load, connect it to your radio's antenna port using a BNC cable or BNC cable adapter. The first time you use it, start with low power and verify that the dummy load is working correctly. You will know it's working correctly because the SWR will stay under 1.5 for HF frequencies.</div>

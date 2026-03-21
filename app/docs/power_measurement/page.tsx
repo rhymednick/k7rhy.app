@@ -3,7 +3,6 @@
 import React from 'react';
 import 'katex/dist/katex.min.css';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
-import { DocProcedure, DocProcedureProps } from '@/components/doc/doc-procedure';
 import { BlockMath } from 'react-katex';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
@@ -19,7 +18,7 @@ const DocSubTitle = 'How to measure RF power using a multimeter on dummy load ki
 
 const breadcrumbItems = [{ href: '/docs', label: 'Docs' }, { label: DocTitle }];
 
-const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
+const docProcedureSteps: Array<any> = [
     {
         text: 'Configure your multimeter',
         description: 'Set your multimeter to measure DC voltage. If you keep your transmitted power below 20W,' + ' you will not exceed 35V. Verify that your multimeter is set to read in the correct voltage range.',
@@ -54,11 +53,6 @@ const docProcedureSteps: DocProcedureProps['docProcedureSteps'] = [
     },
 ];
 
-const docProcedure: DocProcedureProps = {
-    title: 'Measurement Procedure',
-    docProcedureSteps: docProcedureSteps,
-};
-
 const Page = () => {
     return (
         <DocPage title={DocTitle} subTitle={DocSubTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
@@ -71,8 +65,6 @@ const Page = () => {
                     </div>
                 </div>
             </div>
-
-            <DocProcedure {...docProcedure} />
 
             <DocSection title="Understanding the Power Calculation">
                 <div>Power is calculated according to Ohm's Law, which states that power is equal to the square of the voltage divided by the resistance.</div>
