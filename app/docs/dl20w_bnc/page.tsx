@@ -1,13 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
-import { ArrowUpDown } from 'lucide-react';
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DocImage } from '@/components/doc/doc-image';
 import Link from 'next/link';
 import { DocSection } from '@/components/doc/doc-section';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import DocAlert, { Level } from '@/components/doc/doc-alert';
 import { MdxDocProcedure } from '@/components/doc/mdx-doc-procedure';
 import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
@@ -133,11 +131,9 @@ const Page = () => {
                         </MdxDocProcedureStep>
                         <MdxDocProcedureStep text="Insert resistors R1-R4" image="/images/dl20w_bnc/guide/bend-back.jpg">
                             Insert the first four resistors into the PCB at the location marked R1-R4. The resistors can go in either way; there is no polarity to worry about. Once installed, bend the leads outward slightly to hold the resistors in place. The resistors should be flush with the PCB and on the printed side of the board.
-                            <Alert>
-                                <ArrowUpDown className="h-4 w-4" />
-                                <AlertTitle>Understanding Your Options - Resistor Height</AlertTitle>
-                                <AlertDescription>There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the air flowing around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the device at higher frequencies and increasing its efficiency. This is a trade-off that I made based on my personal preferences; you are welcome to make other choices.</AlertDescription>
-                            </Alert>
+                            <DocAlert title="Understanding Your Options - Resistor Height" level={Level.Choice}>
+                                There is a balancing act in play here. By placing the resistors flush with the PCB, we're limiting the air flowing around them, which limits the amount of heat/power they're able to passively dissipate. However, by keeping the resistor leads short, we're reducing the parasitic inductance in the circuit, thereby lowering the SWR of the device at higher frequencies and increasing its efficiency. This is a trade-off that I made based on my personal preferences; you are welcome to make other choices.
+                            </DocAlert>
                         </MdxDocProcedureStep>
                         <MdxDocProcedureStep text="Solder the resistors" image="/images/dl20w_bnc/guide/four-at-a-time.jpg">
                             Hold the soldering iron to the pad and the lead of the resistor on the back of the PCB. Touch the solder to the joint, not the iron. The solder will flow onto the pad and the lead. Remove the solder first, then the iron. The joint should be shiny and smooth. Repeat this process for all the resistors.
