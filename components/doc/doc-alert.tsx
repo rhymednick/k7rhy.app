@@ -71,7 +71,7 @@ const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon,
     const config = levelConfig[level];
     const iconName = icon ?? config.iconName;
     const rawIcon = lucideIcons[iconName];
-    const IconComponent = typeof rawIcon === 'function' ? (rawIcon as React.ElementType) : null;
+    const IconComponent = rawIcon != null ? (rawIcon as React.ElementType) : null;
 
     const titleClass = overrideTitleClass ? overrideTitleClass : cn('font-semibold text-sm text-gray-900 dark:text-slate-100', appendTitleClass);
     const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : cn('prose space-y-2 text-gray-500 dark:text-slate-400', appendDescriptionClass);
