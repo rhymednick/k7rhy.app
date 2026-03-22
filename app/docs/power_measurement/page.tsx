@@ -6,8 +6,6 @@ import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 import { BlockMath } from 'react-katex';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Separator } from '@/components/ui/separator';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { TriangleAlert } from 'lucide-react';
 import Image from 'next/image';
 import PowerCalculatorSheet from '@/components/features/power-calculator-sheet';
 import { DocSection } from '@/components/doc/doc-section';
@@ -45,11 +43,9 @@ const Page = () => {
                 </MdxDocProcedureStep>
                 <MdxDocProcedureStep text="Transmit a signal and measure the voltage">
                     Transmit a signal from your radio and measure the voltage on the multimeter. The voltage may take a few seconds to stabilize.
-                    <Alert variant="destructive">
-                        <TriangleAlert className="h-4 w-4" />
-                        <AlertTitle>Do not exceed 20W</AlertTitle>
-                        <AlertDescription>The dummy load can handle momentary loads above 20W, but the diode which allows you to measure power as a voltage cannot handle arbitrary large voltages. While there is a large buffer zone factored into the design, you will damage the diode if you go to far. The failure point varies based on the RF frequency. Keep the power below 20W and you won't risk damaging your equipment.</AlertDescription>
-                    </Alert>
+                    <DocAlert title="Do not exceed 20W" level={Level.Critical}>
+                        The dummy load can handle momentary loads above 20W, but the diode which allows you to measure power as a voltage cannot handle arbitrary large voltages. While there is a large buffer zone factored into the design, you will damage the diode if you go to far. The failure point varies based on the RF frequency. Keep the power below 20W and you won't risk damaging your equipment.
+                    </DocAlert>
                 </MdxDocProcedureStep>
                 <MdxDocProcedureStep text="Convert the voltage to power">
                     <div className="-mt-2">
