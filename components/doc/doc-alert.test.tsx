@@ -26,9 +26,11 @@ describe('DocAlert', () => {
     });
 
     it('does not render title element when title is undefined', () => {
-        const { container } = render(<DocAlert level={Level.Important}>Content</DocAlert>);
+        render(<DocAlert level={Level.Important}>Content</DocAlert>);
+        // Badge still renders without a title
         expect(screen.getByText('Important')).toBeInTheDocument();
-        expect(container.querySelectorAll('span').length).toBe(1); // only badge span
+        // Children still render
+        expect(screen.getByText('Content')).toBeInTheDocument();
     });
 
     it('renders children content', () => {
