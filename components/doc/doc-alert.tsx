@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import * as lucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -23,52 +22,81 @@ export interface DocAlertProps {
     children?: React.ReactNode | string;
 }
 
-const selectIcon = (level?: Level): keyof typeof lucideIcons => {
-    switch (level) {
-        case Level.Important:
-            return 'Info';
-        case Level.Warning:
-            return 'AlertTriangle';
-        case Level.Critical:
-            return 'Ban';
-        case Level.Question:
-            return 'HelpCircle'; // Updated to a correct icon name
-        case Level.Choice:
-            return 'ArrowLeftRight';
-        case Level.Default:
-        default:
-            return 'Terminal';
-    }
+const levelConfig: Record<Level, { borderColor: string; iconColor: string; badgeClass: string; badgeLabel: string; iconName: keyof typeof lucideIcons }> = {
+    [Level.Default]: {
+        borderColor: 'border-l-gray-500',
+        iconColor: 'text-gray-500',
+        badgeClass: 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
+        badgeLabel: 'Note',
+        iconName: 'Terminal',
+    },
+    [Level.Important]: {
+        borderColor: 'border-l-blue-500',
+        iconColor: 'text-blue-500',
+        badgeClass: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+        badgeLabel: 'Important',
+        iconName: 'Info',
+    },
+    [Level.Warning]: {
+        borderColor: 'border-l-amber-500',
+        iconColor: 'text-amber-500',
+        badgeClass: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+        badgeLabel: 'Caution',
+        iconName: 'AlertTriangle',
+    },
+    [Level.Critical]: {
+        borderColor: 'border-l-red-500',
+        iconColor: 'text-red-500',
+        badgeClass: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+        badgeLabel: 'Critical',
+        iconName: 'Ban',
+    },
+    [Level.Question]: {
+        borderColor: 'border-l-purple-500',
+        iconColor: 'text-purple-500',
+        badgeClass: 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+        badgeLabel: 'FAQ',
+        iconName: 'HelpCircle',
+    },
+    [Level.Choice]: {
+        borderColor: 'border-l-green-500',
+        iconColor: 'text-green-500',
+        badgeClass: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+        badgeLabel: 'Your Choice',
+        iconName: 'ArrowLeftRight',
+    },
 };
 
 const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon, overrideTitleClass, appendTitleClass, overrideDescriptionClass, appendDescriptionClass, children }) => {
-    const iconName = icon || selectIcon(level);
-    const IconComponent = lucideIcons[iconName] as React.ElementType; // Ensure the component is treated as a valid React component
-    const Placeholder = lucideIcons['Terminal'] as React.ElementType; // Ensure the placeholder is treated as a valid React component
+    const config = levelConfig[level];
+    const iconName = icon ?? config.iconName;
+    const IconComponent = lucideIcons[iconName] as React.ElementType;
 
-    const titleColor = {
-        [Level.Important]: 'text-blue-500',
-        [Level.Warning]: 'text-yellow-500',
-        [Level.Critical]: 'text-red-500',
-        [Level.Question]: 'text-purple-500',
-        [Level.Choice]: 'text-green-500',
-        [Level.Default]: 'text-gray-900 dark:text-slate-200',
-    };
-
-    const titleClass = overrideTitleClass ? overrideTitleClass : `mb-2 ${titleColor[level]} ${appendTitleClass || ''}`;
-
-    const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : `prose space-y-2 ${appendDescriptionClass || ''}`;
+    const titleClass = overrideTitleClass ? overrideTitleClass : cn('font-semibold text-sm text-gray-900 dark:text-slate-100', appendTitleClass);
+    const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : cn('prose space-y-2 text-gray-500 dark:text-slate-400', appendDescriptionClass);
 
     return (
-        <Alert>
-            {IconComponent ? <IconComponent className="mr-2 h-4 w-4" /> : <Placeholder className="mr-2 h-4 w-4 invisible" />}
-            <div>
-                <AlertTitle className={titleClass}>{title}</AlertTitle>
-                <AlertDescription>
-                    <div className={descriptionClass}>{children}</div>
-                </AlertDescription>
+        <div
+            className={cn(
+                'flex gap-3 items-start',
+                'bg-white dark:bg-slate-900',
+                'border border-gray-200 dark:border-slate-700',
+                'border-l-4',
+                config.borderColor,
+                'rounded-lg shadow-sm p-4',
+            )}
+        >
+            {IconComponent && <IconComponent className={cn('w-[18px] h-[18px] flex-shrink-0 mt-0.5', config.iconColor)} />}
+            <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap mb-1">
+                    <span className={cn('rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide flex-shrink-0', config.badgeClass)}>
+                        {config.badgeLabel}
+                    </span>
+                    {title && <span className={titleClass}>{title}</span>}
+                </div>
+                <div className={descriptionClass}>{children}</div>
             </div>
-        </Alert>
+        </div>
     );
 };
 
