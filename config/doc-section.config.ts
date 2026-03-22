@@ -30,28 +30,28 @@ export interface DocSectionConfig {
 export default {
     docSectionFormats: [
         {
-            level: 1, //H1
-            style: 'text-3xl font-bold tracking-tight pb-2 md:pb-6',
+            level: 1,
+            style: 'text-2xl font-bold tracking-tight pb-3 mb-1 border-b border-gray-200 dark:border-slate-700 text-gray-900 dark:text-slate-100',
         },
         {
-            level: 2, //H2
-            style: 'text-2xl font-bold tracking-tight pb-2 pt-2 text-foreground/90',
+            level: 2,
+            style: 'text-lg font-semibold tracking-tight mt-6 mb-1 text-gray-700 dark:text-slate-200',
         },
         {
-            level: 3, //H3
-            style: 'text-xl font-bold tracking-tight pt-2 text-foreground/80',
+            level: 3,
+            style: 'text-base font-semibold tracking-tight mt-4 mb-1 text-gray-600 dark:text-slate-300',
         },
         {
-            level: 4, //H4
-            style: 'text-l font-bold tracking-tight pt-2 text-foreground/70',
+            level: 4,
+            style: 'text-sm font-semibold tracking-tight mt-3 text-gray-500 dark:text-slate-400',
         },
         {
-            level: 5, //H5
-            style: 'text-l font-bold tracking-tight pt-2 text-foreground/60',
+            level: 5,
+            style: 'text-sm font-medium tracking-tight mt-3 text-gray-500 dark:text-slate-400',
         },
         {
-            level: 6, //H6
-            style: 'text-l font-bold italic tracking-tight pt-2 text-foreground/60',
+            level: 6,
+            style: 'text-sm font-medium italic tracking-tight mt-3 text-gray-400 dark:text-slate-500',
         },
     ],
 } as DocSectionConfig;
