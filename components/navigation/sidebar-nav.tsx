@@ -49,7 +49,7 @@ export function DocsSidebarNavItems({ items, pathname }: DocsSidebarNavItemsProp
             return (
                 <Link key={index} href={item.href} className={cn('group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline', pathname === item.href ? 'font-medium text-foreground' : 'text-muted-foreground')} target={item.external ? '_blank' : ''} rel={item.external ? 'noreferrer' : ''}>
                     {item.title}
-                    {item.label && <span className="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline">{item.label}</span>}
+                    {item.label && <span className="ml-2 rounded-md bg-sky-500 px-1.5 py-0.5 text-xs leading-none text-white no-underline group-hover:no-underline">{item.label}</span>}
                 </Link>
             );
         } else {
