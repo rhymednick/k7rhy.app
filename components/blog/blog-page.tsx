@@ -9,6 +9,7 @@ interface BlogPageProps {
     date: string;
     tags?: string[];
     children?: React.ReactNode;
+    nav?: React.ReactNode;
 }
 
 export function BlogPage(props: BlogPageProps) {
@@ -62,6 +63,7 @@ export function BlogPage(props: BlogPageProps) {
                             </DocSection>
                         </article>
                     </main>
+                    {props.nav}
                 </div>
             </div>
         </div>
