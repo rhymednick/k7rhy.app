@@ -13,6 +13,7 @@ import { GuitarControls } from './guitar-controls';
 import { GuitarPurchase } from './guitar-purchase';
 import { GuitarRelatedPosts } from './guitar-related-posts';
 import { Guitar as GuitarIcon, Info, BookOpen } from 'lucide-react';
+import { IconBadge } from '@/components/shared/icon-badge';
 
 interface GuitarPageProps {
     guitar: Guitar;
@@ -37,14 +38,12 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
             <div className="space-y-6">
                 {/* Enhanced Header Section */}
                 <div className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-slate-50 via-white to-slate-50 px-6 py-8 shadow-lg ring-1 ring-black/5 dark:border-slate-800 dark:from-slate-950/70 dark:via-slate-900/50 dark:to-slate-950/70 dark:ring-white/10">
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-blue-100/50 via-transparent to-purple-100/50 dark:from-blue-900/10 dark:via-transparent dark:to-purple-900/10" />
-                    <div className="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-blue-400/20 blur-3xl dark:bg-blue-500/10" />
-                    <div className="absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-purple-400/20 blur-3xl dark:bg-purple-500/10" />
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-100/50 via-transparent to-indigo-100/50 dark:from-sky-900/10 dark:via-transparent dark:to-indigo-900/10" />
+                    <div className="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl dark:bg-sky-500/10" />
+                    <div className="absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-indigo-400/20 blur-3xl dark:bg-indigo-500/10" />
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
-                                <GuitarIcon className="h-6 w-6 text-white" />
-                            </div>
+                            <IconBadge icon={GuitarIcon} variant="guitar" size="lg" />
                             <div>
                                 <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{guitar.name}</h1>
                                 <Badge variant="secondary" className="mt-2">
@@ -62,7 +61,7 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                     {/* Left: Images */}
                     <div>
                         {guitar.images.length > 0 && (
-                            <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                            <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                                 <CardContent className="p-6">
                                     <GuitarImageGallery images={guitar.images} alt={guitar.name} />
                                 </CardContent>
@@ -72,20 +71,20 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
 
                     {/* Right: Compact specs, pickups, controls */}
                     <div className="space-y-4">
-                        <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                        <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                             <GuitarSpecs guitar={guitar} />
                         </Card>
-                        <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                        <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                             <GuitarPickups guitar={guitar} />
                         </Card>
-                        <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                        <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                             <GuitarControls guitar={guitar} />
                         </Card>
                     </div>
                 </div>
 
                 {/* Description below the fold */}
-                <Card className="border-2 shadow-md bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-950/50">
+                <Card className="border border-border shadow-md bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-950/50">
                     <CardHeader className="pb-3">
                         <div className="flex items-center gap-2">
                             <Info className="h-5 w-5 text-primary" />
@@ -109,7 +108,7 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
 
                 {/* Related posts */}
                 {relatedPosts.length > 0 && (
-                    <Card className="border-2 shadow-md bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20">
+                    <Card className="border border-border shadow-md bg-gradient-to-br from-sky-50/50 to-indigo-50/50 dark:from-sky-950/20 dark:to-indigo-950/20">
                         <CardHeader className="pb-3">
                             <div className="flex items-center gap-2">
                                 <BookOpen className="h-5 w-5 text-primary" />

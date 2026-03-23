@@ -17,7 +17,7 @@ export function ProductTeaserCard({ product, category }: ProductTeaserCardProps)
 
     return (
         <Link href={`/products/${category}/${product.slug}`}>
-            <Card className="cursor-pointer hover:shadow-lg transition-shadow h-full">
+            <Card className="cursor-pointer hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150 h-full">
                 <CardContent className="p-4">
                     <div className="flex gap-3">
                         <div className="relative w-24 h-24 flex-shrink-0 overflow-hidden rounded-md">

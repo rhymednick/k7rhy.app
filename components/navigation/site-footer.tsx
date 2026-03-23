@@ -3,6 +3,7 @@ import { buildMetadata } from '@/lib/version';
 import React from 'react';
 import Link from 'next/link';
 import { Radio, Github, Linkedin, Facebook, Instagram } from 'lucide-react';
+import { IconBadge } from '@/components/shared/icon-badge';
 
 const socialLinks = [
     { href: siteConfig.links.discord, icon: Radio, label: 'Discord' },
@@ -30,9 +31,7 @@ export function SiteFooter() {
                     {/* Brand */}
                     <div className="sm:col-span-2">
                         <div className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-emerald-600 text-white shadow-sm">
-                                <Radio className="h-5 w-5" />
-                            </div>
+                            <IconBadge icon={Radio} variant="default" size="sm" />
                             <span className="text-lg font-bold text-foreground">{siteConfig.name}</span>
                         </div>
                         <p className="mt-3 max-w-sm text-sm text-muted-foreground">{siteConfig.description}</p>
