@@ -16,7 +16,7 @@ export function BlogCard({ post }: BlogCardProps) {
 
     return (
         <Link href={`/blog/${post._meta.path}`} className="group relative block">
-            <article className="relative flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all group-hover:shadow-md group-hover:scale-[1.02]">
+            <article className="relative flex h-full flex-col overflow-hidden rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all group-hover:border-sky-500 group-hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]">
                 {post.publish === false && (
                     <div className="absolute inset-0 z-20 flex items-center justify-center rounded-xl bg-background/60 backdrop-blur-[2px]">
                         <span className="text-3xl font-bold text-destructive/40">Unpublished</span>
