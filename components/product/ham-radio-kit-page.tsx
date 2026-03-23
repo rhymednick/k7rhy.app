@@ -10,6 +10,7 @@ import { GuitarImageGallery } from './guitar-image-gallery';
 import { ProductRelatedPosts } from './product-related-posts';
 import { ProductPurchase } from './product-purchase';
 import { Radio, Info, BookOpen, Zap, CheckCircle2 } from 'lucide-react';
+import { IconBadge } from '@/components/shared/icon-badge';
 
 interface HamRadioKitPageProps {
     product: Product;
@@ -38,14 +39,12 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
             <div className="space-y-6">
                 {/* Enhanced Header Section */}
                 <div className="relative isolate overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-slate-50 via-white to-slate-50 px-6 py-8 shadow-lg ring-1 ring-black/5 dark:border-slate-800 dark:from-slate-950/70 dark:via-slate-900/50 dark:to-slate-950/70 dark:ring-white/10">
-                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-amber-100/50 via-transparent to-orange-100/50 dark:from-amber-900/10 dark:via-transparent dark:to-orange-900/10" />
-                    <div className="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-amber-400/20 blur-3xl dark:bg-amber-500/10" />
-                    <div className="absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-orange-400/20 blur-3xl dark:bg-orange-500/10" />
+                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-sky-100/50 via-transparent to-emerald-100/50 dark:from-sky-900/10 dark:via-transparent dark:to-emerald-900/10" />
+                    <div className="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full bg-sky-400/20 blur-3xl dark:bg-sky-500/10" />
+                    <div className="absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-emerald-400/20 blur-3xl dark:bg-emerald-500/10" />
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                         <div className="flex items-center gap-4">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg">
-                                <Radio className="h-6 w-6 text-white" />
-                            </div>
+                            <IconBadge icon={Radio} variant="default" size="lg" />
                             <div>
                                 <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{product.name}</h1>
                                 <Badge variant="secondary" className="mt-2">
@@ -59,7 +58,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
 
                 {/* Images */}
                 {product.images.length > 0 && (
-                    <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                    <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                         <CardContent className="p-6">
                             <GuitarImageGallery images={product.images} alt={product.name} />
                         </CardContent>
@@ -68,7 +67,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
 
                 {/* Key Features - only for dummy load */}
                 {isDummyLoad && (
-                    <Card className="border-2 shadow-md hover:shadow-lg transition-shadow bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-amber-950/20 dark:to-orange-950/20">
+                    <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150 bg-gradient-to-br from-sky-50/50 to-emerald-50/50 dark:from-sky-950/20 dark:to-emerald-950/20">
                         <CardHeader className="pb-3">
                             <div className="flex items-center gap-2">
                                 <Zap className="h-5 w-5 text-primary" />
@@ -104,7 +103,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
 
                 {/* Specifications - only for dummy load */}
                 {isDummyLoad && (
-                    <Card className="border-2 shadow-md hover:shadow-lg transition-shadow">
+                    <Card className="border border-border shadow-md hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150">
                         <CardHeader className="pb-3">
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-5 w-5 text-primary" />
@@ -140,7 +139,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                 )}
 
                 {/* Description */}
-                <Card className="border-2 shadow-md bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-950/50">
+                <Card className="border border-border shadow-md bg-gradient-to-br from-slate-50/50 to-white dark:from-slate-900/50 dark:to-slate-950/50">
                     <CardHeader className="pb-3">
                         <div className="flex items-center gap-2">
                             <Info className="h-5 w-5 text-primary" />
@@ -164,7 +163,7 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
 
                 {/* Related posts */}
                 {relatedPosts.length > 0 && (
-                    <Card className="border-2 shadow-md bg-gradient-to-br from-amber-50/50 to-orange-50/50 dark:from-amber-950/20 dark:to-orange-950/20">
+                    <Card className="border border-border shadow-md bg-gradient-to-br from-sky-50/50 to-emerald-50/50 dark:from-sky-950/20 dark:to-emerald-950/20">
                         <CardHeader className="pb-3">
                             <div className="flex items-center gap-2">
                                 <BookOpen className="h-5 w-5 text-primary" />
