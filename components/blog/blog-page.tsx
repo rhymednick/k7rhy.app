@@ -41,7 +41,7 @@ export function BlogPage(props: BlogPageProps) {
                 </div>
             </div>
             <div className="px-4 sm:px-6 md:px-8">
-                <div className="max-w-3xl mx-auto">
+                <div className="max-w-article mx-auto">
                     <main className="lg:gap-10 pb-8">
                         <article className="relative pt-10">
                             {/* <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-200 md:text-3xl ">
