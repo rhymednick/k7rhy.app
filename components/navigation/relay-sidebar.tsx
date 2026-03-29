@@ -14,11 +14,14 @@ export function RelaySidebar({ model }: { model: string }) {
 
     if (!modelNav) return null;
 
+    const modelRootHref = `/docs/relay/${model}`;
+    const isModelRootActive = pathname === modelRootHref;
+
     return (
-        <div className="w-full">
+        <nav aria-label="Relay documentation" className="w-full">
             {/* Platform label — links to model root */}
             <div className="pb-4">
-                <Link href={`/docs/relay/${model}`} className="mb-1 block rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
+                <Link href={modelRootHref} className={cn('mb-1 block rounded-md px-2 py-1 text-xs font-semibold uppercase tracking-wide hover:text-foreground', isModelRootActive ? 'text-foreground' : 'text-muted-foreground')}>
                     Relay · {modelNav.title}
                 </Link>
             </div>
@@ -47,7 +50,7 @@ export function RelaySidebar({ model }: { model: string }) {
                     ← All Documentation
                 </Link>
             </div>
-        </div>
+        </nav>
     );
 }
 
