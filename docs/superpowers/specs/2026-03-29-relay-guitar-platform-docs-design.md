@@ -10,7 +10,7 @@
 
 A multi-page documentation system for the Relay Guitar Platform, starting with the Lipstick model. Designed as a self-contained mini docset within the existing k7rhy.app site, with purpose-built navigation for deep content hierarchies. Built to scale across future Relay models without structural changes.
 
-The documentation philosophy (inherited from the ChatGPT-originated outline) emphasizes **constraints over step-by-step instructions**, **decision points over procedures**, and **builder autonomy** as the end goal.
+The documentation philosophy emphasizes **constraints over step-by-step instructions**, **decision points over procedures**, and **builder autonomy** as the end goal.
 
 ---
 
@@ -34,7 +34,7 @@ MDX files live in `content/relay/` separated from routing:
 ```
 content/relay/
   lipstick/
-    index.mdx                     ← model overview / entry point
+    index.mdx                     ← model overview / entry point (no nav item; loaded at model root)
     planning/
       bom.mdx
       compatibility.mdx
@@ -58,7 +58,9 @@ content/relay/
       professional.mdx
 ```
 
-**MDX frontmatter** (minimal, no redundant fields):
+`index.mdx` is loaded when visiting the model root (`/docs/relay/lipstick`). It does not appear as a nav item — the sidebar's platform label links to this page, but it is not listed under any section.
+
+**MDX frontmatter** (two fields only):
 ```yaml
 ---
 title: 'Print Parameters'
@@ -72,7 +74,7 @@ description: 'Layer height, walls, infill, and orientation settings for Relay Li
 
 ```
 app/docs/relay/
-  page.tsx              → /docs/relay          (platform landing — model picker or redirect)
+  page.tsx              → /docs/relay          (platform landing — redirect while one model exists)
   layout.tsx            → relay sub-layout
   [model]/
     page.tsx            → /docs/relay/lipstick  (loads lipstick/index.mdx)
@@ -82,16 +84,62 @@ app/docs/relay/
 
 One dynamic route handles all pages across all current and future models. Adding a new model requires: content files + nav config entry. No new route files.
 
-**Platform landing behavior:** While only one model exists, `/docs/relay` redirects to `/docs/relay/lipstick`. Once multiple models exist, it renders a model-picker index using `DocIndexCard`.
+**Platform landing** (`app/docs/relay/page.tsx`): Uses `redirect()` from `next/navigation` to send to `/docs/relay/lipstick` while only one model exists. Once multiple models exist, renders a model-picker index using `DocIndexCard`.
+
+**Static params**: Both `[model]/page.tsx` and `[model]/[...slug]/page.tsx` must implement `generateStaticParams`. The nav config is the source of truth for enumerating all valid model+slug combinations:
+
+```typescript
+// [model]/[...slug]/page.tsx
+export function generateStaticParams() {
+  return Object.entries(relayNav).flatMap(([model, modelNav]) =>
+    modelNav.sections.flatMap(section =>
+      section.items.map(item => ({
+        model,
+        slug: item.slug.split('/'),
+      }))
+    )
+  )
+}
+
+// [model]/page.tsx
+export function generateStaticParams() {
+  return Object.keys(relayNav).map(model => ({ model }))
+}
+```
 
 ---
 
 ## Navigation System
 
+**TypeScript types** (add to `types/relay-nav.ts`):
+
+```typescript
+export interface RelayNavItem {
+  title: string
+  slug: string   // relative to model root, e.g. 'printing/parameters'
+}
+
+export interface RelayNavSection {
+  title: string
+  items: RelayNavItem[]
+}
+
+export interface RelayModelNav {
+  title: string
+  sections: RelayNavSection[]
+}
+
+export interface RelayNav {
+  [model: string]: RelayModelNav
+}
+```
+
 **Config** (`config/relay-nav.ts`):
 
 ```typescript
-export const relayNav = {
+import type { RelayNav } from '@/types/relay-nav'
+
+export const relayNav: RelayNav = {
   lipstick: {
     title: 'Lipstick',
     sections: [
@@ -147,11 +195,13 @@ export const relayNav = {
 
 **Sidebar component** (`components/navigation/relay-sidebar.tsx`):
 
-A new component purpose-built for this nesting depth. Shares styling with the existing `sidebar-nav.tsx` but is not a reuse of it. Renders:
-- Platform label: "Relay Guitar Platform"
-- Model heading (future: model selector dropdown when >1 model exists)
-- Section groups with indented page links; current page highlighted
+A new `'use client'` component — client because active-link detection requires `usePathname()`. Renders:
+- Platform label "Relay Guitar Platform" linking to `/docs/relay/lipstick`
+- Model heading (future: dropdown when `Object.keys(relayNav).length > 1`)
+- Section groups with indented page links; current page highlighted via `usePathname()` comparison
 - "← All Documentation" link at bottom to `/docs`
+
+Shares styling with `sidebar-nav.tsx` but is not a reuse of it — purpose-built for this nesting depth.
 
 ---
 
@@ -159,17 +209,52 @@ A new component purpose-built for this nesting depth. Shares styling with the ex
 
 **File:** `app/docs/relay/layout.tsx`
 
-Replaces the generic `/docs/layout.tsx` for all routes under `/docs/relay/`. Structure:
+Next.js App Router nests layouts — the parent `/docs/layout.tsx` will still wrap this layout. The parent layout renders `DocsSidebarNav` (the global docs sidebar). To prevent two sidebars appearing side-by-side, **`/docs/layout.tsx` must be modified** to suppress `DocsSidebarNav` when the current path is under `/docs/relay/`. This is done with `usePathname()` in a client wrapper around the sidebar, or by restructuring the parent layout to accept the sidebar as a slot.
+
+The relay sub-layout structure:
 
 ```
-[Site header — existing]
-[Breadcrumbs: Docs > Relay Guitar > Lipstick > Section > Page]
+[Site header — existing, from root layout]
+[Breadcrumbs — see derivation below]
 ──────────────────────────────────────────────────────────────
  RelaySidebar  │  {children} (MDX content)  │  PageNavigation
-               │                            │  (existing, reused)
+ (client)      │  (RSC)                     │  (client, existing)
 ```
 
-Breadcrumbs are derived from URL segments + nav config titles. No frontmatter field needed for breadcrumbs.
+**Breadcrumb derivation:**
+
+```typescript
+function buildRelayBreadcrumbs(
+  model: string,
+  slug: string[],      // e.g. ['printing', 'parameters']
+  nav: RelayNav
+): Array<{ label: string; href?: string }> {
+  const modelNav = nav[model]
+  const pageSlug = slug.join('/')
+
+  // Find matching nav item to get page title
+  let pageTitle: string | undefined
+  let sectionTitle: string | undefined
+  for (const section of modelNav?.sections ?? []) {
+    const item = section.items.find(i => i.slug === pageSlug)
+    if (item) {
+      pageTitle = item.title
+      sectionTitle = section.title
+      break
+    }
+  }
+
+  return [
+    { label: 'Docs', href: '/docs' },
+    { label: 'Relay Guitar', href: '/docs/relay' },
+    { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
+    ...(sectionTitle ? [{ label: sectionTitle }] : []),  // non-linked
+    { label: pageTitle ?? slug[slug.length - 1] },       // current page, no href
+  ]
+}
+```
+
+For the model root (`slug = []`), breadcrumbs are: Docs > Relay Guitar > Lipstick (current, no href).
 
 ---
 
@@ -177,72 +262,88 @@ Breadcrumbs are derived from URL segments + nav config titles. No frontmatter fi
 
 **Loader** (`lib/relay.ts`):
 
+Returns raw MDX string (after frontmatter is stripped) + typed frontmatter. The page component owns the `<MDXRemote>` render call.
+
 ```typescript
-export async function loadRelayPage(model: string, slug: string[]) {
-  const filePath = path.join(process.cwd(), 'content/relay', model, ...slug) + '.mdx'
-  // falls back to index.mdx for model root
+import fs from 'fs/promises'
+import path from 'path'
+import matter from 'gray-matter'
+
+export interface RelayPageFrontmatter {
+  title: string
+  description: string
+}
+
+export async function loadRelayPage(
+  model: string,
+  slug: string[]   // empty array = model root
+): Promise<{ content: string; frontmatter: RelayPageFrontmatter }> {
+  const segments = slug.length > 0 ? slug : ['index']
+  const filePath = path.join(process.cwd(), 'content/relay', model, ...segments) + '.mdx'
   const source = await fs.readFile(filePath, 'utf8')
-  const { content, data: frontmatter } = matter(source)
-  const mdxSource = await compileMDX({ source: content, options: { parseFrontmatter: false } })
-  return { content: mdxSource, frontmatter }
+  const { content, data } = matter(source)
+  return {
+    content,
+    frontmatter: data as RelayPageFrontmatter,
+  }
 }
 ```
 
-**Rendering:** `next-mdx-remote/rsc` — React Server Components, no client bundle cost.
+**Page component** (`app/docs/relay/[model]/[...slug]/page.tsx`):
+
+```typescript
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import components from '@/components/mdx-components'  // default export, matches existing pattern
+import { loadRelayPage } from '@/lib/relay'
+
+// Next.js 15: params is a Promise — must be awaited
+export default async function RelayPage({ params }: { params: Promise<{ model: string; slug?: string[] }> }) {
+  const { model, slug } = await params
+  const { content } = await loadRelayPage(model, slug ?? [])
+  return <MDXRemote source={content} components={components} />
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ model: string; slug?: string[] }> }) {
+  const { model, slug } = await params
+  const { frontmatter } = await loadRelayPage(model, slug ?? [])
+  return {
+    title: `${frontmatter.title} | Relay Guitar | K7RHY`,
+    description: frontmatter.description,
+    openGraph: { title: frontmatter.title, description: frontmatter.description },
+  }
+}
+```
+
+**Note:** `next-mdx-remote` is already installed in this project. No new dependency needed.
 
 ---
 
 ## Global Components
 
-**File:** `mdx-components.tsx` (Next.js convention, project root)
+The existing `components/mdx-components.tsx` already exports an `mdxComponents` object used by `app/docs/[slug]/page.tsx`. The relay pages reuse this same export, passing it directly to `<MDXRemote components={mdxComponents} />`.
 
-All existing doc components registered globally. MDX authors never need to import them:
+Extend `components/mdx-components.tsx` to include all doc components that relay authors should have available without imports:
 
 ```typescript
-export function useMDXComponents(components) {
-  return {
-    DocSection,
-    DocAlert,
-    DocImage,
-    DocProcedure,
-    DocProcedureStep,
-    DocProcedureSubstepGroup,
-    DocBreadcrumb,
-    DocIndexCard,
-    ...components,
-  }
+// components/mdx-components.tsx (extend existing)
+export const mdxComponents = {
+  // already registered for blog/docs:
+  // ... existing entries ...
+
+  // add for relay:
+  DocSection,
+  DocAlert,
+  DocImage,
+  DocProcedure,
+  DocProcedureStep,
+  DocProcedureSubstepGroup,
+  DocIndexCard,
 }
 ```
 
-Relay-specific components (e.g. compatibility checker, model-specific callouts) are imported per-file as needed.
+`MyBreadcrumbs` (from `doc-page.tsx`) is not registered globally — breadcrumbs in the relay system are rendered by the sub-layout, not inline in MDX content.
 
----
-
-## SEO
-
-Each page generates metadata from frontmatter:
-
-```typescript
-export async function generateMetadata({ params }) {
-  const { frontmatter } = await loadRelayPage(params.model, params.slug ?? [])
-  return {
-    title: `${frontmatter.title} | Relay Guitar | K7RHY`,
-    description: frontmatter.description,
-    openGraph: {
-      title: frontmatter.title,
-      description: frontmatter.description,
-    },
-  }
-}
-```
-
----
-
-## Future Expansion
-
-- New models: add `content/relay/[model]/` + entry in `relayNav`. No routing changes.
-- Model selector: `RelaySidebar` renders a dropdown when `Object.keys(relayNav).length > 1`.
-- Platform landing: `/docs/relay/page.tsx` switches from redirect to model-picker index automatically.
+Relay-specific components (e.g. compatibility checker, model-specific callouts) are imported per-file in the MDX as needed.
 
 ---
 
@@ -251,12 +352,22 @@ export async function generateMetadata({ params }) {
 | File | Action |
 |------|--------|
 | `content/relay/lipstick/**/*.mdx` | Create — all page content |
-| `app/docs/relay/layout.tsx` | Create — relay sub-layout |
-| `app/docs/relay/page.tsx` | Create — platform landing / redirect |
-| `app/docs/relay/[model]/page.tsx` | Create — model root (loads index.mdx) |
-| `app/docs/relay/[model]/[...slug]/page.tsx` | Create — dynamic page renderer |
-| `config/relay-nav.ts` | Create — nav configuration |
-| `components/navigation/relay-sidebar.tsx` | Create — relay-specific sidebar |
-| `lib/relay.ts` | Create — MDX loader |
-| `mdx-components.tsx` | Create — global MDX component registry |
-| `config/navigation.ts` | Modify — add Relay Guitar link to docNav |
+| `app/docs/relay/page.tsx` | Create — platform landing (`redirect()` to lipstick) |
+| `app/docs/relay/layout.tsx` | Create — relay sub-layout with `RelaySidebar` + `PageNavigation` |
+| `app/docs/relay/[model]/page.tsx` | Create — model root (loads index.mdx, `generateStaticParams`) |
+| `app/docs/relay/[model]/[...slug]/page.tsx` | Create — dynamic page renderer + `generateMetadata` + `generateStaticParams` |
+| `config/relay-nav.ts` | Create — typed nav configuration |
+| `types/relay-nav.ts` | Create — `RelayNav`, `RelayModelNav`, `RelayNavSection`, `RelayNavItem` interfaces |
+| `components/navigation/relay-sidebar.tsx` | Create — `'use client'` relay-specific sidebar |
+| `lib/relay.ts` | Create — MDX file loader (`loadRelayPage`) |
+| `components/mdx-components.tsx` | Modify — extend with relay doc components |
+| `app/docs/layout.tsx` | Modify — suppress `DocsSidebarNav` when path is under `/docs/relay/` |
+| `config/navigation.ts` | Modify — add Relay Guitar link to `docNav` |
+
+---
+
+## Future Expansion
+
+- New models: add `content/relay/[model]/` + entry in `relayNav`. No routing or layout changes.
+- Model selector: `RelaySidebar` renders a dropdown when `Object.keys(relayNav).length > 1`.
+- Platform landing: `/docs/relay/page.tsx` switches from `redirect()` to model-picker index when multiple models exist.
