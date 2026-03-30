@@ -33,6 +33,7 @@ import { ArrowUpDown, CircleHelp } from 'lucide-react';
 import { DiscordLink } from '@/components/discord-link';
 import { DecisionNote } from '@/components/doc/decision-note';
 import { PriceTag } from '@/components/price-tag';
+import { BomItem, BomSection } from '@/components/doc/bom-item';
 
 //import { Style } from "@/registry/styles"
 
@@ -154,6 +155,8 @@ const components: MDXComponents = {
     DiscordLink,
     DecisionNote,
     PriceTag,
+    BomItem,
+    BomSection,
 };
 
 // interface MdxProps {
