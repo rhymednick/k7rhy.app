@@ -77,22 +77,11 @@ const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon,
     const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : cn('prose space-y-2 text-gray-500 dark:text-slate-400', appendDescriptionClass);
 
     return (
-        <div
-            className={cn(
-                'flex gap-3 items-start',
-                'bg-white dark:bg-slate-900',
-                'border border-gray-200 dark:border-slate-700',
-                'border-l-4',
-                config.borderColor,
-                'rounded-lg shadow-sm p-4',
-            )}
-        >
+        <div className={cn('flex gap-3 items-start', 'bg-white dark:bg-slate-900', 'border border-gray-200 dark:border-slate-700', 'border-l-4', config.borderColor, 'rounded-lg shadow-sm p-4')}>
             {IconComponent && <IconComponent className={cn('w-[18px] h-[18px] flex-shrink-0 mt-0.5', config.iconColor)} />}
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <span className={cn('rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide flex-shrink-0', config.badgeClass)}>
-                        {config.badgeLabel}
-                    </span>
+                    <span className={cn('rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide flex-shrink-0', config.badgeClass)}>{config.badgeLabel}</span>
                     {title && <span className={titleClass}>{title}</span>}
                 </div>
                 <div className={descriptionClass}>{children}</div>

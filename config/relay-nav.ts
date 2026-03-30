@@ -20,8 +20,8 @@ export const relayNav: RelayNav = {
                 ],
             },
             {
-                title: 'Build',
-                items: [{ title: 'Body Assembly', slug: 'build/body' }],
+                title: 'Body Construction',
+                items: [{ title: 'Building the Body', slug: 'build/body' }],
             },
             {
                 title: 'Electronics',
@@ -32,10 +32,9 @@ export const relayNav: RelayNav = {
                 ],
             },
             {
-                title: 'Assembly',
+                title: 'Guitar Assembly',
                 items: [
-                    { title: 'Overview', slug: 'assembly/overview' },
-                    { title: 'Build Sequences', slug: 'assembly/sequences' },
+                    { title: 'Guitar Assembly', slug: 'assembly/overview' },
                     { title: 'Checkpoints', slug: 'assembly/checkpoints' },
                 ],
             },

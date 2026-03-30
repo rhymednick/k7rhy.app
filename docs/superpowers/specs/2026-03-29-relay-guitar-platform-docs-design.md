@@ -1,8 +1,6 @@
 # Relay Guitar Platform — Documentation System Design
 
-**Date:** 2026-03-29
-**Branch:** docs/relay-guitar-build
-**Status:** Approved
+**Date:** 2026-03-29 **Branch:** docs/relay-guitar-build **Status:** Approved
 
 ---
 
@@ -16,14 +14,14 @@ The documentation philosophy emphasizes **constraints over step-by-step instruct
 
 ## Decisions
 
-| Decision | Choice | Rationale |
-|----------|--------|-----------|
-| URL placement | `/docs/relay/[model]/…` | Stays within site; breadcrumbs maintain orientation; MakerWorld can link deep |
-| Layout | Sub-layout with focused sidebar | Site header stays; sidebar shows only Relay nav when inside `/docs/relay/` |
-| Nav definition | Config-driven (`relay-nav.ts`) | Explicit control over ordering and titles; no filename prefix conventions |
-| Content authoring | MDX with global components | Structured, component-first writing without import boilerplate |
-| MDX pipeline | `next-mdx-remote/rsc` + `gray-matter` | Content in `content/`, not `app/`; frontmatter → SEO metadata; no client bundle cost |
-| SEO | Frontmatter `title` + `description` → `generateMetadata()` | Per-page SEO with zero extra work per page |
+| Decision          | Choice                                                     | Rationale                                                                            |
+| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| URL placement     | `/docs/relay/[model]/…`                                    | Stays within site; breadcrumbs maintain orientation; MakerWorld can link deep        |
+| Layout            | Sub-layout with focused sidebar                            | Site header stays; sidebar shows only Relay nav when inside `/docs/relay/`           |
+| Nav definition    | Config-driven (`relay-nav.ts`)                             | Explicit control over ordering and titles; no filename prefix conventions            |
+| Content authoring | MDX with global components                                 | Structured, component-first writing without import boilerplate                       |
+| MDX pipeline      | `next-mdx-remote/rsc` + `gray-matter`                      | Content in `content/`, not `app/`; frontmatter → SEO metadata; no client bundle cost |
+| SEO               | Frontmatter `title` + `description` → `generateMetadata()` | Per-page SEO with zero extra work per page                                           |
 
 ---
 
@@ -61,6 +59,7 @@ content/relay/
 `index.mdx` is loaded when visiting the model root (`/docs/relay/lipstick`). It does not appear as a nav item — the sidebar's platform label links to this page, but it is not listed under any section.
 
 **MDX frontmatter** (two fields only):
+
 ```yaml
 ---
 title: 'Print Parameters'
@@ -91,19 +90,19 @@ One dynamic route handles all pages across all current and future models. Adding
 ```typescript
 // [model]/[...slug]/page.tsx
 export function generateStaticParams() {
-  return Object.entries(relayNav).flatMap(([model, modelNav]) =>
-    modelNav.sections.flatMap(section =>
-      section.items.map(item => ({
-        model,
-        slug: item.slug.split('/'),
-      }))
-    )
-  )
+    return Object.entries(relayNav).flatMap(([model, modelNav]) =>
+        modelNav.sections.flatMap((section) =>
+            section.items.map((item) => ({
+                model,
+                slug: item.slug.split('/'),
+            }))
+        )
+    );
 }
 
 // [model]/page.tsx
 export function generateStaticParams() {
-  return Object.keys(relayNav).map(model => ({ model }))
+    return Object.keys(relayNav).map((model) => ({ model }));
 }
 ```
 
@@ -115,87 +114,86 @@ export function generateStaticParams() {
 
 ```typescript
 export interface RelayNavItem {
-  title: string
-  slug: string   // relative to model root, e.g. 'printing/parameters'
+    title: string;
+    slug: string; // relative to model root, e.g. 'printing/parameters'
 }
 
 export interface RelayNavSection {
-  title: string
-  items: RelayNavItem[]
+    title: string;
+    items: RelayNavItem[];
 }
 
 export interface RelayModelNav {
-  title: string
-  sections: RelayNavSection[]
+    title: string;
+    sections: RelayNavSection[];
 }
 
 export interface RelayNav {
-  [model: string]: RelayModelNav
+    [model: string]: RelayModelNav;
 }
 ```
 
 **Config** (`config/relay-nav.ts`):
 
 ```typescript
-import type { RelayNav } from '@/types/relay-nav'
+import type { RelayNav } from '@/types/relay-nav';
 
 export const relayNav: RelayNav = {
-  lipstick: {
-    title: 'Lipstick',
-    sections: [
-      {
-        title: 'Planning',
-        items: [
-          { title: 'Bill of Materials', slug: 'planning/bom' },
-          { title: 'Compatibility', slug: 'planning/compatibility' },
+    lipstick: {
+        title: 'Lipstick',
+        sections: [
+            {
+                title: 'Planning',
+                items: [
+                    { title: 'Bill of Materials', slug: 'planning/bom' },
+                    { title: 'Compatibility', slug: 'planning/compatibility' },
+                ],
+            },
+            {
+                title: 'Printing',
+                items: [
+                    { title: 'Overview', slug: 'printing/overview' },
+                    { title: 'Parameters', slug: 'printing/parameters' },
+                    { title: 'Customization', slug: 'printing/customization' },
+                ],
+            },
+            {
+                title: 'Build',
+                items: [{ title: 'Body Assembly', slug: 'build/body' }],
+            },
+            {
+                title: 'Electronics',
+                items: [
+                    { title: 'Overview', slug: 'electronics/overview' },
+                    { title: 'Wiring', slug: 'electronics/wiring' },
+                    { title: 'Design Boundaries', slug: 'electronics/design-boundaries' },
+                ],
+            },
+            {
+                title: 'Assembly',
+                items: [
+                    { title: 'Overview', slug: 'assembly/overview' },
+                    { title: 'Build Sequences', slug: 'assembly/sequences' },
+                    { title: 'Checkpoints', slug: 'assembly/checkpoints' },
+                ],
+            },
+            {
+                title: 'Setup',
+                items: [
+                    { title: 'Getting Playable', slug: 'setup/playable' },
+                    { title: 'Optimization', slug: 'setup/optimization' },
+                    { title: 'Professional Setup', slug: 'setup/professional' },
+                ],
+            },
         ],
-      },
-      {
-        title: 'Printing',
-        items: [
-          { title: 'Overview', slug: 'printing/overview' },
-          { title: 'Parameters', slug: 'printing/parameters' },
-          { title: 'Customization', slug: 'printing/customization' },
-        ],
-      },
-      {
-        title: 'Build',
-        items: [
-          { title: 'Body Assembly', slug: 'build/body' },
-        ],
-      },
-      {
-        title: 'Electronics',
-        items: [
-          { title: 'Overview', slug: 'electronics/overview' },
-          { title: 'Wiring', slug: 'electronics/wiring' },
-          { title: 'Design Boundaries', slug: 'electronics/design-boundaries' },
-        ],
-      },
-      {
-        title: 'Assembly',
-        items: [
-          { title: 'Overview', slug: 'assembly/overview' },
-          { title: 'Build Sequences', slug: 'assembly/sequences' },
-          { title: 'Checkpoints', slug: 'assembly/checkpoints' },
-        ],
-      },
-      {
-        title: 'Setup',
-        items: [
-          { title: 'Getting Playable', slug: 'setup/playable' },
-          { title: 'Optimization', slug: 'setup/optimization' },
-          { title: 'Professional Setup', slug: 'setup/professional' },
-        ],
-      },
-    ],
-  },
-}
+    },
+};
 ```
 
 **Sidebar component** (`components/navigation/relay-sidebar.tsx`):
 
 A new `'use client'` component — client because active-link detection requires `usePathname()`. Renders:
+
 - Platform label "Relay Guitar Platform" linking to `/docs/relay/lipstick`
 - Model heading (future: dropdown when `Object.keys(relayNav).length > 1`)
 - Section groups with indented page links; current page highlighted via `usePathname()` comparison
@@ -225,32 +223,32 @@ The relay sub-layout structure:
 
 ```typescript
 function buildRelayBreadcrumbs(
-  model: string,
-  slug: string[],      // e.g. ['printing', 'parameters']
-  nav: RelayNav
+    model: string,
+    slug: string[], // e.g. ['printing', 'parameters']
+    nav: RelayNav
 ): Array<{ label: string; href?: string }> {
-  const modelNav = nav[model]
-  const pageSlug = slug.join('/')
+    const modelNav = nav[model];
+    const pageSlug = slug.join('/');
 
-  // Find matching nav item to get page title
-  let pageTitle: string | undefined
-  let sectionTitle: string | undefined
-  for (const section of modelNav?.sections ?? []) {
-    const item = section.items.find(i => i.slug === pageSlug)
-    if (item) {
-      pageTitle = item.title
-      sectionTitle = section.title
-      break
+    // Find matching nav item to get page title
+    let pageTitle: string | undefined;
+    let sectionTitle: string | undefined;
+    for (const section of modelNav?.sections ?? []) {
+        const item = section.items.find((i) => i.slug === pageSlug);
+        if (item) {
+            pageTitle = item.title;
+            sectionTitle = section.title;
+            break;
+        }
     }
-  }
 
-  return [
-    { label: 'Docs', href: '/docs' },
-    { label: 'Relay Guitar', href: '/docs/relay' },
-    { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
-    ...(sectionTitle ? [{ label: sectionTitle }] : []),  // non-linked
-    { label: pageTitle ?? slug[slug.length - 1] },       // current page, no href
-  ]
+    return [
+        { label: 'Docs', href: '/docs' },
+        { label: 'Relay Guitar', href: '/docs/relay' },
+        { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
+        ...(sectionTitle ? [{ label: sectionTitle }] : []), // non-linked
+        { label: pageTitle ?? slug[slug.length - 1] }, // current page, no href
+    ];
 }
 ```
 
@@ -265,27 +263,27 @@ For the model root (`slug = []`), breadcrumbs are: Docs > Relay Guitar > Lipstic
 Returns raw MDX string (after frontmatter is stripped) + typed frontmatter. The page component owns the `<MDXRemote>` render call.
 
 ```typescript
-import fs from 'fs/promises'
-import path from 'path'
-import matter from 'gray-matter'
+import fs from 'fs/promises';
+import path from 'path';
+import matter from 'gray-matter';
 
 export interface RelayPageFrontmatter {
-  title: string
-  description: string
+    title: string;
+    description: string;
 }
 
 export async function loadRelayPage(
-  model: string,
-  slug: string[]   // empty array = model root
+    model: string,
+    slug: string[] // empty array = model root
 ): Promise<{ content: string; frontmatter: RelayPageFrontmatter }> {
-  const segments = slug.length > 0 ? slug : ['index']
-  const filePath = path.join(process.cwd(), 'content/relay', model, ...segments) + '.mdx'
-  const source = await fs.readFile(filePath, 'utf8')
-  const { content, data } = matter(source)
-  return {
-    content,
-    frontmatter: data as RelayPageFrontmatter,
-  }
+    const segments = slug.length > 0 ? slug : ['index'];
+    const filePath = path.join(process.cwd(), 'content/relay', model, ...segments) + '.mdx';
+    const source = await fs.readFile(filePath, 'utf8');
+    const { content, data } = matter(source);
+    return {
+        content,
+        frontmatter: data as RelayPageFrontmatter,
+    };
 }
 ```
 
@@ -327,18 +325,18 @@ Extend `components/mdx-components.tsx` to include all doc components that relay 
 ```typescript
 // components/mdx-components.tsx (extend existing)
 export const mdxComponents = {
-  // already registered for blog/docs:
-  // ... existing entries ...
+    // already registered for blog/docs:
+    // ... existing entries ...
 
-  // add for relay:
-  DocSection,
-  DocAlert,
-  DocImage,
-  DocProcedure,
-  DocProcedureStep,
-  DocProcedureSubstepGroup,
-  DocIndexCard,
-}
+    // add for relay:
+    DocSection,
+    DocAlert,
+    DocImage,
+    DocProcedure,
+    DocProcedureStep,
+    DocProcedureSubstepGroup,
+    DocIndexCard,
+};
 ```
 
 `MyBreadcrumbs` (from `doc-page.tsx`) is not registered globally — breadcrumbs in the relay system are rendered by the sub-layout, not inline in MDX content.
@@ -349,20 +347,20 @@ Relay-specific components (e.g. compatibility checker, model-specific callouts) 
 
 ## Files to Create / Modify
 
-| File | Action |
-|------|--------|
-| `content/relay/lipstick/**/*.mdx` | Create — all page content |
-| `app/docs/relay/page.tsx` | Create — platform landing (`redirect()` to lipstick) |
-| `app/docs/relay/layout.tsx` | Create — relay sub-layout with `RelaySidebar` + `PageNavigation` |
-| `app/docs/relay/[model]/page.tsx` | Create — model root (loads index.mdx, `generateStaticParams`) |
-| `app/docs/relay/[model]/[...slug]/page.tsx` | Create — dynamic page renderer + `generateMetadata` + `generateStaticParams` |
-| `config/relay-nav.ts` | Create — typed nav configuration |
-| `types/relay-nav.ts` | Create — `RelayNav`, `RelayModelNav`, `RelayNavSection`, `RelayNavItem` interfaces |
-| `components/navigation/relay-sidebar.tsx` | Create — `'use client'` relay-specific sidebar |
-| `lib/relay.ts` | Create — MDX file loader (`loadRelayPage`) |
-| `components/mdx-components.tsx` | Modify — extend with relay doc components |
-| `app/docs/layout.tsx` | Modify — suppress `DocsSidebarNav` when path is under `/docs/relay/` |
-| `config/navigation.ts` | Modify — add Relay Guitar link to `docNav` |
+| File                                        | Action                                                                             |
+| ------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `content/relay/lipstick/**/*.mdx`           | Create — all page content                                                          |
+| `app/docs/relay/page.tsx`                   | Create — platform landing (`redirect()` to lipstick)                               |
+| `app/docs/relay/layout.tsx`                 | Create — relay sub-layout with `RelaySidebar` + `PageNavigation`                   |
+| `app/docs/relay/[model]/page.tsx`           | Create — model root (loads index.mdx, `generateStaticParams`)                      |
+| `app/docs/relay/[model]/[...slug]/page.tsx` | Create — dynamic page renderer + `generateMetadata` + `generateStaticParams`       |
+| `config/relay-nav.ts`                       | Create — typed nav configuration                                                   |
+| `types/relay-nav.ts`                        | Create — `RelayNav`, `RelayModelNav`, `RelayNavSection`, `RelayNavItem` interfaces |
+| `components/navigation/relay-sidebar.tsx`   | Create — `'use client'` relay-specific sidebar                                     |
+| `lib/relay.ts`                              | Create — MDX file loader (`loadRelayPage`)                                         |
+| `components/mdx-components.tsx`             | Modify — extend with relay doc components                                          |
+| `app/docs/layout.tsx`                       | Modify — suppress `DocsSidebarNav` when path is under `/docs/relay/`               |
+| `config/navigation.ts`                      | Modify — add Relay Guitar link to `docNav`                                         |
 
 ---
 

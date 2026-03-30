@@ -1,6 +1,70 @@
 ---
-title: 'Assembly Overview'
-description: 'Critical dependencies and order-sensitive operations for final Relay Lipstick assembly.'
+title: 'Guitar Assembly'
+description: 'Installing electronics, hardware, and neck into a completed body — sequences, order-sensitive steps, and checkpoints.'
 ---
 
-{/* TODO: Add assembly overview content */}
+Guitar assembly is the process of turning a completed body into a playable instrument. The body should be fully cured and inspected before this phase begins — see [Building the Body](/docs/relay/lipstick/build/body).
+
+## What you're doing in this phase
+
+- Shielding the control cavity and installing electronics
+- Mounting the bridge, tuners, and strap buttons
+- Attaching the neck
+- Stringing up for the first time
+
+Two steps are hard to undo once completed: installing the neck ferrules and soldering the electronics. Everything else is adjustable. Do your dry-fits and bench tests before committing.
+
+## Sequence options
+
+There's no single correct order, but some approaches work better for first-time builders.
+
+### Electronics-first (recommended)
+
+Install and test all electronics before mounting hardware. This gives you full cavity access and easy debugging.
+
+1. Shield cavity with copper foil tape
+2. Install pickups, route wires into cavity
+3. Install and wire control harness
+4. Test with multimeter and bench amp
+5. Install bridge, tuners, strap buttons
+6. Dry-fit neck — check alignment and string line
+7. Install ferrules and bolt neck
+8. String up
+
+**Best for:** First builds, anyone who wants to verify electronics before committing to hardware.
+
+### Hardware-first
+
+Verify the physical build and neck fit before investing time in wiring.
+
+1. Install bridge, tuners, strap buttons
+2. Dry-fit neck — check alignment, string line, action range
+3. If fit is good, remove neck
+4. Shield cavity, install and test electronics
+5. Reinstall neck, install ferrules
+6. String up
+
+**Best for:** Builders with electronics experience who want to catch neck-fit problems early.
+
+## The neck step
+
+Neck attachment is the most likely failure point in this build. Do these checks before installing ferrules:
+
+- Neck seats fully in pocket with no rocking
+- String line centered on fretboard — stretch a string from nut to bridge and check both sides
+- Neck angle correct — straight edge along fretboard toward bridge
+- All four bolt holes align
+
+<DecisionNote variant="caution" title="Do not install ferrules until alignment checks pass">
+Ferrules are permanent. Once pressed in, they define where the neck bolts. If something isn't right, this is the moment to address it — or to bring in a luthier for this step specifically.
+</DecisionNote>
+
+## Common mistakes
+
+- **Installing ferrules before checking alignment** — check first, always
+- **Stringing up before verifying electronics** — you'll have to loosen strings to access the cavity
+- **Skipping the bench test** — five minutes with a multimeter before installation saves an hour of debugging after
+
+## Getting help
+
+If the neck isn't seating correctly and you can't figure out why, stop. Post photos in the <DiscordLink /> before doing anything irreversible. This is also a reasonable point to bring in a luthier — see [Professional Setup](/docs/relay/lipstick/setup/professional).

@@ -12,42 +12,43 @@
 
 ## File Map
 
-| File | Action | Purpose |
-|------|--------|---------|
-| `types/relay-nav.ts` | Create | TypeScript interfaces for nav config |
-| `config/relay-nav.ts` | Create | Typed nav configuration for all models |
-| `lib/relay.ts` | Create | MDX file loader + breadcrumb builder |
-| `lib/relay.test.ts` | Create | Tests for loader path logic + breadcrumb builder |
-| `components/navigation/relay-sidebar.tsx` | Create | `'use client'` sidebar for relay section |
-| `components/navigation/docs-layout-wrappers.tsx` | Create | `'use client'` conditional wrappers to suppress parent sidebar/pagenav under `/docs/relay/` |
-| `app/docs/layout.tsx` | Modify | Use conditional wrappers to avoid double sidebar |
-| `app/docs/relay/layout.tsx` | Create | Relay sub-layout: RelaySidebar + content + PageNavigation |
-| `app/docs/relay/page.tsx` | Create | Platform landing — redirects to `/docs/relay/lipstick` |
-| `app/docs/relay/[model]/page.tsx` | Create | Model root page (loads `index.mdx`) |
-| `app/docs/relay/[model]/[...slug]/page.tsx` | Create | Dynamic page renderer + `generateMetadata` + `generateStaticParams` |
-| `config/navigation.ts` | Modify | Add Relay Guitar link to `docNav` |
-| `content/relay/lipstick/index.mdx` | Create | Model overview stub |
-| `content/relay/lipstick/planning/bom.mdx` | Create | Stub |
-| `content/relay/lipstick/planning/compatibility.mdx` | Create | Stub |
-| `content/relay/lipstick/printing/overview.mdx` | Create | Stub |
-| `content/relay/lipstick/printing/parameters.mdx` | Create | Stub |
-| `content/relay/lipstick/printing/customization.mdx` | Create | Stub |
-| `content/relay/lipstick/build/body.mdx` | Create | Stub |
-| `content/relay/lipstick/electronics/overview.mdx` | Create | Stub |
-| `content/relay/lipstick/electronics/wiring.mdx` | Create | Stub |
-| `content/relay/lipstick/electronics/design-boundaries.mdx` | Create | Stub |
-| `content/relay/lipstick/assembly/overview.mdx` | Create | Stub |
-| `content/relay/lipstick/assembly/sequences.mdx` | Create | Stub |
-| `content/relay/lipstick/assembly/checkpoints.mdx` | Create | Stub |
-| `content/relay/lipstick/setup/playable.mdx` | Create | Stub |
-| `content/relay/lipstick/setup/optimization.mdx` | Create | Stub |
-| `content/relay/lipstick/setup/professional.mdx` | Create | Stub |
+| File                                                       | Action | Purpose                                                                                     |
+| ---------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------- |
+| `types/relay-nav.ts`                                       | Create | TypeScript interfaces for nav config                                                        |
+| `config/relay-nav.ts`                                      | Create | Typed nav configuration for all models                                                      |
+| `lib/relay.ts`                                             | Create | MDX file loader + breadcrumb builder                                                        |
+| `lib/relay.test.ts`                                        | Create | Tests for loader path logic + breadcrumb builder                                            |
+| `components/navigation/relay-sidebar.tsx`                  | Create | `'use client'` sidebar for relay section                                                    |
+| `components/navigation/docs-layout-wrappers.tsx`           | Create | `'use client'` conditional wrappers to suppress parent sidebar/pagenav under `/docs/relay/` |
+| `app/docs/layout.tsx`                                      | Modify | Use conditional wrappers to avoid double sidebar                                            |
+| `app/docs/relay/layout.tsx`                                | Create | Relay sub-layout: RelaySidebar + content + PageNavigation                                   |
+| `app/docs/relay/page.tsx`                                  | Create | Platform landing — redirects to `/docs/relay/lipstick`                                      |
+| `app/docs/relay/[model]/page.tsx`                          | Create | Model root page (loads `index.mdx`)                                                         |
+| `app/docs/relay/[model]/[...slug]/page.tsx`                | Create | Dynamic page renderer + `generateMetadata` + `generateStaticParams`                         |
+| `config/navigation.ts`                                     | Modify | Add Relay Guitar link to `docNav`                                                           |
+| `content/relay/lipstick/index.mdx`                         | Create | Model overview stub                                                                         |
+| `content/relay/lipstick/planning/bom.mdx`                  | Create | Stub                                                                                        |
+| `content/relay/lipstick/planning/compatibility.mdx`        | Create | Stub                                                                                        |
+| `content/relay/lipstick/printing/overview.mdx`             | Create | Stub                                                                                        |
+| `content/relay/lipstick/printing/parameters.mdx`           | Create | Stub                                                                                        |
+| `content/relay/lipstick/printing/customization.mdx`        | Create | Stub                                                                                        |
+| `content/relay/lipstick/build/body.mdx`                    | Create | Stub                                                                                        |
+| `content/relay/lipstick/electronics/overview.mdx`          | Create | Stub                                                                                        |
+| `content/relay/lipstick/electronics/wiring.mdx`            | Create | Stub                                                                                        |
+| `content/relay/lipstick/electronics/design-boundaries.mdx` | Create | Stub                                                                                        |
+| `content/relay/lipstick/assembly/overview.mdx`             | Create | Stub                                                                                        |
+| `content/relay/lipstick/assembly/sequences.mdx`            | Create | Stub                                                                                        |
+| `content/relay/lipstick/assembly/checkpoints.mdx`          | Create | Stub                                                                                        |
+| `content/relay/lipstick/setup/playable.mdx`                | Create | Stub                                                                                        |
+| `content/relay/lipstick/setup/optimization.mdx`            | Create | Stub                                                                                        |
+| `content/relay/lipstick/setup/professional.mdx`            | Create | Stub                                                                                        |
 
 ---
 
 ## Task 1: Types and Nav Config
 
 **Files:**
+
 - Create: `types/relay-nav.ts`
 - Create: `config/relay-nav.ts`
 
@@ -56,22 +57,22 @@
 ```typescript
 // types/relay-nav.ts
 export interface RelayNavItem {
-    title: string
-    slug: string // relative to model root, e.g. 'printing/parameters'
+    title: string;
+    slug: string; // relative to model root, e.g. 'printing/parameters'
 }
 
 export interface RelayNavSection {
-    title: string
-    items: RelayNavItem[]
+    title: string;
+    items: RelayNavItem[];
 }
 
 export interface RelayModelNav {
-    title: string
-    sections: RelayNavSection[]
+    title: string;
+    sections: RelayNavSection[];
 }
 
 export interface RelayNav {
-    [model: string]: RelayModelNav
+    [model: string]: RelayModelNav;
 }
 ```
 
@@ -79,7 +80,7 @@ export interface RelayNav {
 
 ```typescript
 // config/relay-nav.ts
-import type { RelayNav } from '@/types/relay-nav'
+import type { RelayNav } from '@/types/relay-nav';
 
 export const relayNav: RelayNav = {
     lipstick: {
@@ -102,9 +103,7 @@ export const relayNav: RelayNav = {
             },
             {
                 title: 'Build',
-                items: [
-                    { title: 'Body Assembly', slug: 'build/body' },
-                ],
+                items: [{ title: 'Body Assembly', slug: 'build/body' }],
             },
             {
                 title: 'Electronics',
@@ -132,7 +131,7 @@ export const relayNav: RelayNav = {
             },
         ],
     },
-}
+};
 ```
 
 - [ ] **Step 3: Verify TypeScript accepts the config**
@@ -155,6 +154,7 @@ git commit -m "feat: add relay nav types and config"
 ## Task 2: MDX Loader and Breadcrumb Builder
 
 **Files:**
+
 - Create: `lib/relay.ts`
 - Create: `lib/relay.test.ts`
 
@@ -162,50 +162,40 @@ git commit -m "feat: add relay nav types and config"
 
 ```typescript
 // lib/relay.test.ts
-import { describe, it, expect } from 'vitest'
-import { buildRelayBreadcrumbs, resolveRelayFilePath } from './relay'
-import { relayNav } from '@/config/relay-nav'
+import { describe, it, expect } from 'vitest';
+import { buildRelayBreadcrumbs, resolveRelayFilePath } from './relay';
+import { relayNav } from '@/config/relay-nav';
 
 describe('resolveRelayFilePath', () => {
     it('resolves a normal slug to a file path', () => {
-        const result = resolveRelayFilePath('lipstick', ['printing', 'parameters'])
-        expect(result).toMatch(/content\/relay\/lipstick\/printing\/parameters\.mdx$/)
-    })
+        const result = resolveRelayFilePath('lipstick', ['printing', 'parameters']);
+        expect(result).toMatch(/content\/relay\/lipstick\/printing\/parameters\.mdx$/);
+    });
 
     it('resolves empty slug to index.mdx', () => {
-        const result = resolveRelayFilePath('lipstick', [])
-        expect(result).toMatch(/content\/relay\/lipstick\/index\.mdx$/)
-    })
-})
+        const result = resolveRelayFilePath('lipstick', []);
+        expect(result).toMatch(/content\/relay\/lipstick\/index\.mdx$/);
+    });
+});
 
 describe('buildRelayBreadcrumbs', () => {
     it('builds breadcrumbs for a known page', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', ['printing', 'parameters'], relayNav)
-        expect(crumbs).toEqual([
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar', href: '/docs/relay' },
-            { label: 'Lipstick', href: '/docs/relay/lipstick' },
-            { label: 'Printing' },
-            { label: 'Parameters' },
-        ])
-    })
+        const crumbs = buildRelayBreadcrumbs('lipstick', ['printing', 'parameters'], relayNav);
+        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar', href: '/docs/relay' }, { label: 'Lipstick', href: '/docs/relay/lipstick' }, { label: 'Printing' }, { label: 'Parameters' }]);
+    });
 
     it('builds breadcrumbs for the model root (empty slug)', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', [], relayNav)
-        expect(crumbs).toEqual([
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar', href: '/docs/relay' },
-            { label: 'Lipstick' },
-        ])
-    })
+        const crumbs = buildRelayBreadcrumbs('lipstick', [], relayNav);
+        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar', href: '/docs/relay' }, { label: 'Lipstick' }]);
+    });
 
     it('falls back to slug segment when page not found in nav', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', ['unknown', 'page'], relayNav)
-        const last = crumbs[crumbs.length - 1]
-        expect(last.label).toBe('page')
-        expect(last.href).toBeUndefined()
-    })
-})
+        const crumbs = buildRelayBreadcrumbs('lipstick', ['unknown', 'page'], relayNav);
+        const last = crumbs[crumbs.length - 1];
+        expect(last.label).toBe('page');
+        expect(last.href).toBeUndefined();
+    });
+});
 ```
 
 - [ ] **Step 2: Run tests to verify they fail**
@@ -220,78 +210,61 @@ Expected: FAIL — `resolveRelayFilePath` and `buildRelayBreadcrumbs` not define
 
 ```typescript
 // lib/relay.ts
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import type { RelayNav } from '@/types/relay-nav'
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import type { RelayNav } from '@/types/relay-nav';
 
 export interface RelayPageFrontmatter {
-    title: string
-    description: string
+    title: string;
+    description: string;
 }
 
 export interface RelayBreadcrumb {
-    label: string
-    href?: string
+    label: string;
+    href?: string;
 }
 
 /** Resolves the absolute path to an MDX file given a model and slug segments. */
 export function resolveRelayFilePath(model: string, slug: string[]): string {
-    const segments = slug.length > 0 ? slug : ['index']
-    return path.join(process.cwd(), 'content', 'relay', model, ...segments) + '.mdx'
+    const segments = slug.length > 0 ? slug : ['index'];
+    return path.join(process.cwd(), 'content', 'relay', model, ...segments) + '.mdx';
 }
 
 /** Loads an MDX file and returns its raw content string and typed frontmatter. */
-export function loadRelayPage(
-    model: string,
-    slug: string[]
-): { content: string; frontmatter: RelayPageFrontmatter } {
-    const filePath = resolveRelayFilePath(model, slug)
+export function loadRelayPage(model: string, slug: string[]): { content: string; frontmatter: RelayPageFrontmatter } {
+    const filePath = resolveRelayFilePath(model, slug);
     if (!fs.existsSync(filePath)) {
-        throw new Error(`Relay page not found: ${filePath}`)
+        throw new Error(`Relay page not found: ${filePath}`);
     }
-    const source = fs.readFileSync(filePath, 'utf-8')
-    const { content, data } = matter(source)
-    return { content, frontmatter: data as RelayPageFrontmatter }
+    const source = fs.readFileSync(filePath, 'utf-8');
+    const { content, data } = matter(source);
+    return { content, frontmatter: data as RelayPageFrontmatter };
 }
 
 /** Builds breadcrumb trail from URL model + slug segments using the nav config for titles. */
-export function buildRelayBreadcrumbs(
-    model: string,
-    slug: string[],
-    nav: RelayNav
-): RelayBreadcrumb[] {
+export function buildRelayBreadcrumbs(model: string, slug: string[], nav: RelayNav): RelayBreadcrumb[] {
     // Model root: no slug
     if (slug.length === 0) {
-        return [
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar', href: '/docs/relay' },
-            { label: nav[model]?.title ?? model },
-        ]
+        return [{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar', href: '/docs/relay' }, { label: nav[model]?.title ?? model }];
     }
 
-    const modelNav = nav[model]
-    const pageSlug = slug.join('/')
+    const modelNav = nav[model];
+    const pageSlug = slug.join('/');
 
-    let pageTitle: string | undefined
-    let sectionTitle: string | undefined
+    let pageTitle: string | undefined;
+    let sectionTitle: string | undefined;
 
     for (const section of modelNav?.sections ?? []) {
-        const item = section.items.find((i) => i.slug === pageSlug)
+        const item = section.items.find((i) => i.slug === pageSlug);
         if (item) {
-            pageTitle = item.title
-            sectionTitle = section.title
-            break
+            pageTitle = item.title;
+            sectionTitle = section.title;
+            break;
         }
     }
 
-    return [
-        { label: 'Docs', href: '/docs' },
-        { label: 'Relay Guitar', href: '/docs/relay' },
-        { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
-        ...(sectionTitle ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
-    ]
+    return [{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar', href: '/docs/relay' }, { label: modelNav?.title ?? model, href: `/docs/relay/${model}` }, ...(sectionTitle ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
 }
 ```
 
@@ -315,6 +288,7 @@ git commit -m "feat: add relay MDX loader and breadcrumb builder with tests"
 ## Task 3: Relay Sidebar Component
 
 **Files:**
+
 - Create: `components/navigation/relay-sidebar.tsx`
 
 - [ ] **Step 1: Create `components/navigation/relay-sidebar.tsx`**
@@ -444,6 +418,7 @@ git commit -m "feat: add RelaySidebar, RelayLayoutSidebar, and RelayBreadcrumbBa
 The parent `/docs/layout.tsx` renders its sidebar and `PageNavigation` for ALL routes under `/docs/`, including `/docs/relay/`. The relay sub-layout provides its own. We need to suppress the parent's elements when inside `/docs/relay/`.
 
 **Files:**
+
 - Create: `components/navigation/docs-layout-wrappers.tsx`
 - Modify: `app/docs/layout.tsx`
 
@@ -541,6 +516,7 @@ git commit -m "feat: suppress docs sidebar and page nav under /docs/relay/"
 ## Task 5: Relay Sub-Layout
 
 **Files:**
+
 - Create: `app/docs/relay/layout.tsx`
 
 - [ ] **Step 1: Create `app/docs/relay/layout.tsx`**
@@ -597,6 +573,7 @@ git commit -m "feat: add relay sub-layout and RelayLayoutSidebar"
 ## Task 6: Platform Landing and Model Root Page
 
 **Files:**
+
 - Create: `app/docs/relay/page.tsx`
 - Create: `app/docs/relay/[model]/page.tsx`
 
@@ -604,12 +581,12 @@ git commit -m "feat: add relay sub-layout and RelayLayoutSidebar"
 
 ```typescript
 // app/docs/relay/page.tsx
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
 
 export default function RelayPlatformPage() {
     // While only one model exists, redirect to it directly.
     // When multiple models exist, replace with a model-picker index.
-    redirect('/docs/relay/lipstick')
+    redirect('/docs/relay/lipstick');
 }
 ```
 
@@ -682,6 +659,7 @@ git commit -m "feat: add relay platform landing and model root page"
 ## Task 7: Dynamic Page Renderer
 
 **Files:**
+
 - Create: `app/docs/relay/[model]/[...slug]/page.tsx`
 
 - [ ] **Step 1: Create `app/docs/relay/[model]/[...slug]/page.tsx`**
@@ -762,6 +740,7 @@ git commit -m "feat: add relay dynamic page renderer with generateStaticParams a
 ## Task 8: Update Site Navigation Config
 
 **Files:**
+
 - Modify: `config/navigation.ts`
 
 - [ ] **Step 1: Add Relay Guitar to `docNav` in `config/navigation.ts`**
@@ -783,6 +762,7 @@ In `config/navigation.ts`, add a new section before the existing `Assembly Guide
 ```
 
 The full updated `docNav` in `navConfig`:
+
 ```typescript
 docNav: [
     {
@@ -853,6 +833,7 @@ description: 'Introduction to the Relay Lipstick guitar build: what it is, who i
 - [ ] **Step 2: Create planning stubs**
 
 `content/relay/lipstick/planning/bom.mdx`:
+
 ```mdx
 ---
 title: 'Bill of Materials'
@@ -863,6 +844,7 @@ description: 'Component categories, required vs optional parts, cost ranges, and
 ```
 
 `content/relay/lipstick/planning/compatibility.mdx`:
+
 ```mdx
 ---
 title: 'Compatibility'
@@ -875,6 +857,7 @@ description: 'Neck, bridge, pickup, and electronics constraints for the Relay Li
 - [ ] **Step 3: Create printing stubs**
 
 `content/relay/lipstick/printing/overview.mdx`:
+
 ```mdx
 ---
 title: 'Printing Overview'
@@ -885,6 +868,7 @@ description: 'Material requirements and expectations for printing Relay Lipstick
 ```
 
 `content/relay/lipstick/printing/parameters.mdx`:
+
 ```mdx
 ---
 title: 'Print Parameters'
@@ -895,6 +879,7 @@ description: 'Layer height, walls, infill, orientation, and support settings for
 ```
 
 `content/relay/lipstick/printing/customization.mdx`:
+
 ```mdx
 ---
 title: 'Print Customization'
@@ -907,6 +892,7 @@ description: 'Safe cosmetic modifications, structural risk areas, and what not t
 - [ ] **Step 4: Create build stub**
 
 `content/relay/lipstick/build/body.mdx`:
+
 ```mdx
 ---
 title: 'Body Assembly'
@@ -919,6 +905,7 @@ description: 'Adhesives, fasteners, alignment strategy, tolerances, and structur
 - [ ] **Step 5: Create electronics stubs**
 
 `content/relay/lipstick/electronics/overview.mdx`:
+
 ```mdx
 ---
 title: 'Electronics Overview'
@@ -929,6 +916,7 @@ description: 'Recommended baseline circuit design for the Relay Lipstick and the
 ```
 
 `content/relay/lipstick/electronics/wiring.mdx`:
+
 ```mdx
 ---
 title: 'Wiring'
@@ -939,6 +927,7 @@ description: 'Wiring diagram and step-by-step instructions for the Relay Lipstic
 ```
 
 `content/relay/lipstick/electronics/design-boundaries.mdx`:
+
 ```mdx
 ---
 title: 'Design Boundaries'
@@ -951,6 +940,7 @@ description: 'What can change in the electronics design, what must not change, a
 - [ ] **Step 6: Create assembly stubs**
 
 `content/relay/lipstick/assembly/overview.mdx`:
+
 ```mdx
 ---
 title: 'Assembly Overview'
@@ -961,6 +951,7 @@ description: 'Critical dependencies and order-sensitive operations for final Rel
 ```
 
 `content/relay/lipstick/assembly/sequences.mdx`:
+
 ```mdx
 ---
 title: 'Build Sequences'
@@ -971,6 +962,7 @@ description: 'Three valid build paths (electronics-first, hardware-first, hybrid
 ```
 
 `content/relay/lipstick/assembly/checkpoints.mdx`:
+
 ```mdx
 ---
 title: 'Checkpoints'
@@ -983,6 +975,7 @@ description: 'Neck alignment, bridge placement, and wiring continuity checks to 
 - [ ] **Step 7: Create setup stubs**
 
 `content/relay/lipstick/setup/playable.mdx`:
+
 ```mdx
 ---
 title: 'Getting Playable'
@@ -993,6 +986,7 @@ description: 'Stringing, basic action, rough intonation, and pickup height basel
 ```
 
 `content/relay/lipstick/setup/optimization.mdx`:
+
 ```mdx
 ---
 title: 'Optimization'
@@ -1003,6 +997,7 @@ description: 'Fine adjustments and common issues for the Relay Lipstick setup.'
 ```
 
 `content/relay/lipstick/setup/professional.mdx`:
+
 ```mdx
 ---
 title: 'Professional Setup'
@@ -1047,14 +1042,14 @@ npm run dev
 
 Check each of the following manually:
 
-| URL | Expected |
-|-----|----------|
-| `/docs` | Docs index with "Relay Guitar Platform" in sidebar; clicking shows relay section |
-| `/docs/relay` | Redirects to `/docs/relay/lipstick` |
-| `/docs/relay/lipstick` | Loads `index.mdx`; relay sidebar visible; global docs sidebar hidden |
-| `/docs/relay/lipstick/planning/bom` | Loads `bom.mdx`; breadcrumbs show Docs > Relay Guitar > Lipstick > Planning > Bill of Materials |
-| `/docs/relay/lipstick/printing/parameters` | Correct title, sidebar highlights Parameters |
-| `/docs/dl20w_bnc` | Global docs sidebar still visible (regression check) |
+| URL                                        | Expected                                                                                        |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| `/docs`                                    | Docs index with "Relay Guitar Platform" in sidebar; clicking shows relay section                |
+| `/docs/relay`                              | Redirects to `/docs/relay/lipstick`                                                             |
+| `/docs/relay/lipstick`                     | Loads `index.mdx`; relay sidebar visible; global docs sidebar hidden                            |
+| `/docs/relay/lipstick/planning/bom`        | Loads `bom.mdx`; breadcrumbs show Docs > Relay Guitar > Lipstick > Planning > Bill of Materials |
+| `/docs/relay/lipstick/printing/parameters` | Correct title, sidebar highlights Parameters                                                    |
+| `/docs/dl20w_bnc`                          | Global docs sidebar still visible (regression check)                                            |
 
 - [ ] **Step 3: Push branch**
 

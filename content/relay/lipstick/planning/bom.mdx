@@ -1,6 +1,179 @@
 ---
 title: 'Bill of Materials'
-description: 'Component categories, required vs optional parts, cost ranges, and substitution philosophy for the Relay Lipstick build.'
+description: 'Everything you need to build a Relay Lipstick, with sourcing links and current prices.'
 ---
 
-{/* TODO: Add BOM content */}
+Read this page before you buy anything — a few of these items have important caveats.
+
+<DecisionNote variant="info" title="These are the parts I use. Substitutions are possible but not always straightforward.">
+The links below go to the specific parts I've built with. Substitutions are discussed in [What Will Fit](/docs/relay/lipstick/planning/compatibility). When in doubt, start with exactly what's listed here — variations introduce variables that are harder to troubleshoot.
+</DecisionNote>
+
+## Hardware
+
+<Table>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Item</TableHead>
+            <TableHead>Source</TableHead>
+            <TableHead>Price</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>Guitar Neck</TableCell>
+            <TableCell><a href="https://amzn.to/41ko1a1" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="guitar-neck" fallback="$60.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Fixed Hardtail Bridge</TableCell>
+            <TableCell><a href="https://amzn.to/4smY8ST" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="hardtail-bridge" fallback="$15.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Locking Tuners</TableCell>
+            <TableCell><a href="https://amzn.to/40HSQW2" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="locking-tuners" fallback="$35.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Neck Mounting Ferrules</TableCell>
+            <TableCell><a href="https://amzn.to/4rOYP6x" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="neck-ferrules" fallback="$10.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>String Ferrule Plate</TableCell>
+            <TableCell><a href="https://amzn.to/4d2Rblc" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="string-ferrule-plate" fallback="$10.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Strap Buttons</TableCell>
+            <TableCell><a href="https://amzn.to/4uH46j0" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="strap-buttons" fallback="$11.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Guitar Strings (9–42), 3-pack</TableCell>
+            <TableCell><a href="https://amzn.to/4bZbI9a" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="guitar-strings" fallback="$20.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Knobs</TableCell>
+            <TableCell><a href="https://amzn.to/3PAKPzI" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="knobs" fallback="$10.00" /></TableCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+<DecisionNote variant="caution" title="The neck is the most variable part on this list">
+I've bought several necks with identical specs and they fit differently. Some required modification before they'd seat correctly in the body pocket. The link above is the neck I've had the most consistent results with, but even those vary. Read [What Will Fit](/docs/relay/lipstick/planning/compatibility) before you buy, and budget time for fitting.
+</DecisionNote>
+
+## Pickups
+
+These are [GFS Kwikplug-ready](https://www.guitarfetish.com) pickups. The Kwikplug connector system makes swapping pickups significantly easier and is why I use them. The specific models matter — see [Design Boundaries](/docs/relay/lipstick/electronics/design-boundaries) for why.
+
+<Table>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Item</TableHead>
+            <TableHead>Source</TableHead>
+            <TableHead>Price</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>Neck Humbucker (KPH115 — Classic II Alnico 2)</TableCell>
+            <TableCell><a href="https://www.guitarfetish.com/KP--GFS-Classic-II-Alnico-2-Vintage-wound-Humbuckers-Black-Kwikplug%E2%84%A2-Ready_p_21913.html" target="_blank" rel="noopener noreferrer">Guitar Fetish</a></TableCell>
+            <TableCell><PriceTag itemKey="gfs-neck-pickup" fallback="$37.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Lipstick Middle (KPS41 — Pro Tube)</TableCell>
+            <TableCell><a href="https://www.guitarfetish.com/Pro-Tube-Lipstick-Pickups-Gloss-black--Kwikplug%E2%84%A2-Ready_p_21995.html" target="_blank" rel="noopener noreferrer">Guitar Fetish</a></TableCell>
+            <TableCell><PriceTag itemKey="gfs-lipstick-pickup" fallback="$32.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Bridge Humbucker (KPH65 — Vintage 59 Alnico V)</TableCell>
+            <TableCell><a href="https://www.guitarfetish.com/Vintage-59-Classic-Alnico-V-Humbucker-Black_p_21820.html" target="_blank" rel="noopener noreferrer">Guitar Fetish</a></TableCell>
+            <TableCell><PriceTag itemKey="gfs-bridge-pickup" fallback="$37.00" /></TableCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+## Electronics
+
+<Table>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Item</TableHead>
+            <TableHead>Source</TableHead>
+            <TableHead>Price</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>Push-Push Pots (×2)</TableCell>
+            <TableCell><a href="https://amzn.to/4bsb448" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="push-push-pots" fallback="$15.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Selector Switch</TableCell>
+            <TableCell><a href="https://amzn.to/40LRuJY" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="selector-switch" fallback="$8.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Tone Capacitor</TableCell>
+            <TableCell><a href="https://amzn.to/3NEJ18n" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="tone-capacitor" fallback="$10.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Treble Bleed</TableCell>
+            <TableCell><a href="https://amzn.to/4bUwS8x" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="treble-bleed" fallback="$15.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Output Jack</TableCell>
+            <TableCell><a href="https://amzn.to/4bGpEUv" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="output-jack" fallback="$5.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Hookup Wire</TableCell>
+            <TableCell><a href="https://amzn.to/4bDGenX" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="hookup-wire" fallback="$7.00" /></TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>Copper Foil Tape (shielding)</TableCell>
+            <TableCell><a href="https://amzn.to/4smieg1" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="copper-foil-tape" fallback="$9.00" /></TableCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+## Printing & Assembly
+
+<Table>
+    <TableHeader>
+        <TableRow>
+            <TableHead>Item</TableHead>
+            <TableHead>Source</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead>Notes</TableHead>
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        <TableRow>
+            <TableCell>PET-CF Filament (×2 spools)</TableCell>
+            <TableCell><a href="https://amzn.to/4uIaVRl" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="pet-cf-filament" fallback="$66.00" /></TableCell>
+            <TableCell>Two spools required. See [Printing Overview](/docs/relay/lipstick/printing/overview).</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell>G/Flex 650 Epoxy</TableCell>
+            <TableCell><a href="https://amzn.to/41jYduJ" target="_blank" rel="noopener noreferrer">Amazon</a></TableCell>
+            <TableCell><PriceTag itemKey="gflex-650" fallback="$32.00" /></TableCell>
+            <TableCell>This specific adhesive. Do not substitute.</TableCell>
+        </TableRow>
+    </TableBody>
+</Table>
+
+<DecisionNote variant="caution" title="Use G/Flex 650 specifically — not generic epoxy">
+G/Flex 650 is a flexible marine-grade epoxy that bonds well to plastics and remains slightly flexible when cured. Standard rigid epoxy can crack under the stress and vibration of a strung instrument. I've tested alternatives and come back to this every time.
+</DecisionNote>

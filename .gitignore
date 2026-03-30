@@ -39,4 +39,5 @@ next-env.d.ts
 .content-collections
 
 sitemap*.xml
-robots.txt.superpowers/
+robots.txt
+.superpowers/

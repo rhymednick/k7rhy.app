@@ -1,6 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
@@ -39,7 +40,7 @@ export default async function RelayModelPage({ params }: Props) {
     const breadcrumbs = buildRelayBreadcrumbs(model, [], relayNav);
     return (
         <DocPage title={frontmatter!.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
-            <MDXRemote source={content!} components={components} />
+            <MDXRemote source={content!} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </DocPage>
     );
 }

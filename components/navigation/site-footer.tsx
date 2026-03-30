@@ -39,7 +39,7 @@ export function SiteFooter() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="mb-3 text-sm font-semibold text-foreground">Quick Links</h3>
+                        <h3 className="no-nav mb-3 text-sm font-semibold text-foreground">Quick Links</h3>
                         <ul className="space-y-2">
                             {quickLinks.map((link) => (
                                 <li key={link.href}>
@@ -53,7 +53,7 @@ export function SiteFooter() {
 
                     {/* Social Links */}
                     <div>
-                        <h3 className="mb-3 text-sm font-semibold text-foreground">Connect</h3>
+                        <h3 className="no-nav mb-3 text-sm font-semibold text-foreground">Connect</h3>
                         <div className="flex flex-wrap gap-2">
                             {socialLinks.map((link) => (
                                 <a key={link.href} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label} className="flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground">
