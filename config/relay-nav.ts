@@ -7,7 +7,7 @@ export const relayNav: RelayNav = {
             {
                 title: 'Planning',
                 items: [
-                    { title: 'Bill of Materials', slug: 'planning/bom' },
+                    { title: 'Supply List', slug: 'planning/bom' },
                     { title: 'Compatibility', slug: 'planning/compatibility' },
                 ],
             },
