@@ -52,13 +52,8 @@ export const navConfig: NavigationConfig = {
     docNav: [
         {
             title: 'Relay Guitar Platform',
-            items: [
-                {
-                    title: 'Relay Lipstick',
-                    href: '/docs/relay/lipstick',
-                    items: [],
-                },
-            ],
+            href: '/docs/relay',
+            items: [],
         },
         {
             title: 'Assembly Guides',

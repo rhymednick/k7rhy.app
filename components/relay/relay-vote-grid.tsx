@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { relayModels } from '@/config/relay-models';
 import { RelayModelCard } from '@/components/doc/relay-model-grid';
 
-type VoteState = 'idle' | 'submitting' | 'results';
+type VoteState = 'browsing' | 'voting' | 'submitting' | 'results';
 
 interface VoteTotals {
     [modelKey: string]: { points: number };
@@ -41,7 +41,7 @@ function hintText(count: number): { prefix: string; highlight: string } {
 }
 
 export function RelayVoteGrid() {
-    const [voteState, setVoteState] = useState<VoteState>('idle');
+    const [voteState, setVoteState] = useState<VoteState>('browsing');
     const [rankings, setRankings] = useState<string[]>([]);
     const [votes, setVotes] = useState<VoteTotals>({});
     const [error, setError] = useState<string | null>(null);
@@ -58,7 +58,7 @@ export function RelayVoteGrid() {
                 }
             })
             .catch(() => {
-                // Non-fatal: show idle state without percentages
+                // Non-fatal: stay in browsing state
             });
     }, []);
 
@@ -94,44 +94,57 @@ export function RelayVoteGrid() {
             setVoteState('results');
         } catch {
             setError("Something went wrong — your vote wasn't saved. Try again.");
-            setVoteState('idle');
+            setVoteState('voting');
         }
     }
 
     function changeVote() {
-        setVoteState('idle');
+        setVoteState('voting');
         // rankings already reflect cookie; user can adjust and resubmit
     }
 
     const percentages = computePercentages(votes);
     const hint = hintText(rankings.length);
+    const isVoting = voteState === 'voting';
     const isSubmitting = voteState === 'submitting';
     const isResults = voteState === 'results';
+    const showVoteUI = isVoting || isSubmitting || isResults;
 
     return (
         <div className="my-6">
+            {!showVoteUI && (
+                <div className="mb-6 flex items-start justify-between gap-4 rounded-xl border border-border/60 bg-card p-5">
+                    <div>
+                        <p className="text-sm font-medium text-foreground">Which model should I build next?</p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                            These models are all in development. If you have a preference, let me know — I use the results to help decide which to prioritize.
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => setVoteState('voting')}
+                        className="shrink-0 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+                    >
+                        Vote
+                    </button>
+                </div>
+            )}
+
+            {showVoteUI && !isResults && (
+                <div className="mb-5">
+                    <p className="text-sm font-medium text-foreground">Rank your top 3 planned models</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                        These are models in development. Pick up to three, ranked by preference — I use the results to decide what to build next.
+                    </p>
+                </div>
+            )}
+
             <div className={isSubmitting ? 'pointer-events-none' : undefined}>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {relayModels.map((model) => {
                         const rankIndex = rankings.indexOf(model.modelKey);
                         const rank = rankIndex !== -1 ? ((rankIndex + 1) as 1 | 2 | 3) : undefined;
                         const isPlanned = model.status === 'planned';
-
-                        if (!isPlanned) {
-                            return (
-                                <div key={model.modelKey} className="opacity-40">
-                                    <RelayModelCard
-                                        name={model.name}
-                                        tagline={model.tagline}
-                                        genres={model.genres}
-                                        description={model.description}
-                                        status={model.status}
-                                        href={model.href}
-                                    />
-                                    <p className="mt-1 text-xs italic text-muted-foreground/60">Already built — not part of the vote.</p>
-                                </div>
-                            );
-                        }
 
                         return (
                             <RelayModelCard
@@ -141,38 +154,51 @@ export function RelayVoteGrid() {
                                 genres={model.genres}
                                 description={model.description}
                                 status={model.status}
-                                rank={rank}
+                                href={!showVoteUI ? model.href : undefined}
+                                rank={showVoteUI ? rank : undefined}
                                 percentage={isResults ? percentages[model.modelKey] : undefined}
-                                onSelect={!isResults ? () => toggleRank(model.modelKey) : undefined}
+                                onSelect={isVoting && isPlanned ? () => toggleRank(model.modelKey) : undefined}
                             />
                         );
                     })}
                 </div>
             </div>
 
-            {!isResults && (
+            {isVoting && (
                 <div className="mt-4">
                     <p className="text-sm text-muted-foreground">
                         {hint.prefix}
                         <strong className="text-indigo-400">{hint.highlight}</strong>
                     </p>
                     {rankings.length > 0 && (
-                        <button
-                            type="button"
-                            onClick={submitVote}
-                            disabled={isSubmitting}
-                            className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500 disabled:opacity-60"
-                        >
-                            {isSubmitting && (
-                                <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
-                                </svg>
-                            )}
-                            Submit my rankings
-                        </button>
+                        <div className="mt-3 flex items-center gap-4">
+                            <button
+                                type="button"
+                                onClick={submitVote}
+                                className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500"
+                            >
+                                Submit my rankings
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => { setVoteState('browsing'); setRankings([]); }}
+                                className="text-sm text-muted-foreground hover:text-foreground"
+                            >
+                                Cancel
+                            </button>
+                        </div>
                     )}
                     {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
+                </div>
+            )}
+
+            {isSubmitting && (
+                <div className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                    </svg>
+                    Saving your vote…
                 </div>
             )}
 
