@@ -34,6 +34,9 @@ import { DiscordLink } from '@/components/discord-link';
 import { DecisionNote } from '@/components/doc/decision-note';
 import { PriceTag } from '@/components/price-tag';
 import { BomItem, BomSection } from '@/components/doc/bom-item';
+import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/components/doc/download-files';
+import { RelayModelGrid, RelayModelCard } from '@/components/doc/relay-model-grid';
+import { RelayVoteGrid } from '@/components/relay/relay-vote-grid';
 
 //import { Style } from "@/registry/styles"
 
@@ -157,6 +160,13 @@ const components: MDXComponents = {
     PriceTag,
     BomItem,
     BomSection,
+    DownloadList,
+    DownloadFile,
+    DownloadGroup,
+    DownloadGroupFile,
+    RelayModelGrid,
+    RelayModelCard,
+    RelayVoteGrid,
 };
 
 // interface MdxProps {
