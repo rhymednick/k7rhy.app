@@ -6,7 +6,7 @@ Allow visitors to vote for their top 3 planned Relay guitar models using ranked-
 
 ## Scope
 
-- Voting applies only to models with `status: 'planned'` in `relay-nav.ts`
+- Voting applies only to models with `status: 'planned'`
 - Available models are shown in the grid but are non-interactive and excluded from all vote calculations
 - One vote per browser (enforced via cookie); no account or login required
 - Vote totals are stored persistently server-side via Netlify Blobs
@@ -14,9 +14,96 @@ Allow visitors to vote for their top 3 planned Relay guitar models using ranked-
 
 ---
 
-## Data Model
+## Prerequisites
 
-One Netlify Blobs entry, key: `relay-votes`, store: `relay-voting`.
+```bash
+npm install @netlify/blobs
+```
+
+This is the first use of Netlify Blobs in the project.
+
+---
+
+## Model Registry
+
+A new config file `config/relay-models.ts` is the single source of truth for all model data used by the voting feature. Both the vote grid component and the API validation derive model lists from this file.
+
+```ts
+export interface RelayModel {
+  modelKey: string;      // e.g. 'velvet' — used in API and Blobs. Named 'modelKey' not 'key' to avoid collision with React's reserved 'key' prop.
+  name: string;          // e.g. 'Relay Velvet'
+  tagline: string;
+  genres: string;
+  description: string;
+  status: 'available' | 'planned';
+  href?: string;         // only for available models
+}
+
+export const relayModels: RelayModel[] = [
+  {
+    modelKey: 'lipstick',
+    name: 'Relay Lipstick',
+    tagline: 'Expressive contrast · Signature identity',
+    genres: 'Blues · Rock · Alternative · Indie',
+    description: 'The reference model and first release. Dual humbuckers with a lipstick middle pickup. Built for articulate response, expressive dynamics, and a distinctive middle voice that gives the guitar real character.',
+    status: 'available',
+    href: '/docs/relay/lipstick',
+  },
+  {
+    modelKey: 'velvet',
+    name: 'Relay Velvet',
+    tagline: 'Warm authority · Club presence',
+    genres: 'Jazz · Blues · Soul · R&B',
+    description: 'The warm, full-bodied model. A neck humbucker, Retrotron Nashville middle, and bridge humbucker combination aimed at players who want presence without harshness — authoritative and elegant across all positions.',
+    status: 'planned',
+  },
+  {
+    modelKey: 'arc',
+    name: 'Relay Arc',
+    tagline: 'Chime · Air · Spatial clarity',
+    genres: 'Clean pop · Indie · Ambient · Country',
+    description: 'The open, ringing model. Designed for shimmer, width, and dimensional clarity without thinning out. A humbucker neck, Dream 180 middle, and a clear-voiced bridge give it a wide, airy palette.',
+    status: 'planned',
+  },
+  {
+    modelKey: 'torch',
+    name: 'Relay Torch',
+    tagline: 'Vocal mids · Contemporary energy',
+    genres: 'Rock · Pop · Alternative · Modern country',
+    description: 'The most immediately compelling model for a broad audience. A P90-type middle pickup brings a rude, alive quality to the center voice. Strong tonal separation from Lipstick and Velvet makes it a natural second release candidate.',
+    status: 'planned',
+  },
+  {
+    modelKey: 'current',
+    name: 'Relay Current',
+    tagline: 'Punch · Cut · Immediacy',
+    genres: 'Funk · Pop · Rock',
+    description: 'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. Development timeline uncertain.',
+    status: 'planned',
+  },
+  {
+    modelKey: 'hammer',
+    name: 'Relay Hammer',
+    tagline: 'High gain · Uncompromising',
+    genres: 'Metal · Hard rock',
+    description: 'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup.',
+    status: 'planned',
+  },
+];
+
+export const plannedModelKeys = relayModels
+  .filter(m => m.status === 'planned')
+  .map(m => m.modelKey);
+```
+
+The `content/relay/index.mdx` MDX file is simplified to just `<RelayVoteGrid />` with no inline model props — the component imports from this config directly.
+
+---
+
+## Data Storage — Netlify Blobs
+
+Store name: `relay-voting`
+Key: `relay-votes`
 
 ```json
 {
@@ -29,9 +116,17 @@ One Netlify Blobs entry, key: `relay-votes`, store: `relay-voting`.
 }
 ```
 
-**Weighted scoring:** 1st choice = 3 pts, 2nd = 2 pts, 3rd = 1 pt.
+**Weighted scoring:** 1st = 3 pts, 2nd = 2 pts, 3rd = 1 pt.
 
-**Percentages** are calculated client-side as `modelPoints / totalPoints * 100` where `totalPoints` is the sum of all planned model points. Available models are never included.
+**Empty store:** When the key does not exist (no votes yet), `lib/relay-votes.ts` returns a zeroed-out object using `plannedModelKeys` from the model registry:
+
+```ts
+{ velvet: { points: 0 }, arc: { points: 0 }, ..., totalVoters: 0 }
+```
+
+**Race condition:** Netlify Blobs has no atomic read-modify-write. Concurrent POST requests could lose a vote increment. This is an accepted limitation for this feature — vote counts are approximate guidance for a low-traffic site, not a precise election.
+
+**Percentages** are calculated client-side. The client sums all planned model `points` values from the GET response to derive `totalPoints`, then computes `modelPoints / totalPoints * 100` for each card. `totalPoints` is not returned by the API — it is always derived client-side. Available models are never included.
 
 ---
 
@@ -39,9 +134,9 @@ One Netlify Blobs entry, key: `relay-votes`, store: `relay-voting`.
 
 ### `GET /api/relay-votes`
 
-Returns current vote totals. No authentication required.
+Returns current vote totals. No auth required. Returns `totalVoters` in the response body.
 
-**Response:**
+**Response `200`:**
 ```json
 {
   "votes": {
@@ -57,8 +152,6 @@ Returns current vote totals. No authentication required.
 
 ### `POST /api/relay-votes`
 
-Submits a ranked vote. Validates input, updates Netlify Blobs, sets cookie, returns updated totals.
-
 **Request body:**
 ```json
 { "rankings": ["velvet", "torch", "arc"] }
@@ -66,75 +159,111 @@ Submits a ranked vote. Validates input, updates Netlify Blobs, sets cookie, retu
 
 **Validation:**
 - `rankings` must be an array of 1–3 strings
-- Each entry must be a known model key with `status: 'planned'`
-- No duplicates
-- If the `relay-model-vote` cookie is already set, return `409 Conflict`
+- Each entry must exist in `plannedModelKeys` (from `config/relay-models.ts`)
+- No duplicate entries
+- If `relay-model-vote` cookie is already present, return `409 Conflict`
 
-**Response (success):** Same shape as `GET`, plus `Set-Cookie`.
+**On success:**
+1. Read current blob (or use zeroed defaults if not found)
+2. Add weighted points: rankings[0] += 3, rankings[1] += 2, rankings[2] += 1
+3. Increment `totalVoters`
+4. Write updated blob
+5. Set `relay-model-vote` cookie
+6. Return `200` with same shape as GET response
 
-**Response (already voted):** `409 Conflict`
-
-**Response (invalid input):** `400 Bad Request`
+**Responses:**
+- `200` — vote accepted, returns updated totals + `Set-Cookie`
+- `400` — invalid input
+- `409` — already voted (cookie present)
+- `500` — Blobs read/write failure
 
 ---
 
 ## Cookie
 
 Name: `relay-model-vote`
-Value: JSON-encoded rankings array, e.g. `["velvet","torch","arc"]`
-Max-age: 1 year
+Value: JSON-encoded rankings, e.g. `["velvet","torch","arc"]`
+Max-age: 31,536,000 (1 year)
 SameSite: Lax
 Secure: true in production
-HttpOnly: false (client needs to read it to display "Your #1/2/3" labels)
+HttpOnly: false — client reads the cookie to display "Your #1/2/3" labels
+
+**Security note:** Because the cookie is not HttpOnly, a client-side script could delete it and resubmit. This is an accepted tradeoff — the feature is low-stakes prioritization feedback, not a formal election. No IP-based or account-based deduplication is implemented.
 
 ---
 
 ## Frontend
 
-### Component: `RelayVoteGrid`
+### `config/relay-models.ts`
 
-New client component (`'use client'`) that replaces the static `RelayModelGrid` on the platform overview page. Wraps the model card grid and owns all voting state.
+New file. Single source of truth for all model data. Described above.
+
+### `components/relay/relay-vote-grid.tsx`
+
+New `'use client'` component. Imports `relayModels` from `config/relay-models.ts` directly — no props needed from the MDX caller.
 
 **On mount:**
-1. Read `relay-model-vote` cookie
-2. If cookie exists: parse rankings, set state to `results` view, show "Your #N" labels
-3. Fetch `GET /api/relay-votes` to populate percentage data (always, regardless of cookie)
+1. Read `relay-model-vote` cookie (via `document.cookie`)
+2. Fetch `GET /api/relay-votes` to get current percentages
+3. If cookie exists: parse prior rankings, enter `results` state with those rankings highlighted
+4. If no cookie: enter `idle` state
+
+**State machine:**
+
+- **`idle`** — cards are interactive. Clicking a planned card assigns the next available rank (1, 2, or 3). Clicking a ranked card deselects it and shifts remaining ranks down. Submit button appears after first selection. Hint text updates as ranks are filled. Percentage bars hidden. Available model cards are dimmed, non-interactive, show "Already built — not part of the vote."
+
+- **`submitting`** — submit button shows spinner. A CSS `pointer-events: none` overlay on the grid prevents card interaction. No new `disabled` prop needed on `RelayModelCard`.
+
+- **`results`** — all planned cards show a percentage bar. User's ranked picks show "Your #1/2/3" label and an accented bar color. Available model cards remain in their dimmed state. No further interaction.
 
 **On submit:**
-1. Call `POST /api/relay-votes` with current rankings
-2. On success: transition to `results` view, cookie is set by the API response
-3. On `409`: transition to `results` view (someone else submitted between mount and submit — treat as already voted)
-4. On other error: show inline error message, leave user in voting state
+1. Transition to `submitting`
+2. POST rankings to `/api/relay-votes`
+3. On `200`: update vote totals state, transition to `results`
+4. On `409`: fetch GET to get current totals, transition to `results` with no cards highlighted as "Your #N" (the submission was rejected, so no rankings to attribute to this user)
+5. On other error: transition back to `idle`, show inline error: "Something went wrong — your vote wasn't saved. Try again."
 
-### States
+### `components/doc/relay-model-grid.tsx` — `RelayModelCard` changes
 
-**`idle`** — no vote cast yet. Cards are interactive. Hint text guides the user through ranking 1, 2, 3. Submit button appears after first selection. Percentage bars are hidden.
+Two new optional props:
 
-**`submitting`** — submit button shows a spinner. Cards are non-interactive.
+```ts
+rank?: 1 | 2 | 3        // shows rank badge in idle, "Your #N" in results
+percentage?: number      // if provided, renders the percentage bar
+```
 
-**`results`** — all cards show percentage bars. User's ranked picks show "Your #1/2/3" label and highlighted bar color. Available models remain dimmed with "Already built" note.
+The `onClick` handler for voting is passed as an optional prop from `RelayVoteGrid`:
 
-### `RelayModelCard` changes
+```ts
+onSelect?: () => void
+```
 
-Accepts two new optional props:
-- `rank?: 1 | 2 | 3` — shows rank badge (voting state) or "Your #N" label (results state)
-- `percentage?: number` — if provided, renders the percentage bar
+`RelayModelCard` renders a `<button>` wrapper (instead of `<div>`) when `onSelect` is provided, for accessibility. Available cards never receive `onSelect`.
 
-Available cards (`status: 'available'`) ignore these props entirely.
+### MDX update — `content/relay/index.mdx`
+
+The inline `<RelayModelGrid>` block with hardcoded card props is replaced with:
+
+```mdx
+<RelayVoteGrid />
+```
+
+The model data now lives in `config/relay-models.ts`.
 
 ---
 
 ## Files to create
 
+- `config/relay-models.ts` — model registry (replaces inline MDX card data)
 - `app/api/relay-votes/route.ts` — GET and POST handlers
-- `components/relay/relay-vote-grid.tsx` — client vote grid component
-- `lib/relay-votes.ts` — Netlify Blobs read/write logic, validation helpers
+- `components/relay/relay-vote-grid.tsx` — client vote grid
+- `lib/relay-votes.ts` — Netlify Blobs read/write and validation helpers
 
 ## Files to modify
 
-- `components/doc/relay-model-grid.tsx` — add `rank` and `percentage` props to `RelayModelCard`
-- `content/relay/index.mdx` — replace `<RelayModelGrid>` with `<RelayVoteGrid>`
-- `components/mdx-components.tsx` — register `RelayVoteGrid`
+- `components/doc/relay-model-grid.tsx` — add `rank`, `percentage`, `onSelect` props to `RelayModelCard`
+- `content/relay/index.mdx` — replace inline grid with `<RelayVoteGrid />`
+- `components/mdx-components.tsx` — register `RelayVoteGrid`; keep existing `RelayModelGrid` and `RelayModelCard` registrations as they may be used in other MDX files
 
 ---
 
@@ -143,4 +272,5 @@ Available cards (`status: 'available'`) ignore these props entirely.
 - Changing your vote after submission
 - Admin view of vote totals
 - Resetting votes
-- Showing total voter count on the page (data is stored but not displayed)
+- Displaying total voter count on the page (stored but not shown)
+- IP-based or account-based vote deduplication
