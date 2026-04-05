@@ -7,15 +7,16 @@ import { cn } from '@/lib/utils';
 import { relayNav, relayPlatformNav } from '@/config/relay-nav';
 import type { RelayBreadcrumb } from '@/lib/relay';
 import { MyBreadcrumbs } from '@/components/doc/doc-page';
+import { RelayModelLineupNav } from '@/components/relay/relay-model-lineup-nav';
 
 const PLATFORM_HREF = '/docs/relay';
 const PLATFORM_LABEL = 'Relay Guitar Platform';
+const CHOOSE_MODEL_HREF = '/docs/relay/printing/choose-model';
 
 // ─── Platform-level sidebar ───────────────────────────────────────────────────
 
 function PlatformSidebar() {
     const pathname = usePathname();
-    const availableModels = Object.entries(relayNav).filter(([, m]) => m.status === 'available');
 
     return (
         <nav aria-label="Relay Guitar Platform navigation" className="w-full">
@@ -34,70 +35,54 @@ function PlatformSidebar() {
                 </div>
             </div>
 
-            {/* Platform build guide sections */}
-            {relayPlatformNav.sections.map((section, i) => {
-                // Single-link section (e.g. "Making It Playable")
-                if (section.slug && !section.items?.length) {
-                    const href = `/docs/relay/${section.slug}`;
-                    const isActive = pathname === href;
-                    return (
-                        <div key={i} className="pb-4">
+            {relayPlatformNav.sections.map((section, i) => (
+                <React.Fragment key={i}>
+                    {section.slug && !section.items?.length ? (
+                        <div className="pb-4">
                             <div className="grid grid-flow-row auto-rows-max text-sm">
                                 <Link
-                                    href={href}
+                                    href={`/docs/relay/${section.slug}`}
                                     className={cn(
                                         'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-                                        isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                                        pathname === `/docs/relay/${section.slug}` ? 'font-medium text-foreground' : 'text-muted-foreground',
                                     )}
                                 >
                                     {section.title}
                                 </Link>
                             </div>
                         </div>
-                    );
-                }
-                return (
-                    <div key={i} className="pb-4">
-                        <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>
-                        <div className="grid grid-flow-row auto-rows-max text-sm">
-                            {section.items?.map((item, j) => {
-                                const href = `/docs/relay/${item.slug}`;
-                                const isActive = pathname === href;
-                                return (
-                                    <Link
-                                        key={j}
-                                        href={href}
-                                        className={cn(
-                                            'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-                                            isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
-                                        )}
-                                    >
-                                        {item.title}
-                                    </Link>
-                                );
-                            })}
+                    ) : (
+                        <div className="pb-4">
+                            <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>
+                            <div className="grid grid-flow-row auto-rows-max text-sm">
+                                {section.items?.map((item, j) => {
+                                    const href = `/docs/relay/${item.slug}`;
+                                    const isActive = pathname === href;
+                                    return (
+                                        <Link
+                                            key={j}
+                                            href={href}
+                                            className={cn(
+                                                'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
+                                                isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                                            )}
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
-
-            {/* Models */}
-            {availableModels.length > 0 && (
-                <div className="pb-4">
-                    <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">Models</h4>
-                    <div className="grid grid-flow-row auto-rows-max text-sm">
-                        {availableModels.map(([key, model]) => (
-                            <Link
-                                key={key}
-                                href={`/docs/relay/${key}`}
-                                className="flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground hover:underline"
-                            >
-                                {model.title}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            )}
+                    )}
+                    {/* After Getting started, surface the full lineup before Printing */}
+                    {i === 0 && (
+                        <div className="pb-4">
+                            <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">Models</h4>
+                            <RelayModelLineupNav />
+                        </div>
+                    )}
+                </React.Fragment>
+            ))}
 
             <div className="border-t pt-4">
                 <Link href="/docs" className="flex w-full items-center rounded-md px-2 py-1 text-sm text-muted-foreground hover:underline">
@@ -148,8 +133,6 @@ function ModelSidebar({ model }: { model: string }) {
 
             {/* Model sections */}
             {modelNav.sections.map((section, i) => {
-                // When the section title matches the model title, use it as a grouping header
-                // without repeating the name — just show the items directly under a thin rule.
                 const isModelSection = section.title === modelNav.title;
                 return (
                     <div key={i} className="pb-4">
@@ -177,6 +160,22 @@ function ModelSidebar({ model }: { model: string }) {
             })}
 
             <div className="border-t pt-4">
+                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">All models</h4>
+                <RelayModelLineupNav />
+                <div className="mt-2 grid grid-flow-row auto-rows-max text-sm">
+                    <Link
+                        href={CHOOSE_MODEL_HREF}
+                        className={cn(
+                            'rounded-md border border-transparent px-2 py-1 hover:underline',
+                            pathname === CHOOSE_MODEL_HREF ? 'font-medium text-foreground' : 'text-muted-foreground',
+                        )}
+                    >
+                        Choosing a model
+                    </Link>
+                </div>
+            </div>
+
+            <div className="border-t pt-4">
                 <Link href="/docs" className="flex w-full items-center rounded-md px-2 py-1 text-sm text-muted-foreground hover:underline">
                     ← All Documentation
                 </Link>
@@ -195,7 +194,6 @@ export function RelayLayoutSidebar() {
     const relayIndex = segments.indexOf('relay');
     const nextSegment = relayIndex >= 0 ? (segments[relayIndex + 1] ?? '') : '';
 
-    // Show platform sidebar for the platform root and all platform section pages
     if (!nextSegment || PLATFORM_SECTIONS.includes(nextSegment)) {
         return <PlatformSidebar />;
     }

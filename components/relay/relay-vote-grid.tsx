@@ -117,7 +117,7 @@ export function RelayVoteGrid() {
                     <div>
                         <p className="text-sm font-medium text-foreground">Which model should I develop next?</p>
                         <p className="mt-1 text-sm text-muted-foreground">
-                            These are all of the models I'm planning to develop. If you have a preference, let me know — I use the results to help decide which to prioritize.
+                            These are all of the models I am planning to develop. If you have a preference, let me know — I use the results to help decide which to prioritize.
                         </p>
                     </div>
                     <button

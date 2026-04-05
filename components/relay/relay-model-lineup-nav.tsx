@@ -1,0 +1,50 @@
+'use client';
+
+import React from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { relayNav } from '@/config/relay-nav';
+
+/** First path segment under /docs/relay that is a platform doc, not a model key. */
+const PLATFORM_ROUTE_SEGMENTS = new Set(['printing', 'build', 'assembly', 'electronics', 'setup']);
+
+function activeModelKeyFromPath(pathname: string): string | undefined {
+    const parts = pathname.split('/').filter(Boolean);
+    const relayIdx = parts.indexOf('relay');
+    const next = relayIdx >= 0 ? parts[relayIdx + 1] : undefined;
+    if (!next || PLATFORM_ROUTE_SEGMENTS.has(next)) return undefined;
+    return relayNav[next] ? next : undefined;
+}
+
+export function RelayModelLineupNav() {
+    const pathname = usePathname() ?? '';
+    const activeKey = activeModelKeyFromPath(pathname);
+    const entries = Object.entries(relayNav);
+
+    return (
+        <div className="grid grid-flow-row auto-rows-max text-sm">
+            {entries.map(([key, model]) => {
+                const href = `/docs/relay/${key}`;
+                const isActive = activeKey === key;
+                return (
+                    <Link
+                        key={key}
+                        href={href}
+                        className={cn(
+                            'flex w-full items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 hover:underline',
+                            isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                        )}
+                    >
+                        <span className="min-w-0">{model.title}</span>
+                        {model.status === 'planned' && (
+                            <span className="shrink-0 rounded-full border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+                                Planned
+                            </span>
+                        )}
+                    </Link>
+                );
+            })}
+        </div>
+    );
+}

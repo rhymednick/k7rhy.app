@@ -23,10 +23,10 @@ describe('DocSection', () => {
         expect(h2?.textContent).toBe('Precautions');
     });
 
-    it('renders h1 with text-2xl class', () => {
+    it('renders h1 with text-4xl class from doc-section config', () => {
         const { container } = render(<DocSection title="Test" />);
         const heading = container.querySelector('h1');
-        expect(heading).toHaveClass('text-2xl');
+        expect(heading).toHaveClass('text-4xl');
     });
 
     it('h2 does not have border-b class', () => {

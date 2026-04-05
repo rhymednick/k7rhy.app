@@ -4,10 +4,10 @@ export const relayModels: RelayModel[] = [
 	{
 		modelKey: 'lipstick',
 		name: 'Relay Lipstick',
-		tagline: 'Expressive contrast · Signature identity',
+		tagline: 'Humbucker backbone · Lipstick color',
 		genres: 'Blues · Rock · Alternative · Indie',
 		description:
-			'The reference model and first release. Dual humbuckers with a lipstick middle pickup. Built for articulate response, expressive dynamics, and a distinctive middle voice that gives the guitar real character.',
+			'The reference model and first release. Neck and bridge humbuckers on a 3-way foundation, with a lipstick pickup for tonal shaping and detail — blended in, never a stand-alone voice.',
 		status: 'available',
 		href: '/docs/relay/lipstick',
 	},
@@ -19,6 +19,7 @@ export const relayModels: RelayModel[] = [
 		description:
 			'The warm, full-bodied model. A neck humbucker, Retrotron Nashville middle, and bridge humbucker combination aimed at players who want presence without harshness — authoritative and elegant across all positions.',
 		status: 'planned',
+		href: '/docs/relay/velvet',
 	},
 	{
 		modelKey: 'arc',
@@ -28,6 +29,7 @@ export const relayModels: RelayModel[] = [
 		description:
 			'The open, ringing model. Designed for shimmer, width, and dimensional clarity without thinning out. A humbucker neck, Dream 180 middle, and a clear-voiced bridge give it a wide, airy palette.',
 		status: 'planned',
+		href: '/docs/relay/arc',
 	},
 	{
 		modelKey: 'torch',
@@ -37,6 +39,7 @@ export const relayModels: RelayModel[] = [
 		description:
 			'The most immediately compelling model for a broad audience. A P90-type middle pickup brings a rude, alive quality to the center voice. Strong tonal separation from Lipstick and Velvet makes it a natural second release candidate.',
 		status: 'planned',
+		href: '/docs/relay/torch',
 	},
 	{
 		modelKey: 'current',
@@ -46,6 +49,7 @@ export const relayModels: RelayModel[] = [
 		description:
 			'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. Development timeline uncertain.',
 		status: 'planned',
+		href: '/docs/relay/current',
 	},
 	{
 		modelKey: 'hammer',
@@ -55,6 +59,7 @@ export const relayModels: RelayModel[] = [
 		description:
 			'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup.',
 		status: 'planned',
+		href: '/docs/relay/hammer',
 	},
 ];
 

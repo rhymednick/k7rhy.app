@@ -3,6 +3,13 @@ import type { RelayNav, RelayPlatformNav } from '@/types/relay-nav';
 export const relayPlatformNav: RelayPlatformNav = {
     sections: [
         {
+            title: 'Getting started',
+            items: [
+                { title: 'Choosing a model', slug: 'printing/choose-model' },
+                { title: 'What building takes', slug: 'printing/build-expectations' },
+            ],
+        },
+        {
             title: 'Printing',
             items: [
                 { title: 'Overview', slug: 'printing/overview' },
@@ -54,5 +61,30 @@ export const relayNav: RelayNav = {
                 ],
             },
         ],
+    },
+    velvet: {
+        title: 'Relay Velvet',
+        status: 'planned',
+        sections: [{ title: 'Relay Velvet', items: [] }],
+    },
+    arc: {
+        title: 'Relay Arc',
+        status: 'planned',
+        sections: [{ title: 'Relay Arc', items: [] }],
+    },
+    torch: {
+        title: 'Relay Torch',
+        status: 'planned',
+        sections: [{ title: 'Relay Torch', items: [] }],
+    },
+    current: {
+        title: 'Relay Current',
+        status: 'planned',
+        sections: [{ title: 'Relay Current', items: [] }],
+    },
+    hammer: {
+        title: 'Relay Hammer',
+        status: 'planned',
+        sections: [{ title: 'Relay Hammer', items: [] }],
     },
 };

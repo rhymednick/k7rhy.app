@@ -5,8 +5,8 @@ import { relayNav } from '@/config/relay-nav';
 
 describe('resolveRelayFilePath', () => {
     it('resolves a normal slug to a file path', () => {
-        const result = resolveRelayFilePath('lipstick', ['electronics', 'wiring']);
-        expect(result).toMatch(/content\/relay\/lipstick\/electronics\/wiring\.mdx$/);
+        const result = resolveRelayFilePath('lipstick', ['bom']);
+        expect(result).toMatch(/content\/relay\/lipstick\/bom\.mdx$/);
     });
 
     it('resolves empty slug to index.mdx', () => {
@@ -17,13 +17,12 @@ describe('resolveRelayFilePath', () => {
 
 describe('buildRelayBreadcrumbs', () => {
     it('builds breadcrumbs for a known model page', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', ['electronics', 'wiring'], relayNav);
+        const crumbs = buildRelayBreadcrumbs('lipstick', ['bom'], relayNav);
         expect(crumbs).toEqual([
             { label: 'Docs', href: '/docs' },
             { label: 'Relay Guitar Platform', href: '/docs/relay' },
             { label: 'Relay Lipstick', href: '/docs/relay/lipstick' },
-            { label: 'Electronics' },
-            { label: 'Wiring' },
+            { label: 'Instrument Parts List' },
         ]);
     });
 

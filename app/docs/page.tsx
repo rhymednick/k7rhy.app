@@ -18,9 +18,9 @@ const relayPlatformProps: DocIndexCardProps = {
             type: DocIndexItemType.Internal,
         },
         {
-            title: 'Relay Lipstick',
-            href: '/docs/relay/lipstick',
-            description: 'The reference model — dual humbuckers with a lipstick middle pickup.',
+            title: 'Choosing a model',
+            href: '/docs/relay/printing/choose-model',
+            description: 'Pick a direction in the lineup, then follow platform printing and build guides — with links to every model page.',
             type: DocIndexItemType.Internal,
         },
     ],

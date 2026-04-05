@@ -42,14 +42,14 @@ I've linked to exactly what I build with. When something is marked Flexible, I'l
 
 ## Pickups
 
-These are [GFS Kwikplug-ready](https://www.guitarfetish.com) pickups. The Kwikplug connector system lets you swap pickups without resoldering — a real advantage on a first build. The specific models matter; see [Design Boundaries](/docs/relay/lipstick/electronics/design-boundaries) for why.
+These are [GFS Kwikplug-ready](https://www.guitarfetish.com) pickups. The Kwikplug connector system lets you swap pickups without resoldering — a real advantage on a first build. The specific models matter; see [Design Boundaries](/docs/relay/electronics/design-boundaries) for why.
 
 <BomSection>
     <BomItem title="Neck Humbucker — KPH115 (Classic II Alnico 2)" href="https://www.guitarfetish.com/KP--GFS-Classic-II-Alnico-2-Vintage-wound-Humbuckers-Black-Kwikplug%E2%84%A2-Ready_p_21913.html" source="Guitar Fetish" itemKey="gfs-neck-pickup" fallback="$37.00" specific>
         Vintage-wound Alnico 2 — warm and clear in the neck position. Pairs well with the lipstick without fighting it.
     </BomItem>
     <BomItem title="Middle Lipstick — KPS41 (Pro Tube)" href="https://www.guitarfetish.com/Pro-Tube-Lipstick-Pickups-Gloss-black--Kwikplug%E2%84%A2-Ready_p_21995.html" source="Guitar Fetish" itemKey="gfs-lipstick-pickup" fallback="$32.00" specific>
-        The centerpiece of this design. The circuit is balanced around this specific pickup's output level and impedance characteristics. Substituting a different lipstick may work but expect a different tonal balance.
+        The tonal-shaping layer in this design — blended with the humbuckers, not a stand-alone voice. The circuit is balanced around this pickup's output level and impedance characteristics. Substituting a different lipstick may work but expect a different tonal balance.
     </BomItem>
     <BomItem title="Bridge Humbucker — KPH65 (Vintage 59 Alnico V)" href="https://www.guitarfetish.com/Vintage-59-Classic-Alnico-V-Humbucker-Black_p_21820.html" source="Guitar Fetish" itemKey="gfs-bridge-pickup" fallback="$37.00" specific>
         Slightly hotter than the neck but still in the moderate-output range the circuit requires. High-output pickups overwhelm the lipstick — do not substitute above ~9kΩ DC resistance.
@@ -64,8 +64,8 @@ These are [GFS Kwikplug-ready](https://www.guitarfetish.com) pickups. The Kwikpl
     >
         These serve as both volume controls and coil splits — push to toggle. Keeps the control layout clean without adding extra switches.
     </BomItem>
-    <BomItem title="Selector Switch" href="https://amzn.to/40LRuJY" source="Amazon" itemKey="selector-switch" fallback="$8.00" specific>
-        The 5-way switch provides specific series and parallel combinations that make the lipstick usable in each position. Do not substitute a 3-way.
+    <BomItem title="Selector Switch (3-way)" href="https://amzn.to/40LRuJY" source="Amazon" itemKey="selector-switch" fallback="$8.00" specific>
+        **3-way** pickup selector for neck / both / bridge humbuckers. Verify the listing is a **3-way** blade (or equivalent) before ordering — do not use a 5-way here. The lipstick is engaged separately via the control wiring, not as a selector position.
     </BomItem>
     <BomItem title="Tone Capacitor" href="https://amzn.to/3NEJ18n" source="Amazon" itemKey="tone-capacitor" fallback="$10.00"
         substitution="Cap value is a tonal preference. The listed value gives a warm but not muddy roll-off. Smaller value = cuts higher frequencies; larger = cuts lower. Caps are cheap — experiment freely."

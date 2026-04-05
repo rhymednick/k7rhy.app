@@ -3,9 +3,9 @@ title: 'Wiring & Electronics Overview'
 description: 'How the Relay circuit is designed, why it is designed that way, and what to expect before you start soldering.'
 ---
 
-All Relay models use the same fundamental circuit topology: three pickups, a 5-way selector, two push-push volume pots with coil split, a tone control with treble bleed, and a standard output jack. The specific pickups and selector positions vary by model, but the architecture is shared.
+**Relay Lipstick** (the documented reference build) uses three pickups, a **3-way** selector for the **neck and bridge humbuckers**, two push-push volume pots with coil split, a tone control with treble bleed, and a standard output jack. The **lipstick** is wired so you can **blend it in** for tonal shaping on top of the humbucker voices — it is not treated as a stand-alone “third position” you select alone.
 
-The central design challenge is making a lipstick pickup work harmoniously with humbuckers. The output levels, impedance characteristics, and frequency response of these pickup types are meaningfully different. This circuit is designed to make them coexist without one dominating the others.
+Other planned Relay models may use different selectors or voicing strategies; the shared idea is balancing a **character middle pickup** with humbuckers. The central design challenge is making a lipstick work harmoniously with humbuckers — output levels, impedance, and frequency response differ meaningfully. This circuit keeps the humbuckers authoritative while the lipstick adds color and detail when you want it.
 
 ## Signal path
 
@@ -13,9 +13,9 @@ The central design challenge is making a lipstick pickup work harmoniously with 
 
 ## The selector
 
-The 5-way selector provides five distinct voicings across the three pickups:
+On **Relay Lipstick**, the **3-way** toggles the **humbuckers**: neck, both, bridge. Lipstick engagement and automatic bridge split for balance are handled in the **volume / switching** wiring, not as extra stops on the blade.
 
-[TODO: describe each position — what pickups are active, series/parallel, humbucker/split. This is the heart of what makes the circuit interesting.]
+[TODO: document neck / both / bridge humbucker combinations and how the lipstick blend interacts — diagram still TBD.]
 
 ## The push-push pots
 
