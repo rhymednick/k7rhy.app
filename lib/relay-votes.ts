@@ -37,6 +37,7 @@ export function applyWeightedPoints(votes: VoteStore, rankings: string[], multip
     rankings.forEach((modelKey, i) => {
         const weight = VOTE_WEIGHTS[i] ?? 0;
         const entry = result[modelKey];
+        // If modelKey is not yet in the store (e.g. a newly added model), it starts at 0 and receives the points.
         const current = typeof entry === 'object' && entry !== null ? entry.points : 0;
         const next = current + weight * multiplier;
         result[modelKey] = { points: Math.max(0, next) };
@@ -47,7 +48,9 @@ export function applyWeightedPoints(votes: VoteStore, rankings: string[], multip
 export async function readVotes(): Promise<VoteStore> {
     const store = getStore(STORE_NAME);
     const raw = await store.get(BLOB_KEY, { type: 'json' }).catch(() => null);
-    if (!raw) return buildZeroedVotes(plannedModelKeys);
+    if (!raw || typeof raw !== 'object' || typeof (raw as Record<string, unknown>).totalVoters !== 'number') {
+        return buildZeroedVotes(plannedModelKeys);
+    }
     return raw as VoteStore;
 }
 

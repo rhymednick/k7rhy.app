@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { applyWeightedPoints, buildZeroedVotes, VOTE_WEIGHTS, isValidRankings } from '@/lib/relay-votes';
+import { applyWeightedPoints, buildZeroedVotes, VOTE_WEIGHTS, isValidRankings, ModelVote } from '@/lib/relay-votes';
 
 describe('VOTE_WEIGHTS', () => {
     it('assigns 3 pts for rank 0, 2 for rank 1, 1 for rank 2', () => {
@@ -20,22 +20,22 @@ describe('applyWeightedPoints', () => {
     it('adds weighted points for rankings', () => {
         const votes = buildZeroedVotes(['velvet', 'arc', 'torch']);
         const result = applyWeightedPoints(votes, ['velvet', 'torch'], 1);
-        expect(result.velvet.points).toBe(3);
-        expect(result.torch.points).toBe(2);
-        expect(result.arc.points).toBe(0);
+        expect((result.velvet as ModelVote).points).toBe(3);
+        expect((result.torch as ModelVote).points).toBe(2);
+        expect((result.arc as ModelVote).points).toBe(0);
     });
 
     it('subtracts weighted points (clamps to 0)', () => {
         const votes = { velvet: { points: 2 }, arc: { points: 0 }, torch: { points: 1 }, current: { points: 0 }, hammer: { points: 0 }, totalVoters: 1 };
         const result = applyWeightedPoints(votes, ['velvet', 'arc'], -1);
-        expect(result.velvet.points).toBe(0); // 2 - 3 clamped to 0
-        expect(result.arc.points).toBe(0);    // 0 - 2 clamped to 0
+        expect((result.velvet as ModelVote).points).toBe(0); // 2 - 3 clamped to 0
+        expect((result.arc as ModelVote).points).toBe(0);    // 0 - 2 clamped to 0
     });
 
     it('handles rankings shorter than 3', () => {
         const votes = buildZeroedVotes(['velvet', 'arc', 'torch', 'current', 'hammer']);
         const result = applyWeightedPoints(votes, ['torch'], 1);
-        expect(result.torch.points).toBe(3);
+        expect((result.torch as ModelVote).points).toBe(3);
     });
 });
 
