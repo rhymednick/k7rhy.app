@@ -1,6 +1,6 @@
 export interface RelayNavItem {
     title: string;
-    slug: string; // relative to model root, e.g. 'printing/parameters'
+    slug: string;
 }
 
 export interface RelayNavSection {
@@ -10,9 +10,15 @@ export interface RelayNavSection {
 
 export interface RelayModelNav {
     title: string;
+    status: 'available' | 'planned';
     sections: RelayNavSection[];
 }
 
 export interface RelayNav {
     [model: string]: RelayModelNav;
+}
+
+/** Platform-level nav — sections shared across all models. */
+export interface RelayPlatformNav {
+    sections: RelayNavSection[];
 }
