@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 	const cookieStore = await cookies();
 	const existingCookie = cookieStore.get(COOKIE_NAME)?.value;
 
-	if (!previousRankings && existingCookie) {
+	if (previousRankings === undefined && existingCookie) {
 		return NextResponse.json(
 			{ error: 'Cookie present but no previousRankings supplied' },
 			{ status: 409 }
