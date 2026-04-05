@@ -49,7 +49,7 @@ export async function readVotes(): Promise<VoteStore> {
     const store = getStore(STORE_NAME);
     // Note: Netlify Blobs has no atomic read-modify-write. Concurrent POST requests
     // could lose a vote increment. This is an accepted limitation for a low-traffic site.
-    const raw = await store.get(BLOB_KEY, { type: 'json' }).catch(() => null);
+    const raw = await store.get(BLOB_KEY, { type: 'json' });
     if (!raw || typeof raw !== 'object' || typeof (raw as Record<string, unknown>).totalVoters !== 'number') {
         return buildZeroedVotes(plannedModelKeys);
     }
