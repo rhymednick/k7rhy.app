@@ -2,13 +2,13 @@
 
 ## Goal
 
-Allow visitors to vote for their top 3 planned Relay guitar models using ranked-choice selection. Display weighted percentage totals on the model cards to help the site owner prioritize development order.
+Allow visitors to vote for their top 3 planned Relay guitar models using ranked-choice selection. Display weighted percentage totals on the model cards to help the site owner prioritize development order. Visitors can change their vote at any time.
 
 ## Scope
 
 - Voting applies only to models with `status: 'planned'`
 - Available models are shown in the grid but are non-interactive and excluded from all vote calculations
-- One vote per browser (enforced via cookie); no account or login required
+- One active vote per browser (stored in cookie); vote can be changed any number of times
 - Vote totals are stored persistently server-side via Netlify Blobs
 - The platform overview page (`/docs/relay`) is the only location for this feature
 
@@ -124,6 +124,8 @@ Key: `relay-votes`
 { velvet: { points: 0 }, arc: { points: 0 }, ..., totalVoters: 0 }
 ```
 
+**Vote changes:** When a user changes their vote, the API reads their previous rankings from the request body, subtracts the old weighted points, then adds the new weighted points. `totalVoters` is not incremented on a vote change. See POST spec below.
+
 **Race condition:** Netlify Blobs has no atomic read-modify-write. Concurrent POST requests could lose a vote increment. This is an accepted limitation for this feature — vote counts are approximate guidance for a low-traffic site, not a precise election.
 
 **Percentages** are calculated client-side. The client sums all planned model `points` values from the GET response to derive `totalPoints`, then computes `modelPoints / totalPoints * 100` for each card. `totalPoints` is not returned by the API — it is always derived client-side. Available models are never included.
@@ -134,7 +136,7 @@ Key: `relay-votes`
 
 ### `GET /api/relay-votes`
 
-Returns current vote totals. No auth required. Returns `totalVoters` in the response body.
+Returns current vote totals. No auth required.
 
 **Response `200`:**
 ```json
@@ -152,29 +154,46 @@ Returns current vote totals. No auth required. Returns `totalVoters` in the resp
 
 ### `POST /api/relay-votes`
 
+Handles both new votes and vote changes.
+
 **Request body:**
 ```json
-{ "rankings": ["velvet", "torch", "arc"] }
+{
+  "rankings": ["velvet", "torch", "arc"],
+  "previousRankings": ["arc", "velvet", "torch"]
+}
 ```
+
+`previousRankings` is omitted on a first vote. When present, it must be a valid previously-submitted rankings array — the API uses it to subtract old points before applying the new vote.
 
 **Validation:**
 - `rankings` must be an array of 1–3 strings
-- Each entry must exist in `plannedModelKeys` (from `config/relay-models.ts`)
-- No duplicate entries
-- If `relay-model-vote` cookie is already present, return `409 Conflict`
+- Each entry in `rankings` must exist in `plannedModelKeys`
+- No duplicates in `rankings`
+- If `previousRankings` is present: same shape validation; each entry must exist in `plannedModelKeys`; no duplicates
+- If `previousRankings` is absent and the `relay-model-vote` cookie is already set: reject with `409 Conflict` (cookie present but client sent no previous rankings — likely a client bug or tampering attempt)
 
-**On success:**
-1. Read current blob (or use zeroed defaults if not found)
-2. Add weighted points: rankings[0] += 3, rankings[1] += 2, rankings[2] += 1
+**On new vote (no `previousRankings`):**
+1. Read current blob (or use zeroed defaults)
+2. Add weighted points for `rankings`
 3. Increment `totalVoters`
 4. Write updated blob
-5. Set `relay-model-vote` cookie
-6. Return `200` with same shape as GET response
+5. Set `relay-model-vote` cookie to new rankings
+6. Return `200` with updated totals
+
+**On vote change (`previousRankings` present):**
+1. Read current blob (or use zeroed defaults)
+2. Subtract weighted points for `previousRankings` (clamp each model's points to 0 minimum)
+3. Add weighted points for `rankings`
+4. Do not change `totalVoters`
+5. Write updated blob
+6. Overwrite `relay-model-vote` cookie with new rankings
+7. Return `200` with updated totals
 
 **Responses:**
 - `200` — vote accepted, returns updated totals + `Set-Cookie`
 - `400` — invalid input
-- `409` — already voted (cookie present)
+- `409` — cookie present but no `previousRankings` supplied
 - `500` — Blobs read/write failure
 
 ---
@@ -186,9 +205,9 @@ Value: JSON-encoded rankings, e.g. `["velvet","torch","arc"]`
 Max-age: 31,536,000 (1 year)
 SameSite: Lax
 Secure: true in production
-HttpOnly: false — client reads the cookie to display "Your #1/2/3" labels
+HttpOnly: false — client reads the cookie to display "Your #1/2/3" labels and to populate rankings when changing vote
 
-**Security note:** Because the cookie is not HttpOnly, a client-side script could delete it and resubmit. This is an accepted tradeoff — the feature is low-stakes prioritization feedback, not a formal election. No IP-based or account-based deduplication is implemented.
+**Security note:** Because the cookie is not HttpOnly, a client-side script could manipulate it. This is an accepted tradeoff — the feature is low-stakes prioritization feedback, not a formal election. No IP-based or account-based deduplication is implemented.
 
 ---
 
@@ -214,14 +233,19 @@ New `'use client'` component. Imports `relayModels` from `config/relay-models.ts
 
 - **`submitting`** — submit button shows spinner. A CSS `pointer-events: none` overlay on the grid prevents card interaction. No new `disabled` prop needed on `RelayModelCard`.
 
-- **`results`** — all planned cards show a percentage bar. User's ranked picks show "Your #1/2/3" label and an accented bar color. Available model cards remain in their dimmed state. No further interaction.
+- **`results`** — all planned cards show a percentage bar. User's ranked picks show "Your #1/2/3" label and an accented bar color. A "Change my vote" button appears below the grid. Available model cards remain in their dimmed state.
 
 **On submit:**
 1. Transition to `submitting`
-2. POST rankings to `/api/relay-votes`
-3. On `200`: update vote totals state, transition to `results`
-4. On `409`: fetch GET to get current totals, transition to `results` with no cards highlighted as "Your #N" (the submission was rejected, so no rankings to attribute to this user)
+2. Read `relay-model-vote` cookie — if present, include it as `previousRankings` in the POST body
+3. POST `{ rankings, previousRankings? }` to `/api/relay-votes`
+4. On `200`: update vote totals state, transition to `results`
 5. On other error: transition back to `idle`, show inline error: "Something went wrong — your vote wasn't saved. Try again."
+
+**On "Change my vote":**
+1. Transition back to `idle`
+2. Pre-populate the current rankings from the cookie so the user's prior choices are already selected
+3. The submit flow then sends both `rankings` and `previousRankings`
 
 ### `components/doc/relay-model-grid.tsx` — `RelayModelCard` changes
 
@@ -269,7 +293,6 @@ The model data now lives in `config/relay-models.ts`.
 
 ## Out of scope
 
-- Changing your vote after submission
 - Admin view of vote totals
 - Resetting votes
 - Displaying total voter count on the page (stored but not shown)
