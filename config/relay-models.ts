@@ -1,12 +1,4 @@
-export interface RelayModel {
-	modelKey: string;
-	name: string;
-	tagline: string;
-	genres: string;
-	description: string;
-	status: 'available' | 'planned';
-	href?: string;
-}
+import type { RelayModel } from '@/types/relay-model';
 
 export const relayModels: RelayModel[] = [
 	{
