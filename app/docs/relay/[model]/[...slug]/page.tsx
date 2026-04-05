@@ -13,7 +13,7 @@ type Props = { params: Promise<{ model: string; slug: string[] }> };
 export function generateStaticParams() {
     return Object.entries(relayNav).flatMap(([model, modelNav]) =>
         modelNav.sections.flatMap((section) =>
-            section.items.map((item) => ({
+            (section.items ?? []).map((item) => ({
                 model,
                 slug: item.slug.split('/'),
             }))

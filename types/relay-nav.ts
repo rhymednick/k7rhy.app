@@ -5,7 +5,8 @@ export interface RelayNavItem {
 
 export interface RelayNavSection {
     title: string;
-    items: RelayNavItem[];
+    slug?: string;
+    items?: RelayNavItem[];
 }
 
 export interface RelayModelNav {

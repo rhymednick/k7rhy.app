@@ -21,9 +21,6 @@ function PlatformSidebar() {
         <nav aria-label="Relay Guitar Platform navigation" className="w-full">
             {/* Platform overview link */}
             <div className="pb-4">
-                <p className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    {PLATFORM_LABEL}
-                </p>
                 <div className="grid grid-flow-row auto-rows-max text-sm">
                     <Link
                         href={PLATFORM_HREF}
@@ -38,29 +35,51 @@ function PlatformSidebar() {
             </div>
 
             {/* Platform build guide sections */}
-            {relayPlatformNav.sections.map((section, i) => (
-                <div key={i} className="pb-4">
-                    <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>
-                    <div className="grid grid-flow-row auto-rows-max text-sm">
-                        {section.items.map((item, j) => {
-                            const href = `/docs/relay/${item.slug}`;
-                            const isActive = pathname === href;
-                            return (
+            {relayPlatformNav.sections.map((section, i) => {
+                // Single-link section (e.g. "Making It Playable")
+                if (section.slug && !section.items?.length) {
+                    const href = `/docs/relay/${section.slug}`;
+                    const isActive = pathname === href;
+                    return (
+                        <div key={i} className="pb-4">
+                            <div className="grid grid-flow-row auto-rows-max text-sm">
                                 <Link
-                                    key={j}
                                     href={href}
                                     className={cn(
                                         'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
                                         isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
                                     )}
                                 >
-                                    {item.title}
+                                    {section.title}
                                 </Link>
-                            );
-                        })}
+                            </div>
+                        </div>
+                    );
+                }
+                return (
+                    <div key={i} className="pb-4">
+                        <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>
+                        <div className="grid grid-flow-row auto-rows-max text-sm">
+                            {section.items?.map((item, j) => {
+                                const href = `/docs/relay/${item.slug}`;
+                                const isActive = pathname === href;
+                                return (
+                                    <Link
+                                        key={j}
+                                        href={href}
+                                        className={cn(
+                                            'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
+                                            isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                                        )}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
 
             {/* Models */}
             {availableModels.length > 0 && (
@@ -136,7 +155,7 @@ function ModelSidebar({ model }: { model: string }) {
                     <div key={i} className="pb-4">
                         {!isModelSection && <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{section.title}</h4>}
                         <div className="grid grid-flow-row auto-rows-max text-sm">
-                            {section.items.map((item, j) => {
+                            {(section.items ?? []).map((item, j) => {
                                 const href = `/docs/relay/${model}/${item.slug}`;
                                 const isActive = pathname === href;
                                 return (
@@ -168,7 +187,7 @@ function ModelSidebar({ model }: { model: string }) {
 
 // ─── Auto-switching sidebar ───────────────────────────────────────────────────
 
-const PLATFORM_SECTIONS = ['printing', 'build', 'assembly', 'setup'];
+const PLATFORM_SECTIONS = ['printing', 'build', 'assembly', 'electronics', 'setup'];
 
 export function RelayLayoutSidebar() {
     const pathname = usePathname() ?? '';

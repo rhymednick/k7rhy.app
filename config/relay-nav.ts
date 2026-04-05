@@ -12,22 +12,30 @@ export const relayPlatformNav: RelayPlatformNav = {
             ],
         },
         {
-            title: 'Body Construction',
-            items: [{ title: 'Building the Body', slug: 'build/body' }],
+            title: 'Assembling the Body',
+            items: [{ title: 'Overview', slug: 'build/body' }],
         },
         {
-            title: 'Assembly',
+            title: 'Hardware Installation',
             items: [
-                { title: 'Guitar Assembly', slug: 'assembly/overview' },
+                { title: 'Overview', slug: 'assembly/overview' },
                 { title: 'Checkpoints', slug: 'assembly/checkpoints' },
             ],
         },
         {
-            title: 'Setup',
+            title: 'Wiring & Electronics',
+            items: [
+                { title: 'Overview', slug: 'electronics/overview' },
+                { title: 'Wiring', slug: 'electronics/wiring' },
+                { title: 'Design Boundaries', slug: 'electronics/design-boundaries' },
+            ],
+        },
+        {
+            title: 'Making It Playable',
             items: [
                 { title: 'Getting Playable', slug: 'setup/playable' },
-                { title: 'Optimization', slug: 'setup/optimization' },
-                { title: 'Professional Setup', slug: 'setup/professional' },
+                { title: 'Fine-Tuning', slug: 'setup/optimization' },
+                { title: 'When to Call a Luthier', slug: 'setup/professional' },
             ],
         },
     ],
@@ -43,14 +51,6 @@ export const relayNav: RelayNav = {
                 items: [
                     { title: 'Instrument Parts List', slug: 'bom' },
                     { title: 'Compatibility', slug: 'compatibility' },
-                ],
-            },
-            {
-                title: 'Electronics',
-                items: [
-                    { title: 'Overview', slug: 'electronics/overview' },
-                    { title: 'Wiring', slug: 'electronics/wiring' },
-                    { title: 'Design Boundaries', slug: 'electronics/design-boundaries' },
                 ],
             },
         ],

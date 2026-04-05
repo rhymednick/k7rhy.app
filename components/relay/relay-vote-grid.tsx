@@ -115,9 +115,9 @@ export function RelayVoteGrid() {
             {!showVoteUI && (
                 <div className="mb-6 flex items-start justify-between gap-4 rounded-xl border border-border/60 bg-card p-5">
                     <div>
-                        <p className="text-sm font-medium text-foreground">Which model should I build next?</p>
+                        <p className="text-sm font-medium text-foreground">Which model should I develop next?</p>
                         <p className="mt-1 text-sm text-muted-foreground">
-                            These models are all in development. If you have a preference, let me know — I use the results to help decide which to prioritize.
+                            These are all of the models I'm planning to develop. If you have a preference, let me know — I use the results to help decide which to prioritize.
                         </p>
                     </div>
                     <button

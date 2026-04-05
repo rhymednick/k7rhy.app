@@ -58,7 +58,7 @@ export function buildRelayPlatformBreadcrumbs(slug: string[], nav: RelayPlatform
     let sectionTitle: string | undefined;
 
     for (const section of nav.sections) {
-        const item = section.items.find((i) => i.slug === pageSlug);
+        const item = section.items?.find((i) => i.slug === pageSlug);
         if (item) {
             pageTitle = item.title;
             sectionTitle = section.title;
@@ -91,7 +91,7 @@ export function buildRelayBreadcrumbs(model: string, slug: string[], nav: RelayN
     let sectionTitle: string | undefined;
 
     for (const section of modelNav?.sections ?? []) {
-        const item = section.items.find((i) => i.slug === pageSlug);
+        const item = section.items?.find((i) => i.slug === pageSlug);
         if (item) {
             pageTitle = item.title;
             sectionTitle = section.title;
