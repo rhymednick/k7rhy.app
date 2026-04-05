@@ -112,7 +112,7 @@ export function RelayModelCard({ name, tagline, genres, description, status, hre
 
     if (onSelect) {
         return (
-            <button type="button" onClick={onSelect} className="block w-full text-left">
+            <button type="button" onClick={onSelect} className="block w-full text-left" aria-label={`Select ${name}`}>
                 {inner}
             </button>
         );
