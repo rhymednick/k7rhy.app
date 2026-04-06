@@ -1,34 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-
-type ModelStatus = 'available' | 'planned';
+import { RelayModelStatusBadge, type RelayModelStatus } from '@/components/relay/relay-model-status-badge';
 
 interface RelayModelCardProps {
     name: string;
     tagline: string;
     genres: string;
     description: string;
-    status: ModelStatus;
+    status: RelayModelStatus;
     href?: string;
     rank?: 1 | 2 | 3;
     percentage?: number;
     onSelect?: () => void;
-}
-
-function StatusBadge({ status }: { status: ModelStatus }) {
-    if (status === 'available') {
-        return (
-            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                Available
-            </span>
-        );
-    }
-    return (
-        <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
-            Planned
-        </span>
-    );
 }
 
 const RANK_BADGE_STYLES: Record<1 | 2 | 3, string> = {
@@ -80,7 +64,7 @@ export function RelayModelCard({ name, tagline, genres, description, status, hre
                             {rank}
                         </span>
                     )}
-                    <StatusBadge status={status} />
+                    <RelayModelStatusBadge status={status} />
                 </div>
             </div>
             <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{tagline}</p>

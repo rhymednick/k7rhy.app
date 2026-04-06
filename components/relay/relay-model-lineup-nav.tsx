@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { relayNav } from '@/config/relay-nav';
+import { RelayModelStatusBadge } from '@/components/relay/relay-model-status-badge';
 
 /** First path segment under /docs/relay that is a platform doc, not a model key. */
 const PLATFORM_ROUTE_SEGMENTS = new Set(['printing', 'build', 'assembly', 'electronics', 'setup']);
@@ -37,11 +38,7 @@ export function RelayModelLineupNav() {
                         )}
                     >
                         <span className="min-w-0">{model.title}</span>
-                        {model.status === 'planned' && (
-                            <span className="shrink-0 rounded-full border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
-                                Planned
-                            </span>
-                        )}
+                        <RelayModelStatusBadge status={model.status} />
                     </Link>
                 );
             })}
