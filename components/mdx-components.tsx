@@ -37,6 +37,7 @@ import { BomItem, BomSection } from '@/components/doc/bom-item';
 import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/components/doc/download-files';
 import { RelayModelGrid, RelayModelCard } from '@/components/doc/relay-model-grid';
 import { RelayVoteGrid } from '@/components/relay/relay-vote-grid';
+import { RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
 
 //import { Style } from "@/registry/styles"
 
@@ -167,6 +168,7 @@ const components: MDXComponents = {
     RelayModelGrid,
     RelayModelCard,
     RelayVoteGrid,
+    RelayRecommendedPickups,
 };
 
 // interface MdxProps {

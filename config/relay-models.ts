@@ -4,12 +4,17 @@ export const relayModels: RelayModel[] = [
 	{
 		modelKey: 'lipstick',
 		name: 'Relay Lipstick',
-		tagline: 'Humbucker backbone · Lipstick color',
+		tagline: 'Signature · Articulate · Lipstick layer',
 		genres: 'Blues · Rock · Alternative · Indie',
 		description:
-			'The reference model and first release. Neck and bridge humbuckers on a 3-way foundation, with a lipstick pickup for tonal shaping and detail — blended in, never a stand-alone voice.',
+			'The reference model and first release: expressive dual humbuckers with a middle lipstick as a curated alternate voice — familiar core behavior plus a second identity of the same instrument, not a novelty.',
 		status: 'available',
 		href: '/docs/relay/lipstick',
+		recommendedPickups: {
+			neck: 'GFS Professional Series Alnico II Humbucker',
+			middle: 'GFS Pro-Tube Lipstick, middle / ~6K class',
+			bridge: 'GFS VEH humbucker',
+		},
 	},
 	{
 		modelKey: 'velvet',
@@ -17,9 +22,14 @@ export const relayModels: RelayModel[] = [
 		tagline: 'Warm authority · Club presence',
 		genres: 'Jazz · Blues · Soul · R&B',
 		description:
-			'The warm, full-bodied model. A neck humbucker, Retrotron Nashville middle, and bridge humbucker combination aimed at players who want presence without harshness — authoritative and elegant across all positions.',
+			'The warm, fat, classy club model — a distinct center of gravity. The middle pickup is a true core voice (5-way family), poised and present so the band can orbit the guitar.',
 		status: 'planned',
 		href: '/docs/relay/velvet',
+		recommendedPickups: {
+			neck: 'GFS Professional Series Alnico II Humbucker',
+			middle: 'GFS Retrotron Nashville',
+			bridge: 'GFS Professional Series Alnico II Humbucker',
+		},
 	},
 	{
 		modelKey: 'arc',
@@ -27,39 +37,59 @@ export const relayModels: RelayModel[] = [
 		tagline: 'Chime · Air · Spatial clarity',
 		genres: 'Clean pop · Indie · Ambient · Country',
 		description:
-			'The open, ringing model. Designed for shimmer, width, and dimensional clarity without thinning out. A humbucker neck, Dream 180 middle, and a clear-voiced bridge give it a wide, airy palette.',
+			'The airy, spatial, chime-forward model: width, shimmer, and clarity without thinning out — open, ringing, and alive rather than club-warm or mid-forward.',
 		status: 'planned',
 		href: '/docs/relay/arc',
+		recommendedPickups: {
+			neck: 'GFS Vintage 59 Humbucker',
+			middle: 'GFS Dream 180',
+			bridge: 'GFS Retrotron Liverpool',
+		},
 	},
 	{
 		modelKey: 'torch',
 		name: 'Relay Torch',
-		tagline: 'Vocal mids · Contemporary energy',
+		tagline: 'Vocal mids · Hooky · Contemporary',
 		genres: 'Rock · Pop · Alternative · Modern country',
 		description:
-			'The most immediately compelling model for a broad audience. A P90-type middle pickup brings a rude, alive quality to the center voice. Strong tonal separation from Lipstick and Velvet makes it a natural second release candidate.',
+			'The rude, vocal-mid, modern-radio voice: attitude and edge with a P90-type middle as a core position (5-way family) — emotionally direct and hooky without becoming a metal guitar.',
 		status: 'planned',
 		href: '/docs/relay/torch',
+		recommendedPickups: {
+			neck: 'GFS Professional Series Alnico II Humbucker',
+			middle: 'GFS Mean 90',
+			bridge: 'GFS VEH humbucker',
+		},
 	},
 	{
 		modelKey: 'current',
 		name: 'Relay Current',
-		tagline: 'Punch · Cut · Immediacy',
+		tagline: 'Punch · Cut · Fast attack',
 		genres: 'Funk · Pop · Rock',
 		description:
-			'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. ',
+			'Punchy, cutting, and immediate: strong projection and edge definition (3-way family with the middle as a fast alternate layer). The line’s sharpest non-metal tool — less warm than Velvet, less spacious than Arc, less throaty than Torch.',
 		status: 'planned',
 		href: '/docs/relay/current',
+		recommendedPickups: {
+			neck: 'GFS Vintage 59 Humbucker',
+			middle: 'GFS Retrotron Hot Nashville',
+			bridge: 'GFS Professional Series Alnico V HOT Humbucker',
+		},
 	},
 	{
 		modelKey: 'hammer',
 		name: 'Relay Hammer',
-		tagline: 'High gain · Uncompromising',
+		tagline: 'High gain · Tight · Uncompromising',
 		genres: 'Metal · Hard rock',
 		description:
-			'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup, this is the only model designed with active pickups.',
+			'The dedicated heavy model: high-gain authority, tight aggressive attack, and rail-style passive pickups — the specialty brute of the line, direct and forceful rather than elegant.',
 		status: 'planned',
 		href: '/docs/relay/hammer',
+		recommendedPickups: {
+			neck: 'GFS Crunchy Rails',
+			middle: 'GFS Power Rails',
+			bridge: 'GFS Crunchy Rails',
+		},
 	},
 ];
 
