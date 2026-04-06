@@ -47,7 +47,7 @@ export const relayModels: RelayModel[] = [
 		tagline: 'Punch · Cut · Immediacy',
 		genres: 'Funk · Pop · Rock',
 		description:
-			'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. Development timeline uncertain.',
+			'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. ',
 		status: 'planned',
 		href: '/docs/relay/current',
 	},
@@ -57,7 +57,7 @@ export const relayModels: RelayModel[] = [
 		tagline: 'High gain · Uncompromising',
 		genres: 'Metal · Hard rock',
 		description:
-			'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup.',
+			'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup, this is the only model designed with active pickups.',
 		status: 'planned',
 		href: '/docs/relay/hammer',
 	},
