@@ -51,18 +51,28 @@ export const navConfig: NavigationConfig = {
     ],
     docNav: [
         {
-            title: 'Assembly Guides',
+            title: 'Relay Guitar Platform',
+            items: [
+                {
+                    title: 'Platform Overview',
+                    href: '/docs/relay',
+                    items: [],
+                },
+                {
+                    title: 'Relay Lipstick',
+                    href: '/docs/relay/lipstick',
+                    items: [],
+                },
+            ],
+        },
+        {
+            title: 'Ham Radio & Electronics',
             items: [
                 {
                     title: '20W Dummy Load',
                     href: '/docs/dl20w_bnc',
                     items: [],
                 },
-            ],
-        },
-        {
-            title: 'Tech Guides',
-            items: [
                 {
                     title: 'Measuring Power',
                     href: '/docs/power_measurement',

@@ -4,6 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import components from '@/components/mdx-components'; // Ensure the correct path to your mdx-components.tsx
 import { DocPage, MyBreadcrumbs } from '@/components/doc/doc-page';
 
@@ -38,7 +39,7 @@ const Page = async ({ params }: MdxDocProps) => {
 
     return (
         <DocPage title={data.title} subTitle={data.subTitle} date={data.date} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>
-            <MDXRemote source={content} components={components} />
+            <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </DocPage>
     );
 };

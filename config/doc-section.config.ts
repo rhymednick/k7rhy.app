@@ -31,7 +31,7 @@ export default {
     docSectionFormats: [
         {
             level: 1,
-            style: 'text-2xl font-bold tracking-tight pb-3 mb-1 border-b border-gray-200 dark:border-slate-700 text-gray-900 dark:text-slate-100',
+            style: 'text-4xl font-bold tracking-tight pb-3 mb-1 border-b border-gray-200 dark:border-slate-700 text-gray-900 dark:text-slate-100',
         },
         {
             level: 2,
