@@ -2,13 +2,33 @@ import React from 'react';
 
 import { DocPage } from '@/components/doc/doc-page';
 import { DocIndexCard, DocIndexItemType, DocIndexCardProps } from '@/components/doc/doc-index-card';
-import { Wrench, BookOpen } from 'lucide-react';
+import { Layers, Wrench } from 'lucide-react';
 
 const DocTitle = 'Documentation';
 
-const docAssemblyGuideProps: DocIndexCardProps = {
-    title: 'Assembly Guides',
-    description: 'Collection of assembly guides for the K7RHY ham radio kits.',
+const relayPlatformProps: DocIndexCardProps = {
+    title: 'Relay Guitar Platform',
+    description: 'Build documentation for the Relay family of 3D-printed electric guitars. Shared body construction, model-specific electronics.',
+    icon: Layers,
+    items: [
+        {
+            title: 'Platform Overview & Models',
+            href: '/docs/relay',
+            description: 'What the Relay platform is, how the model lineup is organized, and what is planned.',
+            type: DocIndexItemType.Internal,
+        },
+        {
+            title: 'Choosing a model',
+            href: '/docs/relay/printing/choose-model',
+            description: 'Pick a direction in the lineup, then follow platform printing and build guides — with links to every model page.',
+            type: DocIndexItemType.Internal,
+        },
+    ],
+};
+
+const electronicsProps: DocIndexCardProps = {
+    title: 'Ham Radio & Electronics',
+    description: 'Assembly guides and technical references for the K7RHY ham radio kits.',
     icon: Wrench,
     items: [
         {
@@ -17,13 +37,6 @@ const docAssemblyGuideProps: DocIndexCardProps = {
             description: 'How to assemble the 20W Dummy Load Kit.',
             type: DocIndexItemType.Internal,
         },
-    ],
-};
-const docTechGuideProps: DocIndexCardProps = {
-    title: 'Technical Guides',
-    description: 'Background technical information related to the operation of the K7RHY ham radio kits.',
-    icon: BookOpen,
-    items: [
         {
             title: 'Measuring Power',
             href: '/docs/power_measurement',
@@ -36,8 +49,8 @@ const docTechGuideProps: DocIndexCardProps = {
 export default async function Page() {
     return (
         <DocPage title={DocTitle}>
-            <DocIndexCard {...docAssemblyGuideProps} />
-            <DocIndexCard {...docTechGuideProps} />
+            <DocIndexCard {...relayPlatformProps} />
+            <DocIndexCard {...electronicsProps} />
         </DocPage>
     );
 }

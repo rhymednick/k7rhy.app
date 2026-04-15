@@ -32,15 +32,9 @@ const Page = () => {
             </div>
 
             <MdxDocProcedure title="Measurement Procedure">
-                <MdxDocProcedureStep text="Configure your multimeter">
-                    Set your multimeter to measure DC voltage. If you keep your transmitted power below 20W, you will not exceed 35V. Verify that your multimeter is set to read in the correct voltage range.
-                </MdxDocProcedureStep>
-                <MdxDocProcedureStep text="Attach the transmitter">
-                    Connect your transmitter output (antenna port) to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.
-                </MdxDocProcedureStep>
-                <MdxDocProcedureStep text="Connect the multimeter">
-                    Connect the multimeter probes to the test pads, TP1 and TP2, on the dummy load. They can be held in place by hand if you don't have alligator clips. The polarity of the probes does not matter. The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.
-                </MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Configure your multimeter">Set your multimeter to measure DC voltage. If you keep your transmitted power below 20W, you will not exceed 35V. Verify that your multimeter is set to read in the correct voltage range.</MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Attach the transmitter">Connect your transmitter output (antenna port) to the RF connector on the dummy load. For the most accurate measurement, keep the patch cable short.</MdxDocProcedureStep>
+                <MdxDocProcedureStep text="Connect the multimeter">Connect the multimeter probes to the test pads, TP1 and TP2, on the dummy load. They can be held in place by hand if you don't have alligator clips. The polarity of the probes does not matter. The mathematical conversion will always return a positive power value whether the measured voltage is positive or negative.</MdxDocProcedureStep>
                 <MdxDocProcedureStep text="Transmit a signal and measure the voltage">
                     Transmit a signal from your radio and measure the voltage on the multimeter. The voltage may take a few seconds to stabilize.
                     <DocAlert title="Do not exceed 20W" level={Level.Critical}>

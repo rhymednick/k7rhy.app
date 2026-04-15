@@ -1,0 +1,86 @@
+---
+title: 'Supply List'
+description: 'Everything you need to build a Relay Lipstick, with sourcing links and current prices.'
+---
+
+Read this before you buy anything. Items marked **Specific** mean that exact part — don't swap it out. Items marked **Flexible** have a real alternative listed below them.
+
+<DecisionNote variant="info" title="These are the parts I actually use.">
+I've linked to exactly what I build with. When something is marked Flexible, I'll tell you what the tradeoff is so you can decide. When it's marked Specific, I've already learned that lesson the hard way.
+</DecisionNote>
+
+## Hardware
+
+<BomSection>
+    <BomItem title="Guitar Neck" href="https://amzn.to/41ko1a1" source="Amazon" itemKey="guitar-neck" fallback="$60.00">
+        I've bought several necks with identical listed specs and had meaningful variation in how they fit the pocket. Some required light sanding before seating correctly. Budget time for fitting and read [What Will Fit](/docs/relay/lipstick/compatibility) before you order.
+    </BomItem>
+    <BomItem title="Fixed Hardtail Bridge" href="https://amzn.to/4smY8ST" source="Amazon" itemKey="hardtail-bridge" fallback="$15.00" />
+    <BomItem title="Neck Mounting Ferrules" href="https://amzn.to/4rOYP6x" source="Amazon" itemKey="neck-ferrules" fallback="$10.00">
+        These press into the back of the body and receive the neck bolts. Install them after you've confirmed neck alignment — they're permanent.
+    </BomItem>
+    <BomItem title="String Ferrule Plate" href="https://amzn.to/4d2Rblc" source="Amazon" itemKey="string-ferrule-plate" fallback="$10.00"
+        substitution="Individual string ferrules work here. They're cheaper and easier to source, but you'll press each one separately and need to keep them aligned during installation. The plate is simpler and looks cleaner — worth the few extra dollars on a first build."
+    />
+    <BomItem title="Locking Tuners" href="https://amzn.to/40HSQW2" source="Amazon" itemKey="locking-tuners" fallback="$35.00"
+        substitution="Standard non-locking tuners work fine. You'll tune more slowly at first and may see slightly less tuning stability while the strings settle, but the difference is minor on a well-built instrument. Save the money if budget is tight."
+    >
+        Locking tuners make restringing faster and improve tuning stability — especially useful while you're dialing in the setup.
+    </BomItem>
+    <BomItem title="Strap Buttons" href="https://amzn.to/4uH46j0" source="Amazon" itemKey="strap-buttons" fallback="$11.00"
+        substitution="Any standard strap button fits. If you already have strap locks you'd like to use, go for it — the mounting holes are standard."
+    />
+    <BomItem title="Guitar Strings (9–42), 3-pack" href="https://amzn.to/4bZbI9a" source="Amazon" itemKey="guitar-strings" fallback="$20.00"
+        substitution="Any 9–42 light gauge strings work. Heavier gauges (10s and up) increase tension and can stress a first build during setup. Stick with 9s until the instrument is dialed in."
+    >
+        Three packs because you'll break at least one string during setup.
+    </BomItem>
+    <BomItem title="Knobs" href="https://amzn.to/3PAKPzI" source="Amazon" itemKey="knobs" fallback="$10.00"
+        substitution="Any knob that fits a split-shaft pot works. Check shaft diameter before buying — this is a common mismatch."
+    />
+</BomSection>
+
+## Pickups
+
+These are <Term id="gfs">GFS</Term> [Kwikplug-ready](https://www.guitarfetish.com) pickups. The Kwikplug connector system lets you swap pickups without resoldering — a real advantage on a first build. The specific models matter; see [Design Boundaries](/docs/relay/electronics/design-boundaries) for why.
+
+<BomSection>
+    <BomItem title="Neck Humbucker — KPH115 (Classic II Alnico 2)" href="https://www.guitarfetish.com/KP--GFS-Classic-II-Alnico-2-Vintage-wound-Humbuckers-Black-Kwikplug%E2%84%A2-Ready_p_21913.html" source="Guitar Fetish" itemKey="gfs-neck-pickup" fallback="$37.00" specific>
+        Vintage-wound Alnico 2 — warm and clear in the neck position. Pairs well with the lipstick without fighting it.
+    </BomItem>
+    <BomItem title="Middle Lipstick — KPS41 (Pro Tube)" href="https://www.guitarfetish.com/Pro-Tube-Lipstick-Pickups-Gloss-black--Kwikplug%E2%84%A2-Ready_p_21995.html" source="Guitar Fetish" itemKey="gfs-lipstick-pickup" fallback="$32.00" specific>
+        The tonal-shaping layer in this design — blended with the humbuckers, not a stand-alone voice. The circuit is balanced around this pickup's output level and impedance characteristics. Substituting a different lipstick may work but expect a different tonal balance.
+    </BomItem>
+    <BomItem title="Bridge Humbucker — KPH65 (Vintage 59 Alnico V)" href="https://www.guitarfetish.com/Vintage-59-Classic-Alnico-V-Humbucker-Black_p_21820.html" source="Guitar Fetish" itemKey="gfs-bridge-pickup" fallback="$37.00" specific>
+        Slightly hotter than the neck but still in the moderate-output range the circuit requires. High-output pickups overwhelm the lipstick — do not substitute above ~9kΩ DC resistance.
+    </BomItem>
+</BomSection>
+
+## Electronics
+
+<BomSection>
+    <BomItem title="Push-Push Pots (×2)" href="https://amzn.to/4bsb448" source="Amazon" itemKey="push-push-pots" fallback="$15.00"
+        substitution="Standard 500k pots work for volume and tone if you don't want coil splitting. You'll lose the split function but the rest of the circuit is unaffected. If you want splits, these specific pots are the right choice."
+    >
+        These serve as both volume controls and coil splits — push to toggle. Keeps the control layout clean without adding extra switches.
+    </BomItem>
+    <BomItem title="Selector Switch (3-way)" href="https://amzn.to/40LRuJY" source="Amazon" itemKey="selector-switch" fallback="$8.00" specific>
+        **3-way** pickup selector for neck / both / bridge humbuckers. Verify the listing is a **3-way** blade (or equivalent) before ordering — do not use a 5-way here. The lipstick is engaged separately via the control wiring, not as a selector position.
+    </BomItem>
+    <BomItem title="Tone Capacitor" href="https://amzn.to/3NEJ18n" source="Amazon" itemKey="tone-capacitor" fallback="$10.00"
+        substitution="Cap value is a tonal preference. The listed value gives a warm but not muddy roll-off. Smaller value = cuts higher frequencies; larger = cuts lower. Caps are cheap — experiment freely."
+    />
+    <BomItem title="Treble Bleed" href="https://amzn.to/4bUwS8x" source="Amazon" itemKey="treble-bleed" fallback="$15.00" specific>
+        Preserves high-frequency response when rolling back volume. Without it the guitar gets muddy as you turn down. Small part, big difference — don't skip it.
+    </BomItem>
+    <BomItem title="Output Jack" href="https://amzn.to/4bGpEUv" source="Amazon" itemKey="output-jack" fallback="$5.00"
+        substitution="Any standard 1/4&quot; mono output jack works. The listed part is a Switchcraft-style jack that fits the body cavity. Measure the cavity opening if substituting."
+    />
+    <BomItem title="Hookup Wire" href="https://amzn.to/4bDGenX" source="Amazon" itemKey="hookup-wire" fallback="$7.00"
+        substitution="Any 22–24 AWG stranded hookup wire works. Avoid solid core — it's harder to route in tight spaces and fatigues with vibration."
+    />
+    <BomItem title="Copper Foil Tape" href="https://amzn.to/4smieg1" source="Amazon" itemKey="copper-foil-tape" fallback="$9.00" specific>
+        Used to shield the control cavity. The lipstick pickup is sensitive to interference — shielding is not optional. Must be conductive adhesive type.
+    </BomItem>
+</BomSection>
+
