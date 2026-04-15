@@ -30,6 +30,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
 import { ArrowUpDown, CircleHelp } from 'lucide-react';
+import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
 
@@ -137,6 +138,7 @@ const components: MDXComponents = {
     DocSection,
     PowerCalculator,
     DocAlert,
+    Term: DocTerm,
     Table,
     TableBody,
     TableCell,
