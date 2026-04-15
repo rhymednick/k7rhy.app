@@ -10,8 +10,8 @@ const API_TOKEN = process.env.HUGGING_FACE_API_TOKEN;
 const MODEL_URL = 'https://router.huggingface.co/hf-inference/models/sshleifer/distilbart-cnn-12-6';
 
 describe('Hugging Face API Integration', () => {
-    // Skip if no token is present (e.g. in CI without secrets)
-    const runTest = API_TOKEN ? it : it.skip;
+    // Skip if no token is present, or if running in CI (Netlify sets CI=true)
+    const runTest = API_TOKEN && !process.env.CI ? it : it.skip;
 
     runTest(
         'successfully generates a summary',
