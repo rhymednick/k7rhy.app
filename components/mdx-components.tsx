@@ -38,6 +38,7 @@ import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/
 import { RelayModelGrid, RelayModelCard } from '@/components/doc/relay-model-grid';
 import { RelayVoteGrid } from '@/components/relay/relay-vote-grid';
 import { RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
+import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
 
@@ -145,6 +146,7 @@ const components: MDXComponents = {
     DocSection,
     PowerCalculator,
     DocAlert,
+    Term: DocTerm,
     Table,
     TableBody,
     TableCell,
