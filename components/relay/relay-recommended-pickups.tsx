@@ -1,7 +1,6 @@
-import { relayModels } from '@/config/relay-models';
 import { DocTerm } from '@/components/doc/doc-term';
 
-type Props = { modelKey: string };
+type Props = { neck: string; middle: string; bridge: string };
 
 function PickupName({ name }: { name: string }) {
 	if (name.startsWith('GFS ')) {
@@ -10,12 +9,7 @@ function PickupName({ name }: { name: string }) {
 	return <>{name}</>;
 }
 
-export function RelayRecommendedPickups({ modelKey }: Props) {
-	const model = relayModels.find((m) => m.modelKey === modelKey);
-	if (!model) {
-		return null;
-	}
-	const { neck, middle, bridge } = model.recommendedPickups;
+export function RelayRecommendedPickups({ neck, middle, bridge }: Props) {
 	return (
 		<>
 			<h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Recommended pickups</h2>
