@@ -19,9 +19,9 @@ export function RelayRecommendedPickups({ modelKey }: Props) {
 	return (
 		<>
 			<h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Recommended pickups</h2>
-			<p className="prose [&:not(:first-child)]:mt-2 text-muted-foreground">
+			<div className="prose [&:not(:first-child)]:mt-2 text-muted-foreground">
 				Default <DocTerm id="gfs">GFS</DocTerm> choices from the platform proposal — swap anything that fits your ear or your bench.
-			</p>
+			</div>
 			<ul className="my-2 ml-6 list-disc">
 				<li>
 					<strong>Neck:</strong> <PickupName name={neck} />
