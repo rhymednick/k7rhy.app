@@ -25,6 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Claude Code — local agent worktrees (nested clones; never commit)
+.claude/worktrees/
+
 # Claude Code session-report HTML artifacts (generated locally; do not commit)
 session-report-*.html
 
