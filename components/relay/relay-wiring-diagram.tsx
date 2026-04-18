@@ -1,8 +1,5 @@
 import React from 'react';
 
-export type PickupType = 'humbucker' | 'lipstick' | 'p90' | 'single';
-export type SelectorType = '3-way' | '5-way';
-
 interface WiringDiagramProps {
     /** Set to true for Lab models where the final diagram isn't ready */
     placeholder?: boolean;
@@ -34,7 +31,7 @@ function LipstickDiagram() {
 
                 {/* ── Pickup symbols ── */}
                 {/* Bridge humbucker */}
-                <g transform="translate(60, 40)">
+                <g transform="translate(60, 60)">
                     <rect x="0" y="0" width="80" height="30" rx="4" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <rect x="4" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
                     <rect x="42" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
@@ -42,13 +39,13 @@ function LipstickDiagram() {
                 </g>
 
                 {/* Middle lipstick */}
-                <g transform="translate(220, 40)">
+                <g transform="translate(220, 60)">
                     <rect x="0" y="0" width="80" height="18" rx="9" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">MIDDLE</text>
                 </g>
 
                 {/* Neck humbucker */}
-                <g transform="translate(380, 40)">
+                <g transform="translate(380, 60)">
                     <rect x="0" y="0" width="80" height="30" rx="4" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <rect x="4" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
                     <rect x="42" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
@@ -95,11 +92,11 @@ function LipstickDiagram() {
 
                 {/* ── Wiring connections (hot signals) ── */}
                 {/* Bridge → switch pos 1 */}
-                <line x1="100" y1="70" x2="210" y2="137" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
+                <line x1="100" y1="90" x2="210" y2="137" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
                 {/* Neck → switch pos 3 */}
-                <line x1="420" y1="70" x2="310" y2="137" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
+                <line x1="420" y1="90" x2="310" y2="137" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
                 {/* Middle → blend pot */}
-                <line x1="260" y1="58" x2="340" y2="200" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
+                <line x1="260" y1="78" x2="340" y2="200" stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 2" opacity="0.7" />
                 {/* Switch → volume */}
                 <line x1="230" y1="158" x2="140" y2="200" stroke="#ef4444" strokeWidth="1.5" opacity="0.7" />
                 {/* Volume → output */}
