@@ -1,7 +1,6 @@
 # Visual Consistency Phase 1 — Design Spec
 
-**Date:** 2026-03-22
-**Status:** Approved
+**Date:** 2026-03-22 **Status:** Approved
 
 ---
 
@@ -25,19 +24,21 @@ Unify the visual language across the site: consolidate competing color palettes,
 
 ### Icon Badge Colors
 
-| Context | Gradient | Tailwind |
-|---------|----------|----------|
+| Context                                 | Gradient    | Tailwind                      |
+| --------------------------------------- | ----------- | ----------------------------- |
 | Default (all icons, footer, docs, kits) | sky→emerald | `from-sky-500 to-emerald-600` |
-| Guitar category only | sky→indigo | `from-sky-500 to-indigo-600` |
+| Guitar category only                    | sky→indigo  | `from-sky-500 to-indigo-600`  |
 
 Both variants share `sky-500` as the starting point — visually unified at first glance, subtly distinct on close inspection.
 
 ### Card Hover Behavior
 
 All cards (blog, product teaser, doc index, feature grid) use:
+
 ```
 hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]
 ```
+
 Transition: `transition-all duration-150`
 
 Remove all `hover:scale-[1.02]` and `hover:scale-*` from cards. Remove `group-hover:scale-[1.02]`. The border accent is sufficient; scale feels decorative.
@@ -49,9 +50,11 @@ All cards standardize to `border border-border` (thin 1px, CSS variable). Remove
 ### Dark Mode Gradient Backgrounds
 
 Consolidate all section/hero/banner dark gradients to:
+
 ```
 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900
 ```
+
 Replace all `dark:to-indigo-950` and `dark:to-indigo-900` occurrences in shared layout components. The indigo tail creates an unintended purple tint in dark mode.
 
 ### Dark Mode Surface Colors
@@ -78,17 +81,18 @@ interface IconBadgeProps {
 }
 ```
 
-| Prop | Value | Tailwind |
-|------|-------|----------|
-| `variant="default"` | sky→emerald | `from-sky-500 to-emerald-600` |
-| `variant="guitar"` | sky→indigo | `from-sky-500 to-indigo-600` |
-| `size="sm"` | 36×36px | `h-9 w-9 rounded-lg` — icon `h-4 w-4` |
-| `size="md"` | 40×40px | `h-10 w-10 rounded-lg` — icon `h-5 w-5` |
-| `size="lg"` | 48×48px | `h-12 w-12 rounded-xl` — icon `h-6 w-6` |
+| Prop                | Value       | Tailwind                                |
+| ------------------- | ----------- | --------------------------------------- |
+| `variant="default"` | sky→emerald | `from-sky-500 to-emerald-600`           |
+| `variant="guitar"`  | sky→indigo  | `from-sky-500 to-indigo-600`            |
+| `size="sm"`         | 36×36px     | `h-9 w-9 rounded-lg` — icon `h-4 w-4`   |
+| `size="md"`         | 40×40px     | `h-10 w-10 rounded-lg` — icon `h-5 w-5` |
+| `size="lg"`         | 48×48px     | `h-12 w-12 rounded-xl` — icon `h-6 w-6` |
 
 Default: `variant="default"`, `size="md"`.
 
 Full classes on the wrapper div:
+
 ```
 flex items-center justify-center bg-gradient-to-br shadow-sm text-white
 + size classes + rounded classes + gradient classes
@@ -101,7 +105,7 @@ No tests needed — it's a pure presentational component with no logic beyond pr
 ## Files to Create or Modify
 
 | File | Change |
-|------|--------|
+| --- | --- |
 | `components/shared/icon-badge.tsx` | Create — new shared component |
 | `components/product/guitar-page.tsx` | Use `<IconBadge icon={...} variant="guitar" size="lg" />` for the inline gradient icon div (existing gradient is `from-blue-500 to-purple-600` with `shadow-lg` — this changes structure, color, and shadow; `shadow-lg` → `shadow-sm` via `IconBadge` is intentional). Replace all `border-2` on `<Card>` elements with `border border-border` (applies to all 6 card instances at lines 65, 75, 78, 81, 88, 112). For the 4 interactive cards (lines 65, 75, 78, 81 — those with `hover:shadow-lg`), replace `hover:shadow-lg transition-shadow` with `hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150`. The 2 non-interactive cards get no hover classes: the Description card (line 88, `from-slate-50/50`) gets only `border-2` → `border border-border`; the Related Content card (line 112) gets `border-2` → `border border-border` AND the background gradient replacement `from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20` → `from-sky-50/50 to-indigo-50/50 dark:from-sky-950/20 dark:to-indigo-950/20`. Replace decorative blob colors: `bg-blue-400/20` → `bg-sky-400/20`, `bg-purple-400/20` → `bg-indigo-400/20`, `dark:bg-blue-500/10` → `dark:bg-sky-500/10`, `dark:bg-purple-500/10` → `dark:bg-indigo-500/10`. Replace header overlay gradient `from-blue-100/50 to-purple-100/50` with `from-sky-100/50 to-indigo-100/50` (dark variant: `dark:from-blue-900/10 dark:to-purple-900/10` → `dark:from-sky-900/10 dark:to-indigo-900/10`). |
 | `components/product/ham-radio-kit-page.tsx` | Use `<IconBadge icon={...} variant="default" size="lg" />` for the inline gradient icon div (existing gradient is `from-amber-500 to-orange-600` with `shadow-lg` — this changes structure, color, and shadow; `shadow-lg` → `shadow-sm` via `IconBadge` is intentional). Replace all `border-2` on `<Card>` elements with `border border-border` (applies to all 5 card instances at lines 62, 71, 107, 143, 167). For the 3 interactive cards (lines 62, 107 — plain; line 71 — amber-gradient), replace `hover:shadow-lg transition-shadow` with `hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150`. Note: lines 71 and 107 are inside `{isDummyLoad && ...}` conditional blocks — the hover changes still apply; they simply will not render for non-dummy-load products. The 2 non-interactive cards get no hover classes: the Specs card (line 143, `from-slate-50/50`) gets only `border-2` → `border border-border`; the card at line 167 gets `border-2` → `border border-border` AND the background gradient replacement `from-amber-50/50 to-orange-50/50 dark:from-amber-950/20 dark:to-orange-950/20` → `from-sky-50/50 to-emerald-50/50 dark:from-sky-950/20 dark:to-emerald-950/20`. Replace decorative blob colors: `bg-amber-400/20` → `bg-sky-400/20`, `bg-orange-400/20` → `bg-emerald-400/20`, `dark:bg-amber-500/10` → `dark:bg-sky-500/10`, `dark:bg-orange-500/10` → `dark:bg-emerald-500/10`. Replace overlay gradient `from-amber-100/50 via-transparent to-orange-100/50` → `from-sky-100/50 via-transparent to-emerald-100/50`, dark variant `dark:from-amber-900/10 dark:via-transparent dark:to-orange-900/10` → `dark:from-sky-900/10 dark:via-transparent dark:to-emerald-900/10`. |

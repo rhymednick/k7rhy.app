@@ -41,6 +41,10 @@ export const navConfig: NavigationConfig = {
             href: '/products',
         },
         {
+            title: 'Relay Guitar',
+            href: '/relay',
+        },
+        {
             title: 'Documentation',
             href: '/docs',
         },
@@ -51,18 +55,13 @@ export const navConfig: NavigationConfig = {
     ],
     docNav: [
         {
-            title: 'Assembly Guides',
+            title: 'Ham Radio & Electronics',
             items: [
                 {
                     title: '20W Dummy Load',
                     href: '/docs/dl20w_bnc',
                     items: [],
                 },
-            ],
-        },
-        {
-            title: 'Tech Guides',
-            items: [
                 {
                     title: 'Measuring Power',
                     href: '/docs/power_measurement',

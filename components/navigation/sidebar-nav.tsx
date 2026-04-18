@@ -23,8 +23,14 @@ export function DocsSidebarNav({ config }: DocsSidebarNavProps) {
         <div className="w-full">
             {items.map((item, index) => (
                 <div key={index} className={cn('pb-4')}>
-                    <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{item.title}</h4>
-                    {item?.items?.length && <DocsSidebarNavItems items={item.items} pathname={pathname} />}
+                    {item.href ? (
+                        <Link href={item.href} className={cn('mb-1 block rounded-md px-2 py-1 text-sm font-semibold hover:underline', pathname?.startsWith(item.href) ? 'text-foreground' : 'text-muted-foreground')}>
+                            {item.title}
+                        </Link>
+                    ) : (
+                        <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">{item.title}</h4>
+                    )}
+                    {!!item?.items?.length && <DocsSidebarNavItems items={item.items} pathname={pathname} />}
                 </div>
             ))}
         </div>

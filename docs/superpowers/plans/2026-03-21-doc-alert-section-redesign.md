@@ -12,18 +12,19 @@
 
 ## File Map
 
-| File | Change |
-|------|--------|
-| `components/doc/doc-alert.tsx` | Rewrite component body — new layout, level config object, badge pill, remove Shadcn Alert dependency |
-| `components/doc/doc-alert.test.tsx` | Create — tests for badge label, title rendering, missing title, children |
-| `config/doc-section.config.ts` | Update all 6 heading style strings |
-| `components/doc/doc-section.test.tsx` | Create — tests for h1 border-b class, h2 class on nested section |
+| File                                  | Change                                                                                               |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `components/doc/doc-alert.tsx`        | Rewrite component body — new layout, level config object, badge pill, remove Shadcn Alert dependency |
+| `components/doc/doc-alert.test.tsx`   | Create — tests for badge label, title rendering, missing title, children                             |
+| `config/doc-section.config.ts`        | Update all 6 heading style strings                                                                   |
+| `components/doc/doc-section.test.tsx` | Create — tests for h1 border-b class, h2 class on nested section                                     |
 
 ---
 
 ## Task 1: Redesign DocAlert
 
 **Files:**
+
 - Modify: `components/doc/doc-alert.tsx`
 - Create: `components/doc/doc-alert.test.tsx`
 
@@ -32,6 +33,7 @@
 `doc-alert.tsx` currently wraps Shadcn's `<Alert>` component. We're replacing it with a plain `<div>` and adding a level-based config object that drives border color, icon color, badge color, and badge label. The `Level` enum and all props remain unchanged — this is a visual-only rewrite.
 
 Key spec decisions:
+
 - Two-column layout: icon column (left, fixed) + content column (right, flex-1)
 - Badge pill always renders, title `<span>` renders only when `title` prop is provided
 - `border border-gray-200 border-l-4 border-l-{color}` gives 1px on 3 sides + 4px accent left
@@ -59,17 +61,29 @@ describe('DocAlert', () => {
     });
 
     it('renders "Important" badge for Important level', () => {
-        render(<DocAlert title="Test" level={Level.Important}>Content</DocAlert>);
+        render(
+            <DocAlert title="Test" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('Important')).toBeDefined();
     });
 
     it('renders "Caution" badge for Warning level', () => {
-        render(<DocAlert title="Test" level={Level.Warning}>Content</DocAlert>);
+        render(
+            <DocAlert title="Test" level={Level.Warning}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('Caution')).toBeDefined();
     });
 
     it('renders title text when provided', () => {
-        render(<DocAlert title="My Alert Title" level={Level.Important}>Content</DocAlert>);
+        render(
+            <DocAlert title="My Alert Title" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('My Alert Title')).toBeDefined();
     });
 
@@ -86,7 +100,11 @@ describe('DocAlert', () => {
     });
 
     it('applies border-l-4 accent class', () => {
-        const { container } = render(<DocAlert title="Test" level={Level.Important}>Content</DocAlert>);
+        const { container } = render(
+            <DocAlert title="Test" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         const card = container.firstChild as HTMLElement;
         expect(card).toHaveClass('border-l-4');
     });
@@ -184,22 +202,11 @@ const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon,
     const descriptionClass = overrideDescriptionClass ? overrideDescriptionClass : cn('prose space-y-2 text-gray-500 dark:text-slate-400', appendDescriptionClass);
 
     return (
-        <div
-            className={cn(
-                'flex gap-3 items-start',
-                'bg-white dark:bg-slate-900',
-                'border border-gray-200 dark:border-slate-700',
-                'border-l-4',
-                config.borderColor,
-                'rounded-lg shadow-sm p-4',
-            )}
-        >
+        <div className={cn('flex gap-3 items-start', 'bg-white dark:bg-slate-900', 'border border-gray-200 dark:border-slate-700', 'border-l-4', config.borderColor, 'rounded-lg shadow-sm p-4')}>
             {IconComponent && <IconComponent className={cn('w-[18px] h-[18px] flex-shrink-0 mt-0.5', config.iconColor)} />}
             <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <span className={cn('rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide flex-shrink-0', config.badgeClass)}>
-                        {config.badgeLabel}
-                    </span>
+                    <span className={cn('rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-wide flex-shrink-0', config.badgeClass)}>{config.badgeLabel}</span>
                     {title && <span className={titleClass}>{title}</span>}
                 </div>
                 <div className={descriptionClass}>{children}</div>
@@ -239,6 +246,7 @@ git commit -m "feat: redesign DocAlert with level-appropriate colors and badge p
 ## Task 2: Update DocSection Heading Styles
 
 **Files:**
+
 - Modify: `config/doc-section.config.ts`
 - Create: `components/doc/doc-section.test.tsx`
 
@@ -247,6 +255,7 @@ git commit -m "feat: redesign DocAlert with level-appropriate colors and badge p
 `config/doc-section.config.ts` exports an array of `{ level, style }` objects consumed by `DocSection` via `generateSectionHeading`. The component itself is unchanged.
 
 Changes:
+
 - h1 gets `border-b border-gray-200` bottom rule and `pb-3 mb-1`; the old responsive `md:pb-6` is removed
 - h2–h6 switch from `pt-*`/`pb-*` padding to `mt-*` margin (spacing between siblings, not inside element)
 - All levels get explicit dark mode classes replacing `text-foreground/{opacity}` shorthand

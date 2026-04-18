@@ -1,0 +1,57 @@
+---
+title: 'Relay Guitar Platform'
+description: 'A 3D-printed electric guitar platform. One shared body, seven distinct instruments. Build the guitar that fits how you play.'
+---
+
+Relay is an electric guitar you print at home on a conventional FDM 3D printer. Every model shares the same double-cut body — three pickup cavities, the same scale length, the same hardware mounting points. What makes each model different is what you put inside it: pickup selection, wiring, and selector strategy.
+
+Building a Relay guitar is a real project. You will spend time on the printer, time bonding and finishing the body, time sourcing parts, and time with a soldering iron. The result is a playable, giggable instrument that you understand completely — because you built it. Plan on a few weekends and $200–$400 in parts depending on the model you choose.
+
+## The platform
+
+### One body, seven voices
+
+All models use the same printed body. Pickup ring adapters bridge the gap between the body's humbucker-sized cavities and smaller pickup formats like lipstick or P90. You choose one body design to print, then wire it for whichever model you're building.
+
+### 24.75" scale length
+
+Scale length is the distance from the nut to the bridge saddles — it determines how long the vibrating portion of each string is. Relay uses 24.75 inches, the same as a standard Les Paul. Shorter than a Strat's 25.5 inches: slightly lower string tension, slightly warmer tone, and easier bends. It also means neck availability is excellent — 24.75" necks are common, well-priced, and come in a wide range of profiles and fretboard materials.
+
+### Three pickups
+
+Every model has three pickup cavities. The middle position earns its place differently in each model: on some models it is a curated layer you blend in for texture; on others it is a full core voice you reach directly. The selector strategy follows that role — models where the middle is an auxiliary layer use a 3-way switch, models where the middle is a primary voice use a 5-way blade.
+
+You don't have to install a middle pickup. The model files include optional cavity covers if you prefer a two-pickup layout.
+
+## Switch and control hardware
+
+The line stays coherent without forcing identical controls on every guitar. The practical rule:
+
+- Use a **3-way selector** when the middle pickup is a **curated auxiliary / shaping voice** you add on top of bridge and neck.
+- Use a **5-way blade** when the middle pickup is one of the model’s **core voices** you select like any other position.
+
+Unless bench testing says otherwise, the default passive pots for Relay models that use the **master volume + master tone** pattern are **500k audio taper, full-size** for both. Every model uses at least one humbucker or humbucker-adjacent pickup, so 500k preserves articulation and openness while still allowing you to roll off darkness.
+
+**Push-push** fits functions you might hit while playing or that define quick-access personality. **Push-pull** fits mode-style changes where accidental activation would be annoying, or where fastest access matters less.
+
+**Selector families today:** **3-way toggle** — Relay Lipstick, Relay Current. **Standard 5-way blade (2-pole)** — Relay Velvet, Relay Arc, Relay Torch, **Relay Reef** (HSS-style humbucker + dual lipstick positions; concentric tone instead of a single shared master tone). **5-way Super Switch (4-pole)** — Relay Hammer (deeper body than a standard blade — leave depth in the control cavity when you plan the route).
+
+Model pages spell out each instrument’s switch positions and what the push controls do.
+
+## Models
+
+<RelayModelGrid>
+    <RelayModelCard name="Relay Lipstick" tagline="Signature · Articulate · Lipstick layer" genres="Blues · Rock · Alternative · Indie" description="The reference model: expressive dual humbuckers with a middle lipstick as a curated alternate voice. A second identity of the same instrument, not a novelty." status="lab" href="/relay/lipstick" />
+    <RelayModelCard name="Relay Reef" tagline="Danelectro soul · Humbucker punch · Lipstick shimmer" genres="Indie · Surf · Alt Country · Shoegaze" description="HSS-style 5-way: bridge humbucker workhorse, familiar blends, and position 4 for the two-lipstick voice. Concentric tone splits bridge humbucker shaping from the lipstick side." status="lab" href="/relay/reef" />
+    <RelayModelCard name="Relay Velvet" tagline="Warm authority · Club presence" genres="Jazz · Blues · Soul · R&B" description="The warm, fat, classy club model. The middle pickup is a true core voice — poised and present so the band can orbit the guitar." status="lab" href="/relay/velvet" />
+    <RelayModelCard name="Relay Arc" tagline="Chime · Air · Spatial clarity" genres="Clean pop · Indie · Ambient · Country" description="Airy, spatial, and chime-forward: width, shimmer, and clarity without thinning out — open and ringing rather than club-warm or mid-forward." status="lab" href="/relay/arc" />
+    <RelayModelCard name="Relay Torch" tagline="Vocal mids · Hooky · Contemporary" genres="Rock · Pop · Alternative · Modern country" description="Rude, vocal-mid energy with a P90-type middle as a core position — emotionally direct and hooky without becoming a metal guitar." status="lab" href="/relay/torch" />
+    <RelayModelCard name="Relay Current" tagline="Punch · Cut · Fast attack" genres="Funk · Pop · Rock" description="Punchy, cutting, and immediate — the line's sharpest non-metal tool. Strong projection and edge definition with the middle as a fast alternate layer." status="lab" href="/relay/current" />
+    <RelayModelCard name="Relay Hammer" tagline="High gain · Tight · Uncompromising" genres="Metal · Hard rock" description="The dedicated heavy model: high-gain authority, tight aggressive attack, rail-style passive pickups. Direct and forceful rather than elegant." status="lab" href="/relay/hammer" />
+</RelayModelGrid>
+
+## Community
+
+The build guides are being written as each model is validated. The Discord server is where questions get answered, builds get shared, and new documentation takes shape based on what people actually find confusing.
+
+<RelayDiscordCta message="Ask questions, share builds, and follow development as the guides are written." />

@@ -1,7 +1,6 @@
 # Visual Consistency Phase 2 — Design Spec
 
-**Date:** 2026-03-22
-**Status:** Approved
+**Date:** 2026-03-22 **Status:** Approved
 
 ---
 
@@ -40,11 +39,13 @@ interface BlogPostNavProps {
 **Layout:** Two-column grid. Prev on the left, next on the right. When only one neighbor exists (first or last post), the opposing cell is absent — no empty placeholder box. Use `grid-cols-2` when both are present; render only the single cell (full-width or right-aligned as appropriate) when one is null.
 
 **Per-cell content:**
+
 - Direction label: `← Previous` or `Next →` (small uppercase, muted)
 - Post title (semibold)
 - Formatted date (small, muted) — use `formatDate` from `@/lib/utils`
 
 **Styling:**
+
 - Resting state: `rounded-xl border border-transparent bg-muted/50 p-4`
 - Hover: `hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150`
 - Each cell is a Next.js `<Link>` wrapping the content
@@ -58,13 +59,13 @@ interface BlogPostNavProps {
 
 ## Files to Create or Modify
 
-| File | Change |
-|------|--------|
-| `tailwind.config.ts` | Add `article: '800px'` to `theme.extend.maxWidth` |
-| `components/doc/doc-page.tsx` | Replace `max-w-[800px]` with `max-w-article` on line 67 |
-| `components/blog/blog-page.tsx` | Replace `max-w-3xl` with `max-w-article` on line 44; add optional `nav?: React.ReactNode` prop rendered as a sibling of `<main>` (after `</main>`) inside the same container |
-| `components/blog/blog-post-nav.tsx` | Create — Server Component, see spec above |
-| `app/blog/[slug]/page.tsx` | Read all blog files, filter to published, sort by date, derive prev/next, pass `<BlogPostNav>` as `nav` prop to `BlogPage` |
+| File                                | Change                                                                                                                                                                       |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tailwind.config.ts`                | Add `article: '800px'` to `theme.extend.maxWidth`                                                                                                                            |
+| `components/doc/doc-page.tsx`       | Replace `max-w-[800px]` with `max-w-article` on line 67                                                                                                                      |
+| `components/blog/blog-page.tsx`     | Replace `max-w-3xl` with `max-w-article` on line 44; add optional `nav?: React.ReactNode` prop rendered as a sibling of `<main>` (after `</main>`) inside the same container |
+| `components/blog/blog-post-nav.tsx` | Create — Server Component, see spec above                                                                                                                                    |
+| `app/blog/[slug]/page.tsx`          | Read all blog files, filter to published, sort by date, derive prev/next, pass `<BlogPostNav>` as `nav` prop to `BlogPage`                                                   |
 
 ---
 

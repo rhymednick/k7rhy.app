@@ -11,17 +11,29 @@ describe('DocAlert', () => {
     });
 
     it('renders "Important" badge for Important level', () => {
-        render(<DocAlert title="Test" level={Level.Important}>Content</DocAlert>);
+        render(
+            <DocAlert title="Test" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('Important')).toBeInTheDocument();
     });
 
     it('renders "Caution" badge for Warning level', () => {
-        render(<DocAlert title="Test" level={Level.Warning}>Content</DocAlert>);
+        render(
+            <DocAlert title="Test" level={Level.Warning}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('Caution')).toBeInTheDocument();
     });
 
     it('renders title text when provided', () => {
-        render(<DocAlert title="My Alert Title" level={Level.Important}>Content</DocAlert>);
+        render(
+            <DocAlert title="My Alert Title" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         expect(screen.getByText('My Alert Title')).toBeInTheDocument();
     });
 
@@ -39,7 +51,11 @@ describe('DocAlert', () => {
     });
 
     it('applies border-l-4 accent class', () => {
-        const { container } = render(<DocAlert title="Test" level={Level.Important}>Content</DocAlert>);
+        const { container } = render(
+            <DocAlert title="Test" level={Level.Important}>
+                Content
+            </DocAlert>
+        );
         const card = container.firstChild as HTMLElement;
         expect(card).toHaveClass('border-l-4');
     });
