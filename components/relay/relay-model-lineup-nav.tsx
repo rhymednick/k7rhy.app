@@ -7,8 +7,9 @@ import { cn } from '@/lib/utils';
 import { relayNav } from '@/config/relay-nav';
 import { RelayModelStatusBadge } from '@/components/relay/relay-model-status-badge';
 
-/** First path segment under /docs/relay that is a platform doc, not a model key. */
-const PLATFORM_ROUTE_SEGMENTS = new Set(['printing', 'build', 'assembly', 'electronics', 'setup']);
+// Segments under /relay/ that are platform routes, not model keys.
+// Expand this list as build guide phases ship (e.g. 'build').
+const PLATFORM_ROUTE_SEGMENTS = new Set(['build']);
 
 function activeModelKeyFromPath(pathname: string): string | undefined {
     const parts = pathname.split('/').filter(Boolean);
@@ -26,17 +27,10 @@ export function RelayModelLineupNav() {
     return (
         <div className="grid grid-flow-row auto-rows-max text-sm">
             {entries.map(([key, model]) => {
-                const href = `/docs/relay/${key}`;
+                const href = `/relay/${key}`;
                 const isActive = activeKey === key;
                 return (
-                    <Link
-                        key={key}
-                        href={href}
-                        className={cn(
-                            'flex w-full items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 hover:underline',
-                            isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
-                        )}
-                    >
+                    <Link key={key} href={href} className={cn('flex w-full items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 hover:underline', isActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
                         <span className="min-w-0">{model.title}</span>
                         <RelayModelStatusBadge status={model.status} />
                     </Link>
