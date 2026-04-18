@@ -6,8 +6,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Lipstick',
         tagline: 'Signature · Articulate · Lipstick layer',
         genres: 'Blues · Rock · Alternative · Indie',
-        description:
-            'The reference model and first release: expressive dual humbuckers with a middle lipstick as a curated alternate voice — familiar core behavior plus a second identity of the same instrument, not a novelty.',
+        description: 'The reference model and first release: expressive dual humbuckers with a middle lipstick as a curated alternate voice — familiar core behavior plus a second identity of the same instrument, not a novelty.',
         status: 'lab',
         href: '/relay/lipstick',
     },
@@ -16,8 +15,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Reef',
         tagline: 'Danelectro soul · Humbucker punch · Lipstick shimmer',
         genres: 'Indie · Surf · Alt Country · Shoegaze · Studio',
-        description:
-            'Bridge humbucker for warmth and sustain; middle and neck lipsticks wired as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot to shape each independently.',
+        description: 'Bridge humbucker for warmth and sustain; middle and neck lipsticks wired as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot to shape each independently.',
         status: 'lab',
         href: '/relay/reef',
     },
@@ -26,8 +24,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Velvet',
         tagline: 'Warm authority · Club presence',
         genres: 'Jazz · Blues · Soul · R&B',
-        description:
-            'The warm, fat, classy club model — a distinct center of gravity. The middle pickup is a true core voice (5-way family), poised and present so the band can orbit the guitar.',
+        description: 'The warm, fat, classy club model — a distinct center of gravity. The middle pickup is a true core voice (5-way family), poised and present so the band can orbit the guitar.',
         status: 'lab',
         href: '/relay/velvet',
     },
@@ -36,8 +33,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Arc',
         tagline: 'Chime · Air · Spatial clarity',
         genres: 'Clean pop · Indie · Ambient · Country',
-        description:
-            'The airy, spatial, chime-forward model: width, shimmer, and clarity without thinning out — open, ringing, and alive rather than club-warm or mid-forward.',
+        description: 'The airy, spatial, chime-forward model: width, shimmer, and clarity without thinning out — open, ringing, and alive rather than club-warm or mid-forward.',
         status: 'lab',
         href: '/relay/arc',
     },
@@ -46,8 +42,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Torch',
         tagline: 'Vocal mids · Hooky · Contemporary',
         genres: 'Rock · Pop · Alternative · Modern country',
-        description:
-            'The rude, vocal-mid, modern-radio voice: attitude and edge with a P90-type middle as a core position (5-way family) — emotionally direct and hooky without becoming a metal guitar.',
+        description: 'The rude, vocal-mid, modern-radio voice: attitude and edge with a P90-type middle as a core position (5-way family) — emotionally direct and hooky without becoming a metal guitar.',
         status: 'lab',
         href: '/relay/torch',
     },
@@ -56,8 +51,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Current',
         tagline: 'Punch · Cut · Fast attack',
         genres: 'Funk · Pop · Rock',
-        description:
-            "Punchy, cutting, and immediate: strong projection and edge definition (3-way family with the middle as a fast alternate layer). The line's sharpest non-metal tool — less warm than Velvet, less spacious than Arc, less throaty than Torch.",
+        description: "Punchy, cutting, and immediate: strong projection and edge definition (3-way family with the middle as a fast alternate layer). The line's sharpest non-metal tool — less warm than Velvet, less spacious than Arc, less throaty than Torch.",
         status: 'lab',
         href: '/relay/current',
     },
@@ -66,9 +60,14 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Hammer',
         tagline: 'High gain · Tight · Uncompromising',
         genres: 'Metal · Hard rock',
-        description:
-            'The dedicated heavy model: high-gain authority, tight aggressive attack, and rail-style passive pickups — the specialty brute of the line, direct and forceful rather than elegant.',
+        description: 'The dedicated heavy model: high-gain authority, tight aggressive attack, and rail-style passive pickups — the specialty brute of the line, direct and forceful rather than elegant.',
         status: 'lab',
         href: '/relay/hammer',
     },
 ];
+
+// Models not yet in active lab builds — used by relay-votes lib (voting on upcoming models).
+// lipstick and reef are the phase 1 lab releases; the remaining 5 are the "planned" voting pool.
+export const plannedModelKeys = relayModels
+    .filter((m) => m.modelKey !== 'lipstick' && m.modelKey !== 'reef')
+    .map((m) => m.modelKey);
