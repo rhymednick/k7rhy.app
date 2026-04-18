@@ -37,6 +37,9 @@ import { BomItem, BomSection } from '@/components/doc/bom-item';
 import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/components/doc/download-files';
 import { RelayModelGrid, RelayModelCard } from '@/components/doc/relay-model-grid';
 import { RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
+import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
+import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
+import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
@@ -169,6 +172,9 @@ const components: MDXComponents = {
     RelayModelGrid,
     RelayModelCard,
     RelayRecommendedPickups,
+    RelayDiscordCta,
+    RelayLabDisclosure,
+    RelayWiringDiagram,
 };
 
 // interface MdxProps {
