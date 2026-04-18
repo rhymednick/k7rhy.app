@@ -13,7 +13,7 @@ const relayPlatformProps: DocIndexCardProps = {
     items: [
         {
             title: 'Platform Overview & Models',
-            href: '/docs/relay',
+            href: '/relay',
             description: 'What the Relay platform is, how the model lineup is organized, and what is planned.',
             type: DocIndexItemType.Internal,
         },

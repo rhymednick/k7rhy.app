@@ -55,12 +55,12 @@ export const navConfig: NavigationConfig = {
             items: [
                 {
                     title: 'Platform Overview',
-                    href: '/docs/relay',
+                    href: '/relay',
                     items: [],
                 },
                 {
                     title: 'Relay Lipstick',
-                    href: '/docs/relay/lipstick',
+                    href: '/relay/lipstick',
                     items: [],
                 },
             ],
