@@ -65,9 +65,3 @@ export const relayModels: RelayModel[] = [
         href: '/relay/hammer',
     },
 ];
-
-// Models not yet in active lab builds — used by relay-votes lib (voting on upcoming models).
-// lipstick and reef are the phase 1 lab releases; the remaining 5 are the "planned" voting pool.
-export const plannedModelKeys = relayModels
-    .filter((m) => m.modelKey !== 'lipstick' && m.modelKey !== 'reef')
-    .map((m) => m.modelKey);
