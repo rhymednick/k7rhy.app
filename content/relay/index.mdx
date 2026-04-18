@@ -1,42 +1,42 @@
 ---
 title: 'Relay Guitar Platform'
-description: 'What Relay is, how the shared design works, and how to find the right guide for your build.'
+description: 'A 3D-printed electric guitar platform. One shared body, seven distinct instruments. Build the guitar that fits how you play.'
 ---
 
-Relay is an electric guitar you print at home on a conventional 3D printer. Every model of Relay guitar shares the same basic body shape, a double-cut body with cavities for three pickups. Three pickup cavities give us the ability to build a wide array of models with distinct voices and personalities. I've designed the models such that they have a **clear emotional center** and a **simple, understandable control layout**.
+Relay is an electric guitar you print at home on a conventional FDM 3D printer. Every model shares the same double-cut body — three pickup cavities, the same scale length, the same hardware mounting points. What makes each model different is what you put inside it: pickup selection, wiring, and selector strategy.
 
-For each model, I publish pickup and control recommendations and explain the reasoning behind them. Treat those as defaults, not limits, and feel free to make decisions that suit your taste. If you want a second opinion on a tweak, ask me and the other builders in our <DiscordLink>Discord community</DiscordLink>.
+Building a Relay guitar is a real project. You will spend time on the printer, time bonding and finishing the body, time sourcing parts, and time with a soldering iron. The result is a playable, giggable instrument that you understand completely — because you built it. Plan on a few weekends and $200–$400 in parts depending on the model you choose.
 
-[Relay Lipstick](/docs/relay/lipstick) is the model that I used to work out the kinks in the platform and it's ready to build today. I provide documentation to guide you through the entire build process. The other models have been designed and are in various stages of testing. You can't just put random pickups together and expect them to sound good. You need to find the right balance between them and then tune the electronics to create the sound you're going for.
+## The platform
 
-Jump to [Models in the lineup](#models-in-the-lineup) below to see the roadmap.
+### One body, seven voices
 
-## About the Models
+All models use the same printed body. Pickup ring adapters bridge the gap between the body's humbucker-sized cavities and smaller pickup formats like lipstick or P90. You choose one body design to print, then wire it for whichever model you're building.
 
-### Three Pickups
+### 24.75" scale length
 
-I like the sound of two humbuckers, but the number of voices you can get from a guitar with two matched humbuckers are limited. A third pickup adds another dimension of sound to work with, but it doesn't always work in the way you might expect.
+Scale length is the distance from the nut to the bridge saddles — it determines how long the vibrating portion of each string is. Relay uses 24.75 inches, the same as a standard Les Paul. Shorter than a Strat's 25.5 inches: slightly lower string tension, slightly warmer tone, and easier bends. It also means neck availability is excellent — 24.75" necks are common, well-priced, and come in a wide range of profiles and fretboard materials.
 
-On every model the middle pickup earns its keep in a specific way. **Selector strategy follows that job:** models where the middle is a **curated auxiliary or shaping layer** use a **3-way** switch (bridge, bridge+neck, neck) with the middle engaged by its own control where needed. Models where the middle deserves to be a **core pickup position** use a **5-way** blade so you can reach the middle-based combinations directly. That keeps the platform musical instead of forcing one switch logic everywhere.
+### Three pickups
 
-The platform doesn't require you to use a third pickup. If you prefer not to install it, use the optional covers included with the model files to hide the cavity.
+Every model has three pickup cavities. The middle position earns its place differently in each model: on some models it is a curated layer you blend in for texture; on others it is a full core voice you reach directly. The selector strategy follows that role — models where the middle is an auxiliary layer use a 3-way switch, models where the middle is a primary voice use a 5-way blade.
 
-### 24.75" Scale
+You don't have to install a middle pickup. The model files include optional cavity covers if you prefer a two-pickup layout.
 
-**Scale length** is the span from the bridge to the nut (the small bar at the top of the neck). It defines how long the vibrating part of each string is.
+## Models
 
-Relay uses 24.75 inches. That is a little shorter than the common Stratcaster length of 25.5 inches. Shorter scale means lower string tension. Bends feel a little easier, and the tone often leans warmer than on a longer-scale guitar. Lower tension also helps a printed body; plastic and glue don't handle the forces the same way wood does.
+<RelayModelGrid>
+    <RelayModelCard name="Relay Lipstick" tagline="Signature · Articulate · Lipstick layer" genres="Blues · Rock · Alternative · Indie" description="The reference model: expressive dual humbuckers with a middle lipstick as a curated alternate voice. A second identity of the same instrument, not a novelty." status="lab" href="/relay/lipstick" />
+    <RelayModelCard name="Relay Reef" tagline="Danelectro soul · Humbucker punch · Lipstick shimmer" genres="Indie · Surf · Alt Country · Shoegaze" description="Bridge humbucker for warmth and sustain; middle and neck lipsticks as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot." status="lab" href="/relay/reef" />
+    <RelayModelCard name="Relay Velvet" tagline="Warm authority · Club presence" genres="Jazz · Blues · Soul · R&B" description="The warm, fat, classy club model. The middle pickup is a true core voice — poised and present so the band can orbit the guitar." status="lab" href="/relay/velvet" />
+    <RelayModelCard name="Relay Arc" tagline="Chime · Air · Spatial clarity" genres="Clean pop · Indie · Ambient · Country" description="Airy, spatial, and chime-forward: width, shimmer, and clarity without thinning out — open and ringing rather than club-warm or mid-forward." status="lab" href="/relay/arc" />
+    <RelayModelCard name="Relay Torch" tagline="Vocal mids · Hooky · Contemporary" genres="Rock · Pop · Alternative · Modern country" description="Rude, vocal-mid energy with a P90-type middle as a core position — emotionally direct and hooky without becoming a metal guitar." status="lab" href="/relay/torch" />
+    <RelayModelCard name="Relay Current" tagline="Punch · Cut · Fast attack" genres="Funk · Pop · Rock" description="Punchy, cutting, and immediate — the line's sharpest non-metal tool. Strong projection and edge definition with the middle as a fast alternate layer." status="lab" href="/relay/current" />
+    <RelayModelCard name="Relay Hammer" tagline="High gain · Tight · Uncompromising" genres="Metal · Hard rock" description="The dedicated heavy model: high-gain authority, tight aggressive attack, rail-style passive pickups. Direct and forceful rather than elegant." status="lab" href="/relay/hammer" />
+</RelayModelGrid>
 
-Another reason I picked this scale lenth is because necks of this scale are easy to find. This is the standard Les Paul length. Many suppliers stock them, which means less hunting, more variety, and often a lower price.
+## Community
 
-## Selecting a Model
+The build guides are being written as each model is validated. The Discord server is where questions get answered, builds get shared, and new documentation takes shape based on what people actually find confusing.
 
-The guides in the sidebar apply to every Relay build.
-
-Start with [Choosing a model](/docs/relay/printing/choose-model). It explains how the lineup is organized and what you can build now versus what is still in development. After that, work through [What building takes](/docs/relay/printing/build-expectations), [Printing](/docs/relay/printing/overview), [Assembling the Body](/docs/relay/build/body), [Hardware](/docs/relay/assembly/overview), [Electronics](/docs/relay/electronics/overview), and [Setup](/docs/relay/setup/playable).
-
-[Relay Lipstick](/docs/relay/lipstick) is the only model with a full [parts list](/docs/relay/lipstick/bom) and [compatibility](/docs/relay/lipstick/compatibility) page so far. If you are building it, read those topics before you order any of the components. Other models will get the same depth as each design is finished. Until then, use the shared body guides and each model page for status.
-
-## Models in the Lineup
-
-Every model, completed and planned.
+<RelayDiscordCta message="Ask questions, share builds, and follow development as the guides are written." />
