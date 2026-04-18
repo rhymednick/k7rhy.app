@@ -13,51 +13,54 @@
 ## File Map
 
 ### Create
-| File | Purpose |
-|------|---------|
-| `app/relay/layout.tsx` | Relay section layout (sidebar + page nav) |
-| `app/relay/page.tsx` | Platform overview page (`/relay`) |
-| `app/relay/[model]/page.tsx` | Model overview pages (`/relay/lipstick` etc.) |
-| `components/relay/relay-discord-cta.tsx` | Reusable Discord join CTA block |
-| `components/relay/relay-lab-disclosure.tsx` | Lab status disclosure callout |
-| `components/relay/relay-wiring-diagram.tsx` | SVG wiring diagram prototype (Lipstick) |
-| `content/relay/reef/index.mdx` | Relay Reef model content |
-| `__tests__/config/relay-models.test.ts` | Config validation tests |
-| `__tests__/lib/relay.test.ts` | Path resolution and breadcrumb tests |
+
+| File                                        | Purpose                                       |
+| ------------------------------------------- | --------------------------------------------- |
+| `app/relay/layout.tsx`                      | Relay section layout (sidebar + page nav)     |
+| `app/relay/page.tsx`                        | Platform overview page (`/relay`)             |
+| `app/relay/[model]/page.tsx`                | Model overview pages (`/relay/lipstick` etc.) |
+| `components/relay/relay-discord-cta.tsx`    | Reusable Discord join CTA block               |
+| `components/relay/relay-lab-disclosure.tsx` | Lab status disclosure callout                 |
+| `components/relay/relay-wiring-diagram.tsx` | SVG wiring diagram prototype (Lipstick)       |
+| `content/relay/reef/index.mdx`              | Relay Reef model content                      |
+| `__tests__/config/relay-models.test.ts`     | Config validation tests                       |
+| `__tests__/lib/relay.test.ts`               | Path resolution and breadcrumb tests          |
 
 ### Modify
-| File | Change |
-|------|--------|
-| `types/relay-model.ts` | `status: 'lab' \| 'ready'` |
-| `types/relay-nav.ts` | `status: 'lab' \| 'ready'` |
-| `config/relay-models.ts` | Add Reef; all statuses → `lab`; hrefs → `/relay/`; remove `plannedModelKeys` |
-| `config/relay-nav.ts` | Add Reef; update statuses and hrefs; phase 1 platform nav (no build sections) |
-| `lib/relay.ts` | Breadcrumb hrefs: `/docs/relay` → `/relay` |
-| `components/relay/relay-model-status-badge.tsx` | Lab (amber) / Ready (green) |
-| `components/relay/relay-model-lineup-nav.tsx` | Hrefs `/docs/relay/` → `/relay/`; update `PLATFORM_ROUTE_SEGMENTS` |
-| `components/doc/relay-model-grid.tsx` | Remove voting props (`rank`, `percentage`, `onSelect`) |
-| `components/navigation/relay-sidebar.tsx` | New href constants; phase 1 platform sidebar (overview + models only) |
-| `components/mdx-components.tsx` | Remove `RelayVoteGrid`; add `RelayDiscordCta`, `RelayLabDisclosure`, `RelayWiringDiagram` |
-| `content/relay/index.mdx` | Full rewrite for phase 1 platform page |
-| `content/relay/lipstick/index.mdx` | Update for new structure (Lab status, new component references) |
+
+| File                                            | Change                                                                                    |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------- | -------- |
+| `types/relay-model.ts`                          | `status: 'lab'                                                                            | 'ready'` |
+| `types/relay-nav.ts`                            | `status: 'lab'                                                                            | 'ready'` |
+| `config/relay-models.ts`                        | Add Reef; all statuses → `lab`; hrefs → `/relay/`; remove `plannedModelKeys`              |
+| `config/relay-nav.ts`                           | Add Reef; update statuses and hrefs; phase 1 platform nav (no build sections)             |
+| `lib/relay.ts`                                  | Breadcrumb hrefs: `/docs/relay` → `/relay`                                                |
+| `components/relay/relay-model-status-badge.tsx` | Lab (amber) / Ready (green)                                                               |
+| `components/relay/relay-model-lineup-nav.tsx`   | Hrefs `/docs/relay/` → `/relay/`; update `PLATFORM_ROUTE_SEGMENTS`                        |
+| `components/doc/relay-model-grid.tsx`           | Remove voting props (`rank`, `percentage`, `onSelect`)                                    |
+| `components/navigation/relay-sidebar.tsx`       | New href constants; phase 1 platform sidebar (overview + models only)                     |
+| `components/mdx-components.tsx`                 | Remove `RelayVoteGrid`; add `RelayDiscordCta`, `RelayLabDisclosure`, `RelayWiringDiagram` |
+| `content/relay/index.mdx`                       | Full rewrite for phase 1 platform page                                                    |
+| `content/relay/lipstick/index.mdx`              | Update for new structure (Lab status, new component references)                           |
 
 ### Delete
-| File | Reason |
-|------|--------|
-| `app/docs/relay/` (entire dir) | Replaced by `app/relay/` |
-| `components/relay/relay-vote-grid.tsx` | Voting removed |
-| `app/api/relay-votes/route.ts` | Voting removed |
+
+| File                                   | Reason                   |
+| -------------------------------------- | ------------------------ |
+| `app/docs/relay/` (entire dir)         | Replaced by `app/relay/` |
+| `components/relay/relay-vote-grid.tsx` | Voting removed           |
+| `app/api/relay-votes/route.ts`         | Voting removed           |
 
 ---
 
 ## Task 1: Update Type Definitions
 
 **Files:**
+
 - Modify: `types/relay-model.ts`
 - Modify: `types/relay-nav.ts`
 - Create: `__tests__/config/relay-models.test.ts`
-
-- [ ] **Step 1: Update `types/relay-model.ts`**
+- **Step 1: Update `types/relay-model.ts`**
 
 ```typescript
 export interface RelayModel {
@@ -71,7 +74,7 @@ export interface RelayModel {
 }
 ```
 
-- [ ] **Step 2: Update `types/relay-nav.ts`**
+- **Step 2: Update `types/relay-nav.ts`**
 
 ```typescript
 export interface RelayNavItem {
@@ -100,7 +103,7 @@ export interface RelayPlatformNav {
 }
 ```
 
-- [ ] **Step 3: Write failing config validation tests**
+- **Step 3: Write failing config validation tests**
 
 Create `__tests__/config/relay-models.test.ts`:
 
@@ -152,7 +155,7 @@ describe('relayModels config', () => {
 });
 ```
 
-- [ ] **Step 4: Run tests — confirm they fail**
+- **Step 4: Run tests — confirm they fail**
 
 ```bash
 npx vitest run __tests__/config/relay-models.test.ts
@@ -160,7 +163,7 @@ npx vitest run __tests__/config/relay-models.test.ts
 
 Expected: FAIL — `relayModels` still has 6 models, old status values, old hrefs.
 
-- [ ] **Step 5: Commit types**
+- **Step 5: Commit types**
 
 ```bash
 git add types/relay-model.ts types/relay-nav.ts __tests__/config/relay-models.test.ts
@@ -172,9 +175,9 @@ git commit -m "feat: update relay types to lab/ready status system, add config t
 ## Task 2: Update Model Config
 
 **Files:**
-- Modify: `config/relay-models.ts`
 
-- [ ] **Step 1: Rewrite `config/relay-models.ts`**
+- Modify: `config/relay-models.ts`
+- **Step 1: Rewrite `config/relay-models.ts`**
 
 ```typescript
 import type { RelayModel } from '@/types/relay-model';
@@ -185,8 +188,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Lipstick',
         tagline: 'Signature · Articulate · Lipstick layer',
         genres: 'Blues · Rock · Alternative · Indie',
-        description:
-            'The reference model and first release: expressive dual humbuckers with a middle lipstick as a curated alternate voice — familiar core behavior plus a second identity of the same instrument, not a novelty.',
+        description: 'The reference model and first release: expressive dual humbuckers with a middle lipstick as a curated alternate voice — familiar core behavior plus a second identity of the same instrument, not a novelty.',
         status: 'lab',
         href: '/relay/lipstick',
     },
@@ -195,8 +197,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Reef',
         tagline: 'Danelectro soul · Humbucker punch · Lipstick shimmer',
         genres: 'Indie · Surf · Alt Country · Shoegaze · Studio',
-        description:
-            'Bridge humbucker for warmth and sustain; middle and neck lipsticks wired as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot to shape each independently.',
+        description: 'Bridge humbucker for warmth and sustain; middle and neck lipsticks wired as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot to shape each independently.',
         status: 'lab',
         href: '/relay/reef',
     },
@@ -205,8 +206,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Velvet',
         tagline: 'Warm authority · Club presence',
         genres: 'Jazz · Blues · Soul · R&B',
-        description:
-            'The warm, fat, classy club model — a distinct center of gravity. The middle pickup is a true core voice (5-way family), poised and present so the band can orbit the guitar.',
+        description: 'The warm, fat, classy club model — a distinct center of gravity. The middle pickup is a true core voice (5-way family), poised and present so the band can orbit the guitar.',
         status: 'lab',
         href: '/relay/velvet',
     },
@@ -215,8 +215,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Arc',
         tagline: 'Chime · Air · Spatial clarity',
         genres: 'Clean pop · Indie · Ambient · Country',
-        description:
-            'The airy, spatial, chime-forward model: width, shimmer, and clarity without thinning out — open, ringing, and alive rather than club-warm or mid-forward.',
+        description: 'The airy, spatial, chime-forward model: width, shimmer, and clarity without thinning out — open, ringing, and alive rather than club-warm or mid-forward.',
         status: 'lab',
         href: '/relay/arc',
     },
@@ -225,8 +224,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Torch',
         tagline: 'Vocal mids · Hooky · Contemporary',
         genres: 'Rock · Pop · Alternative · Modern country',
-        description:
-            'The rude, vocal-mid, modern-radio voice: attitude and edge with a P90-type middle as a core position (5-way family) — emotionally direct and hooky without becoming a metal guitar.',
+        description: 'The rude, vocal-mid, modern-radio voice: attitude and edge with a P90-type middle as a core position (5-way family) — emotionally direct and hooky without becoming a metal guitar.',
         status: 'lab',
         href: '/relay/torch',
     },
@@ -235,8 +233,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Current',
         tagline: 'Punch · Cut · Fast attack',
         genres: 'Funk · Pop · Rock',
-        description:
-            "Punchy, cutting, and immediate: strong projection and edge definition (3-way family with the middle as a fast alternate layer). The line's sharpest non-metal tool — less warm than Velvet, less spacious than Arc, less throaty than Torch.",
+        description: "Punchy, cutting, and immediate: strong projection and edge definition (3-way family with the middle as a fast alternate layer). The line's sharpest non-metal tool — less warm than Velvet, less spacious than Arc, less throaty than Torch.",
         status: 'lab',
         href: '/relay/current',
     },
@@ -245,15 +242,14 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Hammer',
         tagline: 'High gain · Tight · Uncompromising',
         genres: 'Metal · Hard rock',
-        description:
-            'The dedicated heavy model: high-gain authority, tight aggressive attack, and rail-style passive pickups — the specialty brute of the line, direct and forceful rather than elegant.',
+        description: 'The dedicated heavy model: high-gain authority, tight aggressive attack, and rail-style passive pickups — the specialty brute of the line, direct and forceful rather than elegant.',
         status: 'lab',
         href: '/relay/hammer',
     },
 ];
 ```
 
-- [ ] **Step 2: Run tests — confirm they pass**
+- **Step 2: Run tests — confirm they pass**
 
 ```bash
 npx vitest run __tests__/config/relay-models.test.ts
@@ -261,7 +257,7 @@ npx vitest run __tests__/config/relay-models.test.ts
 
 Expected: PASS (7 models, valid statuses, correct hrefs).
 
-- [ ] **Step 3: Commit**
+- **Step 3: Commit**
 
 ```bash
 git add config/relay-models.ts
@@ -273,9 +269,9 @@ git commit -m "feat: add Reef model, set all statuses to lab, update hrefs to /r
 ## Task 3: Update Navigation Config
 
 **Files:**
-- Modify: `config/relay-nav.ts`
 
-- [ ] **Step 1: Rewrite `config/relay-nav.ts`**
+- Modify: `config/relay-nav.ts`
+- **Step 1: Rewrite `config/relay-nav.ts`**
 
 Phase 1 platform nav has no sections (the build guide doesn't exist yet). Model nav entries for all 7 models with no sub-sections (no parts/wiring pages yet).
 
@@ -326,7 +322,7 @@ export const relayNav: RelayNav = {
 };
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add config/relay-nav.ts
@@ -338,10 +334,10 @@ git commit -m "feat: update relay nav config for phase 1, add Reef, remove build
 ## Task 4: Write Nav Config Tests and Update lib/relay.ts
 
 **Files:**
+
 - Create: `__tests__/lib/relay.test.ts`
 - Modify: `lib/relay.ts`
-
-- [ ] **Step 1: Write failing tests for lib/relay.ts**
+- **Step 1: Write failing tests for lib/relay.ts**
 
 Create `__tests__/lib/relay.test.ts`:
 
@@ -395,7 +391,7 @@ describe('buildRelayPlatformBreadcrumbs', () => {
 });
 ```
 
-- [ ] **Step 2: Run tests — confirm they fail**
+- **Step 2: Run tests — confirm they fail**
 
 ```bash
 npx vitest run __tests__/lib/relay.test.ts
@@ -403,56 +399,44 @@ npx vitest run __tests__/lib/relay.test.ts
 
 Expected: FAIL — breadcrumbs still reference `/docs/relay`.
 
-- [ ] **Step 3: Update breadcrumb hrefs in `lib/relay.ts`**
+- **Step 3: Update breadcrumb hrefs in `lib/relay.ts`**
 
 Change only the two breadcrumb builder functions. The file path resolution functions are unchanged.
 
 In `buildRelayPlatformBreadcrumbs`, replace:
+
 ```typescript
         { label: 'Docs', href: '/docs' },
         { label: 'Relay Guitar Platform', href: '/docs/relay' },
 ```
+
 with:
+
 ```typescript
         { label: 'Relay Guitar', href: '/relay' },
 ```
 
 In `buildRelayBreadcrumbs`, replace:
+
 ```typescript
-    if (slug.length === 0) {
-        return [
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar Platform', href: '/docs/relay' },
-            { label: nav[model]?.title ?? model },
-        ];
-    }
-    // ...
-    return [
-        { label: 'Docs', href: '/docs' },
-        { label: 'Relay Guitar Platform', href: '/docs/relay' },
-        { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
-        ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
-    ];
-```
-with:
-```typescript
-    if (slug.length === 0) {
-        return [
-            { label: 'Relay Guitar', href: '/relay' },
-            { label: nav[model]?.title ?? model },
-        ];
-    }
-    // ...
-    return [
-        { label: 'Relay Guitar', href: '/relay' },
-        { label: modelNav?.title ?? model, href: `/relay/${model}` },
-        ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
-    ];
+if (slug.length === 0) {
+    return [{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: nav[model]?.title ?? model }];
+}
+// ...
+return [{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: modelNav?.title ?? model, href: `/docs/relay/${model}` }, ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
 ```
 
-- [ ] **Step 4: Run tests — confirm they pass**
+with:
+
+```typescript
+if (slug.length === 0) {
+    return [{ label: 'Relay Guitar', href: '/relay' }, { label: nav[model]?.title ?? model }];
+}
+// ...
+return [{ label: 'Relay Guitar', href: '/relay' }, { label: modelNav?.title ?? model, href: `/relay/${model}` }, ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
+```
+
+- **Step 4: Run tests — confirm they pass**
 
 ```bash
 npx vitest run __tests__/lib/relay.test.ts
@@ -460,7 +444,7 @@ npx vitest run __tests__/lib/relay.test.ts
 
 Expected: PASS.
 
-- [ ] **Step 5: Commit**
+- **Step 5: Commit**
 
 ```bash
 git add lib/relay.ts __tests__/lib/relay.test.ts
@@ -472,9 +456,9 @@ git commit -m "feat: update relay breadcrumb hrefs to /relay/, add lib tests"
 ## Task 5: Update Status Badge Component
 
 **Files:**
-- Modify: `components/relay/relay-model-status-badge.tsx`
 
-- [ ] **Step 1: Rewrite the badge component**
+- Modify: `components/relay/relay-model-status-badge.tsx`
+- **Step 1: Rewrite the badge component**
 
 ```typescript
 import React from 'react';
@@ -508,7 +492,7 @@ export function RelayModelStatusBadge({ status, className }: { status: RelayMode
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/relay/relay-model-status-badge.tsx
@@ -520,9 +504,9 @@ git commit -m "feat: update status badge to Lab (amber) / Ready (green)"
 ## Task 6: Update Model Lineup Nav
 
 **Files:**
-- Modify: `components/relay/relay-model-lineup-nav.tsx`
 
-- [ ] **Step 1: Update hrefs and platform route segments**
+- Modify: `components/relay/relay-model-lineup-nav.tsx`
+- **Step 1: Update hrefs and platform route segments**
 
 ```typescript
 'use client';
@@ -575,7 +559,7 @@ export function RelayModelLineupNav() {
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/relay/relay-model-lineup-nav.tsx
@@ -587,9 +571,9 @@ git commit -m "feat: update lineup nav hrefs to /relay/, simplify platform segme
 ## Task 7: Simplify Model Card — Remove Voting Props
 
 **Files:**
-- Modify: `components/doc/relay-model-grid.tsx`
 
-- [ ] **Step 1: Remove voting props from `RelayModelCard`**
+- Modify: `components/doc/relay-model-grid.tsx`
+- **Step 1: Remove voting props from `RelayModelCard`**
 
 Remove `rank`, `percentage`, and `onSelect` props and all their associated styles and rendering logic. Cards are now either linked (with `href`) or static (neither link nor button).
 
@@ -649,7 +633,7 @@ export function RelayModelGrid({ children }: { children: React.ReactNode }) {
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/doc/relay-model-grid.tsx
@@ -661,16 +645,16 @@ git commit -m "refactor: remove voting props from RelayModelCard"
 ## Task 8: Remove Voting System
 
 **Files:**
+
 - Delete: `components/relay/relay-vote-grid.tsx`
 - Delete: `app/api/relay-votes/route.ts`
-
-- [ ] **Step 1: Delete voting component**
+- **Step 1: Delete voting component**
 
 ```bash
 git rm components/relay/relay-vote-grid.tsx
 ```
 
-- [ ] **Step 2: Delete voting API route**
+- **Step 2: Delete voting API route**
 
 Check which path the route is at, then delete it:
 
@@ -684,7 +668,7 @@ git rm -r app/api/relay-votes/
 git rm pages/api/relay-votes.ts
 ```
 
-- [ ] **Step 3: Commit**
+- **Step 3: Commit**
 
 ```bash
 git commit -m "refactor: remove voting system (RelayVoteGrid, relay-votes API)"
@@ -695,9 +679,9 @@ git commit -m "refactor: remove voting system (RelayVoteGrid, relay-votes API)"
 ## Task 9: Add Discord CTA Component
 
 **Files:**
-- Create: `components/relay/relay-discord-cta.tsx`
 
-- [ ] **Step 1: Create the component**
+- Create: `components/relay/relay-discord-cta.tsx`
+- **Step 1: Create the component**
 
 ```typescript
 import React from 'react';
@@ -711,7 +695,7 @@ interface RelayDiscordCtaProps {
 }
 
 export function RelayDiscordCta({
-    channelHref = 'https://discord.gg/YOUR_INVITE', // replace with real invite during content phase
+    channelHref = 'https://discord.gg/BuUxCG4W6w', // replace with real invite during content phase
     message = 'Ask questions, share your build, and follow development as the guides are written.',
     className,
 }: RelayDiscordCtaProps) {
@@ -739,7 +723,7 @@ export function RelayDiscordCta({
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/relay/relay-discord-cta.tsx
@@ -751,9 +735,9 @@ git commit -m "feat: add RelayDiscordCta component"
 ## Task 10: Add Lab Disclosure Component
 
 **Files:**
-- Create: `components/relay/relay-lab-disclosure.tsx`
 
-- [ ] **Step 1: Create the component**
+- Create: `components/relay/relay-lab-disclosure.tsx`
+- **Step 1: Create the component**
 
 ```typescript
 import React from 'react';
@@ -763,7 +747,7 @@ export function RelayLabDisclosure() {
         <div className="my-6 rounded-xl border border-amber-500/30 bg-amber-500/5 p-4 text-sm text-amber-800 dark:text-amber-300">
             <p className="font-semibold">Lab model</p>
             <p className="mt-1 text-amber-700 dark:text-amber-400">
-                This model&apos;s design is complete but hasn&apos;t been physically built and validated yet. Component choices and wiring
+                This model's design is complete but hasn't been physically built and validated yet. Component choices and wiring
                 details may change after testing. Join the Discord to follow development and share early builds.
             </p>
         </div>
@@ -771,7 +755,7 @@ export function RelayLabDisclosure() {
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/relay/relay-lab-disclosure.tsx
@@ -783,11 +767,12 @@ git commit -m "feat: add RelayLabDisclosure component"
 ## Task 11: SVG Wiring Diagram Prototype
 
 **Files:**
+
 - Create: `components/relay/relay-wiring-diagram.tsx`
 
 This is a prototype for validation. The goal is a clean topographic SVG showing pickup positions, controls, and color-coded wiring. Full diagrams for each model are authored once the approach is approved. This task ships a Lipstick prototype and a "diagram in progress" placeholder for all others.
 
-- [ ] **Step 1: Create the component**
+- **Step 1: Create the component**
 
 ```typescript
 import React from 'react';
@@ -919,7 +904,7 @@ export function RelayWiringDiagram({ placeholder = false, modelName }: WiringDia
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/relay/relay-wiring-diagram.tsx
@@ -931,11 +916,12 @@ git commit -m "feat: add RelayWiringDiagram SVG prototype (Lipstick layout)"
 ## Task 12: Update Sidebar Navigation
 
 **Files:**
+
 - Modify: `components/navigation/relay-sidebar.tsx`
 
 Phase 1 sidebar is simpler: no platform guide sections, no "Choosing a model" link. PlatformSidebar shows only the overview link + model lineup. ModelSidebar shows back-link + model name only (no sub-sections).
 
-- [ ] **Step 1: Rewrite the sidebar**
+- **Step 1: Rewrite the sidebar**
 
 ```typescript
 'use client';
@@ -1050,7 +1036,7 @@ export function RelayBreadcrumbBar({ items }: { items: RelayBreadcrumb[] }) {
 }
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add components/navigation/relay-sidebar.tsx
@@ -1062,11 +1048,11 @@ git commit -m "feat: update relay sidebar for phase 1 structure and /relay/ href
 ## Task 13: Create app/relay Routes
 
 **Files:**
+
 - Create: `app/relay/layout.tsx`
 - Create: `app/relay/page.tsx`
 - Create: `app/relay/[model]/page.tsx`
-
-- [ ] **Step 1: Create `app/relay/layout.tsx`**
+- **Step 1: Create `app/relay/layout.tsx`**
 
 ```typescript
 import React from 'react';
@@ -1093,7 +1079,7 @@ export default function RelayLayout({ children }: { children: React.ReactNode })
 }
 ```
 
-- [ ] **Step 2: Create `app/relay/page.tsx`**
+- **Step 2: Create `app/relay/page.tsx`**
 
 ```typescript
 import React from 'react';
@@ -1128,7 +1114,7 @@ export default async function RelayPlatformPage() {
 }
 ```
 
-- [ ] **Step 3: Create `app/relay/[model]/page.tsx`**
+- **Step 3: Create `app/relay/[model]/page.tsx`**
 
 ```typescript
 import React from 'react';
@@ -1179,7 +1165,7 @@ export default async function RelayModelPage({ params }: Props) {
 }
 ```
 
-- [ ] **Step 4: Commit**
+- **Step 4: Commit**
 
 ```bash
 git add app/relay/
@@ -1191,18 +1177,20 @@ git commit -m "feat: add app/relay routes (platform page and model pages)"
 ## Task 14: Update MDX Component Registry
 
 **Files:**
-- Modify: `components/mdx-components.tsx`
 
-- [ ] **Step 1: Remove `RelayVoteGrid`, add new components**
+- Modify: `components/mdx-components.tsx`
+- **Step 1: Remove `RelayVoteGrid`, add new components**
 
 Find the relevant lines in `components/mdx-components.tsx`.
 
 Remove:
+
 ```typescript
 import { RelayVoteGrid } from '@/components/relay/relay-vote-grid';
 ```
 
 Add:
+
 ```typescript
 import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
 import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
@@ -1210,18 +1198,20 @@ import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 ```
 
 In the `components` export object, remove:
+
 ```typescript
 RelayVoteGrid,
 ```
 
 Add:
+
 ```typescript
 RelayDiscordCta,
 RelayLabDisclosure,
 RelayWiringDiagram,
 ```
 
-- [ ] **Step 2: Verify no other files reference `RelayVoteGrid`**
+- **Step 2: Verify no other files reference `RelayVoteGrid`**
 
 ```bash
 grep -r "RelayVoteGrid" --include="*.tsx" --include="*.mdx" --include="*.ts" .
@@ -1229,7 +1219,7 @@ grep -r "RelayVoteGrid" --include="*.tsx" --include="*.mdx" --include="*.ts" .
 
 Expected: no results (we already deleted the component and removed from registry).
 
-- [ ] **Step 3: Commit**
+- **Step 3: Commit**
 
 ```bash
 git add components/mdx-components.tsx
@@ -1241,9 +1231,9 @@ git commit -m "feat: register RelayDiscordCta, RelayLabDisclosure, RelayWiringDi
 ## Task 15: Delete Old app/docs/relay Routes
 
 **Files:**
-- Delete: `app/docs/relay/` (entire directory)
 
-- [ ] **Step 1: Check for any remaining references to /docs/relay/ routes**
+- Delete: `app/docs/relay/` (entire directory)
+- **Step 1: Check for any remaining references to /docs/relay/ routes**
 
 ```bash
 grep -r "docs/relay" --include="*.tsx" --include="*.ts" --include="*.mdx" . | grep -v ".git" | grep -v "node_modules"
@@ -1251,13 +1241,13 @@ grep -r "docs/relay" --include="*.tsx" --include="*.ts" --include="*.mdx" . | gr
 
 Fix any references found before deleting.
 
-- [ ] **Step 2: Delete the directory**
+- **Step 2: Delete the directory**
 
 ```bash
 git rm -r app/docs/relay/
 ```
 
-- [ ] **Step 3: Commit**
+- **Step 3: Commit**
 
 ```bash
 git commit -m "refactor: remove app/docs/relay/ route tree (replaced by app/relay/)"
@@ -1268,9 +1258,9 @@ git commit -m "refactor: remove app/docs/relay/ route tree (replaced by app/rela
 ## Task 16: Rewrite Platform Page Content
 
 **Files:**
-- Modify: `content/relay/index.mdx`
 
-- [ ] **Step 1: Rewrite `content/relay/index.mdx`**
+- Modify: `content/relay/index.mdx`
+- **Step 1: Rewrite `content/relay/index.mdx`**
 
 ```mdx
 ---
@@ -1301,62 +1291,13 @@ You don't have to install a middle pickup. The model files include optional cavi
 ## Models
 
 <RelayModelGrid>
-    <RelayModelCard
-        name="Relay Lipstick"
-        tagline="Signature · Articulate · Lipstick layer"
-        genres="Blues · Rock · Alternative · Indie"
-        description="The reference model: expressive dual humbuckers with a middle lipstick as a curated alternate voice. A second identity of the same instrument, not a novelty."
-        status="lab"
-        href="/relay/lipstick"
-    />
-    <RelayModelCard
-        name="Relay Reef"
-        tagline="Danelectro soul · Humbucker punch · Lipstick shimmer"
-        genres="Indie · Surf · Alt Country · Shoegaze"
-        description="Bridge humbucker for warmth and sustain; middle and neck lipsticks as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot."
-        status="lab"
-        href="/relay/reef"
-    />
-    <RelayModelCard
-        name="Relay Velvet"
-        tagline="Warm authority · Club presence"
-        genres="Jazz · Blues · Soul · R&B"
-        description="The warm, fat, classy club model. The middle pickup is a true core voice — poised and present so the band can orbit the guitar."
-        status="lab"
-        href="/relay/velvet"
-    />
-    <RelayModelCard
-        name="Relay Arc"
-        tagline="Chime · Air · Spatial clarity"
-        genres="Clean pop · Indie · Ambient · Country"
-        description="Airy, spatial, and chime-forward: width, shimmer, and clarity without thinning out — open and ringing rather than club-warm or mid-forward."
-        status="lab"
-        href="/relay/arc"
-    />
-    <RelayModelCard
-        name="Relay Torch"
-        tagline="Vocal mids · Hooky · Contemporary"
-        genres="Rock · Pop · Alternative · Modern country"
-        description="Rude, vocal-mid energy with a P90-type middle as a core position — emotionally direct and hooky without becoming a metal guitar."
-        status="lab"
-        href="/relay/torch"
-    />
-    <RelayModelCard
-        name="Relay Current"
-        tagline="Punch · Cut · Fast attack"
-        genres="Funk · Pop · Rock"
-        description="Punchy, cutting, and immediate — the line's sharpest non-metal tool. Strong projection and edge definition with the middle as a fast alternate layer."
-        status="lab"
-        href="/relay/current"
-    />
-    <RelayModelCard
-        name="Relay Hammer"
-        tagline="High gain · Tight · Uncompromising"
-        genres="Metal · Hard rock"
-        description="The dedicated heavy model: high-gain authority, tight aggressive attack, rail-style passive pickups. Direct and forceful rather than elegant."
-        status="lab"
-        href="/relay/hammer"
-    />
+    <RelayModelCard name="Relay Lipstick" tagline="Signature · Articulate · Lipstick layer" genres="Blues · Rock · Alternative · Indie" description="The reference model: expressive dual humbuckers with a middle lipstick as a curated alternate voice. A second identity of the same instrument, not a novelty." status="lab" href="/relay/lipstick" />
+    <RelayModelCard name="Relay Reef" tagline="Danelectro soul · Humbucker punch · Lipstick shimmer" genres="Indie · Surf · Alt Country · Shoegaze" description="Bridge humbucker for warmth and sustain; middle and neck lipsticks as a single network for glassy, piano-like articulation. Two distinct voices, one concentric tone pot." status="lab" href="/relay/reef" />
+    <RelayModelCard name="Relay Velvet" tagline="Warm authority · Club presence" genres="Jazz · Blues · Soul · R&B" description="The warm, fat, classy club model. The middle pickup is a true core voice — poised and present so the band can orbit the guitar." status="lab" href="/relay/velvet" />
+    <RelayModelCard name="Relay Arc" tagline="Chime · Air · Spatial clarity" genres="Clean pop · Indie · Ambient · Country" description="Airy, spatial, and chime-forward: width, shimmer, and clarity without thinning out — open and ringing rather than club-warm or mid-forward." status="lab" href="/relay/arc" />
+    <RelayModelCard name="Relay Torch" tagline="Vocal mids · Hooky · Contemporary" genres="Rock · Pop · Alternative · Modern country" description="Rude, vocal-mid energy with a P90-type middle as a core position — emotionally direct and hooky without becoming a metal guitar." status="lab" href="/relay/torch" />
+    <RelayModelCard name="Relay Current" tagline="Punch · Cut · Fast attack" genres="Funk · Pop · Rock" description="Punchy, cutting, and immediate — the line's sharpest non-metal tool. Strong projection and edge definition with the middle as a fast alternate layer." status="lab" href="/relay/current" />
+    <RelayModelCard name="Relay Hammer" tagline="High gain · Tight · Uncompromising" genres="Metal · Hard rock" description="The dedicated heavy model: high-gain authority, tight aggressive attack, rail-style passive pickups. Direct and forceful rather than elegant." status="lab" href="/relay/hammer" />
 </RelayModelGrid>
 
 ## Community
@@ -1366,7 +1307,7 @@ The build guides are being written as each model is validated. The Discord serve
 <RelayDiscordCta message="Ask questions, share builds, and follow development as the guides are written." />
 ```
 
-- [ ] **Step 2: Verify the MDX file is well-formed**
+- **Step 2: Verify the MDX file is well-formed**
 
 ```bash
 npx vitest run
@@ -1374,7 +1315,7 @@ npx vitest run
 
 Expected: all tests pass (content file doesn't affect unit tests, but ensures the build won't break on missing exports).
 
-- [ ] **Step 3: Commit**
+- **Step 3: Commit**
 
 ```bash
 git add content/relay/index.mdx
@@ -1386,9 +1327,9 @@ git commit -m "feat: rewrite relay platform page content for phase 1"
 ## Task 17: Create Relay Reef Content
 
 **Files:**
-- Create: `content/relay/reef/index.mdx`
 
-- [ ] **Step 1: Create the directory and file**
+- Create: `content/relay/reef/index.mdx`
+- **Step 1: Create the directory and file**
 
 ```bash
 mkdir -p content/relay/reef
@@ -1420,33 +1361,27 @@ Clean to semi-clean through a tweed or EL84 amp. Surf reverb and tremolo with th
 
 ## Configuration
 
-| | |
-|---|---|
-| **Bridge** | Humbucker |
-| **Middle** | Lipstick |
-| **Neck** | Lipstick — wired as network with middle |
-| **Selector** | 5-way blade |
-| **Volume** | Single pot |
-| **Tone** | Concentric stacked — humbucker tone (top) / lipstick network tone (bottom) |
+|              |                                                                            |
+| ------------ | -------------------------------------------------------------------------- |
+| **Bridge**   | Humbucker                                                                  |
+| **Middle**   | Lipstick                                                                   |
+| **Neck**     | Lipstick — wired as network with middle                                    |
+| **Selector** | 5-way blade                                                                |
+| **Volume**   | Single pot                                                                 |
+| **Tone**     | Concentric stacked — humbucker tone (top) / lipstick network tone (bottom) |
 
 <RelayWiringDiagram placeholder modelName="Relay Reef" />
 
 ## Target pickups
 
-*This model is in Lab status — component choices may be refined after physical testing.*
+_This model is in Lab status — component choices may be refined after physical testing._
 
-<RelayRecommendedPickups
-    bridge="Bridge humbucker — target specs TBD after testing"
-    middle="Lipstick — target specs TBD after testing"
-    neck="Lipstick — target specs TBD after testing"
-/>
+<RelayRecommendedPickups bridge="Bridge humbucker — target specs TBD after testing" middle="Lipstick — target specs TBD after testing" neck="Lipstick — target specs TBD after testing" />
 
-<RelayDiscordCta
-    message="Following the Reef build? Join the Discord to ask questions, share early builds, and help validate the design."
-/>
+<RelayDiscordCta message="Following the Reef build? Join the Discord to ask questions, share early builds, and help validate the design." />
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add content/relay/reef/
@@ -1458,11 +1393,12 @@ git commit -m "feat: add Relay Reef model content"
 ## Task 18: Update Lipstick Model Content
 
 **Files:**
+
 - Modify: `content/relay/lipstick/index.mdx`
 
 The Lipstick page needs to use the new components (`RelayLabDisclosure`, `RelayWiringDiagram`, `RelayDiscordCta`) and update links from `/docs/relay/` to `/relay/`.
 
-- [ ] **Step 1: Update `content/relay/lipstick/index.mdx`**
+- **Step 1: Update `content/relay/lipstick/index.mdx`**
 
 ```mdx
 ---
@@ -1484,29 +1420,23 @@ Makers who want **strong clean articulation**, **expressive pick response**, a b
 
 ## Configuration
 
-| | |
-|---|---|
-| **Bridge** | Humbucker |
-| **Middle** | Lipstick |
-| **Neck** | Humbucker |
-| **Selector** | 3-way (bridge / bridge+neck / neck) |
-| **Volume** | Single pot |
-| **Tone** | Single pot (humbucker voice) + middle blend control |
+|              |                                                     |
+| ------------ | --------------------------------------------------- |
+| **Bridge**   | Humbucker                                           |
+| **Middle**   | Lipstick                                            |
+| **Neck**     | Humbucker                                           |
+| **Selector** | 3-way (bridge / bridge+neck / neck)                 |
+| **Volume**   | Single pot                                          |
+| **Tone**     | Single pot (humbucker voice) + middle blend control |
 
 <RelayWiringDiagram />
 
-<RelayRecommendedPickups
-    neck="GFS Professional Series Alnico II Humbucker (neck, 7.6K DC resistance)"
-    middle="GFS Pro-Tube Lipstick (middle, 6.0K DC resistance)"
-    bridge="GFS VEH humbucker (bridge, 11.2K DC resistance)"
-/>
+<RelayRecommendedPickups neck="GFS Professional Series Alnico II Humbucker (neck, 7.6K DC resistance)" middle="GFS Pro-Tube Lipstick (middle, 6.0K DC resistance)" bridge="GFS VEH humbucker (bridge, 11.2K DC resistance)" />
 
-<RelayDiscordCta
-    message="Building a Lipstick? Share your progress and ask questions in the Discord."
-/>
+<RelayDiscordCta message="Building a Lipstick? Share your progress and ask questions in the Discord." />
 ```
 
-- [ ] **Step 2: Commit**
+- **Step 2: Commit**
 
 ```bash
 git add content/relay/lipstick/index.mdx
@@ -1518,6 +1448,7 @@ git commit -m "feat: update Lipstick content for phase 1 structure"
 ## Task 19: Update Remaining Model Content Files
 
 **Files:**
+
 - Modify: `content/relay/velvet/index.mdx`
 - Modify: `content/relay/arc/index.mdx`
 - Modify: `content/relay/torch/index.mdx`
@@ -1526,7 +1457,7 @@ git commit -m "feat: update Lipstick content for phase 1 structure"
 
 Each of these files needs consistent structure: title/description frontmatter, `RelayLabDisclosure`, sound character, configuration table, `RelayWiringDiagram placeholder`, `RelayDiscordCta`. Read each file first to see what content already exists and preserve what's accurate.
 
-- [ ] **Step 1: Update each model file**
+- **Step 1: Update each model file**
 
 For each model (`velvet`, `arc`, `torch`, `current`, `hammer`), read the existing file, then update it to match this template pattern (adapt the content to the model's actual character):
 
@@ -1548,23 +1479,21 @@ description: '[One sentence description]'
 
 ## Configuration
 
-| | |
-|---|---|
-| **Bridge** | [pickup type] |
-| **Middle** | [pickup type] |
-| **Neck** | [pickup type] |
-| **Selector** | [3-way or 5-way] |
-| **Volume** | Single pot |
-| **Tone** | [control description] |
+|              |                       |
+| ------------ | --------------------- |
+| **Bridge**   | [pickup type]         |
+| **Middle**   | [pickup type]         |
+| **Neck**     | [pickup type]         |
+| **Selector** | [3-way or 5-way]      |
+| **Volume**   | Single pot            |
+| **Tone**     | [control description] |
 
 <RelayWiringDiagram placeholder modelName="Relay [Name]" />
 
-<RelayDiscordCta
-    message="Interested in the [Name]? Join the Discord to follow development."
-/>
+<RelayDiscordCta message="Interested in the [Name]? Join the Discord to follow development." />
 ```
 
-- [ ] **Step 2: Commit after all five are updated**
+- **Step 2: Commit after all five are updated**
 
 ```bash
 git add content/relay/velvet/ content/relay/arc/ content/relay/torch/ content/relay/current/ content/relay/hammer/
@@ -1575,7 +1504,7 @@ git commit -m "feat: update remaining model pages for phase 1 structure"
 
 ## Task 20: Verify Full Build
 
-- [ ] **Step 1: Run all tests**
+- **Step 1: Run all tests**
 
 ```bash
 npx vitest run
@@ -1583,7 +1512,7 @@ npx vitest run
 
 Expected: all tests pass.
 
-- [ ] **Step 2: Check for broken imports**
+- **Step 2: Check for broken imports**
 
 ```bash
 npx tsc --noEmit
@@ -1591,13 +1520,14 @@ npx tsc --noEmit
 
 Fix any TypeScript errors before proceeding.
 
-- [ ] **Step 3: Run the dev server and manually verify routes**
+- **Step 3: Run the dev server and manually verify routes**
 
 ```bash
 npm run dev
 ```
 
 Check in browser:
+
 - `http://localhost:3000/relay` — platform page loads, model gallery shows all 7 cards with Lab badges
 - `http://localhost:3000/relay/lipstick` — Lipstick page loads with Lab disclosure, wiring diagram SVG, Discord CTA
 - `http://localhost:3000/relay/reef` — Reef page loads with Lab disclosure, placeholder diagram, Discord CTA
@@ -1605,8 +1535,7 @@ Check in browser:
 - Sidebar shows "Platform Overview" + all 7 models on platform routes
 - Sidebar shows model name + "← Relay Guitar" back link on model routes
 - No broken links to `/docs/relay/`
-
-- [ ] **Step 4: Run full build**
+- **Step 4: Run full build**
 
 ```bash
 npm run build
@@ -1614,7 +1543,7 @@ npm run build
 
 Expected: build passes with no errors. Fix any static generation errors before considering this done.
 
-- [ ] **Step 5: Final commit if any fixes were needed**
+- **Step 5: Final commit if any fixes were needed**
 
 ```bash
 git add -A
@@ -1625,14 +1554,14 @@ git commit -m "fix: resolve build issues from phase 1 integration"
 
 ## Self-Review Checklist
 
-- [x] **Spec §3 URL Structure** — all new routes in `app/relay/`, no `/docs/` prefix ✓
-- [x] **Spec §4 Model Lineup** — 7 models in config, Reef added, all `lab` status ✓
-- [x] **Spec §5 Relay Reef** — content file created with hardware spec and sound character ✓
-- [x] **Spec §8 Platform Page** — `content/relay/index.mdx` rewritten with all 4 sections ✓
-- [x] **Spec §9 Navigation** — sidebar updated for phase 1 structure ✓
-- [x] **Spec §11 Remove voting** — `RelayVoteGrid`, API route, `plannedModelKeys` all removed ✓
-- [x] **Spec §11 Keep components** — `RelayRecommendedPickups`, `BomSection`, `DecisionNote`, etc. untouched ✓
-- [x] **Spec §11 New components** — `RelayDiscordCta`, `RelayLabDisclosure`, `RelayWiringDiagram` created ✓
-- [x] **Spec §12 Player vocabulary** — `RelayLabDisclosure` and `RelayDiscordCta` use plain language ✓
-- [x] **Phase 1 completeness** — no build guide routes or stubs in this plan ✓
-- [x] **Type consistency** — `'lab' | 'ready'` used consistently across types, config, badge, nav ✓
+- **Spec §3 URL Structure** — all new routes in `app/relay/`, no `/docs/` prefix ✓
+- **Spec §4 Model Lineup** — 7 models in config, Reef added, all `lab` status ✓
+- **Spec §5 Relay Reef** — content file created with hardware spec and sound character ✓
+- **Spec §8 Platform Page** — `content/relay/index.mdx` rewritten with all 4 sections ✓
+- **Spec §9 Navigation** — sidebar updated for phase 1 structure ✓
+- **Spec §11 Remove voting** — `RelayVoteGrid`, API route, `plannedModelKeys` all removed ✓
+- **Spec §11 Keep components** — `RelayRecommendedPickups`, `BomSection`, `DecisionNote`, etc. untouched ✓
+- **Spec §11 New components** — `RelayDiscordCta`, `RelayLabDisclosure`, `RelayWiringDiagram` created ✓
+- **Spec §12 Player vocabulary** — `RelayLabDisclosure` and `RelayDiscordCta` use plain language ✓
+- **Phase 1 completeness** — no build guide routes or stubs in this plan ✓
+- **Type consistency** — `'lab' | 'ready'` used consistently across types, config, badge, nav ✓

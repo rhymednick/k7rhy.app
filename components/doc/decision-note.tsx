@@ -37,22 +37,12 @@ export function DecisionNote({ title, children, variant = 'choice' }: DecisionNo
 
     return (
         <div className={cn('my-4 rounded-lg border', styles.border, styles.bg)}>
-            <button
-                onClick={() => setOpen((v) => !v)}
-                className="flex w-full items-center gap-3 px-4 py-3 text-left"
-                aria-expanded={open}
-            >
+            <button onClick={() => setOpen((v) => !v)} className="flex w-full items-center gap-3 px-4 py-3 text-left" aria-expanded={open}>
                 <span className={cn('text-sm font-bold', styles.label)}>{styles.icon}</span>
                 <span className="flex-1 text-sm font-semibold">{title}</span>
-                <ChevronDown
-                    className={cn('h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200', open && 'rotate-180')}
-                />
+                <ChevronDown className={cn('h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200', open && 'rotate-180')} />
             </button>
-            {open && (
-                <div className="border-t border-inherit px-4 py-3 text-sm text-muted-foreground [&>p]:mt-2 [&>p:first-child]:mt-0">
-                    {children}
-                </div>
-            )}
+            {open && <div className="border-t border-inherit px-4 py-3 text-sm text-muted-foreground [&>p]:mt-2 [&>p:first-child]:mt-0">{children}</div>}
         </div>
     );
 }

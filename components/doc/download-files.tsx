@@ -37,11 +37,7 @@ export function DownloadFile({ href, label }: DownloadFileEntry) {
                 <p className="truncate text-sm font-medium">{label}</p>
                 {size && <p className="text-xs text-muted-foreground">{size}</p>}
             </div>
-            <a
-                href={href}
-                download
-                className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/80"
-            >
+            <a href={href} download className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/80">
                 <Download className="h-3 w-3" />
                 Download
             </a>
@@ -84,10 +80,7 @@ export function DownloadGroup({ title, description, name, files }: DownloadGroup
                 ))}
             </div>
             <div className="flex justify-end border-t px-4 py-3">
-                <a
-                    href={downloadAllHref}
-                    className="flex items-center gap-1.5 rounded-md border border-primary/30 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
-                >
+                <a href={downloadAllHref} className="flex items-center gap-1.5 rounded-md border border-primary/30 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary/10">
                     <Download className="h-3 w-3" />
                     Download all
                 </a>
@@ -103,12 +96,7 @@ export function DownloadGroupFile({ href, label }: DownloadFileEntry) {
             <FileBox className="h-4 w-4 shrink-0 text-muted-foreground" />
             <span className="flex-1 text-sm font-medium">{label}</span>
             {size && <span className="text-xs text-muted-foreground">{size}</span>}
-            <a
-                href={href}
-                download
-                className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/80"
-                title={`Download ${label}`}
-            >
+            <a href={href} download className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/80" title={`Download ${label}`}>
                 <Download className="h-3.5 w-3.5" />
                 <span className="sr-only">Download {label}</span>
             </a>

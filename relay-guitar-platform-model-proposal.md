@@ -25,6 +25,7 @@ The better rule is:
 That gives the line two clear control families:
 
 ### 3-way family
+
 For models where the middle pickup acts as a modifier, enhancer, or alternate layer.
 
 - **Relay Lipstick**
@@ -32,11 +33,12 @@ For models where the middle pickup acts as a modifier, enhancer, or alternate la
 
 Default 3-way meaning:
 
-1. Bridge  
-2. Bridge + Neck  
+1. Bridge
+2. Bridge + Neck
 3. Neck
 
 ### 5-way family
+
 For models where the middle pickup deserves direct access as a true pickup position.
 
 - **Relay Velvet**
@@ -46,10 +48,10 @@ For models where the middle pickup deserves direct access as a true pickup posit
 
 Default 5-way meaning:
 
-1. Bridge  
-2. Bridge + Middle  
-3. Middle  
-4. Neck + Middle  
+1. Bridge
+2. Bridge + Middle
+3. Middle
+4. Neck + Middle
 5. Neck
 
 This is a better product rule than forcing a universal selector layout, because it ties the control scheme directly to the pickup’s job.
@@ -83,26 +85,26 @@ This is the model for players who want **touch sensitivity and personality** mor
 ### Proposed control layout
 
 - **3-way selector**
-  - 1 = Bridge humbucker
-  - 2 = Bridge + Neck
-  - 3 = Neck humbucker
+    - 1 = Bridge humbucker
+    - 2 = Bridge + Neck
+    - 3 = Neck humbucker
 
 - **Master volume**
-  - Main output control for the entire guitar
+    - Main output control for the entire guitar
 
 - **Push-pull / push-push on volume: “Lipstick Voice”**
-  - Adds the middle lipstick pickup
-  - Simultaneously forces the bridge into a **partial split**
-  - Applies the chosen compensation / correction network so the added lipstick voice stays alive and usable instead of going weak and apologetic
+    - Adds the middle lipstick pickup
+    - Simultaneously forces the bridge into a **partial split**
+    - Applies the chosen compensation / correction network so the added lipstick voice stays alive and usable instead of going weak and apologetic
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Voice contour”**
-  - Reserved for the final cap / resistor contour choice derived from prototype testing
-  - Functionally, this would give the player either:
-    - the more open / direct voicing, or
-    - the shaped voicing that recreates the feel of the preferred prototype network
+    - Reserved for the final cap / resistor contour choice derived from prototype testing
+    - Functionally, this would give the player either:
+        - the more open / direct voicing, or
+        - the shaped voicing that recreates the feel of the preferred prototype network
 
 ### Control intent
 
@@ -136,24 +138,24 @@ This is the model for the player who wants the band to orbit around the guitaris
 ### Proposed control layout
 
 - **5-way blade**
-  - 1 = Bridge
-  - 2 = Bridge + Middle
-  - 3 = Middle
-  - 4 = Neck + Middle
-  - 5 = Neck
+    - 1 = Bridge
+    - 2 = Bridge + Middle
+    - 3 = Middle
+    - 4 = Neck + Middle
+    - 5 = Neck
 
 - **Master volume**
-  - Main output control
+    - Main output control
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Velvet focus”**
-  - Suggested function: a subtle voicing shift rather than a split
-  - Recommended implementation concept:
-    - down = fullest, warmest baseline voice
-    - up = slightly clarified / tightened response for ensemble playing
-  - This could be implemented through a small load or contour network, not necessarily a split
+    - Suggested function: a subtle voicing shift rather than a split
+    - Recommended implementation concept:
+        - down = fullest, warmest baseline voice
+        - up = slightly clarified / tightened response for ensemble playing
+    - This could be implemented through a small load or contour network, not necessarily a split
 
 ### Control intent
 
@@ -187,23 +189,23 @@ This is the model for the player who wants air, separation, and a sense of space
 ### Proposed control layout
 
 - **5-way blade**
-  - 1 = Bridge
-  - 2 = Bridge + Middle
-  - 3 = Middle
-  - 4 = Neck + Middle
-  - 5 = Neck
+    - 1 = Bridge
+    - 2 = Bridge + Middle
+    - 3 = Middle
+    - 4 = Neck + Middle
+    - 5 = Neck
 
 - **Master volume**
-  - Main output control
+    - Main output control
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Arc air”**
-  - Suggested function: a brightness / openness contour
-  - down = slightly fuller / more grounded
-  - up = more airy and present
-  - Use a subtle network, not a drastic EQ gimmick
+    - Suggested function: a brightness / openness contour
+    - down = slightly fuller / more grounded
+    - up = more airy and present
+    - Use a subtle network, not a drastic EQ gimmick
 
 ### Control intent
 
@@ -238,24 +240,24 @@ This is the model for players who want the guitar to talk back.
 ### Proposed control layout
 
 - **5-way blade**
-  - 1 = Bridge
-  - 2 = Bridge + Middle
-  - 3 = Middle
-  - 4 = Neck + Middle
-  - 5 = Neck
+    - 1 = Bridge
+    - 2 = Bridge + Middle
+    - 3 = Middle
+    - 4 = Neck + Middle
+    - 5 = Neck
 
 - **Master volume**
-  - Main output control
+    - Main output control
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Torch edge”**
-  - Suggested function: bridge partial split or bridge contour
-  - Recommended default:
-    - down = full bridge authority
-    - up = more open / more articulate bridge behavior for players who want a little less shove
-  - This should be tested carefully so the model keeps its core identity
+    - Suggested function: bridge partial split or bridge contour
+    - Recommended default:
+        - down = full bridge authority
+        - up = more open / more articulate bridge behavior for players who want a little less shove
+    - This should be tested carefully so the model keeps its core identity
 
 ### Control intent
 
@@ -289,24 +291,24 @@ This is the model for players who want the line’s sharpest non-metal tool.
 ### Proposed control layout
 
 - **3-way selector**
-  - 1 = Bridge
-  - 2 = Bridge + Neck
-  - 3 = Neck
+    - 1 = Bridge
+    - 2 = Bridge + Neck
+    - 3 = Neck
 
 - **Master volume**
-  - Main output control
+    - Main output control
 
 - **Push-pull / push-push on volume: “Add Hot Nashville”**
-  - Adds the middle pickup
-  - Creates the fast, cutting alternate voice that defines the model
+    - Adds the middle pickup
+    - Creates the fast, cutting alternate voice that defines the model
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Current snap”**
-  - Suggested function: a contour that increases bite and immediacy
-  - Keep it subtle
-  - This model should sound pointed, not icepicky
+    - Suggested function: a contour that increases bite and immediacy
+    - Keep it subtle
+    - This model should sound pointed, not icepicky
 
 ### Control intent
 
@@ -340,30 +342,30 @@ This is the specialty brute of the line.
 ### Proposed control layout
 
 - **5-way blade switch**
-  - Hammer is the one current model where I would seriously recommend breaking from the 3-way pattern
-  - Reason: metal players often value direct access to distinct pickup combinations more than elegant restraint
-  - Proposed baseline:
-    1. Bridge
-    2. Bridge + Middle
-    3. Middle
-    4. Neck + Middle
-    5. Neck
+    - Hammer is the one current model where I would seriously recommend breaking from the 3-way pattern
+    - Reason: metal players often value direct access to distinct pickup combinations more than elegant restraint
+    - Proposed baseline:
+        1. Bridge
+        2. Bridge + Middle
+        3. Middle
+        4. Neck + Middle
+        5. Neck
 
 - **Master volume**
-  - Main output control
+    - Main output control
 
 - **Push-pull / push-push on volume: “Kill / bypass option”**
-  - This slot could support either:
-    - a blower / bypass concept, or
-    - a kill-style function
-  - This is the one model where a more overtly aggressive special function makes sense
+    - This slot could support either:
+        - a blower / bypass concept, or
+        - a kill-style function
+    - This is the one model where a more overtly aggressive special function makes sense
 
 - **Master tone**
-  - Main treble rolloff
+    - Main treble rolloff
 
 - **Push-pull / push-push on tone: “Coil mode / attack mode”**
-  - Suggested use: a tighter or more focused alternate mode
-  - Exact implementation should depend on bench testing; not all hot pickups reward splitting
+    - Suggested use: a tighter or more focused alternate mode
+    - Exact implementation should depend on bench testing; not all hot pickups reward splitting
 
 ### Control intent
 
@@ -374,27 +376,30 @@ Hammer should not be burdened with elegance. It should be direct, forceful, and 
 ## Recommendations on selector strategy
 
 ### Keep the 3-way for:
+
 - Relay Lipstick
 - Relay Current
 
 ### Use the 5-way for:
+
 - Relay Velvet
 - Relay Arc
 - Relay Torch
 - Relay Hammer
 
-Reason:
-Lipstick and Current treat the middle pickup as a curated auxiliary layer. Velvet, Arc, Torch, and Hammer all benefit from direct access to the middle pickup as a true core voice.
+Reason: Lipstick and Current treat the middle pickup as a curated auxiliary layer. Velvet, Arc, Torch, and Hammer all benefit from direct access to the middle pickup as a true core voice.
 
 ---
 
 ## Recommendation on push-pull vs push-push
 
 ### Use push-push when:
+
 - you want fast access during actual playing
 - the model’s special voice is something the player may engage often
 
 ### Use push-pull when:
+
 - accidental activation would be annoying
 - the special function is more of a setup / deliberate mode change
 

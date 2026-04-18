@@ -1,8 +1,6 @@
 # Relay Guitar Platform — Site Design
 
-**Date:** 2026-04-17
-**Branch:** `docs/relay-guitar-platform`
-**Status:** Approved, ready for implementation planning
+**Date:** 2026-04-17 **Branch:** `docs/relay-guitar-platform` **Status:** Approved, ready for implementation planning
 
 ---
 
@@ -57,27 +55,28 @@ No redirects needed — no production URLs exist yet in this route space.
 
 Two states only. A model appears on the site as soon as its design is complete.
 
-| Status | Meaning | Badge color |
-|--------|---------|-------------|
-| **Lab** | Design targeted (pickups, controls, selector logic chosen). Not yet physically validated — component choices and wiring may change after real-world testing. Wiring documentation in progress. | Amber |
-| **Ready** | Physically built, tested, validated. Parts list and full wiring guide (with diagram) published. | Green |
+| Status    | Meaning                                                                                                                                                                                        | Badge color |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| **Lab**   | Design targeted (pickups, controls, selector logic chosen). Not yet physically validated — component choices and wiring may change after real-world testing. Wiring documentation in progress. | Amber       |
+| **Ready** | Physically built, tested, validated. Parts list and full wiring guide (with diagram) published.                                                                                                | Green       |
 
 **Note on phase 1:** All 7 models launch as Lab in phase 1, including Lipstick. Lipstick is physically built and tested, but its documentation (parts list + wiring guide) doesn't exist on the site until phase 3. The Ready badge reflects documentation completeness, not physical build status.
 
 A "Lab" model page includes this disclosure:
-> *"This model's design is complete but hasn't been physically built and validated yet. Component choices and wiring details may change after testing. Join the Discord to follow development and share early builds."*
+
+> _"This model's design is complete but hasn't been physically built and validated yet. Component choices and wiring details may change after testing. Join the Discord to follow development and share early builds."_
 
 ### The Models
 
-| Model | Status | Genres | Notes |
-|-------|--------|--------|-------|
-| **Lipstick** | Ready | Blues · Rock · Indie · Alternative | Reference model. Fully documented. |
-| **Reef** | Lab | Indie · Surf · Alt Country · Shoegaze | New 7th model — see section 5. |
-| **Velvet** | Lab | Jazz · Blues · Soul | 5-way, warm/fat character |
-| **Arc** | Lab | Indie · Ambient · Pop · Country | 5-way, airy/chime-forward |
-| **Torch** | Lab | Rock · Pop · Alternative | 5-way, vocal mids, P90-type middle |
-| **Current** | Lab | Funk · Pop · Rock | 3-way, punch and immediacy |
-| **Hammer** | Lab | Metal · Hard Rock | 5-way, tight gain, high-output |
+| Model        | Status | Genres                                | Notes                              |
+| ------------ | ------ | ------------------------------------- | ---------------------------------- |
+| **Lipstick** | Ready  | Blues · Rock · Indie · Alternative    | Reference model. Fully documented. |
+| **Reef**     | Lab    | Indie · Surf · Alt Country · Shoegaze | New 7th model — see section 5.     |
+| **Velvet**   | Lab    | Jazz · Blues · Soul                   | 5-way, warm/fat character          |
+| **Arc**      | Lab    | Indie · Ambient · Pop · Country       | 5-way, airy/chime-forward          |
+| **Torch**    | Lab    | Rock · Pop · Alternative              | 5-way, vocal mids, P90-type middle |
+| **Current**  | Lab    | Funk · Pop · Rock                     | 3-way, punch and immediacy         |
+| **Hammer**   | Lab    | Metal · Hard Rock                     | 5-way, tight gain, high-output     |
 
 ---
 
@@ -86,6 +85,7 @@ A "Lab" model page includes this disclosure:
 **Inspiration:** Danelectro 59 NOS+
 
 ### Hardware
+
 - **Bridge:** Humbucker
 - **Middle:** Lipstick
 - **Neck:** Lipstick
@@ -95,6 +95,7 @@ A "Lab" model page includes this disclosure:
 - **Tone:** Concentric stacked pot — one knob controls humbucker tone, the other controls the lipstick network tone independently
 
 ### Sound Character
+
 The lipstick network — middle and neck pickups wired together — delivers the signature Danelectro character: glassy, articulate, piano-like, with an almost acoustic openness. The bridge humbucker provides everything the Danelectro never had: warmth, sustain, and enough output to push an amp into bloom.
 
 The 5-way switch moves through the full spectrum, from pure humbucker to pure lipstick shimmer, with blended positions in between. The concentric tone pot keeps the two voices independent — roll back the humbucker's high end without touching the lipstick clarity, or vice versa.
@@ -109,22 +110,22 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 
 ### Shared Phases (all models)
 
-| Step | URL | Content |
-|------|-----|---------|
-| 1 | `/relay/build/print` | Print settings, file downloads, orientation, supports, material, failure prevention |
-| 2 | `/relay/build/body` | Bonding sequence, alignment, clamping, curing, post-bond cleanup |
-| 3 | `/relay/build/choose` | Model comparison, decision guide, links to per-model parts lists |
-| — | *Fork* | Path diverges per model |
-| 4 | `/relay/build/assembly` | Neck attachment and alignment, bridge installation, pickup ring installation |
-| 5 | `/relay/build/test` | Electronics check before stringing: pickup output, control function, switch positions |
-| 6 | `/relay/build/setup` | Overview of guitar setup (neck relief, action, intonation, pickup height). Luthier handoff explained. |
+| Step | URL                     | Content                                                                                               |
+| ---- | ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| 1    | `/relay/build/print`    | Print settings, file downloads, orientation, supports, material, failure prevention                   |
+| 2    | `/relay/build/body`     | Bonding sequence, alignment, clamping, curing, post-bond cleanup                                      |
+| 3    | `/relay/build/choose`   | Model comparison, decision guide, links to per-model parts lists                                      |
+| —    | _Fork_                  | Path diverges per model                                                                               |
+| 4    | `/relay/build/assembly` | Neck attachment and alignment, bridge installation, pickup ring installation                          |
+| 5    | `/relay/build/test`     | Electronics check before stringing: pickup output, control function, switch positions                 |
+| 6    | `/relay/build/setup`    | Overview of guitar setup (neck relief, action, intonation, pickup height). Luthier handoff explained. |
 
 ### Per-Model Phases (fork)
 
-| Step | URL | Content |
-|------|-----|---------|
-| 3a | `/relay/build/[model]/parts` | Full parts list with sourcing links. Specific vs flexible items labeled. Discord thread: component swaps. |
-| 3b | `/relay/build/[model]/wiring` | Shared soldering/wiring fundamentals (first-time only), then per-model step-by-step connection guide with a clear wiring diagram. Photos added after physical validation. |
+| Step | URL                           | Content                                                                                                                                                                   |
+| ---- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 3a   | `/relay/build/[model]/parts`  | Full parts list with sourcing links. Specific vs flexible items labeled. Discord thread: component swaps.                                                                 |
+| 3b   | `/relay/build/[model]/wiring` | Shared soldering/wiring fundamentals (first-time only), then per-model step-by-step connection guide with a clear wiring diagram. Photos added after physical validation. |
 
 ### Electronics Documentation Approach
 
@@ -136,7 +137,9 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 ## 7. Phase Plan
 
 ### Phase 1 — Platform Introduction (ships first)
+
 **What ships:**
+
 - `/relay` — Platform intro page with model gallery, cost/effort overview, Discord CTA
 - `/relay/[model]` — All 7 model overview pages (Lab or Ready status, sound character, pickup configuration, disclosure for Lab models)
 
@@ -145,14 +148,18 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 **Discord CTA:** "Join the community — ask questions and follow development as the guides are written." Links to Discord server.
 
 ### Phase 2 — Printing + Body Assembly
+
 **What ships:**
+
 - `/relay/build/print`
 - `/relay/build/body`
 
 **Nav change:** "Build Guide" section appears in the sidebar with these two pages. `/relay/build/choose` and everything after shows as coming eventually (no stubs — just the nav stops here).
 
 ### Phase 3 — Lipstick Model Complete
+
 **What ships:**
+
 - `/relay/build/choose` (with Lipstick highlighted as Ready)
 - `/relay/build/lipstick/parts`
 - `/relay/build/lipstick/wiring`
@@ -161,7 +168,9 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 **Lipstick status:** Upgrades from Lab to Ready when this phase ships.
 
 ### Phase 4 — Rejoined Phases
+
 **What ships:**
+
 - `/relay/build/assembly`
 - `/relay/build/test`
 - `/relay/build/setup`
@@ -169,7 +178,9 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 These are model-agnostic and can ship any time after phase 2. Likely ship with or just after phase 3.
 
 ### Phase 5+ — Additional Models
+
 Each additional model ships when:
+
 - Parts list is finalized
 - Wiring guide + diagram is written
 
@@ -201,6 +212,7 @@ Lab → Ready status upgrade happens at this point. Physical validation must pre
 Seymour Duncan-style artistic diagrams (3D guitar body renders with hand-drawn wires) are not feasible to produce at this stage. Instead: **SVG schematic diagrams** — clean, topographic views showing pickup positions, pots, switches, and wiring connections with color-coded lines. Consistent style across all models. Accurate and professional, arguably clearer for a maker audience than artistic renders.
 
 Implementation options in priority order:
+
 1. **SVG component built during implementation** — prototype one diagram during phase 1/2 work to validate the approach before committing to all 7 models
 2. **Commission SD-style artwork later** — if the SVG approach proves unsatisfying, commission professional diagrams per model as they reach Ready status
 
@@ -252,17 +264,20 @@ The sidebar auto-switches based on current URL. The model section in the build s
 ### Recommended Architecture
 
 **Information** (read-only channels)
+
 - `#welcome` — Platform overview, rules, how to use the server
 - `#announcements` — k7rhy posts updates, guide launches, model status changes
 - `#changelog` — Doc updates and model spec changes
 
 **Community** (open channels)
+
 - `#general` — Anything goes
 - `#builds` — Share progress photos, finished builds
 - `#parts-and-sourcing` — Component swaps, alternatives, sourcing tips
 - `#music` — Share what you're playing
 
 **Build Guide** (Forum channels — one thread per guide page, linked from site)
+
 - `#printing`
 - `#body-assembly`
 - `#choose-your-model`
@@ -270,6 +285,7 @@ The sidebar auto-switches based on current URL. The model section in the build s
 - `#setup-and-playability`
 
 **Models** (Forum channels — one per model, linked from model wiring + parts pages)
+
 - `#lipstick`
 - `#reef`
 - `#velvet`
@@ -289,7 +305,8 @@ The sidebar auto-switches based on current URL. The model section in the build s
 ### Thread Versioning Strategy
 
 When guide instructions change structurally:
-1. Pin a note in the old Discord thread: *"⚠️ Guide updated [date]. This thread is archived — see [new thread link] for current Q&A."*
+
+1. Pin a note in the old Discord thread: _"⚠️ Guide updated [date]. This thread is archived — see [new thread link] for current Q&A."_
 2. Create a new thread for the updated guide. Update the site's thread mapping (stored in Netlify Blobs or a JSON config in the repo).
 3. Old thread remains searchable but is clearly marked as pre-update.
 
@@ -298,6 +315,7 @@ When guide instructions change structurally:
 ## 11. Existing Code — What to Keep and What to Remove
 
 ### Remove
+
 - `RelayVoteGrid` component and all voting UI
 - `/api/relay-votes` route
 - `relay-model-vote` cookie logic
@@ -305,6 +323,7 @@ When guide instructions change structurally:
 - Voting state from `RelayModelCard`
 
 ### Keep and Adapt
+
 - `RelayRecommendedPickups` — keep as-is
 - `RelayModelLineupNav` — keep, remove voting references
 - `RelayModelCard` / `RelayModelGrid` — remove voting UI, keep card layout
@@ -317,6 +336,7 @@ When guide instructions change structurally:
 - Breadcrumb helpers — adapt to new routes
 
 ### New
+
 - `RelayModelStatusBadge` updated Lab/Ready states
 - Discord CTA component (reusable, configurable per channel)
 - Wiring fundamentals shared page

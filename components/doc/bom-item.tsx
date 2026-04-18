@@ -23,16 +23,8 @@ export function BomItem({ title, href, source, itemKey, fallback, specific, subs
             <div className="flex items-baseline justify-between gap-4">
                 <div className="flex items-baseline gap-2">
                     <span className="font-medium">{title}</span>
-                    {specific && (
-                        <span className={cn('rounded border px-1.5 py-0.5 text-xs font-medium', 'border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400')}>
-                            Specific
-                        </span>
-                    )}
-                    {substitution && (
-                        <span className={cn('rounded border px-1.5 py-0.5 text-xs font-medium', 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400')}>
-                            Flexible
-                        </span>
-                    )}
+                    {specific && <span className={cn('rounded border px-1.5 py-0.5 text-xs font-medium', 'border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400')}>Specific</span>}
+                    {substitution && <span className={cn('rounded border px-1.5 py-0.5 text-xs font-medium', 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400')}>Flexible</span>}
                 </div>
                 <span className="shrink-0 text-sm text-muted-foreground">
                     <a href={href} target="_blank" rel="noopener noreferrer" className="hover:underline">

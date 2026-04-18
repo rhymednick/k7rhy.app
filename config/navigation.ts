@@ -41,6 +41,10 @@ export const navConfig: NavigationConfig = {
             href: '/products',
         },
         {
+            title: 'Relay Guitar',
+            href: '/relay',
+        },
+        {
             title: 'Documentation',
             href: '/docs',
         },
@@ -50,21 +54,6 @@ export const navConfig: NavigationConfig = {
         },
     ],
     docNav: [
-        {
-            title: 'Relay Guitar Platform',
-            items: [
-                {
-                    title: 'Platform Overview',
-                    href: '/relay',
-                    items: [],
-                },
-                {
-                    title: 'Relay Lipstick',
-                    href: '/relay/lipstick',
-                    items: [],
-                },
-            ],
-        },
         {
             title: 'Ham Radio & Electronics',
             items: [

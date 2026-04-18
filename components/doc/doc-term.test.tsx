@@ -7,9 +7,7 @@ import '@testing-library/jest-dom/vitest';
 vi.mock('@/components/ui/hover-card', () => ({
     HoverCard: ({ children }: { children: React.ReactNode }) => <>{children}</>,
     HoverCardTrigger: ({ children }: { children: React.ReactNode; asChild?: boolean }) => <>{children}</>,
-    HoverCardContent: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="hover-content">{children}</div>
-    ),
+    HoverCardContent: ({ children }: { children: React.ReactNode }) => <div data-testid="hover-content">{children}</div>,
 }));
 
 import { DocTerm } from '@/components/doc/doc-term';

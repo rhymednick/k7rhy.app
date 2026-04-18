@@ -3,18 +3,18 @@ title: 'Printing Overview'
 description: 'Material requirements, released print files for the Relay body platform, and what to expect before assembly.'
 ---
 
-If you have not picked a model yet, start with [Choosing a model](/docs/relay/printing/choose-model) — it links every model page and explains how the shared platform relates to each build.
+If you have not picked a model yet, start with [Choosing a model](/relay/printing/choose-model) — it links every model page and explains how the shared platform relates to each build.
 
-The Relay **body** is printed in multiple parts and bonded together. The download bundle below is the **released reference body** used for [Relay Lipstick](/docs/relay/lipstick) today. Other Relay models share this platform until model-specific print packages ship.
+The Relay **body** is printed in multiple parts and bonded together. The download bundle below is the **released reference body** used for [Relay Lipstick](/relay/lipstick) today. Other Relay models share this platform until model-specific print packages ship.
 
 <DownloadGroup
     title="Relay body — print files (reference release)"
     description="Print Body and Cap in PET-CF or PET-GF. Accessories can be printed in standard PETG."
     name="relay-lipstick-print-files"
     files={[
-        { href: "/downloads/K7RHY Santana - Body.3mf", label: "Body" },
-        { href: "/downloads/K7RHY Santana - Cap.3mf", label: "Cap" },
-        { href: "/downloads/K7RHY Santana - Accessories.3mf", label: "Accessories" },
+        { href: '/downloads/K7RHY Santana - Body.3mf', label: 'Body' },
+        { href: '/downloads/K7RHY Santana - Cap.3mf', label: 'Cap' },
+        { href: '/downloads/K7RHY Santana - Accessories.3mf', label: 'Accessories' },
     ]}
 />
 
@@ -25,10 +25,10 @@ Getting the print right is the foundation everything else sits on — a warped b
 Print with **PET-CF (carbon fiber filled) or PET-GF (glass fiber filled)**. These materials are dimensionally stable under string tension and temperature variation in ways that PLA and PETG are not.
 
 <DecisionNote variant="caution" title="Do not print with PLA or standard PETG">
-String tension creates sustained mechanical stress on the body, particularly around the neck pocket and bridge mount. PLA will creep over time — the neck angle will shift and the instrument will go out of intonation. PETG is better but still too flexible for the neck pocket area. PET-CF and PET-GF are what I've tested and can stand behind.
+    String tension creates sustained mechanical stress on the body, particularly around the neck pocket and bridge mount. PLA will creep over time — the neck angle will shift and the instrument will go out of intonation. PETG is better but still too flexible for the neck pocket area. PET-CF and PET-GF are what I've tested and can stand behind.
 </DecisionNote>
 
-The [Body Parts List](/docs/relay/printing/bom) lists [Bambu PET-CF](https://amzn.to/4uIaVRl) specifically. Two spools are required for a complete body.
+The [Body Parts List](/relay/printing/bom) lists [Bambu PET-CF](https://amzn.to/4uIaVRl) specifically. Two spools are required for a complete body.
 
 ## What you're printing
 
@@ -40,10 +40,10 @@ The [Body Parts List](/docs/relay/printing/bom) lists [Bambu PET-CF](https://amz
 
 ## What to watch for
 
-- **Warping at the neck pocket:** This is the most structurally critical area. If the pocket warps, the neck won't seat squarely. See [Print Parameters](/docs/relay/printing/parameters) for bed adhesion settings.
+- **Warping at the neck pocket:** This is the most structurally critical area. If the pocket warps, the neck won't seat squarely. See [Print Parameters](/relay/printing/parameters) for bed adhesion settings.
 - **Layer delamination on thick walls:** Filled materials can delaminate if printed too fast. Reduce speed if you see separation.
 - **Elephant foot at the first layer:** This will affect fit between parts. Use a brim if needed and sand the bottom layer flat before bonding.
 
 ## After printing
 
-Don't rush to assembly. Let parts fully cool and check all mating surfaces for flatness before bonding. See [Body Assembly](/docs/relay/build/body) for the bonding process.
+Don't rush to assembly. Let parts fully cool and check all mating surfaces for flatness before bonding. See [Body Assembly](/relay/build/body) for the bonding process.

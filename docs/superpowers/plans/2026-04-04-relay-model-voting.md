@@ -13,6 +13,7 @@
 ## File Map
 
 **Create:**
+
 - `config/relay-models.ts` — model registry, single source of truth
 - `lib/relay-votes.ts` — Netlify Blobs helpers + validation
 - `app/api/relay-votes/route.ts` — GET and POST handlers
@@ -20,6 +21,7 @@
 - `lib/relay-votes.test.ts` — unit tests for vote helpers
 
 **Modify:**
+
 - `components/doc/relay-model-grid.tsx` — add `rank?`, `percentage?`, `onSelect?` props to `RelayModelCard`
 - `components/mdx-components.tsx` — register `RelayVoteGrid`
 - `content/relay/index.mdx` — replace inline grid with `<RelayVoteGrid />`
@@ -29,6 +31,7 @@
 ## Task 1: Install dependency and create model registry
 
 **Files:**
+
 - Create: `config/relay-models.ts`
 
 - [ ] **Step 1: Install `@netlify/blobs`**
@@ -58,8 +61,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Lipstick',
         tagline: 'Expressive contrast · Signature identity',
         genres: 'Blues · Rock · Alternative · Indie',
-        description:
-            'The reference model and first release. Dual humbuckers with a lipstick middle pickup. Built for articulate response, expressive dynamics, and a distinctive middle voice that gives the guitar real character.',
+        description: 'The reference model and first release. Dual humbuckers with a lipstick middle pickup. Built for articulate response, expressive dynamics, and a distinctive middle voice that gives the guitar real character.',
         status: 'available',
         href: '/docs/relay/lipstick',
     },
@@ -68,8 +70,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Velvet',
         tagline: 'Warm authority · Club presence',
         genres: 'Jazz · Blues · Soul · R&B',
-        description:
-            'The warm, full-bodied model. A neck humbucker, Retrotron Nashville middle, and bridge humbucker combination aimed at players who want presence without harshness — authoritative and elegant across all positions.',
+        description: 'The warm, full-bodied model. A neck humbucker, Retrotron Nashville middle, and bridge humbucker combination aimed at players who want presence without harshness — authoritative and elegant across all positions.',
         status: 'planned',
     },
     {
@@ -77,8 +78,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Arc',
         tagline: 'Chime · Air · Spatial clarity',
         genres: 'Clean pop · Indie · Ambient · Country',
-        description:
-            'The open, ringing model. Designed for shimmer, width, and dimensional clarity without thinning out. A humbucker neck, Dream 180 middle, and a clear-voiced bridge give it a wide, airy palette.',
+        description: 'The open, ringing model. Designed for shimmer, width, and dimensional clarity without thinning out. A humbucker neck, Dream 180 middle, and a clear-voiced bridge give it a wide, airy palette.',
         status: 'planned',
     },
     {
@@ -86,8 +86,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Torch',
         tagline: 'Vocal mids · Contemporary energy',
         genres: 'Rock · Pop · Alternative · Modern country',
-        description:
-            'The most immediately compelling model for a broad audience. A P90-type middle pickup brings a rude, alive quality to the center voice. Strong tonal separation from Lipstick and Velvet makes it a natural second release candidate.',
+        description: 'The most immediately compelling model for a broad audience. A P90-type middle pickup brings a rude, alive quality to the center voice. Strong tonal separation from Lipstick and Velvet makes it a natural second release candidate.',
         status: 'planned',
     },
     {
@@ -95,8 +94,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Current',
         tagline: 'Punch · Cut · Immediacy',
         genres: 'Funk · Pop · Rock',
-        description:
-            'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. Development timeline uncertain.',
+        description: 'Percussive, forward, and fast-responding. Designed to cut through a mix with strong upper-mid presence and a crisp attack — more aggressive than Velvet, less saturated than Torch. Development timeline uncertain.',
         status: 'planned',
     },
     {
@@ -104,8 +102,7 @@ export const relayModels: RelayModel[] = [
         name: 'Relay Hammer',
         tagline: 'High gain · Uncompromising',
         genres: 'Metal · Hard rock',
-        description:
-            'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup.',
+        description: 'Built specifically for high-gain players. Tight, saturated, and aggressive — the specialty model in the family, not the centerpiece. A deliberate outlier in the lineup.',
         status: 'planned',
     },
 ];
@@ -133,6 +130,7 @@ git commit -m "feat: add relay model registry and install @netlify/blobs"
 ## Task 2: Create `lib/relay-votes.ts` with Blobs helpers
 
 **Files:**
+
 - Create: `lib/relay-votes.ts`
 - Create: `lib/relay-votes.test.ts`
 
@@ -171,7 +169,7 @@ describe('applyWeightedPoints', () => {
         const votes = { velvet: { points: 2 }, arc: { points: 0 }, torch: { points: 1 }, current: { points: 0 }, hammer: { points: 0 }, totalVoters: 1 };
         const result = applyWeightedPoints(votes, ['velvet', 'arc'], -1);
         expect(result.velvet.points).toBe(0); // 2 - 3 clamped to 0
-        expect(result.arc.points).toBe(0);    // 0 - 2 clamped to 0
+        expect(result.arc.points).toBe(0); // 0 - 2 clamped to 0
     });
 
     it('handles rankings shorter than 3', () => {
@@ -285,7 +283,7 @@ export async function writeVotes(votes: VoteStore): Promise<void> {
 export function extractPlannedVotes(votes: VoteStore): Record<string, ModelVote> {
     const result: Record<string, ModelVote> = {};
     for (const key of plannedModelKeys) {
-        result[key] = votes[key] as ModelVote ?? { points: 0 };
+        result[key] = (votes[key] as ModelVote) ?? { points: 0 };
     }
     return result;
 }
@@ -311,6 +309,7 @@ git commit -m "feat: add relay-votes Blobs helpers with weighted point logic"
 ## Task 3: Create API route `app/api/relay-votes/route.ts`
 
 **Files:**
+
 - Create: `app/api/relay-votes/route.ts`
 
 The API has no unit tests (Netlify Blobs requires a live environment); manual testing happens during Task 6.
@@ -424,6 +423,7 @@ git commit -m "feat: add relay-votes API route (GET + POST with vote change supp
 ## Task 4: Add `rank`, `percentage`, `onSelect` props to `RelayModelCard`
 
 **Files:**
+
 - Modify: `components/doc/relay-model-grid.tsx`
 
 The existing `RelayModelCard` renders either a `<Link>` or `<div>`. We add `onSelect` (makes it a `<button>`), `rank` (badge), and `percentage` (bar).
@@ -453,17 +453,9 @@ interface RelayModelCardProps {
 
 function StatusBadge({ status }: { status: ModelStatus }) {
     if (status === 'available') {
-        return (
-            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                Available
-            </span>
-        );
+        return <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">Available</span>;
     }
-    return (
-        <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
-            Planned
-        </span>
-    );
+    return <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">Planned</span>;
 }
 
 const RANK_BADGE_STYLES: Record<1 | 2 | 3, string> = {
@@ -492,29 +484,11 @@ const RANK_PCT_LABEL_STYLES: Record<1 | 2 | 3, string> = {
 
 export function RelayModelCard({ name, tagline, genres, description, status, href, rank, percentage, onSelect }: RelayModelCardProps) {
     const inner = (
-        <div
-            className={cn(
-                'flex h-full flex-col gap-3 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all',
-                href && 'group-hover:border-sky-500 group-hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]',
-                onSelect && 'cursor-pointer hover:border-slate-600',
-                rank && RANK_BORDER_STYLES[rank],
-            )}
-        >
+        <div className={cn('flex h-full flex-col gap-3 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all', href && 'group-hover:border-sky-500 group-hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]', onSelect && 'cursor-pointer hover:border-slate-600', rank && RANK_BORDER_STYLES[rank])}>
             <div className="flex items-start justify-between gap-2">
-                <h3
-                    className={cn(
-                        'font-semibold text-foreground',
-                        href && 'transition-colors group-hover:text-sky-600 dark:group-hover:text-sky-400',
-                    )}
-                >
-                    {name}
-                </h3>
+                <h3 className={cn('font-semibold text-foreground', href && 'transition-colors group-hover:text-sky-600 dark:group-hover:text-sky-400')}>{name}</h3>
                 <div className="flex shrink-0 items-center gap-2">
-                    {rank && (
-                        <span className={cn('flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold', RANK_BADGE_STYLES[rank])}>
-                            {rank}
-                        </span>
-                    )}
+                    {rank && <span className={cn('flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold', RANK_BADGE_STYLES[rank])}>{rank}</span>}
                     <StatusBadge status={status} />
                 </div>
             </div>
@@ -524,13 +498,11 @@ export function RelayModelCard({ name, tagline, genres, description, status, hre
             {percentage !== undefined && (
                 <div className="mt-1">
                     <div className="h-1 w-full overflow-hidden rounded-full bg-border">
-                        <div
-                            className={cn('h-full rounded-full transition-all duration-500', rank ? RANK_BAR_STYLES[rank] : 'bg-slate-600')}
-                            style={{ width: `${percentage}%` }}
-                        />
+                        <div className={cn('h-full rounded-full transition-all duration-500', rank ? RANK_BAR_STYLES[rank] : 'bg-slate-600')} style={{ width: `${percentage}%` }} />
                     </div>
                     <p className={cn('mt-1 text-xs font-semibold', rank ? RANK_PCT_LABEL_STYLES[rank] : 'text-muted-foreground')}>
-                        {rank ? `Your #${rank} · ` : ''}{Math.round(percentage)}%
+                        {rank ? `Your #${rank} · ` : ''}
+                        {Math.round(percentage)}%
                     </p>
                 </div>
             )}
@@ -585,6 +557,7 @@ git commit -m "feat: add rank, percentage, onSelect props to RelayModelCard"
 ## Task 5: Create `components/relay/relay-vote-grid.tsx`
 
 **Files:**
+
 - Create: `components/relay/relay-vote-grid.tsx`
 
 This is the client component with three states: `idle`, `submitting`, `results`.
@@ -714,32 +687,13 @@ export function RelayVoteGrid() {
                         if (!isPlanned) {
                             return (
                                 <div key={model.modelKey} className="opacity-40">
-                                    <RelayModelCard
-                                        name={model.name}
-                                        tagline={model.tagline}
-                                        genres={model.genres}
-                                        description={model.description}
-                                        status={model.status}
-                                        href={model.href}
-                                    />
+                                    <RelayModelCard name={model.name} tagline={model.tagline} genres={model.genres} description={model.description} status={model.status} href={model.href} />
                                     <p className="mt-1 text-xs italic text-muted-foreground/60">Already built — not part of the vote.</p>
                                 </div>
                             );
                         }
 
-                        return (
-                            <RelayModelCard
-                                key={model.modelKey}
-                                name={model.name}
-                                tagline={model.tagline}
-                                genres={model.genres}
-                                description={model.description}
-                                status={model.status}
-                                rank={rank}
-                                percentage={isResults ? percentages[model.modelKey] : undefined}
-                                onSelect={!isResults ? () => toggleRank(model.modelKey) : undefined}
-                            />
-                        );
+                        return <RelayModelCard key={model.modelKey} name={model.name} tagline={model.tagline} genres={model.genres} description={model.description} status={model.status} rank={rank} percentage={isResults ? percentages[model.modelKey] : undefined} onSelect={!isResults ? () => toggleRank(model.modelKey) : undefined} />;
                     })}
                 </div>
             </div>
@@ -751,12 +705,7 @@ export function RelayVoteGrid() {
                         <strong className="text-indigo-400">{hint.highlight}</strong>
                     </p>
                     {rankings.length > 0 && (
-                        <button
-                            type="button"
-                            onClick={submitVote}
-                            disabled={isSubmitting}
-                            className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500 disabled:opacity-60"
-                        >
+                        <button type="button" onClick={submitVote} disabled={isSubmitting} className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-indigo-500 disabled:opacity-60">
                             {isSubmitting && (
                                 <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -773,11 +722,7 @@ export function RelayVoteGrid() {
             {isResults && (
                 <div className="mt-4">
                     <p className="text-xs text-muted-foreground">Weighted score: 3 pts for #1, 2 pts for #2, 1 pt for #3 — planned models only.</p>
-                    <button
-                        type="button"
-                        onClick={changeVote}
-                        className="mt-2 text-sm font-medium text-indigo-400 underline underline-offset-2 hover:text-indigo-300"
-                    >
+                    <button type="button" onClick={changeVote} className="mt-2 text-sm font-medium text-indigo-400 underline underline-offset-2 hover:text-indigo-300">
                         Change my vote
                     </button>
                 </div>
@@ -807,6 +752,7 @@ git commit -m "feat: add RelayVoteGrid client component (idle/submitting/results
 ## Task 6: Wire up MDX and replace inline content
 
 **Files:**
+
 - Modify: `components/mdx-components.tsx`
 - Modify: `content/relay/index.mdx`
 
@@ -841,6 +787,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000/docs/relay`. Verify:
+
 - All 6 model cards render
 - Lipstick card is dimmed and non-interactive
 - Clicking planned cards assigns rank badges (1, 2, 3)
