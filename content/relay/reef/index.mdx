@@ -1,52 +1,42 @@
 ---
 title: 'Relay Reef'
-description: 'Bridge humbucker and dual lipsticks on an HSS-style 5-way map — a dependable bridge, a signature two-lipstick slot in position 4, and concentric tone for the humbucker vs the lipstick side.'
+description: 'Bridge humbucker and dual lipsticks on a 5-way map — two distinct voice families in one body, with independent tone control for each side.'
 ---
 
 <RelayLabDisclosure />
 
-## Voice and character
-
-Reef is built around contrast. The **bridge humbucker** is the workhorse: warmth, sustain, and enough output to push an amp into bloom. The **lipstick pair** — middle and neck — delivers the glassy, piano-like articulation people associate with Danelectro-style instruments. They are two genuinely different **voice families** sharing one body, not two similar pickups balancing each other.
-
-The control story follows an **HSS-style skeleton** on a **standard 5-way blade**: honest bridge and neck ends, a familiar bridge-adjacent blend, a **center slot** you can tune for personality over time, **position 4 as the star** for the two-lipstick sound, and a true neck lipstick in position 5. That keeps the ends easy to read while the middle carries any future “interesting” routing without breaking Strat-like expectations at 1 or 5.
-
-**Stacked tone:** one control shapes the **bridge humbucker**; the other shapes the **lipstick subsystem** (however those pickups are combined in a given selector position). You can darken the humbucker without dulling the lipsticks, or roll the lipstick side without robbing the bridge of bite.
-
-## Who builds this
-
-Makers who want Danelectro-style glass and articulation but also need a bridge pickup with real weight. Players drawn to indie textures, surf reverb, alt-country, and shoegaze — and anyone who wants **pedal-forward** transparency on the lipstick side. If you like a **familiar 5-way map** with a clear “go here for both lipsticks” moment, Reef is aimed at you.
-
-## Configuration
-
-|                   |                                                                                    |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| **Bridge**        | Humbucker                                                                          |
-| **Middle**        | Lipstick                                                                           |
-| **Neck**          | Lipstick                                                                           |
-| **Selector**      | Standard 5-way blade, 2-pole — HSS-style humbucker + dual lipstick routing         |
-| **Master volume** | 500k audio taper, full-size, standard (no push switch)                             |
-| **Master tone**   | Concentric stacked — **bridge humbucker** (one ring) / **lipstick subsystem** (other ring) |
-
-_Wiring, lug maps, and parts will ship with the Reef-specific guide when the model is validated in the lab._
+<RelayPickupMap
+  bridge={{ type: 'humbucker' }}
+  middle={{ type: 'lipstick' }}
+  neck={{ type: 'lipstick' }}
+  selector="5-way"
+  volume="standard"
+  tone="concentric"
+/>
 
 ## Controls
 
-**5-way blade (HSS-style map)**
+**5-way blade**
 
-1. Bridge humbucker alone  
-2. Bridge humbucker + middle lipstick  
-3. Middle lipstick alone _(prototype default — mirrors familiar HSS “middle single” logic, low cognitive load)_  
-4. Middle lipstick + neck lipstick — **signature two-lipstick sound**  
-5. Neck lipstick alone  
-
-Reef is not on the simple **master volume + master tone** grid the other models share: the concentric tone keeps the humbucker and lipstick network independently shapeable. Wiring and parts will be documented with the Reef-specific guide when the model is validated.
+1. Bridge humbucker
+2. Bridge + middle lipstick
+3. Middle lipstick
+4. Middle + neck lipstick — signature two-lipstick sound
+5. Neck lipstick
 
 **Concentric tone**
 
-- **Bridge humbucker** tone — high-end and warmth for positions that include the humbucker  
-- **Lipstick subsystem** tone — shaping for any position built from the middle and/or neck lipsticks  
+- Top ring — bridge humbucker tone
+- Bottom ring — lipstick subsystem tone (middle and/or neck, depending on position)
+
+## Character
+
+Two voice families in one body. The bridge humbucker provides warmth, sustain, and enough output to push an amp into bloom. The middle and neck lipsticks deliver glassy, piano-like Danelectro articulation — transparent and pedal-forward. A standard 5-way maps them across five positions, with position 4 as the signature two-lipstick slot.
+
+## Who it's for
+
+Indie, surf, alt-country, and shoegaze players who want Danelectro-style glass alongside a bridge that can drive an amp. Well-suited for pedal-forward rigs and studio work where tonal contrast between two genuinely different voices matters.
 
 <RelayRecommendedPickups bridge="Bridge humbucker — target specs TBD after testing" middle="Lipstick — target specs TBD after testing" neck="Lipstick — target specs TBD after testing" />
 
-<RelayDiscordCta message="Following the Reef build? Join the Discord to ask questions, share early builds, and help validate the design." />
+<RelayDiscordCta message="Following the Reef build? Join the Discord to ask questions, share early builds, and help shape the design." />

@@ -40,6 +40,7 @@ import { RelayRecommendedPickups } from '@/components/relay/relay-recommended-pi
 import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
 import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
 import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
+import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
 import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
@@ -175,6 +176,7 @@ const components: MDXComponents = {
     RelayDiscordCta,
     RelayLabDisclosure,
     RelayWiringDiagram,
+    RelayPickupMap,
 };
 
 // interface MdxProps {
