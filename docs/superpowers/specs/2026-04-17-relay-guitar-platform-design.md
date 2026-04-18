@@ -13,7 +13,7 @@ The Relay Guitar Platform is a DIY 3D-printed electric guitar project hosted at 
 1. **Introduce the platform** — explain what it is, who it's for, what it costs, and what building it actually involves (including the difficulty and expense, presented honestly without scaring people off).
 2. **Guide builders end to end** — a linear build guide that takes someone from zero to a playable, gigged instrument.
 
-The primary audience is guitar players, not engineers or makers. They know very little technical vocabulary. Language across the site should be plain, warm, and respectful of that — technical terms are acceptable only when wrapped in a hover-card tooltip (via the existing `DocTerm`/`Term` component).
+The primary audience is makers who want to build a professional quality guitar — whether or not they play. They may have no knowledge of guitar-specific or luthier terminology, but are comfortable with technical language generally. Guitar and luthier terms should be wrapped in hover-card tooltips (via the existing `DocTerm`/`Term` component) so makers can build without needing prior guitar knowledge.
 
 ---
 
@@ -59,8 +59,10 @@ Two states only. A model appears on the site as soon as its design is complete.
 
 | Status | Meaning | Badge color |
 |--------|---------|-------------|
-| **Lab** | Design targeted (pickups, controls, selector logic chosen), not yet physically built and validated. Parts list and wiring may change after real-world testing. | Amber |
-| **Ready** | Physically built, tested, validated. Parts list and wiring guide published. | Green |
+| **Lab** | Design targeted (pickups, controls, selector logic chosen). Not yet physically validated — component choices and wiring may change after real-world testing. Wiring documentation in progress. | Amber |
+| **Ready** | Physically built, tested, validated. Parts list and full wiring guide (with diagram) published. | Green |
+
+**Note on phase 1:** All 7 models launch as Lab in phase 1, including Lipstick. Lipstick is physically built and tested, but its documentation (parts list + wiring guide) doesn't exist on the site until phase 3. The Ready badge reflects documentation completeness, not physical build status.
 
 A "Lab" model page includes this disclosure:
 > *"This model's design is complete but hasn't been physically built and validated yet. Component choices and wiring details may change after testing. Join the Discord to follow development and share early builds."*
@@ -156,7 +158,7 @@ The 5-way switch moves through the full spectrum, from pure humbucker to pure li
 - `/relay/build/lipstick/wiring`
 - Shared wiring fundamentals page (linked from Lipstick wiring, reused by future models)
 
-**Lipstick status:** Upgrades to Ready if not already.
+**Lipstick status:** Upgrades from Lab to Ready when this phase ships.
 
 ### Phase 4 — Rejoined Phases
 **What ships:**
@@ -187,10 +189,22 @@ Lab → Ready status upgrade happens at this point. Physical validation must pre
 ### Model Overview Page — `/relay/[model]`
 
 1. **Status badge** (Lab or Ready) + disclosure if Lab
-2. **Sound character:** 2–3 paragraph writeup — who it's for, where it shines, how it sounds
-3. **Configuration summary:** Pickups (bridge/middle/neck), selector type, control layout
-4. **Recommended pickups:** Using existing `RelayRecommendedPickups` component
-5. **Discord CTA:** Links to the model's Discord channel
+2. **Sound character:** 2–3 paragraph writeup — target character, where it shines, who it's for
+3. **Configuration summary:** Pickups (bridge/middle/neck), selector type, control scheme plan
+4. **Parts list:** Target components (pickups, pots, switch, capacitors) — specific enough to source, with the caveat that Lab models may refine these after testing
+5. **Wiring diagram:** SVG schematic showing pickup positions, pots, switch, and connections with color-coded wiring. Lab models include the planned diagram; it may be revised after physical validation. (See wiring diagram approach below.)
+6. **Recommended pickups:** Using existing `RelayRecommendedPickups` component
+7. **Discord CTA:** Links to the model's Discord channel
+
+### Wiring Diagram Approach
+
+Seymour Duncan-style artistic diagrams (3D guitar body renders with hand-drawn wires) are not feasible to produce at this stage. Instead: **SVG schematic diagrams** — clean, topographic views showing pickup positions, pots, switches, and wiring connections with color-coded lines. Consistent style across all models. Accurate and professional, arguably clearer for a maker audience than artistic renders.
+
+Implementation options in priority order:
+1. **SVG component built during implementation** — prototype one diagram during phase 1/2 work to validate the approach before committing to all 7 models
+2. **Commission SD-style artwork later** — if the SVG approach proves unsatisfying, commission professional diagrams per model as they reach Ready status
+
+Lab model pages include the planned wiring diagram from the start. The diagram is marked as provisional and may be revised after physical validation.
 
 ---
 
@@ -314,5 +328,5 @@ When guide instructions change structurally:
 
 - **Player vocabulary first.** Avoid luthier and electronics jargon in running text. Use `<Term id="..." />` for any term that needs explanation — it renders as plain text for readers who know it and a hover card for those who don't.
 - **Expand the glossary** as content is written. Likely candidates: truss rod, neck relief, action, intonation, pickup height, humbucker, lipstick pickup, wiring harness, ground, hot wire, selector switch.
-- **Lab model pages are real pages**, not placeholders. Sound character writeup, configuration summary, and Discord CTA are enough for a complete Lab page.
+- **Lab model pages are real pages**, not placeholders. Target character, component list, control scheme plan, and provisional wiring diagram are enough for a complete Lab page. No wiring step-by-step until Ready.
 - **Photos follow physical builds.** Wiring guides for Lab models ship with diagrams only. Photos are added when the model is physically built and validated, at which point status upgrades to Ready.
