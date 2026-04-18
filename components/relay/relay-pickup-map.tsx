@@ -6,7 +6,8 @@ type PickupRole = 'core' | 'alternate' | 'auxiliary';
 
 interface PickupSlot {
     type: PickupType;
-    model?: string;
+    magnet?: string;
+    resistance?: string;
     role?: PickupRole;
 }
 
@@ -86,7 +87,11 @@ function PickupCard({ slot, position }: { slot: PickupSlot; position: string }) 
             <PickupIcon type={slot.type} />
             <div className="flex flex-col items-center">
                 <p className="text-sm font-medium leading-tight">{typeLabel[slot.type]}</p>
-                {slot.model && <p className="mt-0.5 text-xs text-muted-foreground">{slot.model}</p>}
+                {(slot.magnet || slot.resistance) && (
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                        {[slot.magnet, slot.resistance].filter(Boolean).join(' · ')}
+                    </p>
+                )}
                 <RoleBadge role={slot.role} />
             </div>
         </div>
