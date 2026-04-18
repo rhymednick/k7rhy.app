@@ -4,6 +4,6 @@ export interface RelayModel {
 	tagline: string;
 	genres: string;
 	description: string;
-	status: 'available' | 'planned';
+	status: 'lab' | 'ready';
 	href?: string;
 }

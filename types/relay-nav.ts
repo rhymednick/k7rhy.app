@@ -11,7 +11,7 @@ export interface RelayNavSection {
 
 export interface RelayModelNav {
     title: string;
-    status: 'available' | 'planned';
+    status: 'lab' | 'ready';
     sections: RelayNavSection[];
 }
 
