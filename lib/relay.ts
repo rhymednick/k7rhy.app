@@ -66,22 +66,13 @@ export function buildRelayPlatformBreadcrumbs(slug: string[], nav: RelayPlatform
         }
     }
 
-    return [
-        { label: 'Docs', href: '/docs' },
-        { label: 'Relay Guitar Platform', href: '/docs/relay' },
-        ...(sectionTitle ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
-    ];
+    return [{ label: 'Relay Guitar', href: '/relay' }, ...(sectionTitle ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
 }
 
 /** Builds breadcrumb trail for a model page. */
 export function buildRelayBreadcrumbs(model: string, slug: string[], nav: RelayNav): RelayBreadcrumb[] {
     if (slug.length === 0) {
-        return [
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar Platform', href: '/docs/relay' },
-            { label: nav[model]?.title ?? model },
-        ];
+        return [{ label: 'Relay Guitar', href: '/relay' }, { label: nav[model]?.title ?? model }];
     }
 
     const modelNav = nav[model];
@@ -99,11 +90,5 @@ export function buildRelayBreadcrumbs(model: string, slug: string[], nav: RelayN
         }
     }
 
-    return [
-        { label: 'Docs', href: '/docs' },
-        { label: 'Relay Guitar Platform', href: '/docs/relay' },
-        { label: modelNav?.title ?? model, href: `/docs/relay/${model}` },
-        ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
-    ];
+    return [{ label: 'Relay Guitar', href: '/relay' }, { label: modelNav?.title ?? model, href: `/relay/${model}` }, ...(sectionTitle && sectionTitle !== modelNav?.title ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
 }

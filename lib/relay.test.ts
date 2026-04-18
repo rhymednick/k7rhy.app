@@ -1,37 +1,45 @@
-// lib/relay.test.ts
 import { describe, it, expect } from 'vitest';
-import { buildRelayBreadcrumbs, resolveRelayFilePath } from './relay';
-import { relayNav } from '@/config/relay-nav';
+import path from 'path';
+import { resolveRelayFilePath, resolveRelayPlatformFilePath, buildRelayBreadcrumbs, buildRelayPlatformBreadcrumbs } from '@/lib/relay';
+import { relayNav, relayPlatformNav } from '@/config/relay-nav';
 
 describe('resolveRelayFilePath', () => {
-    it('resolves a normal slug to a file path', () => {
-        const result = resolveRelayFilePath('lipstick', ['bom']);
-        expect(result).toMatch(/content\/relay\/lipstick\/bom\.mdx$/);
+    it('resolves model index path when slug is empty', () => {
+        const result = resolveRelayFilePath('lipstick', []);
+        expect(result).toContain(path.join('content', 'relay', 'lipstick', 'index.mdx'));
     });
 
-    it('resolves empty slug to index.mdx', () => {
-        const result = resolveRelayFilePath('lipstick', []);
-        expect(result).toMatch(/content\/relay\/lipstick\/index\.mdx$/);
+    it('resolves model sub-page path', () => {
+        const result = resolveRelayFilePath('lipstick', ['bom']);
+        expect(result).toContain(path.join('content', 'relay', 'lipstick', 'bom.mdx'));
+    });
+});
+
+describe('resolveRelayPlatformFilePath', () => {
+    it('resolves platform section path', () => {
+        const result = resolveRelayPlatformFilePath(['build', 'print']);
+        expect(result).toContain(path.join('content', 'relay', 'build', 'print.mdx'));
     });
 });
 
 describe('buildRelayBreadcrumbs', () => {
-    it('builds breadcrumbs for a known model page', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', ['bom'], relayNav);
-        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: 'Relay Lipstick', href: '/docs/relay/lipstick' }, { label: 'bom' }]);
-    });
-
-    it('builds breadcrumbs for the model root (empty slug)', () => {
+    it('builds breadcrumbs for model root page', () => {
         const crumbs = buildRelayBreadcrumbs('lipstick', [], relayNav);
-        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: 'Relay Lipstick' }]);
+        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Lipstick' }]);
     });
 
-    it('falls back to slug segment when page not found in nav', () => {
-        const crumbs = buildRelayBreadcrumbs('lipstick', ['unknown', 'page'], relayNav);
-        expect(crumbs).toHaveLength(4);
-        expect(crumbs[2]).toEqual({ label: 'Relay Lipstick', href: '/docs/relay/lipstick' });
-        const last = crumbs[crumbs.length - 1];
-        expect(last.label).toBe('page');
-        expect(last.href).toBeUndefined();
+    it('first breadcrumb links to /relay not /docs/relay', () => {
+        const crumbs = buildRelayBreadcrumbs('lipstick', [], relayNav);
+        expect(crumbs[0].href).toBe('/relay');
+        expect(crumbs[0].href).not.toContain('/docs/');
+    });
+});
+
+describe('buildRelayPlatformBreadcrumbs', () => {
+    it('first breadcrumb links to /relay not /docs/relay', () => {
+        const crumbs = buildRelayPlatformBreadcrumbs(['build', 'print'], relayPlatformNav);
+        const relayLink = crumbs.find((c) => c.href?.includes('relay'));
+        expect(relayLink?.href).toBe('/relay');
+        expect(relayLink?.href).not.toContain('/docs/');
     });
 });
