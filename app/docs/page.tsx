@@ -19,7 +19,7 @@ const relayPlatformProps: DocIndexCardProps = {
         },
         {
             title: 'Choosing a model',
-            href: '/docs/relay/printing/choose-model',
+            href: '/relay',
             description: 'Pick a direction in the lineup, then follow platform printing and build guides — with links to every model page.',
             type: DocIndexItemType.Internal,
         },
