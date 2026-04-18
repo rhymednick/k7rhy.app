@@ -1,7 +1,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-type PickupType = 'humbucker' | 'lipstick' | 'p90' | 'rail';
+type PickupType = 'humbucker' | 'lipstick' | 'p90' | 'rail' | 'filtertron';
 type PickupRole = 'core' | 'alternate' | 'auxiliary';
 
 interface PickupSlot {
@@ -25,6 +25,7 @@ const typeLabel: Record<PickupType, string> = {
     lipstick: 'Lipstick',
     p90: 'P90-type',
     rail: 'Rail humbucker',
+    filtertron: 'Filtertron',
 };
 
 const selectorLabel: Record<string, string> = {
@@ -46,6 +47,24 @@ function PickupIcon({ type }: { type: PickupType }) {
         return (
             <div className="flex items-center justify-center">
                 <div className="h-12 w-3 rounded-full bg-amber-300 dark:bg-amber-600" />
+            </div>
+        );
+    }
+    if (type === 'filtertron') {
+        return (
+            <div className="flex items-center justify-center gap-1">
+                <svg viewBox="0 0 18 48" className="h-12 w-auto" fill="none">
+                    <rect x="0.5" y="0.5" width="17" height="47" rx="3" className="fill-emerald-300 dark:fill-emerald-700" />
+                    {[8, 16, 24, 32, 40].map((cy) => (
+                        <rect key={cy} x="5" y={cy - 3} width="8" height="6" rx="1" className="fill-emerald-500 dark:fill-emerald-400" />
+                    ))}
+                </svg>
+                <svg viewBox="0 0 18 48" className="h-12 w-auto" fill="none">
+                    <rect x="0.5" y="0.5" width="17" height="47" rx="3" className="fill-emerald-300 dark:fill-emerald-700" />
+                    {[8, 16, 24, 32, 40].map((cy) => (
+                        <rect key={cy} x="5" y={cy - 3} width="8" height="6" rx="1" className="fill-emerald-500 dark:fill-emerald-400" />
+                    ))}
+                </svg>
             </div>
         );
     }
