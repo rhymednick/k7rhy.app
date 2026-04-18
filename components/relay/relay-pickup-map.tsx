@@ -52,7 +52,12 @@ function PickupIcon({ type }: { type: PickupType }) {
     if (type === 'p90') {
         return (
             <div className="flex items-center justify-center">
-                <div className="h-10 w-10 rounded bg-violet-300 dark:bg-violet-700" />
+                <svg viewBox="0 0 28 64" className="h-12 w-auto" fill="none">
+                    <rect x="0.5" y="0.5" width="27" height="63" rx="4" className="fill-violet-300 dark:fill-violet-700" />
+                    {[8, 18, 28, 38, 48, 58].map((cy) => (
+                        <circle key={cy} cx={14} cy={cy} r={3} className="fill-violet-500 dark:fill-violet-400" />
+                    ))}
+                </svg>
             </div>
         );
     }
