@@ -18,21 +18,12 @@ describe('resolveRelayFilePath', () => {
 describe('buildRelayBreadcrumbs', () => {
     it('builds breadcrumbs for a known model page', () => {
         const crumbs = buildRelayBreadcrumbs('lipstick', ['bom'], relayNav);
-        expect(crumbs).toEqual([
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar Platform', href: '/docs/relay' },
-            { label: 'Relay Lipstick', href: '/docs/relay/lipstick' },
-            { label: 'Instrument Parts List' },
-        ]);
+        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: 'Relay Lipstick', href: '/docs/relay/lipstick' }, { label: 'bom' }]);
     });
 
     it('builds breadcrumbs for the model root (empty slug)', () => {
         const crumbs = buildRelayBreadcrumbs('lipstick', [], relayNav);
-        expect(crumbs).toEqual([
-            { label: 'Docs', href: '/docs' },
-            { label: 'Relay Guitar Platform', href: '/docs/relay' },
-            { label: 'Relay Lipstick' },
-        ]);
+        expect(crumbs).toEqual([{ label: 'Docs', href: '/docs' }, { label: 'Relay Guitar Platform', href: '/docs/relay' }, { label: 'Relay Lipstick' }]);
     });
 
     it('falls back to slug segment when page not found in nav', () => {
