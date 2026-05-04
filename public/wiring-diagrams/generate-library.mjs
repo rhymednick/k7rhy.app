@@ -25,7 +25,12 @@ const shapes = [];
 for (const [name, config] of Object.entries(metadata)) {
     const svgPath = join(componentsDir, `${name}.svg`);
     const svgContent = readFileSync(svgPath, 'utf-8');
-    const base64 = Buffer.from(svgContent).toString('base64');
+    // URL-encode the SVG directly (no base64) so the data URI has no semicolons.
+    // draw.io's style parser splits on ; — "data:image/svg+xml;base64,..." gets
+    // cut at that semicolon leaving a broken URL. The comma-separated form
+    // "data:image/svg+xml,ENCODED" is safe because the parser reads to the next ;
+    // which is the following style property, not part of the data URI.
+    const encoded = encodeURIComponent(svgContent);
 
     const pointsStyle = config.points?.length
         ? `points=${JSON.stringify(config.points)};`
@@ -33,7 +38,7 @@ for (const [name, config] of Object.entries(metadata)) {
 
     const style = [
         'shape=image',
-        `image=data:image/svg+xml%3Bbase64,${base64}`,
+        `image=data:image/svg+xml,${encoded}`,
         'aspect=fixed',
         'strokeColor=none',
         'fillColor=none',
