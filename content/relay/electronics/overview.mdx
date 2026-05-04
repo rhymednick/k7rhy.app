@@ -1,0 +1,42 @@
+---
+title: 'Wiring & Electronics Overview'
+description: 'How the Relay circuit is designed, why it is designed that way, and what to expect before you start soldering.'
+---
+
+**Relay Lipstick** (the documented reference build) uses three pickups, a **3-way** selector for the **neck and bridge humbuckers**, two push-push volume pots with coil split, a tone control with treble bleed, and a standard output jack. The **lipstick** is wired so you can **blend it in** for tonal shaping on top of the humbucker voices — it is not treated as a stand-alone “third position” you select alone.
+
+Other planned Relay models may use different selectors or voicing strategies; the shared idea is balancing a **character middle pickup** with humbuckers. The central design challenge is making a lipstick work harmoniously with humbuckers — output levels, impedance, and frequency response differ meaningfully. This circuit keeps the humbuckers authoritative while the lipstick adds color and detail when you want it.
+
+## Signal path
+
+[TODO: describe the signal flow from pickups through selector to volume/tone to output. A simple diagram would be ideal here — even a hand-drawn one photographed and dropped in as a DocImage would work well.]
+
+## The selector
+
+On **Relay Lipstick**, the **3-way** toggles the **humbuckers**: neck, both, bridge. Lipstick engagement and automatic bridge split for balance are handled in the **volume / switching** wiring, not as extra stops on the blade.
+
+[TODO: document neck / both / bridge humbucker combinations and how the lipstick blend interacts — diagram still TBD.]
+
+## The push-push pots
+
+The volume pots double as coil splits when pushed. This gives you access to single-coil sounds from the humbuckers without adding extra controls.
+
+<DecisionNote title="Why push-push instead of a separate switch?">A separate coil split switch would require drilling another hole in the body and adds a control that most players don't reach for often. Push-push keeps the panel clean and puts the split function on a control you're already using.</DecisionNote>
+
+## The treble bleed
+
+The treble bleed network preserves high-frequency response when rolling back the volume. Without it, the guitar gets increasingly muddy as you reduce volume — an artifact of how passive volume pots interact with pickup inductance.
+
+## The tone capacitor
+
+[TODO: describe the cap value used and the tonal character it produces. Note if this is something the builder might want to experiment with.]
+
+## Shielding
+
+The control cavity is lined with copper foil tape and grounded. This is not optional — the lipstick pickup is sensitive to interference and an unshielded cavity will pick up significant noise. See [Wiring](/relay/electronics/wiring) for the shielding process.
+
+## Model-specific details
+
+The pickup selection and selector voicings are where the models diverge. Each model page lists the specific pickups used and any circuit differences from the reference design.
+
+- **Relay Lipstick**: <Term id="gfs">GFS</Term> Classic II (neck), <Term id="gfs">GFS</Term> Pro Tube lipstick (middle), <Term id="gfs">GFS</Term> Vintage 59 (bridge)

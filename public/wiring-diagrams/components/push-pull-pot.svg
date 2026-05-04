@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 245">
+  <rect width="160" height="245" fill="white"/>
+
+  <!-- ── DPDT SWITCH SECTION (top) ── -->
+  <!-- Pole 1 (left group): C1, NC1, NO1 -->
+  <line x1="22" y1="5" x2="22" y2="48" stroke="#555" stroke-width="1.5"/>
+  <line x1="47" y1="5" x2="47" y2="48" stroke="#555" stroke-width="1.5"/>
+  <line x1="72" y1="5" x2="72" y2="48" stroke="#555" stroke-width="1.5"/>
+  <circle cx="22" cy="5" r="4" fill="#555"/>
+  <circle cx="47" cy="5" r="4" fill="#555"/>
+  <circle cx="72" cy="5" r="4" fill="#555"/>
+  <text x="22" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
+  <text x="47" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NC</text>
+  <text x="72" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NO</text>
+  <text x="14" y="46" font-family="Arial,sans-serif" font-size="6" fill="#888">P1↑</text>
+
+  <!-- Pole 2 (right group): C2, NC2, NO2 -->
+  <line x1="88"  y1="5" x2="88"  y2="48" stroke="#555" stroke-width="1.5"/>
+  <line x1="113" y1="5" x2="113" y2="48" stroke="#555" stroke-width="1.5"/>
+  <line x1="138" y1="5" x2="138" y2="48" stroke="#555" stroke-width="1.5"/>
+  <circle cx="88"  cy="5" r="4" fill="#555"/>
+  <circle cx="113" cy="5" r="4" fill="#555"/>
+  <circle cx="138" cy="5" r="4" fill="#555"/>
+  <text x="88"  y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
+  <text x="113" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NC</text>
+  <text x="138" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NO</text>
+  <text x="105" y="46" font-family="Arial,sans-serif" font-size="6" fill="#888">P2↑</text>
+
+  <!-- Switch housing (small bar above pot body) -->
+  <rect x="8" y="48" width="144" height="22" rx="3" fill="#e0e0e0" stroke="#555" stroke-width="1.5"/>
+  <!-- Pole divider -->
+  <line x1="80" y1="48" x2="80" y2="70" stroke="#999" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="40" y="62" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">POLE 1</text>
+  <text x="120" y="62" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">POLE 2</text>
+  <!-- Pull shaft indicator -->
+  <rect x="68" y="40" width="24" height="10" rx="2" fill="#888" stroke="#555" stroke-width="1"/>
+  <text x="80" y="48" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="white" font-weight="bold">PP</text>
+
+  <!-- ── POT SECTION ── -->
+  <!-- Pot body -->
+  <circle cx="80" cy="140" r="52" fill="#efefef" stroke="#333" stroke-width="2"/>
+  <!-- Resistive arc -->
+  <path d="M 37 165 A 46 46 0 1 1 123 165" fill="none" stroke="#bbb" stroke-width="3" stroke-linecap="round"/>
+  <!-- Wiper -->
+  <line x1="80" y1="140" x2="80" y2="96" stroke="#999" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <circle cx="80" cy="96" r="3" fill="#999"/>
+  <!-- Hub -->
+  <circle cx="80" cy="140" r="9" fill="#ccc" stroke="#999" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="80" y="136" font-family="Arial,sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#444">POT</text>
+  <text x="80" y="150" font-family="Arial,sans-serif" font-size="7.5" text-anchor="middle" fill="#666">PUSH-PULL</text>
+  <!-- Lug labels -->
+  <text x="32" y="175" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">1</text>
+  <text x="80" y="197" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">2</text>
+  <text x="128" y="175" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">3</text>
+
+  <!-- ── POT LUGS (bottom) ── -->
+  <line x1="38"  y1="178" x2="38"  y2="238" stroke="#555" stroke-width="1.5"/>
+  <line x1="80"  y1="192" x2="80"  y2="238" stroke="#555" stroke-width="1.5"/>
+  <line x1="122" y1="178" x2="122" y2="238" stroke="#555" stroke-width="1.5"/>
+  <circle cx="38"  cy="240" r="4" fill="#555"/>
+  <circle cx="80"  cy="240" r="4" fill="#555"/>
+  <circle cx="122" cy="240" r="4" fill="#555"/>
+</svg>

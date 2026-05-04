@@ -30,6 +30,18 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-substep-group';
 import { ArrowUpDown, CircleHelp } from 'lucide-react';
+import { DiscordLink } from '@/components/discord-link';
+import { DecisionNote } from '@/components/doc/decision-note';
+import { PriceTag } from '@/components/price-tag';
+import { BomItem, BomSection } from '@/components/doc/bom-item';
+import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/components/doc/download-files';
+import { RelayModelGrid, RelayModelCard } from '@/components/doc/relay-model-grid';
+import { RelayModelPickupChoices, RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
+import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
+import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
+import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
+import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
+import { RelayModelSection } from '@/components/relay/relay-model-overview';
 import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
@@ -150,6 +162,24 @@ const components: MDXComponents = {
     ProcSubgroup: MdxDocProcedureSubstepGroup,
     ArrowUpDown,
     CircleHelp,
+    DiscordLink,
+    DecisionNote,
+    PriceTag,
+    BomItem,
+    BomSection,
+    DownloadList,
+    DownloadFile,
+    DownloadGroup,
+    DownloadGroupFile,
+    RelayModelGrid,
+    RelayModelCard,
+    RelayRecommendedPickups,
+    RelayDiscordCta,
+    RelayLabDisclosure,
+    RelayWiringDiagram,
+    RelayPickupMap,
+    RelayModelPickupChoices,
+    RelayModelSection,
 };
 
 // interface MdxProps {

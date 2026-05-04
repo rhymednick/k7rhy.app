@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 62">
+  <defs>
+    <linearGradient id="tube" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#f5f5f5"/>
+      <stop offset="20%"  stop-color="#d0d0d0"/>
+      <stop offset="50%"  stop-color="#909090"/>
+      <stop offset="80%"  stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#e0e0e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="62" fill="white"/>
+
+  <!-- Chrome tube capsule (very elongated — hallmark of the lipstick style) -->
+  <rect x="2" y="9" width="178" height="44" rx="22" fill="url(#tube)" stroke="#666" stroke-width="2"/>
+
+  <!-- End-cap seam lines (inner rings of the tube ends) -->
+  <line x1="30" y1="9"  x2="30" y2="53" stroke="#999" stroke-width="1" stroke-dasharray="0,62"/>
+  <ellipse cx="24" cy="31" rx="4" ry="22" fill="none" stroke="#aaa" stroke-width="0.75"/>
+  <ellipse cx="158" cy="31" rx="4" ry="22" fill="none" stroke="#aaa" stroke-width="0.75"/>
+
+  <!-- Highlight sheen -->
+  <rect x="26" y="11" width="128" height="9" rx="4" fill="white" opacity="0.35"/>
+
+  <!-- Label -->
+  <text x="91" y="52" font-family="Arial,sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#555">LIPSTICK</text>
+
+  <!-- Hot wire (white) -->
+  <line x1="180" y1="20" x2="218" y2="20" stroke="#999" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="180" y1="20" x2="218" y2="20" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="218" cy="20" r="4" fill="#e0e0e0" stroke="#999" stroke-width="1"/>
+  <!-- Ground wire (black) -->
+  <line x1="180" y1="42" x2="218" y2="42" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="218" cy="42" r="4" fill="#1a1a1a"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 145">
+  <rect width="130" height="145" fill="white"/>
+  <!-- Shaft stub -->
+  <rect x="59" y="12" width="12" height="8" rx="2" fill="#888" stroke="#555" stroke-width="1"/>
+  <!-- Pot body -->
+  <circle cx="65" cy="63" r="50" fill="#efefef" stroke="#333" stroke-width="2"/>
+  <!-- Resistive arc -->
+  <path d="M 24 90 A 44 44 0 1 1 106 90" fill="none" stroke="#bbb" stroke-width="3" stroke-linecap="round"/>
+  <!-- Wiper indicator -->
+  <line x1="65" y1="63" x2="65" y2="22" stroke="#999" stroke-width="1.5" stroke-dasharray="3,2"/>
+  <circle cx="65" cy="22" r="3" fill="#999"/>
+  <!-- Hub -->
+  <circle cx="65" cy="63" r="8" fill="#ccc" stroke="#999" stroke-width="1.5"/>
+  <!-- Generic label — override with draw.io shape label -->
+  <text x="65" y="60" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#bbb">POT</text>
+  <!-- Lug labels -->
+  <text x="16"  y="116" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">1</text>
+  <text x="65"  y="125" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">2</text>
+  <text x="114" y="116" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">3</text>
+  <!-- Lug stubs -->
+  <line x1="27" y1="95"  x2="27" y2="138" stroke="#555" stroke-width="1.5"/>
+  <line x1="65" y1="113" x2="65" y2="138" stroke="#555" stroke-width="1.5"/>
+  <line x1="103" y1="95" x2="103" y2="138" stroke="#555" stroke-width="1.5"/>
+  <circle cx="27"  cy="138" r="4" fill="#555"/>
+  <circle cx="65"  cy="138" r="4" fill="#555"/>
+  <circle cx="103" cy="138" r="4" fill="#555"/>
+</svg>

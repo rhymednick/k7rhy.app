@@ -1,0 +1,40 @@
+---
+title: 'Design Boundaries'
+description: 'What you can change in the electronics, what you should not, and why the constraints exist.'
+---
+
+The Relay circuit design isn't arbitrary — it's the result of iterating on the specific challenge of making a lipstick pickup work alongside humbuckers. This page describes the decision boundaries so you can understand where you have room to experiment and where you don't.
+
+## Pickup selection
+
+This is where most builds go wrong.
+
+<DecisionNote variant="caution" title="Use PAF-style moderate-output humbuckers — not hot pickups">
+    High-output humbuckers overwhelm the lipstick signal even at matched volume settings. The lipstick has a characteristic sound that gets buried when the humbuckers are significantly louder. PAF-style pickups (DC resistance roughly 7–8kΩ) are what the circuit is balanced around. The <Term id="gfs">GFS</Term> Classic II (neck) and Vintage 59 (bridge) are the specific models I've tested. If you substitute, stay in this output range.
+</DecisionNote>
+
+<DecisionNote variant="caution" title="The lipstick is not interchangeable with a standard single-coil">
+    Lipstick pickups have a specific impedance and output characteristic that's meaningfully different from a standard Strat-style single-coil. The tone and treble bleed values in this circuit are tuned for the <Term id="gfs">GFS</Term> Pro Tube lipstick. Substituting a different lipstick may work but expect a different tonal balance.
+</DecisionNote>
+
+## What you can change
+
+**Pickup output level (within range):** Any humbucker in the 7–9kΩ range should work. Above 10kΩ starts causing balance problems.
+
+**Tone cap value:** The cap value changes where the tone control cuts. The BOM value gives a warm but not muddy roll-off. A smaller value cuts higher frequencies; a larger value cuts lower. This is a safe experiment — caps are cheap and soldering them is easy.
+
+**Control layout:** You can change the function of the controls as long as the core topology (volume → tone → output) is preserved. Adding a mid-control is possible but requires passive circuitry knowledge.
+
+**Wire gauge and routing:** Within reason. Use at least [TODO: gauge] for ground connections.
+
+## What you should not change
+
+**The selector switch type (Relay Lipstick):** This model uses a **3-way** selector for the **humbuckers** (neck / both / bridge). The lipstick is brought in through the switching around the volumes — not as its own selector stop. Substituting a 5-way (or a 3-way of the wrong lug layout) will not match the documented wiring and balance.
+
+**Eliminating the treble bleed:** Without it, the guitar loses presence when you roll back volume. It's a small component and worth installing.
+
+**Skipping the cavity shielding:** The lipstick is sensitive. An unshielded cavity in this configuration will pick up significant hum and interference.
+
+## If you deviate
+
+That's fine — this is your instrument. Document what you changed and if you run into problems, share the changes when you ask for help in the <DiscordLink />. "The circuit doesn't work" is hard to debug; "I used [X] pickup and changed [Y]" is not.

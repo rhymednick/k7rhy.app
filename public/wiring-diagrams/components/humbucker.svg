@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 130">
+  <rect width="220" height="130" fill="white"/>
+
+  <!-- Pickup body -->
+  <rect x="5" y="20" width="175" height="82" rx="4" fill="#efefef" stroke="#333" stroke-width="2"/>
+
+  <!-- Coil divider (dashed horizontal between screw row and slug row) -->
+  <line x1="5" y1="66" x2="180" y2="66" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <!-- ROW 1 — Coil A screws (adjustable, with cross marks) -->
+  <circle cx="22"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="22"  y1="47" x2="22"  y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="17"  y1="52" x2="27"  y2="52" stroke="#555" stroke-width="1.2"/>
+  <circle cx="46"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="46"  y1="47" x2="46"  y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="41"  y1="52" x2="51"  y2="52" stroke="#555" stroke-width="1.2"/>
+  <circle cx="70"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="70"  y1="47" x2="70"  y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="65"  y1="52" x2="75"  y2="52" stroke="#555" stroke-width="1.2"/>
+  <circle cx="106" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="106" y1="47" x2="106" y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="101" y1="52" x2="111" y2="52" stroke="#555" stroke-width="1.2"/>
+  <circle cx="130" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="130" y1="47" x2="130" y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="125" y1="52" x2="135" y2="52" stroke="#555" stroke-width="1.2"/>
+  <circle cx="154" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
+  <line x1="154" y1="47" x2="154" y2="57" stroke="#555" stroke-width="1.2"/>
+  <line x1="149" y1="52" x2="159" y2="52" stroke="#555" stroke-width="1.2"/>
+
+  <!-- ROW 2 — Coil B slugs (fixed, plain circles) -->
+  <circle cx="22"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+  <circle cx="46"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+  <circle cx="70"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+  <circle cx="106" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+  <circle cx="130" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+  <circle cx="154" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
+
+  <!-- Row labels (left margin) -->
+  <text x="7" y="27" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL A</text>
+  <text x="7" y="35" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">screws</text>
+  <text x="7" y="75" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL B</text>
+  <text x="7" y="83" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">slugs</text>
+
+  <!-- Title -->
+  <text x="88" y="98" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#333">HUMBUCKER (4-COND.)</text>
+
+  <!-- 4-conductor wires (right side) -->
+  <!-- Black — hot -->
+  <line x1="180" y1="35" x2="218" y2="35" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="218" cy="35" r="4" fill="#1a1a1a"/>
+  <!-- White — coil start/finish -->
+  <line x1="180" y1="52" x2="218" y2="52" stroke="#999" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="180" y1="52" x2="218" y2="52" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="218" cy="52" r="4" fill="#e0e0e0" stroke="#999" stroke-width="1"/>
+  <!-- Red — coil tap -->
+  <line x1="180" y1="69" x2="218" y2="69" stroke="#cc2200" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="218" cy="69" r="4" fill="#cc2200"/>
+  <!-- Green — ground/shield -->
+  <line x1="180" y1="86" x2="218" y2="86" stroke="#2a7a38" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="218" cy="86" r="4" fill="#2a7a38"/>
+</svg>

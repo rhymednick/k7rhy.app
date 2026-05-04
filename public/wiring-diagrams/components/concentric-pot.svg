@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 170">
+  <rect width="200" height="170" fill="white"/>
+  <text x="100" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">CONCENTRIC POT</text>
+  <!-- Outer shaft (larger diameter) -->
+  <rect x="83" y="12" width="34" height="8" rx="2" fill="#777" stroke="#444" stroke-width="1"/>
+  <!-- Inner shaft (smaller, coaxial) -->
+  <rect x="91" y="11" width="18" height="10" rx="2" fill="#aaa" stroke="#666" stroke-width="1"/>
+  <!-- Outer pot body -->
+  <circle cx="100" cy="80" r="68" fill="#efefef" stroke="#333" stroke-width="2"/>
+  <!-- Outer pot resistive arc -->
+  <path d="M 42 115 A 62 62 0 1 1 158 115" fill="none" stroke="#ccc" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Inner pot body (coaxial) -->
+  <circle cx="100" cy="80" r="30" fill="#e0e0e0" stroke="#777" stroke-width="1.5"/>
+  <!-- Inner pot resistive arc (smaller) -->
+  <path d="M 76 100 A 26 26 0 1 1 124 100" fill="none" stroke="#b8b8b8" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Center hub / shaft base -->
+  <circle cx="100" cy="80" r="9" fill="#bbb" stroke="#777" stroke-width="1.5"/>
+  <!-- "OUTER" label in outer ring area -->
+  <text x="52" y="78" font-family="Arial,sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#444">OUTER</text>
+  <text x="52" y="90" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#666">500K</text>
+  <!-- "INNER" label in inner circle -->
+  <text x="100" y="78" font-family="Arial,sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#444">IN</text>
+  <text x="100" y="90" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">250K</text>
+  <!-- Divider line (visual separator for lug groups) -->
+  <line x1="100" y1="140" x2="100" y2="162" stroke="#bbb" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Outer pot lug labels -->
+  <text x="28" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">A1</text>
+  <text x="58" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">A2</text>
+  <text x="85" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">A3</text>
+  <!-- Inner pot lug labels -->
+  <text x="115" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">B1</text>
+  <text x="142" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">B2</text>
+  <text x="172" y="137" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">B3</text>
+  <!-- Outer pot lugs (A1, A2, A3) — left of center -->
+  <line x1="28" y1="130" x2="28" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="23" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="28" cy="162" r="4" fill="#555"/>
+  <line x1="58" y1="130" x2="58" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="53" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="58" cy="162" r="4" fill="#555"/>
+  <line x1="85" y1="136" x2="85" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="80" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="85" cy="162" r="4" fill="#555"/>
+  <!-- Inner pot lugs (B1, B2, B3) — right of center -->
+  <line x1="115" y1="136" x2="115" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="110" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="115" cy="162" r="4" fill="#555"/>
+  <line x1="142" y1="130" x2="142" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="137" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="142" cy="162" r="4" fill="#555"/>
+  <line x1="172" y1="130" x2="172" y2="162" stroke="#555" stroke-width="1.5"/>
+  <rect x="167" y="154" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="172" cy="162" r="4" fill="#555"/>
+</svg>

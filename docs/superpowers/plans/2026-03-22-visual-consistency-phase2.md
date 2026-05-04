@@ -14,20 +14,21 @@
 
 ## File Map
 
-| File | Action |
-|------|--------|
-| `tailwind.config.ts` | **Modify** — add `article: '800px'` to `theme.extend.maxWidth` |
-| `components/doc/doc-page.tsx` | **Modify** — `max-w-[800px]` → `max-w-article` |
-| `components/blog/blog-page.tsx` | **Modify** — `max-w-3xl` → `max-w-article`; add `nav` prop |
-| `components/blog/blog-post-nav.tsx` | **Create** — Server Component, prev/next nav |
-| `components/blog/blog-post-nav.test.tsx` | **Create** — unit tests |
-| `app/blog/[slug]/page.tsx` | **Modify** — compute prev/next, pass to `BlogPage` |
+| File                                     | Action                                                         |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| `tailwind.config.ts`                     | **Modify** — add `article: '800px'` to `theme.extend.maxWidth` |
+| `components/doc/doc-page.tsx`            | **Modify** — `max-w-[800px]` → `max-w-article`                 |
+| `components/blog/blog-page.tsx`          | **Modify** — `max-w-3xl` → `max-w-article`; add `nav` prop     |
+| `components/blog/blog-post-nav.tsx`      | **Create** — Server Component, prev/next nav                   |
+| `components/blog/blog-post-nav.test.tsx` | **Create** — unit tests                                        |
+| `app/blog/[slug]/page.tsx`               | **Modify** — compute prev/next, pass to `BlogPage`             |
 
 ---
 
 ## Task 1: Add `article` Tailwind token and update content columns
 
 **Files:**
+
 - Modify: `tailwind.config.ts:16-75`
 - Modify: `components/doc/doc-page.tsx:67`
 - Modify: `components/blog/blog-page.tsx:44`
@@ -45,6 +46,7 @@ maxWidth: {
 ```
 
 The full `theme.extend` block should now end with:
+
 ```ts
 extend: {
     colors: { ... },
@@ -61,10 +63,13 @@ extend: {
 - [ ] **Step 2: Update `doc-page.tsx`**
 
 In `components/doc/doc-page.tsx` line 67, replace:
+
 ```tsx
 <div className="max-w-[800px] justify-between ">{props.children}</div>
 ```
+
 with:
+
 ```tsx
 <div className="max-w-article justify-between">{props.children}</div>
 ```
@@ -74,10 +79,13 @@ with:
 - [ ] **Step 3: Update `blog-page.tsx`**
 
 In `components/blog/blog-page.tsx` line 44, replace:
+
 ```tsx
 <div className="max-w-3xl mx-auto">
 ```
+
 with:
+
 ```tsx
 <div className="max-w-article mx-auto">
 ```
@@ -102,6 +110,7 @@ git commit -m "refactor: standardize content column width to max-w-article token
 ## Task 2: Create `BlogPostNav` component
 
 **Files:**
+
 - Create: `components/blog/blog-post-nav.test.tsx`
 - Create: `components/blog/blog-post-nav.tsx`
 
@@ -162,7 +171,7 @@ describe('BlogPostNav', () => {
     it('displays the post date in each cell', () => {
         render(<BlogPostNav prev={prev} next={next} />);
         // formatDate transforms the date — just verify the date strings are rendered somewhere
-        expect(screen.getByText((_, el) => el?.textContent?.includes('2026') && el?.closest('a')?.href?.includes('older-post') ? true : false)).toBeInTheDocument();
+        expect(screen.getByText((_, el) => (el?.textContent?.includes('2026') && el?.closest('a')?.href?.includes('older-post') ? true : false))).toBeInTheDocument();
     });
 });
 ```
@@ -196,20 +205,14 @@ export function BlogPostNav({ prev, next }: BlogPostNavProps) {
     return (
         <nav className={cn('mt-8 grid gap-4', prev && next ? 'grid-cols-2' : 'grid-cols-1')}>
             {prev && (
-                <Link
-                    href={`/blog/${prev.slug}`}
-                    className="rounded-xl border border-transparent bg-muted/50 p-4 transition-all duration-150 hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]"
-                >
+                <Link href={`/blog/${prev.slug}`} className="rounded-xl border border-transparent bg-muted/50 p-4 transition-all duration-150 hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]">
                     <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">← Previous</div>
                     <div className="mt-1 font-semibold text-foreground">{prev.title}</div>
                     <div className="mt-1 text-xs text-muted-foreground">{formatDate(prev.date)}</div>
                 </Link>
             )}
             {next && (
-                <Link
-                    href={`/blog/${next.slug}`}
-                    className="rounded-xl border border-transparent bg-muted/50 p-4 text-right transition-all duration-150 hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]"
-                >
+                <Link href={`/blog/${next.slug}`} className="rounded-xl border border-transparent bg-muted/50 p-4 text-right transition-all duration-150 hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]">
                     <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Next →</div>
                     <div className="mt-1 font-semibold text-foreground">{next.title}</div>
                     <div className="mt-1 text-xs text-muted-foreground">{formatDate(next.date)}</div>
@@ -248,6 +251,7 @@ git commit -m "feat: add BlogPostNav component for blog prev/next navigation"
 ## Task 3: Wire `BlogPostNav` into `BlogPage` and the blog post page
 
 **Files:**
+
 - Modify: `components/blog/blog-page.tsx`
 - Modify: `app/blog/[slug]/page.tsx`
 
@@ -256,6 +260,7 @@ git commit -m "feat: add BlogPostNav component for blog prev/next navigation"
 In `components/blog/blog-page.tsx`, update the `BlogPageProps` interface and render the `nav` prop.
 
 Current interface (lines 7–12):
+
 ```tsx
 interface BlogPageProps {
     title: string;
@@ -266,6 +271,7 @@ interface BlogPageProps {
 ```
 
 Replace with:
+
 ```tsx
 interface BlogPageProps {
     title: string;
@@ -277,6 +283,7 @@ interface BlogPageProps {
 ```
 
 Current function signature (line 14):
+
 ```tsx
 export function BlogPage(props: BlogPageProps) {
 ```
@@ -284,26 +291,24 @@ export function BlogPage(props: BlogPageProps) {
 No change needed to signature — props already destructured via `props.*`.
 
 Inside the return, find the `max-w-article mx-auto` div (after Task 1 is applied — formerly `max-w-3xl`). The actual nesting is:
+
 ```tsx
 <div className="px-4 sm:px-6 md:px-8">
     <div className="max-w-article mx-auto">
         <main className="lg:gap-10 pb-8">
-            <article className="relative pt-10">
-                ...
-            </article>
+            <article className="relative pt-10">...</article>
         </main>
     </div>
 </div>
 ```
 
 Add `{props.nav}` after `</main>`, inside the `max-w-article` div:
+
 ```tsx
 <div className="px-4 sm:px-6 md:px-8">
     <div className="max-w-article mx-auto">
         <main className="lg:gap-10 pb-8">
-            <article className="relative pt-10">
-                ...
-            </article>
+            <article className="relative pt-10">...</article>
         </main>
         {props.nav}
     </div>
@@ -313,6 +318,7 @@ Add `{props.nav}` after `</main>`, inside the `max-w-article` div:
 - [ ] **Step 2: Update `app/blog/[slug]/page.tsx`**
 
 Add the `BlogPostNav` import at the top with the other component imports:
+
 ```tsx
 import { BlogPostNav } from '@/components/blog/blog-post-nav';
 ```
@@ -342,6 +348,7 @@ const nextPost = currentIndex !== -1 && currentIndex > 0 ? allPosts[currentIndex
 ```
 
 Update the `return` to pass the `nav` prop:
+
 ```tsx
 return (
     <BlogPage title={data.title} date={data.date} nav={<BlogPostNav prev={prevPost} next={nextPost} />}>

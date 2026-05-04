@@ -1,0 +1,25 @@
+{
+    "lastUpdated": "2026-03-29",
+    "items": {
+        "guitar-neck": { "title": "Guitar Neck", "price": "$60.00" },
+        "hardtail-bridge": { "title": "Fixed Hardtail Bridge", "price": "$15.00" },
+        "guitar-strings": { "title": "Guitar Strings (9–42), 3-pack", "price": "$20.00" },
+        "locking-tuners": { "title": "Locking Tuners", "price": "$35.00" },
+        "neck-ferrules": { "title": "Neck Mounting Ferrules", "price": "$10.00" },
+        "string-ferrule-plate": { "title": "String Ferrule Plate", "price": "$10.00" },
+        "strap-buttons": { "title": "Strap Buttons", "price": "$11.00" },
+        "push-push-pots": { "title": "Push-Push Pots (×2)", "price": "$15.00" },
+        "copper-foil-tape": { "title": "Copper Foil Tape", "price": "$9.00" },
+        "pet-cf-filament": { "title": "PET-CF Filament (×2 spools)", "price": "$66.00" },
+        "selector-switch": { "title": "Selector Switch", "price": "$8.00" },
+        "tone-capacitor": { "title": "Tone Capacitor", "price": "$10.00" },
+        "treble-bleed": { "title": "Treble Bleed", "price": "$15.00" },
+        "hookup-wire": { "title": "Hookup Wire", "price": "$7.00" },
+        "output-jack": { "title": "Output Jack", "price": "$5.00" },
+        "knobs": { "title": "Knobs", "price": "$10.00" },
+        "gflex-650": { "title": "G/Flex 650 Epoxy", "price": "$32.00" },
+        "gfs-neck-pickup": { "title": "GFS Neck Pickup (KPH115)", "price": "$37.00" },
+        "gfs-lipstick-pickup": { "title": "GFS Lipstick Middle (KPS41)", "price": "$32.00" },
+        "gfs-bridge-pickup": { "title": "GFS Bridge Pickup (KPH65)", "price": "$37.00" }
+    }
+}

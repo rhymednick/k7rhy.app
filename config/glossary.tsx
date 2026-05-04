@@ -8,11 +8,6 @@ export interface GlossaryEntry {
 export const glossary: Record<string, GlossaryEntry> = {
     gfs: {
         label: 'GFS',
-        content: (
-            <>
-                I&apos;m recommending GFS pickups because of the quality for the price, but any pickups with matching
-                specs could be used.
-            </>
-        ),
+        content: <>I&apos;m recommending GFS pickups because of the quality for the price, but any pickups with matching specs could be used.</>,
     },
 };
