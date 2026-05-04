@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 120">
+  <rect width="130" height="120" fill="white"/>
+  <text x="65" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">MONO JACK</text>
+  <!-- Jack barrel (outer) -->
+  <circle cx="55" cy="60" r="48" fill="#efefef" stroke="#333" stroke-width="2"/>
+  <!-- Nut hex (simplified as dashed ring) -->
+  <circle cx="55" cy="60" r="42" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="6,4"/>
+  <!-- Jack hole -->
+  <circle cx="55" cy="60" r="15" fill="#ccc" stroke="#666" stroke-width="2"/>
+  <circle cx="55" cy="60" r="7" fill="#888" stroke="#555" stroke-width="1"/>
+  <!-- "1/4 MONO" label -->
+  <text x="55" y="64" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#444">¼″</text>
+  <!-- Tip terminal (right side, 3 o'clock) -->
+  <line x1="103" y1="60" x2="128" y2="60" stroke="#555" stroke-width="1.5"/>
+  <rect x="103" y="55" width="15" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="128" cy="60" r="4" fill="#555"/>
+  <text x="110" y="52" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">TIP</text>
+  <!-- Sleeve terminal (bottom, 6 o'clock) -->
+  <line x1="55" y1="108" x2="55" y2="116" stroke="#555" stroke-width="1.5"/>
+  <rect x="50" y="108" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="55" cy="116" r="4" fill="#555"/>
+  <text x="55" y="107" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">SLEEVE</text>
+</svg>

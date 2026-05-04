@@ -1,0 +1,102 @@
+{
+  "humbucker": {
+    "title": "Pickup — Humbucker (4-cond.)",
+    "w": 160, "h": 100,
+    "points": [[1,0.29,0],[1,0.43,0],[1,0.57,0],[1,0.71,0]]
+  },
+  "single-coil": {
+    "title": "Pickup — Single Coil",
+    "w": 130, "h": 90,
+    "points": [[1,0.37,0],[1,0.68,0]]
+  },
+  "p90": {
+    "title": "Pickup — P90",
+    "w": 150, "h": 85,
+    "points": [[1,0.36,0],[1,0.66,0]]
+  },
+  "lipstick": {
+    "title": "Pickup — Lipstick Tube",
+    "w": 140, "h": 80,
+    "points": [[1,0.40,0],[1,0.65,0]]
+  },
+  "filtertron": {
+    "title": "Pickup — Filter'tron",
+    "w": 180, "h": 100,
+    "points": [[1,0.38,0],[1,0.68,0]]
+  },
+  "gold-foil": {
+    "title": "Pickup — Gold Foil",
+    "w": 155, "h": 90,
+    "points": [[1,0.367,0],[1,0.644,0]]
+  },
+  "volume-pot": {
+    "title": "Control — Volume Pot",
+    "w": 130, "h": 145,
+    "points": [[0.208,1,0],[0.5,1,0],[0.792,1,0]]
+  },
+  "tone-pot": {
+    "title": "Control — Tone Pot",
+    "w": 130, "h": 145,
+    "points": [[0.208,1,0],[0.5,1,0],[0.792,1,0]]
+  },
+  "push-pull-pot": {
+    "title": "Control — Push-Pull Pot",
+    "w": 130, "h": 190,
+    "points": [[0.208,0.726,0],[0.5,0.726,0],[0.792,0.726,0],[0.154,1,0],[0.5,1,0],[0.846,1,0]]
+  },
+  "concentric-pot": {
+    "title": "Control — Concentric (Stacked) Pot",
+    "w": 200, "h": 170,
+    "points": [[0.14,1,0],[0.29,1,0],[0.425,1,0],[0.575,1,0],[0.71,1,0],[0.86,1,0]]
+  },
+  "3way-blade": {
+    "title": "Switch — 3-Way Blade",
+    "w": 200, "h": 110,
+    "points": [[0.175,1,0],[0.4,1,0],[0.6,1,0],[0.825,1,0]]
+  },
+  "5way-blade": {
+    "title": "Switch — 5-Way Blade",
+    "w": 260, "h": 120,
+    "points": [[0.115,1,0],[0.288,1,0],[0.5,1,0],[0.712,1,0],[0.885,1,0]]
+  },
+  "super-switch": {
+    "title": "Switch — Super Switch (4P5T)",
+    "w": 280, "h": 155,
+    "points": [[0.196,0.697,0],[0.357,0.697,0],[0.518,0.697,0],[0.679,0.697,0],[0.196,0.955,0],[0.357,0.955,0],[0.518,0.955,0],[0.679,0.955,0]]
+  },
+  "3way-toggle": {
+    "title": "Switch — 3-Way Toggle (LP)",
+    "w": 100, "h": 200,
+    "points": [[0.28,1,0],[0.43,1,0],[0.57,1,0],[0.72,1,0]]
+  },
+  "mini-toggle": {
+    "title": "Switch — Mini Toggle (DPDT)",
+    "w": 80, "h": 155,
+    "points": [[0.338,1,0],[0.5,1,0],[0.663,1,0]]
+  },
+  "output-jack": {
+    "title": "Jack — Mono Output",
+    "w": 130, "h": 120,
+    "points": [[1,0.5,0],[0.423,1,0]]
+  },
+  "ground": {
+    "title": "Ground Symbol",
+    "w": 55, "h": 50,
+    "points": [[0.491,0,0]]
+  },
+  "junction": {
+    "title": "Wire Junction",
+    "w": 16, "h": 16,
+    "points": [[0,0.5,0],[1,0.5,0],[0.5,0,0],[0.5,1,0]]
+  },
+  "capacitor": {
+    "title": "Capacitor",
+    "w": 80, "h": 45,
+    "points": [[0,0.489,0],[1,0.489,0]]
+  },
+  "resistor": {
+    "title": "Resistor",
+    "w": 100, "h": 40,
+    "points": [[0,0.5,0],[1,0.5,0]]
+  }
+}
