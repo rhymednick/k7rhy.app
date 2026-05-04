@@ -19,7 +19,7 @@ Scale length is the distance from the nut to the bridge saddles — it determine
 
 ### Three pickups
 
-Every model has three pickup cavities. The middle position earns its place differently in each model: on some models it is a curated layer you blend in for texture; on others it is a full core voice you reach directly. The selector strategy follows that role — models where the middle is an auxiliary layer use a 3-way switch, models where the middle is a primary voice use a 5-way blade.
+Every model has three pickup cavities. What changes is how those pickups interact. A Relay model can use the middle pickup as a primary voice, an augment layer, a shaper, or part of a grouped subsystem. The selector and controls follow that role.
 
 You don't have to install a middle pickup. The model files include optional cavity covers if you prefer a two-pickup layout.
 
@@ -27,27 +27,27 @@ You don't have to install a middle pickup. The model files include optional cavi
 
 The line stays coherent without forcing identical controls on every guitar. The practical rule:
 
-- Use a **3-way selector** when the middle pickup is a **curated auxiliary / shaping voice** you add on top of bridge and neck.
-- Use a **5-way blade** when the middle pickup is one of the model’s **core voices** you select like any other position.
+- Use a **3-way selector** when the middle pickup is a **shaper** or **augment layer** added after the bridge/neck selection.
+- Use a **5-way blade** when the middle pickup is a **primary voice** or part of a switched **subsystem**.
 
 Unless bench testing says otherwise, the default passive pots for Relay models that use the **master volume + master tone** pattern are **500k audio taper, full-size** for both. Every model uses at least one humbucker or humbucker-adjacent pickup, so 500k preserves articulation and openness while still allowing you to roll off darkness.
 
 **Push-push** fits functions you might hit while playing or that define quick-access personality. **Push-pull** fits mode-style changes where accidental activation would be annoying, or where fastest access matters less.
 
-**Selector families today:** **3-way toggle** — Relay Lipstick, Relay Current. **Standard 5-way blade (2-pole)** — Relay Velvet, Relay Arc, Relay Torch, **Relay Reef** (HSS-style humbucker + dual lipstick positions; concentric tone instead of a single shared master tone). **5-way Super Switch (4-pole)** — Relay Hammer (deeper body than a standard blade — leave depth in the control cavity when you plan the route).
+**Selector families today:** **3-way toggle** - Relay Lipstick, Relay Current. **Standard 5-way blade (2-pole)** - Relay Velvet, Relay Arc, Relay Torch, **Relay Reef**. **5-way Super Switch (4-pole)** - Relay Hammer concept (deeper body than a standard blade, so leave depth in the control cavity when you plan the route).
 
 Model pages spell out each instrument’s switch positions and what the push controls do.
 
 ## Models
 
 <RelayModelGrid>
-    <RelayModelCard name="Relay Lipstick" tagline="Signature · Articulate · Lipstick layer" genres="Blues · Rock · Alternative · Indie" description="The reference model: expressive dual humbuckers with a middle lipstick as a curated alternate voice. A second identity of the same instrument, not a novelty." status="lab" href="/relay/lipstick" />
-    <RelayModelCard name="Relay Reef" tagline="Danelectro soul · Humbucker punch · Lipstick shimmer" genres="Indie · Surf · Alt Country · Shoegaze" description="HSS-style 5-way: bridge humbucker workhorse, familiar blends, and position 4 for the two-lipstick voice. Concentric tone splits bridge humbucker shaping from the lipstick side." status="lab" href="/relay/reef" />
-    <RelayModelCard name="Relay Velvet" tagline="Warm authority · Club presence" genres="Jazz · Blues · Soul · R&B" description="The warm, fat, classy club model. The middle pickup is a true core voice — poised and present so the band can orbit the guitar." status="lab" href="/relay/velvet" />
-    <RelayModelCard name="Relay Arc" tagline="Chime · Air · Spatial clarity" genres="Clean pop · Indie · Ambient · Country" description="Airy, spatial, and chime-forward: width, shimmer, and clarity without thinning out — open and ringing rather than club-warm or mid-forward." status="lab" href="/relay/arc" />
-    <RelayModelCard name="Relay Torch" tagline="Vocal mids · Hooky · Contemporary" genres="Rock · Pop · Alternative · Modern country" description="Rude, vocal-mid energy with a P90-type middle as a core position — emotionally direct and hooky without becoming a metal guitar." status="lab" href="/relay/torch" />
-    <RelayModelCard name="Relay Current" tagline="Punch · Cut · Fast attack" genres="Funk · Pop · Rock" description="Punchy, cutting, and immediate — the line's sharpest non-metal tool. Strong projection and edge definition with the middle as a fast alternate layer." status="lab" href="/relay/current" />
-    <RelayModelCard name="Relay Hammer" tagline="High gain · Tight · Uncompromising" genres="Metal · Hard rock" description="The dedicated heavy model: high-gain authority, tight aggressive attack, rail-style passive pickups. Direct and forceful rather than elegant." status="lab" href="/relay/hammer" />
+    <RelayModelCard name="Relay Lipstick" tagline="Humbuckers · Lipstick shaper" genres="Blues · Rock · Alternative · Indie" description="Bridge and neck humbuckers provide the main voices. The middle lipstick reshapes them with contour, texture, and air." status="lab" href="/relay/lipstick" />
+    <RelayModelCard name="Relay Reef" tagline="Humbucker · Dual-lipstick subsystem" genres="Indie · Surf · Alt Country · Shoegaze" description="Two separate voice families: a bridge humbucker and an independently controlled dual-lipstick subsystem." status="lab" href="/relay/reef" />
+    <RelayModelCard name="Relay Velvet" tagline="Jazz-club center · Controlled warmth" genres="Jazz · Blues · Soul · R&B" description="A middle-primary model for players who put the guitar at the center of a small room: rounded attack, controlled mids, and enough presence to carry the act clean." status="lab" href="/relay/velvet" />
+    <RelayModelCard name="Relay Arc" tagline="Open · Spatial · Separated" genres="Clean pop · Indie · Ambient · Country" description="A middle-primary model focused on clarity and separation, especially under delay, reverb, and other effects." status="lab" href="/relay/arc" />
+    <RelayModelCard name="Relay Torch" tagline="Punch · Vocal mids · Presence" genres="Rock · Pop · Alternative · Modern country" description="A P90-type middle pickup acts as a primary voice for stronger mids, punch, and front-of-mix presence." status="lab" href="/relay/torch" />
+    <RelayModelCard name="Relay Current" tagline="Fast attack · Upper-mid focus" genres="Funk · Pop · Rock" description="A rhythm-first humbucker model with a middle augment layer that tightens lows and sharpens attack without acting like a boost." status="lab" href="/relay/current" />
+    <RelayModelCard name="Relay Hammer" tagline="High gain · Rails · Concept" genres="Metal · Hard rock" description="A high-gain concept using rail pickups, aimed at tight low end, saturation, and controlled aggression." status="lab" href="/relay/hammer" />
 </RelayModelGrid>
 
 ## Community

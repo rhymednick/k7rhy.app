@@ -1,20 +1,26 @@
 ---
 title: 'Relay Torch'
-description: "Vocal mids, contemporary energy, and a rude middle voice — the line's most direct, hooky non-metal character."
+description: 'A mid-forward Relay model with a P90-type middle pickup as a primary voice for punch, vocal mids, and mix presence.'
+model: 'torch'
 ---
 
-<RelayLabDisclosure />
+<RelayModelSection name="what-it-is">
 
-<RelayPickupMap
-  bridge={{ type: 'humbucker', magnet: 'Alnico V', resistance: '11.2K' }}
-  middle={{ type: 'p90', magnet: 'Alnico V', resistance: '8.7K', role: 'core' }}
-  neck={{ type: 'humbucker', magnet: 'Alnico II', resistance: '7.6K' }}
-  selector="5-way"
-  volume="standard"
-  tone="push-pull"
-/>
+Relay Torch is a mid-forward, expressive guitar with a strong personality. The middle pickup is a P90-type primary voice, not a blend layer for the humbuckers.
 
-## Controls
+</RelayModelSection>
+
+<RelayModelSection name="pickup-interaction">
+
+**Category:** Primary voice.
+
+The 5-way blade gives the middle pickup its own position and two combined positions. The Mean 90 is treated as a main voice because its midrange character is the point of the model.
+
+That matters because Torch is not trying to be smooth or neutral. The switch should give you places where the guitar pushes forward in the mix instead of politely filling space.
+
+</RelayModelSection>
+
+<RelayModelSection name="controls">
 
 **5-way blade**
 
@@ -24,16 +30,30 @@ description: "Vocal mids, contemporary energy, and a rude middle voice — the l
 4. Neck + middle
 5. Neck
 
-**Tone (push-pull)** — Edge contour.
+**Tone (push-pull)** - Edge contour.
 
-## Character
+</RelayModelSection>
 
-Torch is mid-forward, immediate, and a little rude — in the best way. The Mean 90 in the middle isn't there to add sparkle to the humbuckers; it's a distinct voice that earns its own real estate on the switch. You can lean on it for rhythm hooks, aggressive cleans, or anywhere you want the guitar to push back with some attitude. Less polished than Velvet, less airy than Arc — this one has an edge and isn't trying to hide it.
+<RelayModelSection name="how-it-behaves">
 
-## Who it's for
+Torch is punchy because the middle voice puts more information in the mids, where the guitar competes with vocals, keys, and rhythm tracks. It feels vocal because notes have a clear center instead of a scooped or glassy shape.
 
-Rock, pop, alternative, and modern country players. If you've ever wanted your guitar to feel like it's playing with you instead of just responding to you, this is the one.
+The bridge humbucker should be hot enough to drive an amp, but it cannot get muddy. The neck should stay usable and not overpower the middle. The combined positions should feel like different ways to use that midrange character, not like attempts to hide it.
 
-<RelayRecommendedPickups neck="GFS Professional Series Alnico II Humbucker" middle="GFS Mean 90" bridge="GFS VEH humbucker" />
+Choose Torch if you want presence and character more than refinement.
+
+</RelayModelSection>
+
+<RelayModelSection name="who-its-for">
+
+Rock, pop, alternative, and modern country players. Torch fits players who want the guitar to push back a little: stronger hooks, more front-of-mix rhythm parts, and lead lines that do not need extra brightness to be heard.
+
+</RelayModelSection>
+
+<RelayModelPickupChoices neck="GFS Professional Series Alnico II Humbucker" middle="GFS Mean 90" bridge="GFS VEH humbucker">
+
+If you substitute parts, the middle pickup must have strong midrange character. The bridge should be hot but not muddy. Avoid scooped pickups because they pull Torch away from the vocal, forward behavior that defines it.
+
+</RelayModelPickupChoices>
 
 <RelayDiscordCta message="Interested in Torch? Join the Discord to follow development and share what draws you to this voice." />

@@ -8,7 +8,7 @@ export const relayPlatformNav: RelayPlatformNav = {
 export const relayNav: RelayNav = {
     lipstick: {
         title: 'Relay Lipstick',
-        status: 'lab',
+        status: 'ready',
         sections: [],
     },
     reef: {
@@ -18,7 +18,7 @@ export const relayNav: RelayNav = {
     },
     velvet: {
         title: 'Relay Velvet',
-        status: 'lab',
+        status: 'ready',
         sections: [],
     },
     arc: {
@@ -28,7 +28,7 @@ export const relayNav: RelayNav = {
     },
     torch: {
         title: 'Relay Torch',
-        status: 'lab',
+        status: 'ready',
         sections: [],
     },
     current: {
@@ -38,7 +38,7 @@ export const relayNav: RelayNav = {
     },
     hammer: {
         title: 'Relay Hammer',
-        status: 'lab',
+        status: 'concept',
         sections: [],
     },
 };

@@ -1,3 +1,5 @@
+import type { RelayModelStatus } from '@/types/relay-model';
+
 export interface RelayNavItem {
     title: string;
     slug: string;
@@ -11,7 +13,7 @@ export interface RelayNavSection {
 
 export interface RelayModelNav {
     title: string;
-    status: 'lab' | 'ready';
+    status: RelayModelStatus;
     sections: RelayNavSection[];
 }
 

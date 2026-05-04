@@ -6,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { relayNav } from '@/config/relay-nav';
 import { RelayModelStatusBadge } from '@/components/relay/relay-model-status-badge';
+import type { RelayModelStatus } from '@/types/relay-model';
+import type { RelayModelNav } from '@/types/relay-nav';
 
 // Segments under /relay/ that are platform routes, not model keys.
 // Expand this list as build guide phases ship (e.g. 'build').
@@ -19,10 +21,24 @@ function activeModelKeyFromPath(pathname: string): string | undefined {
     return relayNav[next] ? next : undefined;
 }
 
+const statusSortOrder: Record<RelayModelStatus, number> = {
+    ready: 0,
+    lab: 1,
+    concept: 2,
+};
+
+export function sortRelayModelNavEntries(entries: Array<[string, RelayModelNav]>): Array<[string, RelayModelNav]> {
+    return [...entries].sort(([, a], [, b]) => {
+        const statusDelta = statusSortOrder[a.status] - statusSortOrder[b.status];
+        if (statusDelta !== 0) return statusDelta;
+        return a.title.localeCompare(b.title);
+    });
+}
+
 export function RelayModelLineupNav() {
     const pathname = usePathname() ?? '';
     const activeKey = activeModelKeyFromPath(pathname);
-    const entries = Object.entries(relayNav);
+    const entries = sortRelayModelNavEntries(Object.entries(relayNav));
 
     return (
         <div className="grid grid-flow-row auto-rows-max text-sm">

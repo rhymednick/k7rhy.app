@@ -6,6 +6,7 @@ import type { RelayNav, RelayPlatformNav } from '@/types/relay-nav';
 export interface RelayPageFrontmatter {
     title: string;
     description: string;
+    model?: string;
 }
 
 export interface RelayBreadcrumb {

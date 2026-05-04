@@ -5,8 +5,9 @@ import remarkGfm from 'remark-gfm';
 import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
-import { loadRelayPage, buildRelayBreadcrumbs } from '@/lib/relay';
+import { loadRelayPage, buildRelayBreadcrumbs, type RelayPageFrontmatter } from '@/lib/relay';
 import { relayNav } from '@/config/relay-nav';
+import { RelayModelOverview } from '@/components/relay/relay-model-overview';
 
 type Props = { params: Promise<{ model: string }> };
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function RelayModelPage({ params }: Props) {
     const { model } = await params;
     let content: string;
-    let frontmatter: { title: string; description: string };
+    let frontmatter: RelayPageFrontmatter;
     try {
         ({ content, frontmatter } = loadRelayPage(model, []));
     } catch {
@@ -40,7 +41,9 @@ export default async function RelayModelPage({ params }: Props) {
     const breadcrumbs = buildRelayBreadcrumbs(model, [], relayNav);
     return (
         <DocPage title={frontmatter!.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
-            <MDXRemote source={content!} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+            <RelayModelOverview modelKey={frontmatter!.model ?? model}>
+                <MDXRemote source={content!} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
+            </RelayModelOverview>
         </DocPage>
     );
 }

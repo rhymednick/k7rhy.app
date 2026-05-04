@@ -1,26 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import type { RelayModelPickupMap, RelayPickupRole, RelayPickupSlot, RelayPickupType } from '@/types/relay-model';
 
-type PickupType = 'humbucker' | 'lipstick' | 'p90' | 'rail' | 'filtertron';
-type PickupRole = 'core' | 'alternate' | 'auxiliary';
+export type RelayPickupMapProps = RelayModelPickupMap;
 
-interface PickupSlot {
-    type: PickupType;
-    magnet?: string;
-    resistance?: string;
-    role?: PickupRole;
-}
-
-export interface RelayPickupMapProps {
-    bridge: PickupSlot;
-    middle: PickupSlot;
-    neck: PickupSlot;
-    selector: '3-way' | '5-way' | 'super-switch';
-    volume?: 'standard' | 'push-push' | 'push-pull';
-    tone?: 'standard' | 'push-pull' | 'push-push' | 'concentric';
-}
-
-const typeLabel: Record<PickupType, string> = {
+const typeLabel: Record<RelayPickupType, string> = {
     humbucker: 'Humbucker',
     lipstick: 'Lipstick',
     p90: 'P90-type',
@@ -34,7 +18,7 @@ const selectorLabel: Record<string, string> = {
     'super-switch': 'Super Switch (4-pole)',
 };
 
-function PickupIcon({ type }: { type: PickupType }) {
+function PickupIcon({ type }: { type: RelayPickupType }) {
     if (type === 'humbucker') {
         return (
             <div className="flex items-center justify-center gap-1">
@@ -88,23 +72,35 @@ function PickupIcon({ type }: { type: PickupType }) {
     );
 }
 
-function RoleBadge({ role }: { role?: PickupRole }) {
+function RoleBadge({ role }: { role?: RelayPickupRole }) {
     if (!role || role === 'core') return null;
+    const roleStyles: Record<Exclude<RelayPickupRole, 'core'>, string> = {
+        primary: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-400',
+        shaper: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400',
+        augment: 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-400',
+        subsystem: 'bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/40 dark:text-fuchsia-400',
+        concept: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-400',
+    };
+    const roleLabels: Record<Exclude<RelayPickupRole, 'core'>, string> = {
+        primary: 'primary',
+        shaper: 'shaper',
+        augment: 'augment',
+        subsystem: 'subsystem',
+        concept: 'concept',
+    };
     return (
         <span
             className={cn(
                 'mt-1.5 inline-block rounded px-1.5 py-0.5 text-xs font-medium',
-                role === 'alternate'
-                    ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400'
-                    : 'bg-sky-100 text-sky-700 dark:bg-sky-900/40 dark:text-sky-400',
+                roleStyles[role],
             )}
         >
-            {role === 'alternate' ? 'alt. layer' : 'aux. layer'}
+            {roleLabels[role]}
         </span>
     );
 }
 
-function PickupCard({ slot, position }: { slot: PickupSlot; position: string }) {
+function PickupCard({ slot, position }: { slot: RelayPickupSlot; position: string }) {
     return (
         <div className="flex flex-col items-center gap-3 text-center">
             <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{position}</p>

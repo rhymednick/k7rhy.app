@@ -28,9 +28,33 @@ describe('relayModels config', () => {
         }
     });
 
-    it('every model status is lab or ready', () => {
+    it('every model status is lab, ready, or concept', () => {
         for (const model of relayModels) {
-            expect(['lab', 'ready']).toContain(model.status);
+            expect(['lab', 'ready', 'concept']).toContain(model.status);
+        }
+    });
+
+    it('marks each model with the expected release status', () => {
+        const statuses = Object.fromEntries(relayModels.map((model) => [model.modelKey, model.status]));
+
+        expect(statuses).toEqual({
+            lipstick: 'ready',
+            reef: 'lab',
+            velvet: 'ready',
+            arc: 'lab',
+            torch: 'ready',
+            current: 'lab',
+            hammer: 'concept',
+        });
+    });
+
+    it('provides overview metadata for every model page', () => {
+        for (const model of relayModels) {
+            expect(model.interaction.category).toMatch(/primary voice|augment layer|subsystem|shaper|concept/i);
+            expect(model.pickupMap.selector).toMatch(/3-way|5-way|super-switch/);
+            expect(model.pickupMap.bridge.type).toBeTruthy();
+            expect(model.pickupMap.middle.type).toBeTruthy();
+            expect(model.pickupMap.neck.type).toBeTruthy();
         }
     });
 

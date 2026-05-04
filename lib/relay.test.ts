@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayFilePath, resolveRelayPlatformFilePath, buildRelayBreadcrumbs, buildRelayPlatformBreadcrumbs } from '@/lib/relay';
+import { resolveRelayFilePath, resolveRelayPlatformFilePath, buildRelayBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayPage } from '@/lib/relay';
 import { relayNav, relayPlatformNav } from '@/config/relay-nav';
 
 describe('resolveRelayFilePath', () => {
@@ -12,6 +12,14 @@ describe('resolveRelayFilePath', () => {
     it('resolves model sub-page path', () => {
         const result = resolveRelayFilePath('lipstick', ['bom']);
         expect(result).toContain(path.join('content', 'relay', 'lipstick', 'bom.mdx'));
+    });
+});
+
+describe('loadRelayPage', () => {
+    it('loads model frontmatter with the model key used by the overview component', () => {
+        const { frontmatter } = loadRelayPage('velvet', []);
+
+        expect(frontmatter.model).toBe('velvet');
     });
 });
 

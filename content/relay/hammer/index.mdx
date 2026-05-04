@@ -1,35 +1,55 @@
 ---
 title: 'Relay Hammer'
-description: 'The heavy specialist — dedicated high-gain voice, tight attack, and rails for modern metal focus.'
+description: 'A high-gain Relay concept using rail pickups, with final switching and interaction behavior still in development.'
+model: 'hammer'
 ---
 
-<RelayLabDisclosure />
+<RelayModelSection name="what-it-is">
 
-<RelayPickupMap
-  bridge={{ type: 'rail', magnet: 'Ceramic', resistance: '16.2K' }}
-  middle={{ type: 'rail', magnet: 'Ceramic', resistance: '10.0K', role: 'core' }}
-  neck={{ type: 'rail', magnet: 'Ceramic', resistance: '10.4K' }}
-  selector="super-switch"
-  volume="push-push"
-  tone="push-pull"
-/>
+Relay Hammer is the high-gain concept in the Relay lineup. It uses rail pickups and is aimed at tight low end, high saturation, and controlled aggression.
 
-## Controls
+</RelayModelSection>
 
-**5-way Super Switch** — Five positions with coil-mode options; exact configuration finalized at validation.
+<RelayModelSection name="pickup-interaction">
 
-**Volume (push-push)** — High-gain utility function.
+**Category:** Concept - final interaction not finalized.
 
-**Tone (push-pull)** — Attack contour.
+Hammer is not ready to be described as a primary-voice, augment-layer, subsystem, or shaper model yet. The pickup set points toward a dedicated high-gain instrument, but the switching and final behavior still need validation.
 
-## Character
+That matters because the model should not promise a control story before the bench work proves it. For now, Hammer communicates intent: rails, saturation, tightness, and control.
 
-Hammer is the one model in the lineup that isn't trying to be versatile. Rail humbuckers throughout, a Super Switch for position-specific coil routing as the design matures — the goal is tight, saturated, controlled aggression. If you want the Relay body and the Relay platform but your home is high-gain territory, this is the model built specifically for you.
+</RelayModelSection>
 
-## Who it's for
+<RelayModelSection name="controls">
 
-Metal and hard rock players. Hammer is the specialist of the lineup — it doesn't split the difference with cleaner voices, it just commits to the high-gain lane and does it well.
+**5-way Super Switch** - Planned for position-specific routing. Exact positions will be finalized during validation.
 
-<RelayRecommendedPickups neck="GFS Crunchy Rails" middle="GFS Power Rails" bridge="GFS Crunchy Rails" />
+**Volume (push-push)** - High-gain utility function to be defined during testing.
+
+**Tone (push-pull)** - Attack contour to be defined during testing.
+
+</RelayModelSection>
+
+<RelayModelSection name="how-it-behaves">
+
+Hammer is meant to be direct rather than flexible. The target is a guitar that keeps the low end tight under gain, saturates easily, and stays controlled when rhythm parts get dense.
+
+The bridge pickup should carry the main high-gain load. The neck and middle positions should support heavier music without becoming loose, cloudy, or overly polite. The final switch map will decide whether the middle becomes a primary voice, a specialized routing option, or part of another interaction strategy.
+
+Choose Hammer if your use case starts with high gain and everything else is secondary.
+
+</RelayModelSection>
+
+<RelayModelSection name="who-its-for">
+
+Metal and hard rock players who want the Relay body and platform, but do not need the model to split the difference with clean, vintage, or roots-oriented sounds.
+
+</RelayModelSection>
+
+<RelayModelPickupChoices neck="GFS Crunchy Rails" middle="GFS Power Rails" bridge="GFS Crunchy Rails">
+
+These are concept-stage targets. If you substitute parts before the model is finalized, prioritize tight low end, controlled high output, and clear attack. Avoid pickups that get loose in the bass or smear under saturation.
+
+</RelayModelPickupChoices>
 
 <RelayDiscordCta message="Interested in Hammer? Join the Discord to follow development and share what draws you to this voice." />
