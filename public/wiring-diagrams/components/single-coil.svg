@@ -1,21 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 90">
-  <rect width="130" height="90" fill="white"/>
-  <text x="47" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">SINGLE COIL</text>
-  <rect x="2" y="13" width="90" height="64" rx="3" fill="#efefef" stroke="#333" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
+  <rect width="200" height="70" fill="white"/>
+
+  <!-- Pickup body (flat, wide) -->
+  <rect x="2" y="10" width="158" height="44" rx="3" fill="#efefef" stroke="#333" stroke-width="2"/>
   <!-- Inner coil outline (dashed) -->
-  <rect x="7" y="18" width="80" height="54" rx="2" fill="none" stroke="#aaa" stroke-width="0.75" stroke-dasharray="3,2"/>
-  <!-- 6 pole pieces -->
-  <circle cx="14" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <circle cx="27" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <circle cx="40" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <circle cx="53" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <circle cx="66" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <circle cx="79" cy="45" r="4.5" fill="#bbb" stroke="#666" stroke-width="1"/>
-  <!-- White wire (hot) -->
-  <line x1="92" y1="33" x2="130" y2="33" stroke="#888" stroke-width="3.5" stroke-linecap="round"/>
-  <line x1="92" y1="33" x2="130" y2="33" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="130" cy="33" r="4" fill="#e0e0e0" stroke="#888" stroke-width="1"/>
-  <!-- Black wire (ground) -->
-  <line x1="92" y1="61" x2="130" y2="61" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="130" cy="61" r="4" fill="#1a1a1a"/>
+  <rect x="7" y="15" width="148" height="34" rx="2" fill="none" stroke="#aaa" stroke-width="0.75" stroke-dasharray="3,2"/>
+
+  <!-- 6 pole pieces in a row (single coil) -->
+  <circle cx="22"  cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <circle cx="47"  cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <circle cx="72"  cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <circle cx="97"  cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <circle cx="122" cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <circle cx="147" cy="32" r="5" fill="#bbb" stroke="#666" stroke-width="1"/>
+
+  <!-- Label -->
+  <text x="82" y="61" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#333">SINGLE COIL</text>
+
+  <!-- Hot wire (white) -->
+  <line x1="160" y1="20" x2="198" y2="20" stroke="#999" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="160" y1="20" x2="198" y2="20" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="198" cy="20" r="4" fill="#e0e0e0" stroke="#999" stroke-width="1"/>
+  <!-- Ground wire (black) -->
+  <line x1="160" y1="44" x2="198" y2="44" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="198" cy="44" r="4" fill="#1a1a1a"/>
 </svg>
