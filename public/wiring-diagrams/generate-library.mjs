@@ -42,8 +42,10 @@ for (const [name, config] of Object.entries(metadata)) {
         .filter(Boolean)
         .join(';');
 
-    // Build the mxGraphModel XML for this shape
-    const xml =
+    // Build the mxGraphModel XML for this shape.
+    // draw.io expects the xml value to be XML-entity-encoded within the JSON string,
+    // because the library file is parsed as XML before the JSON inside is extracted.
+    const xmlRaw =
         `<mxGraphModel>` +
         `<root>` +
         `<mxCell id="0"/>` +
@@ -53,6 +55,12 @@ for (const [name, config] of Object.entries(metadata)) {
         `</mxCell>` +
         `</root>` +
         `</mxGraphModel>`;
+
+    const xml = xmlRaw
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
 
     shapes.push({
         xml,
@@ -64,6 +72,7 @@ for (const [name, config] of Object.entries(metadata)) {
 }
 
 // draw.io library format: <mxlibrary>JSON_ARRAY</mxlibrary>
+// The JSON is stored as XML text content; shape xml values are entity-encoded.
 const library = `<mxlibrary>${JSON.stringify(shapes)}</mxlibrary>`;
 writeFileSync(outputPath, library, 'utf-8');
 
