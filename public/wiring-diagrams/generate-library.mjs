@@ -42,8 +42,11 @@ for (const [name, config] of Object.entries(metadata)) {
         .filter(Boolean)
         .join(';');
 
-    // Build the mxGraphModel XML for this shape
-    const xml =
+    // Build the mxGraphModel XML for this shape, then entity-encode it for
+    // embedding as XML text content inside <mxlibrary>. Encode & < > but NOT
+    // " — JSON.stringify escapes " as \" which passes through XML decoding
+    // unchanged, whereas &quot; would decode back to " and break JSON.parse.
+    const xmlRaw =
         `<mxGraphModel>` +
         `<root>` +
         `<mxCell id="0"/>` +
@@ -53,6 +56,11 @@ for (const [name, config] of Object.entries(metadata)) {
         `</mxCell>` +
         `</root>` +
         `</mxGraphModel>`;
+
+    const xml = xmlRaw
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 
     shapes.push({
         xml,
