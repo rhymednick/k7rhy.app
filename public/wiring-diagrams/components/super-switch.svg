@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 155">
+  <rect width="280" height="155" fill="white"/>
+  <text x="140" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">SUPER SWITCH (4P5T)</text>
+  <!-- Switch housing (longer body for 4-pole) -->
+  <rect x="10" y="18" width="260" height="46" rx="3" fill="#efefef" stroke="#333" stroke-width="2"/>
+  <!-- Blade slot -->
+  <rect x="20" y="24" width="240" height="8" rx="4" fill="#ddd" stroke="#888" stroke-width="1"/>
+  <!-- 5 position markers -->
+  <line x1="45" y1="24" x2="45" y2="32" stroke="#555" stroke-width="1.5"/>
+  <line x1="95" y1="24" x2="95" y2="32" stroke="#555" stroke-width="1.5"/>
+  <line x1="140" y1="24" x2="140" y2="32" stroke="#555" stroke-width="1.5"/>
+  <line x1="185" y1="24" x2="185" y2="32" stroke="#555" stroke-width="1.5"/>
+  <line x1="235" y1="24" x2="235" y2="32" stroke="#555" stroke-width="1.5"/>
+  <text x="45" y="23" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">1</text>
+  <text x="95" y="23" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">2</text>
+  <text x="140" y="23" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">3</text>
+  <text x="185" y="23" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">4</text>
+  <text x="235" y="23" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">5</text>
+  <!-- Blade lever -->
+  <rect x="134" y="14" width="12" height="20" rx="3" fill="#aaa" stroke="#666" stroke-width="1.5"/>
+  <!-- Pole labels inside housing -->
+  <text x="140" y="48" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">P1 · P2 · P3 · P4</text>
+  <!-- Row A contacts (P1 + P2) -->
+  <text x="20" y="74" font-family="Arial,sans-serif" font-size="6.5" fill="#888">P1/P2 →</text>
+  <line x1="55" y1="64" x2="55" y2="108" stroke="#555" stroke-width="1.5"/>
+  <rect x="50" y="98" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="55" cy="108" r="4" fill="#555"/>
+  <line x1="100" y1="64" x2="100" y2="108" stroke="#555" stroke-width="1.5"/>
+  <rect x="95" y="98" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="100" cy="108" r="4" fill="#555"/>
+  <line x1="145" y1="64" x2="145" y2="108" stroke="#555" stroke-width="1.5"/>
+  <rect x="140" y="98" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="145" cy="108" r="4" fill="#555"/>
+  <line x1="190" y1="64" x2="190" y2="108" stroke="#555" stroke-width="1.5"/>
+  <rect x="185" y="98" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="190" cy="108" r="4" fill="#555"/>
+  <!-- Contact labels row A -->
+  <text x="55" y="78" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">A</text>
+  <text x="100" y="78" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">B</text>
+  <text x="145" y="78" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">C</text>
+  <text x="190" y="78" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">D</text>
+  <!-- Row B contacts (P3 + P4) -->
+  <text x="20" y="132" font-family="Arial,sans-serif" font-size="6.5" fill="#888">P3/P4 →</text>
+  <line x1="55" y1="122" x2="55" y2="148" stroke="#555" stroke-width="1.5"/>
+  <rect x="50" y="138" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="55" cy="148" r="4" fill="#555"/>
+  <line x1="100" y1="122" x2="100" y2="148" stroke="#555" stroke-width="1.5"/>
+  <rect x="95" y="138" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="100" cy="148" r="4" fill="#555"/>
+  <line x1="145" y1="122" x2="145" y2="148" stroke="#555" stroke-width="1.5"/>
+  <rect x="140" y="138" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="145" cy="148" r="4" fill="#555"/>
+  <line x1="190" y1="122" x2="190" y2="148" stroke="#555" stroke-width="1.5"/>
+  <rect x="185" y="138" width="10" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
+  <circle cx="190" cy="148" r="4" fill="#555"/>
+  <!-- Contact labels row B -->
+  <text x="55" y="130" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">E</text>
+  <text x="100" y="130" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">F</text>
+  <text x="145" y="130" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">G</text>
+  <text x="190" y="130" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#666">H</text>
+  <!-- Row divider -->
+  <line x1="10" y1="115" x2="270" y2="115" stroke="#ccc" stroke-width="0.75" stroke-dasharray="4,3"/>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 155 90">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0d060"/>
+      <stop offset="40%" stop-color="#c8960c"/>
+      <stop offset="70%" stop-color="#d4a820"/>
+      <stop offset="100%" stop-color="#b8840a"/>
+    </linearGradient>
+    <linearGradient id="goldBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d0d0d0"/>
+      <stop offset="100%" stop-color="#a0a0a0"/>
+    </linearGradient>
+  </defs>
+  <rect width="155" height="90" fill="white"/>
+  <text x="57" y="11" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">GOLD FOIL</text>
+  <!-- Base plate -->
+  <rect x="2" y="14" width="113" height="66" rx="3" fill="url(#goldBase)" stroke="#666" stroke-width="2"/>
+  <!-- Gold foil face plate (slightly inset) -->
+  <rect x="7" y="19" width="103" height="56" rx="2" fill="url(#gold)" stroke="#8B6914" stroke-width="1.5"/>
+  <!-- Mounting rail top/bottom (darker metal frame) -->
+  <rect x="2" y="14" width="113" height="9" rx="2" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <rect x="2" y="71" width="113" height="9" rx="2" fill="#bbb" stroke="#666" stroke-width="1"/>
+  <!-- 6 adjustable pole screws through foil -->
+  <circle cx="19" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <circle cx="34" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <circle cx="49" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <circle cx="64" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <circle cx="79" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <circle cx="94" cy="47" r="5" fill="#a07010" stroke="#6a4a08" stroke-width="1.5"/>
+  <!-- Screw slot details -->
+  <line x1="19" y1="43" x2="19" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="34" y1="43" x2="34" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="49" y1="43" x2="49" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="64" y1="43" x2="64" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="79" y1="43" x2="79" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <line x1="94" y1="43" x2="94" y2="51" stroke="#7a5010" stroke-width="1.5"/>
+  <!-- White wire (hot) -->
+  <line x1="115" y1="33" x2="155" y2="33" stroke="#888" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="115" y1="33" x2="155" y2="33" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="155" cy="33" r="4" fill="#e0e0e0" stroke="#888" stroke-width="1"/>
+  <!-- Black wire (ground) -->
+  <line x1="115" y1="58" x2="155" y2="58" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="155" cy="58" r="4" fill="#1a1a1a"/>
+</svg>
