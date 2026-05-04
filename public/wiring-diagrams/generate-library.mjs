@@ -33,7 +33,7 @@ for (const [name, config] of Object.entries(metadata)) {
 
     const style = [
         'shape=image',
-        `image=data:image/svg+xml;base64,${base64}`,
+        `image=data:image/svg+xml%3Bbase64,${base64}`,
         'aspect=fixed',
         'strokeColor=none',
         'fillColor=none',
