@@ -3,26 +3,28 @@ title: 'Relay Guitar Platform'
 description: 'A 3D-printed electric guitar platform. One shared body, seven distinct instruments. Build the guitar that fits how you play.'
 ---
 
-Relay is an electric guitar you print at home on a conventional FDM 3D printer. Every model shares the same double-cut body — three pickup cavities, 24.75" scale length, the same hardware mounting points. What makes each model different is what you put inside: pickup selection, wiring, and selector strategy.
+<RelayHero
+    title="Relay Guitar Platform"
+    tagline="A 3D-printed electric guitar platform. One shared body, seven distinct instruments. Build the guitar that fits how you play."
+/>
 
-Building a Relay guitar is a real project. Plan on a few weekends and $200–$400 in parts depending on the model you choose. The result is a playable, giggable instrument you understand completely — because you built it.
+## What it is, what it costs, what you get
 
-## The platform
+<RelayCosts
+    items={[
+        { title: 'What it is', body: 'A 3D-printed electric guitar you build at home. One shared body, seven voicings — pick the sound first, then build the guitar around it.' },
+        { title: 'What it costs', body: '$200–$400 in parts depending on the voicing, plus filament. Body prints on a conventional FDM printer; no specialty hardware required.' },
+        { title: 'What you get', body: 'A playable, giggable instrument you understand completely — because you built it. Same scale length and hardware as a Les Paul.' },
+    ]}
+/>
 
-- **One body.** Pickup ring adapters bridge the gap between the body's humbucker-sized cavities and smaller pickup formats like lipstick and P90. You print one body, wire it for whichever model you're building.
-- **24.75" scale.** Les Paul scale length — slightly lower tension than a Strat, slightly warmer tone, easier bends. Necks are common and well-priced.
-- **Three pickup cavities.** What changes between models is how those pickups interact. Optional cavity covers are included if you prefer a two-pickup layout.
+## How a Relay build comes together
 
-## Selector logic
-
-Two rules cover all current models:
-
-- Use a **3-way selector** when the middle pickup is a shaper or augment layer added after the bridge/neck selection.
-- Use a **5-way blade** when the middle pickup is a primary voice or part of a switched subsystem.
-
-Model pages spell out switch positions and what the controls do.
+<RelayProcessOverview />
 
 ## Voicings
+
+Seven voicings to choose from. Each is a different way to wire the same body — different pickup combinations, different selector logic, different sound.
 
 <RelayVoicingGrid>
     <RelayVoicingCard slug="lipstick" name="Relay Lipstick" tagline="Humbuckers · Lipstick shaper" genres="Blues · Rock · Alternative · Indie" description="Bridge and neck humbuckers provide the main voices. The middle lipstick reshapes them with contour, texture, and air." href="/relay/voicings/lipstick" />
@@ -34,8 +36,8 @@ Model pages spell out switch positions and what the controls do.
     <RelayVoicingCard slug="hammer" name="Relay Hammer" tagline="High gain · Rails · Concept" genres="Metal · Hard rock" description="A high-gain concept using rail pickups, aimed at tight low end, saturation, and controlled aggression." href="/relay/voicings/hammer" />
 </RelayVoicingGrid>
 
-## Community
+[See all voicings →](/relay/voicings)
 
-The build guides are being written as each model is validated. The Discord server is where questions get answered, builds get shared, and new documentation takes shape based on what people actually find confusing.
+## Community
 
 <RelayDiscordCta message="Ask questions, share builds, and follow development as the guides are written." />
