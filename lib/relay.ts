@@ -47,6 +47,11 @@ export function loadRelayPlatformPage(): { content: string; frontmatter: RelayPa
     return loadMdxFile(path.join(process.cwd(), 'content', 'relay', 'index.mdx'));
 }
 
+/** Loads the voicings gallery index page (content/relay/voicings/index.mdx). */
+export function loadRelayVoicingsGalleryPage(): { content: string; frontmatter: RelayPageFrontmatter } {
+    return loadMdxFile(path.join(process.cwd(), 'content', 'relay', 'voicings', 'index.mdx'));
+}
+
 /** Loads a platform-level section page (e.g. body/overview → content/relay/body/overview.mdx). */
 export function loadRelayPlatformSectionPage(slug: string[]): { content: string; frontmatter: RelayPageFrontmatter } {
     return loadMdxFile(resolveRelayPlatformFilePath(slug));

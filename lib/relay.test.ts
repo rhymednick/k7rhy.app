@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayVoicingPage } from '@/lib/relay';
+import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage } from '@/lib/relay';
 import { relayNav, relayPlatformNav } from '@/config/relay-nav';
 
 describe('resolveRelayVoicingFilePath', () => {
@@ -20,6 +20,13 @@ describe('loadRelayVoicingPage', () => {
         const { frontmatter } = loadRelayVoicingPage('velvet', []);
 
         expect(frontmatter.voicing).toBe('velvet');
+    });
+});
+
+describe('loadRelayVoicingsGalleryPage', () => {
+    it('loads the voicings gallery frontmatter', () => {
+        const { frontmatter } = loadRelayVoicingsGalleryPage();
+        expect(frontmatter.title).toBe('Voicings');
     });
 });
 
