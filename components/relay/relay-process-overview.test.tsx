@@ -26,20 +26,25 @@ describe('RelayProcessOverview', () => {
         expect(screen.getByText('Planned')).toBeInTheDocument();
     });
 
-    it('links Voicings to /relay/voicings (in-site route)', () => {
-        render(<RelayProcessOverview />);
-        const voicingsLink = screen.getByRole('link', { name: /voicings/i });
-        expect(voicingsLink).toHaveAttribute('href', '/relay/voicings');
-    });
-
-    it('links Body and Assembly to Discord (external)', () => {
+    it('links every stage to its in-site /relay/ page', () => {
         render(<RelayProcessOverview />);
         const bodyLink = screen.getByRole('link', { name: /body/i });
+        const voicingsLink = screen.getByRole('link', { name: /voicings/i });
         const assemblyLink = screen.getByRole('link', { name: /assembly/i });
 
-        expect(bodyLink.getAttribute('href')).toMatch(/^https:\/\/discord\./);
-        expect(assemblyLink.getAttribute('href')).toMatch(/^https:\/\/discord\./);
-        expect(bodyLink).toHaveAttribute('target', '_blank');
-        expect(assemblyLink).toHaveAttribute('target', '_blank');
+        expect(bodyLink).toHaveAttribute('href', '/relay/body');
+        expect(voicingsLink).toHaveAttribute('href', '/relay/voicings');
+        expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
+
+        // None of the stage links open in a new tab — the placeholder pages host the Discord CTA.
+        expect(bodyLink).not.toHaveAttribute('target');
+        expect(assemblyLink).not.toHaveAttribute('target');
+    });
+
+    it('uses non-Discord CTA copy on non-Live cards', () => {
+        render(<RelayProcessOverview />);
+        expect(screen.getByText(/follow progress/i)).toBeInTheDocument();
+        expect(screen.getByText(/coming soon/i)).toBeInTheDocument();
+        expect(screen.getByText(/open voicings guide/i)).toBeInTheDocument();
     });
 });

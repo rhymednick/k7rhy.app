@@ -25,14 +25,18 @@ describe('RelayLayoutSidebar (platform mode)', () => {
         expect(screen.getByText('Assembly')).toBeInTheDocument();
     });
 
-    it('marks Body and Assembly stages as Discord links (target=_blank)', () => {
+    it('routes Body and Assembly stages to in-site placeholder pages with status tags', () => {
         render(<RelayLayoutSidebar />);
-        // Accessible name is the concatenation of inline spans without whitespace: "1.BodyDiscord", "3.AssemblyDiscord"
+        // Accessible name is the concatenation of inline spans without whitespace: "1.BodyIn progress", "3.AssemblyPlanned"
         const bodyLink = screen.getByRole('link', { name: /^1\.Body/ });
         const assemblyLink = screen.getByRole('link', { name: /^3\.Assembly/ });
-        expect(bodyLink).toHaveAttribute('target', '_blank');
-        expect(assemblyLink).toHaveAttribute('target', '_blank');
-        expect(bodyLink.getAttribute('href')).toMatch(/^https:\/\/discord\./);
+        expect(bodyLink).toHaveAttribute('href', '/relay/body');
+        expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
+        expect(bodyLink).not.toHaveAttribute('target');
+        expect(assemblyLink).not.toHaveAttribute('target');
+        // Status tags appear inline with the stage title.
+        expect(bodyLink.textContent).toMatch(/In progress/i);
+        expect(assemblyLink.textContent).toMatch(/Planned/i);
     });
 
     it('lists the seven voicings in the sidebar', () => {

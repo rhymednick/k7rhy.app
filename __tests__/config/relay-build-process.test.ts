@@ -22,16 +22,20 @@ describe('relayBuildProcess config', () => {
         });
     });
 
-    it('routes Live stages to in-site routes and non-Live stages to Discord', () => {
+    it('routes every stage to an in-site /relay/ page (non-Live stages link to placeholder pages)', () => {
         for (const stage of relayBuildProcess.stages) {
-            if (stage.status === 'live') {
-                expect(stage.isDiscord ?? false).toBe(false);
-                expect(stage.href).toMatch(/^\/relay\//);
-            } else {
-                expect(stage.isDiscord).toBe(true);
-                expect(stage.href).toMatch(/^https:\/\/discord\./);
-            }
+            expect(stage.isDiscord ?? false).toBe(false);
+            expect(stage.href).toMatch(/^\/relay\//);
         }
+    });
+
+    it('points each stage to the expected in-site route', () => {
+        const byslug = Object.fromEntries(relayBuildProcess.stages.map((s) => [s.slug, s.href]));
+        expect(byslug).toEqual({
+            body: '/relay/body',
+            voicings: '/relay/voicings',
+            assembly: '/relay/assembly',
+        });
     });
 
     it('exposes the seven voicing slugs as items under the Voicings stage', () => {

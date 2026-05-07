@@ -17,7 +17,8 @@ const PLATFORM_LABEL = 'Relay Guitar';
 function StageStatusTag({ status }: { status: RelayStageStatus }) {
     if (status === 'live') return null;
     const tone = status === 'in-progress' ? 'border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-400' : 'border-slate-500/30 bg-slate-500/10 text-slate-700 dark:text-slate-400';
-    return <span className={cn('ml-2 shrink-0 rounded-full border px-1.5 py-0 text-[10px] font-medium uppercase tracking-wide', tone)}>Discord</span>;
+    const label = status === 'in-progress' ? 'In progress' : 'Planned';
+    return <span className={cn('ml-2 shrink-0 rounded-full border px-1.5 py-0 text-[10px] font-medium uppercase tracking-wide', tone)}>{label}</span>;
 }
 
 function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: string }) {

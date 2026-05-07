@@ -17,7 +17,7 @@ function StageStatusBadge({ status }: { status: RelayStageStatus }) {
 function RelayProcessCard({ stage }: { stage: RelayBuildStage }) {
     const linkProps = stage.isDiscord ? { target: '_blank', rel: 'noopener noreferrer' as const } : {};
 
-    const ctaLabel = stage.status === 'live' ? `Open ${stage.title.toLowerCase()} guide →` : stage.status === 'in-progress' ? 'Follow on Discord →' : 'Discuss on Discord →';
+    const ctaLabel = stage.status === 'live' ? `Open ${stage.title.toLowerCase()} guide →` : stage.status === 'in-progress' ? 'Follow progress →' : 'Coming soon →';
 
     return (
         <Link href={stage.href} {...linkProps} className="group block h-full">

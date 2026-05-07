@@ -17,11 +17,11 @@ describe('RelayHero', () => {
         expect(primary).toHaveAttribute('href', '/relay/voicings');
     });
 
-    it('renders the secondary "Download body files" CTA linking to the body Discord stage when body is non-Live', () => {
+    it('renders the secondary "Download body files" CTA linking to the body stage page', () => {
         render(<RelayHero title="x" tagline="y" />);
         const secondary = screen.getByRole('link', { name: /download body files/i });
-        // At PR #2 ship time, body stage is in-progress (Discord). The CTA defers to that target.
-        expect(secondary.getAttribute('href')).toMatch(/^https:\/\/discord\./);
+        expect(secondary).toHaveAttribute('href', '/relay/body');
+        expect(secondary).not.toHaveAttribute('target');
     });
 
     it('renders the micro-copy under the buttons', () => {

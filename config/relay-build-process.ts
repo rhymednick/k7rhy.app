@@ -2,12 +2,10 @@ import type { RelayBuildProcess } from '@/types/relay-nav';
 
 /**
  * Build process stages used by both the homepage RelayProcessOverview and the sidebar nav.
- * Flipping a stage's status here updates both surfaces. Discord links use the server
- * invite for now; channel-specific deeplinks can be swapped in via this file when
- * Discord-side configuration is done.
+ * Each stage links to an in-site page; non-Live pages are placeholders that explain the
+ * status and route visitors to Discord. Flipping a stage's status here updates both
+ * surfaces.
  */
-const DISCORD_INVITE = 'https://discord.gg/BuUxCG4W6w';
-
 export const relayBuildProcess: RelayBuildProcess = {
     stages: [
         {
@@ -16,8 +14,7 @@ export const relayBuildProcess: RelayBuildProcess = {
             number: 1,
             status: 'in-progress',
             summary: 'Print, bond, cure, and finish the shared double-cut body. Same body for every voicing.',
-            href: DISCORD_INVITE,
-            isDiscord: true,
+            href: '/relay/body',
         },
         {
             slug: 'voicings',
@@ -42,8 +39,7 @@ export const relayBuildProcess: RelayBuildProcess = {
             number: 3,
             status: 'planned',
             summary: 'Final assembly and setup. Hardware install, wiring, intonation, action.',
-            href: DISCORD_INVITE,
-            isDiscord: true,
+            href: '/relay/assembly',
         },
     ],
 };
