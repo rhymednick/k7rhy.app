@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { sortRelayModelNavEntries } from './relay-model-lineup-nav';
-import type { RelayModelNav } from '@/types/relay-nav';
+import { sortRelayVoicingNavEntries } from './relay-voicing-lineup-nav';
+import type { RelayVoicingNav } from '@/types/relay-nav';
 
-describe('sortRelayModelNavEntries', () => {
+describe('sortRelayVoicingNavEntries', () => {
     it('sorts by status priority, then title alphabetically', () => {
-        const entries: Array<[string, RelayModelNav]> = [
+        const entries: Array<[string, RelayVoicingNav]> = [
             ['current', { title: 'Relay Current', status: 'lab', sections: [] }],
             ['hammer', { title: 'Relay Hammer', status: 'concept', sections: [] }],
             ['torch', { title: 'Relay Torch', status: 'ready', sections: [] }],
@@ -12,6 +12,6 @@ describe('sortRelayModelNavEntries', () => {
             ['lipstick', { title: 'Relay Lipstick', status: 'ready', sections: [] }],
         ];
 
-        expect(sortRelayModelNavEntries(entries).map(([key]) => key)).toEqual(['lipstick', 'torch', 'arc', 'current', 'hammer']);
+        expect(sortRelayVoicingNavEntries(entries).map(([slug]) => slug)).toEqual(['lipstick', 'torch', 'arc', 'current', 'hammer']);
     });
 });

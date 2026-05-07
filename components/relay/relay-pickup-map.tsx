@@ -1,8 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import type { RelayModelPickupMap, RelayPickupRole, RelayPickupSlot, RelayPickupType } from '@/types/relay-model';
+import type { RelayVoicingPickupMap, RelayPickupRole, RelayPickupSlot, RelayPickupType } from '@/types/relay-voicing';
 
-export type RelayPickupMapProps = RelayModelPickupMap;
+export type RelayPickupMapProps = RelayVoicingPickupMap;
 
 const typeLabel: Record<RelayPickupType, string> = {
     humbucker: 'Humbucker',

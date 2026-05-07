@@ -1,10 +1,10 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
-import type { RelayModelStatus } from '@/types/relay-model';
+import type { RelayVoicingStatus } from '@/types/relay-voicing';
 
-export type { RelayModelStatus };
+export type { RelayVoicingStatus };
 
-export function RelayModelStatusBadge({ status, className }: { status: RelayModelStatus; className?: string }) {
+export function RelayVoicingStatusBadge({ status, className }: { status: RelayVoicingStatus; className?: string }) {
     if (status === 'ready') {
         return <span className={cn('shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600 dark:text-emerald-400', className)}>Ready</span>;
     }

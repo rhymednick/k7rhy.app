@@ -38,4 +38,4 @@ export function RelayRecommendedPickups({ neck, middle, bridge, children }: Prop
     );
 }
 
-export const RelayModelPickupChoices = RelayRecommendedPickups;
+export const RelayVoicingPickupChoices = RelayRecommendedPickups;

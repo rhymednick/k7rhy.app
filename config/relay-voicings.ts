@@ -1,8 +1,8 @@
-import type { RelayModel } from '@/types/relay-model';
+import type { RelayVoicing } from '@/types/relay-voicing';
 
-export const relayModels: RelayModel[] = [
+export const relayVoicings: RelayVoicing[] = [
     {
-        modelKey: 'lipstick',
+        slug: 'lipstick',
         name: 'Relay Lipstick',
         tagline: 'Humbuckers · Lipstick shaper',
         genres: 'Blues · Rock · Alternative · Indie',
@@ -20,10 +20,10 @@ export const relayModels: RelayModel[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/lipstick',
+        href: '/relay/voicings/lipstick',
     },
     {
-        modelKey: 'reef',
+        slug: 'reef',
         name: 'Relay Reef',
         tagline: 'Humbucker · Dual-lipstick subsystem',
         genres: 'Indie · Surf · Alt Country · Shoegaze · Studio',
@@ -41,10 +41,10 @@ export const relayModels: RelayModel[] = [
             volume: 'concentric',
             tone: 'concentric',
         },
-        href: '/relay/reef',
+        href: '/relay/voicings/reef',
     },
     {
-        modelKey: 'velvet',
+        slug: 'velvet',
         name: 'Relay Velvet',
         tagline: 'Jazz-club center · Controlled warmth',
         genres: 'Jazz · Blues · Soul · R&B',
@@ -62,10 +62,10 @@ export const relayModels: RelayModel[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/velvet',
+        href: '/relay/voicings/velvet',
     },
     {
-        modelKey: 'arc',
+        slug: 'arc',
         name: 'Relay Arc',
         tagline: 'Open · Spatial · Separated',
         genres: 'Clean pop · Indie · Ambient · Country',
@@ -83,10 +83,10 @@ export const relayModels: RelayModel[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/arc',
+        href: '/relay/voicings/arc',
     },
     {
-        modelKey: 'torch',
+        slug: 'torch',
         name: 'Relay Torch',
         tagline: 'Punch · Vocal mids · Presence',
         genres: 'Rock · Pop · Alternative · Modern country',
@@ -104,10 +104,10 @@ export const relayModels: RelayModel[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/torch',
+        href: '/relay/voicings/torch',
     },
     {
-        modelKey: 'current',
+        slug: 'current',
         name: 'Relay Current',
         tagline: 'Fast attack · Upper-mid focus',
         genres: 'Funk · Pop · Rock',
@@ -125,10 +125,10 @@ export const relayModels: RelayModel[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/current',
+        href: '/relay/voicings/current',
     },
     {
-        modelKey: 'hammer',
+        slug: 'hammer',
         name: 'Relay Hammer',
         tagline: 'High gain · Rails · Concept',
         genres: 'Metal · Hard rock',
@@ -146,6 +146,6 @@ export const relayModels: RelayModel[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/hammer',
+        href: '/relay/voicings/hammer',
     },
 ];
