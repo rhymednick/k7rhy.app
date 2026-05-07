@@ -1,20 +1,143 @@
 ---
 title: 'Body'
-description: 'The 3D-printed body stage of the Relay Guitar build. Content is in active development; join Discord to follow along.'
+description: 'Print, bond, cure, and finish the shared Relay Guitar body. Stage 1 of 3 — every voicing starts here.'
 ---
 
-The body stage is the first physical thing you build — printing the shared double-cut body, bonding the front and back halves, curing, and finishing it. Same body for every voicing.
+Stage 1 of 3 of the Relay Guitar build. The body is the same regardless of which voicing you eventually wire up, so this is the part of the build you can start before deciding on a voicing. The recommended flow is the other way around — pick a voicing first so parts can ship while the body prints — but if you already know you want to build a Relay, nothing here gates on that choice.
 
-## What this guide will cover
+<RelayDownloadCallout
+    title="Relay Body — Print files"
+    description="Three 3MF files. Print all three to make one complete body. Same parts for every voicing."
+    sources={[
+        {
+            kind: 'repo',
+            name: 'relay-body-print-files',
+            files: [
+                { href: '/downloads/K7RHY Santana - Body.3mf', label: 'Body' },
+                { href: '/downloads/K7RHY Santana - Cap.3mf', label: 'Cap' },
+                { href: '/downloads/K7RHY Santana - Accessories.3mf', label: 'Accessories' },
+            ],
+        },
+    ]}
+/>
 
-- Print settings (material, layer height, walls, infill, supports, orientation)
-- Print order and common failure modes
-- Bonding the body halves (adhesive choice, surface prep, joining sequence)
-- Clamping pattern and 24-hour cure
-- Finishing — squish-out cleanup, sanding, optional paint or seal
+Parts list for filament, adhesive, and finishing supplies → [Body parts list](/relay/body/parts).
 
-## Status: in progress
+## Overview
 
-I'm actively writing this content as the first physical builds happen. Until the guide ships, the conversation is in Discord — drop in to follow along, share progress on your own print, or ask questions about the body design.
+By the end of this stage, I'll have a printed, bonded, cured, sanded body ready for the voicing-specific work in stage 2. Concretely, that means:
 
-<RelayDiscordCta message="Building the body? Share progress, ask questions, and follow development as the guide takes shape." />
+- Three printed parts (Body, Cap, Accessories) in a structurally appropriate filament.
+- Two halves bonded into one body with adhesive that can survive sustained string tension.
+- A 24-hour cure window that lets the bond reach full strength before any hardware goes near the body.
+- A surface that's been cleaned of bond squish-out, sanded flat, and either sealed or left bare PETG depending on the look I want.
+
+Success looks like a body that sits flat on a bench, has clean joint lines with no gaps, and rings when I tap it — meaning the bond is solid and there are no internal voids from incomplete curing.
+
+## Print settings
+
+These are the settings I run on my own printer. They're a starting point if you're on the same printer/material; if you're on something different, treat the table as a baseline and tune from there.
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Print settings table">
+    Replace this block with the pill-grid of layer height, walls, top/bottom layers, infill pattern + density, print speed, nozzle/bed temp, cooling. Note material (PET-CF / PET-GF / PETG) and any first-layer or brim guidance. Per spec section 5: "Grid of pill values."
+</DocAlert>
+
+### Material
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Material decision">
+    Replace this block with the recommended filament(s), why (dimensional stability under string tension, layer adhesion under stress), and the explicit don't-use list (PLA, standard PETG for the neck pocket area). Reuse the technical reasoning from the legacy `content/relay/printing/overview.mdx` only as a structural reference — verify each claim before publishing.
+</DocAlert>
+
+### Orientation and supports
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Orientation, supports, bed adhesion">
+    Replace this block with: per-part orientation (which face down for each of Body / Cap / Accessories), support placement, support removal notes, bed adhesion (textured PEI behavior, brim guidance), and any first-layer flatness considerations that matter for the bonding step.
+</DocAlert>
+
+## Printing the parts
+
+### Print order
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Print order and time estimates">
+    Replace this block with the recommended order to start the three prints (which to print first if I'm going to assemble while the others print, total time per part, total stage time).
+</DocAlert>
+
+### Common failure modes
+
+These are the things I watch for during and after the print. Catching them early saves a re-print.
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Failure modes">
+    Replace this block with the specific things to watch for: warping (where, why), layer delamination (where it shows up first), elephant foot (and how it affects bond surfaces), under-extrusion in walls, support scarring on surfaces that need to bond. For each, what to do — re-print, or salvageable with sanding.
+</DocAlert>
+
+### Inspecting before bonding
+
+Once each part has cooled and stabilized, I check it before reaching for adhesive. The bonding step is permanent; it's much cheaper to discover a problem with the print here than to find out after curing.
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Pre-bond inspection checklist">
+    Replace this block with the checklist: flatness of mating surfaces, dimensional spot-checks (any specific calipers on neck-pocket dimensions or the bridge mount?), visible voids/cracks, layer adhesion test (can you flex the wall and see splitting?). Include "if X, sand to recover; if Y, re-print" calls for each.
+</DocAlert>
+
+## Bonding the body
+
+This is the irreversible step. Once the adhesive cures, the body is one piece — a misalignment here means re-printing, not re-doing.
+
+### Adhesive
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Adhesive choice and reasoning">
+    Replace this block with the specific adhesive I use (legacy spec mentions G/Flex 650 — verify before committing). Why this one specifically (slight flex when cured, handles vibration, doesn't go brittle). What not to use (rigid epoxy). Working time, full cure time. Mixing notes if any.
+</DocAlert>
+
+### Surface prep
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Surface prep">
+    Replace this block with the surface-prep procedure: light sanding of mating surfaces with what grit, dry-fit before any adhesive is mixed, cleaning step (alcohol wipe?), masking surfaces I want to keep clean.
+</DocAlert>
+
+### Alignment and joining sequence
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Alignment & joining sequence">
+    Replace this block with the order of operations: which mating surfaces get adhesive, in what order, which alignment features I use to register the parts, the working time I have before adhesive starts to set. Include the two critical alignments (neck pocket angle, bridge mount position) — how to check each.
+</DocAlert>
+
+## Clamping and cure
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Clamp pattern + 24h cure">
+    Replace this block with: the specific clamp pattern (where each clamp goes, how much pressure), what improvised clamps work if you don't have purpose-made ones, total clamp-on time, total full-cure time before I can take pressure off (spec calls 24h). Include a note about temperature and humidity if either matters for cure.
+</DocAlert>
+
+## Finishing
+
+Three finishing steps, in order. Step 3 is optional — bare PETG-CF/GF is a perfectly valid final finish, and skipping seal/paint is what I'd recommend for a first build.
+
+### 1. Squish-out cleanup
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Squish-out cleanup">
+    Replace this block with: when to clean up (during cure when adhesive is still soft? after full cure with a chisel?), tools, what surfaces matter most for follow-on hardware fit.
+</DocAlert>
+
+### 2. Sand the body
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Sanding">
+    Replace this block with: grit progression (coarse → fine, what grits), areas that get more attention (joint lines, edges), areas to leave alone (cavities, mounting holes), how to know I'm done. Include sanding block / power-sanding guidance.
+</DocAlert>
+
+### 3. Optional: paint or seal
+
+Bare PET-CF / PET-GF looks intentionally industrial and stands up fine to playing wear — many builds end here. If I want a different look, this is where it happens.
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Optional finish">
+    Replace this block with: paint workflow (primer? specific paint chemistries that bond to filled PET?), seal workflow (clear coat? oil?), how either affects feel against the body, and any "definitely don't" calls (e.g. solvents that attack the substrate).
+</DocAlert>
+
+## What's next
+
+At this point the body is one fully-cured piece, sanded and either sealed or bare. From here, the build picks up at the voicing I chose:
+
+- **Pick a voicing** if I haven't already → [Voicings](/relay/voicings)
+- **Order voicing-specific parts** if I haven't already (each voicing has its own pickup, switching, and control set; lead times vary)
+- **Move to stage 3** once I have parts in hand → [Assembly](/relay/assembly)
+
+The body itself is ready to receive hardware as soon as the cure window is up — there's no separate "wait" step beyond what's already happened.
+
+<RelayDiscordCta message="Building the body? Share progress, post failure modes, and ask questions — I'm collecting feedback as more printers run through this stage." />
