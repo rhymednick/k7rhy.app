@@ -45,6 +45,14 @@ describe('relayBuildProcess config', () => {
         expect(itemTitles).toEqual(['Lipstick', 'Reef', 'Velvet', 'Arc', 'Torch', 'Current', 'Hammer']);
     });
 
+    it('exposes Parts as a sub-item under the Body stage', () => {
+        const body = relayBuildProcess.stages.find((s) => s.slug === 'body');
+        expect(body).toBeDefined();
+        const itemTitles = body!.items?.map((i) => i.title) ?? [];
+        expect(itemTitles).toEqual(['Parts']);
+        expect(body!.items?.[0].href).toBe('/relay/body/parts');
+    });
+
     it('every stage has a non-empty summary', () => {
         for (const stage of relayBuildProcess.stages) {
             expect(stage.summary.length).toBeGreaterThan(10);
