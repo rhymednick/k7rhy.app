@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { relayNav } from '@/config/relay-nav';
 import type { RelayBreadcrumb } from '@/lib/relay';
 import { MyBreadcrumbs } from '@/components/doc/doc-page';
-import { RelayModelLineupNav } from '@/components/relay/relay-model-lineup-nav';
+import { RelayVoicingLineupNav } from '@/components/relay/relay-voicing-lineup-nav';
 
 const PLATFORM_HREF = '/relay';
 const PLATFORM_LABEL = 'Relay Guitar';
@@ -34,23 +34,23 @@ function PlatformSidebar() {
             </div>
 
             <div className="pb-4">
-                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">Models</h4>
-                <RelayModelLineupNav />
+                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">Voicings</h4>
+                <RelayVoicingLineupNav />
             </div>
         </nav>
     );
 }
 
-// ─── Model-level sidebar ──────────────────────────────────────────────────────
+// ─── Voicing-level sidebar ────────────────────────────────────────────────────
 
-function ModelSidebar({ model }: { model: string }) {
+function VoicingSidebar({ voicing }: { voicing: string }) {
     const pathname = usePathname();
-    const modelNav = relayNav[model];
+    const voicingNav = relayNav[voicing];
 
-    if (!modelNav) return null;
+    if (!voicingNav) return null;
 
-    const modelRootHref = `/relay/${model}`;
-    const isModelRootActive = pathname === modelRootHref;
+    const voicingRootHref = `/relay/voicings/${voicing}`;
+    const isVoicingRootActive = pathname === voicingRootHref;
 
     return (
         <nav aria-label="Relay Guitar navigation" className="w-full">
@@ -66,20 +66,20 @@ function ModelSidebar({ model }: { model: string }) {
             <div className="pb-4">
                 <div className="grid grid-flow-row auto-rows-max text-sm">
                     <Link
-                        href={modelRootHref}
+                        href={voicingRootHref}
                         className={cn(
                             'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-                            isModelRootActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                            isVoicingRootActive ? 'font-medium text-foreground' : 'text-muted-foreground',
                         )}
                     >
-                        {modelNav.title}
+                        {voicingNav.title}
                     </Link>
                 </div>
             </div>
 
             <div className="border-t pt-4">
-                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">All models</h4>
-                <RelayModelLineupNav />
+                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">All voicings</h4>
+                <RelayVoicingLineupNav />
             </div>
         </nav>
     );
@@ -87,20 +87,19 @@ function ModelSidebar({ model }: { model: string }) {
 
 // ─── Auto-switching sidebar ───────────────────────────────────────────────────
 
-// Segments under /relay/ that are platform routes, not model keys.
-const PLATFORM_SECTIONS = new Set(['build']);
-
 export function RelayLayoutSidebar() {
     const pathname = usePathname() ?? '';
     const segments = pathname.split('/').filter(Boolean);
     const relayIndex = segments.indexOf('relay');
     const nextSegment = relayIndex >= 0 ? (segments[relayIndex + 1] ?? '') : '';
+    const voicingSlug = nextSegment === 'voicings' ? (segments[relayIndex + 2] ?? '') : '';
 
-    if (!nextSegment || PLATFORM_SECTIONS.has(nextSegment)) {
+    // Voicing-level sidebar only on /relay/voicings/<slug>; everything else uses the platform sidebar.
+    if (!voicingSlug) {
         return <PlatformSidebar />;
     }
 
-    return <ModelSidebar model={nextSegment} />;
+    return <VoicingSidebar voicing={voicingSlug} />;
 }
 
 // ─── Breadcrumb bar ───────────────────────────────────────────────────────────

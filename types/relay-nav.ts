@@ -1,4 +1,4 @@
-import type { RelayModelStatus } from '@/types/relay-model';
+import type { RelayVoicingStatus } from '@/types/relay-voicing';
 
 export interface RelayNavItem {
     title: string;
@@ -11,17 +11,17 @@ export interface RelayNavSection {
     items?: RelayNavItem[];
 }
 
-export interface RelayModelNav {
+export interface RelayVoicingNav {
     title: string;
-    status: RelayModelStatus;
+    status: RelayVoicingStatus;
     sections: RelayNavSection[];
 }
 
 export interface RelayNav {
-    [model: string]: RelayModelNav;
+    [voicingSlug: string]: RelayVoicingNav;
 }
 
-/** Platform-level nav — sections shared across all models. */
+/** Platform-level nav — sections shared across all voicings. */
 export interface RelayPlatformNav {
     sections: RelayNavSection[];
 }

@@ -1,16 +1,16 @@
-export interface RelayModel {
-    modelKey: string;
+export interface RelayVoicing {
+    slug: string;
     name: string;
     tagline: string;
     genres: string;
     description: string;
-    status: RelayModelStatus;
-    interaction: RelayModelInteraction;
-    pickupMap: RelayModelPickupMap;
+    status: RelayVoicingStatus;
+    interaction: RelayVoicingInteraction;
+    pickupMap: RelayVoicingPickupMap;
     href?: string;
 }
 
-export type RelayModelStatus = 'lab' | 'ready' | 'concept';
+export type RelayVoicingStatus = 'lab' | 'ready' | 'concept';
 
 export type RelayPickupType = 'humbucker' | 'lipstick' | 'p90' | 'rail' | 'filtertron';
 export type RelayPickupRole = 'core' | 'primary' | 'shaper' | 'augment' | 'subsystem' | 'concept';
@@ -22,7 +22,7 @@ export interface RelayPickupSlot {
     role?: RelayPickupRole;
 }
 
-export interface RelayModelPickupMap {
+export interface RelayVoicingPickupMap {
     bridge: RelayPickupSlot;
     middle: RelayPickupSlot;
     neck: RelayPickupSlot;
@@ -31,7 +31,7 @@ export interface RelayModelPickupMap {
     tone?: 'standard' | 'push-pull' | 'push-push' | 'concentric';
 }
 
-export interface RelayModelInteraction {
+export interface RelayVoicingInteraction {
     category: 'Primary voice' | 'Augment layer' | 'Subsystem' | 'Shaper' | 'Concept';
     summary: string;
 }
