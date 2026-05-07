@@ -31,7 +31,7 @@ export function RelayHero({ title, tagline }: RelayHeroProps) {
                 </Link>
             </div>
 
-            <p className="mt-3 text-xs italic text-muted-foreground">Pick first, order parts, then start printing — they'll ship while the body prints.</p>
+            <p className="mt-3 text-xs italic text-muted-foreground">Pick first, order parts, then start printing — they&rsquo;ll ship while the body prints.</p>
         </div>
     );
 }

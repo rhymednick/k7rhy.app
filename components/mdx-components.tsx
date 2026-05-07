@@ -42,6 +42,9 @@ import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
 import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
 import { RelayVoicingSection } from '@/components/relay/relay-voicing-overview';
+import { RelayHero } from '@/components/relay/relay-hero';
+import { RelayCosts } from '@/components/relay/relay-costs';
+import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
 import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
@@ -180,6 +183,9 @@ const components: MDXComponents = {
     RelayPickupMap,
     RelayVoicingPickupChoices,
     RelayVoicingSection,
+    RelayHero,
+    RelayCosts,
+    RelayProcessOverview,
 };
 
 // interface MdxProps {
