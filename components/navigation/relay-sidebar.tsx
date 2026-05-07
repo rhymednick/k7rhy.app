@@ -24,6 +24,8 @@ function StageStatusTag({ status }: { status: RelayStageStatus }) {
 function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: string }) {
     const linkProps = stage.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
     const isActive = !stage.isDiscord && pathname === stage.href;
+    // Voicings has its own dedicated lineup section below; don't double-render its items here.
+    const renderItems = stage.slug !== 'voicings' && stage.items && stage.items.length > 0;
 
     return (
         <li>
@@ -32,6 +34,21 @@ function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: 
                 <span className="flex-1">{stage.title}</span>
                 <StageStatusTag status={stage.status} />
             </Link>
+            {renderItems && (
+                <ul className="ml-6 mt-0.5">
+                    {stage.items!.map((item) => {
+                        const itemActive = pathname === item.href;
+                        const itemLinkProps = item.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
+                        return (
+                            <li key={item.href}>
+                                <Link href={item.href} {...itemLinkProps} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-xs hover:underline', itemActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
+                                    {item.title}
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
         </li>
     );
 }
