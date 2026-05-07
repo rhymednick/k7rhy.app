@@ -1,0 +1,97 @@
+---
+title: 'Body parts'
+description: 'Filament, adhesive, sanding, and finishing supplies needed for the Relay Guitar body stage. Same parts for every voicing.'
+---
+
+Everything I need to print, bond, and finish a Relay body. This list is voicing-independent — every Relay starts with the same body, so the consumables here are shared regardless of which voicing I'm building toward.
+
+Voicing-specific parts (pickups, switches, pots, jacks, bridge, tuners) live on each voicing page and on the [voicings parts list](/relay/voicings) (coming soon).
+
+## Filament
+
+<BomSection>
+    <BomItem
+        title="PET-CF or PET-GF (2 spools)"
+        href="https://example.com/[AUTHOR FILL-IN]"
+        source="[AUTHOR FILL-IN]"
+        itemKey="relay-body-filament-petcf"
+        fallback="$—"
+        specific
+    >
+        Two spools cover one full body in PET-CF or PET-GF. Standard PETG is **not** a substitute for the structural parts.
+    </BomItem>
+</BomSection>
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Filament item details">
+    Replace the BomItem above with the specific filament I use (brand, color choice, whether 2 spools is exact or a buffer), and either remove `[AUTHOR FILL-IN]` once the affiliate link and itemKey are in place, or replace `specific` with a `substitution="..."` if there's a verified flexible substitute.
+</DocAlert>
+
+## Adhesive
+
+<BomSection>
+    <BomItem
+        title="Structural epoxy"
+        href="https://example.com/[AUTHOR FILL-IN]"
+        source="[AUTHOR FILL-IN]"
+        itemKey="relay-body-adhesive"
+        fallback="$—"
+        specific
+    >
+        One unit covers a single body bond with margin. Pick something that stays slightly flexible when cured; rigid epoxy goes brittle under sustained string tension.
+    </BomItem>
+</BomSection>
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Adhesive item details">
+    Replace this BomItem with the specific adhesive (legacy notes mention G/Flex 650 — verify and link). Add the price cache key once it's set up.
+</DocAlert>
+
+## Sanding
+
+<BomSection>
+    <BomItem
+        title="Sandpaper assortment"
+        href="https://example.com/[AUTHOR FILL-IN]"
+        source="[AUTHOR FILL-IN]"
+        itemKey="relay-body-sandpaper"
+        fallback="$—"
+    >
+        Multi-grit pack covering coarse-through-fine. Specific grits used in the body finishing steps are documented on the [body guide](/relay/body#sand-the-body).
+    </BomItem>
+    <BomItem
+        title="Sanding block"
+        href="https://example.com/[AUTHOR FILL-IN]"
+        source="[AUTHOR FILL-IN]"
+        itemKey="relay-body-sanding-block"
+        fallback="$—"
+        substitution="Any flat-bottomed block — I just want a stiff backing so I'm not following surface waviness with my fingers."
+    >
+        Keeps sanding flat across joint lines.
+    </BomItem>
+</BomSection>
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Sanding items">
+    Replace these BomItems with the specific brand/grits I use, and verify the substitution copy. The body guide's "Sand the body" section needs to reference the same grits I list here.
+</DocAlert>
+
+## Optional: finish
+
+Skip this section if going with bare PET-CF / PET-GF as the final finish. Both materials look intentionally industrial and hold up fine to playing wear.
+
+<BomSection>
+    <BomItem
+        title="Sealer / topcoat (optional)"
+        href="https://example.com/[AUTHOR FILL-IN]"
+        source="[AUTHOR FILL-IN]"
+        itemKey="relay-body-sealer"
+        fallback="$—"
+        substitution="Any clear or pigmented finish that bonds to filled PET. Test on a printed scrap before committing to the body."
+    >
+        Only needed if painting or sealing the body. The body guide's [optional finish](/relay/body#3-optional-paint-or-seal) section walks through the trade-offs.
+    </BomItem>
+</BomSection>
+
+<DocAlert variant="info" title="[AUTHOR FILL-IN] — Finish items">
+    Replace this BomItem with the specific finish products I'd recommend, or expand to multiple BomItems if there's a primer/paint/clearcoat workflow. Substitution copy is intentionally permissive — verify it matches what I'd actually say.
+</DocAlert>
+
+<RelayDiscordCta message="Have a substitution that worked for you? Share it on Discord — I'll add verified alternates back into this list." />
