@@ -74,7 +74,12 @@ Five sections, top to bottom:
 
 1. **Hero.** Title + one-sentence platform description + CTA pair: primary **"Choose your voicing →"**, secondary **"↓ Download body files"**. Micro-copy under the buttons explains the order: *"Pick first, order parts, then start printing — they'll ship while the body prints."*
 2. **What it is / costs / gets.** Three honest cards. Carried over from prior spec.
-3. **Process overview.** Three numbered cards (Body / Voicings / Assembly), each with a brief description and two links — "[stage] guide →" and "Parts →". This is the structural addition the prior page lacked.
+3. **Process overview.** Three **status-aware cards** (Body / Voicings / Assembly), mirroring the Concept/Lab/Ready pattern used for voicings. Each card carries one of three statuses:
+   - **Live** — the page exists. Card links to "[stage] guide →" and "Parts →".
+   - **In progress** — being actively worked on. Card links to a Discord channel where the work is being discussed; a small "preview" link surfaces if any partial content exists.
+   - **Planned** — not yet started. Card links to a Discord channel for the stage so visitors can ask questions and follow updates.
+
+   This treatment makes "not yet shipped" cards do real work — they become entry points for the community rather than dead ends. It also aligns the process scaffolding with the voicing status system already on the site.
 4. **Voicings teaser.** Compact grid of all 7 voicings with real Concept/Lab/Ready badges (today's homepage hardcodes them all to Lab — that's a bug we fix). Plus a "See all voicings →" tile linking to `/relay/voicings`.
 5. **Discord CTA.** Carried over.
 
@@ -88,7 +93,7 @@ Long-scroll guide page using the existing `PageNavigation` auto-TOC.
 
 **Body (in order):**
 
-- **Files & downloads callout.** First thing in the content. Accent-bordered, prominent. ZIP download + MakerWorld link + "Parts list →".
+- **Files & downloads callout.** First thing in the content. Accent-bordered, prominent. Repo-hosted ZIP download + "Parts list →" link. Component supports adding MakerWorld and other sources later via config.
 - **Overview** — what you'll do, what success looks like.
 - **Print settings** — material, layer height, walls, infill, supports, orientation. Grid of pill values.
 - **Printing the parts** — print order, common failure modes, what to inspect before bonding.
@@ -187,9 +192,13 @@ Layout + nav. No new content pages.
 - Update `content/relay/index.mdx` to the five-section shape: hero with CTA pair → costs cards → process overview → voicings teaser → Discord CTA
 - New component: `RelayProcessOverview` rendering the three numbered cards
 - Update `config/relay-nav.ts` to include the Build process tree
-- The process overview cards reference `/relay/body`, `/relay/voicings`, `/relay/assembly`. Only `/relay/voicings` exists at this point. Body and Assembly cards are **disabled with a subtle "Coming next" tag** — no broken links, honors the no-stubs principle.
+- The process overview cards use the status-aware pattern from Section 4. At PR #2 ship time:
+  - **Voicings** — Live (page exists)
+  - **Body** — In progress (links to a Discord channel; small preview link if any draft is up)
+  - **Assembly** — Planned (links to a Discord channel for the stage)
+- Sidebar nav renders Body and Assembly entries with a "Discord" suffix or icon to make their status visible.
 
-**Validation:** `/relay` shows the new layout; nav renders Body and Assembly as disabled items; clicking them does nothing or shows a tooltip.
+**Validation:** `/relay` shows the new layout; the three cards render with correct statuses; Body and Assembly cards open Discord; clicking the Voicings card goes to `/relay/voicings`.
 
 ### PR #3 — Build `/relay/body`
 
@@ -198,9 +207,10 @@ New routes + new content + downloads.
 **Scope:**
 - New route `app/relay/body/page.tsx` and content under `content/relay/body/`
 - New parts route `app/relay/body/parts/page.tsx` and content
-- Hook up the body files download (path TBD — see open questions)
-- Activate the Body card on the `/relay` process overview (remove the disabled state)
-- Mine and then delete legacy `content/relay/{printing, build}/` files
+- Hook up the body files download — repo-hosted ZIP for now, with the `RelayDownloadCallout` component supporting a configurable list of sources (repo, MakerWorld, etc.) so a future "MakerWorld exclusive" mode can suppress all other sources via config
+- Flip the Body card on `/relay` from In progress → Live; the Voicings card stays Live; Assembly stays Planned
+- Add a contextual Discord channel callout on `/relay/body` ("Building? Share progress in #body-builds")
+- Mine legacy `content/relay/{printing, build}/` files for **structural ideas only** (per the legacy-content policy in Section 9), then delete them in this PR or a follow-up cleanup
 
 **Validation:** a builder can land on `/relay`, click "Choose your voicing" or "Download body files", reach a complete body-stage guide, and start printing.
 
@@ -209,10 +219,11 @@ New routes + new content + downloads.
 ## 11. Components
 
 ### New
-- `RelayProcessOverview` — three numbered cards rendering on `/relay`
+- `RelayProcessOverview` — renders the three status-aware cards on `/relay`. Card status (Live / In progress / Planned) and target URL (page route or Discord channel) come from a config block, so flipping a card from "Planned" to "Live" later is a config change.
+- `RelayProcessCard` — the individual card. Renders pill, title, description, and contextual link (page or Discord).
 - `RelayVoicingPartsTable` — parts list with voicing selector (used on `/relay/voicings/parts` and inline on each voicing page)
-- `RelayBodyPartsTable` — static parts list for `/relay/body/parts` (and same shape for `/relay/assembly/parts` later)
-- `RelayDownloadCallout` — accent-bordered download block (used on `/relay/body` initially)
+- `RelayPartsTable` — static parts list for `/relay/body/parts` and `/relay/assembly/parts`. Same visual shape as the voicing parts table minus the selector.
+- `RelayDownloadCallout` — accent-bordered download block. Takes a list of download sources (label + URL + optional icon). When the list is reduced to a single source (e.g., MakerWorld exclusive future state), the component renders accordingly without other UI changes.
 
 ### Renamed from prior spec
 - `RelayVoicingOverview` (was `RelayModelOverview`)
@@ -229,21 +240,45 @@ New routes + new content + downloads.
 
 ---
 
-## 12. Open questions
+## 12. Resolved questions
 
-These are **not blockers** for finalizing the spec. They get resolved during PR #3.
+These were open in the first draft. All resolved before PR work begins.
 
-- **Where do the body files live?** Options: hosted in the repo, on MakerWorld, or in Netlify Blobs. Affects the download UX in the callout.
-- **Wiring diagram approach for voicings.** The 2026-04-17 spec called for SVG schematics built during implementation. That decision still applies, but is out of scope until PR #4+ when wiring is authored on each voicing page.
-- **Process overview "Coming next" treatment.** What does the disabled card look like — opacity, tag, hover behavior? Visual polish for PR #2.
+- **Body file hosting.** Hosted **in the repo** for the initial launch. MakerWorld and possibly other locations get added later. If a future MakerWorld-exclusive arrangement applies, all other download sources are removed. The `RelayDownloadCallout` component is built to accept a configurable list of sources from the start so this is a config change, not a component rewrite.
+- **Wiring diagram approach.** Hand-drawn raster images are on the table — every SVG-based prototype tried so far has looked unsatisfying. Voicing wiring is out of scope for this revision (deferred to a later PR), but when authored, diagrams will go through `DocImage` (with click-to-expand) by default. SVG is no longer the assumed approach.
+- **Process overview card treatment.** Resolved as **Option C — status-aware cards** (Live / In progress / Planned). See Section 4 for the visual treatment and Section 13 for how the statuses interact with Discord.
 
 ---
 
-## 13. Out of scope (deferred)
+## 13. Discord strategy
+
+Discord moves from "deferred" to integrated across the active PR sequence, because the site updates are being **published as they ship** — and the goal is to get people joining, talking, and asking questions starting now rather than after everything is built.
+
+**Per-PR Discord touchpoints:**
+
+- **PR #1 (rename)** — No Discord changes. Pure refactor.
+- **PR #2 (restructure)** — The two non-Live status-aware cards on `/relay` link to Discord channels (`#voicings` for In progress, `#assembly` for Planned). Sidebar entries for those stages also surface their Discord status. The existing `RelayDiscordCta` placement on `/relay` carries over but may be repositioned for prominence.
+- **PR #3 (body stage)** — `/relay/body` adds a contextual Discord channel callout in the "What's next" footer ("Building? Share progress in #body-builds"). The body parts list adds a Discord link near the parts table for sourcing questions.
+
+**Discord channels referenced (Discord-side configuration is out of scope for this spec):**
+- `#general` — community-wide
+- `#body-builds` — body printing and construction
+- `#voicings` — voicing development progress
+- `#assembly` — final assembly and setup
+- Per-voicing channels (already specified in 2026-04-17 spec)
+
+**Still deferred:**
+- Bot integration (Level B from prior spec) — surfacing pinned Discord answers on the site via ISR
+- Forum-channel-per-thread integration (Level C from prior spec)
+- Discord OAuth on the site
+
+These come in their own PR after the active sequence ships.
+
+## 14. Out of scope (deferred)
 
 - Authoring wiring for each voicing
-- Per-voicing parts list completion (only structure ships in PR #3+; the actual parts get filled in as voicings move toward Ready)
-- Discord bot integration (Levels B/C from prior spec)
+- Per-voicing parts list completion (only structure ships in PR #3+; actual parts fill in as voicings move toward Ready)
+- Discord bot integration (Levels B/C from prior spec — see Section 13)
 - Photos for any voicing's wiring
 - Validation/Ready upgrades for any voicing beyond what's already in config
 
