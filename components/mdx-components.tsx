@@ -119,19 +119,18 @@ const components: MDXComponents = {
     th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => <th className={cn('border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right', className)} {...props} />,
     td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => <td className={cn('border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right', className)} {...props} />,
     code: ({ className, children }) => {
-        const showLineNumbers = className?.includes('(show-line-numbers)') || false;
-        const languageClassName = className?.replace('(show-line-numbers)', '').trim();
-        // console.log('showLineNumbers', showLineNumbers);
-        // console.log('languageClassName', languageClassName);
-        // console.log('className', className);
-        if (typeof children === 'string') {
+        // Only render CodeBlock for fenced code blocks, which always have a language className.
+        // Inline backtick code has no className and must stay as <code> to avoid <div> inside <p>.
+        if (className && typeof children === 'string') {
+            const showLineNumbers = className.includes('(show-line-numbers)');
+            const languageClassName = className.replace('(show-line-numbers)', '').trim();
             return (
                 <CodeBlock className={languageClassName} showLineNumbers={showLineNumbers}>
                     {children.trim()}
                 </CodeBlock>
             );
         }
-        return <code className={languageClassName}>{children}</code>;
+        return <code className={className}>{children}</code>;
     },
     Image,
     Callout,
