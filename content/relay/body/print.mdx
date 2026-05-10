@@ -1,0 +1,63 @@
+---
+title: 'Print'
+description: 'Material requirements, released print files for the Relay body platform, and what to expect before assembly.'
+---
+
+If you have not picked a model yet, start with [Voicings](/relay/voicings) — it links every model page and explains how the shared platform relates to each build.
+
+The Relay **body** is printed in multiple parts and bonded together. The download bundle below is the **released reference body** used for [Relay Lipstick](/relay/voicings/lipstick) today. Other Relay models share this platform until model-specific print packages ship.
+
+<DownloadGroup
+    title="Relay body — print files (reference release)"
+    description="Print Body and Cap in PET-CF or PET-GF. Accessories can be printed in standard PETG."
+    name="relay-lipstick-print-files"
+    files={[
+        { href: '/downloads/K7RHY Santana - Body.3mf', label: 'Body' },
+        { href: '/downloads/K7RHY Santana - Cap.3mf', label: 'Cap' },
+        { href: '/downloads/K7RHY Santana - Accessories.3mf', label: 'Accessories' },
+    ]}
+/>
+
+Getting the print right is the foundation everything else sits on — a warped body or delaminated joint will cause problems that are hard to fix later.
+
+## Material
+
+Print with **PET-CF (carbon fiber filled) or PET-GF (glass fiber filled)**. These materials are dimensionally stable under string tension and temperature variation in ways that PLA and PETG are not.
+
+<DecisionNote variant="caution" title="Do not print with PLA or standard PETG">
+    String tension creates sustained mechanical stress on the body, particularly around the neck pocket and bridge mount. PLA will creep over time — the neck angle will shift and the instrument will go out of intonation. PETG is better but still too flexible for the neck pocket area. PET-CF and PET-GF are what I've tested and can stand behind.
+</DecisionNote>
+
+The [Body overview](/relay/body) lists the filament with a purchase link. Two spools are required for a complete body.
+
+## What you're printing
+
+Three files, two materials:
+
+- **Body.3mf** — the main body structure. Print in PET-CF or PET-GF.
+- **Cap.3mf** — the front face that bonds to the body. Print in PET-CF or PET-GF.
+- **Accessories.3mf** — small parts (pickup rings and similar). Standard PETG is fine here.
+
+Body and Cap bond together into a single structure in the [Bonding](/relay/body/bonding) step. Print both before moving on — do not start bonding with only one part done.
+
+## Print time
+
+With one printer, expect about **50 hours of print time** for the complete body — plan for a week. Slower speeds improve layer adhesion with filled materials, so do not chase speed at the expense of quality here.
+
+## Orientation and layer direction
+
+Orientation matters more than it looks like it should. The neck pocket and bridge mount areas need to be printed so that layer lines run **perpendicular to the primary stress direction** — this reduces the chance of delamination under string tension. The .3mf files include pre-set orientations; do not rotate the parts unless you have a specific reason.
+
+## Bed adhesion
+
+PET-CF sticks well to textured PEI sheets. If you see warping at the corners of larger parts, use a brim. Do not use glue stick — it can cause uneven first layers that affect how parts fit together.
+
+## What to watch for
+
+- **Warping at the neck pocket:** This is the most structurally critical area. If the pocket warps, the neck won't seat squarely.
+- **Layer delamination on thick walls:** Filled materials can delaminate if printed too fast. Reduce speed if you see separation.
+- **Elephant foot at the first layer:** This will affect fit between parts. Use a brim if needed and sand the bottom layer flat before bonding.
+
+## After printing
+
+Let all parts fully cool — at least 24 hours off the bed — before checking fit. Check all mating surfaces for flatness before bonding. See [Bonding](/relay/body/bonding) for the bonding process.

@@ -1,20 +1,25 @@
 ---
 title: 'Body'
-description: 'The 3D-printed body stage of the Relay Guitar build. Content is in active development; join Discord to follow along.'
+description: 'Print, bond, cure, and finish the shared double-cut body. Same body for every voicing.'
 ---
 
-The body stage is the first physical thing you build — printing the shared double-cut body, bonding the front and back halves, curing, and finishing it. Same body for every voicing.
+The body is the foundation — print the parts, bond them, let the epoxy cure, then sand and seal the surface. Same body for every voicing.
 
-## What this guide will cover
+## Steps
 
-- Print settings (material, layer height, walls, infill, supports, orientation)
-- Print order and common failure modes
-- Bonding the body halves (adhesive choice, surface prep, joining sequence)
-- Clamping pattern and 24-hour cure
-- Finishing — squish-out cleanup, sanding, optional paint or seal
+1. [Print](/relay/body/print) — Download the print files, choose your material, and get all parts off the bed before moving on.
+2. [Bonding](/relay/body/bonding) — Bond the printed parts into a single complete structure with G/Flex 650 epoxy.
+3. [Finishing](/relay/body/finishing) — Sand the bonded body and seal the surface before hardware installation.
 
-## Status: in progress
+## Materials
 
-I'm actively writing this content as the first physical builds happen. Until the guide ships, the conversation is in Discord — drop in to follow along, share progress on your own print, or ask questions about the body design.
+<BomSection>
+    <BomItem title="PET-CF Filament (×2 spools)" href="https://amzn.to/4uIaVRl" source="Amazon" itemKey="pet-cf-filament" fallback="$66.00" specific substitution="PET-GF (glass fiber filled) is a valid alternative to PET-CF and may be easier to source. Both provide the dimensional stability and strength this build requires. Do not use PLA or standard PETG — they can fail under string tension over time.">
+        Two spools are required for a complete body. See [Print](/relay/body/print) for why material choice matters.
+    </BomItem>
+    <BomItem title="G/Flex 650 Epoxy" href="https://amzn.to/41jYduJ" source="Amazon" itemKey="gflex-650" fallback="$32.00" specific>
+        A flexible marine-grade epoxy that handles vibration and stress without cracking. I've tested alternatives and come back to this every time. If you need to make a substitution, look for a slow-curing epoxy designed for plastic bonding.
+    </BomItem>
+</BomSection>
 
-<RelayDiscordCta message="Building the body? Share progress, ask questions, and follow development as the guide takes shape." />
+Everything else — hardware, electronics, neck — is in the instrument parts list for each model.
