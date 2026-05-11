@@ -39,10 +39,14 @@ describe('RelayLayoutSidebar (platform mode)', () => {
         expect(assemblyLink.textContent).toMatch(/Planned/i);
     });
 
-    it('renders the Parts sub-link under the Body stage', () => {
+    it('renders Print, Bonding, and Finishing sub-links under the Body stage', () => {
         render(<RelayLayoutSidebar />);
-        const partsLink = screen.getByRole('link', { name: /^Parts$/ });
-        expect(partsLink).toHaveAttribute('href', '/relay/body/parts');
+        const printLink = screen.getByRole('link', { name: /^Print$/ });
+        const bondingLink = screen.getByRole('link', { name: /^Bonding$/ });
+        const finishingLink = screen.getByRole('link', { name: /^Finishing$/ });
+        expect(printLink).toHaveAttribute('href', '/relay/body/print');
+        expect(bondingLink).toHaveAttribute('href', '/relay/body/bonding');
+        expect(finishingLink).toHaveAttribute('href', '/relay/body/finishing');
     });
 
     it('lists the seven voicings in the sidebar', () => {
