@@ -12,7 +12,7 @@ export const relayBuildProcess: RelayBuildProcess = {
             slug: 'body',
             title: 'Body',
             number: 1,
-            status: 'in-progress',
+            status: 'live',
             summary: 'Print, bond, cure, and finish the shared double-cut body. Same body for every voicing.',
             href: '/relay/body',
             items: [

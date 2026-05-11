@@ -45,6 +45,7 @@ import { RelayVoicingSection } from '@/components/relay/relay-voicing-overview';
 import { RelayHero } from '@/components/relay/relay-hero';
 import { RelayCosts } from '@/components/relay/relay-costs';
 import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
+import { RelayDownloadCallout } from '@/components/relay/relay-download-callout';
 import { DocTerm } from '@/components/doc/doc-term';
 
 //import { Style } from "@/registry/styles"
@@ -185,6 +186,7 @@ const components: MDXComponents = {
     RelayHero,
     RelayCosts,
     RelayProcessOverview,
+    RelayDownloadCallout,
 };
 
 // interface MdxProps {

@@ -24,6 +24,8 @@ function StageStatusTag({ status }: { status: RelayStageStatus }) {
 function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: string }) {
     const linkProps = stage.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
     const isActive = !stage.isDiscord && pathname === stage.href;
+    // Voicings has its own dedicated lineup section below; don't double-render its items here.
+    const renderItems = stage.slug !== 'voicings' && stage.items && stage.items.length > 0;
 
     return (
         <li>
