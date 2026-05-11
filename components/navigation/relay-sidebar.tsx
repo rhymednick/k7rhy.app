@@ -29,19 +29,18 @@ function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: 
 
     return (
         <li>
-            <Link href={stage.href} {...linkProps} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm hover:underline', isActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                <span className="mr-2 inline-block w-4 shrink-0 text-xs text-muted-foreground/70">{stage.number}.</span>
+            <Link href={stage.href} {...linkProps} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm font-medium hover:underline', isActive ? 'text-foreground' : 'text-foreground/70')}>
                 <span className="flex-1">{stage.title}</span>
                 <StageStatusTag status={stage.status} />
             </Link>
-            {renderItems && (
-                <ul className="ml-6 mt-0.5">
-                    {stage.items!.map((item) => {
-                        const itemActive = pathname === item.href;
+            {stage.items && stage.items.length > 0 && (
+                <ul className="ml-4 mt-0.5 grid grid-flow-row auto-rows-max border-l border-border/50">
+                    {stage.items.map((item) => {
                         const itemLinkProps = item.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
+                        const isItemActive = !item.isDiscord && pathname === item.href;
                         return (
                             <li key={item.href}>
-                                <Link href={item.href} {...itemLinkProps} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-xs hover:underline', itemActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
+                                <Link href={item.href} {...itemLinkProps} className={cn('flex w-full items-center rounded-md border border-transparent py-1 pl-3 pr-2 text-sm hover:underline', isItemActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
                                     {item.title}
                                 </Link>
                             </li>

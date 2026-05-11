@@ -27,9 +27,9 @@ describe('RelayLayoutSidebar (platform mode)', () => {
 
     it('routes Body and Assembly stages to in-site pages, with status tag only on non-Live', () => {
         render(<RelayLayoutSidebar />);
-        // Accessible name is the concatenation of inline spans without whitespace: "1.Body", "3.AssemblyPlanned"
-        const bodyLink = screen.getByRole('link', { name: /^1\.Body/ });
-        const assemblyLink = screen.getByRole('link', { name: /^3\.Assembly/ });
+        // Accessible name is the concatenation of the title span and status tag: "BodyIn progress", "AssemblyPlanned"
+        const bodyLink = screen.getByRole('link', { name: /^Body/ });
+        const assemblyLink = screen.getByRole('link', { name: /^Assembly/ });
         expect(bodyLink).toHaveAttribute('href', '/relay/body');
         expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
         expect(bodyLink).not.toHaveAttribute('target');
