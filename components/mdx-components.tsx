@@ -36,6 +36,7 @@ import { PriceTag } from '@/components/price-tag';
 import { BomItem, BomSection } from '@/components/doc/bom-item';
 import { DownloadList, DownloadFile, DownloadGroup, DownloadGroupFile } from '@/components/doc/download-files';
 import { RelayVoicingGrid, RelayVoicingCard } from '@/components/doc/relay-voicing-grid';
+import { CardGrid, CardGridItem } from '@/components/doc/card-grid';
 import { RelayVoicingPickupChoices, RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
 import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
 import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
@@ -43,7 +44,6 @@ import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
 import { RelayVoicingSection } from '@/components/relay/relay-voicing-overview';
 import { RelayHero } from '@/components/relay/relay-hero';
-import { RelayCosts } from '@/components/relay/relay-costs';
 import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
 import { RelayDownloadCallout } from '@/components/relay/relay-download-callout';
 import { DocTerm } from '@/components/doc/doc-term';
@@ -174,6 +174,8 @@ const components: MDXComponents = {
     DownloadFile,
     DownloadGroup,
     DownloadGroupFile,
+    CardGrid,
+    CardGridItem,
     RelayVoicingGrid,
     RelayVoicingCard,
     RelayRecommendedPickups,
@@ -184,7 +186,6 @@ const components: MDXComponents = {
     RelayVoicingPickupChoices,
     RelayVoicingSection,
     RelayHero,
-    RelayCosts,
     RelayProcessOverview,
     RelayDownloadCallout,
 };
