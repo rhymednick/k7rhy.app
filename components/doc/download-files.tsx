@@ -17,7 +17,11 @@ function getFileSize(href: string): string {
 
 interface DownloadFileEntry {
     href: string;
-    label: string;
+    label?: string;
+}
+
+function getFileLabel({ href, label }: DownloadFileEntry): string {
+    return label ?? path.basename(href);
 }
 
 // ─── Option A: Compact list ──────────────────────────────────────────────────
@@ -28,13 +32,14 @@ export function DownloadList({ children }: { children: React.ReactNode }) {
 
 export function DownloadFile({ href, label }: DownloadFileEntry) {
     const size = getFileSize(href);
+    const fileLabel = getFileLabel({ href, label });
     return (
         <div className={cn('flex items-center gap-3 border-b px-4 py-3 last:border-b-0', 'transition-colors hover:bg-muted/40')}>
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-muted">
                 <FileBox className="h-4 w-4 text-primary" />
             </div>
             <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium">{label}</p>
+                <p className="truncate text-sm font-medium">{fileLabel}</p>
                 {size && <p className="text-xs text-muted-foreground">{size}</p>}
             </div>
             <a href={href} download className="flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-primary/80">
@@ -91,14 +96,15 @@ export function DownloadGroup({ title, description, name, files }: DownloadGroup
 
 export function DownloadGroupFile({ href, label }: DownloadFileEntry) {
     const size = getFileSize(href);
+    const fileLabel = getFileLabel({ href, label });
     return (
         <div className={cn('flex items-center gap-3 border-b px-4 py-3 last:border-b-0', 'transition-colors hover:bg-muted/40')}>
             <FileBox className="h-4 w-4 shrink-0 text-muted-foreground" />
-            <span className="flex-1 text-sm font-medium">{label}</span>
+            <span className="flex-1 text-sm font-medium">{fileLabel}</span>
             {size && <span className="text-xs text-muted-foreground">{size}</span>}
-            <a href={href} download className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/80" title={`Download ${label}`}>
+            <a href={href} download className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground transition-colors hover:bg-primary/80" title={`Download ${fileLabel}`}>
                 <Download className="h-3.5 w-3.5" />
-                <span className="sr-only">Download {label}</span>
+                <span className="sr-only">Download {fileLabel}</span>
             </a>
         </div>
     );
