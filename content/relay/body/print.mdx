@@ -34,7 +34,7 @@ The [Body overview](/relay/body) lists the filament with a purchase link. Two sp
 
 - **K7RHY Relay Flex Body.3mf** — the main body structure. The core of the body that goes from the neck through to the bridge must be printed with fiber reinforced materials (PET-CF or PET-GF) for best sound and stability. You can print the rest with any material, but it's much simpler if you keep the material consistent throughout. The choices you make will have some impact on the tone of the guitar, but it's minor enough that you don't need to consider that aspect. The main issue is with shrinkage. Every material prints a little differently and experiences some level of shrinkage. When you use a single material throughout, the parts tend to shrink in ways that still allow them to fit together without modification. When you start mixing materials, you may need to do some sanding to get everything to fit together cleanly. 
 - **K7RHY Relay Flex Cap.3mf** — the front face that bonds to the body. Print in PET-CF or PET-GF. The way the model is cut, you should not mix materials here. Also, since the bridge is mounted through this layer, you need to use structural materials. 
-- **K7RHY Relay Flex Accessories.3mf** — small parts (pickup rings and similar). Standard PETG is fine here.
+- **K7RHY Relay Flex Accessories.3mf** — small parts (pickup rings and similar). These parts aren't structural, so you can print them with whatever filament you like. This might be a good opportunity to inject some color into your build. 
 
 Body and Cap bond together into a single structure in the [Bonding](/relay/body/bonding) step. Print both before moving on. You can bond the body before finishing the cap, but you must not bond the cap components together without the body. I've designed the cap to have some room for adjustment so that it will fit the body even if the body has undergone some minor dimensional shifts. If you fuse the cap without the body, then you won't be able to fine tune it to fit the body. 
 
@@ -56,16 +56,59 @@ Let all parts cool on the bed before removing them. This minimizes warping that 
 
 ## Print settings
 
-If you're not able to use the provided print profiles, here's what you need to know to set up your own prints. 
+If you're not able to use the provided print profiles, here's what you need to know to set up your own prints. These settings come from the released Bambu Studio profiles in the .3mf files. I sliced them for a **Bambu Lab P1S with a 0.4 mm nozzle** on a **High Temp Plate**, using a 0.20 mm profile.
+
+Use these as the important targets, not as a promise that every slicer will expose the settings with the same names:
+
+- **Layer height:** 0.20 mm
+- **First layer height:** 0.20 mm
+- **Line width:** 0.42 mm
+- **First layer line width:** 0.50 mm
+- **Outer wall line width:** 0.42 mm
+- **Inner wall line width:** 0.45 mm
+- **Top shell thickness:** 2.0 mm
+- **Bottom shell thickness:** 2.0 mm
+- **Fill multiline:** 3
+- **Bed temperature:** 90°C
+- **First layer speed:** 50 mm/s
+- **Brim gap:** 0.05 mm for Body and Cap; 0.10 mm for Accessories
+
+If you're using Bambu Studio or OrcaSlicer, enable **Auto circle contour-hole compensation** (`enable_circle_compensation`) for the Body and Cap. This is still experimental, but it has helped the dowel and screw-hole fit in my prints. The released Body and Cap files have it enabled; Accessories do not depend on it.
 
 ### Structural Body Component Settings
 
+The Body file has six plates. The first two plates are the structural core of the instrument and intentionally use stronger settings than the rest of the Body file:
+
+- **Plate 1: Top Core** — 8 wall loops, 30% infill
+- **Plate 2: Middle Core** — 8 wall loops, 30% infill
+
+For the remaining Body plates, use:
+
+- **Wall loops:** 6
+- **Sparse infill:** 15%
+- **Infill pattern:** gyroid
+- **Fill multiline:** 3
+- **Supports:** enabled, tree auto, build plate only
+- **Brim:** outer only, 10 mm
+
+Do not reduce the first two Body plates to the general body settings. Those two plates carry the main neck-to-bridge load path, so the extra walls and infill matter more there than they do on the cosmetic body sections.
 
 ### Cosmetic Body Component Settings
 
+The less-loaded Body sections can use the general Body settings above: 6 wall loops, 15% gyroid infill, tree auto supports from the build plate only, and a 10 mm outer brim. These pieces still benefit from PET-CF or PET-GF for dimensional consistency, but they are less sensitive than the Top Core and Middle Core.
 
 ### Cap Settings
 
+The Cap bonds to the Body and carries the bridge load through the front face, so treat it as structural:
+
+- **Wall loops:** 8
+- **Sparse infill:** 20%
+- **Infill pattern:** gyroid
+- **Fill multiline:** 3
+- **Supports:** enabled, tree auto
+- **Brim:** outer only, 10 mm
+
+Keep **Auto circle contour-hole compensation** enabled for the Cap as well. It is especially useful anywhere the model depends on holes or circular openings fitting without post-processing.
 
 ## Community
 
