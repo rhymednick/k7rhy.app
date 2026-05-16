@@ -64,7 +64,7 @@ export function DocPage(props: DocPageProps) {
                 <div className="space-y-2">
                     <DocSection title={props.title} className="scroll-m-20">
                         {subTitle}
-                        <div className="max-w-[800px] justify-between ">{props.children}</div>
+                        <div className="max-w-article justify-between">{props.children}</div>
                     </DocSection>
                 </div>
             </div>

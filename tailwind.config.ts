@@ -72,6 +72,9 @@ const config = {
                 sans: ['Inter', 'sans-serif'],
                 mono: ['JetBrains Mono', 'monospace'],
             },
+            maxWidth: {
+                article: '800px',
+            },
         },
     },
 

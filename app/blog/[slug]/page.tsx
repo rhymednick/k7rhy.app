@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import components from '@/components/mdx-components'; // Ensure the correct path to your mdx-components.tsx
 import { BlogPage } from '@/components/blog/blog-page';
+import { BlogPostNav } from '@/components/blog/blog-post-nav';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle } from 'lucide-react';
 import DocAlert, { Level } from '@/components/doc/doc-alert';
@@ -45,6 +46,26 @@ const Page = async ({ params }: BlogProps) => {
     const source = fs.readFileSync(filePath, 'utf-8');
     const { content, data } = matter(source);
 
+    // Derive prev/next from all published posts sorted by date descending
+    const allFiles = fs.readdirSync(path.join(process.cwd(), 'content/blog')).filter((f) => f.endsWith('.mdx'));
+    const allPosts = allFiles
+        .map((filename) => {
+            const src = fs.readFileSync(path.join(process.cwd(), 'content/blog', filename), 'utf-8');
+            const { data: meta } = matter(src);
+            return {
+                slug: filename.replace('.mdx', ''),
+                title: meta.title as string,
+                date: meta.date as string,
+                publish: meta.publish as boolean,
+            };
+        })
+        .filter((p) => p.publish)
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+    const currentIndex = allPosts.findIndex((p) => p.slug === slug);
+    const prevPost = currentIndex !== -1 && currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+    const nextPost = currentIndex !== -1 && currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+
     // Check if the post is unpublished and if it's in production (or overridden env)
     if (environment === 'production' && !data.publish) {
         console.log('Unpublished post, returning 404 in production');
@@ -52,7 +73,7 @@ const Page = async ({ params }: BlogProps) => {
     }
 
     return (
-        <BlogPage title={data.title} date={data.date}>
+        <BlogPage title={data.title} date={data.date} nav={<BlogPostNav prev={prevPost} next={nextPost} />}>
             {!data.publish && unpublishedAlert()}
             <MDXRemote source={content} components={components} />
         </BlogPage>
