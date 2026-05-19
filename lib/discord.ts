@@ -17,7 +17,7 @@ export async function fetchPinnedMessages(threadId: string): Promise<DiscordPinn
             headers: {
                 Authorization: `Bot ${token}`,
             },
-            next: { revalidate: 3600 },
+            next: { revalidate: 300 },
         });
 
         if (!res.ok) return [];
