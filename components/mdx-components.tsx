@@ -39,6 +39,7 @@ import { RelayVoicingGrid, RelayVoicingCard } from '@/components/doc/relay-voici
 import { CardGrid, CardGridItem } from '@/components/doc/card-grid';
 import { RelayVoicingPickupChoices, RelayRecommendedPickups } from '@/components/relay/relay-recommended-pickups';
 import { RelayDiscordCta } from '@/components/relay/relay-discord-cta';
+import { DiscordCommunityCallout } from '@/components/discord-community-callout';
 import { RelayLabDisclosure } from '@/components/relay/relay-lab-disclosure';
 import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
@@ -180,6 +181,7 @@ const components: MDXComponents = {
     RelayVoicingCard,
     RelayRecommendedPickups,
     RelayDiscordCta,
+    DiscordCommunityCallout,
     RelayLabDisclosure,
     RelayWiringDiagram,
     RelayPickupMap,
