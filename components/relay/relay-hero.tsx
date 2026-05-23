@@ -15,7 +15,7 @@ export function RelayHero({ tagline }: RelayHeroProps) {
     return (
         <div className="my-8">
             <p className="max-w-2xl text-lg text-muted-foreground">{tagline}</p>
-
+            {/* 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <Link href="/relay/voicings" className={cn('inline-flex items-center justify-center rounded-lg bg-sky-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors', 'hover:bg-sky-700')}>
                     Choose your voicing →
@@ -30,6 +30,7 @@ export function RelayHero({ tagline }: RelayHeroProps) {
             </div>
 
             <p className="mt-3 text-xs italic text-muted-foreground">Pick first, order parts, then start printing — they&rsquo;ll ship while the body prints.</p>
+         */}
         </div>
     );
 }
