@@ -1,0 +1,107 @@
+---
+title: 'Wiring Guide'
+description: 'Step-by-step wiring instructions for the Relay [Model Name].'
+---
+
+[1–2 sentence overview of what this wiring accomplishes and any special features of this model's circuit. If there's something unusual about this voicing's wiring versus a standard guitar, mention it here.]
+
+<DocAlert level="Important" title="Read before you start">
+    Solder the ground bus and shield the cavity before installing any components. Shielding after assembly is miserable and the lipstick pickup is sensitive to interference.
+</DocAlert>
+
+## Component Labels
+
+Every connection point in this guide has a short label. Use the table below as a reference while wiring — the same labels appear on the component diagram above.
+
+<DocImage
+    title="[Model Name] Wiring Diagram"
+    src="/images/relay/[model-slug]/wiring-diagram.png"
+    alt="Labeled wiring diagram showing all connection points for the Relay [Model Name]"
+    triggerImageSize={300}
+    popupImageSize={1200}
+/>
+
+<ComponentLabels>
+    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
+    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
+    <ComponentLabel id="BP-H" component="Bridge Pickup" wire="red" description="Hot output wire" />
+    <ComponentLabel id="BP-G" component="Bridge Pickup" wire="black" description="Ground wire" />
+    <ComponentLabel id="SW-C" component="Selector Switch" description="Common lug (output of switch)" />
+    <ComponentLabel id="SW-1" component="Selector Switch" description="Position 1 lug" />
+    <ComponentLabel id="SW-2" component="Selector Switch" description="Position 2 lug" />
+    <ComponentLabel id="SW-3" component="Selector Switch" description="Position 3 lug" />
+    <ComponentLabel id="VOL-IN" component="Volume Pot" description="Input lug — signal in from switch" />
+    <ComponentLabel id="VOL-W" component="Volume Pot" description="Wiper (center lug) — signal out to jack" />
+    <ComponentLabel id="VOL-B" component="Volume Pot" description="Back of pot — connect to ground bus" />
+    <ComponentLabel id="TON-IN" component="Tone Pot" description="Input lug — tapped from VOL-IN" />
+    <ComponentLabel id="TON-B" component="Tone Pot" description="Back of pot — connect to ground bus" />
+    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg — connects to TON-IN" />
+    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg — connects to ground bus" />
+    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot signal to amp)" />
+    <ComponentLabel id="J-SLV" component="Output Jack" description="Sleeve lug (ground)" />
+    <ComponentLabel id="GND" component="Ground Bus" description="Common ground — cavity foil, pot backs, jack sleeve, pickup grounds" />
+</ComponentLabels>
+
+## Connections
+
+Make all of these connections. Order doesn't matter — do whichever is easiest to reach first. Each row tells you which two labeled points to connect with a length of hookup wire.
+
+<WiringConnections>
+    <WireConnection from="NP-H" to="SW-[n]" notes="Neck pickup hot to switch position [n]" />
+    <WireConnection from="BP-H" to="SW-[n]" notes="Bridge pickup hot to switch position [n]" />
+    <WireConnection from="SW-C" to="VOL-IN" notes="Switch output to volume input" />
+    <WireConnection from="VOL-IN" to="TON-IN" notes="Tap from volume input to tone pot input" />
+    <WireConnection from="VOL-W" to="J-TIP" notes="Volume wiper to jack tip" />
+    <WireConnection from="CAP-H" to="TON-IN" notes="" />
+    <WireConnection from="NP-G" to="GND" notes="" />
+    <WireConnection from="BP-G" to="GND" notes="" />
+    <WireConnection from="VOL-B" to="GND" notes="" />
+    <WireConnection from="TON-B" to="GND" notes="" />
+    <WireConnection from="CAP-G" to="GND" notes="" />
+    <WireConnection from="J-SLV" to="GND" notes="" />
+</WiringConnections>
+
+## Wiring Procedure
+
+<Proc title="Wiring Steps">
+    <ProcStep text="Shield the cavity">
+        Apply copper foil tape to all cavity walls and the floor before installing any components. Overlap foil sections by at least 2mm for continuity. Solder a short jumper wire across any gap between sections that don't overlap. Connect the foil to the ground bus with a short wire soldered to the foil surface.
+    </ProcStep>
+    <ProcStep text="Pre-tin all solder points">
+        Apply a small dot of solder to every lug and pad before making any connections. Pre-tinning makes the final joints faster, uses less heat on the components, and gives you cleaner joints.
+    </ProcStep>
+    <ProcStep text="[Step 3 — e.g., Wire the selector switch]">
+        [Instructions for this step. Keep each step focused on one component or one logical group of connections.]
+    </ProcStep>
+    <ProcStep text="[Step 4 — e.g., Wire the ground bus]">
+        [Instructions]
+    </ProcStep>
+    <ProcStep text="[Step 5 — e.g., Connect the volume and tone pots]">
+        [Instructions]
+    </ProcStep>
+    <ProcStep text="[Step 6 — e.g., Connect the output jack]">
+        [Instructions]
+    </ProcStep>
+    <ProcStep text="[Step N — Any model-specific step]">
+        [Instructions for any wiring step unique to this voicing — push-push function, blend circuit, coil tap, etc.]
+    </ProcStep>
+</Proc>
+
+## Pre-Installation Test
+
+Test everything on the bench before the components go into the body. Probing and adjusting is much easier when nothing is bolted down.
+
+<Proc title="Bench Test">
+    <ProcStep text="Check selector switch continuity">
+        Set your multimeter to continuity mode. Move the switch to each position and probe between SW-C and each position lug. You should get continuity only to the lug for the currently selected position, and no continuity to the others.
+    </ProcStep>
+    <ProcStep text="Check for ground shorts on the signal path">
+        With the multimeter still in continuity mode, probe between J-TIP and GND. You should get no continuity in any switch position. Any reading here is an unintentional short that will kill your signal — find and fix it before proceeding.
+    </ProcStep>
+    <ProcStep text="Tap test each pickup">
+        Plug a cable into J-TIP and into an amp at low volume. Hold a metal screwdriver near each pickup and tap the pole pieces — you should hear a clear thunk through the amp for each tap. Move the selector switch through all positions and verify the correct pickup responds in each position.
+    </ProcStep>
+    <ProcStep text="[Model-specific test, if applicable]">
+        [Describe any test that's specific to this voicing — e.g., verifying push-push function, blend circuit behavior, or coil split continuity. Remove this step if not applicable.]
+    </ProcStep>
+</Proc>

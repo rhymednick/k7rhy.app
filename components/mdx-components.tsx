@@ -49,6 +49,9 @@ import { RelayHero } from '@/components/relay/relay-hero';
 import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
 import { RelayDownloadCallout } from '@/components/relay/relay-download-callout';
 import { DocTerm } from '@/components/doc/doc-term';
+import { ControlPositions, ControlPosition } from '@/components/doc/control-positions';
+import { ComponentLabels, ComponentLabel } from '@/components/doc/component-labels';
+import { WiringConnections, WireConnection } from '@/components/doc/wiring-connections';
 
 //import { Style } from "@/registry/styles"
 
@@ -192,6 +195,12 @@ const components: MDXComponents = {
     RelayHero,
     RelayProcessOverview,
     RelayDownloadCallout,
+    ControlPositions,
+    ControlPosition,
+    ComponentLabels,
+    ComponentLabel,
+    WiringConnections,
+    WireConnection,
 };
 
 // interface MdxProps {
