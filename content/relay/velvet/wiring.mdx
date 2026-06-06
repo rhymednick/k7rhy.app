@@ -97,6 +97,17 @@ Test on the bench before the components go into the body.
     <ProcStep text="Check selector switch continuity">
         Set your multimeter to continuity mode. Move the selector to each of the five positions and verify continuity from SW-OUT to the expected input lug. Position 3 (center) should connect to SW-MP only. Positions 2 and 4 should show continuity to SW-MP and to one adjacent lug.
     </ProcStep>
+    <ProcStep text="Resistance test — verify signal paths">
+        Set your multimeter to resistance (Ω) mode. With volume at maximum, probe between J-TIP and J-SLV. Expected readings by selector position:
+
+        - **Position 1** (Bridge only): ~8.6 kΩ
+        - **Position 2** (Bridge + Middle, parallel): ~4.1 kΩ
+        - **Position 3** (Middle only): ~8.0 kΩ
+        - **Position 4** (Neck + Middle, parallel): ~3.9 kΩ
+        - **Position 5** (Neck only): ~7.6 kΩ
+
+        Open (OL) means a broken connection in that path. A reading much higher than expected in position 2 or 4 (e.g. 16–17 kΩ) suggests the two pickups may be wired in series instead of parallel. Individual pickups can vary ±10% from the spec values above.
+    </ProcStep>
     <ProcStep text="Check for ground shorts on the signal path">
         Probe between J-TIP and GND. You should get no continuity in any switch position. Any reading here is an unintentional short.
     </ProcStep>

@@ -104,6 +104,15 @@ Test on the bench before the components go into the body.
     <ProcStep text="Check toggle switch continuity">
         Set your multimeter to continuity mode. Move the toggle to each of the three positions and verify continuity from SW-C to the expected lug (SW-B in position 1, both in position 2, SW-N in position 3). No continuity should exist between SW-B and SW-N directly.
     </ProcStep>
+    <ProcStep text="Resistance test — verify signal paths">
+        Set your multimeter to resistance (Ω) mode. With volume at maximum, probe between J-TIP and J-SLV. Expected readings by toggle position:
+
+        - **Position 1** (Bridge only): ~11.2 kΩ
+        - **Position 2** (Bridge + Neck, parallel): ~4.5 kΩ
+        - **Position 3** (Neck only): ~7.6 kΩ
+
+        With the lipstick blend engaged (push-push), each reading drops — a parallel pickup path is added. Position 3 + blend should read ~3.4 kΩ (neck 7.6K ∥ lipstick 6.0K). Position 1 + blend will be lower than 11.2K but the exact value depends on the partial split configuration. Open (OL) means a broken connection in that path. A reading much higher than expected in position 2 (e.g. 18–19 kΩ) suggests the two pickups may be wired in series instead of parallel. Individual pickups can vary ±10% from the spec values above.
+    </ProcStep>
     <ProcStep text="Check for ground shorts on the signal path">
         Probe between J-TIP and GND. You should get no continuity in any switch position. Any reading here is an unintentional short.
     </ProcStep>
