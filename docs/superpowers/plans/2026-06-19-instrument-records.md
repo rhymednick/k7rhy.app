@@ -1180,7 +1180,7 @@ Open `http://localhost:3000/sn/RLY26001/print` and inspect print preview with:
 
 For every case, verify exactly one page, no clipped control text, no instrument photograph, no site header/footer, and visible site logo plus `K7RHY Resonance Lab`. Scan the rendered QR code with a phone and confirm it resolves to `https://k7rhy.app/sn/RLY26001`.
 
-- [ ] **Step 6: Commit verification-driven fixes and route coverage**
+- [x] **Step 6: Commit verification-driven fixes and route coverage**
 
 ```bash
 git add lib/instruments/route-resolution.ts lib/instruments/route-resolution.test.ts app/sn components/instrument content/instruments/RLY26001.mdx docs/superpowers/plans/2026-06-19-instrument-records.md
