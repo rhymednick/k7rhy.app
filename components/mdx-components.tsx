@@ -46,6 +46,7 @@ import { RelayVoicingSection } from '@/components/relay/relay-voicing-overview';
 import { RelayHero } from '@/components/relay/relay-hero';
 import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
 import { DocTerm } from '@/components/doc/doc-term';
+import { ControlLayout, InstrumentSpec, Pickup, PickupConfiguration, PickupDetail, Pot, PotPosition, Selector, SelectorPosition } from '@/components/instrument/instrument-spec';
 
 //import { Style } from "@/registry/styles"
 
@@ -186,6 +187,15 @@ const components: MDXComponents = {
     RelayVoicingSection,
     RelayHero,
     RelayProcessOverview,
+    InstrumentSpec,
+    PickupConfiguration,
+    Pickup,
+    PickupDetail,
+    ControlLayout,
+    Selector,
+    SelectorPosition,
+    Pot,
+    PotPosition,
 };
 
 // interface MdxProps {

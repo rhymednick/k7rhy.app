@@ -459,7 +459,7 @@ Run: `npx vitest run lib/instruments/validation.test.ts lib/instruments/serial.t
 
 Expected: generated declarations include `Instrument` and `allInstruments`; all focused tests PASS.
 
-- [ ] **Step 9: Commit the content pipeline**
+- [x] **Step 9: Commit the content pipeline**
 
 ```bash
 git add content-collections.ts content/instruments/RLY26001.mdx content/instruments/README.md lib/instruments/validation.ts lib/instruments/validation.test.ts lib/instruments/records.ts
@@ -481,7 +481,7 @@ git commit -m "feat(instruments): add validated MDX records"
 - Produces: `instrumentMdxComponents`, the mapping used by both routes.
 - Contract: invalid children throw serial-independent structural messages; route/build output provides the affected MDX path.
 
-- [ ] **Step 1: Write failing structural tests**
+- [x] **Step 1: Write failing structural tests**
 
 ```tsx
 import React from 'react';
@@ -558,13 +558,13 @@ describe('instrument MDX components', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify it fails**
+- [x] **Step 2: Run the test and verify it fails**
 
 Run: `npx vitest run components/instrument/instrument-spec.test.tsx`
 
 Expected: FAIL because `instrument-spec.tsx` does not exist.
 
-- [ ] **Step 3: Implement strict child collection and component contracts**
+- [x] **Step 3: Implement strict child collection and component contracts**
 
 Implement `components/instrument/instrument-spec.tsx` with these exact public prop types:
 
@@ -642,7 +642,7 @@ export function InstrumentSpec({ children }: { children: React.ReactNode }) {
 
 For `PickupConfiguration` and `ControlLayout`, call `elementChildren` with their single allowed child type and throw when their arrays are empty. `Pickup` concatenates `brand` and `model` in its heading and renders optional `PickupDetail` children in a `<dl>`. `SelectorPosition` renders its cloned `index` in a circular monospace marker plus `voice` and body copy. `PotPosition` renders its explicit state, voice, and body copy. Use semantic headings, ordered/unordered lists, and definition groups with `data-instrument-spec`, `data-control-layout`, and `data-pickup-configuration` attributes. Use Tailwind classes based on the approved slate/sky site language. Set `displayName` on every exported component for MDX/debug error clarity.
 
-- [ ] **Step 4: Register components for instrument MDX**
+- [x] **Step 4: Register components for instrument MDX**
 
 ```tsx
 // components/instrument/instrument-mdx-components.tsx
@@ -665,11 +665,11 @@ export const instrumentMdxComponents = {
 
 Also add the same named imports and mappings to `components/mdx-components.tsx` so instrument snippets remain recognized anywhere the shared MDX renderer is used.
 
-- [ ] **Step 5: Run focused component tests**
+- [x] **Step 5: Run focused component tests**
 
 Run: `npx vitest run components/instrument/instrument-spec.test.tsx`
 
-Expected: PASS, 5 tests.
+Expected: PASS, 6 tests.
 
 - [ ] **Step 6: Commit the strict MDX component system**
 
