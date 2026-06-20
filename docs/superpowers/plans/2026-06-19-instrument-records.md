@@ -824,7 +824,7 @@ Run: `npx vitest run components/instrument/instrument-record-page.test.tsx && np
 
 Expected: component tests PASS; build emits `/sn/[serial]` and the unpublished fixture does not produce a public production page.
 
-- [ ] **Step 6: Commit the public record page**
+- [x] **Step 6: Commit the public record page**
 
 ```bash
 git add components/instrument/instrument-record-page.tsx components/instrument/instrument-record-page.test.tsx app/sn/[serial]/page.tsx
@@ -852,13 +852,13 @@ git commit -m "feat(instruments): add serial record pages"
 - Produces: QR SVG value from `instrumentUrl(record.serial)`.
 - Produces: browser print invocation with visible fallback button.
 
-- [ ] **Step 1: Install the QR renderer**
+- [x] **Step 1: Install the QR renderer**
 
 Run: `npm install qrcode.react`
 
 Expected: `qrcode.react` appears in dependencies and the lockfile updates.
 
-- [ ] **Step 2: Write failing case-card tests**
+- [x] **Step 2: Write failing case-card tests**
 
 ```tsx
 import React from 'react';
@@ -893,7 +893,7 @@ describe('InstrumentCaseCard', () => {
 });
 ```
 
-- [ ] **Step 3: Write failing print-control test**
+- [x] **Step 3: Write failing print-control test**
 
 ```tsx
 import React from 'react';
@@ -912,7 +912,7 @@ describe('PrintCaseCardControls', () => {
 });
 ```
 
-- [ ] **Step 4: Implement the case-card wrapper**
+- [x] **Step 4: Implement the case-card wrapper**
 
 ```tsx
 // components/instrument/instrument-case-card.tsx
@@ -958,7 +958,7 @@ export function InstrumentCaseCard({ record, children }: { record: InstrumentRec
 
 Do not access or render `record.images` in this component.
 
-- [ ] **Step 5: Implement automatic print with fallback**
+- [x] **Step 5: Implement automatic print with fallback**
 
 ```tsx
 // components/instrument/print-case-card-controls.tsx
@@ -981,7 +981,7 @@ export function PrintCaseCardControls() {
 }
 ```
 
-- [ ] **Step 6: Add nested route styling and one-page print constraints**
+- [x] **Step 6: Add nested route styling and one-page print constraints**
 
 ```tsx
 // app/sn/layout.tsx
@@ -1049,7 +1049,7 @@ export default function InstrumentLayout({ children }: { children: React.ReactNo
 
 Keep text at or above 9pt in print. Use explicit grid row limits and line clamping for theme/origin only if the full supplied text would otherwise produce a second page; never clamp control instructions.
 
-- [ ] **Step 7: Implement the print route**
+- [x] **Step 7: Implement the print route**
 
 Create `app/sn/[serial]/print/page.tsx` with the same imports and `Props` type as the public route plus `InstrumentCaseCard` and `PrintCaseCardControls`. Use `resolveInstrumentRequest` from Task 6 when Task 6 is complete; until then use the same normalization, redirect, lookup, and publication conditions from Task 4. The component body is:
 
@@ -1066,7 +1066,7 @@ Create `app/sn/[serial]/print/page.tsx` with the same imports and `Props` type a
 
 Export `generateStaticParams()` by returning `getInstrumentStaticParams()`. Implement `generateMetadata()` with title `Case card · ${record.name} · ${serial} | K7RHY` and `robots: { index: false, follow: false }` so the canonical instrument record, not the utility print route, appears in search.
 
-- [ ] **Step 8: Run focused tests**
+- [x] **Step 8: Run focused tests**
 
 Run: `npx vitest run components/instrument/instrument-case-card.test.tsx components/instrument/print-case-card-controls.test.tsx components/instrument/instrument-spec.test.tsx`
 
