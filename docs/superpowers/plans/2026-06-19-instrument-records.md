@@ -208,7 +208,7 @@ Run: `npx vitest run lib/instruments/serial.test.ts`
 
 Expected: PASS, 8 tests.
 
-- [ ] **Step 6: Commit the serial foundation**
+- [x] **Step 6: Commit the serial foundation**
 
 ```bash
 git add config/instrument-model-codes.ts types/instrument.ts lib/instruments/serial.ts lib/instruments/serial.test.ts
@@ -229,11 +229,11 @@ git commit -m "feat(instruments): add serial number model"
 
 **Interfaces:**
 - Consumes: `parseInstrumentSerial()` and `InstrumentFrontmatter` from Task 1.
-- Produces: `validateInstrumentDocument(path: string, data: InstrumentFrontmatter): InstrumentRecord` from a pure module with no generated-content import.
+- Produces: `validateInstrumentDocument(path: string, data: InstrumentFrontmatter): InstrumentSerial` from a pure module with no generated-content import; the collection transform combines these derived primitives with its schema-inferred data.
 - Produces: generated `allInstruments` and `Instrument` type from `content-collections`.
 - Produces: `getInstrument(serial: string)` and `getInstrumentStaticParams()`.
 
-- [ ] **Step 1: Write failing document-validation tests**
+- [x] **Step 1: Write failing document-validation tests**
 
 ```ts
 import { describe, expect, it } from 'vitest';
@@ -274,13 +274,13 @@ describe('validateInstrumentDocument', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify it fails**
+- [x] **Step 2: Run the test and verify it fails**
 
 Run: `npx vitest run lib/instruments/validation.test.ts`
 
 Expected: FAIL because `validation.ts` does not exist.
 
-- [ ] **Step 3: Implement pure document validation**
+- [x] **Step 3: Implement pure document validation**
 
 ```ts
 // lib/instruments/validation.ts
@@ -315,7 +315,7 @@ export function validateInstrumentDocument(path: string, data: InstrumentFrontma
 }
 ```
 
-- [ ] **Step 4: Add the instrument schema and transform to Content Collections**
+- [x] **Step 4: Add the instrument schema and transform to Content Collections**
 
 Add these definitions after `blogSchema` in `content-collections.ts`:
 
@@ -352,7 +352,7 @@ const instruments = defineCollection({
     directory: 'content/instruments',
     include: '**/*.mdx',
     schema: instrumentSchema,
-    transform: async (data) => validateInstrumentDocument(data._meta.path, data),
+    transform: async (data) => ({ ...data, ...validateInstrumentDocument(data._meta.path, data) }),
 });
 ```
 
@@ -364,7 +364,7 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 5: Add generated-record lookup outside the collection dependency graph**
+- [x] **Step 5: Add generated-record lookup outside the collection dependency graph**
 
 ```ts
 // lib/instruments/records.ts
@@ -386,7 +386,7 @@ export function isInstrumentPublished(record: InstrumentRecord): boolean {
 }
 ```
 
-- [ ] **Step 6: Add a complete unpublished MDX fixture/template**
+- [x] **Step 6: Add a complete unpublished MDX fixture/template**
 
 Create `content/instruments/RLY26001.mdx`:
 
@@ -436,7 +436,7 @@ related:
 This unpublished example establishes the authoring shape for future serialized instruments. Replace the photograph and copy before using it as a real owner record.
 ```
 
-- [ ] **Step 7: Add the authoring checklist**
+- [x] **Step 7: Add the authoring checklist**
 
 ```md
 # Serialized instrument authoring
@@ -445,7 +445,7 @@ This unpublished example establishes the authoring shape for future serialized i
 2. Copy `RLY26001.mdx` to the new uppercase `MMMYYNNN.mdx` filename.
 3. Keep `publish: false` while replacing every identity field, image, pickup, selector, and pot state.
 4. Put exact-instrument photographs under `public/images/instruments/<SERIAL>/` and give each useful alt text.
-5. Run `npx content-collections build` and `npx vitest run`.
+5. Run `npx vitest run` and `npm run build`.
 6. Preview `/sn/<SERIAL>` in light, dark, desktop, and mobile layouts.
 7. Preview `/sn/<SERIAL>/print` on Letter and A4 and scan its QR code.
 8. Set `publish: true`, rerun `npm run build`, and deploy.
@@ -453,9 +453,9 @@ This unpublished example establishes the authoring shape for future serialized i
 Selector children are numbered from their order. Three-way selectors require three children; five-way selectors require five. Standard pots require one `normal` position. Push-pull and push-push pots require one `down` and one `up` position.
 ```
 
-- [ ] **Step 8: Generate content and run validation tests**
+- [x] **Step 8: Generate content and run validation tests**
 
-Run: `npx content-collections build && npx vitest run lib/instruments/validation.test.ts lib/instruments/serial.test.ts`
+Run: `npx vitest run lib/instruments/validation.test.ts lib/instruments/serial.test.ts && npx next build`
 
 Expected: generated declarations include `Instrument` and `allInstruments`; all focused tests PASS.
 

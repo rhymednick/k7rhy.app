@@ -1,0 +1,43 @@
+---
+publish: false
+name: 'Relay Lipstick'
+completed: '2026-06-19'
+origin: 'Designed, built, and voiced by K7RHY Resonance Lab.'
+theme: 'An articulate, touch-sensitive instrument with a familiar core and one carefully shaped alternate identity.'
+images:
+    - src: '/images/products/guitars/rainbow-tele/front.jpeg'
+      alt: 'Example instrument photograph used while developing the serialized record template'
+related:
+    label: 'Explore the Relay Guitar family'
+    href: '/relay'
+---
+
+<InstrumentSpec>
+    <PickupConfiguration>
+        <Pickup position="bridge" type="humbucker" brand="GFS" model="VEH">
+            <PickupDetail label="Magnet">Alnico V</PickupDetail>
+        </Pickup>
+        <Pickup position="middle" type="lipstick" brand="GFS" model="Pro-Tube" />
+        <Pickup position="neck" type="humbucker" brand="GFS" model="Professional Alnico II" />
+    </PickupConfiguration>
+
+    <ControlLayout>
+        <Selector label="Pickup selector" positions={3}>
+            <SelectorPosition voice="Bridge">Authority and attack</SelectorPosition>
+            <SelectorPosition voice="Bridge + Neck">Width and balance</SelectorPosition>
+            <SelectorPosition voice="Neck">Warmth and detail</SelectorPosition>
+        </Selector>
+        <Pot label="Master volume" mechanism="push-pull">
+            <PotPosition position="down" voice="Core voice">Controls overall output.</PotPosition>
+            <PotPosition position="up" voice="Lipstick Voice">Adds the middle lipstick and reshapes the bridge response.</PotPosition>
+        </Pot>
+        <Pot label="Master tone" mechanism="push-push">
+            <PotPosition position="down" voice="Open contour">Standard treble rolloff.</PotPosition>
+            <PotPosition position="up" voice="Focused contour">Tightens and focuses the response.</PotPosition>
+        </Pot>
+    </ControlLayout>
+</InstrumentSpec>
+
+## This instrument
+
+This unpublished example establishes the authoring shape for future serialized instruments. Replace the photograph and copy before using it as a real owner record.
