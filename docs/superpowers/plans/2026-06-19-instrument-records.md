@@ -1072,7 +1072,7 @@ Run: `npx vitest run components/instrument/instrument-case-card.test.tsx compone
 
 Expected: all tests PASS.
 
-- [ ] **Step 9: Commit the case-card route**
+- [x] **Step 9: Commit the case-card route**
 
 ```bash
 git add package.json package-lock.json components/instrument/instrument-case-card.tsx components/instrument/instrument-case-card.test.tsx components/instrument/print-case-card-controls.tsx components/instrument/print-case-card-controls.test.tsx app/sn/layout.tsx app/sn/instrument-records.css app/sn/[serial]/print/page.tsx
@@ -1091,55 +1091,56 @@ git commit -m "feat(instruments): add printable case cards"
 - Create or update at session stop: `.remember/remember.md`
 
 **Interfaces:**
-- Produces: `resolveInstrumentRequest(input: string, environment: string | undefined)` as a pure route-decision helper used by both pages.
+- Produces: `resolveInstrumentRequest(input: string, environment: string | undefined, lookup: InstrumentRecordLookup)` as a pure route-decision helper used by both pages.
 - Verifies: web/print parity, one-page output, theme consistency, header/footer presence, discovery CTA, logo/brand masthead, QR destination, and error behavior.
 
-- [ ] **Step 1: Write failing route-decision tests**
+- [x] **Step 1: Write failing route-decision tests**
 
 ```ts
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import type { InstrumentRecord } from '@/types/instrument';
 import { resolveInstrumentRequest } from './route-resolution';
 
-vi.mock('./records', () => ({
-    getInstrument: (serial: string) => serial === 'RLY26001' ? { serial, publish: false } : undefined,
-}));
+const unpublished = { serial: 'RLY26001', publish: false } as InstrumentRecord;
+const lookup = (serial: string) => serial === 'RLY26001' ? unpublished : undefined;
 
 describe('resolveInstrumentRequest', () => {
     it('redirects lowercase serials', () => {
-        expect(resolveInstrumentRequest('rly26001', 'development')).toEqual({ kind: 'redirect', location: '/sn/RLY26001' });
+        expect(resolveInstrumentRequest('rly26001', 'development', lookup)).toEqual({ kind: 'redirect', location: '/sn/RLY26001' });
     });
 
     it('returns not-found for an unknown serial', () => {
-        expect(resolveInstrumentRequest('RLY26999', 'development')).toEqual({ kind: 'not-found' });
+        expect(resolveInstrumentRequest('RLY26999', 'development', lookup)).toEqual({ kind: 'not-found' });
     });
 
     it('returns not-found for an unpublished production record', () => {
-        expect(resolveInstrumentRequest('RLY26001', 'production')).toEqual({ kind: 'not-found' });
+        expect(resolveInstrumentRequest('RLY26001', 'production', lookup)).toEqual({ kind: 'not-found' });
     });
 
     it('returns the record outside production', () => {
-        expect(resolveInstrumentRequest('RLY26001', 'development')).toMatchObject({ kind: 'record', record: { serial: 'RLY26001' } });
+        expect(resolveInstrumentRequest('RLY26001', 'development', lookup)).toEqual({ kind: 'record', record: unpublished });
     });
 });
 ```
 
-- [ ] **Step 2: Implement and adopt the route helper**
+- [x] **Step 2: Implement and adopt the route helper**
 
 ```ts
 // lib/instruments/route-resolution.ts
 import type { InstrumentRecord } from '@/types/instrument';
-import { getInstrument } from './records';
 import { normalizeInstrumentSerial } from './serial';
+
+export type InstrumentRecordLookup = (serial: string) => InstrumentRecord | undefined;
 
 export type InstrumentRequestResolution =
     | { kind: 'redirect'; location: string }
     | { kind: 'not-found' }
     | { kind: 'record'; record: InstrumentRecord };
 
-export function resolveInstrumentRequest(input: string, environment = process.env.NEXT_PUBLIC_ENVIRONMENT): InstrumentRequestResolution {
+export function resolveInstrumentRequest(input: string, environment: string | undefined, lookup: InstrumentRecordLookup): InstrumentRequestResolution {
     const serial = normalizeInstrumentSerial(input);
     if (input !== serial) return { kind: 'redirect', location: `/sn/${serial}` };
-    const record = getInstrument(serial);
+    const record = lookup(serial);
     if (!record || (environment === 'production' && !record.publish)) return { kind: 'not-found' };
     return { kind: 'record', record };
 }
@@ -1147,15 +1148,15 @@ export function resolveInstrumentRequest(input: string, environment = process.en
 
 Replace duplicated route decisions in both pages with this helper. The print page appends `/print` when redirecting a lowercase print URL.
 
-- [ ] **Step 3: Run the full automated suite and production build**
+- [x] **Step 3: Run the full automated suite and production build**
 
 Run: `npx vitest run && npm run build`
 
 Expected: all tests PASS; Next build and sitemap generation complete successfully without `GOOGLE_GENERATIVE_AI_API_KEY` because existing blog summaries are present/cached or summary generation safely skips.
 
-- [ ] **Step 4: Start the site and verify the web record**
+- [x] **Step 4: Start the site and verify the web record**
 
-Temporarily set the example record to `publish: true` only for local verification, then run: `npm run dev`
+Run `npm run dev`; development mode previews the unpublished fixture without changing its publication state.
 
 Verify at `http://localhost:3000/sn/RLY26001`:
 
@@ -1167,9 +1168,7 @@ Verify at `http://localhost:3000/sn/RLY26001`:
 - Mobile width has no horizontal overflow.
 - Dark mode keeps all text, borders, and controls readable.
 
-Restore `publish: false` after verification.
-
-- [ ] **Step 5: Verify Letter, A4, and monochrome print output**
+- [x] **Step 5: Verify Letter, A4, and monochrome print output**
 
 Open `http://localhost:3000/sn/RLY26001/print` and inspect print preview with:
 
@@ -1188,7 +1187,7 @@ git add lib/instruments/route-resolution.ts lib/instruments/route-resolution.tes
 git commit -m "test(instruments): verify routes and print layout"
 ```
 
-- [ ] **Step 7: Write the pause/resume handoff**
+- [x] **Step 7: Write the pause/resume handoff**
 
 Create or update `.remember/remember.md` with fewer than 20 lines:
 

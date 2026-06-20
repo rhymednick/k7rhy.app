@@ -4,6 +4,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { InstrumentRecordPage } from '@/components/instrument/instrument-record-page';
 import { instrumentMdxComponents } from '@/components/instrument/instrument-mdx-components';
 import { getInstrument, getInstrumentStaticParams } from '@/lib/instruments/records';
+import { resolveInstrumentRequest } from '@/lib/instruments/route-resolution';
 import { instrumentUrl, normalizeInstrumentSerial } from '@/lib/instruments/serial';
 import { isInstrumentPublished } from '@/lib/instruments/visibility';
 
@@ -31,12 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function InstrumentPage({ params }: Props) {
     const { serial: input } = await params;
-    const serial = normalizeInstrumentSerial(input);
+    const resolution = resolveInstrumentRequest(input, process.env.NODE_ENV, getInstrument);
 
-    if (input !== serial) redirect(`/sn/${serial}`);
-
-    const record = getInstrument(serial);
-    if (!record || !isInstrumentPublished(record)) notFound();
+    if (resolution.kind === 'redirect') redirect(resolution.location);
+    if (resolution.kind === 'not-found') notFound();
+    const { record } = resolution;
 
     return (
         <InstrumentRecordPage record={record}>
