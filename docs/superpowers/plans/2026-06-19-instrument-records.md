@@ -65,7 +65,7 @@
 - Produces: `instrumentPath(serial: string): string`
 - Produces: `instrumentUrl(serial: string): string`
 
-- [ ] **Step 1: Write failing serial tests**
+- [x] **Step 1: Write failing serial tests**
 
 ```ts
 import { describe, expect, it } from 'vitest';
@@ -101,13 +101,13 @@ describe('instrument serials', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify it fails**
+- [x] **Step 2: Run the test and verify it fails**
 
 Run: `npx vitest run lib/instruments/serial.test.ts`
 
 Expected: FAIL because `./serial` does not exist.
 
-- [ ] **Step 3: Add the editable registry and shared types**
+- [x] **Step 3: Add the editable registry and shared types**
 
 ```ts
 // config/instrument-model-codes.ts
@@ -156,7 +156,7 @@ export interface InstrumentFrontmatter {
 export interface InstrumentRecord extends InstrumentFrontmatter, InstrumentSerial {}
 ```
 
-- [ ] **Step 4: Implement serial parsing and URL construction**
+- [x] **Step 4: Implement serial parsing and URL construction**
 
 ```ts
 // lib/instruments/serial.ts
@@ -202,7 +202,7 @@ export function instrumentUrl(serial: string): string {
 }
 ```
 
-- [ ] **Step 5: Run focused tests**
+- [x] **Step 5: Run focused tests**
 
 Run: `npx vitest run lib/instruments/serial.test.ts`
 
