@@ -10,7 +10,3 @@ export function getInstrument(serial: string): InstrumentRecord | undefined {
 export function getInstrumentStaticParams(): Array<{ serial: string }> {
     return allInstruments.map((instrument) => ({ serial: instrument.serial }));
 }
-
-export function isInstrumentPublished(record: InstrumentRecord): boolean {
-    return process.env.NEXT_PUBLIC_ENVIRONMENT !== 'production' || record.publish;
-}

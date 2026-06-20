@@ -35,6 +35,7 @@
 - `lib/instruments/serial.ts` — parse, normalize, validate, and construct canonical serial URLs.
 - `lib/instruments/validation.ts` — pure document validation used safely by the collection transform.
 - `lib/instruments/records.ts` — look up generated instrument records without entering the collection-config dependency graph.
+- `lib/instruments/visibility.ts` — production publication policy, isolated from generated content for focused tests.
 - `content-collections.ts` — add the `instruments` collection and expose derived serial/model data.
 - `content/instruments/RLY26001.mdx` — complete unpublished example/template record.
 - `content/instruments/README.md` — concise authoring and publication checklist.
@@ -381,9 +382,6 @@ export function getInstrumentStaticParams(): Array<{ serial: string }> {
     return allInstruments.map((instrument) => ({ serial: instrument.serial }));
 }
 
-export function isInstrumentPublished(record: InstrumentRecord): boolean {
-    return process.env.NEXT_PUBLIC_ENVIRONMENT !== 'production' || record.publish;
-}
 ```
 
 - [x] **Step 6: Add a complete unpublished MDX fixture/template**
@@ -671,7 +669,7 @@ Run: `npx vitest run components/instrument/instrument-spec.test.tsx`
 
 Expected: PASS, 6 tests.
 
-- [ ] **Step 6: Commit the strict MDX component system**
+- [x] **Step 6: Commit the strict MDX component system**
 
 ```bash
 git add components/instrument/instrument-spec.tsx components/instrument/instrument-spec.test.tsx components/instrument/instrument-mdx-components.tsx components/mdx-components.tsx
@@ -692,7 +690,7 @@ git commit -m "feat(instruments): add strict MDX control model"
 - Produces: the indexable canonical page at `/sn/[serial]`.
 - Produces: metadata title `${name} · ${serial} | K7RHY` and canonical URL.
 
-- [ ] **Step 1: Write failing presentation tests**
+- [x] **Step 1: Write failing presentation tests**
 
 ```tsx
 import React from 'react';
@@ -728,13 +726,13 @@ describe('InstrumentRecordPage', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify it fails**
+- [x] **Step 2: Run the test and verify it fails**
 
 Run: `npx vitest run components/instrument/instrument-record-page.test.tsx`
 
 Expected: FAIL because `InstrumentRecordPage` does not exist.
 
-- [ ] **Step 3: Implement the site-aligned record presentation**
+- [x] **Step 3: Implement the site-aligned record presentation**
 
 `InstrumentRecordPage` must:
 
@@ -778,7 +776,7 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
 
 Import `Image` from `next/image`, `Link` from `next/link`, React, and the `InstrumentRecord` type. Do not add a custom header or footer; `app/layout.tsx` already supplies the standard site frame.
 
-- [ ] **Step 4: Implement the canonical route**
+- [x] **Step 4: Implement the canonical route**
 
 ```tsx
 // app/sn/[serial]/page.tsx
@@ -787,8 +785,9 @@ import { notFound, redirect } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { InstrumentRecordPage } from '@/components/instrument/instrument-record-page';
 import { instrumentMdxComponents } from '@/components/instrument/instrument-mdx-components';
-import { getInstrument, getInstrumentStaticParams, isInstrumentPublished } from '@/lib/instruments/records';
+import { getInstrument, getInstrumentStaticParams } from '@/lib/instruments/records';
 import { instrumentUrl, normalizeInstrumentSerial } from '@/lib/instruments/serial';
+import { isInstrumentPublished } from '@/lib/instruments/visibility';
 
 interface Props { params: Promise<{ serial: string }> }
 
@@ -819,7 +818,7 @@ export default async function InstrumentPage({ params }: Props) {
 }
 ```
 
-- [ ] **Step 5: Run focused tests and a route build**
+- [x] **Step 5: Run focused tests and a route build**
 
 Run: `npx vitest run components/instrument/instrument-record-page.test.tsx && npx next build`
 
