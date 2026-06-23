@@ -1,0 +1,58 @@
+---
+title: 'Supply List'
+description: 'Everything you need to build a Relay [Model Name], with sourcing links and current prices.'
+---
+
+Read this before you buy anything. Items marked **Specific** mean that exact part — don't swap it out. Items marked **Flexible** have a real alternative listed below them.
+
+<DecisionNote variant="info" title="These are the parts I actually use.">
+    I've linked to exactly what I build with. When something is marked Flexible, I'll tell you what the tradeoff is so you can decide. When it's marked Specific, I've already learned that lesson the hard way.
+</DecisionNote>
+
+## Hardware
+
+<BomSection>
+    <BomItem title="Guitar Neck" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="guitar-neck" fallback="$0.00">
+        [Notes about neck fit, variations, or what to watch for. Or remove children if no notes needed.]
+    </BomItem>
+    <BomItem title="Fixed Hardtail Bridge" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="hardtail-bridge" fallback="$0.00" />
+    <BomItem title="Neck Mounting Ferrules" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="neck-ferrules" fallback="$0.00" />
+    <BomItem title="String Ferrule Plate" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="string-ferrule-plate" fallback="$0.00" substitution="[Describe the alternative and when it makes sense to use it]" />
+    <BomItem title="Locking Tuners" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="locking-tuners" fallback="$0.00" substitution="Standard non-locking tuners work fine. Slightly slower restringing and marginally less tuning stability while strings settle." />
+    <BomItem title="Strap Buttons" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="strap-buttons" fallback="$0.00" substitution="Any standard strap button fits. Use your existing strap locks if preferred." />
+    <BomItem title="Guitar Strings (9–42), 3-pack" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="guitar-strings" fallback="$0.00" substitution="Any 9–42 light gauge strings work. Stick with 9s until the instrument is dialed in.">
+        Three packs because you'll break at least one string during setup.
+    </BomItem>
+    <BomItem title="Knobs" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="knobs" fallback="$0.00" substitution="Any knob that fits a split-shaft pot. Check shaft diameter before buying." />
+</BomSection>
+
+## Pickups
+
+<BomSection>
+    <BomItem title="Neck Pickup — [Model]" href="[URL]" source="[Vendor]" itemKey="[model-slug]-neck-pickup" fallback="$0.00" specific>
+        [Why this specific pickup? What happens to the voicing balance if someone substitutes it?]
+    </BomItem>
+    <BomItem title="Middle Pickup — [Model]" href="[URL]" source="[Vendor]" itemKey="[model-slug]-middle-pickup" fallback="$0.00" specific>
+        [Role this pickup plays in the circuit. What constraints apply to substitutions?]
+    </BomItem>
+    <BomItem title="Bridge Pickup — [Model]" href="[URL]" source="[Vendor]" itemKey="[model-slug]-bridge-pickup" fallback="$0.00" specific>
+        [Describe output range or impedance constraints if high-output substitutions are a concern.]
+    </BomItem>
+</BomSection>
+
+## Electronics
+
+<BomSection>
+    <BomItem title="[Volume pot type — e.g., Push-Push Pots (×2)]" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="[model-slug]-volume-pots" fallback="$0.00" substitution="[Describe what the builder loses by using standard pots instead]">
+        [Describe what the special pot function does in this voicing]
+    </BomItem>
+    <BomItem title="Selector Switch ([type]-way)" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="[model-slug]-selector-switch" fallback="$0.00" specific>
+        [Note the exact type required — 3-way or 5-way. Call out if it matters which blade style.]
+    </BomItem>
+    <BomItem title="Tone Capacitor" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="[model-slug]-tone-cap" fallback="$0.00" substitution="Cap value is tonal preference. Listed value gives a warm but not muddy roll-off. Smaller = cuts higher frequencies; larger = cuts lower. Caps are cheap — experiment." />
+    <BomItem title="Output Jack" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="[model-slug]-output-jack" fallback="$0.00" substitution='Any standard 1/4" mono output jack works. Measure the cavity opening if substituting.' />
+    <BomItem title="Hookup Wire" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="hookup-wire" fallback="$0.00" substitution="Any 22–24 AWG stranded hookup wire. Avoid solid core — it's harder to route in tight spaces and fatigues with vibration." />
+    <BomItem title="Copper Foil Tape" href="https://amzn.to/[affiliate-id]" source="Amazon" itemKey="copper-foil-tape" fallback="$0.00" specific>
+        Used to shield the control cavity. Must be conductive adhesive type. Non-conductive adhesive tape won't ground the foil.
+    </BomItem>
+</BomSection>
