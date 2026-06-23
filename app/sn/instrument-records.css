@@ -1,0 +1,142 @@
+@page {
+    size: auto;
+    margin: 0.35in;
+}
+
+.instrument-case-card {
+    width: min(calc(100% - 2rem), 7.57in);
+    min-height: 10.3in;
+    margin: 1.5rem auto;
+}
+
+.instrument-case-card-spec [data-control-layout],
+.instrument-case-card-spec [data-pickup-configuration] {
+    border-color: rgb(203 213 225);
+    border-radius: 0.65rem;
+    background: white !important;
+    color: rgb(15 23 42) !important;
+    padding: 0.085in;
+    box-shadow: none;
+}
+
+.instrument-case-card-spec [data-instrument-spec] > * + * {
+    margin-top: 0.07in !important;
+}
+
+.instrument-case-card-spec [data-control-layout] > .space-y-4 > * + * {
+    margin-top: 0.045in !important;
+}
+
+.instrument-case-card-spec [data-control-layout] > div:first-child,
+.instrument-case-card-spec [data-pickup-configuration] > div:first-child {
+    margin-bottom: 0.065in;
+}
+
+.instrument-case-card-spec [data-control-layout] > div:first-child > span,
+.instrument-case-card-spec [data-pickup-configuration] > div:first-child > span {
+    display: none;
+}
+
+.instrument-case-card-spec [data-control-layout] h2,
+.instrument-case-card-spec [data-pickup-configuration] h2 {
+    font-size: 11pt;
+}
+
+.instrument-case-card-spec [data-control-layout] article,
+.instrument-case-card-spec [data-pickup-configuration] article {
+    border-color: rgb(203 213 225);
+    border-radius: 0.45rem;
+    background: rgb(248 250 252) !important;
+    color: rgb(15 23 42) !important;
+    padding: 0.055in;
+}
+
+.instrument-case-card-spec [data-control-layout] ol,
+.instrument-case-card-spec [data-control-layout] article > div.grid,
+.instrument-case-card-spec [data-pickup-configuration] > div.grid {
+    gap: 0.05in !important;
+}
+
+.instrument-case-card-spec [data-control-layout] li,
+.instrument-case-card-spec [data-control-layout] article > div.grid > div {
+    border-color: rgb(203 213 225) !important;
+    background: rgb(248 250 252) !important;
+    color: rgb(15 23 42) !important;
+    padding: 0.055in !important;
+}
+
+.instrument-case-card-spec [data-control-layout] li > div:first-child {
+    width: 0.24in !important;
+    height: 0.24in !important;
+    margin-bottom: 0.025in !important;
+}
+
+.instrument-case-card-spec [data-control-layout] h3,
+.instrument-case-card-spec [data-pickup-configuration] h3 {
+    color: rgb(15 23 42) !important;
+    font-size: 9pt;
+}
+
+.instrument-case-card-spec [data-control-layout] p,
+.instrument-case-card-spec [data-control-layout] div,
+.instrument-case-card-spec [data-pickup-configuration] p,
+.instrument-case-card-spec [data-pickup-configuration] dt,
+.instrument-case-card-spec [data-pickup-configuration] dd {
+    color: rgb(71 85 105) !important;
+    font-size: 8pt;
+    line-height: 1.25;
+}
+
+.instrument-print-mdx > :not([data-instrument-spec]) {
+    display: none !important;
+}
+
+@media print {
+    html,
+    body {
+        background: white !important;
+    }
+
+    [data-site-header],
+    [data-site-footer],
+    .instrument-print-controls,
+    [data-web-only] {
+        display: none !important;
+    }
+
+    main:has(.instrument-case-card) {
+        display: block;
+        position: relative;
+        width: 7.2in;
+        height: 9.8in;
+        margin: 0 auto;
+    }
+
+    .instrument-case-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 7.57in;
+        min-height: 0;
+        height: 10.3in;
+        margin: 0;
+        overflow: hidden;
+        transform: scale(0.95);
+        transform-origin: top left;
+        break-after: avoid;
+        break-inside: avoid;
+        border-color: rgb(148 163 184);
+        box-shadow: none;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+}
+
+@media screen and (max-width: 50rem) {
+    .instrument-case-card {
+        width: calc(100% - 1rem);
+        min-height: auto;
+        padding: 1.25rem;
+    }
+}

@@ -1,4 +1,5 @@
 {
+    "root": true,
     "extends": ["next/core-web-vitals", "plugin:jsx-a11y/recommended", "prettier"],
     "env": {
         "browser": true,

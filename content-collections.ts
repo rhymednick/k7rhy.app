@@ -4,6 +4,7 @@ import { join } from 'path';
 import axios from 'axios';
 import { z } from 'zod';
 import crypto from 'crypto';
+import { validateInstrumentDocument } from './lib/instruments/validation';
 
 const blogSchema = z.object({
     title: z.string(),
@@ -15,6 +16,27 @@ const blogSchema = z.object({
     readingTime: z.number().optional().default(0),
     isAISummary: z.boolean().optional().default(false), // Track AI-generated summaries
     content: z.string(), // Explicit content property for markdown content
+});
+
+const instrumentSchema = z.object({
+    publish: z.boolean().optional().default(false),
+    name: z.string().min(1),
+    completed: z.string().date('Invalid completion date.'),
+    origin: z.string().min(1),
+    theme: z.string().min(1),
+    images: z.array(
+        z.object({
+            src: z.string().min(1),
+            alt: z.string().min(1),
+        }),
+    ),
+    related: z
+        .object({
+            label: z.string().min(1),
+            href: z.string().startsWith('/'),
+        })
+        .optional(),
+    content: z.string(),
 });
 
 const CACHE_DIR = join(process.cwd(), '.content-collections', 'cache');
@@ -222,6 +244,14 @@ ${finalContent}`;
     },
 });
 
+const instruments = defineCollection({
+    name: 'instruments',
+    directory: 'content/instruments',
+    include: '**/*.mdx',
+    schema: instrumentSchema,
+    transform: async (data) => ({ ...data, ...validateInstrumentDocument(data._meta.path, data) }),
+});
+
 export default defineConfig({
-    collections: [blog],
+    collections: [blog, instruments],
 });
