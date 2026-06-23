@@ -1,5 +1,5 @@
 @page {
-    size: letter portrait;
+    size: auto;
     margin: 0.35in;
 }
 
@@ -106,14 +106,23 @@
 
     main:has(.instrument-case-card) {
         display: block;
+        position: relative;
+        width: 7.2in;
+        height: 9.8in;
+        margin: 0 auto;
     }
 
     .instrument-case-card {
-        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 7.57in;
         min-height: 0;
         height: 10.3in;
         margin: 0;
         overflow: hidden;
+        transform: scale(0.95);
+        transform-origin: top left;
         break-after: avoid;
         break-inside: avoid;
         border-color: rgb(148 163 184);
