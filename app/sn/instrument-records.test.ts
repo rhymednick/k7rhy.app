@@ -10,4 +10,9 @@ describe('instrument case-card print geometry', () => {
         expect(css).toMatch(/@media print[\s\S]*?main:has\(\.instrument-case-card\)\s*{[\s\S]*?width:\s*7\.2in;[\s\S]*?height:\s*9\.8in;/);
         expect(css).toMatch(/@media print[\s\S]*?\.instrument-case-card\s*{[\s\S]*?width:\s*7\.57in;[\s\S]*?height:\s*10\.3in;[\s\S]*?transform:\s*scale\(0\.95\);/);
     });
+
+    it('keeps the dedicated print-spec root visible', () => {
+        expect(css).toContain('.instrument-print-mdx > :not([data-print-instrument-spec])');
+    });
+
 });

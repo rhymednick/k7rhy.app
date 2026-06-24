@@ -20,6 +20,7 @@ export interface InstrumentFrontmatter {
     publish: boolean;
     name: string;
     completed: string;
+    dateLabel?: string;
     origin: string;
     theme: string;
     images: InstrumentImage[];

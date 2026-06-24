@@ -21,7 +21,8 @@ const blogSchema = z.object({
 const instrumentSchema = z.object({
     publish: z.boolean().optional().default(false),
     name: z.string().min(1),
-    completed: z.string().date('Invalid completion date.'),
+    completed: z.union([z.string().regex(/^\d{4}$/, 'Expected YYYY or YYYY-MM-DD.'), z.string().date('Invalid completion date.')]),
+    dateLabel: z.string().min(1).optional(),
     origin: z.string().min(1),
     theme: z.string().min(1),
     images: z.array(

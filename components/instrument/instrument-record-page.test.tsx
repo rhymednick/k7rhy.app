@@ -50,4 +50,16 @@ describe('InstrumentRecordPage', () => {
 
         expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/relay');
     });
+
+    it('uses a custom date label with a year-only value', () => {
+        render(
+            <InstrumentRecordPage record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
+                <div>Structured specification</div>
+            </InstrumentRecordPage>,
+        );
+
+        expect(screen.getByText('Modified')).toBeInTheDocument();
+        expect(screen.getAllByText('2026').length).toBeGreaterThan(0);
+        expect(screen.queryByText('January 1, 2026')).not.toBeInTheDocument();
+    });
 });

@@ -87,7 +87,7 @@
     line-height: 1.25;
 }
 
-.instrument-print-mdx > :not([data-instrument-spec]) {
+.instrument-print-mdx > :not([data-print-instrument-spec]) {
     display: none !important;
 }
 

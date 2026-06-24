@@ -33,4 +33,12 @@ describe('validateInstrumentDocument', () => {
     it('requires the serial year to match the completion date', () => {
         expect(() => validateInstrumentDocument('RLY26001', { ...valid, completed: '2025-12-31' })).toThrow('RLY26001 year does not match completion date 2025-12-31');
     });
+
+    it('accepts a year-only completion value matching the serial year', () => {
+        expect(validateInstrumentDocument('PRS26001', { ...valid, completed: '2026' })).toMatchObject({ serial: 'PRS26001', year: 2026 });
+    });
+
+    it('rejects a year-only completion value that differs from the serial year', () => {
+        expect(() => validateInstrumentDocument('PRS26001', { ...valid, completed: '2025' })).toThrow('PRS26001 year does not match completion date 2025');
+    });
 });
