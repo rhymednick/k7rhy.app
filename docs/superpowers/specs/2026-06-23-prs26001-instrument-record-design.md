@@ -42,7 +42,6 @@ Discord remains on the case card as owner support, consistent with the serialize
 - **Record date display:** `Modified 2026`
 - **Origin:** `A 2024-production PRS SE Custom 24 Burled Ash Limited Edition, upgraded and individually voiced by K7RHY Resonance Lab in 2026.`
 - **Theme:** `A warm, touch-sensitive Alnico II instrument that moves from full humbucker authority to partial-split snap and articulate parallel cleans without changing its familiar two-knob workflow.`
-- **Condition note on web page only:** Excellent condition, with no visible marks found when this record was created
 - **Canonical URL:** `https://k7rhy.app/sn/PRS26001`
 
 The supplied `BurlPRS.png` photograph will be optimized and copied to `public/images/instruments/PRS26001/`. It will be the web hero image and will not appear on the case card.
@@ -69,6 +68,22 @@ The narrative will not claim a production quantity or include factory-pickup det
 The narrative will state that the guitar served as the K7RHY platform-reference instrument while other guitars were being designed, assembled, and evaluated. Its role was to provide a consistent baseline for feel, dynamic response, switching utility, and clean-to-edge-of-breakup voicing.
 
 This will be written as instrument provenance, not personal memoir or sales copy.
+
+## Musical Character and Best Uses
+
+The web page will explicitly explain that the guitar is especially well suited to:
+
+- blues
+- funk
+- soul
+- folk
+- jazz
+- yacht rock
+- expressive clean-to-edge-of-breakup playing
+
+The genre guidance will be presented as a description of the voice design, not as a limitation. The full-series bridge, combined, and neck settings retain enough weight and output for stronger rhythm work and sustained lead playing, while the partial-split and internal-parallel settings provide the touch sensitivity, clarity, and controlled output that define the instrument's intended specialty.
+
+The short theme statement on the case card will preserve this idea in compact form so a future owner can understand not only how to reach each voice, but what kinds of musical work the overall instrument was voiced to do well.
 
 ## Installed Electronics
 
@@ -118,7 +133,7 @@ The MDX record will contain:
 - one five-position `Selector`
 - one standard master-volume `Pot` with a `normal` state
 - one push-pull master-tone `Pot` with `down` and `up` states
-- ordinary MDX sections for the platform, K7RHY reference role, installed work, condition when documented, and voice-use guidance
+- ordinary MDX sections for the platform, K7RHY reference role, installed work, musical character, and voice-use guidance
 
 The selector and pot descriptions must remain concise enough to fit the corrected Letter/A4 print-safe case-card layout at 100% browser scale.
 
@@ -155,7 +170,7 @@ Its content priority is:
 7. origin
 8. permanent URL, Discord, and QR code
 
-It will not include the photograph, condition, price, sale language, personal history, or removed components.
+It will not include the photograph, price, sale language, personal history, or removed components.
 
 ## Deferred Sale Page TODO
 
@@ -183,6 +198,7 @@ Rendered verification will cover:
 - standard site header and footer
 - optimized photograph rendering
 - all five selector positions and both push-pull states
+- clear musical-use guidance for blues, funk, soul, folk, jazz, yacht rock, and clean-to-edge-of-breakup playing
 - one-page Letter and A4 print output at 100% browser scale
 - QR and footer clearance
 - absence of sales language and personal-owner narrative
