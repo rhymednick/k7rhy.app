@@ -3,11 +3,13 @@ import Image from 'next/image';
 import { QRCodeSVG } from 'qrcode.react';
 import { MessageCircle } from 'lucide-react';
 import { siteConfig } from '@/config/site';
+import { instrumentDateLabel } from '@/lib/instruments/date';
 import { instrumentUrl } from '@/lib/instruments/serial';
 import type { InstrumentRecord } from '@/types/instrument';
 
 export function InstrumentCaseCard({ record, children }: { record: InstrumentRecord; children: React.ReactNode }) {
     const url = instrumentUrl(record.serial);
+    const dateLabel = instrumentDateLabel(record.dateLabel);
 
     return (
         <article className="instrument-case-card flex flex-col border border-slate-300 bg-white p-[0.26in] text-slate-950 shadow-xl">
@@ -25,7 +27,7 @@ export function InstrumentCaseCard({ record, children }: { record: InstrumentRec
             <section className="relative overflow-hidden py-4">
                 <div className="pointer-events-none absolute -right-16 -top-28 h-52 w-52 rounded-full border border-sky-200 shadow-[0_0_0_18px_#f0f9ff,0_0_0_36px_#f8fafc]" />
                 <div className="relative">
-                    <div className="font-mono text-[8.5pt] font-semibold tracking-[0.14em] text-sky-700">{record.serial} · COMPLETED {record.year}</div>
+                    <div className="font-mono text-[8.5pt] font-semibold tracking-[0.14em] text-sky-700">{record.serial} · {dateLabel.toUpperCase()} {record.year}</div>
                     <h1 className="mt-1 text-[23pt] font-semibold leading-none tracking-tight">{record.name}</h1>
                     <p className="mt-2 max-w-[6.3in] text-[9pt] leading-relaxed text-slate-600">{record.theme}</p>
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, FileText, Guitar, Printer } from 'lucide-react';
+import { formatInstrumentDate, instrumentDateLabel } from '@/lib/instruments/date';
 import type { InstrumentRecord } from '@/types/instrument';
 
 export interface InstrumentRecordPageProps {
@@ -9,17 +10,9 @@ export interface InstrumentRecordPageProps {
     children: React.ReactNode;
 }
 
-function formatCompletedDate(completed: string) {
-    return new Date(`${completed}T00:00:00Z`).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        timeZone: 'UTC',
-    });
-}
-
 export function InstrumentRecordPage({ record, children }: InstrumentRecordPageProps) {
     const primaryImage = record.images[0];
+    const dateLabel = instrumentDateLabel(record.dateLabel);
 
     return (
         <main className="container mx-auto max-w-6xl space-y-8 px-4 py-8 md:px-8 md:py-12">
@@ -36,7 +29,7 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                             <span className="font-mono text-sm font-semibold tracking-[0.16em] text-sky-700 dark:text-sky-300">{record.serial}</span>
                         </div>
                         <div>
-                            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{record.modelDescription} · completed {record.year}</p>
+                            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{record.modelDescription} · {dateLabel.toLowerCase()} {record.year}</p>
                             <h1 className="text-4xl font-semibold tracking-tight text-slate-950 dark:text-slate-50 sm:text-5xl">{record.name}</h1>
                         </div>
                         <p className="max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">{record.theme}</p>
@@ -46,8 +39,8 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                                 <dd className="mt-1 leading-relaxed text-slate-800 dark:text-slate-200">{record.origin}</dd>
                             </div>
                             <div>
-                                <dt className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">Completed</dt>
-                                <dd className="mt-1 text-slate-800 dark:text-slate-200">{formatCompletedDate(record.completed)}</dd>
+                                <dt className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">{dateLabel}</dt>
+                                <dd className="mt-1 text-slate-800 dark:text-slate-200">{formatInstrumentDate(record.completed)}</dd>
                             </div>
                         </dl>
                         <div>

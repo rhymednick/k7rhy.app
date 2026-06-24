@@ -53,4 +53,15 @@ describe('InstrumentCaseCard', () => {
         expect(container.querySelector('[data-value="https://k7rhy.app/sn/RLY26001"]')).toBeInTheDocument();
         expect(container.querySelector('img[src="/front.jpg"]')).not.toBeInTheDocument();
     });
+
+    it('prints a custom year-only record label', () => {
+        const { container } = render(
+            <InstrumentCaseCard record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
+                <div>Control map</div>
+            </InstrumentCaseCard>,
+        );
+
+        expect(container).toHaveTextContent('MODIFIED 2026');
+        expect(container).not.toHaveTextContent('COMPLETED 2026');
+    });
 });
