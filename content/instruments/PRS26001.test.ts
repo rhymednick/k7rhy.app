@@ -14,6 +14,7 @@ describe('PRS26001 permanent record', () => {
         expect(source).toContain('APH-1b Alnico II Pro');
         expect(source).toContain('APH-1n Alnico II Pro');
         expect(source).toContain('PRS locking tuners');
+        expect(source).toContain('As part of the K7RHY rework, the original tuners were replaced with PRS locking tuners.');
         expect(source).toContain('<Selector label="Pickup selector" positions={5}>');
         expect(source).toContain('blues, funk, soul, folk, jazz, and yacht rock');
         expect(source).toContain('platform-reference instrument');
