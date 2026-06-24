@@ -1,6 +1,6 @@
 # PRS26001 Instrument Record Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Publish the permanent `/sn/PRS26001` reference page and its one-page printable case card, using the supplied guitar photograph and the authoritative Seymour Duncan wiring documents.
 
@@ -42,7 +42,7 @@
 - Consumes: `completed` values matching either `YYYY` or `YYYY-MM-DD`.
 - Preserves: existing records default to `Completed` and retain full-date display.
 
-- [ ] **Step 1: Write failing date-format and year-only validation tests**
+- [x] **Step 1: Write failing date-format and year-only validation tests**
 
 Create `lib/instruments/date.test.ts`:
 
@@ -78,7 +78,7 @@ it('rejects a year-only completion value that differs from the serial year', () 
 });
 ```
 
-- [ ] **Step 2: Run the focused tests and verify RED**
+- [x] **Step 2: Run the focused tests and verify RED**
 
 Run:
 
@@ -88,7 +88,7 @@ npx vitest run lib/instruments/date.test.ts lib/instruments/validation.test.ts
 
 Expected: FAIL because `lib/instruments/date.ts` does not exist. After creating only an empty export if needed to reach schema behavior, the year-only content schema remains unsupported until the implementation step.
 
-- [ ] **Step 3: Implement the shared date model**
+- [x] **Step 3: Implement the shared date model**
 
 Create `lib/instruments/date.ts`:
 
@@ -127,7 +127,7 @@ dateLabel: z.string().min(1).optional(),
 
 No validation change is required in `validateInstrumentDocument`: its existing `data.completed.slice(0, 4)` year comparison works for both supported forms.
 
-- [ ] **Step 4: Write failing component tests for `Modified 2026`**
+- [x] **Step 4: Write failing component tests for `Modified 2026`**
 
 Add this test to `components/instrument/instrument-record-page.test.tsx`:
 
@@ -160,7 +160,7 @@ it('prints a custom year-only record label', () => {
 });
 ```
 
-- [ ] **Step 5: Run the component tests and verify RED**
+- [x] **Step 5: Run the component tests and verify RED**
 
 Run:
 
@@ -170,7 +170,7 @@ npx vitest run components/instrument/instrument-record-page.test.tsx components/
 
 Expected: FAIL because the components still hard-code `Completed` and the web formatter treats `2026` as a complete date.
 
-- [ ] **Step 6: Use the shared date functions in web and print components**
+- [x] **Step 6: Use the shared date functions in web and print components**
 
 In `components/instrument/instrument-record-page.tsx`, import:
 
@@ -205,7 +205,7 @@ In `components/instrument/instrument-case-card.tsx`, import `instrumentDateLabel
 </div>
 ```
 
-- [ ] **Step 7: Run the focused suite and verify GREEN**
+- [x] **Step 7: Run the focused suite and verify GREEN**
 
 Run:
 
@@ -215,7 +215,7 @@ npx vitest run lib/instruments/date.test.ts lib/instruments/validation.test.ts c
 
 Expected: all tests pass.
 
-- [ ] **Step 8: Commit the date enhancement**
+- [x] **Step 8: Commit the date enhancement**
 
 ```bash
 git add types/instrument.ts content-collections.ts lib/instruments/date.ts lib/instruments/date.test.ts lib/instruments/validation.test.ts components/instrument/instrument-record-page.tsx components/instrument/instrument-record-page.test.tsx components/instrument/instrument-case-card.tsx components/instrument/instrument-case-card.test.tsx
@@ -236,7 +236,7 @@ git commit -m "feat(instruments): support year-only record dates"
 - Consumes: `completed: '2026'` and `dateLabel: 'Modified'` support from Task 1.
 - Produces: published static routes `/sn/PRS26001` and `/sn/PRS26001/print` with canonical QR URL `https://k7rhy.app/sn/PRS26001`.
 
-- [ ] **Step 1: Write a failing permanent-record content contract test**
+- [x] **Step 1: Write a failing permanent-record content contract test**
 
 Create `content/instruments/PRS26001.test.ts`:
 
@@ -272,7 +272,7 @@ describe('PRS26001 permanent record', () => {
 });
 ```
 
-- [ ] **Step 2: Run the record test and verify RED**
+- [x] **Step 2: Run the record test and verify RED**
 
 Run:
 
@@ -282,7 +282,7 @@ npx vitest run content/instruments/PRS26001.test.ts
 
 Expected: FAIL with `ENOENT` because `PRS26001.mdx` does not exist.
 
-- [ ] **Step 3: Optimize the supplied photograph**
+- [x] **Step 3: Optimize the supplied photograph**
 
 Create the destination directory and convert the supplied 4284 × 5712 PNG to a color-managed JPEG no larger than 2400 pixels on its longest side:
 
@@ -294,7 +294,7 @@ sips -g pixelWidth -g pixelHeight -g fileSize public/images/instruments/PRS26001
 
 Expected: a portrait JPEG with longest dimension 2400 pixels, readable dimensions, and substantially smaller size than the 29 MB source PNG.
 
-- [ ] **Step 4: Author the complete MDX record**
+- [x] **Step 4: Author the complete MDX record**
 
 Create `content/instruments/PRS26001.mdx` with this exact initial content:
 
@@ -362,7 +362,7 @@ Pulling the tone control engages the refined/clean mode. The full-humbucker sele
 The factory electronics were replaced by a Seymour Duncan APH-1b/APH-1n Alnico II Pro set, an Oak Grigsby five-way blade, 500 kΩ master volume and push-pull tone controls, a 0.022 µF film tone capacitor, and approximately 1.8 kΩ partial-split resistors. The system was voiced as a coherent ten-sound instrument rather than as a collection of unrelated switching options.
 ```
 
-- [ ] **Step 5: Run the content contract and strict-component tests**
+- [x] **Step 5: Run the content contract and strict-component tests**
 
 Run:
 
@@ -372,7 +372,7 @@ npx vitest run content/instruments/PRS26001.test.ts components/instrument/instru
 
 Expected: all tests pass.
 
-- [ ] **Step 6: Commit the photograph and record**
+- [x] **Step 6: Commit the photograph and record**
 
 ```bash
 git add public/images/instruments/PRS26001/front.jpg content/instruments/PRS26001.mdx content/instruments/PRS26001.test.ts
@@ -391,7 +391,7 @@ git commit -m "content(instruments): add PRS26001 reference record"
 - Consumes: the published PRS26001 record and shared routes from Tasks 1–2.
 - Produces: durable deferred-sale-page context without adding a sale route or sales content.
 
-- [ ] **Step 1: Update the durable handoff**
+- [x] **Step 1: Update the durable handoff**
 
 Replace `.remember/remember.md` with:
 
@@ -413,7 +413,7 @@ The serialized instrument system is implemented on `codex/instrument-records`. `
 The permanent serial record contains instrument provenance, platform-reference history, installed components, musical-use guidance, controls, canonical QR, and Discord support. It deliberately excludes price, availability, condition, personal-owner narrative, and other transaction-specific information.
 ```
 
-- [ ] **Step 2: Run the full automated verification**
+- [x] **Step 2: Run the full automated verification**
 
 Run:
 
@@ -424,12 +424,12 @@ npm run build
 
 Expected:
 
-- 31 test files pass, including the new date and PRS26001 content contracts.
+- 33 test files pass, including the new date, PRS26001 content, and compact print-renderer contracts.
 - Content Collections accepts `completed: '2026'`.
 - Static generation lists `/sn/PRS26001` and `/sn/PRS26001/print`.
 - Sitemap generation completes.
 
-- [ ] **Step 3: Start the local preview and inspect the web record**
+- [x] **Step 3: Start the local preview and inspect the web record**
 
 Run:
 
@@ -450,7 +450,7 @@ Open `/sn/PRS26001` with the in-app browser and verify:
 - desktop light/dark and 390 × 844 mobile layouts have no horizontal overflow
 - browser console has no new errors
 
-- [ ] **Step 4: Inspect the printable card**
+- [x] **Step 4: Inspect the printable card**
 
 Open `/sn/PRS26001/print` and verify:
 
@@ -463,7 +463,7 @@ Open `/sn/PRS26001/print` and verify:
 - QR encodes `https://k7rhy.app/sn/PRS26001`
 - there is no guitar photograph, price, condition, or sales language
 
-- [ ] **Step 5: Mark this plan complete and commit the handoff**
+- [x] **Step 5: Mark this plan complete and commit the handoff**
 
 Change all remaining plan checkboxes to `[x]`, then run:
 
@@ -472,7 +472,7 @@ git add .remember/remember.md docs/superpowers/plans/2026-06-23-prs26001-instrum
 git commit -m "docs: complete PRS26001 record checklist"
 ```
 
-- [ ] **Step 6: Push the existing review branch**
+- [x] **Step 6: Push the existing review branch**
 
 ```bash
 git push

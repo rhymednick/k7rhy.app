@@ -1,12 +1,15 @@
 # Handoff
 
 ## State
-I implemented serialized instrument records and printable case cards on `codex/instrument-records` in `.worktrees/instrument-records`. The approved spec and tracked plan are in `docs/superpowers/`; the unpublished authoring template is `content/instruments/RLY26001.mdx`.
+
+The serialized instrument system is implemented on `codex/instrument-records`. `RLY26001` is the demonstration record, and `PRS26001` is the first real modified-instrument reference record. PRS26001 uses year-only `Modified 2026` metadata, its supplied optimized photograph, a five-way voice map, and a print-safe case card.
 
 ## Next
-1. Replace the template photograph/copy with the first real instrument record.
-2. Check Letter/A4 print preview and scan the QR before setting `publish: true`.
-3. Merge or PR `codex/instrument-records` after user review.
+
+1. Create a separate sale page for PRS26001 when requested.
+2. Keep the sale page independent from `/sn/PRS26001` and its case card.
+3. The future sale page may include personal connection, reason for selling, asking price, transaction details, included accessories, and sale-specific photography.
 
 ## Context
-The card is sized to A4 printable width × Letter printable height and prioritizes complete control/voice access. Web records retain the standard header/footer; owner data and PDF generation are intentionally out of scope.
+
+The permanent serial record contains instrument provenance, platform-reference history, installed components, musical-use guidance, controls, canonical QR, and Discord support. It deliberately excludes price, availability, condition, personal-owner narrative, and other transaction-specific information.
