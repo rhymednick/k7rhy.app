@@ -25,7 +25,7 @@ export function SiteFooter() {
     const copyrightYear = currentYear > 2024 ? `2024–${currentYear}` : '2024';
 
     return (
-        <footer className="border-t border-border/60 bg-muted/30">
+        <footer data-site-footer className="border-t border-border/60 bg-muted/30">
             <div className="container mx-auto px-4 py-10 md:px-8">
                 <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
                     {/* Brand */}
