@@ -52,6 +52,7 @@ import { DocTerm } from '@/components/doc/doc-term';
 import { ControlPositions, ControlPosition } from '@/components/doc/control-positions';
 import { ComponentLabels, ComponentLabel } from '@/components/doc/component-labels';
 import { WiringConnections, WireConnection } from '@/components/doc/wiring-connections';
+import { ControlLayout, InstrumentSpec, Pickup, PickupConfiguration, PickupDetail, Pot, PotPosition, Selector, SelectorPosition } from '@/components/instrument/instrument-spec';
 
 //import { Style } from "@/registry/styles"
 
@@ -201,6 +202,15 @@ const components: MDXComponents = {
     ComponentLabel,
     WiringConnections,
     WireConnection,
+    InstrumentSpec,
+    PickupConfiguration,
+    Pickup,
+    PickupDetail,
+    ControlLayout,
+    Selector,
+    SelectorPosition,
+    Pot,
+    PotPosition,
 };
 
 // interface MdxProps {

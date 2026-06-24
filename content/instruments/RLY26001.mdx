@@ -1,0 +1,49 @@
+---
+publish: true
+name: 'Relay Lipstick'
+completed: '2026-06-19'
+origin: 'Designed, assembled, and individually voiced by K7RHY Resonance Lab as a demonstration Relay build.'
+theme: 'A wide-range Tele-style instrument that moves from authoritative humbucker drive to glassy, dimensional textures without losing its direct, familiar feel.'
+images:
+    - src: '/images/products/guitars/rainbow-tele/front.jpeg'
+      alt: 'Front view of the rainbow-finished Relay Lipstick demonstration guitar'
+related:
+    label: 'Explore the Relay Guitar family'
+    href: '/relay'
+---
+
+<InstrumentSpec>
+    <PickupConfiguration>
+        <Pickup position="bridge" type="humbucker" brand="GFS" model="VEH">
+            <PickupDetail label="Magnet">Alnico V</PickupDetail>
+        </Pickup>
+        <Pickup position="middle" type="lipstick" brand="GFS" model="Pro-Tube" />
+        <Pickup position="neck" type="humbucker" brand="GFS" model="Professional Alnico II">
+            <PickupDetail label="Magnet">Alnico II</PickupDetail>
+        </Pickup>
+    </PickupConfiguration>
+
+    <ControlLayout>
+        <Selector label="Pickup selector" positions={3}>
+            <SelectorPosition voice="Bridge">Tight attack and firm low end for driven rhythm and focused leads.</SelectorPosition>
+            <SelectorPosition voice="Bridge + Neck">Broad, balanced, and open for clean or edge-of-breakup work.</SelectorPosition>
+            <SelectorPosition voice="Neck">Round and vocal for warm rhythm and fluid lead lines.</SelectorPosition>
+        </Selector>
+        <Pot label="Master volume" mechanism="push-pull">
+            <PotPosition position="down" voice="Core voices">Three-way control of the bridge and neck humbuckers.</PotPosition>
+            <PotPosition position="up" voice="Lipstick layer">Adds the middle pickup for extra chime, air, and texture.</PotPosition>
+        </Pot>
+        <Pot label="Master tone" mechanism="push-push">
+            <PotPosition position="down" voice="Open contour">Full response with conventional treble rolloff.</PotPosition>
+            <PotPosition position="up" voice="Focused contour">A tighter, more forward voice for a dense mix.</PotPosition>
+        </Pot>
+    </ControlLayout>
+</InstrumentSpec>
+
+## This instrument
+
+Relay Lipstick is the demonstration instrument for the K7RHY serialized-record system. Its core is intentionally straightforward: two complementary humbuckers, a familiar three-way selector, and conventional master volume and tone controls. The two switching functions extend that foundation rather than replacing it.
+
+Pull the volume control to bring the middle lipstick pickup into any selector position. The added pickup opens the top end and introduces a more dimensional, percussive character—especially useful for clean arpeggios, layered rhythm parts, and touch-sensitive edge-of-breakup sounds. Press the tone control to engage the focused contour whenever the instrument needs a more compact footprint or a stronger midrange presence.
+
+The result is a guitar that can stay simple on stage and become surprisingly expansive when a song asks for another color.
