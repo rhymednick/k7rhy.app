@@ -1,0 +1,4 @@
+{
+    "model": "missing-component-test",
+    "components": ["does-not-exist"]
+}

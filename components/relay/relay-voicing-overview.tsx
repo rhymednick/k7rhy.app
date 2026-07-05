@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import { ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { relayVoicings } from '@/config/relay-voicings';
 import type { RelayVoicing, RelayVoicingStatus } from '@/types/relay-voicing';
@@ -56,6 +58,19 @@ export function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: s
             </div>
 
             {children}
+
+            <div className="mt-8 rounded-lg border p-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <h2 className="text-base font-semibold">Parts profile</h2>
+                        <p className="mt-1 text-sm text-muted-foreground">This model uses the shared Relay body and hardware set. The component list page adds model-specific electronics when this voicing is selected.</p>
+                    </div>
+                    <Link href={`/relay/components?model=${voicingSlug}#electronics`} className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-md border px-4 py-2 text-center text-sm font-medium leading-tight hover:bg-muted sm:w-auto sm:shrink-0 sm:whitespace-nowrap">
+                        <ShoppingBag className="h-4 w-4" />
+                        View shopping list
+                    </Link>
+                </div>
+            </div>
         </>
     );
 }

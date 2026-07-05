@@ -9,7 +9,7 @@ export default defineConfig({
         globals: true,
         setupFiles: [],
         include: ['**/*.test.{ts,tsx}', '**/*.spec.{ts,tsx}'],
-        exclude: ['**/node_modules/**', 'tests/integration/**'],
+        exclude: ['**/node_modules/**', 'tests/integration/**', '.worktrees/**', '.claude/**'],
         alias: {
             '@': path.resolve(__dirname, './'),
         },

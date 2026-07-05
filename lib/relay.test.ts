@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage } from '@/lib/relay';
+import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage } from '@/lib/relay';
 import { relayNav, relayPlatformNav } from '@/config/relay-nav';
 
 describe('resolveRelayVoicingFilePath', () => {
@@ -27,6 +27,15 @@ describe('loadRelayVoicingsGalleryPage', () => {
     it('loads the voicings gallery frontmatter', () => {
         const { frontmatter } = loadRelayVoicingsGalleryPage();
         expect(frontmatter.title).toBe('Voicings');
+    });
+});
+
+describe('loadRelayPlatformSectionPage', () => {
+    it('loads the Relay components page frontmatter', () => {
+        const { frontmatter } = loadRelayPlatformSectionPage(['components', 'index']);
+
+        expect(frontmatter.title).toBe('Components');
+        expect(frontmatter.description).toContain('shopping list');
     });
 });
 
