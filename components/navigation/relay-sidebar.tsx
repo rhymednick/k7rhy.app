@@ -24,6 +24,8 @@ function StageStatusTag({ status }: { status: RelayStageStatus }) {
 function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: string }) {
     const linkProps = stage.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
     const isActive = !stage.isDiscord && pathname === stage.href;
+    // Voicings has its own dedicated lineup section below; don't double-render its items here.
+    const renderItems = stage.slug !== 'voicings' && stage.items && stage.items.length > 0;
 
     return (
         <li>
@@ -105,6 +107,35 @@ function VoicingSidebar({ voicing }: { voicing: string }) {
                 </div>
             </div>
 
+            {voicingNav.sections.length > 0 && (
+                <div className="border-t pt-4">
+                    {voicingNav.sections.map((section) => (
+                        <div key={section.title} className="mb-3">
+                            <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{section.title}</h4>
+                            <ul className="grid grid-flow-row auto-rows-max text-sm">
+                                {section.items?.map((item) => {
+                                    const href = `/relay/${voicing}/${item.slug}`;
+                                    const isActive = pathname === href;
+                                    return (
+                                        <li key={item.slug}>
+                                            <Link
+                                                href={href}
+                                                className={cn(
+                                                    'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
+                                                    isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                                                )}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            )}
+
             <div className="border-t pt-4">
                 <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">All voicings</h4>
                 <RelayVoicingLineupNav />
@@ -121,6 +152,11 @@ export function RelayLayoutSidebar() {
     const relayIndex = segments.indexOf('relay');
     const nextSegment = relayIndex >= 0 ? (segments[relayIndex + 1] ?? '') : '';
     const voicingSlug = nextSegment === 'voicings' ? (segments[relayIndex + 2] ?? '') : '';
+
+    // Also show the voicing sidebar for direct voicing sub-pages like /relay/lipstick/bom.
+    if (!voicingSlug && nextSegment in relayNav) {
+        return <VoicingSidebar voicing={nextSegment} />;
+    }
 
     // Voicing-level sidebar only on /relay/voicings/<slug> (a specific voicing — not the gallery).
     // Everything else (including /relay/voicings, /relay/body, /relay/assembly) uses the platform sidebar.

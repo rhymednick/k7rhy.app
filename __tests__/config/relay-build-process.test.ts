@@ -13,10 +13,10 @@ describe('relayBuildProcess config', () => {
         expect(numbers).toEqual([1, 2, 3]);
     });
 
-    it('marks Voicings as live, Body as in-progress, Assembly as planned at PR #2 ship time', () => {
+    it('marks Body and Voicings as live, Assembly as planned at PR #3 ship time', () => {
         const byslug = Object.fromEntries(relayBuildProcess.stages.map((s) => [s.slug, s.status]));
         expect(byslug).toEqual({
-            body: 'in-progress',
+            body: 'live',
             voicings: 'live',
             assembly: 'planned',
         });
@@ -43,6 +43,17 @@ describe('relayBuildProcess config', () => {
         expect(voicings).toBeDefined();
         const itemTitles = voicings!.items?.map((i) => i.title) ?? [];
         expect(itemTitles).toEqual(['Lipstick', 'Reef', 'Velvet', 'Arc', 'Torch', 'Current', 'Hammer']);
+    });
+
+    it('exposes Components, Print, Bonding, and Finishing as sub-items under the Body stage', () => {
+        const body = relayBuildProcess.stages.find((s) => s.slug === 'body');
+        expect(body).toBeDefined();
+        const itemTitles = body!.items?.map((i) => i.title) ?? [];
+        expect(itemTitles).toEqual(['Components', 'Print', 'Bonding', 'Finishing']);
+        expect(body!.items?.[0].href).toBe('/relay/components');
+        expect(body!.items?.[1].href).toBe('/relay/body/print');
+        expect(body!.items?.[2].href).toBe('/relay/body/bonding');
+        expect(body!.items?.[3].href).toBe('/relay/body/finishing');
     });
 
     it('every stage has a non-empty summary', () => {

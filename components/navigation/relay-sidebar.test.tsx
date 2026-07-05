@@ -25,7 +25,7 @@ describe('RelayLayoutSidebar (platform mode)', () => {
         expect(screen.getByText('Assembly')).toBeInTheDocument();
     });
 
-    it('routes Body and Assembly stages to in-site placeholder pages with status tags', () => {
+    it('routes Body and Assembly stages to in-site pages, with status tag only on non-Live', () => {
         render(<RelayLayoutSidebar />);
         // Accessible name is the concatenation of the title span and status tag: "BodyIn progress", "AssemblyPlanned"
         const bodyLink = screen.getByRole('link', { name: /^Body/ });
@@ -34,9 +34,19 @@ describe('RelayLayoutSidebar (platform mode)', () => {
         expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
         expect(bodyLink).not.toHaveAttribute('target');
         expect(assemblyLink).not.toHaveAttribute('target');
-        // Status tags appear inline with the stage title.
-        expect(bodyLink.textContent).toMatch(/In progress/i);
+        // Body is Live (no tag); Assembly is Planned (tag visible).
+        expect(bodyLink.textContent).not.toMatch(/in progress|planned|live/i);
         expect(assemblyLink.textContent).toMatch(/Planned/i);
+    });
+
+    it('renders Print, Bonding, and Finishing sub-links under the Body stage', () => {
+        render(<RelayLayoutSidebar />);
+        const printLink = screen.getByRole('link', { name: /^Print$/ });
+        const bondingLink = screen.getByRole('link', { name: /^Bonding$/ });
+        const finishingLink = screen.getByRole('link', { name: /^Finishing$/ });
+        expect(printLink).toHaveAttribute('href', '/relay/body/print');
+        expect(bondingLink).toHaveAttribute('href', '/relay/body/bonding');
+        expect(finishingLink).toHaveAttribute('href', '/relay/body/finishing');
     });
 
     it('lists the seven voicings in the sidebar', () => {

@@ -9,7 +9,15 @@ export const relayNav: RelayNav = {
     lipstick: {
         title: 'Relay Lipstick',
         status: 'ready',
-        sections: [],
+        sections: [
+            {
+                title: 'Electronics',
+                items: [
+                    { title: 'Parts List', slug: 'bom' },
+                    { title: 'Wiring Guide', slug: 'wiring' },
+                ],
+            },
+        ],
     },
     reef: {
         title: 'Relay Reef',
@@ -19,7 +27,15 @@ export const relayNav: RelayNav = {
     velvet: {
         title: 'Relay Velvet',
         status: 'ready',
-        sections: [],
+        sections: [
+            {
+                title: 'Electronics',
+                items: [
+                    { title: 'Parts List', slug: 'bom' },
+                    { title: 'Wiring Guide', slug: 'wiring' },
+                ],
+            },
+        ],
     },
     arc: {
         title: 'Relay Arc',
@@ -29,7 +45,15 @@ export const relayNav: RelayNav = {
     torch: {
         title: 'Relay Torch',
         status: 'ready',
-        sections: [],
+        sections: [
+            {
+                title: 'Electronics',
+                items: [
+                    { title: 'Parts List', slug: 'bom' },
+                    { title: 'Wiring Guide', slug: 'wiring' },
+                ],
+            },
+        ],
     },
     current: {
         title: 'Relay Current',
