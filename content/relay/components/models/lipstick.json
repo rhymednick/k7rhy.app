@@ -1,0 +1,4 @@
+{
+    "model": "lipstick",
+    "components": ["gfs-neck-pickup", "gfs-lipstick-pickup", "gfs-bridge-pickup", "push-push-pots", "selector-switch", "tone-capacitor", "treble-bleed"]
+}
