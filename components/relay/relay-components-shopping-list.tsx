@@ -71,7 +71,6 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
     const router = useRouter();
     const [selectedModel, setSelectedModel] = useState(initialModel ?? '');
     const grouped = useMemo(() => groupComponentsByCategory(components), [components]);
-    const selectedVoicing = relayVoicings.find((voicing) => voicing.slug === selectedModel);
 
     function selectModel(nextModel: string) {
         setSelectedModel(nextModel);
@@ -82,13 +81,8 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
     return (
         <div className="mt-8 space-y-8">
             <div className="rounded-lg border p-4">
-                <div className="space-y-1">
-                    <h2 className="text-base font-semibold">Select your instrument voice.</h2>
-                    <p className="text-sm text-muted-foreground">
-                        Pick a Relay voicing to add the electronics that change by model. Shared body construction and guitar hardware remain visible for every build.
-                    </p>
-                </div>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <h2 className="text-base font-semibold">Select your instrument voice.</h2>
+                <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-7">
                     {relayVoicings.map((voicing) => {
                         const isSelected = selectedModel === voicing.slug;
                         return (
@@ -98,7 +92,7 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
                                 onClick={() => selectModel(voicing.slug)}
                                 aria-pressed={isSelected}
                                 className={cn(
-                                    'min-h-[128px] rounded-md border p-3 text-left transition-colors',
+                                    'min-h-20 rounded-md border p-2.5 text-left transition-colors',
                                     'hover:border-sky-500 hover:bg-sky-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                                     isSelected ? 'border-sky-500 bg-sky-500/10' : 'border-border bg-background'
                                 )}
@@ -106,18 +100,14 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
                                 <span className="flex items-start justify-between gap-3">
                                     <span className="min-w-0">
                                         <span className="block text-sm font-semibold text-foreground">{voicing.name}</span>
-                                        <span className="mt-1 block text-xs text-muted-foreground">{voicing.tagline}</span>
                                     </span>
                                     {isSelected && <Check className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400" />}
                                 </span>
-                                <span className="mt-3 block text-xs leading-5 text-muted-foreground">{voicing.genres}</span>
+                                <span className="mt-2 block text-xs leading-5 text-muted-foreground">{voicing.genres}</span>
                             </button>
                         );
                     })}
                 </div>
-                <p className="mt-3 text-sm text-muted-foreground">
-                    {selectedVoicing ? `Showing shared Relay parts plus model-specific electronics for ${selectedVoicing.name}.` : 'Showing shared platform parts. Choose a model to include model-specific electronics.'}
-                </p>
                 {!selectedModel && allModelSpecificComponents.length > 0 && (
                     <p className="mt-2 text-sm text-muted-foreground">Electronics vary by model. Start from a voicing page or select a model here before ordering circuit parts.</p>
                 )}
