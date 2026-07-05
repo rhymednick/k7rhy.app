@@ -4,7 +4,7 @@ import type * as React from 'react';
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ExternalLink } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 import { relayVoicings } from '@/config/relay-voicings';
 import { getCachedPrice } from '@/lib/amazon-prices';
 import { cn } from '@/lib/utils';
@@ -26,11 +26,10 @@ function groupComponentsByCategory(components: RelayComponentRecord[]): Record<R
     );
 }
 
-function ComponentBadge({ children, tone }: { children: React.ReactNode; tone: 'amber' | 'green' | 'slate' }) {
+function ComponentBadge({ children, tone }: { children: React.ReactNode; tone: 'amber' | 'green' }) {
     const tones = {
         amber: 'border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-400',
         green: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400',
-        slate: 'border-slate-500/30 bg-slate-500/10 text-slate-700 dark:text-slate-400',
     };
 
     return <span className={cn('rounded border px-1.5 py-0.5 text-xs font-medium', tones[tone])}>{children}</span>;
@@ -46,7 +45,6 @@ function ComponentRow({ component }: { component: RelayComponentRecord }) {
                     <div className="flex flex-wrap items-center gap-2">
                         <h3 className="m-0 text-base font-semibold">{component.title}</h3>
                         <ComponentBadge tone={component.specificity === 'specific' ? 'amber' : 'green'}>{component.specificity === 'specific' ? 'Specific' : 'Flexible'}</ComponentBadge>
-                        {component.scope === 'model' && <ComponentBadge tone="slate">Model-specific</ComponentBadge>}
                     </div>
                     <p className="text-sm text-muted-foreground">Quantity: {component.quantity}</p>
                 </div>
@@ -75,8 +73,7 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
     const grouped = useMemo(() => groupComponentsByCategory(components), [components]);
     const selectedVoicing = relayVoicings.find((voicing) => voicing.slug === selectedModel);
 
-    function handleModelChange(event: React.ChangeEvent<HTMLSelectElement>) {
-        const nextModel = event.target.value;
+    function selectModel(nextModel: string) {
         setSelectedModel(nextModel);
         const hash = window.location.hash || '';
         router.replace(nextModel ? `/relay/components?model=${nextModel}${hash}` : `/relay/components${hash}`);
@@ -85,18 +82,40 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
     return (
         <div className="mt-8 space-y-8">
             <div className="rounded-lg border p-4">
-                <label className="text-sm font-medium" htmlFor="relay-model-selector">
-                    Model
-                </label>
-                <select id="relay-model-selector" value={selectedModel} onChange={handleModelChange} className="mt-2 h-10 w-full rounded-md border bg-background px-3 text-sm sm:max-w-sm">
-                    <option value="">Shared platform parts only</option>
-                    {relayVoicings.map((voicing) => (
-                        <option key={voicing.slug} value={voicing.slug}>
-                            {voicing.name}
-                        </option>
-                    ))}
-                </select>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <div className="space-y-1">
+                    <h2 className="text-base font-semibold">Select your instrument voice.</h2>
+                    <p className="text-sm text-muted-foreground">
+                        Pick a Relay voicing to add the electronics that change by model. Shared body construction and guitar hardware remain visible for every build.
+                    </p>
+                </div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    {relayVoicings.map((voicing) => {
+                        const isSelected = selectedModel === voicing.slug;
+                        return (
+                            <button
+                                key={voicing.slug}
+                                type="button"
+                                onClick={() => selectModel(voicing.slug)}
+                                aria-pressed={isSelected}
+                                className={cn(
+                                    'min-h-[128px] rounded-md border p-3 text-left transition-colors',
+                                    'hover:border-sky-500 hover:bg-sky-500/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                                    isSelected ? 'border-sky-500 bg-sky-500/10' : 'border-border bg-background'
+                                )}
+                            >
+                                <span className="flex items-start justify-between gap-3">
+                                    <span className="min-w-0">
+                                        <span className="block text-sm font-semibold text-foreground">{voicing.name}</span>
+                                        <span className="mt-1 block text-xs text-muted-foreground">{voicing.tagline}</span>
+                                    </span>
+                                    {isSelected && <Check className="h-4 w-4 shrink-0 text-sky-600 dark:text-sky-400" />}
+                                </span>
+                                <span className="mt-3 block text-xs leading-5 text-muted-foreground">{voicing.genres}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">
                     {selectedVoicing ? `Showing shared Relay parts plus model-specific electronics for ${selectedVoicing.name}.` : 'Showing shared platform parts. Choose a model to include model-specific electronics.'}
                 </p>
                 {!selectedModel && allModelSpecificComponents.length > 0 && (
