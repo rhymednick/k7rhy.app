@@ -16,6 +16,7 @@ export const relayBuildProcess: RelayBuildProcess = {
             summary: 'Print, bond, cure, and finish the shared double-cut body. Same body for every voicing.',
             href: '/relay/body',
             items: [
+                { title: 'Components', href: '/relay/components' },
                 { title: 'Print', href: '/relay/body/print' },
                 { title: 'Bonding', href: '/relay/body/bonding' },
                 { title: 'Finishing', href: '/relay/body/finishing' },
