@@ -18,13 +18,13 @@ describe('RelayProcessOverview', () => {
         expect(screen.getByText('3')).toBeInTheDocument();
     });
 
-    it('renders status badges that match the PR #3 ship state', () => {
+    it('renders status badges that match the current ship state', () => {
         render(<RelayProcessOverview />);
 
-        // Body and Voicings are Live; Assembly is Planned. No In progress at this ship.
+        // Body and Voicings are Live; Assembly is In progress (wiring guides live, rest in development).
         expect(screen.getAllByText('Live')).toHaveLength(2);
-        expect(screen.getByText('Planned')).toBeInTheDocument();
-        expect(screen.queryByText('In progress')).not.toBeInTheDocument();
+        expect(screen.getByText('In progress')).toBeInTheDocument();
+        expect(screen.queryByText('Planned')).not.toBeInTheDocument();
     });
 
     it('links every stage to its in-site /relay/ page', () => {
@@ -42,10 +42,10 @@ describe('RelayProcessOverview', () => {
         expect(assemblyLink).not.toHaveAttribute('target');
     });
 
-    it('uses Live CTA copy on Body and Voicings, Planned CTA on Assembly', () => {
+    it('uses Live CTA copy on Body and Voicings, in-progress CTA on Assembly', () => {
         render(<RelayProcessOverview />);
         expect(screen.getByText(/open body guide/i)).toBeInTheDocument();
         expect(screen.getByText(/open voicings guide/i)).toBeInTheDocument();
-        expect(screen.getByText(/coming soon/i)).toBeInTheDocument();
+        expect(screen.getByText(/follow progress/i)).toBeInTheDocument();
     });
 });
