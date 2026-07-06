@@ -58,9 +58,9 @@ describe('buildRelayVoicingBreadcrumbs', () => {
         expect(crumbs[0].href).not.toContain('/docs/');
     });
 
-    it('titles doc sub-pages from the registry docs list', () => {
+    it('titles trailing sub-pages from the raw slug segment', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['wiring'], relayVoicings);
-        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Arc', href: '/relay/voicings/arc' }, { label: 'Wiring Guide' }]);
+        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Arc', href: '/relay/voicings/arc' }, { label: 'wiring' }]);
     });
 
     it('falls back to the raw slug for unknown pages', () => {
