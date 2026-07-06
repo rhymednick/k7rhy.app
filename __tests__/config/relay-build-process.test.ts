@@ -13,12 +13,12 @@ describe('relayBuildProcess config', () => {
         expect(numbers).toEqual([1, 2, 3]);
     });
 
-    it('marks Body and Voicings as live, Assembly as planned at PR #3 ship time', () => {
+    it('marks Body and Voicings as live, Assembly as in progress (wiring guides live, rest in development)', () => {
         const byslug = Object.fromEntries(relayBuildProcess.stages.map((s) => [s.slug, s.status]));
         expect(byslug).toEqual({
             body: 'live',
             voicings: 'live',
-            assembly: 'planned',
+            assembly: 'in-progress',
         });
     });
 

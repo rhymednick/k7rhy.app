@@ -34,9 +34,9 @@ describe('RelayLayoutSidebar (platform mode)', () => {
         expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
         expect(bodyLink).not.toHaveAttribute('target');
         expect(assemblyLink).not.toHaveAttribute('target');
-        // Body is Live (no tag); Assembly is Planned (tag visible).
+        // Body is Live (no tag); Assembly is In progress (tag visible).
         expect(bodyLink.textContent).not.toMatch(/in progress|planned|live/i);
-        expect(assemblyLink.textContent).toMatch(/Planned/i);
+        expect(assemblyLink.textContent).toMatch(/In progress/i);
     });
 
     it('renders Print, Bonding, and Finishing sub-links under the Body stage', () => {
