@@ -62,6 +62,22 @@ const nextConfig = {
                 destination: '/docs/dl20w_bnc',
                 permanent: true,
             },
+            // Legacy Relay voicing URLs (pre-2026-07 restructure) → the /relay/voicings/ tree.
+            {
+                source: '/relay/:voicing(lipstick|reef|velvet|arc|torch|current|hammer)',
+                destination: '/relay/voicings/:voicing',
+                permanent: true,
+            },
+            {
+                source: '/relay/lipstick/compatibility',
+                destination: '/relay/components',
+                permanent: true,
+            },
+            {
+                source: '/relay/:voicing(lipstick|velvet|arc|torch)/:page(bom|wiring)',
+                destination: '/relay/voicings/:voicing/:page',
+                permanent: true,
+            },
         ];
     },
 
