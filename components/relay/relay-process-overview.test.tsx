@@ -5,36 +5,44 @@ import '@testing-library/jest-dom/vitest';
 import { RelayProcessOverview } from './relay-process-overview';
 
 describe('RelayProcessOverview', () => {
-    it('renders three numbered cards in stage order: Body, Voicings, Assembly', () => {
+    it('renders five numbered cards in stage order: Body, Voicing, Parts, Wiring, Assembly', () => {
         render(<RelayProcessOverview />);
 
-        expect(screen.getByRole('heading', { name: /body/i })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { name: /voicings/i })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { name: /assembly/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^body$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^voicing$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^parts$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^wiring$/i })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: /^assembly$/i })).toBeInTheDocument();
 
-        // Numbered "1.", "2.", "3." appear in document
+        // Numbered "1"..."5" appear in document
         expect(screen.getByText('1')).toBeInTheDocument();
         expect(screen.getByText('2')).toBeInTheDocument();
         expect(screen.getByText('3')).toBeInTheDocument();
+        expect(screen.getByText('4')).toBeInTheDocument();
+        expect(screen.getByText('5')).toBeInTheDocument();
     });
 
     it('renders status badges that match the current ship state', () => {
         render(<RelayProcessOverview />);
 
-        // Body and Voicings are Live; Assembly is In progress (wiring guides live, rest in development).
-        expect(screen.getAllByText('Live')).toHaveLength(2);
+        // Body, Voicing, Parts, and Wiring are Live; Assembly is In progress.
+        expect(screen.getAllByText('Live')).toHaveLength(4);
         expect(screen.getByText('In progress')).toBeInTheDocument();
         expect(screen.queryByText('Planned')).not.toBeInTheDocument();
     });
 
     it('links every stage to its in-site /relay/ page', () => {
         render(<RelayProcessOverview />);
-        const bodyLink = screen.getByRole('link', { name: /body/i });
-        const voicingsLink = screen.getByRole('link', { name: /voicings/i });
-        const assemblyLink = screen.getByRole('link', { name: /assembly/i });
+        const bodyLink = screen.getByRole('link', { name: /^1\s*body/i });
+        const voicingLink = screen.getByRole('link', { name: /^2\s*voicing/i });
+        const partsLink = screen.getByRole('link', { name: /^3\s*parts/i });
+        const wiringLink = screen.getByRole('link', { name: /^4\s*wiring/i });
+        const assemblyLink = screen.getByRole('link', { name: /^5\s*assembly/i });
 
         expect(bodyLink).toHaveAttribute('href', '/relay/body');
-        expect(voicingsLink).toHaveAttribute('href', '/relay/voicings');
+        expect(voicingLink).toHaveAttribute('href', '/relay/voicings');
+        expect(partsLink).toHaveAttribute('href', '/relay/parts');
+        expect(wiringLink).toHaveAttribute('href', '/relay/wiring');
         expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
 
         // None of the stage links open in a new tab — the placeholder pages host the Discord CTA.
@@ -42,10 +50,12 @@ describe('RelayProcessOverview', () => {
         expect(assemblyLink).not.toHaveAttribute('target');
     });
 
-    it('uses Live CTA copy on Body and Voicings, in-progress CTA on Assembly', () => {
+    it('uses Live CTA copy on Body/Voicing/Parts/Wiring, in-progress CTA on Assembly', () => {
         render(<RelayProcessOverview />);
         expect(screen.getByText(/open body guide/i)).toBeInTheDocument();
-        expect(screen.getByText(/open voicings guide/i)).toBeInTheDocument();
+        expect(screen.getByText(/open voicing guide/i)).toBeInTheDocument();
+        expect(screen.getByText(/open parts guide/i)).toBeInTheDocument();
+        expect(screen.getByText(/open wiring guide/i)).toBeInTheDocument();
         expect(screen.getByText(/follow progress/i)).toBeInTheDocument();
     });
 });
