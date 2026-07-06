@@ -1,4 +1,19 @@
-import type { RelayVoicing } from '@/types/relay-voicing';
+import type { RelayVoicing, RelayVoicingStatus } from '@/types/relay-voicing';
+
+const statusSortOrder: Record<RelayVoicingStatus, number> = {
+    ready: 0,
+    lab: 1,
+    concept: 2,
+};
+
+/** Sorts voicings for display: ready first, then lab, then concept; alphabetical by name within a status. */
+export function sortRelayVoicings<T extends { name: string; status: RelayVoicingStatus }>(voicings: T[]): T[] {
+    return [...voicings].sort((a, b) => {
+        const statusDelta = statusSortOrder[a.status] - statusSortOrder[b.status];
+        if (statusDelta !== 0) return statusDelta;
+        return a.name.localeCompare(b.name);
+    });
+}
 
 export const relayVoicings: RelayVoicing[] = [
     {
@@ -21,6 +36,10 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/lipstick',
+        docs: [
+            { title: 'Parts List', slug: 'bom' },
+            { title: 'Wiring Guide', slug: 'wiring' },
+        ],
     },
     {
         slug: 'reef',
@@ -42,6 +61,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'concentric',
         },
         href: '/relay/voicings/reef',
+        docs: [],
     },
     {
         slug: 'velvet',
@@ -63,6 +83,10 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/velvet',
+        docs: [
+            { title: 'Parts List', slug: 'bom' },
+            { title: 'Wiring Guide', slug: 'wiring' },
+        ],
     },
     {
         slug: 'arc',
@@ -70,7 +94,7 @@ export const relayVoicings: RelayVoicing[] = [
         tagline: 'Open · Spatial · Separated',
         genres: 'Clean pop · Indie · Ambient · Country',
         description: 'A middle-primary model focused on clarity and separation: wide clean sounds that keep detail under reverb, delay, and other effects.',
-        status: 'lab',
+        status: 'ready',
         interaction: {
             category: 'Primary voice',
             summary: 'The middle pickup is a main selector destination for open, spatial sounds with strong note separation.',
@@ -84,6 +108,10 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/arc',
+        docs: [
+            { title: 'Parts List', slug: 'bom' },
+            { title: 'Wiring Guide', slug: 'wiring' },
+        ],
     },
     {
         slug: 'torch',
@@ -105,6 +133,10 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/torch',
+        docs: [
+            { title: 'Parts List', slug: 'bom' },
+            { title: 'Wiring Guide', slug: 'wiring' },
+        ],
     },
     {
         slug: 'current',
@@ -126,6 +158,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/current',
+        docs: [],
     },
     {
         slug: 'hammer',
@@ -147,5 +180,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/hammer',
+        docs: [],
     },
 ];

@@ -6,13 +6,13 @@ import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
 import { loadRelayVoicingPage, buildRelayVoicingBreadcrumbs, type RelayPageFrontmatter } from '@/lib/relay';
-import { relayNav } from '@/config/relay-nav';
+import { relayVoicings } from '@/config/relay-voicings';
 import { RelayVoicingOverview } from '@/components/relay/relay-voicing-overview';
 
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-    return Object.keys(relayNav).map((slug) => ({ slug }));
+    return relayVoicings.map((voicing) => ({ slug: voicing.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -38,7 +38,7 @@ export default async function RelayVoicingPage({ params }: Props) {
     } catch {
         notFound();
     }
-    const breadcrumbs = buildRelayVoicingBreadcrumbs(slug, [], relayNav);
+    const breadcrumbs = buildRelayVoicingBreadcrumbs(slug, [], relayVoicings);
     return (
         <DocPage title={frontmatter!.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <RelayVoicingOverview voicingSlug={frontmatter!.voicing ?? slug}>

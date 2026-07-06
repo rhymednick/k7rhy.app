@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, buildRelayPlatformBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage } from '@/lib/relay';
-import { relayNav, relayPlatformNav } from '@/config/relay-nav';
+import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage } from '@/lib/relay';
+import { relayVoicings } from '@/config/relay-voicings';
 
 describe('resolveRelayVoicingFilePath', () => {
     it('resolves voicing index path when slug is empty', () => {
@@ -48,22 +48,27 @@ describe('resolveRelayPlatformFilePath', () => {
 
 describe('buildRelayVoicingBreadcrumbs', () => {
     it('builds breadcrumbs for voicing root page', () => {
-        const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayNav);
+        const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayVoicings);
         expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Lipstick' }]);
     });
 
     it('first breadcrumb links to /relay not /docs/relay', () => {
-        const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayNav);
+        const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayVoicings);
         expect(crumbs[0].href).toBe('/relay');
         expect(crumbs[0].href).not.toContain('/docs/');
     });
-});
 
-describe('buildRelayPlatformBreadcrumbs', () => {
-    it('first breadcrumb links to /relay not /docs/relay', () => {
-        const crumbs = buildRelayPlatformBreadcrumbs(['body', 'overview'], relayPlatformNav);
-        const relayLink = crumbs.find((c) => c.href?.includes('relay'));
-        expect(relayLink?.href).toBe('/relay');
-        expect(relayLink?.href).not.toContain('/docs/');
+    it('titles doc sub-pages from the registry docs list', () => {
+        const crumbs = buildRelayVoicingBreadcrumbs('arc', ['wiring'], relayVoicings);
+        expect(crumbs).toEqual([
+            { label: 'Relay Guitar', href: '/relay' },
+            { label: 'Relay Arc', href: '/relay/voicings/arc' },
+            { label: 'Wiring Guide' },
+        ]);
+    });
+
+    it('falls back to the raw slug for unknown pages', () => {
+        const crumbs = buildRelayVoicingBreadcrumbs('arc', ['mystery'], relayVoicings);
+        expect(crumbs[crumbs.length - 1]).toEqual({ label: 'mystery' });
     });
 });

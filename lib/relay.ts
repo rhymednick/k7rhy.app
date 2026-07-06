@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import type { RelayNav, RelayPlatformNav } from '@/types/relay-nav';
+import type { RelayVoicing } from '@/types/relay-voicing';
 
 export interface RelayPageFrontmatter {
     title: string;
@@ -57,49 +57,21 @@ export function loadRelayPlatformSectionPage(slug: string[]): { content: string;
     return loadMdxFile(resolveRelayPlatformFilePath(slug));
 }
 
-/** Builds breadcrumbs for a platform section page. */
-export function buildRelayPlatformBreadcrumbs(slug: string[], nav: RelayPlatformNav): RelayBreadcrumb[] {
-    const pageSlug = slug.join('/');
-    let pageTitle: string | undefined;
-    let sectionTitle: string | undefined;
-
-    for (const section of nav.sections) {
-        const item = section.items?.find((i) => i.slug === pageSlug);
-        if (item) {
-            pageTitle = item.title;
-            sectionTitle = section.title;
-            break;
-        }
-    }
-
-    return [{ label: 'Relay Guitar', href: '/relay' }, ...(sectionTitle ? [{ label: sectionTitle }] : []), { label: pageTitle ?? slug[slug.length - 1] }];
-}
-
 /** Builds breadcrumb trail for a voicing page. */
-export function buildRelayVoicingBreadcrumbs(voicing: string, slug: string[], nav: RelayNav): RelayBreadcrumb[] {
+export function buildRelayVoicingBreadcrumbs(voicing: string, slug: string[], voicings: RelayVoicing[]): RelayBreadcrumb[] {
+    const entry = voicings.find((v) => v.slug === voicing);
+    const title = entry?.name ?? voicing;
+
     if (slug.length === 0) {
-        return [{ label: 'Relay Guitar', href: '/relay' }, { label: nav[voicing]?.title ?? voicing }];
+        return [{ label: 'Relay Guitar', href: '/relay' }, { label: title }];
     }
 
-    const voicingNav = nav[voicing];
     const pageSlug = slug.join('/');
-
-    let pageTitle: string | undefined;
-    let sectionTitle: string | undefined;
-
-    for (const section of voicingNav?.sections ?? []) {
-        const item = section.items?.find((i) => i.slug === pageSlug);
-        if (item) {
-            pageTitle = item.title;
-            sectionTitle = section.title;
-            break;
-        }
-    }
+    const doc = entry?.docs.find((d) => d.slug === pageSlug);
 
     return [
         { label: 'Relay Guitar', href: '/relay' },
-        { label: voicingNav?.title ?? voicing, href: `/relay/voicings/${voicing}` },
-        ...(sectionTitle && sectionTitle !== voicingNav?.title ? [{ label: sectionTitle }] : []),
-        { label: pageTitle ?? slug[slug.length - 1] },
+        { label: title, href: `/relay/voicings/${voicing}` },
+        { label: doc?.title ?? slug[slug.length - 1] },
     ];
 }

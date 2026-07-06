@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { relayNav } from '@/config/relay-nav';
+import { relayVoicings } from '@/config/relay-voicings';
 import { relayBuildProcess } from '@/config/relay-build-process';
 import type { RelayBreadcrumb } from '@/lib/relay';
 import type { RelayBuildStage, RelayStageStatus } from '@/types/relay-nav';
@@ -84,9 +84,9 @@ function PlatformSidebar() {
 
 function VoicingSidebar({ voicing }: { voicing: string }) {
     const pathname = usePathname();
-    const voicingNav = relayNav[voicing];
+    const voicingEntry = relayVoicings.find((v) => v.slug === voicing);
 
-    if (!voicingNav) return null;
+    if (!voicingEntry) return null;
 
     const voicingRootHref = `/relay/voicings/${voicing}`;
     const isVoicingRootActive = pathname === voicingRootHref;
@@ -102,37 +102,35 @@ function VoicingSidebar({ voicing }: { voicing: string }) {
             <div className="pb-4">
                 <div className="grid grid-flow-row auto-rows-max text-sm">
                     <Link href={voicingRootHref} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline', isVoicingRootActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                        {voicingNav.title}
+                        {voicingEntry.name}
                     </Link>
                 </div>
             </div>
 
-            {voicingNav.sections.length > 0 && (
+            {voicingEntry.docs.length > 0 && (
                 <div className="border-t pt-4">
-                    {voicingNav.sections.map((section) => (
-                        <div key={section.title} className="mb-3">
-                            <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{section.title}</h4>
-                            <ul className="grid grid-flow-row auto-rows-max text-sm">
-                                {section.items?.map((item) => {
-                                    const href = `/relay/${voicing}/${item.slug}`;
-                                    const isActive = pathname === href;
-                                    return (
-                                        <li key={item.slug}>
-                                            <Link
-                                                href={href}
-                                                className={cn(
-                                                    'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-                                                    isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
-                                                )}
-                                            >
-                                                {item.title}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-                    ))}
+                    <div className="mb-3">
+                        <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Build docs</h4>
+                        <ul className="grid grid-flow-row auto-rows-max text-sm">
+                            {voicingEntry.docs.map((doc) => {
+                                const href = doc.href ?? `/relay/${voicing}/${doc.slug}`;
+                                const isActive = pathname === href;
+                                return (
+                                    <li key={doc.slug}>
+                                        <Link
+                                            href={href}
+                                            className={cn(
+                                                'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
+                                                isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
+                                            )}
+                                        >
+                                            {doc.title}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 </div>
             )}
 
@@ -154,7 +152,7 @@ export function RelayLayoutSidebar() {
     const voicingSlug = nextSegment === 'voicings' ? (segments[relayIndex + 2] ?? '') : '';
 
     // Also show the voicing sidebar for direct voicing sub-pages like /relay/lipstick/bom.
-    if (!voicingSlug && nextSegment in relayNav) {
+    if (!voicingSlug && relayVoicings.some((v) => v.slug === nextSegment)) {
         return <VoicingSidebar voicing={nextSegment} />;
     }
 

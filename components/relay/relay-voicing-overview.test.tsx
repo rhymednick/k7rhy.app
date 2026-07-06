@@ -14,7 +14,7 @@ describe('RelayVoicingOverview', () => {
     });
 
     it('renders a lab status callout before the overview text', () => {
-        const { container } = render(<RelayVoicingOverview voicingSlug="arc">Body copy</RelayVoicingOverview>);
+        const { container } = render(<RelayVoicingOverview voicingSlug="reef">Body copy</RelayVoicingOverview>);
 
         expect(screen.getByText('Lab voicing')).toBeInTheDocument();
         const callout = container.querySelector('[data-relay-status-callout]');

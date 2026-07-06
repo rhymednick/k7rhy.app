@@ -41,7 +41,7 @@ describe('relayVoicings config', () => {
             lipstick: 'ready',
             reef: 'lab',
             velvet: 'ready',
-            arc: 'lab',
+            arc: 'ready',
             torch: 'ready',
             current: 'lab',
             hammer: 'concept',
@@ -55,6 +55,19 @@ describe('relayVoicings config', () => {
             expect(voicing.pickupMap.bridge.type).toBeTruthy();
             expect(voicing.pickupMap.middle.type).toBeTruthy();
             expect(voicing.pickupMap.neck.type).toBeTruthy();
+        }
+    });
+
+    it('defines a docs list on every voicing', () => {
+        for (const voicing of relayVoicings) {
+            expect(voicing.docs, `${voicing.slug} should define docs`).toBeInstanceOf(Array);
+        }
+    });
+
+    it('gives every ready voicing a wiring guide entry', () => {
+        for (const voicing of relayVoicings.filter((v) => v.status === 'ready')) {
+            const wiring = voicing.docs.find((doc) => doc.slug === 'wiring');
+            expect(wiring, `${voicing.slug} should have a wiring doc`).toBeDefined();
         }
     });
 
