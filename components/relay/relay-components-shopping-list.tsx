@@ -2,7 +2,6 @@
 
 import type * as React from 'react';
 import { useMemo, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Check, ExternalLink } from 'lucide-react';
 import { relayVoicings } from '@/config/relay-voicings';
@@ -13,7 +12,7 @@ import { relayComponentCategories, type RelayComponentCategory, type RelayCompon
 interface RelayComponentsShoppingListProps {
     components: RelayComponentRecord[];
     allModelSpecificComponents: RelayComponentRecord[];
-    initialModel?: string;
+    initialVoicing?: string;
 }
 
 function groupComponentsByCategory(components: RelayComponentRecord[]): Record<RelayComponentCategory, RelayComponentRecord[]> {
@@ -67,15 +66,18 @@ function ComponentRow({ component }: { component: RelayComponentRecord }) {
     );
 }
 
-export function RelayComponentsShoppingList({ components, allModelSpecificComponents, initialModel }: RelayComponentsShoppingListProps) {
+export function RelayComponentsShoppingList({ components, allModelSpecificComponents, initialVoicing }: RelayComponentsShoppingListProps) {
     const router = useRouter();
-    const [selectedModel, setSelectedModel] = useState(initialModel ?? '');
+    const [selectedVoicing, setSelectedVoicing] = useState(initialVoicing ?? '');
     const grouped = useMemo(() => groupComponentsByCategory(components), [components]);
 
-    function selectModel(nextModel: string) {
-        setSelectedModel(nextModel);
+    const selectedVoicingEntry = relayVoicings.find((voicing) => voicing.slug === selectedVoicing);
+    const selectedElectronicsCount = components.filter((component) => component.scope === 'model').length;
+
+    function selectVoicing(nextVoicing: string) {
+        setSelectedVoicing(nextVoicing);
         const hash = window.location.hash || '';
-        router.replace(nextModel ? `/relay/components?model=${nextModel}${hash}` : `/relay/components${hash}`);
+        router.replace(nextVoicing ? `/relay/components?voicing=${nextVoicing}${hash}` : `/relay/components${hash}`);
     }
 
     return (
@@ -84,12 +86,12 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
                 <h2 className="text-base font-semibold">Select your instrument voice.</h2>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-7">
                     {relayVoicings.map((voicing) => {
-                        const isSelected = selectedModel === voicing.slug;
+                        const isSelected = selectedVoicing === voicing.slug;
                         return (
                             <button
                                 key={voicing.slug}
                                 type="button"
-                                onClick={() => selectModel(voicing.slug)}
+                                onClick={() => selectVoicing(voicing.slug)}
                                 aria-pressed={isSelected}
                                 className={cn(
                                     'min-h-20 rounded-md border p-2.5 text-left transition-colors',
@@ -108,8 +110,17 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
                         );
                     })}
                 </div>
-                {!selectedModel && allModelSpecificComponents.length > 0 && (
-                    <p className="mt-2 text-sm text-muted-foreground">Electronics vary by model. Start from a voicing page or select a model here before ordering circuit parts.</p>
+                {!selectedVoicing && allModelSpecificComponents.length > 0 && (
+                    <p className="mt-2 text-sm text-muted-foreground">Electronics vary by voicing. Start from a voicing page or select a voicing here before ordering circuit parts.</p>
+                )}
+                {selectedVoicingEntry && selectedElectronicsCount === 0 && (
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        I haven&apos;t published the electronics list for {selectedVoicingEntry.name} yet — it&apos;s still a {selectedVoicingEntry.status === 'concept' ? 'concept' : 'lab'} voicing and the circuit parts aren&apos;t final. The common platform parts below are accurate. Follow along in{' '}
+                        <a href="https://discord.gg/BuUxCG4W6w" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline">
+                            Discord
+                        </a>{' '}
+                        to see when it graduates.
+                    </p>
                 )}
             </div>
 
@@ -129,7 +140,11 @@ export function RelayComponentsShoppingList({ components, allModelSpecificCompon
             ))}
 
             <p className="text-sm text-muted-foreground">
-                Fit-sensitive parts still need compatibility checks before purchase. Start with <Link href="/relay/lipstick/compatibility">What Will Fit</Link> when a dimension or substitution matters.
+                Fit-sensitive parts still need compatibility checks before purchase — the item notes above call out the constraints that matter. When a dimension or substitution is in doubt, ask in{' '}
+                <a href="https://discord.gg/BuUxCG4W6w" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline">
+                    Discord
+                </a>{' '}
+                before ordering.
             </p>
         </div>
     );
