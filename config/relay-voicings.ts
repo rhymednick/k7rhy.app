@@ -21,6 +21,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/lipstick',
+        docs: [{ title: 'Wiring Guide', slug: 'wiring' }],
     },
     {
         slug: 'reef',
@@ -42,6 +43,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'concentric',
         },
         href: '/relay/voicings/reef',
+        docs: [],
     },
     {
         slug: 'velvet',
@@ -63,6 +65,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/velvet',
+        docs: [{ title: 'Wiring Guide', slug: 'wiring' }],
     },
     {
         slug: 'arc',
@@ -70,7 +73,7 @@ export const relayVoicings: RelayVoicing[] = [
         tagline: 'Open · Spatial · Separated',
         genres: 'Clean pop · Indie · Ambient · Country',
         description: 'A middle-primary model focused on clarity and separation: wide clean sounds that keep detail under reverb, delay, and other effects.',
-        status: 'lab',
+        status: 'ready',
         interaction: {
             category: 'Primary voice',
             summary: 'The middle pickup is a main selector destination for open, spatial sounds with strong note separation.',
@@ -84,6 +87,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/arc',
+        docs: [{ title: 'Wiring Guide', slug: 'wiring' }],
     },
     {
         slug: 'torch',
@@ -105,6 +109,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/torch',
+        docs: [{ title: 'Wiring Guide', slug: 'wiring' }],
     },
     {
         slug: 'current',
@@ -126,6 +131,7 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/current',
+        docs: [],
     },
     {
         slug: 'hammer',
@@ -147,5 +153,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/hammer',
+        docs: [],
     },
 ];
