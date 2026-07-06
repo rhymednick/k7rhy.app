@@ -1,53 +1,53 @@
 ---
 title: 'Wiring Guide'
-description: 'Bench-side wiring reference for the Relay Torch base harness.'
+description: 'Bench-side wiring reference for the Relay Arc base harness.'
 ---
 
-This is the bench-side reference for the Relay Torch harness. It gives you the selector map, pickup roles, labeled connection points, and the published base wiring without trying to turn the page into a full soldering class.
+This is the bench-side reference for the Relay Arc harness. It gives you the selector map, pickup locations, labeled connection points, and the published base wiring without turning into a full step-by-step soldering lesson.
 
-<DocAlert level="important" title="Build and prove the harness before installation">
-    Torch is easiest to debug while everything is loose on the bench. Wire the whole harness first, verify the selector map and output path, then mount it in the body.
+<DocAlert level="important" title="Build and test the harness before it goes into the body">
+    Arc is easier to debug on the bench than in the cavity. Wire the harness outside the body, verify every selector position, then install it once the signal path is proven.
 </DocAlert>
 
 ## Control Layout
 
 <ControlPositions switchLabel="5-Way Blade">
     <ControlPosition label="1" name="Bridge">
-        Bridge humbucker alone.
+        Retrotron Liverpool alone. The brightest, quickest Arc position.
     </ControlPosition>
     <ControlPosition label="2" name="Bridge + Middle">
-        Bridge humbucker and Mean 90 in parallel.
+        Liverpool and Dream 180 in parallel. Open attack with extra width.
     </ControlPosition>
     <ControlPosition label="3" name="Middle">
-        Mean 90 alone. This is the main Torch destination.
+        Dream 180 alone. The main Arc voice.
     </ControlPosition>
     <ControlPosition label="4" name="Neck + Middle">
-        Neck humbucker and Mean 90 in parallel.
+        Vintage 59 and Dream 180 in parallel. Wider and softer than position 3.
     </ControlPosition>
     <ControlPosition label="5" name="Neck">
-        Neck humbucker alone.
+        Vintage 59 alone. The warmest Arc position.
     </ControlPosition>
 </ControlPositions>
 
 **Volume** - Standard 500k audio taper.
 
-**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs stay open until the Torch edge contour is finalized.
+**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs remain open until the Arc air contour is finalized.
 
 ## Pickup Layout
 
-- Bridge: `GFS VEH Humbucker`, bridge cavity, strongest driven voice.
-- Middle: `GFS Mean 90`, middle cavity, main Torch voice.
-- Neck: `GFS Professional Series Alnico II Humbucker`, neck cavity, rounded supporting voice.
+- Bridge: `GFS Retrotron Liverpool`, bridge cavity, main bright voice.
+- Middle: `GFS Dream 180`, middle cavity, main Arc destination.
+- Neck: `GFS Vintage 59`, neck cavity, warm supporting voice.
 
 ## Reference Labels
 
 <ComponentLabels>
-    <ComponentLabel id="BP-H" component="Bridge Pickup (VEH)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="BP-G" component="Bridge Pickup (VEH)" wire="black" description="Ground wire" />
-    <ComponentLabel id="MP-H" component="Middle Pickup (Mean 90)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="MP-G" component="Middle Pickup (Mean 90)" wire="black" description="Ground wire" />
-    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
+    <ComponentLabel id="BP-H" component="Bridge Pickup (Retrotron Liverpool)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="BP-G" component="Bridge Pickup (Retrotron Liverpool)" wire="black" description="Ground wire" />
+    <ComponentLabel id="MP-H" component="Middle Pickup (Dream 180)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="MP-G" component="Middle Pickup (Dream 180)" wire="black" description="Ground wire" />
+    <ComponentLabel id="NP-H" component="Neck Pickup (Vintage 59)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="NP-G" component="Neck Pickup (Vintage 59)" wire="black" description="Ground wire" />
     <ComponentLabel id="SW-BP" component="5-Way Selector" description="Bridge input lug" />
     <ComponentLabel id="SW-MP" component="5-Way Selector" description="Middle input lug" />
     <ComponentLabel id="SW-NP" component="5-Way Selector" description="Neck input lug" />
@@ -90,22 +90,22 @@ This is the bench-side reference for the Relay Torch harness. It gives you the s
     <WireConnection from="J-SLV" to="GND" notes="Jack sleeve to ground bus" />
 </WiringConnections>
 
-Leave `TON-A1` through `TON-B3` open in this published revision. Those six switch lugs are reserved for the Torch edge contour and are intentionally unused in the base harness.
+Leave `TON-A1` through `TON-B3` open in this published revision. Those six switch lugs are reserved for the Arc air contour and are intentionally unused in the base harness.
 
 ## Build Outline
 
 <Proc title="Outline">
     <ProcStep text="Shield the cavity first">
-        Torch puts strong midrange right at the center of the selector map, so keep the control cavity quiet before any hardware goes in.
+        Apply copper foil before mounting any electronics. Arc is built for clean, spacious sounds, so noise control matters.
     </ProcStep>
-    <ProcStep text="Build the base 5-way harness on the bench">
-        Wire all three pickups to the selector, then complete the volume, standard tone branch, and output jack before you think about installation.
+    <ProcStep text="Wire the selector and pickups as the core harness">
+        Build the full 5-way signal path first: pickups to selector, selector to volume, volume to jack, and the standard tone branch.
     </ProcStep>
-    <ProcStep text="Keep the ground scheme simple">
-        Use one ground bus for shielding, pickup returns, pot backs, capacitor ground, and jack sleeve.
+    <ProcStep text="Finish the ground bus as a single system">
+        Tie all pickup grounds, pot backs, cavity shielding, capacitor return, and jack sleeve into one ground scheme instead of creating scattered ground islands.
     </ProcStep>
-    <ProcStep text="Install only after the selector map is proven">
-        Verify the 5-way positions and tap-test response before the harness goes into the body.
+    <ProcStep text="Bench-test before installation">
+        Verify every selector position with a meter and a tap test, then install the harness in the body only after the output jack reads and sounds correct.
     </ProcStep>
 </Proc>
 
@@ -113,12 +113,13 @@ Leave `TON-A1` through `TON-B3` open in this published revision. Those six switc
 
 <Proc title="Checks">
     <ProcStep text="Continuity">
-        In each selector position, `SW-OUT` should connect only to the expected pickup lug or lugs. Position 3 should isolate the Mean 90.
+        In each selector position, `SW-OUT` should connect only to the lug or lugs for that position. Position 3 should isolate the middle pickup.
     </ProcStep>
     <ProcStep text="Resistance">
-        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 11.2 kOhm in position 1, 8.7 kOhm in position 3, and 7.6 kOhm in position 5, with positions 2 and 4 reading lower because the pickups are in parallel.
+        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 9.5 kOhm in position 1, 9.0 kOhm in position 3, and 8.0 kOhm in position 5, with the combined positions reading lower because the pickups are in parallel.
     </ProcStep>
     <ProcStep text="Tap test">
-        Plug into an amp at low volume and tap each pickup with a metal screwdriver. Make sure the Mean 90 is isolated in position 3 and blended only in positions 2 and 4.
+        Plug into an amp at low volume and tap each pickup with a metal screwdriver. You should hear the expected pickup or pickup pair for every switch position.
     </ProcStep>
 </Proc>
+
