@@ -30,7 +30,10 @@ export default async function RelayPartsPage({ searchParams }: Props) {
     const buildable = listVoicingsWithParts();
     const requested = voicing ?? model ?? '';
     const active = buildable.includes(requested) ? requested : buildable[0];
-    const tabs = buildable.map((slug) => ({ slug, name: relayVoicings.find((v) => v.slug === slug)!.name }));
+    const tabs = buildable.map((slug) => {
+        const entry = relayVoicings.find((v) => v.slug === slug)!;
+        return { slug, name: entry.name, genres: entry.genres };
+    });
     const { content, frontmatter } = loadRelayPlatformSectionPage(['parts', 'index']);
     const resolvedList = resolveRelayComponentList(active);
     const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Parts' }];
@@ -38,8 +41,7 @@ export default async function RelayPartsPage({ searchParams }: Props) {
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
-            <RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/relay/parts" />
-            <RelayComponentsShoppingList components={resolvedList.components} />
+            <RelayComponentsShoppingList components={resolvedList.components} voicingTabs={<RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/relay/parts" />} />
         </DocPage>
     );
 }

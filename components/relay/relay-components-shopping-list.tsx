@@ -1,4 +1,4 @@
-import type * as React from 'react';
+import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { getCachedPrice } from '@/lib/amazon-prices';
 import { cn } from '@/lib/utils';
@@ -53,24 +53,30 @@ function ComponentRow({ component }: { component: RelayComponentRecord }) {
     );
 }
 
-export function RelayComponentsShoppingList({ components }: { components: RelayComponentRecord[] }) {
+export function RelayComponentsShoppingList({ components, voicingTabs }: { components: RelayComponentRecord[]; voicingTabs?: React.ReactNode }) {
     const grouped = groupComponentsByCategory(components);
     return (
         <div className="mt-8 space-y-8">
-            {Object.entries(grouped).map(([category, items]) => (
-                <section key={category} id={category.toLowerCase().replaceAll(' ', '-')} className="scroll-m-24">
-                    <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{category}</h2>
-                    {items.length > 0 ? (
-                        <div className="mt-4 rounded-lg border px-4">
-                            {items.map((component) => (
-                                <ComponentRow key={component.id} component={component} />
-                            ))}
-                        </div>
-                    ) : (
-                        <p className="mt-3 text-sm text-muted-foreground">No items in this category for this voicing.</p>
-                    )}
-                </section>
-            ))}
+            {relayComponentCategories.map((category) => {
+                const items = grouped[category];
+                return (
+                    <React.Fragment key={category}>
+                        {category === 'Electronics' && voicingTabs}
+                        <section id={category.toLowerCase().replaceAll(' ', '-')} className="scroll-m-24">
+                            <h2 className="font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{category}</h2>
+                            {items.length > 0 ? (
+                                <div className="mt-4 rounded-lg border px-4">
+                                    {items.map((component) => (
+                                        <ComponentRow key={component.id} component={component} />
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="mt-3 text-sm text-muted-foreground">No items in this category for this voicing.</p>
+                            )}
+                        </section>
+                    </React.Fragment>
+                );
+            })}
             <p className="text-sm text-muted-foreground">
                 Fit-sensitive parts still need compatibility checks before purchase — the item notes above call out the constraints that matter. When a dimension or substitution is in doubt, ask in{' '}
                 <a href="https://discord.gg/BuUxCG4W6w" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:underline">
