@@ -39,7 +39,7 @@ export const relayNav: RelayNav = {
     },
     arc: {
         title: 'Relay Arc',
-        status: 'lab',
+        status: 'ready',
         sections: [
             {
                 title: 'Electronics',
