@@ -74,8 +74,19 @@ const nextConfig = {
                 permanent: true,
             },
             {
-                source: '/relay/:voicing(lipstick|velvet|arc|torch)/:page(bom|wiring)',
-                destination: '/relay/voicings/:voicing/:page',
+                source: '/relay/:voicing(lipstick|velvet|arc|torch)/wiring',
+                destination: '/relay/voicings/:voicing/wiring',
+                permanent: true,
+            },
+            // Parts lists are consolidated on the shared components page.
+            {
+                source: '/relay/:voicing(lipstick|velvet|arc|torch)/bom',
+                destination: '/relay/components?voicing=:voicing',
+                permanent: true,
+            },
+            {
+                source: '/relay/voicings/:voicing(lipstick|velvet|arc|torch)/bom',
+                destination: '/relay/components?voicing=:voicing',
                 permanent: true,
             },
         ];

@@ -1,4 +1,4 @@
 {
     "model": "torch",
-    "components": []
+    "components": ["torch-neck-pickup", "torch-middle-pickup", "torch-bridge-pickup", "volume-pot-500k", "tone-pot-500k-push-pull", "selector-switch-5way", "tone-capacitor"]
 }

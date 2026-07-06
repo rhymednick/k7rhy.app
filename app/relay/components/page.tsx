@@ -8,7 +8,7 @@ import { RelayComponentsShoppingList } from '@/components/relay/relay-components
 import { loadRelayPlatformSectionPage } from '@/lib/relay';
 import { resolveRelayComponentList } from '@/lib/relay-components';
 
-type Props = { searchParams: Promise<{ model?: string }> };
+type Props = { searchParams: Promise<{ voicing?: string; model?: string }> };
 
 export async function generateMetadata() {
     try {
@@ -24,15 +24,17 @@ export async function generateMetadata() {
 }
 
 export default async function RelayComponentsPage({ searchParams }: Props) {
-    const { model } = await searchParams;
+    // `model` is the legacy query param name; `voicing` wins when both are present.
+    const { voicing, model } = await searchParams;
+    const selectedVoicing = voicing ?? model;
     const { content, frontmatter } = loadRelayPlatformSectionPage(['components', 'index']);
-    const resolvedList = resolveRelayComponentList(model);
+    const resolvedList = resolveRelayComponentList(selectedVoicing);
     const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Components' }];
 
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
-            <RelayComponentsShoppingList components={resolvedList.components} allModelSpecificComponents={resolvedList.allModelSpecificComponents} initialModel={resolvedList.selectedModel} />
+            <RelayComponentsShoppingList components={resolvedList.components} allModelSpecificComponents={resolvedList.allModelSpecificComponents} initialVoicing={resolvedList.selectedModel} />
         </DocPage>
     );
 }

@@ -37,7 +37,7 @@ export const relayVoicings: RelayVoicing[] = [
         },
         href: '/relay/voicings/lipstick',
         docs: [
-            { title: 'Parts List', slug: 'bom' },
+            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=lipstick#electronics' },
             { title: 'Wiring Guide', slug: 'wiring' },
         ],
     },
@@ -84,7 +84,7 @@ export const relayVoicings: RelayVoicing[] = [
         },
         href: '/relay/voicings/velvet',
         docs: [
-            { title: 'Parts List', slug: 'bom' },
+            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=velvet#electronics' },
             { title: 'Wiring Guide', slug: 'wiring' },
         ],
     },
@@ -109,7 +109,7 @@ export const relayVoicings: RelayVoicing[] = [
         },
         href: '/relay/voicings/arc',
         docs: [
-            { title: 'Parts List', slug: 'bom' },
+            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=arc#electronics' },
             { title: 'Wiring Guide', slug: 'wiring' },
         ],
     },
@@ -134,7 +134,7 @@ export const relayVoicings: RelayVoicing[] = [
         },
         href: '/relay/voicings/torch',
         docs: [
-            { title: 'Parts List', slug: 'bom' },
+            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=torch#electronics' },
             { title: 'Wiring Guide', slug: 'wiring' },
         ],
     },
