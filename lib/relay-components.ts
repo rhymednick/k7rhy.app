@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { relayComponentCategories, type RelayComponentCategory, type RelayComponentRecord, type RelayModelComponentManifest, type ResolvedRelayComponentList } from '@/types/relay-components';
+import { relayVoicings } from '@/config/relay-voicings';
 
 const COMPONENT_ITEMS_DIR = path.join(process.cwd(), 'content', 'relay', 'components', 'items');
 const COMPONENT_MODELS_DIR = path.join(process.cwd(), 'content', 'relay', 'components', 'models');
@@ -136,4 +137,17 @@ export function groupRelayComponentsByCategory(components: RelayComponentRecord[
         },
         {} as Record<RelayComponentCategory, RelayComponentRecord[]>
     );
+}
+
+/** Voicing slugs (registry order) that have at least one model-specific component defined. */
+export function listVoicingsWithParts(): string[] {
+    return relayVoicings
+        .map((voicing) => voicing.slug)
+        .filter((slug) => {
+            try {
+                return loadRelayModelManifest(slug).components.length > 0;
+            } catch {
+                return false;
+            }
+        });
 }
