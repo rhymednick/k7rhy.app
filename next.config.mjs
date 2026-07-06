@@ -75,7 +75,12 @@ const nextConfig = {
             },
             {
                 source: '/relay/:voicing(lipstick|velvet|arc|torch)/wiring',
-                destination: '/relay/voicings/:voicing/wiring',
+                destination: '/relay/wiring?voicing=:voicing',
+                permanent: true,
+            },
+            {
+                source: '/relay/voicings/:voicing(lipstick|velvet|arc|torch)/wiring',
+                destination: '/relay/wiring?voicing=:voicing',
                 permanent: true,
             },
             // Parts lists are consolidated on the shared parts page.

@@ -76,8 +76,14 @@ describe('relayVoicings config', () => {
     it('backs every slug-routed docs entry with an MDX file under content/relay/voicings/', () => {
         for (const voicing of relayVoicings) {
             for (const doc of voicing.docs.filter((d) => !d.href)) {
-                const filePath = path.join(process.cwd(), 'content', 'relay', 'voicings', voicing.slug, `${doc.slug}.mdx`);
-                expect(fs.existsSync(filePath), `${filePath} should exist`).toBe(true);
+                // Wiring pages are centralized in content/relay/wiring/<slug>.mdx
+                if (doc.slug === 'wiring') {
+                    const filePath = path.join(process.cwd(), 'content', 'relay', 'wiring', `${voicing.slug}.mdx`);
+                    expect(fs.existsSync(filePath), `${filePath} should exist`).toBe(true);
+                } else {
+                    const filePath = path.join(process.cwd(), 'content', 'relay', 'voicings', voicing.slug, `${doc.slug}.mdx`);
+                    expect(fs.existsSync(filePath), `${filePath} should exist`).toBe(true);
+                }
             }
         }
     });

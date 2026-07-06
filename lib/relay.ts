@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import type { RelayVoicing } from '@/types/relay-voicing';
+import { relayVoicings } from '@/config/relay-voicings';
 
 export interface RelayPageFrontmatter {
     title: string;
@@ -74,4 +75,14 @@ export function buildRelayVoicingBreadcrumbs(voicing: string, slug: string[], vo
         { label: title, href: `/relay/voicings/${voicing}` },
         { label: doc?.title ?? slug[slug.length - 1] },
     ];
+}
+
+/** Loads a voicing's wiring page (content/relay/wiring/<slug>.mdx). */
+export function loadRelayWiringPage(slug: string): { content: string; frontmatter: RelayPageFrontmatter } {
+    return loadMdxFile(path.join(process.cwd(), 'content', 'relay', 'wiring', `${slug}.mdx`));
+}
+
+/** Voicing slugs (registry order) that have a wiring page on disk. */
+export function listVoicingsWithWiring(): string[] {
+    return relayVoicings.map((voicing) => voicing.slug).filter((slug) => fs.existsSync(path.join(process.cwd(), 'content', 'relay', 'wiring', `${slug}.mdx`)));
 }

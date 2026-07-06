@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage } from '@/lib/relay';
+import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage, listVoicingsWithWiring, loadRelayWiringPage } from '@/lib/relay';
 import { relayVoicings } from '@/config/relay-voicings';
 
 describe('resolveRelayVoicingFilePath', () => {
@@ -66,5 +66,18 @@ describe('buildRelayVoicingBreadcrumbs', () => {
     it('falls back to the raw slug for unknown pages', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['mystery'], relayVoicings);
         expect(crumbs[crumbs.length - 1]).toEqual({ label: 'mystery' });
+    });
+});
+
+describe('listVoicingsWithWiring', () => {
+    it('returns voicings that have a wiring file, in registry order, Lipstick first', () => {
+        expect(listVoicingsWithWiring()).toEqual(['lipstick', 'velvet', 'arc', 'torch']);
+    });
+});
+
+describe('loadRelayWiringPage', () => {
+    it('loads a voicing wiring page frontmatter', () => {
+        const { frontmatter } = loadRelayWiringPage('arc');
+        expect(frontmatter.title).toBeTruthy();
     });
 });
