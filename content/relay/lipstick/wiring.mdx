@@ -1,125 +1,125 @@
 ---
 title: 'Wiring Guide'
-description: 'Step-by-step wiring instructions for the Relay Lipstick.'
+description: 'Bench-side wiring reference for the published Relay Lipstick harness.'
 ---
 
-The Lipstick circuit has two layers. The 3-way toggle selects between the bridge humbucker, both humbuckers together, and the neck humbucker. The push-push volume adds the lipstick shaper on top of whichever humbucker position is selected, and simultaneously engages a partial coil split on the bridge with level compensation to keep the blend balanced.
+This is the bench-side reference for the published Relay Lipstick harness. It documents the core selector, volume, tone, output, and ground path clearly. The lipstick blend and contour switching remain more specialized than the other Relay models, so this page treats the published harness as a reference build rather than a beginner-proof recipe.
 
-<DocAlert level="important" title="Shield the cavity before installing components">
-    The lipstick pickup is sensitive to interference. Apply copper foil tape to all cavity walls and the floor first — doing it after assembly is much harder and the shielding is not optional.
+<DocAlert level="important" title="Build the core harness first">
+    On Lipstick, prove the humbucker selector path, the main volume/tone path, and the ground bus before you add the lipstick blend branch. Debugging everything at once is where this model gets frustrating.
 </DocAlert>
 
-## Component Labels
+## Control Layout
 
-Each connection point in this guide has a short label. Use the table below as a reference while wiring — the same labels appear on the component diagram.
+<ControlPositions switchLabel="3-Way Toggle">
+    <ControlPosition label="1" name="Bridge">
+        Bridge humbucker alone.
+    </ControlPosition>
+    <ControlPosition label="2" name="Bridge + Neck">
+        Bridge and neck humbuckers in parallel.
+    </ControlPosition>
+    <ControlPosition label="3" name="Neck">
+        Neck humbucker alone.
+    </ControlPosition>
+</ControlPositions>
 
-<DocImage
-    title="Relay Lipstick Wiring Diagram"
-    src="/images/relay/lipstick/wiring-diagram.png"
-    alt="Labeled wiring diagram showing all connection points for the Relay Lipstick"
-    triggerImageSize={300}
-    popupImageSize={1200}
-/>
+**Volume (push-push)** - Adds the lipstick branch on top of the selected humbucker voice.
+
+**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs stay open here until the alternate contour branch is published separately.
+
+## Pickup Layout
+
+- Bridge: `GFS VEH Humbucker`, bridge cavity, strongest driven voice.
+- Middle: `GFS Pro-Tube Lipstick`, middle cavity, shaper layer added by the volume switch.
+- Neck: `GFS Classic II Alnico II Humbucker`, neck cavity, warmest core voice.
+
+## Reference Labels
 
 <ComponentLabels>
-    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="NP-W" component="Neck Pickup" wire="white" description="Coil tap wire (for partial split)" />
-    <ComponentLabel id="BP-H" component="Bridge Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="BP-G" component="Bridge Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="BP-W" component="Bridge Pickup" wire="white" description="Coil tap wire (for partial split)" />
-    <ComponentLabel id="LP-H" component="Lipstick Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="LP-G" component="Lipstick Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="SW-B" component="3-Way Toggle" description="Bridge lug — receives bridge pickup hot" />
-    <ComponentLabel id="SW-N" component="3-Way Toggle" description="Neck lug — receives neck pickup hot" />
-    <ComponentLabel id="SW-C" component="3-Way Toggle" description="Common lug — output to volume pot" />
-    <ComponentLabel id="VOL-IN" component="Volume Pot (push-push)" description="Input lug — signal in from selector" />
-    <ComponentLabel id="VOL-W" component="Volume Pot (push-push)" description="Wiper lug — signal out to jack" />
-    <ComponentLabel id="VOL-B" component="Volume Pot (push-push)" description="Back of pot — connect to ground bus" />
-    <ComponentLabel id="VOL-PP" component="Volume Pot (push-push)" description="Push-push switch contacts — engages lipstick blend" />
-    <ComponentLabel id="TON-IN" component="Tone Pot (push-pull)" description="Input lug — tapped from VOL-IN" />
-    <ComponentLabel id="TON-W" component="Tone Pot (push-pull)" description="Wiper lug — to tone capacitor" />
-    <ComponentLabel id="TON-B" component="Tone Pot (push-pull)" description="Back of pot — connect to ground bus" />
-    <ComponentLabel id="TON-PP" component="Tone Pot (push-pull)" description="Push-pull switch contacts — engages alternate contour" />
-    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg — connects to TON-W" />
-    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg — connects to ground bus" />
-    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot signal to amp)" />
+    <ComponentLabel id="BP-H" component="Bridge Pickup (VEH)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="BP-G" component="Bridge Pickup (VEH)" wire="black" description="Ground wire" />
+    <ComponentLabel id="BP-W" component="Bridge Pickup (VEH)" wire="white" description="Series link / split lead used by the blend branch" />
+    <ComponentLabel id="LP-H" component="Middle Pickup (Lipstick)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="LP-G" component="Middle Pickup (Lipstick)" wire="black" description="Ground wire" />
+    <ComponentLabel id="NP-H" component="Neck Pickup (Classic II)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="NP-G" component="Neck Pickup (Classic II)" wire="black" description="Ground wire" />
+    <ComponentLabel id="NP-W" component="Neck Pickup (Classic II)" wire="white" description="Series link / split lead, grounded in the published harness" />
+    <ComponentLabel id="SW-B" component="3-Way Toggle" description="Bridge input lug" />
+    <ComponentLabel id="SW-N" component="3-Way Toggle" description="Neck input lug" />
+    <ComponentLabel id="SW-C" component="3-Way Toggle" description="Toggle common/output lug" />
+    <ComponentLabel id="VOL-IN" component="Volume Pot (push-push)" description="Input lug from toggle" />
+    <ComponentLabel id="VOL-W" component="Volume Pot (push-push)" description="Wiper/output lug to jack" />
+    <ComponentLabel id="VOL-B" component="Volume Pot (push-push)" description="Back of pot, tied to ground bus" />
+    <ComponentLabel id="VOL-A1" component="Volume Push-Push Switch" description="Blend switch pole A, lug 1 - reserved for the lipstick branch" />
+    <ComponentLabel id="VOL-A2" component="Volume Push-Push Switch" description="Blend switch pole A, lug 2 - reserved for the lipstick branch" />
+    <ComponentLabel id="VOL-A3" component="Volume Push-Push Switch" description="Blend switch pole A, lug 3 - reserved for the lipstick branch" />
+    <ComponentLabel id="VOL-B1" component="Volume Push-Push Switch" description="Blend switch pole B, lug 1 - reserved for the bridge partial-split branch" />
+    <ComponentLabel id="VOL-B2" component="Volume Push-Push Switch" description="Blend switch pole B, lug 2 - reserved for the bridge partial-split branch" />
+    <ComponentLabel id="VOL-B3" component="Volume Push-Push Switch" description="Blend switch pole B, lug 3 - reserved for the bridge partial-split branch" />
+    <ComponentLabel id="TON-IN" component="Tone Pot (push-pull)" description="Tone input lug, tapped from VOL-IN" />
+    <ComponentLabel id="TON-W" component="Tone Pot (push-pull)" description="Tone wiper lug to capacitor" />
+    <ComponentLabel id="TON-B" component="Tone Pot (push-pull)" description="Back of pot, tied to ground bus" />
+    <ComponentLabel id="TON-A1" component="Tone Push-Pull Switch" description="Pole A, lug 1 - leave open in this revision" />
+    <ComponentLabel id="TON-A2" component="Tone Push-Pull Switch" description="Pole A, lug 2 - leave open in this revision" />
+    <ComponentLabel id="TON-A3" component="Tone Push-Pull Switch" description="Pole A, lug 3 - leave open in this revision" />
+    <ComponentLabel id="TON-B1" component="Tone Push-Pull Switch" description="Pole B, lug 1 - leave open in this revision" />
+    <ComponentLabel id="TON-B2" component="Tone Push-Pull Switch" description="Pole B, lug 2 - leave open in this revision" />
+    <ComponentLabel id="TON-B3" component="Tone Push-Pull Switch" description="Pole B, lug 3 - leave open in this revision" />
+    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg from tone wiper" />
+    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg to ground bus" />
+    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot)" />
     <ComponentLabel id="J-SLV" component="Output Jack" description="Sleeve lug (ground)" />
-    <ComponentLabel id="GND" component="Ground Bus" description="Common ground — cavity foil, pot backs, pickup grounds, jack sleeve" />
+    <ComponentLabel id="GND" component="Ground Bus" description="Common ground point for pot backs, pickup grounds, shielding, and jack sleeve" />
 </ComponentLabels>
 
-## Connections
+## Wiring Map
 
 <WiringConnections>
-    <WireConnection from="NP-H" to="SW-N" notes="Neck pickup hot to neck lug of toggle" />
-    <WireConnection from="BP-H" to="SW-B" notes="Bridge pickup hot to bridge lug of toggle" />
+    <WireConnection from="BP-H" to="SW-B" notes="Bridge pickup hot to bridge toggle lug" />
+    <WireConnection from="NP-H" to="SW-N" notes="Neck pickup hot to neck toggle lug" />
     <WireConnection from="SW-C" to="VOL-IN" notes="Toggle output to volume input" />
-    <WireConnection from="VOL-IN" to="TON-IN" notes="Tap from volume input to tone input" />
-    <WireConnection from="VOL-W" to="J-TIP" notes="Volume wiper to jack tip" />
-    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor" />
-    <WireConnection from="LP-H" to="VOL-PP" notes="Lipstick hot to push-push switch — see diagram for exact contact" />
-    <WireConnection from="BP-W" to="VOL-PP" notes="Bridge coil tap to push-push switch — partial split on engagement" />
-    <WireConnection from="TON-PP" to="[TODO]" notes="Push-pull alternate contour — wiring TBD from final circuit diagram" />
-    <WireConnection from="NP-G" to="GND" notes="" />
-    <WireConnection from="BP-G" to="GND" notes="" />
-    <WireConnection from="LP-G" to="GND" notes="" />
-    <WireConnection from="NP-W" to="GND" notes="Coil tap grounded when lipstick blend is off" />
-    <WireConnection from="VOL-B" to="GND" notes="" />
-    <WireConnection from="TON-B" to="GND" notes="" />
-    <WireConnection from="CAP-G" to="GND" notes="" />
-    <WireConnection from="J-SLV" to="GND" notes="" />
+    <WireConnection from="VOL-IN" to="TON-IN" notes="Tone feed tapped from volume input" />
+    <WireConnection from="VOL-W" to="J-TIP" notes="Volume output to jack tip" />
+    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor hot leg" />
+    <WireConnection from="BP-G" to="GND" notes="Bridge pickup ground" />
+    <WireConnection from="LP-G" to="GND" notes="Lipstick ground" />
+    <WireConnection from="NP-G" to="GND" notes="Neck pickup ground" />
+    <WireConnection from="NP-W" to="GND" notes="Neck series link grounded in the published harness" />
+    <WireConnection from="VOL-B" to="GND" notes="Ground the volume pot body" />
+    <WireConnection from="TON-B" to="GND" notes="Ground the tone pot body" />
+    <WireConnection from="CAP-G" to="GND" notes="Capacitor return to ground" />
+    <WireConnection from="J-SLV" to="GND" notes="Jack sleeve to ground bus" />
 </WiringConnections>
 
-## Wiring Procedure
+The published core harness stops there. `VOL-A1` through `VOL-B3` are reserved for the lipstick blend and bridge partial-split branch, and `TON-A1` through `TON-B3` are reserved for the alternate contour branch. Those subcircuits are still bench-note territory rather than a finalized published lug map.
 
-<Proc title="Wiring Steps">
-    <ProcStep text="Shield the cavity">
-        Apply copper foil tape to all cavity walls and the floor. Overlap foil sections by at least 2mm for continuity. Solder a short jumper wire across any gap between sections that don't overlap. Connect the foil to the ground bus with a short wire soldered to the foil surface.
+## Build Outline
+
+<Proc title="Outline">
+    <ProcStep text="Shield the cavity first">
+        Lipstick is the most noise-sensitive Relay voicing. Treat shielding as part of the circuit, not an optional cleanup step.
     </ProcStep>
-    <ProcStep text="Pre-tin all solder points">
-        Apply a small dot of solder to every lug and pad before making any connections. Pre-tinning uses less heat on the components and gives cleaner joints.
+    <ProcStep text="Build and verify the humbucker core harness first">
+        Get the 3-way selector, main volume path, tone path, jack, and ground bus working before adding the lipstick branch.
     </ProcStep>
-    <ProcStep text="Wire the 3-way toggle">
-        Connect NP-H to SW-N and BP-H to SW-B. Run a wire from SW-C to VOL-IN. This is the main humbucker selector circuit.
+    <ProcStep text="Add the lipstick and split branch only after the core path passes tests">
+        That branch is where the interesting behavior lives, but it is also where mistakes compound fastest.
     </ProcStep>
-    <ProcStep text="Wire the volume and tone pots">
-        Connect VOL-IN to TON-IN (tap, not a through connection). Connect VOL-W to J-TIP. Connect TON-W to CAP-H and CAP-G to GND.
-    </ProcStep>
-    <ProcStep text="Wire the lipstick blend circuit">
-        [TODO: document the exact push-push switch wiring for the lipstick blend, including the coil tap connections on the bridge pickup and any level compensation components.]
-    </ProcStep>
-    <ProcStep text="Wire the push-pull tone contour">
-        [TODO: document the exact push-pull switch wiring for the alternate voicing contour.]
-    </ProcStep>
-    <ProcStep text="Connect the ground bus">
-        Connect NP-G, BP-G, LP-G, NP-W (when blend off), VOL-B, TON-B, CAP-G, and J-SLV all to GND. Ensure the cavity foil connects to this same ground point.
+    <ProcStep text="Install only after the base path and blend branch behave as expected on the bench">
+        Lipstick becomes much harder to debug once everything is inside the body.
     </ProcStep>
 </Proc>
 
-## Pre-Installation Test
+## Sanity Checks
 
-Test on the bench before the components go into the body.
-
-<Proc title="Bench Test">
-    <ProcStep text="Check toggle switch continuity">
-        Set your multimeter to continuity mode. Move the toggle to each of the three positions and verify continuity from SW-C to the expected lug (SW-B in position 1, both in position 2, SW-N in position 3). No continuity should exist between SW-B and SW-N directly.
+<Proc title="Checks">
+    <ProcStep text="Continuity">
+        In toggle positions 1, 2, and 3, `SW-C` should connect to the bridge lug, both lugs, and the neck lug respectively.
     </ProcStep>
-    <ProcStep text="Resistance test — verify signal paths">
-        Set your multimeter to resistance (Ω) mode. With volume at maximum, probe between J-TIP and J-SLV. Expected readings by toggle position:
-
-        - **Position 1** (Bridge only): ~11.2 kΩ
-        - **Position 2** (Bridge + Neck, parallel): ~4.5 kΩ
-        - **Position 3** (Neck only): ~7.6 kΩ
-
-        With the lipstick blend engaged (push-push), each reading drops — a parallel pickup path is added. Position 3 + blend should read ~3.4 kΩ (neck 7.6K ∥ lipstick 6.0K). Position 1 + blend will be lower than 11.2K but the exact value depends on the partial split configuration. Open (OL) means a broken connection in that path. A reading much higher than expected in position 2 (e.g. 18–19 kΩ) suggests the two pickups may be wired in series instead of parallel. Individual pickups can vary ±10% from the spec values above.
+    <ProcStep text="Resistance">
+        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 11.2 kOhm in position 1, about 4.5 kOhm in position 2, and about 7.6 kOhm in position 3 before the lipstick branch is added.
     </ProcStep>
-    <ProcStep text="Check for ground shorts on the signal path">
-        Probe between J-TIP and GND. You should get no continuity in any switch position. Any reading here is an unintentional short.
-    </ProcStep>
-    <ProcStep text="Test the push-push volume function">
-        With the blend engaged (push-push activated), verify that LP-H has a path to J-TIP. With it disengaged, verify that path is broken.
-    </ProcStep>
-    <ProcStep text="Tap test each pickup">
-        Plug a cable into J-TIP and into an amp at low volume. Tap each pickup's pole pieces with a metal screwdriver. Verify all three pickups are audible in the appropriate positions — humbuckers via the toggle, lipstick via the push-push blend.
+    <ProcStep text="Tap test">
+        Plug into an amp at low volume and verify that the bridge and neck humbuckers respond correctly through the 3-way selector before you add the lipstick branch.
     </ProcStep>
 </Proc>
