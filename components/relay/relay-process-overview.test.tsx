@@ -58,4 +58,13 @@ describe('RelayProcessOverview', () => {
         expect(screen.getByText(/open wiring guide/i)).toBeInTheDocument();
         expect(screen.getByText(/follow progress/i)).toBeInTheDocument();
     });
+
+    it('spans the odd fifth card (Assembly) across the full row so the grid has no dangling gap', () => {
+        render(<RelayProcessOverview />);
+        const assemblyLink = screen.getByRole('link', { name: /^5\s*assembly/i });
+
+        expect(assemblyLink).toHaveClass('md:col-span-2');
+        const bodyLink = screen.getByRole('link', { name: /^1\s*body/i });
+        expect(bodyLink).not.toHaveClass('md:col-span-2');
+    });
 });
