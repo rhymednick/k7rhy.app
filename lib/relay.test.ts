@@ -31,11 +31,11 @@ describe('loadRelayVoicingsGalleryPage', () => {
 });
 
 describe('loadRelayPlatformSectionPage', () => {
-    it('loads the Relay components page frontmatter', () => {
-        const { frontmatter } = loadRelayPlatformSectionPage(['components', 'index']);
+    it('loads the Relay parts page frontmatter', () => {
+        const { frontmatter } = loadRelayPlatformSectionPage(['parts', 'index']);
 
-        expect(frontmatter.title).toBe('Components');
-        expect(frontmatter.description).toContain('shopping list');
+        expect(frontmatter.title).toBe('Parts');
+        expect(frontmatter.description).toContain('parts list');
     });
 });
 
@@ -60,11 +60,7 @@ describe('buildRelayVoicingBreadcrumbs', () => {
 
     it('titles doc sub-pages from the registry docs list', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['wiring'], relayVoicings);
-        expect(crumbs).toEqual([
-            { label: 'Relay Guitar', href: '/relay' },
-            { label: 'Relay Arc', href: '/relay/voicings/arc' },
-            { label: 'Wiring Guide' },
-        ]);
+        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Arc', href: '/relay/voicings/arc' }, { label: 'Wiring Guide' }]);
     });
 
     it('falls back to the raw slug for unknown pages', () => {
