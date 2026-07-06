@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sortRelayVoicings } from './relay-voicing-lineup-nav';
+import { sortRelayVoicings } from '@/config/relay-voicings';
 
 describe('sortRelayVoicings', () => {
     it('sorts by status priority, then name alphabetically', () => {

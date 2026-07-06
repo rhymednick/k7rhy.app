@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { RelayVoicingStatusBadge } from '@/components/relay/relay-voicing-status-badge';
-import { relayVoicings } from '@/config/relay-voicings';
+import { relayVoicings, sortRelayVoicings } from '@/config/relay-voicings';
 
 interface RelayVoicingCardProps {
     slug: string;
@@ -40,6 +40,12 @@ export function RelayVoicingCard({ slug, name, tagline, genres, description, hre
     return <div>{inner}</div>;
 }
 
-export function RelayVoicingGrid({ children }: { children: React.ReactNode }) {
-    return <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2">{children}</div>;
+export function RelayVoicingGrid({ children }: { children?: React.ReactNode }) {
+    const cards =
+        children ??
+        sortRelayVoicings(relayVoicings).map((voicing) => (
+            <RelayVoicingCard key={voicing.slug} slug={voicing.slug} name={voicing.name} tagline={voicing.tagline} genres={voicing.genres} description={voicing.description} href={voicing.href ?? `/relay/voicings/${voicing.slug}`} />
+        ));
+
+    return <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2">{cards}</div>;
 }

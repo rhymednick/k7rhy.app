@@ -1,4 +1,19 @@
-import type { RelayVoicing } from '@/types/relay-voicing';
+import type { RelayVoicing, RelayVoicingStatus } from '@/types/relay-voicing';
+
+const statusSortOrder: Record<RelayVoicingStatus, number> = {
+    ready: 0,
+    lab: 1,
+    concept: 2,
+};
+
+/** Sorts voicings for display: ready first, then lab, then concept; alphabetical by name within a status. */
+export function sortRelayVoicings<T extends { name: string; status: RelayVoicingStatus }>(voicings: T[]): T[] {
+    return [...voicings].sort((a, b) => {
+        const statusDelta = statusSortOrder[a.status] - statusSortOrder[b.status];
+        if (statusDelta !== 0) return statusDelta;
+        return a.name.localeCompare(b.name);
+    });
+}
 
 export const relayVoicings: RelayVoicing[] = [
     {
