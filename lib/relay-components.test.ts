@@ -55,6 +55,28 @@ describe('resolveRelayComponentList', () => {
     it('throws when a manifest references a missing component ID', () => {
         expect(() => resolveRelayComponentList('missing-component-test')).toThrow(/Unknown Relay component ID/);
     });
+
+    it('resolves a complete electronics list for every released voicing', () => {
+        for (const voicing of ['lipstick', 'velvet', 'torch', 'arc']) {
+            const list = resolveRelayComponentList(voicing);
+            const electronics = list.components.filter((item) => item.category === 'Electronics' && item.scope === 'model');
+
+            expect(electronics.length, `${voicing} should list model electronics`).toBeGreaterThanOrEqual(5);
+            const titles = electronics.map((item) => item.title.toLowerCase()).join(' | ');
+            expect(titles, `${voicing} should include pickups`).toMatch(/pickup|humbucker|p90|filtertron|retrotron|lipstick/);
+        }
+    });
+
+    it('gives the 5-way voicings their pots and selector', () => {
+        for (const voicing of ['velvet', 'torch', 'arc']) {
+            const ids = resolveRelayComponentList(voicing).components.map((item) => item.id);
+
+            expect(ids, `${voicing} volume pot`).toContain('volume-pot-500k');
+            expect(ids, `${voicing} tone pot`).toContain('tone-pot-500k-push-pull');
+            expect(ids, `${voicing} selector`).toContain('selector-switch-5way');
+            expect(ids, `${voicing} tone capacitor`).toContain('tone-capacitor');
+        }
+    });
 });
 
 describe('groupRelayComponentsByCategory', () => {

@@ -1,4 +1,4 @@
 {
     "model": "arc",
-    "components": []
+    "components": ["arc-neck-pickup", "arc-middle-pickup", "arc-bridge-pickup", "volume-pot-500k", "tone-pot-500k-push-pull", "selector-switch-5way", "tone-capacitor"]
 }
