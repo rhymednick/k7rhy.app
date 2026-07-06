@@ -14,13 +14,13 @@ function StageStatusBadge({ status }: { status: RelayStageStatus }) {
     return <span className="shrink-0 rounded-full border border-slate-500/30 bg-slate-500/10 px-2 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">Planned</span>;
 }
 
-function RelayProcessCard({ stage }: { stage: RelayBuildStage }) {
+function RelayProcessCard({ stage, className }: { stage: RelayBuildStage; className?: string }) {
     const linkProps = stage.isDiscord ? { target: '_blank', rel: 'noopener noreferrer' as const } : {};
 
     const ctaLabel = stage.status === 'live' ? `Open ${stage.title.toLowerCase()} guide →` : stage.status === 'in-progress' ? 'Follow progress →' : 'Coming soon →';
 
     return (
-        <Link href={stage.href} {...linkProps} className="group block h-full">
+        <Link href={stage.href} {...linkProps} className={cn('group block h-full', className)}>
             <div className={cn('flex h-full flex-col gap-3 rounded-xl border border-border/60 bg-card p-5 shadow-sm transition-all', 'group-hover:border-sky-500 group-hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)]')}>
                 <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2">
@@ -37,11 +37,12 @@ function RelayProcessCard({ stage }: { stage: RelayBuildStage }) {
 }
 
 export function RelayProcessOverview() {
+    const { stages } = relayBuildProcess;
+    const isLastRowAlone = stages.length % 2 === 1;
+
     return (
-        <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {relayBuildProcess.stages.map((stage) => (
-                <RelayProcessCard key={stage.slug} stage={stage} />
-            ))}
+        <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {stages.map((stage, index) => <RelayProcessCard key={stage.slug} stage={stage} className={isLastRowAlone && index === stages.length - 1 ? 'md:col-span-2' : undefined} />)}
         </div>
     );
 }
