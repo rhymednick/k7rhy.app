@@ -11,6 +11,9 @@ import { RelayVoicingOverview } from '@/components/relay/relay-voicing-overview'
 
 type Props = { params: Promise<{ slug: string }> };
 
+// Only registry voicings are routable.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
     return relayVoicings.map((voicing) => ({ slug: voicing.slug }));
 }

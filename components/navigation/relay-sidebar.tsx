@@ -113,7 +113,7 @@ function VoicingSidebar({ voicing }: { voicing: string }) {
                         <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Build docs</h4>
                         <ul className="grid grid-flow-row auto-rows-max text-sm">
                             {voicingEntry.docs.map((doc) => {
-                                const href = doc.href ?? `/relay/${voicing}/${doc.slug}`;
+                                const href = doc.href ?? `/relay/voicings/${voicing}/${doc.slug}`;
                                 const isActive = pathname === href;
                                 return (
                                     <li key={doc.slug}>
@@ -150,11 +150,6 @@ export function RelayLayoutSidebar() {
     const relayIndex = segments.indexOf('relay');
     const nextSegment = relayIndex >= 0 ? (segments[relayIndex + 1] ?? '') : '';
     const voicingSlug = nextSegment === 'voicings' ? (segments[relayIndex + 2] ?? '') : '';
-
-    // Also show the voicing sidebar for direct voicing sub-pages like /relay/lipstick/bom.
-    if (!voicingSlug && relayVoicings.some((v) => v.slug === nextSegment)) {
-        return <VoicingSidebar voicing={nextSegment} />;
-    }
 
     // Voicing-level sidebar only on /relay/voicings/<slug> (a specific voicing — not the gallery).
     // Everything else (including /relay/voicings, /relay/body, /relay/assembly) uses the platform sidebar.

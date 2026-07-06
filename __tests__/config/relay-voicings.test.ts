@@ -1,4 +1,6 @@
 import { describe, it, expect } from 'vitest';
+import fs from 'fs';
+import path from 'path';
 import { relayVoicings } from '@/config/relay-voicings';
 
 describe('relayVoicings config', () => {
@@ -68,6 +70,15 @@ describe('relayVoicings config', () => {
         for (const voicing of relayVoicings.filter((v) => v.status === 'ready')) {
             const wiring = voicing.docs.find((doc) => doc.slug === 'wiring');
             expect(wiring, `${voicing.slug} should have a wiring doc`).toBeDefined();
+        }
+    });
+
+    it('backs every slug-routed docs entry with an MDX file under content/relay/voicings/', () => {
+        for (const voicing of relayVoicings) {
+            for (const doc of voicing.docs.filter((d) => !d.href)) {
+                const filePath = path.join(process.cwd(), 'content', 'relay', 'voicings', voicing.slug, `${doc.slug}.mdx`);
+                expect(fs.existsSync(filePath), `${filePath} should exist`).toBe(true);
+            }
         }
     });
 
