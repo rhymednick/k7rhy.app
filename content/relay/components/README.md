@@ -1,6 +1,6 @@
 # Relay Components Shopping List Author Guide
 
-The Relay components shopping list is content-driven. Edit the files in this folder when the parts list changes; the page at `/relay/components` reads these files at build time.
+The Relay components shopping list is content-driven. Edit the files in this folder when the parts list changes; the page at `/relay/parts` reads these files at build time.
 
 ## Folder Layout
 

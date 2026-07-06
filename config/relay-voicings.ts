@@ -36,10 +36,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/lipstick',
-        docs: [
-            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=lipstick#electronics' },
-            { title: 'Wiring Guide', slug: 'wiring' },
-        ],
     },
     {
         slug: 'reef',
@@ -61,7 +57,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'concentric',
         },
         href: '/relay/voicings/reef',
-        docs: [],
     },
     {
         slug: 'velvet',
@@ -83,10 +78,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/velvet',
-        docs: [
-            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=velvet#electronics' },
-            { title: 'Wiring Guide', slug: 'wiring' },
-        ],
     },
     {
         slug: 'arc',
@@ -108,10 +99,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/arc',
-        docs: [
-            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=arc#electronics' },
-            { title: 'Wiring Guide', slug: 'wiring' },
-        ],
     },
     {
         slug: 'torch',
@@ -133,10 +120,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/torch',
-        docs: [
-            { title: 'Parts List', slug: 'parts', href: '/relay/components?voicing=torch#electronics' },
-            { title: 'Wiring Guide', slug: 'wiring' },
-        ],
     },
     {
         slug: 'current',
@@ -158,7 +141,6 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/current',
-        docs: [],
     },
     {
         slug: 'hammer',
@@ -180,6 +162,5 @@ export const relayVoicings: RelayVoicing[] = [
             tone: 'push-pull',
         },
         href: '/relay/voicings/hammer',
-        docs: [],
     },
 ];

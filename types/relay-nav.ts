@@ -9,11 +9,11 @@ export interface RelayStageItem {
     isDiscord?: boolean;
 }
 
-/** One stage of the build process: Body / Voicings / Assembly. */
+/** One stage of the build process: Body / Voicings / Parts / Wiring / Assembly. */
 export interface RelayBuildStage {
-    slug: 'body' | 'voicings' | 'assembly';
+    slug: 'body' | 'voicings' | 'parts' | 'wiring' | 'assembly';
     title: string;
-    number: 1 | 2 | 3;
+    number: 1 | 2 | 3 | 4 | 5;
     status: RelayStageStatus;
     summary: string;
     /** Where the card and the sidebar entry link to. Page route for Live stages, Discord URL for non-Live. */

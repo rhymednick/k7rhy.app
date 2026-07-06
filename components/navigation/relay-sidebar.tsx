@@ -4,15 +4,13 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { relayVoicings } from '@/config/relay-voicings';
 import { relayBuildProcess } from '@/config/relay-build-process';
+import { relayVoicings } from '@/config/relay-voicings';
 import type { RelayBreadcrumb } from '@/lib/relay';
 import type { RelayBuildStage, RelayStageStatus } from '@/types/relay-nav';
 import { MyBreadcrumbs } from '@/components/doc/doc-page';
-import { RelayVoicingLineupNav } from '@/components/relay/relay-voicing-lineup-nav';
 
 const PLATFORM_HREF = '/relay';
-const PLATFORM_LABEL = 'Relay Guitar';
 
 function StageStatusTag({ status }: { status: RelayStageStatus }) {
     if (status === 'live') return null;
@@ -21,27 +19,38 @@ function StageStatusTag({ status }: { status: RelayStageStatus }) {
     return <span className={cn('ml-2 shrink-0 rounded-full border px-1.5 py-0 text-[10px] font-medium uppercase tracking-wide', tone)}>{label}</span>;
 }
 
+/** A build step is active when the path is the step href or nested under it. */
+function isStageActive(stage: RelayBuildStage, pathname: string): boolean {
+    return pathname === stage.href || pathname.startsWith(`${stage.href}/`);
+}
+
 function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: string }) {
-    const linkProps = stage.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
-    const isActive = !stage.isDiscord && pathname === stage.href;
-    // Voicings has its own dedicated lineup section below; don't double-render its items here.
-    const renderItems = stage.slug !== 'voicings' && stage.items && stage.items.length > 0;
+    const active = isStageActive(stage, pathname);
+    const showItems = active && stage.items && stage.items.length > 0;
 
     return (
         <li>
-            <Link href={stage.href} {...linkProps} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm font-medium hover:underline', isActive ? 'text-foreground' : 'text-foreground/70')}>
-                <span className="flex-1">{stage.title}</span>
+            <Link href={stage.href} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm font-medium hover:underline', active ? 'text-foreground' : 'text-foreground/70')}>
+                <span className="flex-1">
+                    <span aria-hidden="true" className="mr-1.5 text-muted-foreground">
+                        {stage.number}
+                    </span>
+                    {stage.title}
+                </span>
                 <StageStatusTag status={stage.status} />
             </Link>
-            {stage.items && stage.items.length > 0 && (
+            {showItems && (
                 <ul className="ml-4 mt-0.5 grid grid-flow-row auto-rows-max border-l border-border/50">
-                    {stage.items.map((item) => {
-                        const itemLinkProps = item.isDiscord ? { target: '_blank' as const, rel: 'noopener noreferrer' as const } : {};
-                        const isItemActive = !item.isDiscord && pathname === item.href;
+                    {stage.items!.map((item) => {
+                        const isItemActive = pathname === item.href;
+                        // The Voicing step's sub-items link to a specific voicing; show its full
+                        // display name (e.g. "Relay Lipstick") rather than the short stage-item title.
+                        const voicingEntry = stage.slug === 'voicings' ? relayVoicings.find((v) => v.href === item.href) : undefined;
+                        const label = voicingEntry?.name ?? item.title;
                         return (
                             <li key={item.href}>
-                                <Link href={item.href} {...itemLinkProps} className={cn('flex w-full items-center rounded-md border border-transparent py-1 pl-3 pr-2 text-sm hover:underline', isItemActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                                    {item.title}
+                                <Link href={item.href} className={cn('flex w-full items-center rounded-md border border-transparent py-1 pl-3 pr-2 text-sm hover:underline', isItemActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
+                                    {label}
                                 </Link>
                             </li>
                         );
@@ -52,18 +61,18 @@ function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: 
     );
 }
 
-function PlatformSidebar() {
+export function RelayLayoutSidebar() {
     const pathname = usePathname() ?? '';
 
     return (
         <nav aria-label="Relay Guitar navigation" className="w-full">
             <div className="pb-4">
                 <Link href={PLATFORM_HREF} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm hover:underline', pathname === PLATFORM_HREF ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                    Platform Overview
+                    Overview
                 </Link>
             </div>
 
-            <div className="pb-4">
+            <div>
                 <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Build process</h4>
                 <ul className="grid grid-flow-row auto-rows-max">
                     {relayBuildProcess.stages.map((stage) => (
@@ -71,96 +80,9 @@ function PlatformSidebar() {
                     ))}
                 </ul>
             </div>
-
-            <div className="border-t pt-4">
-                <h4 className="mb-1 px-2 py-1 text-sm font-semibold">Voicings</h4>
-                <RelayVoicingLineupNav />
-            </div>
         </nav>
     );
 }
-
-// ─── Voicing-level sidebar ────────────────────────────────────────────────────
-
-function VoicingSidebar({ voicing }: { voicing: string }) {
-    const pathname = usePathname();
-    const voicingEntry = relayVoicings.find((v) => v.slug === voicing);
-
-    if (!voicingEntry) return null;
-
-    const voicingRootHref = `/relay/voicings/${voicing}`;
-    const isVoicingRootActive = pathname === voicingRootHref;
-
-    return (
-        <nav aria-label="Relay Guitar navigation" className="w-full">
-            <div className="pb-3">
-                <Link href={PLATFORM_HREF} className="block px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground hover:text-foreground">
-                    ← {PLATFORM_LABEL}
-                </Link>
-            </div>
-
-            <div className="pb-4">
-                <div className="grid grid-flow-row auto-rows-max text-sm">
-                    <Link href={voicingRootHref} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline', isVoicingRootActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                        {voicingEntry.name}
-                    </Link>
-                </div>
-            </div>
-
-            {voicingEntry.docs.length > 0 && (
-                <div className="border-t pt-4">
-                    <div className="mb-3">
-                        <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Build docs</h4>
-                        <ul className="grid grid-flow-row auto-rows-max text-sm">
-                            {voicingEntry.docs.map((doc) => {
-                                const href = doc.href ?? `/relay/voicings/${voicing}/${doc.slug}`;
-                                const isActive = pathname === href;
-                                return (
-                                    <li key={doc.slug}>
-                                        <Link
-                                            href={href}
-                                            className={cn(
-                                                'flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline',
-                                                isActive ? 'font-medium text-foreground' : 'text-muted-foreground',
-                                            )}
-                                        >
-                                            {doc.title}
-                                        </Link>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                </div>
-            )}
-
-            <div className="border-t pt-4">
-                <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">All voicings</h4>
-                <RelayVoicingLineupNav />
-            </div>
-        </nav>
-    );
-}
-
-// ─── Auto-switching sidebar ───────────────────────────────────────────────────
-
-export function RelayLayoutSidebar() {
-    const pathname = usePathname() ?? '';
-    const segments = pathname.split('/').filter(Boolean);
-    const relayIndex = segments.indexOf('relay');
-    const nextSegment = relayIndex >= 0 ? (segments[relayIndex + 1] ?? '') : '';
-    const voicingSlug = nextSegment === 'voicings' ? (segments[relayIndex + 2] ?? '') : '';
-
-    // Voicing-level sidebar only on /relay/voicings/<slug> (a specific voicing — not the gallery).
-    // Everything else (including /relay/voicings, /relay/body, /relay/assembly) uses the platform sidebar.
-    if (!voicingSlug) {
-        return <PlatformSidebar />;
-    }
-
-    return <VoicingSidebar voicing={voicingSlug} />;
-}
-
-// ─── Breadcrumb bar ───────────────────────────────────────────────────────────
 
 export function RelayBreadcrumbBar({ items }: { items: RelayBreadcrumb[] }) {
     return <MyBreadcrumbs items={items} />;

@@ -21,4 +21,10 @@ describe('RelayVoicingOverview', () => {
         const overview = container.querySelector('[data-relay-overview-summary]');
         expect(callout && overview ? callout.compareDocumentPosition(overview) & Node.DOCUMENT_POSITION_FOLLOWING : 0).toBeTruthy();
     });
+
+    it('offers both Parts and Wiring as next-step links', () => {
+        render(<RelayVoicingOverview voicingSlug="lipstick">Body copy</RelayVoicingOverview>);
+        expect(screen.getByRole('link', { name: /parts/i })).toHaveAttribute('href', '/relay/parts?voicing=lipstick#electronics');
+        expect(screen.getByRole('link', { name: /wiring/i })).toHaveAttribute('href', '/relay/wiring?voicing=lipstick');
+    });
 });

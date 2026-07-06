@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
-import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage } from '@/lib/relay';
+import { resolveRelayVoicingFilePath, resolveRelayPlatformFilePath, buildRelayVoicingBreadcrumbs, loadRelayVoicingPage, loadRelayVoicingsGalleryPage, loadRelayPlatformSectionPage, listVoicingsWithWiring, loadRelayWiringPage } from '@/lib/relay';
 import { relayVoicings } from '@/config/relay-voicings';
 
 describe('resolveRelayVoicingFilePath', () => {
@@ -31,11 +31,11 @@ describe('loadRelayVoicingsGalleryPage', () => {
 });
 
 describe('loadRelayPlatformSectionPage', () => {
-    it('loads the Relay components page frontmatter', () => {
-        const { frontmatter } = loadRelayPlatformSectionPage(['components', 'index']);
+    it('loads the Relay parts page frontmatter', () => {
+        const { frontmatter } = loadRelayPlatformSectionPage(['parts', 'index']);
 
-        expect(frontmatter.title).toBe('Components');
-        expect(frontmatter.description).toContain('shopping list');
+        expect(frontmatter.title).toBe('Parts');
+        expect(frontmatter.description).toContain('parts list');
     });
 });
 
@@ -58,17 +58,26 @@ describe('buildRelayVoicingBreadcrumbs', () => {
         expect(crumbs[0].href).not.toContain('/docs/');
     });
 
-    it('titles doc sub-pages from the registry docs list', () => {
+    it('titles trailing sub-pages from the raw slug segment', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['wiring'], relayVoicings);
-        expect(crumbs).toEqual([
-            { label: 'Relay Guitar', href: '/relay' },
-            { label: 'Relay Arc', href: '/relay/voicings/arc' },
-            { label: 'Wiring Guide' },
-        ]);
+        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Arc', href: '/relay/voicings/arc' }, { label: 'wiring' }]);
     });
 
     it('falls back to the raw slug for unknown pages', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['mystery'], relayVoicings);
         expect(crumbs[crumbs.length - 1]).toEqual({ label: 'mystery' });
+    });
+});
+
+describe('listVoicingsWithWiring', () => {
+    it('returns voicings that have a wiring file, in registry order, Lipstick first', () => {
+        expect(listVoicingsWithWiring()).toEqual(['lipstick', 'velvet', 'arc', 'torch']);
+    });
+});
+
+describe('loadRelayWiringPage', () => {
+    it('loads a voicing wiring page frontmatter', () => {
+        const { frontmatter } = loadRelayWiringPage('arc');
+        expect(frontmatter.title).toBeTruthy();
     });
 });

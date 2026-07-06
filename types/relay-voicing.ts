@@ -1,10 +1,3 @@
-/** A documentation sub-page for a voicing. `slug` routes to /relay/voicings/<voicing>/<slug>; an explicit `href` overrides the slug route (e.g. the shared parts page). */
-export interface RelayVoicingDocPage {
-    title: string;
-    slug: string;
-    href?: string;
-}
-
 export interface RelayVoicing {
     slug: string;
     name: string;
@@ -15,8 +8,6 @@ export interface RelayVoicing {
     interaction: RelayVoicingInteraction;
     pickupMap: RelayVoicingPickupMap;
     href?: string;
-    /** Sub-pages under /relay/voicings/<slug>/. Empty for lab/concept voicings. */
-    docs: RelayVoicingDocPage[];
 }
 
 export type RelayVoicingStatus = 'lab' | 'ready' | 'concept';

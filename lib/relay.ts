@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import type { RelayVoicing } from '@/types/relay-voicing';
+import { relayVoicings } from '@/config/relay-voicings';
 
 export interface RelayPageFrontmatter {
     title: string;
@@ -61,17 +62,18 @@ export function loadRelayPlatformSectionPage(slug: string[]): { content: string;
 export function buildRelayVoicingBreadcrumbs(voicing: string, slug: string[], voicings: RelayVoicing[]): RelayBreadcrumb[] {
     const entry = voicings.find((v) => v.slug === voicing);
     const title = entry?.name ?? voicing;
-
     if (slug.length === 0) {
         return [{ label: 'Relay Guitar', href: '/relay' }, { label: title }];
     }
+    return [{ label: 'Relay Guitar', href: '/relay' }, { label: title, href: `/relay/voicings/${voicing}` }, { label: slug[slug.length - 1] }];
+}
 
-    const pageSlug = slug.join('/');
-    const doc = entry?.docs.find((d) => d.slug === pageSlug);
+/** Loads a voicing's wiring page (content/relay/wiring/<slug>.mdx). */
+export function loadRelayWiringPage(slug: string): { content: string; frontmatter: RelayPageFrontmatter } {
+    return loadMdxFile(path.join(process.cwd(), 'content', 'relay', 'wiring', `${slug}.mdx`));
+}
 
-    return [
-        { label: 'Relay Guitar', href: '/relay' },
-        { label: title, href: `/relay/voicings/${voicing}` },
-        { label: doc?.title ?? slug[slug.length - 1] },
-    ];
+/** Voicing slugs (registry order) that have a wiring page on disk. */
+export function listVoicingsWithWiring(): string[] {
+    return relayVoicings.map((voicing) => voicing.slug).filter((slug) => fs.existsSync(path.join(process.cwd(), 'content', 'relay', 'wiring', `${slug}.mdx`)));
 }

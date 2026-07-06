@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { groupRelayComponentsByCategory, loadRelayComponentCatalog, loadRelayModelManifest, resolveRelayComponentList } from '@/lib/relay-components';
+import { groupRelayComponentsByCategory, listVoicingsWithParts, loadRelayComponentCatalog, loadRelayModelManifest, resolveRelayComponentList } from '@/lib/relay-components';
 
 describe('loadRelayComponentCatalog', () => {
     it('loads shared Relay component records from content files', () => {
@@ -84,5 +84,11 @@ describe('groupRelayComponentsByCategory', () => {
         const grouped = groupRelayComponentsByCategory(resolveRelayComponentList('lipstick').components);
 
         expect(Object.keys(grouped)).toEqual(['Body Construction', 'Guitar Hardware', 'Electronics']);
+    });
+});
+
+describe('listVoicingsWithParts', () => {
+    it('returns only voicings with a non-empty manifest, in registry order, Lipstick first', () => {
+        expect(listVoicingsWithParts()).toEqual(['lipstick', 'velvet', 'arc', 'torch']);
     });
 });
