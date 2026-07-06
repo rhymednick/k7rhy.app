@@ -4,10 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { relayNav } from '@/config/relay-nav';
+import { relayVoicings } from '@/config/relay-voicings';
 import { RelayVoicingStatusBadge } from '@/components/relay/relay-voicing-status-badge';
 import type { RelayVoicingStatus } from '@/types/relay-voicing';
-import type { RelayVoicingNav } from '@/types/relay-nav';
 
 /** Identify the active voicing slug from a path like /relay/voicings/lipstick. Returns undefined for /relay or platform routes. */
 function activeVoicingSlugFromPath(pathname: string): string | undefined {
@@ -16,7 +15,7 @@ function activeVoicingSlugFromPath(pathname: string): string | undefined {
     if (relayIdx < 0) return undefined;
     if (parts[relayIdx + 1] !== 'voicings') return undefined;
     const slug = parts[relayIdx + 2];
-    return slug && relayNav[slug] ? slug : undefined;
+    return slug && relayVoicings.some((voicing) => voicing.slug === slug) ? slug : undefined;
 }
 
 const statusSortOrder: Record<RelayVoicingStatus, number> = {
@@ -25,27 +24,27 @@ const statusSortOrder: Record<RelayVoicingStatus, number> = {
     concept: 2,
 };
 
-export function sortRelayVoicingNavEntries(entries: Array<[string, RelayVoicingNav]>): Array<[string, RelayVoicingNav]> {
-    return [...entries].sort(([, a], [, b]) => {
+export function sortRelayVoicings<T extends { name: string; status: RelayVoicingStatus }>(voicings: T[]): T[] {
+    return [...voicings].sort((a, b) => {
         const statusDelta = statusSortOrder[a.status] - statusSortOrder[b.status];
         if (statusDelta !== 0) return statusDelta;
-        return a.title.localeCompare(b.title);
+        return a.name.localeCompare(b.name);
     });
 }
 
 export function RelayVoicingLineupNav() {
     const pathname = usePathname() ?? '';
     const activeSlug = activeVoicingSlugFromPath(pathname);
-    const entries = sortRelayVoicingNavEntries(Object.entries(relayNav));
+    const voicings = sortRelayVoicings(relayVoicings);
 
     return (
         <div className="grid grid-flow-row auto-rows-max text-sm">
-            {entries.map(([slug, voicing]) => {
-                const href = `/relay/voicings/${slug}`;
-                const isActive = activeSlug === slug;
+            {voicings.map((voicing) => {
+                const href = `/relay/voicings/${voicing.slug}`;
+                const isActive = activeSlug === voicing.slug;
                 return (
-                    <Link key={slug} href={href} className={cn('flex w-full items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 hover:underline', isActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
-                        <span className="min-w-0">{voicing.title}</span>
+                    <Link key={voicing.slug} href={href} className={cn('flex w-full items-center justify-between gap-2 rounded-md border border-transparent px-2 py-1 hover:underline', isActive ? 'font-medium text-foreground' : 'text-muted-foreground')}>
+                        <span className="min-w-0">{voicing.name}</span>
                         <RelayVoicingStatusBadge status={voicing.status} />
                     </Link>
                 );

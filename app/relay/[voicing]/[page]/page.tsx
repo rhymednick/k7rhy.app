@@ -6,16 +6,12 @@ import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
 import { loadRelayPlatformSectionPage, buildRelayVoicingBreadcrumbs, type RelayPageFrontmatter } from '@/lib/relay';
-import { relayNav } from '@/config/relay-nav';
+import { relayVoicings } from '@/config/relay-voicings';
 
 type Props = { params: Promise<{ voicing: string; page: string }> };
 
 export function generateStaticParams() {
-    return Object.entries(relayNav).flatMap(([voicing, nav]) =>
-        nav.sections.flatMap((section) =>
-            (section.items ?? []).map((item) => ({ voicing, page: item.slug })),
-        ),
-    );
+    return relayVoicings.flatMap((voicing) => voicing.docs.filter((doc) => !doc.href).map((doc) => ({ voicing: voicing.slug, page: doc.slug })));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -41,7 +37,7 @@ export default async function RelayVoicingSubPage({ params }: Props) {
     } catch {
         notFound();
     }
-    const breadcrumbs = buildRelayVoicingBreadcrumbs(voicing, [page], relayNav);
+    const breadcrumbs = buildRelayVoicingBreadcrumbs(voicing, [page], relayVoicings);
     return (
         <DocPage title={frontmatter!.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content!} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
