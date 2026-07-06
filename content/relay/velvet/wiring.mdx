@@ -1,120 +1,124 @@
 ---
 title: 'Wiring Guide'
-description: 'Step-by-step wiring instructions for the Relay Velvet.'
+description: 'Bench-side wiring reference for the Relay Velvet base harness.'
 ---
 
-Velvet uses a standard 5-way HSH (humbucker-filtertron-humbucker) wiring scheme. The 5-way blade gives the Retrotron Nashville its own position (3) and two combined positions (2 and 4). The volume is a standard pot. The push-pull tone engages the Velvet focus contour.
+This is the bench-side reference for the Relay Velvet harness. It gives you the selector map, pickup roles, labeled connection points, and the published base wiring without forcing a blow-by-blow soldering tutorial.
 
-<DocAlert level="important" title="Shield the cavity before installing components">
-    Apply copper foil tape to all cavity walls and the floor before installing anything. The Retrotron Nashville is more sensitive to interference than a standard humbucker.
+<DocAlert level="important" title="Build and test the harness before installation">
+    Velvet rewards careful bench work. Wire the harness outside the body, verify the 5-way map and output path, then install it once the base circuit is quiet and correct.
 </DocAlert>
 
-## Component Labels
+## Control Layout
 
-Each connection point in this guide has a short label. Use the table below as a reference — the same labels appear on the component diagram.
+<ControlPositions switchLabel="5-Way Blade">
+    <ControlPosition label="1" name="Bridge">
+        Bridge humbucker alone.
+    </ControlPosition>
+    <ControlPosition label="2" name="Bridge + Middle">
+        Bridge humbucker and Retrotron Nashville in parallel.
+    </ControlPosition>
+    <ControlPosition label="3" name="Middle">
+        Retrotron Nashville alone. This is the main Velvet destination.
+    </ControlPosition>
+    <ControlPosition label="4" name="Neck + Middle">
+        Neck humbucker and Retrotron Nashville in parallel.
+    </ControlPosition>
+    <ControlPosition label="5" name="Neck">
+        Neck humbucker alone.
+    </ControlPosition>
+</ControlPositions>
 
-<DocImage
-    title="Relay Velvet Wiring Diagram"
-    src="/images/relay/velvet/wiring-diagram.png"
-    alt="Labeled wiring diagram showing all connection points for the Relay Velvet"
-    triggerImageSize={300}
-    popupImageSize={1200}
-/>
+**Volume** - Standard 500k audio taper.
+
+**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs stay open until the Velvet focus contour is finalized.
+
+## Pickup Layout
+
+- Bridge: `GFS Professional Series Alnico II Humbucker`, bridge cavity, clearest rhythm voice.
+- Middle: `GFS Retrotron Nashville`, middle cavity, primary Velvet voice.
+- Neck: `GFS Professional Series Alnico II Humbucker`, neck cavity, warmest voice.
+
+## Reference Labels
 
 <ComponentLabels>
-    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="MP-H" component="Middle Pickup (Retrotron)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="MP-G" component="Middle Pickup (Retrotron)" wire="black" description="Ground wire" />
     <ComponentLabel id="BP-H" component="Bridge Pickup" wire="red" description="Hot output wire" />
     <ComponentLabel id="BP-G" component="Bridge Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="SW-BP" component="5-Way Selector" description="Bridge pickup input lug — see diagram for physical lug number" />
-    <ComponentLabel id="SW-MP" component="5-Way Selector" description="Middle pickup input lug — see diagram for physical lug number" />
-    <ComponentLabel id="SW-NP" component="5-Way Selector" description="Neck pickup input lug — see diagram for physical lug number" />
-    <ComponentLabel id="SW-OUT" component="5-Way Selector" description="Output lug (common) — signal to volume pot" />
-    <ComponentLabel id="VOL-IN" component="Volume Pot (500k)" description="Input lug — signal in from selector" />
-    <ComponentLabel id="VOL-W" component="Volume Pot (500k)" description="Wiper lug — signal out to jack" />
-    <ComponentLabel id="VOL-B" component="Volume Pot (500k)" description="Back of pot — connect to ground bus" />
-    <ComponentLabel id="TON-IN" component="Tone Pot (push-pull)" description="Input lug — tapped from VOL-IN" />
-    <ComponentLabel id="TON-W" component="Tone Pot (push-pull)" description="Wiper lug — to tone capacitor" />
-    <ComponentLabel id="TON-B" component="Tone Pot (push-pull)" description="Back of pot — connect to ground bus" />
-    <ComponentLabel id="TON-PP" component="Tone Pot (push-pull)" description="Push-pull switch contacts — engages focus contour" />
-    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg — connects to TON-W" />
-    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg — connects to ground bus" />
-    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot signal to amp)" />
+    <ComponentLabel id="MP-H" component="Middle Pickup (Retrotron Nashville)" wire="red" description="Hot output wire" />
+    <ComponentLabel id="MP-G" component="Middle Pickup (Retrotron Nashville)" wire="black" description="Ground wire" />
+    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
+    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
+    <ComponentLabel id="SW-BP" component="5-Way Selector" description="Bridge input lug" />
+    <ComponentLabel id="SW-MP" component="5-Way Selector" description="Middle input lug" />
+    <ComponentLabel id="SW-NP" component="5-Way Selector" description="Neck input lug" />
+    <ComponentLabel id="SW-OUT" component="5-Way Selector" description="Selector common/output lug" />
+    <ComponentLabel id="VOL-IN" component="Volume Pot (500k)" description="Input lug from selector" />
+    <ComponentLabel id="VOL-W" component="Volume Pot (500k)" description="Wiper/output lug to jack" />
+    <ComponentLabel id="VOL-B" component="Volume Pot (500k)" description="Back of pot, tied to ground bus" />
+    <ComponentLabel id="TON-IN" component="Tone Pot (500k push-pull)" description="Tone input lug, tapped from VOL-IN" />
+    <ComponentLabel id="TON-W" component="Tone Pot (500k push-pull)" description="Tone wiper lug to capacitor" />
+    <ComponentLabel id="TON-B" component="Tone Pot (500k push-pull)" description="Back of pot, tied to ground bus" />
+    <ComponentLabel id="TON-A1" component="Tone Push-Pull Switch" description="Pole A, lug 1 - leave open in this revision" />
+    <ComponentLabel id="TON-A2" component="Tone Push-Pull Switch" description="Pole A, lug 2 - leave open in this revision" />
+    <ComponentLabel id="TON-A3" component="Tone Push-Pull Switch" description="Pole A, lug 3 - leave open in this revision" />
+    <ComponentLabel id="TON-B1" component="Tone Push-Pull Switch" description="Pole B, lug 1 - leave open in this revision" />
+    <ComponentLabel id="TON-B2" component="Tone Push-Pull Switch" description="Pole B, lug 2 - leave open in this revision" />
+    <ComponentLabel id="TON-B3" component="Tone Push-Pull Switch" description="Pole B, lug 3 - leave open in this revision" />
+    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg from tone wiper" />
+    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg to ground bus" />
+    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot)" />
     <ComponentLabel id="J-SLV" component="Output Jack" description="Sleeve lug (ground)" />
-    <ComponentLabel id="GND" component="Ground Bus" description="Common ground — cavity foil, pot backs, pickup grounds, jack sleeve" />
+    <ComponentLabel id="GND" component="Ground Bus" description="Common ground point for pot backs, pickup grounds, shielding, and jack sleeve" />
 </ComponentLabels>
 
-## Connections
+## Wiring Map
 
 <WiringConnections>
-    <WireConnection from="BP-H" to="SW-BP" notes="Bridge pickup hot to switch bridge lug" />
-    <WireConnection from="MP-H" to="SW-MP" notes="Middle pickup hot to switch middle lug" />
-    <WireConnection from="NP-H" to="SW-NP" notes="Neck pickup hot to switch neck lug" />
-    <WireConnection from="SW-OUT" to="VOL-IN" notes="Switch output to volume input" />
-    <WireConnection from="VOL-IN" to="TON-IN" notes="Tap from volume input to tone input" />
-    <WireConnection from="VOL-W" to="J-TIP" notes="Volume wiper to jack tip" />
-    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor" />
-    <WireConnection from="TON-PP" to="[TODO]" notes="Push-pull focus contour — wiring TBD from final circuit diagram" />
-    <WireConnection from="BP-G" to="GND" notes="" />
-    <WireConnection from="MP-G" to="GND" notes="" />
-    <WireConnection from="NP-G" to="GND" notes="" />
-    <WireConnection from="VOL-B" to="GND" notes="" />
-    <WireConnection from="TON-B" to="GND" notes="" />
-    <WireConnection from="CAP-G" to="GND" notes="" />
-    <WireConnection from="J-SLV" to="GND" notes="" />
+    <WireConnection from="BP-H" to="SW-BP" notes="Bridge pickup hot to bridge selector lug" />
+    <WireConnection from="MP-H" to="SW-MP" notes="Middle pickup hot to middle selector lug" />
+    <WireConnection from="NP-H" to="SW-NP" notes="Neck pickup hot to neck selector lug" />
+    <WireConnection from="SW-OUT" to="VOL-IN" notes="Selector output to volume input" />
+    <WireConnection from="VOL-IN" to="TON-IN" notes="Tone feed tapped from volume input" />
+    <WireConnection from="VOL-W" to="J-TIP" notes="Volume output to jack tip" />
+    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor hot leg" />
+    <WireConnection from="BP-G" to="GND" notes="Bridge pickup ground" />
+    <WireConnection from="MP-G" to="GND" notes="Middle pickup ground" />
+    <WireConnection from="NP-G" to="GND" notes="Neck pickup ground" />
+    <WireConnection from="VOL-B" to="GND" notes="Ground the volume pot body" />
+    <WireConnection from="TON-B" to="GND" notes="Ground the tone pot body" />
+    <WireConnection from="CAP-G" to="GND" notes="Capacitor return to ground" />
+    <WireConnection from="J-SLV" to="GND" notes="Jack sleeve to ground bus" />
 </WiringConnections>
 
-## Wiring Procedure
+Leave `TON-A1` through `TON-B3` open in this published revision. Those six switch lugs are reserved for the Velvet focus contour and are intentionally unused in the base harness.
 
-<Proc title="Wiring Steps">
-    <ProcStep text="Shield the cavity">
-        Apply copper foil tape to all cavity walls and the floor. Overlap foil sections by at least 2mm for continuity. Solder a short jumper wire across any gap between sections that don't overlap. Connect the foil to the ground bus with a short wire.
+## Build Outline
+
+<Proc title="Outline">
+    <ProcStep text="Shield the cavity first">
+        Velvet is meant to stay exposed and clean, so start with shielding before you mount anything.
     </ProcStep>
-    <ProcStep text="Pre-tin all solder points">
-        Apply a small dot of solder to every lug and pad before making any connections. Pre-tinning uses less heat on the components and gives cleaner joints.
+    <ProcStep text="Build the full 5-way base harness on the bench">
+        Wire the pickups to the selector, the selector to the volume pot, the tone branch from `VOL-IN`, and the jack from `VOL-W`.
     </ProcStep>
-    <ProcStep text="Wire the 5-way selector">
-        Connect BP-H to SW-BP, MP-H to SW-MP, and NP-H to SW-NP. The exact physical lug numbers depend on the switch brand — refer to the component diagram. Run a wire from SW-OUT to VOL-IN.
+    <ProcStep text="Run one clean ground scheme">
+        Tie shielding, pickup grounds, pot backs, capacitor return, and jack sleeve into one ground bus.
     </ProcStep>
-    <ProcStep text="Wire the volume and tone pots">
-        Tap a wire from VOL-IN to TON-IN. Connect VOL-W to J-TIP. Connect TON-W to CAP-H and CAP-G to GND.
-    </ProcStep>
-    <ProcStep text="Wire the push-pull focus contour">
-        [TODO: document the exact push-pull switch wiring for the Velvet focus contour.]
-    </ProcStep>
-    <ProcStep text="Connect the ground bus">
-        Connect BP-G, MP-G, NP-G, VOL-B, TON-B, CAP-G, and J-SLV all to GND. Ensure the cavity foil connects to this same point.
+    <ProcStep text="Install only after the harness passes a meter check and tap test">
+        The cavity is the wrong place to discover a bad selector joint.
     </ProcStep>
 </Proc>
 
-## Pre-Installation Test
+## Sanity Checks
 
-Test on the bench before the components go into the body.
-
-<Proc title="Bench Test">
-    <ProcStep text="Check selector switch continuity">
-        Set your multimeter to continuity mode. Move the selector to each of the five positions and verify continuity from SW-OUT to the expected input lug. Position 3 (center) should connect to SW-MP only. Positions 2 and 4 should show continuity to SW-MP and to one adjacent lug.
+<Proc title="Checks">
+    <ProcStep text="Continuity">
+        In each selector position, `SW-OUT` should connect only to the expected pickup lug or lugs. Position 3 should connect only to the middle pickup.
     </ProcStep>
-    <ProcStep text="Resistance test — verify signal paths">
-        Set your multimeter to resistance (Ω) mode. With volume at maximum, probe between J-TIP and J-SLV. Expected readings by selector position:
-
-        - **Position 1** (Bridge only): ~8.6 kΩ
-        - **Position 2** (Bridge + Middle, parallel): ~4.1 kΩ
-        - **Position 3** (Middle only): ~8.0 kΩ
-        - **Position 4** (Neck + Middle, parallel): ~3.9 kΩ
-        - **Position 5** (Neck only): ~7.6 kΩ
-
-        Open (OL) means a broken connection in that path. A reading much higher than expected in position 2 or 4 (e.g. 16–17 kΩ) suggests the two pickups may be wired in series instead of parallel. Individual pickups can vary ±10% from the spec values above.
+    <ProcStep text="Resistance">
+        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 8.6 kOhm in position 1, 8.0 kOhm in position 3, and 7.6 kOhm in position 5, with positions 2 and 4 reading lower because the pickups are in parallel.
     </ProcStep>
-    <ProcStep text="Check for ground shorts on the signal path">
-        Probe between J-TIP and GND. You should get no continuity in any switch position. Any reading here is an unintentional short.
-    </ProcStep>
-    <ProcStep text="Tap test each pickup">
-        Plug a cable into J-TIP and into an amp at low volume. Tap each pickup's pole pieces with a metal screwdriver. Move the selector through all five positions and verify the correct pickup responds in each position — Retrotron Nashville in position 3, bridge in position 1, neck in position 5.
-    </ProcStep>
-    <ProcStep text="Test the push-pull tone contour">
-        Pull the tone knob up and verify the contour engages. The character change should be audible when tapping pickup poles. Push it back down and verify it returns to the standard tone response.
+    <ProcStep text="Tap test">
+        Plug into an amp at low volume and tap each pickup with a metal screwdriver. Make sure the Retrotron Nashville is isolated in position 3 and blended only in positions 2 and 4.
     </ProcStep>
 </Proc>

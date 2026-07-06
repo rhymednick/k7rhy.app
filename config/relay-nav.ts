@@ -39,8 +39,16 @@ export const relayNav: RelayNav = {
     },
     arc: {
         title: 'Relay Arc',
-        status: 'lab',
-        sections: [],
+        status: 'ready',
+        sections: [
+            {
+                title: 'Electronics',
+                items: [
+                    { title: 'Parts List', slug: 'bom' },
+                    { title: 'Wiring Guide', slug: 'wiring' },
+                ],
+            },
+        ],
     },
     torch: {
         title: 'Relay Torch',
