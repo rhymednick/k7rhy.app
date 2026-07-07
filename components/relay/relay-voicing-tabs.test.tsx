@@ -12,14 +12,14 @@ const voicings = [
 describe('RelayVoicingTabs', () => {
     it('frames the tabs with a voice-selection instruction and scroll cue', () => {
         render(<RelayVoicingTabs voicings={[{ slug: 'lipstick', name: 'Relay Lipstick', genres: 'Blues · Rock' }]} activeSlug="lipstick" basePath="/relay/parts" />);
-        expect(screen.getByText('Select a voice')).toBeInTheDocument();
+        expect(screen.getByText('Select your voice')).toBeInTheDocument();
         expect(screen.getByText('Scroll')).toBeInTheDocument();
         expect(screen.getByRole('tablist')).toHaveAttribute('aria-label', 'Select a Relay voice');
     });
 
     it('does not show the scroll cue for compact tabs without genre details', () => {
         render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/relay/wiring" />);
-        expect(screen.getByText('Select a voice')).toBeInTheDocument();
+        expect(screen.getByText('Select your voice')).toBeInTheDocument();
         expect(screen.queryByText('Scroll')).not.toBeInTheDocument();
     });
 
