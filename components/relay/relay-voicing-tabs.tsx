@@ -20,7 +20,7 @@ export function RelayVoicingTabs({ voicings, activeSlug, basePath }: { voicings:
     return (
         <div className="mb-6">
             <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="text-sm font-semibold text-foreground">Select a voice</p>
+                <p className="text-sm font-semibold text-foreground">Select your voice</p>
             </div>
             <div className="relative">
                 <div role="tablist" aria-label="Select a Relay voice" className={cn('flex flex-nowrap gap-1 overflow-x-auto border-b', showScrollCue && 'pr-20')}>
