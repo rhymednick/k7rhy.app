@@ -5,6 +5,8 @@ import { cn } from '@/lib/utils';
 import { relayVoicings } from '@/config/relay-voicings';
 import type { RelayVoicing, RelayVoicingStatus } from '@/types/relay-voicing';
 import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
+import { DiscordCommunityCallout } from '@/components/discord-community-callout';
+import { getRelayVoicingDiscordTarget } from '@/config/relay-discord';
 
 const statusCopy: Partial<Record<RelayVoicingStatus, { title: string; body: string; className: string }>> = {
     lab: {
@@ -23,7 +25,20 @@ function getRelayVoicing(slug: string): RelayVoicing | undefined {
     return relayVoicings.find((voicing) => voicing.slug === slug);
 }
 
-export function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: string; children: React.ReactNode }) {
+export function getRelayVoicingCommunityMessage(voicing: RelayVoicing): string {
+    const shortName = voicing.name.replace(/^Relay /, '');
+
+    switch (voicing.status) {
+        case 'ready':
+            return `Building ${shortName}? Ask about parts choices, wiring quirks, and substitutions before you order.`;
+        case 'lab':
+            return `Following ${shortName}? Share early builds and help validate the design as documentation catches up.`;
+        case 'concept':
+            return `Interested in ${shortName}? Follow development and share what draws you to this voice.`;
+    }
+}
+
+export async function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: string; children: React.ReactNode }) {
     const voicing = getRelayVoicing(voicingSlug);
 
     if (!voicing) {
@@ -31,6 +46,7 @@ export function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: s
     }
 
     const status = statusCopy[voicing.status];
+    const discord = getRelayVoicingDiscordTarget(voicingSlug);
 
     return (
         <>
@@ -59,7 +75,7 @@ export function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: s
 
             {children}
 
-            <div className="mt-8 rounded-lg border p-4">
+            <div data-relay-next-steps className="mt-8 rounded-lg border p-4">
                 <h2 className="text-base font-semibold">Next in your build</h2>
                 <p className="mt-1 text-sm text-muted-foreground">This voicing shares the Relay body and hardware; its electronics and wiring are specific to the sound you just picked.</p>
                 <div className="mt-3 flex flex-col gap-2 sm:flex-row">
@@ -72,6 +88,10 @@ export function RelayVoicingOverview({ voicingSlug, children }: { voicingSlug: s
                         Wiring guide
                     </Link>
                 </div>
+            </div>
+
+            <div data-relay-community-callout>
+                <DiscordCommunityCallout threadId={discord.threadId} channelHref={discord.channelHref} message={getRelayVoicingCommunityMessage(voicing)} />
             </div>
         </>
     );
