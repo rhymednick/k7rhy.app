@@ -1,5 +1,6 @@
 export const INSTRUMENT_MODEL_CODES: Readonly<Record<string, string>> = {
     RLY: 'Relay',
+    CPC: 'Coupeville Current',
     FND: 'Fender',
     GIB: 'Gibson',
     PRS: 'PRS',
