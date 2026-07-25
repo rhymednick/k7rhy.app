@@ -14,6 +14,8 @@ interface SelectorPositionProps {
 interface PotPositionProps {
     position: PotState;
     voice: string;
+    printDescription?: string;
+    showPosition?: boolean;
     children: React.ReactNode;
 }
 
@@ -51,7 +53,12 @@ export function PrintInstrumentSpec({ children }: { children: React.ReactNode })
     });
     if (pickups.length !== 1 || controls.length !== 1) throw new Error('PrintInstrumentSpec requires one pickup configuration and one control layout');
 
-    return <section data-print-instrument-spec className="space-y-2">{controls[0]}{pickups[0]}</section>;
+    return (
+        <section data-print-instrument-spec className="space-y-2">
+            {controls[0]}
+            {pickups[0]}
+        </section>
+    );
 }
 
 export function PrintControlLayout({ children }: { children: React.ReactNode }) {
@@ -61,10 +68,25 @@ export function PrintControlLayout({ children }: { children: React.ReactNode }) 
         if (!React.isValidElement(child) || (child.type !== PrintSelector && child.type !== PrintPot && child.type !== PrintPositionControl && child.type !== PrintHarmonicShaper)) throw new Error('PrintControlLayout contains an unsupported child');
         controls.push(child);
     });
+    const pots = controls.filter((control) => control.type === PrintPot);
+    const firstPotIndex = controls.findIndex((control) => control.type === PrintPot);
     return (
         <section className="rounded-lg border border-slate-300 p-2">
-            <div className="mb-1"><p className="font-mono text-[7.5pt] font-semibold uppercase tracking-[0.18em] text-slate-600">Find its voices</p><h2 className="text-[11pt] font-semibold">Voice and control map</h2></div>
-            <div className="space-y-1.5">{controls}</div>
+            <div className="mb-1">
+                <p className="font-mono text-[7.5pt] font-semibold uppercase tracking-[0.18em] text-slate-600">Find its voices</p>
+                <h2 className="text-[11pt] font-semibold">Voice and control map</h2>
+            </div>
+            <div className="space-y-1.5">
+                {controls.map((control, index) => {
+                    if (control.type !== PrintPot) return React.cloneElement(control, { key: `print-control-${index}` });
+                    if (index !== firstPotIndex) return null;
+                    return (
+                        <div key="print-pot-grid" data-print-pot-grid className="grid grid-cols-2 gap-1.5">
+                            {pots.map((pot, potIndex) => React.cloneElement(pot, { key: `print-pot-${potIndex}` }))}
+                        </div>
+                    );
+                })}
+            </div>
         </section>
     );
 }
@@ -74,15 +96,26 @@ export function PrintSelector({ label, positions, children }: { label: string; p
     if (items.length !== positions) throw new Error(`${label} declares ${positions} positions but contains ${items.length}`);
     return (
         <section className="rounded-md border border-slate-300 bg-slate-50 p-1.5">
-            <div className="mb-1 flex justify-between"><h3 className="text-[8.5pt] font-semibold">{label}</h3><span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{positions}-way selector</span></div>
-            <ol className="grid gap-1" style={{ gridTemplateColumns: `repeat(${positions}, minmax(0, 1fr))` }}>{items.map((item, index) => React.cloneElement(item, { index: index + 1, key: `${label}-${index}` }))}</ol>
+            <div className="mb-1 flex justify-between">
+                <h3 className="text-[8.5pt] font-semibold">{label}</h3>
+                <span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{positions}-way selector</span>
+            </div>
+            <ol className="grid gap-1" style={{ gridTemplateColumns: `repeat(${positions}, minmax(0, 1fr))` }}>
+                {items.map((item, index) => React.cloneElement(item, { index: index + 1, key: `${label}-${index}` }))}
+            </ol>
         </section>
     );
 }
 
 export function PrintSelectorPosition({ voice, children, index }: SelectorPositionProps) {
     if (!index) throw new Error('PrintSelectorPosition must be rendered inside PrintSelector');
-    return <li className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]"><span className="mb-1 grid h-5 w-5 place-items-center rounded-full bg-slate-900 font-mono text-[7pt] font-bold text-white">{index}</span><p className="font-semibold text-slate-800">{voice}</p><div className="mt-0.5 text-slate-600">{children}</div></li>;
+    return (
+        <li className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]">
+            <span className="mb-1 grid h-5 w-5 place-items-center rounded-full bg-slate-900 font-mono text-[7pt] font-bold text-white">{index}</span>
+            <p className="font-semibold text-slate-800">{voice}</p>
+            <div className="mt-0.5 text-slate-600">{children}</div>
+        </li>
+    );
 }
 
 export function PrintPot({ label, mechanism, children }: { label: string; mechanism: PotMechanism; children: React.ReactNode }) {
@@ -90,20 +123,54 @@ export function PrintPot({ label, mechanism, children }: { label: string; mechan
     const states = items.map((item) => item.props.position);
     const valid = mechanism === 'standard' ? states.length === 1 && states[0] === 'normal' : states.length === 2 && states.includes('down') && states.includes('up');
     if (!valid) throw new Error(`${label} has invalid ${mechanism} positions`);
-    return <section className="rounded-md border border-slate-300 bg-slate-50 p-1.5"><div className="mb-1 flex justify-between"><h3 className="text-[8.5pt] font-semibold">{label}</h3><span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{mechanism.replace('-', ' ')}</span></div><div className={items.length === 1 ? 'grid' : 'grid grid-cols-2 gap-1'}>{items}</div></section>;
+    const renderedItems = mechanism === 'standard' ? items.map((item, index) => React.cloneElement(item, { showPosition: false, key: `${label}-${index}` })) : items;
+    return (
+        <section className="rounded-md border border-slate-300 bg-slate-50 p-1.5">
+            <div className="mb-1 flex justify-between">
+                <h3 className="text-[8.5pt] font-semibold">{label}</h3>
+                {mechanism !== 'standard' && <span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{mechanism.replace('-', ' ')}</span>}
+            </div>
+            <div className={items.length === 1 ? 'grid' : 'grid grid-cols-2 gap-1'}>{renderedItems}</div>
+        </section>
+    );
 }
 
-export function PrintPotPosition({ position, voice, children }: PotPositionProps) {
-    return <div className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]"><p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{position}</p><p className="mt-0.5 font-semibold text-slate-800">{voice}</p><div className="mt-0.5 text-slate-600">{children}</div></div>;
+export function PrintPotPosition({ position, voice, printDescription, showPosition = true, children }: PotPositionProps) {
+    return (
+        <div className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]">
+            {showPosition && <p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{position}</p>}
+            <p className={showPosition ? 'mt-0.5 font-semibold text-slate-800' : 'font-semibold text-slate-800'}>{voice}</p>
+            <div className="mt-0.5 text-slate-600">{printDescription ?? children}</div>
+        </div>
+    );
 }
 
 export function PrintPickupConfiguration({ children }: { children: React.ReactNode }) {
     const pickups = elementChildren(children, PrintPickup, 'PrintPickupConfiguration');
-    return <section className="rounded-lg border border-slate-300 p-2"><div className="mb-1 flex items-baseline justify-between"><div><p className="font-mono text-[7.5pt] font-semibold uppercase tracking-[0.18em] text-slate-600">Magnetic voice</p><h2 className="text-[11pt] font-semibold">Humbucker configuration</h2></div></div><div className="grid grid-cols-2 gap-1.5">{pickups}</div></section>;
+    return (
+        <section className="rounded-lg border border-slate-300 p-2">
+            <div className="mb-1 flex items-baseline justify-between">
+                <div>
+                    <p className="font-mono text-[7.5pt] font-semibold uppercase tracking-[0.18em] text-slate-600">Magnetic voice</p>
+                    <h2 className="text-[11pt] font-semibold">Pickup configuration</h2>
+                </div>
+            </div>
+            <div data-print-pickup-grid className={pickups.length === 3 ? 'grid grid-cols-3 gap-1.5' : 'grid grid-cols-2 gap-1.5'}>
+                {pickups}
+            </div>
+        </section>
+    );
 }
 
-export function PrintPickup({ position, type, brand, model }: PickupProps) {
-    return <article className="rounded-md border border-slate-300 bg-slate-50 p-1.5"><p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{position}</p><h3 className="mt-0.5 text-[8pt] font-semibold leading-tight">{brand} {model}</h3><p className="mt-0.5 text-[7pt] capitalize text-slate-600">{type.replaceAll('-', ' ')}</p></article>;
+export function PrintPickup({ position, brand, model }: PickupProps) {
+    return (
+        <article className="rounded-md border border-slate-300 bg-slate-50 p-1.5">
+            <p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{position}</p>
+            <h3 className="mt-0.5 text-[8pt] font-semibold leading-tight">
+                {brand} {model}
+            </h3>
+        </article>
+    );
 }
 
 export function PrintPickupDetail(_: { label: string; children: React.ReactNode }) {

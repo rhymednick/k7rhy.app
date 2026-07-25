@@ -12,7 +12,7 @@ describe('six-position instrument controls', () => {
         render(
             <PositionControl label="Six-way contour" purpose="Chooses one of six passive contours.">
                 {sixPositions}
-            </PositionControl>,
+            </PositionControl>
         );
 
         expect(screen.getByRole('heading', { name: 'Six-way contour' })).toBeInTheDocument();
@@ -28,8 +28,8 @@ describe('six-position instrument controls', () => {
             render(
                 <PositionControl label="Six-way contour" purpose="Chooses one of six passive contours.">
                     {sixPositions.slice(0, 5)}
-                </PositionControl>,
-            ),
+                </PositionControl>
+            )
         ).toThrow('Six-way contour requires exactly six positions but contains 5');
     });
 
@@ -38,8 +38,8 @@ describe('six-position instrument controls', () => {
             render(
                 <PositionControl label="Six-way contour" purpose="Chooses one of six passive contours.">
                     <div />
-                </PositionControl>,
-            ),
+                </PositionControl>
+            )
         ).toThrow('Six-way contour contains an unsupported child');
     });
 
@@ -56,10 +56,11 @@ describe('six-position instrument controls', () => {
                 <PositionControlPosition technicalReference="100 kΩ + approximately 330 pF" />
                 <PositionControlPosition technicalReference="220 kΩ + approximately 680 pF" />
                 <PositionControlPosition technicalReference="Middle pickup disconnected" />
-            </HarmonicShaper>,
+            </HarmonicShaper>
         );
 
         expect(screen.getByRole('heading', { name: 'Harmonic Shaper' })).toBeInTheDocument();
+        expect(screen.getByText('6-position rotary switch')).toBeInTheDocument();
         expect(screen.getByText(HARMONIC_SHAPER_PURPOSE)).toBeInTheDocument();
         for (const description of HARMONIC_SHAPER_POSITION_DESCRIPTIONS) expect(screen.getByText(description)).toBeInTheDocument();
         expect(screen.getByText('Direct connection')).toBeInTheDocument();

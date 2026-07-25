@@ -18,19 +18,17 @@ function printPositionChildren(children: React.ReactNode, parent: string): React
     return positions;
 }
 
-export function PrintPositionControl({ label, purpose, children }: { label: string; purpose: string; children: React.ReactNode }) {
+export function PrintPositionControl({ label, purpose, controlType = '6-position selector', children }: { label: string; purpose: string; controlType?: string; children: React.ReactNode }) {
     const positions = printPositionChildren(children, label);
 
     return (
         <section className="rounded-md border border-slate-300 bg-slate-50 p-1.5">
             <div className="mb-1 flex items-baseline justify-between gap-2">
                 <h3 className="text-[8.5pt] font-semibold">{label}</h3>
-                <span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">6-position selector</span>
+                <span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{controlType}</span>
             </div>
             <p className="mb-1.5 text-[7.3pt] leading-[1.2] text-slate-600">{purpose}</p>
-            <ol className="grid grid-cols-2 gap-1">
-                {positions.map((position, index) => React.cloneElement(position, { index: index + 1, key: `${label}-${index}` }))}
-            </ol>
+            <ol className="grid grid-cols-3 gap-1">{positions.map((position, index) => React.cloneElement(position, { index: index + 1, key: `${label}-${index}` }))}</ol>
         </section>
     );
 }
@@ -53,8 +51,8 @@ export function PrintPositionControlPosition({ description, technicalReference, 
 export function PrintHarmonicShaper({ children }: { children: React.ReactNode }) {
     const positions = printPositionChildren(children, 'Harmonic Shaper');
     return (
-        <PrintPositionControl label="Harmonic Shaper" purpose={HARMONIC_SHAPER_PURPOSE}>
-            {positions.map((position, index) => React.cloneElement(position, { description: HARMONIC_SHAPER_POSITION_DESCRIPTIONS[index], key: `harmonic-shaper-${index}` }))}
+        <PrintPositionControl label="Harmonic Shaper" purpose={HARMONIC_SHAPER_PURPOSE} controlType="6-position rotary switch">
+            {positions.map((position, index) => React.cloneElement(position, { description: HARMONIC_SHAPER_POSITION_DESCRIPTIONS[index], technicalReference: undefined, key: `harmonic-shaper-${index}` }))}
         </PrintPositionControl>
     );
 }

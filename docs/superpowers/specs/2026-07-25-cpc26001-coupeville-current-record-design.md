@@ -28,7 +28,7 @@ The page leads with the musical purpose: passive harmonic shaping applied to fam
 
 Use this canonical platform-level explanation:
 
-> The Harmonic Shaper modifies the character of the currently selected pickup voice. It does not select additional pickups or create separate voices. Instead, it offers six repeatable degrees of passive harmonic shaping, from maximum interaction to no interaction.
+> The six-position rotary switch routes the middle Filtertron pickup through six engineered presets, using it as a harmonic shaper for the selected pickup voice. It does not select additional pickups or create separate voices.
 
 Keep that reusable explanation and the six stable player descriptions in shared code rather than duplicating them in the instrument record. Keep the installed passive network values in the `CPC26001` record because they describe this specific build.
 
@@ -37,7 +37,7 @@ Keep that reusable explanation and the six stable player descriptions in shared 
 Use the exact pickup models already established by the Relay Current specification:
 
 - **Neck:** GFS Vintage 59 Humbucker
-- **Middle:** GFS Retrotron Hot Nashville, identified as the Harmonic Shaper pickup
+- **Middle:** GFS Retrotron Hot Nashville, used as the harmonic shaper pickup
 - **Bridge:** GFS Professional Series Alnico V HOT Humbucker
 
 Do not substitute another pickup set. Present the bridge and neck humbuckers as the primary selected voices and the middle pickup as the shaping element.
@@ -47,9 +47,9 @@ Do not substitute another pickup set. Present the bridge and neck humbuckers as 
 Document the as-sold production specification:
 
 - Three-way pickup selector, displayed in the requested order:
-  1. Neck
-  2. Neck + Bridge
-  3. Bridge
+    1. Neck
+    2. Neck + Bridge
+    3. Bridge
 - Master Volume: A500K audio taper
 - Master Tone: A500K audio taper
 - Tone capacitor: 22 nF
@@ -73,7 +73,7 @@ The underlying renderer and validation are reusable for another six-position fun
 The three-way pickup selector continues to use the existing selector component. The web and print presentations explicitly distinguish the controls:
 
 - `Pickup selector · 3-way`
-- `Harmonic Shaper · 6-position selector`
+- `Harmonic Shaper · 6-position rotary switch`
 
 The generic component must reject missing, extra, or unsupported children. It must render positions in authored order and infer their visible numbers, following the established selector convention.
 
@@ -129,12 +129,11 @@ The case card is a quick reference. Its content priority is:
 2. Concise Harmonic Shaper purpose
 3. Pickup layout
 4. Three-way pickup-selector behavior
-5. Master volume, master tone, tone capacitor, and treble-bleed summary
+5. Musical purpose of the master volume and master tone
 6. Six numbered Harmonic Shaper positions with the exact player-facing descriptions
-7. Compact technical network values only if they fit without displacing or shrinking the player-facing reference
-8. Existing origin, permanent URL, support link, and QR treatment
+7. Existing origin, permanent URL, support link, and QR treatment
 
-Do not include amplifier pairings, string recommendations, listening notes, future revisions, workshop notes, or a photograph on the case card. Add a builder/signature area only if it is consistent with the existing case-card structure and fits without weakening the quick-reference hierarchy.
+Do not include implementation details on the case card. Potentiometer values, capacitor values, resistor values, passive-network values, and ordinary `standard`/`normal` labels describe construction rather than musical use. Keep those details on the full serial page. The case card describes what each control does for the player. It also excludes amplifier pairings, string recommendations, listening notes, future revisions, workshop notes, and photography. Add a builder/signature area only if it is consistent with the existing case-card structure and fits without weakening the quick-reference hierarchy.
 
 ## Failure Behavior
 

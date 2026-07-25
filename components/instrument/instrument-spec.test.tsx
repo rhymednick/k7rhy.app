@@ -18,7 +18,7 @@ describe('instrument MDX components', () => {
                 <SelectorPosition voice="Bridge">Attack</SelectorPosition>
                 <SelectorPosition voice="Both">Balance</SelectorPosition>
                 <SelectorPosition voice="Neck">Warmth</SelectorPosition>
-            </Selector>,
+            </Selector>
         );
 
         expect(screen.getByText('1')).toBeInTheDocument();
@@ -32,8 +32,8 @@ describe('instrument MDX components', () => {
                 <Selector label="Pickup selector" positions={3}>
                     <SelectorPosition voice="Bridge">Attack</SelectorPosition>
                     <SelectorPosition voice="Neck">Warmth</SelectorPosition>
-                </Selector>,
-            ),
+                </Selector>
+            )
         ).toThrow('Pickup selector declares 3 positions but contains 2');
     });
 
@@ -41,9 +41,11 @@ describe('instrument MDX components', () => {
         expect(() =>
             render(
                 <Pot label="Volume" mechanism="push-pull">
-                    <PotPosition position="down" voice="Core">Output</PotPosition>
-                </Pot>,
-            ),
+                    <PotPosition position="down" voice="Core">
+                        Output
+                    </PotPosition>
+                </Pot>
+            )
         ).toThrow('Volume push-pull requires exactly one down and one up position');
     });
 
@@ -51,9 +53,11 @@ describe('instrument MDX components', () => {
         expect(() =>
             render(
                 <Pot label="Volume" mechanism="standard">
-                    <PotPosition position="down" voice="Core">Output</PotPosition>
-                </Pot>,
-            ),
+                    <PotPosition position="down" voice="Core">
+                        Output
+                    </PotPosition>
+                </Pot>
+            )
         ).toThrow('Volume standard requires exactly one normal position');
     });
 
@@ -72,11 +76,15 @@ describe('instrument MDX components', () => {
                         <SelectorPosition voice="Neck">Warmth</SelectorPosition>
                     </Selector>
                     <Pot label="Tone" mechanism="push-push">
-                        <PotPosition position="down" voice="Open">Standard rolloff</PotPosition>
-                        <PotPosition position="up" voice="Focused">Tighter response</PotPosition>
+                        <PotPosition position="down" voice="Open">
+                            Standard rolloff
+                        </PotPosition>
+                        <PotPosition position="up" voice="Focused">
+                            Tighter response
+                        </PotPosition>
                     </Pot>
                 </ControlLayout>
-            </InstrumentSpec>,
+            </InstrumentSpec>
         );
 
         expect(screen.getByText('GFS VEH')).toBeInTheDocument();
@@ -91,9 +99,22 @@ describe('instrument MDX components', () => {
                         <PositionControlPosition key={index} technicalReference={`Network ${index + 1}`} />
                     ))}
                 </HarmonicShaper>
-            </ControlLayout>,
+            </ControlLayout>
         );
 
         expect(screen.getByRole('heading', { name: 'Harmonic Shaper' })).toBeInTheDocument();
+    });
+
+    it('keeps installed pot details on the web when a compact print description is supplied', () => {
+        render(
+            <Pot label="Master volume" mechanism="standard">
+                <PotPosition position="normal" voice="Master output" printDescription="Controls overall instrument output.">
+                    A500K Audio with a 680 pF capacitor
+                </PotPosition>
+            </Pot>
+        );
+
+        expect(screen.getByText('A500K Audio with a 680 pF capacitor')).toBeInTheDocument();
+        expect(screen.queryByText('Controls overall instrument output.')).not.toBeInTheDocument();
     });
 });

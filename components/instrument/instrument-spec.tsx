@@ -15,6 +15,7 @@ export interface SelectorPositionProps {
 export interface PotPositionProps {
     position: PotState;
     voice: string;
+    printDescription?: string;
     children: React.ReactNode;
 }
 
@@ -104,7 +105,9 @@ export function Pickup({ position, type, brand, model, children }: PickupProps) 
     return (
         <article className="rounded-xl border border-border/60 bg-muted/25 p-4">
             <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{position}</p>
-            <h3 className="mt-1 text-base font-semibold">{brand} {model}</h3>
+            <h3 className="mt-1 text-base font-semibold">
+                {brand} {model}
+            </h3>
             <p className="mt-1 text-sm capitalize text-muted-foreground">{type.replaceAll('-', ' ')}</p>
             {details.length > 0 && <dl className="mt-3 space-y-2 border-t border-border/60 pt-3 text-sm">{details}</dl>}
         </article>
