@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom/vitest';
+import { PrintHarmonicShaper, PrintPositionControlPosition } from './instrument-print-position-control';
 import { PrintControlLayout, PrintInstrumentSpec, PrintPickup, PrintPickupConfiguration, PrintPickupDetail, PrintPot, PrintPotPosition, PrintSelector, PrintSelectorPosition } from './instrument-print-spec';
 
 describe('compact instrument print components', () => {
@@ -38,5 +39,19 @@ describe('compact instrument print components', () => {
         expect(screen.getByText('Seymour Duncan APH-1b Alnico II Pro')).toBeInTheDocument();
         expect(screen.getByText('Seymour Duncan APH-1n Alnico II Pro')).toBeInTheDocument();
         expect(screen.queryByText('Magnet')).not.toBeInTheDocument();
+    });
+
+    it('accepts the compact Harmonic Shaper in the control layout', () => {
+        render(
+            <PrintControlLayout>
+                <PrintHarmonicShaper>
+                    {Array.from({ length: 6 }, (_, index) => (
+                        <PrintPositionControlPosition key={index} technicalReference={`Network ${index + 1}`} />
+                    ))}
+                </PrintHarmonicShaper>
+            </PrintControlLayout>,
+        );
+
+        expect(screen.getByRole('heading', { name: 'Harmonic Shaper' })).toBeInTheDocument();
     });
 });

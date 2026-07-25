@@ -1,4 +1,5 @@
 import React from 'react';
+import { PrintHarmonicShaper, PrintPositionControl } from './instrument-print-position-control';
 
 type SelectorCount = 3 | 5;
 type PotMechanism = 'standard' | 'push-pull' | 'push-push';
@@ -57,7 +58,7 @@ export function PrintControlLayout({ children }: { children: React.ReactNode }) 
     const controls: React.ReactElement[] = [];
     React.Children.forEach(children, (child) => {
         if (isEmptyChild(child)) return;
-        if (!React.isValidElement(child) || (child.type !== PrintSelector && child.type !== PrintPot)) throw new Error('PrintControlLayout contains an unsupported child');
+        if (!React.isValidElement(child) || (child.type !== PrintSelector && child.type !== PrintPot && child.type !== PrintPositionControl && child.type !== PrintHarmonicShaper)) throw new Error('PrintControlLayout contains an unsupported child');
         controls.push(child);
     });
     return (

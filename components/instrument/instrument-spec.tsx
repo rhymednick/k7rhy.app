@@ -1,5 +1,6 @@
 import React from 'react';
 import { SlidersHorizontal, Sparkles } from 'lucide-react';
+import { HarmonicShaper, PositionControl } from './instrument-position-control';
 
 type SelectorCount = 3 | 5;
 type PotMechanism = 'standard' | 'push-pull' | 'push-push';
@@ -125,13 +126,13 @@ export function ControlLayout({ children }: { children: React.ReactNode }) {
 
     React.Children.forEach(children, (child) => {
         if (isEmptyChild(child)) return;
-        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot)) {
+        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot && child.type !== PositionControl && child.type !== HarmonicShaper)) {
             throw new Error('ControlLayout contains an unsupported child');
         }
         controls.push(child);
     });
 
-    if (controls.length === 0) throw new Error('ControlLayout requires at least one Selector or Pot');
+    if (controls.length === 0) throw new Error('ControlLayout requires at least one supported control');
 
     return (
         <section data-control-layout className="rounded-2xl border border-border/70 bg-card p-5 shadow-sm md:p-6">

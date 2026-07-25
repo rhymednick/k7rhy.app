@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom/vitest';
+import { HarmonicShaper, PositionControlPosition } from './instrument-position-control';
 import { ControlLayout, InstrumentSpec, Pickup, PickupConfiguration, Pot, PotPosition, Selector, SelectorPosition } from './instrument-spec';
 
 const pickups = (
@@ -80,5 +81,19 @@ describe('instrument MDX components', () => {
 
         expect(screen.getByText('GFS VEH')).toBeInTheDocument();
         expect(screen.getByText('Focused')).toBeInTheDocument();
+    });
+
+    it('accepts a six-position Harmonic Shaper in the control layout', () => {
+        render(
+            <ControlLayout>
+                <HarmonicShaper>
+                    {Array.from({ length: 6 }, (_, index) => (
+                        <PositionControlPosition key={index} technicalReference={`Network ${index + 1}`} />
+                    ))}
+                </HarmonicShaper>
+            </ControlLayout>,
+        );
+
+        expect(screen.getByRole('heading', { name: 'Harmonic Shaper' })).toBeInTheDocument();
     });
 });
