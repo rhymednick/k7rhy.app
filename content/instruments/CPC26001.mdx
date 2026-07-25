@@ -1,0 +1,71 @@
+---
+publish: true
+name: 'Coupeville Current'
+completed: '2026'
+origin: 'Designed and built by K7RHY Resonance Lab as the first production Coupeville Current.'
+theme: 'A two-humbucker instrument whose six-position passive Harmonic Shaper introduces repeatable degrees of interaction without replacing the familiar pickup selections.'
+images:
+    - src: '/images/instruments/CPC26001/placeholder.svg'
+      alt: 'Placeholder artwork for Coupeville Current CPC26001; exact instrument photography is pending'
+related:
+    label: 'Explore the Relay Current design reference'
+    href: '/relay/voicings/current'
+---
+
+<InstrumentSpec>
+    <PickupConfiguration>
+        <Pickup position="neck" type="humbucker" brand="GFS" model="Vintage 59 Humbucker" />
+        <Pickup position="middle" type="filtertron" brand="GFS" model="Retrotron Hot Nashville">
+            <PickupDetail label="Role">Harmonic Shaper pickup; not an independent selector voice</PickupDetail>
+        </Pickup>
+        <Pickup position="bridge" type="humbucker" brand="GFS" model="Professional Series Alnico V HOT Humbucker" />
+    </PickupConfiguration>
+
+    <ControlLayout>
+        <Selector label="Pickup selector" positions={3}>
+            <SelectorPosition voice="Neck">Selects the neck humbucker as the primary voice.</SelectorPosition>
+            <SelectorPosition voice="Neck + Bridge">Selects both humbuckers together as the primary voice.</SelectorPosition>
+            <SelectorPosition voice="Bridge">Selects the bridge humbucker as the primary voice.</SelectorPosition>
+        </Selector>
+        <Pot label="Master volume" mechanism="standard">
+            <PotPosition position="normal" voice="A500K Audio">Controls overall output. A 680 pF capacitor and 150 kΩ resistor are wired in parallel across the master-volume input and output to form the treble bleed.</PotPosition>
+        </Pot>
+        <Pot label="Master tone" mechanism="standard">
+            <PotPosition position="normal" voice="A500K Audio">Provides conventional treble rolloff through a 22 nF tone capacitor.</PotPosition>
+        </Pot>
+        <HarmonicShaper>
+            <PositionControlPosition technicalReference="Direct connection" />
+            <PositionControlPosition technicalReference="47 kΩ series resistor" />
+            <PositionControlPosition technicalReference="100 kΩ series resistor" />
+            <PositionControlPosition technicalReference="100 kΩ series resistor + approximately 330 pF capacitor" />
+            <PositionControlPosition technicalReference="220 kΩ series resistor + approximately 680 pF capacitor" />
+            <PositionControlPosition technicalReference="Middle pickup disconnected" />
+        </HarmonicShaper>
+    </ControlLayout>
+</InstrumentSpec>
+
+## Design intent
+
+Coupeville Current begins with three familiar pickup selections: neck, both humbuckers, and bridge. Those selections remain the instrument's primary voices. The middle pickup has a different job. Rather than becoming another destination on the pickup selector, it interacts passively with the selected humbucker voice through a six-position control.
+
+This arrangement keeps pickup selection direct while making the amount of interaction repeatable. The player can move through progressively lighter shaping or bypass the system without changing which primary pickup voice is active. The design is intended to add useful variation within a stable control layout, not to multiply pickup combinations.
+
+## Passive interaction
+
+The middle GFS Retrotron Hot Nashville is dedicated to the Harmonic Shaper. Positions 1 through 5 place different passive networks in its path, changing the degree and contour of its interaction with the selected humbucker voice. Position 6 disconnects the middle pickup so the selected neck, combined, or bridge voice passes unchanged.
+
+The Harmonic Shaper is therefore separate from pickup selection. The three-way switch answers which humbucker voice is active; the six-position selector answers how strongly the middle pickup interacts with it.
+
+## Installed electrical reference
+
+The master volume and master tone are A500K Audio controls. The tone circuit uses a 22 nF capacitor. A 680 pF capacitor and 150 kΩ resistor form the treble bleed and are wired in parallel across the master-volume input and output.
+
+The numbered technical references in the control map document the installed passive network at each Harmonic Shaper position. They correspond directly to the six positions on the instrument.
+
+## Builder Notes
+
+**Strings:** 9–42 is the recommended set. 10–46 is the maximum recommended string weight for the as-delivered setup.
+
+**Amplifier pairing:** Begin with an amplifier setting that preserves pick attack and provides enough clean headroom to compare the six shaping positions. From there, set gain and equalization for the musical context and playing level.
+
+**Listening notes:** Final as-delivered setup and listening observations belong here after the completed instrument is evaluated through its working range.
