@@ -105,11 +105,13 @@ This is the permanent as-built reference. Retain the exact pickup models, contro
 
 Replace `Builder Notes` with `Playing and setup`:
 
-> CPC26001 is set up for 9–42 strings. A 10–46 set is the heaviest recommended alternative without revisiting the instrument's setup.
+> CPC26001 is designed for 9–42 strings. The plastic body is engineered for a maximum string load equivalent to a 10–46 set. Do not use heavier strings.
 >
 > To hear the harmonic shaper's range most clearly, begin with a clean or lightly driven amplifier setting that preserves pick attack. Select one of the three humbucker voices, start with the rotary switch at position 6, and work toward position 1. Once the relationship between the presets is familiar, they can be used just as readily with heavier gain or effects.
 
 This section belongs on the full owner record only. Do not add strings or amplifier guidance to the case card.
+
+The 10–46 maximum is a structural limit of the plastic body, not a setup preference. Never imply that adjustment or reconfiguration can make the instrument safe for a heavier string load.
 
 ## Printable Case Card
 
