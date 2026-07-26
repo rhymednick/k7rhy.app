@@ -89,9 +89,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <main className="flex min-h-screen flex-col justify-between pl-4 pr-4 pt-4 md:pl-24 md:pr-24 md:pt-12">
             <div className="space-y-6">
                 {/* Back link */}
-                <Link href="/products" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link href="/shop" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                     <ChevronLeft className="h-4 w-4" />
-                    Back to All Products
+                    Back to Shop
                 </Link>
 
                 {/* Category Header */}

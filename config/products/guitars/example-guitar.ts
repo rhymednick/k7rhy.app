@@ -77,5 +77,4 @@ export const exampleGuitar: Guitar = {
     ],
     price: 1299,
     purchaseLink: 'https://example.com/purchase',
-    relatedBlogTag: 'guitar', // This tag will be used to filter related blog posts
 };

@@ -10,7 +10,6 @@
 import { Guitar, Product, ProductCategory, ProductConfig } from '@/types/product';
 import type React from 'react';
 // import { exampleGuitar } from './guitars/example-guitar';
-import { rainbowTeleConfig } from './guitars/rainbow-tele';
 import { dummyLoad20wBncConfig } from './ham-radio-kits/dummy-load-20w-bnc';
 
 // Helper to extract product from config (supports both old and new format)
@@ -30,7 +29,7 @@ function extractDescription(config: Product | Guitar | ProductConfig): React.Com
 }
 
 // Store configs with their Description components
-export const guitarConfigs: (Guitar | ProductConfig)[] = [rainbowTeleConfig];
+export const guitarConfigs: (Guitar | ProductConfig)[] = [];
 export const hamRadioKitConfigs: (Product | ProductConfig)[] = [dummyLoad20wBncConfig];
 
 // Export all products by category (for listing pages)

@@ -106,7 +106,6 @@ export interface Product {
     images: string[] | ProductImage[]; // Support both string array (backward compat) and ProductImage array
     price?: number;
     purchaseLink?: string;
-    relatedBlogTag?: string; // Tag to filter related posts
 }
 
 // Product config structure for TSX components
