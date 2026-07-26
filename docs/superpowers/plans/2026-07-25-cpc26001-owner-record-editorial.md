@@ -4,7 +4,7 @@
 
 **Goal:** Rewrite CPC26001 as an owner-centered permanent instrument record whose provenance, musical guidance, and technical reference make the guitar meaningful and useful to its owner.
 
-**Architecture:** Keep the existing serial-record route, MDX component system, and case-card renderer unchanged. Update the shared harmonic-shaper language in `config/harmonic-shaper.ts` so web and print cannot drift, then replace the CPC26001 frontmatter and narrative with the approved owner-facing copy. Tests will lock the shared control descriptions, provenance, quiet inline lineage link, installed specification, owner guidance, and removal of promotional or builder-process language.
+**Architecture:** Keep the existing serial-record route, MDX component system, and case-card renderer unchanged. Update the shared harmonic-shaper language in `config/harmonic-shaper.ts` so web and print cannot drift, then replace the CPC26001 frontmatter and narrative with the approved owner-facing copy. Tests continue to protect publication, the installed specification, shared web/print rendering, and omission of implementation details from the case card; editorial diff and rendered review validate the human prose.
 
 **Tech Stack:** Next.js 15 App Router, React 19, TypeScript, MDX, Vitest, Testing Library, Tailwind print styles
 
@@ -34,26 +34,7 @@
 - Consumes: `HarmonicShaper` and `PrintHarmonicShaper`, which inject shared purpose and position descriptions into the web and print renderers.
 - Produces: `HARMONIC_SHAPER_PURPOSE: string` and `HARMONIC_SHAPER_POSITION_DESCRIPTIONS: readonly [string, string, string, string, string, string]` with the approved owner-facing language.
 
-- [ ] **Step 1: Strengthen the web-renderer copy test**
-
-In `components/instrument/instrument-position-control.test.tsx`, keep the existing structure and add exact expectations inside `uses shared Harmonic Shaper language while preserving installed references`:
-
-```tsx
-expect(HARMONIC_SHAPER_PURPOSE).toBe('The six-position rotary switch controls how strongly the middle Filtertron interacts with the selected humbucker voice. Position 6 provides the direct voice; positions 5 through 1 introduce progressively stronger harmonic shaping.');
-expect(HARMONIC_SHAPER_POSITION_DESCRIPTIONS).toEqual(['The middle Filtertron has its strongest effect on the selected humbucker voice.', "Strong interaction, with more of the selected humbucker's original character.", 'The center of the range, balancing the selected humbucker with the harmonic shaper.', 'Light interaction that brings the selected humbucker further forward.', 'The closest shaped setting to the selected humbucker alone.', 'The middle Filtertron is disconnected; the selected humbucker voice passes unchanged.']);
-```
-
-- [ ] **Step 2: Run the focused tests and verify the old copy fails**
-
-Run:
-
-```bash
-npx vitest run components/instrument/instrument-position-control.test.tsx components/instrument/instrument-print-position-control.test.tsx
-```
-
-Expected: FAIL because `config/harmonic-shaper.ts` still exports the earlier abstract descriptions.
-
-- [ ] **Step 3: Replace the shared purpose and six preset descriptions**
+- [ ] **Step 1: Replace the shared purpose and six preset descriptions**
 
 Set `config/harmonic-shaper.ts` to:
 
@@ -63,7 +44,7 @@ export const HARMONIC_SHAPER_PURPOSE = 'The six-position rotary switch controls 
 export const HARMONIC_SHAPER_POSITION_DESCRIPTIONS = ['The middle Filtertron has its strongest effect on the selected humbucker voice.', "Strong interaction, with more of the selected humbucker's original character.", 'The center of the range, balancing the selected humbucker with the harmonic shaper.', 'Light interaction that brings the selected humbucker further forward.', 'The closest shaped setting to the selected humbucker alone.', 'The middle Filtertron is disconnected; the selected humbucker voice passes unchanged.'] as const;
 ```
 
-- [ ] **Step 4: Run the focused component tests**
+- [ ] **Step 2: Run the focused component tests**
 
 Run:
 
@@ -73,10 +54,12 @@ npx vitest run components/instrument/instrument-position-control.test.tsx compon
 
 Expected: both files PASS. The web renderer still shows the installed technical references, and the print renderer still omits them.
 
-- [ ] **Step 5: Commit the shared language change**
+Exact wording is deliberately reviewed in the rendered output rather than asserted as a constant value. The tests protect the real behavior: every shared description reaches both renderers, the web renderer retains installed references, and the print renderer omits them.
+
+- [ ] **Step 3: Commit the shared language change**
 
 ```bash
-git add config/harmonic-shaper.ts components/instrument/instrument-position-control.test.tsx components/instrument/instrument-print-position-control.test.tsx
+git add config/harmonic-shaper.ts
 git commit -m "content: clarify harmonic shaper guidance"
 ```
 
@@ -94,46 +77,11 @@ git commit -m "content: clarify harmonic shaper guidance"
 - Consumes: the existing instrument MDX schema and the `HarmonicShaper` component backed by the shared constants from Task 1.
 - Produces: published CPC26001 frontmatter, owner-facing selector copy, provenance and lineage narrative, musical exploration guidance, as-built technical reference, and setup guidance.
 
-- [ ] **Step 1: Write failing assertions for the owner record**
+- [ ] **Step 1: Remove the obsolete prose change-detector test**
 
-Replace the second test in `content/instruments/CPC26001.test.ts` with an owner-value test that asserts the approved content and rejects the retired structure:
+In `content/instruments/CPC26001.test.ts`, remove the `keeps owner notes on the page without development disclaimers or duplicated platform copy` test and its now-unused imports from `@/config/harmonic-shaper`. Keep the installed-specification and placeholder-asset tests. The removed test greps human prose rather than exercising rendered behavior and would incorrectly reject an approved editorial improvement.
 
-```ts
-it('centers the permanent record on its owner, provenance, and musical use', () => {
-    const source = readFileSync(recordPath, 'utf8');
-    const lowerSource = source.toLowerCase();
-
-    for (const required of ["origin: 'The first production Coupeville Current, personally crafted by Rhy Mednick in 2026.'", "theme: 'Familiar humbucker voices shaped through a middle Filtertron, with six engineered presets ranging from pronounced interaction to the direct voice of the selected pickups.'", '## The Coupeville line', 'each instrument carries that community’s spirit along with Rhy’s personal workmanship', '## The Current lineage', '[Relay Current](/relay/voicings/current)', '## What it is voiced to do', '## Exploring the harmonic shaper', '## Installed voice system', '## Playing and setup', '9–42', '10–46']) {
-        expect(source).toContain(required);
-    }
-
-    for (const forbidden of ['related:', '## Design intent', '## Passive interaction', '## Installed electrical reference', '## Builder Notes', 'prototype', 'provisional', 'future revision', 'values may change', 'subject to change', 'particular workshop']) {
-        expect(lowerSource).not.toContain(forbidden.toLowerCase());
-    }
-    expect(source).not.toContain(HARMONIC_SHAPER_PURPOSE);
-    for (const description of HARMONIC_SHAPER_POSITION_DESCRIPTIONS) expect(source).not.toContain(description);
-});
-```
-
-In the installed-specification test, add the exact selector descriptions:
-
-```ts
-'<SelectorPosition voice="Neck">A rounder, more open foundation.</SelectorPosition>',
-'<SelectorPosition voice="Neck + Bridge">The broadest primary voice, combining bridge focus with the neck pickup’s rounder response.</SelectorPosition>',
-'<SelectorPosition voice="Bridge">The firmest attack and strongest rhythmic focus.</SelectorPosition>',
-```
-
-- [ ] **Step 2: Run the record test and verify the old narrative fails**
-
-Run:
-
-```bash
-npx vitest run content/instruments/CPC26001.test.ts
-```
-
-Expected: FAIL because the record still contains the Relay CTA and old headings and does not contain the approved provenance or musical guidance.
-
-- [ ] **Step 3: Replace the frontmatter identity and remove the related CTA**
+- [ ] **Step 2: Replace the frontmatter identity and remove the related CTA**
 
 In `content/instruments/CPC26001.mdx`:
 
@@ -142,7 +90,7 @@ In `content/instruments/CPC26001.mdx`:
 - replace `theme` with `Familiar humbucker voices shaped through a middle Filtertron, with six engineered presets ranging from pronounced interaction to the direct voice of the selected pickups.`
 - delete the complete `related` block
 
-- [ ] **Step 4: Replace the selector and standard-control descriptions**
+- [ ] **Step 3: Replace the selector and standard-control descriptions**
 
 Use these exact owner-facing descriptions in the existing structured control map:
 
@@ -154,7 +102,7 @@ Use these exact owner-facing descriptions in the existing structured control map
 
 Retain `Master output` with `Controls overall instrument output.` for print and retain `Treble rolloff` with `Provides conventional treble rolloff.` for print. Preserve the complete A500K, treble-bleed, and tone-capacitor details in the web descriptions.
 
-- [ ] **Step 5: Replace the full narrative with the approved owner record**
+- [ ] **Step 4: Replace the full narrative with the approved owner record**
 
 After `</InstrumentSpec>`, use these sections in order:
 
@@ -198,7 +146,7 @@ CPC26001 is set up for 9–42 strings. A 10–46 set is the heaviest recommended
 To hear the harmonic shaper’s range most clearly, begin with a clean or lightly driven amplifier setting that preserves pick attack. Select one of the three humbucker voices, start with the rotary switch at position 6, and work toward position 1. Once the relationship between the presets is familiar, they can be used just as readily with heavier gain or effects.
 ```
 
-- [ ] **Step 6: Run the CPC26001 and shared-control tests**
+- [ ] **Step 5: Run the CPC26001 and shared-control tests**
 
 Run:
 
@@ -206,9 +154,9 @@ Run:
 npx vitest run content/instruments/CPC26001.test.ts components/instrument/instrument-position-control.test.tsx components/instrument/instrument-print-position-control.test.tsx
 ```
 
-Expected: all three files PASS. The record contains the installed values once, the web renderer supplies the shared preset copy, and the print renderer receives the same owner-facing descriptions without technical references.
+Expected: all three files PASS. The record retains its canonical installed specification, the web renderer supplies the shared preset copy, and the print renderer receives the same owner-facing descriptions without technical references.
 
-- [ ] **Step 7: Commit the owner-record rewrite**
+- [ ] **Step 6: Commit the owner-record rewrite**
 
 ```bash
 git add content/instruments/CPC26001.mdx content/instruments/CPC26001.test.ts
