@@ -1,94 +1,24 @@
 import { NavItem, NavItemWithChildren } from '../types/nav';
-import { Blog } from '@/.content-collections/generated';
-import { allBlogs } from 'content-collections';
 
 export interface NavigationConfig {
     mainNav: NavItem[];
-    docNav: NavItemWithChildren[];
-    blogNav: NavItemWithChildren[];
+    hamRadioNav: NavItemWithChildren[];
 }
-
-function generateBlogNavItems(): NavItemWithChildren[] {
-    const blogNavItems: NavItemWithChildren[] = [];
-
-    allBlogs.sort((a: Blog, b: Blog) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return dateA.getTime() - dateB.getTime();
-    });
-
-    allBlogs.forEach((blog: Blog) => {
-        const date = new Date(blog.date).toLocaleDateString();
-        const blogNavItem: NavItemWithChildren = {
-            title: `${blog.title} [${date}]`,
-            href: `/${blog._meta.path}`,
-            label: !blog.publish ? 'Draft' : '',
-            items: [],
-        };
-
-        blogNavItems.push(blogNavItem);
-    });
-
-    return blogNavItems;
-}
-
-const blogNavItems = generateBlogNavItems();
 
 export const navConfig: NavigationConfig = {
     mainNav: [
-        {
-            title: 'Products',
-            href: '/products',
-        },
-        {
-            title: 'Relay Guitar',
-            href: '/relay',
-        },
+        { title: 'Ham Radio', href: '/ham-radio' },
+        { title: 'Guitars', href: '/guitars' },
+        { title: 'Shop', href: '/shop' },
+        { title: 'Community', href: '/community' },
+    ],
+    hamRadioNav: [
         {
             title: 'Documentation',
-            href: '/docs',
-        },
-        {
-            title: 'Lab Notes',
-            href: '/blog',
-        },
-    ],
-    docNav: [
-        {
-            title: 'Ham Radio & Electronics',
             items: [
-                {
-                    title: '20W Dummy Load',
-                    href: '/docs/dl20w_bnc',
-                    items: [],
-                },
-                {
-                    title: 'Measuring Power',
-                    href: '/docs/power_measurement',
-                    items: [],
-                },
+                { title: '20W Dummy Load', href: '/docs/dl20w_bnc', items: [] },
+                { title: 'Measuring Power', href: '/docs/power_measurement', items: [] },
             ],
         },
-    ],
-    blogNav: [
-        {
-            title: 'Blog Posts (By Date)',
-            items: blogNavItems,
-        },
-        // {
-        //   title: "By Tagged Topic",
-        //   items: [
-        //     {
-        //       title: "#product",
-        //       href: "/blog/#product",
-        //       items: [],
-        //     },
-        //     {
-        //       title: "#news",
-        //       href: "/blog/#news",
-        //       items: [],
-        //     },
-        //   ],
-        // },
     ],
 };

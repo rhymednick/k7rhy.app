@@ -14,9 +14,10 @@ const socialLinks = [
 ];
 
 const quickLinks = [
-    { href: '/products', label: 'Products' },
-    { href: '/blog', label: 'Lab Notes' },
-    { href: '/docs', label: 'Documentation' },
+    { href: '/ham-radio', label: 'Ham Radio' },
+    { href: '/guitars', label: 'Guitars' },
+    { href: '/shop', label: 'Shop' },
+    { href: '/community', label: 'Community' },
 ];
 
 export function SiteFooter() {
