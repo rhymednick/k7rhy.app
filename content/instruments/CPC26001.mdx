@@ -2,14 +2,11 @@
 publish: true
 name: 'Coupeville Current'
 completed: '2026'
-origin: 'Designed and built by K7RHY Resonance Lab as the first production Coupeville Current.'
-theme: 'The three-way selector provides familiar humbucker voices. A six-position rotary switch routes a middle Filtertron pickup through six engineered presets, using it as a harmonic shaper for each selection.'
+origin: 'The first production Coupeville Current, personally crafted by Rhy Mednick in 2026.'
+theme: 'Familiar humbucker voices shaped through a middle Filtertron, with six engineered presets ranging from pronounced interaction to the direct voice of the selected pickups.'
 images:
     - src: '/images/instruments/CPC26001/placeholder.svg'
       alt: 'Placeholder artwork for Coupeville Current CPC26001; exact instrument photography is pending'
-related:
-    label: 'Explore the Relay Current design reference'
-    href: '/relay/voicings/current'
 ---
 
 <InstrumentSpec>
@@ -23,9 +20,9 @@ related:
 
     <ControlLayout>
         <Selector label="Pickup selector" positions={3}>
-            <SelectorPosition voice="Neck">Neck humbucker.</SelectorPosition>
-            <SelectorPosition voice="Neck + Bridge">Neck and bridge humbuckers together.</SelectorPosition>
-            <SelectorPosition voice="Bridge">Bridge humbucker.</SelectorPosition>
+            <SelectorPosition voice="Neck">A rounder, more open foundation.</SelectorPosition>
+            <SelectorPosition voice="Neck + Bridge">The broadest primary voice, combining bridge focus with the neck pickup’s rounder response.</SelectorPosition>
+            <SelectorPosition voice="Bridge">The firmest attack and strongest rhythmic focus.</SelectorPosition>
         </Selector>
         <Pot label="Master volume" mechanism="standard">
             <PotPosition position="normal" voice="Master output" printDescription="Controls overall instrument output.">Uses an A500K Audio control. A 680 pF capacitor and 150 kΩ resistor are wired in parallel across the master-volume input and output to form the treble bleed.</PotPosition>
@@ -45,26 +42,40 @@ related:
 
 </InstrumentSpec>
 
-## Design intent
+## The Coupeville line
 
-Coupeville Current begins with three familiar pickup selections: neck, both humbuckers, and bridge. Those selections remain the primary voices. A six-position rotary switch routes the middle Filtertron pickup through engineered presets, using it as a harmonic shaper for the selected voice.
+Coupeville is the name Rhy Mednick gives to the instruments he personally crafts. The line takes its name from the small town community that inspired it, and each instrument carries that community’s spirit along with Rhy’s personal workmanship.
 
-This arrangement separates pickup selection from harmonic shaping. The player can move through progressively lighter interaction or bypass the shaper without changing the active pickup selection.
+CPC26001 is the first production Coupeville Current—the instrument that establishes the model and begins its recorded lineage.
 
-## Passive interaction
+## The Current lineage
 
-The middle GFS Retrotron Hot Nashville is dedicated to the harmonic shaper. Positions 1 through 5 place different passive networks in its path, changing how it interacts with the selected humbucker voice. Position 6 disconnects the middle pickup, so the selected voice passes unchanged.
+Coupeville Current evolves the pickup philosophy first explored in [Relay Current](/relay/voicings/current): the bridge and neck humbuckers remain the guitar’s primary voices, while a middle Filtertron changes how those voices respond. CPC26001 gives that relationship a new control system—a six-position rotary switch with repeatable harmonic-shaping presets instead of the original design’s switched contours.
 
-The harmonic shaper is therefore separate from pickup selection. The three-way switch answers which humbucker voice is active; the six-position rotary switch determines how the middle Filtertron interacts with it.
+The result remains familiar at its foundation. The three-way selector chooses neck, both humbuckers, or bridge; the rotary switch determines how strongly the middle Filtertron interacts with that selection.
 
-## Installed electrical reference
+## What it is voiced to do
 
-The master volume and master tone are A500K Audio controls. The tone circuit uses a 22 nF capacitor. A 680 pF capacitor and 150 kΩ resistor form the treble bleed and are wired in parallel across the master-volume input and output.
+Coupeville Current is built around clear attack, controlled low end, and a focused place in the mix. Rather than multiplying pickup combinations, it develops three dependable humbucker voices through different degrees of interaction with the middle Filtertron.
 
-The numbered technical references in the control map document the installed passive network at each harmonic shaper position. They correspond directly to the six positions on the instrument.
+The bridge provides the firmest attack and strongest rhythmic focus. The neck offers a rounder, more open foundation. Together they create the broadest of the three primary voices. Each remains recognizable as the harmonic shaper changes its emphasis and response.
 
-## Builder Notes
+## Exploring the harmonic shaper
 
-**Strings:** 9–42 is the recommended set. 10–46 is the maximum recommended string weight for the as-delivered setup.
+Position 6 is the direct reference: the middle Filtertron is disconnected, and the selected humbucker voice passes unchanged. From there, positions 5 through 1 introduce progressively stronger interaction. This makes it easy to begin with a familiar pickup sound, then add only as much focus, texture, and harmonic complexity as the part needs.
 
-**Amplifier pairing:** Begin with an amplifier setting that preserves pick attack and provides enough clean headroom to compare the six shaping positions. From there, set gain and equalization for the musical context and playing level.
+The control is designed for comparison rather than guesswork. Choose a pickup voice, begin at position 6, and move through the presets while keeping the three-way selector unchanged.
+
+## Installed voice system
+
+The primary voices come from a GFS Vintage 59 neck humbucker and a GFS Professional Series Alnico V HOT bridge humbucker. A GFS Retrotron Hot Nashville occupies the middle position, but it is dedicated to harmonic shaping rather than pickup selection.
+
+The three-way selector keeps the guitar’s foundation straightforward. Master volume and tone apply across the instrument, while the six-position rotary switch controls the middle Filtertron’s interaction with the selected voice.
+
+The master volume uses an A500K audio-taper control with a parallel 680 pF and 150 kΩ treble-bleed network. The master tone uses an A500K audio-taper control and a 22 nF capacitor. The six rotary-switch networks documented in the control map are the installed values for CPC26001.
+
+## Playing and setup
+
+CPC26001 is set up for 9–42 strings. A 10–46 set is the heaviest recommended alternative without revisiting the instrument’s setup.
+
+To hear the harmonic shaper’s range most clearly, begin with a clean or lightly driven amplifier setting that preserves pick attack. Select one of the three humbucker voices, start with the rotary switch at position 6, and work toward position 1. Once the relationship between the presets is familiar, they can be used just as readily with heavier gain or effects.
