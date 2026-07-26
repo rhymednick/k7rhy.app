@@ -1,5 +1,6 @@
 import React from 'react';
 import { SlidersHorizontal, Sparkles } from 'lucide-react';
+import { HarmonicShaper, PositionControl } from './instrument-position-control';
 
 type SelectorCount = 3 | 5;
 type PotMechanism = 'standard' | 'push-pull' | 'push-push';
@@ -14,6 +15,7 @@ export interface SelectorPositionProps {
 export interface PotPositionProps {
     position: PotState;
     voice: string;
+    printDescription?: string;
     children: React.ReactNode;
 }
 
@@ -103,7 +105,9 @@ export function Pickup({ position, type, brand, model, children }: PickupProps) 
     return (
         <article className="rounded-xl border border-border/60 bg-muted/25 p-4">
             <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">{position}</p>
-            <h3 className="mt-1 text-base font-semibold">{brand} {model}</h3>
+            <h3 className="mt-1 text-base font-semibold">
+                {brand} {model}
+            </h3>
             <p className="mt-1 text-sm capitalize text-muted-foreground">{type.replaceAll('-', ' ')}</p>
             {details.length > 0 && <dl className="mt-3 space-y-2 border-t border-border/60 pt-3 text-sm">{details}</dl>}
         </article>
@@ -125,13 +129,13 @@ export function ControlLayout({ children }: { children: React.ReactNode }) {
 
     React.Children.forEach(children, (child) => {
         if (isEmptyChild(child)) return;
-        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot)) {
+        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot && child.type !== PositionControl && child.type !== HarmonicShaper)) {
             throw new Error('ControlLayout contains an unsupported child');
         }
         controls.push(child);
     });
 
-    if (controls.length === 0) throw new Error('ControlLayout requires at least one Selector or Pot');
+    if (controls.length === 0) throw new Error('ControlLayout requires at least one supported control');
 
     return (
         <section data-control-layout className="rounded-2xl border border-border/70 bg-card p-5 shadow-sm md:p-6">

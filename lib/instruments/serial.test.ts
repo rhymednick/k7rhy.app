@@ -12,6 +12,16 @@ describe('instrument serials', () => {
         });
     });
 
+    it('parses the first Coupeville Current production serial', () => {
+        expect(parseInstrumentSerial('CPC26001')).toEqual({
+            serial: 'CPC26001',
+            modelCode: 'CPC',
+            modelDescription: 'Coupeville Current',
+            year: 2026,
+            index: 1,
+        });
+    });
+
     it('normalizes lowercase input before routing', () => {
         expect(normalizeInstrumentSerial('rly26001')).toBe('RLY26001');
     });
