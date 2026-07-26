@@ -41,12 +41,14 @@ export const hamRadioKits: Product[] = hamRadioKitConfigs.map(extractProduct);
 export const productsByCategory: Record<ProductCategory, Product[]> = {
     [ProductCategory.GUITARS]: guitars,
     [ProductCategory.HAM_RADIO_KITS]: hamRadioKits,
+    [ProductCategory.COUPEVILLE]: [],
 };
 
 // Store configs by category for Description component lookup
 const configsByCategory: Record<ProductCategory, (Product | Guitar | ProductConfig)[]> = {
     [ProductCategory.GUITARS]: guitarConfigs,
     [ProductCategory.HAM_RADIO_KITS]: hamRadioKitConfigs,
+    [ProductCategory.COUPEVILLE]: [],
 };
 
 // Get all products for a category

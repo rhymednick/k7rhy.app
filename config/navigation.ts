@@ -45,6 +45,10 @@ export const navConfig: NavigationConfig = {
             href: '/relay',
         },
         {
+            title: 'Coupeville',
+            href: '/coupeville',
+        },
+        {
             title: 'Documentation',
             href: '/docs',
         },

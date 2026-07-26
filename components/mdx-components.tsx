@@ -46,6 +46,8 @@ import { RelayWiringDiagram } from '@/components/relay/relay-wiring-diagram';
 import { RelayPickupMap } from '@/components/relay/relay-pickup-map';
 import { RelayVoicingSection } from '@/components/relay/relay-voicing-overview';
 import { RelayHero } from '@/components/relay/relay-hero';
+import { CoupevilleHero } from '@/components/coupeville/coupeville-hero';
+import { CoupevilleModelGrid, CoupevilleModelCard } from '@/components/coupeville/coupeville-model-grid';
 import { RelayProcessOverview } from '@/components/relay/relay-process-overview';
 import { RelayDownloadCallout } from '@/components/relay/relay-download-callout';
 import { DocTerm } from '@/components/doc/doc-term';
@@ -195,6 +197,9 @@ const components: MDXComponents = {
     RelayVoicingPickupChoices,
     RelayVoicingSection,
     RelayHero,
+    CoupevilleHero,
+    CoupevilleModelGrid,
+    CoupevilleModelCard,
     RelayProcessOverview,
     RelayDownloadCallout,
     ControlPositions,
