@@ -418,7 +418,7 @@ After `</InstrumentSpec>`, write restrained sections titled `## Design intent`, 
 
 Under Builder Notes, include:
 
-- `Strings`: 9–42 recommended; 10–46 maximum recommended weight
+- `Strings`: designed for 9–42; 10–46 is the plastic body's structural maximum
 - `Amplifier pairing`: recommend beginning with an amplifier that preserves pick attack and has enough clean headroom to compare shaping positions, then adjust gain/EQ to the player's context; do not name a commercial amplifier model
 - `Listening notes`: state that the final as-delivered setup notes belong here once the physical instrument is evaluated; do not mention circuit revisions or uncertain component values
 
@@ -499,7 +499,7 @@ Open `/sn/CPC26001` at the actual local port and verify:
 - musical design intent precedes electrical details
 - pickup selector and Harmonic Shaper are visually distinct controls
 - all six positions are numbered and readable
-- Builder Notes show 9–42 recommended and 10–46 maximum
+- Playing and setup guidance identifies 9–42 as the designed set and 10–46 as the plastic body's structural maximum
 - standard navigation, dark mode, desktop, and mobile layouts remain intact
 
 - [ ] **Step 7: Review and print the case card**

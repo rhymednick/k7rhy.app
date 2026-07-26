@@ -113,7 +113,7 @@ The narrative order is:
 The Builder Notes section appears on the web record only. It includes:
 
 - recommended strings: 9–42
-- maximum recommended string weight: 10–46
+- structural maximum string weight: 10–46; the plastic body is not designed for heavier strings
 - concise amplifier-pairing guidance based on useful setup characteristics rather than prescribed tone claims
 - a bounded place for final listening notes when the physical build is completed
 
