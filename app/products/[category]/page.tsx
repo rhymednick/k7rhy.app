@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { ProductCategory } from '@/types/product';
 import { getProductsByCategory } from '@/config/products';
 import { ProductTeaserCard } from '@/components/product/product-teaser-card';
+import { CoupevilleSpecialOrderCta } from '@/components/coupeville/coupeville-special-order-cta';
 import { Badge } from '@/components/ui/badge';
 import { Guitar, Radio } from 'lucide-react';
 import Link from 'next/link';
@@ -64,6 +65,21 @@ const categoryInfo: Record<
         darkBlurFrom: 'dark:bg-amber-500/10',
         darkBlurTo: 'dark:bg-orange-500/10',
     },
+    [ProductCategory.COUPEVILLE]: {
+        title: 'Coupeville',
+        icon: Guitar,
+        description: 'Instruments I build by hand, one at a time',
+        gradientFrom: 'from-emerald-100/50',
+        gradientTo: 'to-sky-100/50',
+        blurFrom: 'bg-emerald-400/20',
+        blurTo: 'bg-sky-400/20',
+        iconGradientFrom: 'from-emerald-500',
+        iconGradientTo: 'to-sky-600',
+        darkGradientFrom: 'dark:from-emerald-900/10',
+        darkGradientTo: 'dark:to-sky-900/10',
+        darkBlurFrom: 'dark:bg-emerald-500/10',
+        darkBlurTo: 'dark:bg-sky-500/10',
+    },
 };
 
 export async function generateStaticParams() {
@@ -121,6 +137,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                             <ProductTeaserCard key={product.slug} product={product} category={categoryEnum} />
                         ))}
                     </div>
+                ) : categoryEnum === ProductCategory.COUPEVILLE ? (
+                    <CoupevilleSpecialOrderCta />
                 ) : (
                     <div className="rounded-lg border border-border bg-card p-8 text-center">
                         <p className="text-muted-foreground">No products available in this category yet.</p>
