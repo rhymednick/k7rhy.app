@@ -1,4 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('content-collections', () => ({ allBlogs: [] }));
+vi.mock('@/.content-collections/generated', () => ({ Blog: {} }));
+
 import { navConfig } from './navigation';
 
 describe('navConfig.mainNav', () => {
