@@ -7,6 +7,7 @@ import type React from 'react';
 export enum ProductCategory {
     GUITARS = 'guitars',
     HAM_RADIO_KITS = 'ham-radio-kits',
+    COUPEVILLE = 'coupeville',
     // Future categories will be added here:
     // GUITAR_KITS = 'guitar-kits',
 }

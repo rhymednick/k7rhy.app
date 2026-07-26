@@ -43,7 +43,7 @@ describe('relayVoicings config', () => {
             velvet: 'ready',
             arc: 'ready',
             torch: 'ready',
-            current: 'lab',
+            current: 'ready',
             hammer: 'concept',
         });
     });

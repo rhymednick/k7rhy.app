@@ -17,7 +17,15 @@ export default function GuitarsPage() {
                     </Button>
                 }
             />
-            <DocIndexCard title="Guitar Platforms" description="Each platform gathers its own design story, voicings, parts, wiring, and build guidance." icon={Guitar} items={[{ title: 'Relay', href: '/guitars/relay', description: 'A modular 3D-printed guitar platform with distinct voicings and an open build process.', type: DocIndexItemType.Internal }]} />
+            <DocIndexCard
+                title="Guitar Platforms"
+                description="Each platform gathers its own design story, voicings, parts, wiring, and build guidance."
+                icon={Guitar}
+                items={[
+                    { title: 'Relay', href: '/guitars/relay', description: 'A modular 3D-printed guitar platform with distinct voicings and an open build process.', type: DocIndexItemType.Internal },
+                    { title: 'Coupeville', href: '/coupeville', description: 'Hand-built instruments organized around distinct voices and playing styles.', type: DocIndexItemType.Internal },
+                ]}
+            />
         </main>
     );
 }

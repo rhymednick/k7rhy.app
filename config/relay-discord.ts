@@ -7,6 +7,7 @@ export const relayDiscordVoicingThreads = {
     arc: '1523931607126376570',
     torch: '1523931995607007273',
     velvet: '1523932118407843971',
+    current: '1530796354341834903',
 } as const;
 
 export type RelayDiscordVoicingThreadSlug = keyof typeof relayDiscordVoicingThreads;

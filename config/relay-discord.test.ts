@@ -10,10 +10,11 @@ describe('getRelayVoicingDiscordTarget', () => {
         expect(getRelayVoicingDiscordTarget('velvet').threadId).toBe('1523932118407843971');
         expect(getRelayVoicingDiscordTarget('arc').threadId).toBe('1523931607126376570');
         expect(getRelayVoicingDiscordTarget('torch').threadId).toBe('1523931995607007273');
+        expect(getRelayVoicingDiscordTarget('current').threadId).toBe('1530796354341834903');
     });
 
     it('falls back to the voicing forum channel for voicings without a thread', () => {
-        for (const slug of ['reef', 'current', 'hammer']) {
+        for (const slug of ['reef', 'hammer']) {
             expect(getRelayVoicingDiscordTarget(slug)).toEqual({
                 threadId: relayDiscordVoicingChannelId,
                 channelHref: relayDiscordVoicingChannelHref,
