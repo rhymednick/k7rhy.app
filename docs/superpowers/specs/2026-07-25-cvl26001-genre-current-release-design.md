@@ -1,4 +1,4 @@
-# CPC26001 genre summary + Relay Current release — design
+# CVL26001 genre summary + Relay Current release — design
 
 **Date:** 2026-07-25
 
@@ -6,9 +6,9 @@
 
 Two related content gaps around the Current voicing:
 
-1. The Coupeville Current serial-number record (CPC26001) doesn't state what the model
+1. The Coupeville Current serial-number record (CVL26001) doesn't state what the model
    is voiced to do musically. The Relay Current voicing page communicates its genre focus
-   (funk / pop / rock), but the CPC26001 hero summary does not.
+   (funk / pop / rock), but the CVL26001 hero summary does not.
 2. Relay Current is still marked as a `lab` voicing (design defined but not physically
    built/validated). It has since been built and released, so it should read as an active,
    released model — not a lab experiment.
@@ -17,12 +17,12 @@ Two related content gaps around the Current voicing:
 
 ### 1. Genre in the Coupeville hero summary
 
-The CPC26001 hero summary renders from the `theme` frontmatter field
+The CVL26001 hero summary renders from the `theme` frontmatter field
 (`components/instrument/instrument-record-page.tsx`). Genre is woven into that prose
 sentence — the record type has no structured `genres` field, and the summary is descriptive
 prose rather than the badge-style genre dots used in the Relay voicing grid.
 
-- **File:** `content/instruments/CPC26001.mdx`
+- **File:** `content/instruments/CVL26001.mdx`
 - Genre text matches the Relay Current voicing it evolves from: funk, pop, and rock.
 - Appended clause: `…—voiced for funk, pop, and rock.`
 

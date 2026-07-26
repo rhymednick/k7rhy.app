@@ -12,6 +12,9 @@ describe('CVL26001 permanent customer record', () => {
         for (const required of ['publish: true', "name: 'Coupeville Current'", "completed: '2026'", "src: '/images/instruments/CVL26001/placeholder.svg'", 'position="neck" type="humbucker" brand="GFS" model="Vintage 59 Humbucker"', 'position="middle" type="filtertron" brand="GFS" model="Retrotron Hot Nashville"', 'position="bridge" type="humbucker" brand="GFS" model="Professional Series Alnico V HOT Humbucker"', '<Selector label="Pickup selector" positions={3}>', 'voice="Neck"', 'voice="Neck + Bridge"', 'voice="Bridge"', 'A500K Audio', '22 nF', '680 pF', '150 kΩ', 'wired in parallel across the master-volume input and output', '<HarmonicShaper>', 'Direct connection', '47 kΩ series resistor', '100 kΩ series resistor', 'approximately 330 pF capacitor', '220 kΩ series resistor', 'approximately 680 pF capacitor', 'Middle pickup disconnected']) {
             expect(source).toContain(required);
         }
+
+        expect(source).toContain('CVL26001');
+        expect(source).not.toContain('CPC26001');
     });
 
     it('uses a clearly labeled non-photographic placeholder', () => {
@@ -20,5 +23,7 @@ describe('CVL26001 permanent customer record', () => {
         expect(placeholder).toContain('Coupeville Current');
         expect(placeholder).toContain('Image placeholder');
         expect(placeholder).toContain('Exact instrument photography will replace this image.');
+        expect(placeholder).toContain('CVL26001');
+        expect(placeholder).not.toContain('CPC26001');
     });
 });

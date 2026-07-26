@@ -1,4 +1,4 @@
-# CPC26001 Coupeville Current Instrument Record Design
+# CVL26001 Coupeville Current Instrument Record Design
 
 **Status:** Approved in conversation on 2026-07-25
 
@@ -10,15 +10,15 @@ This instrument is a production build, not a prototype. The page must read as a 
 
 ## Identity and Publication
 
-- **Serial:** `CPC26001`
-- **Serial interpretation:** `CPC` for Coupeville Current, `26` for completion year 2026, and `001` for the first Coupeville Current record
+- **Serial:** `CVL26001`
+- **Serial interpretation:** `CVL` for Coupeville Current, `26` for completion year 2026, and `001` for the first Coupeville Current record
 - **Record name:** `Coupeville Current`
 - **Completion display:** `Completed 2026`
 - **Publication:** `publish: true`
-- **Canonical record:** `/sn/CPC26001`
-- **Printable case card:** `/sn/CPC26001/print`
+- **Canonical record:** `/sn/CVL26001`
+- **Printable case card:** `/sn/CVL26001/print`
 
-Add `CPC: 'Coupeville Current'` to the established model-code map. The record uses year-only completion metadata through the existing `completed: '2026'` support.
+Add `CVL: 'Coupeville Current'` to the established model-code map. The record uses year-only completion metadata through the existing `completed: '2026'` support.
 
 The finished instrument has not yet been photographed. Add a deliberately non-photographic, clearly labeled Coupeville Current placeholder asset so the published record does not imply that another guitar is this instrument. Its alt text must identify it as a placeholder. Replace this asset with an exact-instrument photograph before the guitar is sold; the temporary asset does not change the canonical purpose of the record.
 
@@ -30,7 +30,7 @@ Use this canonical platform-level explanation:
 
 > The six-position rotary switch routes the middle Filtertron pickup through six engineered presets, using it as a harmonic shaper for the selected pickup voice. It does not select additional pickups or create separate voices.
 
-Keep that reusable explanation and the six stable player descriptions in shared code rather than duplicating them in the instrument record. Keep the installed passive network values in the `CPC26001` record because they describe this specific build.
+Keep that reusable explanation and the six stable player descriptions in shared code rather than duplicating them in the instrument record. Keep the installed passive network values in the `CVL26001` record because they describe this specific build.
 
 ## Installed Pickup Configuration
 
@@ -68,7 +68,7 @@ Extend the strict instrument MDX component system with a generic six-position co
 - a player-facing description for each position
 - an optional technical reference for each position
 
-The underlying renderer and validation are reusable for another six-position function. `Harmonic Shaper` is the configured label and role for `CPC26001`, not the type of the switch.
+The underlying renderer and validation are reusable for another six-position function. `Harmonic Shaper` is the configured label and role for `CVL26001`, not the type of the switch.
 
 The three-way pickup selector continues to use the existing selector component. The web and print presentations explicitly distinguish the controls:
 
@@ -125,7 +125,7 @@ Reuse the dedicated `/sn/[serial]/print` route, existing K7RHY masthead, QR code
 
 The case card is a quick reference. Its content priority is:
 
-1. Coupeville Current identity, `CPC26001`, and `Completed 2026`
+1. Coupeville Current identity, `CVL26001`, and `Completed 2026`
 2. Concise Harmonic Shaper purpose
 3. Pickup layout
 4. Three-way pickup-selector behavior
@@ -137,7 +137,7 @@ Do not include implementation details on the case card. Potentiometer values, ca
 
 ## Failure Behavior
 
-- `CPC26001` must pass the existing serial parser and year validation.
+- `CVL26001` must pass the existing serial parser and year validation.
 - The generic six-position component fails rendering unless it contains exactly six valid ordered position children.
 - Unsupported children fail with an error that identifies the affected component.
 - The web and print renderers consume the same structured control data so their position ordering and descriptions cannot drift.
@@ -147,13 +147,13 @@ Do not include implementation details on the case card. Potentiometer values, ca
 
 Implement production behavior only after observing focused tests fail for the missing behavior. Automated coverage will include:
 
-- `CPC` model-code parsing and `CPC26001` serial interpretation
+- `CVL` model-code parsing and `CVL26001` serial interpretation
 - generic six-position control rendering and automatic numbering
 - exact six-child validation and unsupported-child rejection
 - independence of the generic control label and purpose from Harmonic Shaper terminology
 - dedicated compact print rendering for all six positions
 - registration in both web and print MDX component maps
-- `CPC26001` record discovery and published static parameters
+- `CVL26001` record discovery and published static parameters
 - the canonical player descriptions, pickup models, control values, string guidance, and absence of revision-disclaimer language
 - existing print geometry regression coverage
 

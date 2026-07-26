@@ -20,5 +20,7 @@ This file is the canonical organizational policy for K7RHY.app. Agents must pres
 - Serial pages are unlisted permanent records reached by exact URL or case-card QR code.
 - Never expose a serial index, link records from public navigation or catalog pages, or include `/sn/...` in sitemaps.
 - Emit `noindex, nofollow` for both record and print routes.
+- A future direct serial lookup may resolve a serial supplied by the visitor, but must not expose a browsable registry.
 - `REX` means Relay Example. Reserve `RLY` for real Relay prototypes that are sold.
 - `CVL` means Coupeville. Its final three digits sequence all Coupeville instruments within a completion year, regardless of submodel.
+- Never skip a family/year sequence number. If an issued instrument is destroyed or otherwise unavailable, retain a permanent record for its serial.
