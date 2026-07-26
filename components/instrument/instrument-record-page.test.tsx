@@ -30,7 +30,7 @@ describe('InstrumentRecordPage', () => {
         render(
             <InstrumentRecordPage record={record}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
         expect(screen.getByRole('heading', { level: 1, name: 'Relay Lipstick' })).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('InstrumentRecordPage', () => {
         render(
             <InstrumentRecordPage record={record}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
         expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/guitars/relay');
@@ -55,7 +55,7 @@ describe('InstrumentRecordPage', () => {
         render(
             <InstrumentRecordPage record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
         expect(screen.getByText('Modified')).toBeInTheDocument();

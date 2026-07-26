@@ -47,11 +47,7 @@ describe('CardGridItem', () => {
     });
 
     it('renders static content when href is omitted', () => {
-        render(
-            <CardGridItem title="What it is">
-                A 3D-printed electric guitar you build at home.
-            </CardGridItem>
-        );
+        render(<CardGridItem title="What it is">A 3D-printed electric guitar you build at home.</CardGridItem>);
 
         expect(screen.queryByRole('link')).not.toBeInTheDocument();
         expect(screen.getByRole('heading', { name: 'What it is' })).toBeInTheDocument();

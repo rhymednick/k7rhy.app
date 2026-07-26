@@ -33,7 +33,7 @@ describe('InstrumentCaseCard', () => {
         render(
             <InstrumentCaseCard record={record}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
         expect(screen.getByRole('img', { name: 'K7RHY Resonance Lab logo' })).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('InstrumentCaseCard', () => {
         const { container } = render(
             <InstrumentCaseCard record={record}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
         expect(container).toHaveTextContent('REX26001');
@@ -58,7 +58,7 @@ describe('InstrumentCaseCard', () => {
         const { container } = render(
             <InstrumentCaseCard record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
         expect(container).toHaveTextContent('MODIFIED 2026');

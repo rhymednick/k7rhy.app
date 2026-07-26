@@ -71,12 +71,14 @@
 ### Task 1: Commit durable organizational memory and future skill brief
 
 **Files:**
+
 - Create: `docs/architecture/site-organization.md`
 - Create: `docs/todos/instrument-record-skill.md`
 - Modify: `AGENTS.md`
 - Modify: `CLAUDE.md`
 
 **Interfaces:**
+
 - Consumes: approved design at `docs/superpowers/specs/2026-07-26-site-information-architecture-design.md`.
 - Produces: one canonical policy location referenced by vendor-facing agent files; one non-executable future-work brief.
 
@@ -161,6 +163,7 @@ git commit -m "docs: record canonical site organization"
 ### Task 2: Establish the four public destinations
 
 **Files:**
+
 - Create: `config/navigation.test.ts`
 - Modify: `config/navigation.ts`
 - Create: `app/ham-radio/page.tsx`
@@ -169,6 +172,7 @@ git commit -m "docs: record canonical site organization"
 - Modify: `components/navigation/site-footer.tsx`
 
 **Interfaces:**
+
 - Produces: `navConfig.mainNav` with exact canonical routes; domain landing pages consumed by public navigation.
 
 - [ ] **Step 1: Write the failing navigation test**
@@ -268,6 +272,7 @@ git commit -m "feat: organize navigation by subject"
 ### Task 3: Rename Products to Shop and remove the sold guitar
 
 **Files:**
+
 - Move: `app/products/**` → `app/shop/**`
 - Modify: `app/shop/page.tsx`
 - Modify: `app/shop/[category]/page.tsx`
@@ -283,6 +288,7 @@ git commit -m "feat: organize navigation by subject"
 - Create or modify: `config/products/index.test.ts`
 
 **Interfaces:**
+
 - Produces: canonical `/shop`, `/shop/:category`, and `/shop/:category/:slug` pages; a catalog containing only currently available items.
 
 - [ ] **Step 1: Write the failing catalog test**
@@ -364,6 +370,7 @@ git commit -m "feat: rename catalog to shop"
 ### Task 4: Build the read-only Discord Community feed
 
 **Files:**
+
 - Modify: `lib/discord.ts`
 - Create: `lib/discord.test.ts`
 - Create: `components/community/announcement-feed.tsx`
@@ -371,6 +378,7 @@ git commit -m "feat: rename catalog to shop"
 - Create: `app/community/page.tsx`
 
 **Interfaces:**
+
 - Produces: `fetchRecentAnnouncements(channelId: string, limit?: number): Promise<DiscordAnnouncementsResult>` and `splitDiscordMessageContent(content: string): DiscordMessageSegment[]`.
 - Preserves: `fetchPinnedMessages(threadId: string)` for existing Relay callouts.
 
@@ -405,7 +413,10 @@ describe('fetchRecentAnnouncements', () => {
 
     it.each([new Error('network'), { ok: false, status: 403 }])('returns unavailable for failed Discord access', async (failure) => {
         process.env.DISCORD_BOT_TOKEN = 'test-token';
-        vi.stubGlobal('fetch', vi.fn().mockImplementation(() => (failure instanceof Error ? Promise.reject(failure) : Promise.resolve(failure))));
+        vi.stubGlobal(
+            'fetch',
+            vi.fn().mockImplementation(() => (failure instanceof Error ? Promise.reject(failure) : Promise.resolve(failure)))
+        );
         expect(await fetchRecentAnnouncements('1432603806704603248')).toEqual({ status: 'unavailable', messages: [] });
     });
 });
@@ -434,9 +445,7 @@ Add these public types and behavior to `lib/discord.ts`:
 ```ts
 export interface DiscordAnnouncement extends DiscordPinnedMessage {}
 
-export type DiscordAnnouncementsResult =
-    | { status: 'available'; messages: DiscordAnnouncement[] }
-    | { status: 'unavailable'; messages: [] };
+export type DiscordAnnouncementsResult = { status: 'available'; messages: DiscordAnnouncement[] } | { status: 'unavailable'; messages: [] };
 
 export type DiscordMessageSegment = { kind: 'text' | 'link'; value: string };
 
@@ -498,6 +507,7 @@ git commit -m "feat: show Discord community announcements"
 ### Task 5: Move Relay beneath the platform-neutral Guitars section
 
 **Files:**
+
 - Move: `app/relay/**` → `app/guitars/relay/**`
 - Modify: `next.config.mjs`
 - Modify: `components/navigation/relay-sidebar.tsx`
@@ -511,6 +521,7 @@ git commit -m "feat: show Discord community announcements"
 - Modify: `content/instruments/REX26001.mdx`
 
 **Interfaces:**
+
 - Produces: canonical Relay prefix `/guitars/relay`; permanent compatibility redirects from every old `/relay` route.
 
 - [ ] **Step 1: Update redirect tests or add a config assertion**
@@ -518,10 +529,12 @@ git commit -m "feat: show Discord community announcements"
 Import the enhanced default config from `next.config.mjs`, call its `redirects()` method, and assert at minimum:
 
 ```ts
-expect(await nextConfig.redirects()).toEqual(expect.arrayContaining([
-    { source: '/relay', destination: '/guitars/relay', permanent: true },
-    { source: '/relay/:path*', destination: '/guitars/relay/:path*', permanent: true },
-]));
+expect(await nextConfig.redirects()).toEqual(
+    expect.arrayContaining([
+        { source: '/relay', destination: '/guitars/relay', permanent: true },
+        { source: '/relay/:path*', destination: '/guitars/relay/:path*', permanent: true },
+    ])
+);
 ```
 
 Retain specialized legacy rules before the catch-all, but change their destinations to `/guitars/relay/...`.
@@ -563,6 +576,7 @@ git commit -m "feat: nest Relay beneath guitars"
 ### Task 6: Correct serial namespaces and make records unlisted
 
 **Files:**
+
 - Modify: `config/instrument-model-codes.ts`
 - Move/modify: `content/instruments/REX26001.mdx`
 - Move/modify: `content/instruments/CVL26001.mdx`
@@ -575,6 +589,7 @@ git commit -m "feat: nest Relay beneath guitars"
 - Create: `app/sn/instrument-metadata.test.ts`
 
 **Interfaces:**
+
 - Produces: `REX26001` example and `CVL26001` Coupeville record; `noindex, nofollow` metadata for every serial route.
 
 - [ ] **Step 1: Write failing serial-code assertions**
@@ -651,6 +666,7 @@ git commit -m "fix: canonize instrument serial namespaces"
 ### Task 7: Retire Lab Notes and the blog build pipeline
 
 **Files:**
+
 - Delete: `app/blog/**`
 - Delete: `components/blog/**`
 - Delete: `content/blog/**`
@@ -661,6 +677,7 @@ git commit -m "fix: canonize instrument serial namespaces"
 - Modify: `next.config.mjs`
 
 **Interfaces:**
+
 - Produces: instrument-only Content Collections config; `/blog` index redirect; no individual blog implementation.
 
 - [ ] **Step 1: Write sitemap privacy and retirement tests**
@@ -742,11 +759,13 @@ git commit -m "refactor: retire Lab Notes publishing"
 ### Task 8: Add all compatibility redirects and eliminate stale public links
 
 **Files:**
+
 - Modify: `next.config.mjs`
 - Create or modify: `next.config.test.ts`
 - Modify: any remaining active file reported by the stale-link scan.
 
 **Interfaces:**
+
 - Consumes: canonical `/shop`, `/guitars/relay`, and `/community` routes.
 - Produces: direct one-hop permanent redirects with no internal reliance on legacy URLs.
 
@@ -761,7 +780,7 @@ Assert the exported redirect list contains:
     { source: '/relay', destination: '/guitars/relay', permanent: true },
     { source: '/relay/:path*', destination: '/guitars/relay/:path*', permanent: true },
     { source: '/blog', destination: '/community', permanent: true },
-]
+];
 ```
 
 Assert there is no redirect with `source: '/blog/:path*'` or `source: '/sn/:path*'`.
@@ -804,9 +823,11 @@ git commit -m "fix: preserve legacy navigation links"
 ### Task 9: Full verification and rendered smoke review
 
 **Files:**
+
 - Modify only files required by failures attributable to this implementation.
 
 **Interfaces:**
+
 - Verifies the complete approved design; produces no new feature boundary.
 
 - [ ] **Step 1: Identify and format changed source files**

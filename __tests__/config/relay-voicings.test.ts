@@ -58,10 +58,10 @@ describe('relayVoicings config', () => {
         }
     });
 
-    it('every voicing href points to /relay/voicings/ not /relay/ or /docs/', () => {
+    it('every voicing href points to /guitars/relay/voicings/ rather than a legacy or docs route', () => {
         for (const voicing of relayVoicings) {
             if (voicing.href) {
-                expect(voicing.href).toMatch(/^\/relay\/voicings\//);
+                expect(voicing.href).toMatch(/^\/guitars\/relay\/voicings\//);
                 expect(voicing.href).not.toContain('/docs/');
             }
         }

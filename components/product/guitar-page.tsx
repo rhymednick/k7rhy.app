@@ -90,7 +90,6 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                         )}
                     </CardContent>
                 </Card>
-
             </div>
         </main>
     );

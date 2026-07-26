@@ -31,7 +31,7 @@ describe('RelayProcessOverview', () => {
         expect(screen.queryByText('Planned')).not.toBeInTheDocument();
     });
 
-    it('links every stage to its in-site /relay/ page', () => {
+    it('links every stage to its canonical /guitars/relay page', () => {
         render(<RelayProcessOverview />);
         const bodyLink = screen.getByRole('link', { name: /^1\s*body/i });
         const voicingLink = screen.getByRole('link', { name: /^2\s*voicing/i });

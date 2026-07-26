@@ -144,7 +144,6 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                         )}
                     </CardContent>
                 </Card>
-
             </div>
         </main>
     );
