@@ -21,7 +21,7 @@ const record: InstrumentRecord = {
     origin: 'Designed, built, and voiced by K7RHY Resonance Lab.',
     theme: 'Articulate and touch-sensitive.',
     images: [{ src: '/images/instruments/RLY26001/front.jpg', alt: 'RLY26001 front view' }],
-    related: { label: 'Explore the Relay Guitar family', href: '/relay' },
+    related: { label: 'Explore the Relay Guitar family', href: '/guitars/relay' },
     content: '',
 };
 
@@ -48,7 +48,7 @@ describe('InstrumentRecordPage', () => {
             </InstrumentRecordPage>,
         );
 
-        expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/relay');
+        expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/guitars/relay');
     });
 
     it('uses a custom date label with a year-only value', () => {

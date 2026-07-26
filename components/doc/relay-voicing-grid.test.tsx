@@ -11,7 +11,7 @@ describe('RelayVoicingGrid (config-driven)', () => {
 
         for (const voicing of relayVoicings) {
             const link = screen.getByRole('link', { name: new RegExp(voicing.name, 'i') });
-            expect(link).toHaveAttribute('href', `/relay/voicings/${voicing.slug}`);
+            expect(link).toHaveAttribute('href', `/guitars/relay/voicings/${voicing.slug}`);
         }
     });
 
@@ -53,7 +53,7 @@ describe('RelayVoicingCard', () => {
                 tagline="Humbuckers · Lipstick shaper"
                 genres="Blues · Rock"
                 description="Reference voicing"
-                href="/relay/voicings/lipstick"
+                href="/guitars/relay/voicings/lipstick"
             />,
         );
 
@@ -68,7 +68,7 @@ describe('RelayVoicingCard', () => {
                 tagline="Humbucker · Dual-lipstick"
                 genres="Indie · Surf"
                 description="Reef voicing"
-                href="/relay/voicings/reef"
+                href="/guitars/relay/voicings/reef"
             />,
         );
 
@@ -83,7 +83,7 @@ describe('RelayVoicingCard', () => {
                 tagline="High gain · Rails"
                 genres="Metal"
                 description="Hammer voicing"
-                href="/relay/voicings/hammer"
+                href="/guitars/relay/voicings/hammer"
             />,
         );
 

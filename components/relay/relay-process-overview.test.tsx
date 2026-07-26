@@ -39,11 +39,11 @@ describe('RelayProcessOverview', () => {
         const wiringLink = screen.getByRole('link', { name: /^4\s*wiring/i });
         const assemblyLink = screen.getByRole('link', { name: /^5\s*assembly/i });
 
-        expect(bodyLink).toHaveAttribute('href', '/relay/body');
-        expect(voicingLink).toHaveAttribute('href', '/relay/voicings');
-        expect(partsLink).toHaveAttribute('href', '/relay/parts');
-        expect(wiringLink).toHaveAttribute('href', '/relay/wiring');
-        expect(assemblyLink).toHaveAttribute('href', '/relay/assembly');
+        expect(bodyLink).toHaveAttribute('href', '/guitars/relay/body');
+        expect(voicingLink).toHaveAttribute('href', '/guitars/relay/voicings');
+        expect(partsLink).toHaveAttribute('href', '/guitars/relay/parts');
+        expect(wiringLink).toHaveAttribute('href', '/guitars/relay/wiring');
+        expect(assemblyLink).toHaveAttribute('href', '/guitars/relay/assembly');
 
         // None of the stage links open in a new tab — the placeholder pages host the Discord CTA.
         expect(bodyLink).not.toHaveAttribute('target');

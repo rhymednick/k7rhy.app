@@ -21,7 +21,7 @@ export async function generateMetadata() {
 
 export default async function RelayBodyBondingPage() {
     const { content, frontmatter } = loadRelayPlatformSectionPage(['body', 'bonding']);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Body', href: '/relay/body' }, { label: 'Bonding' }];
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Body', href: '/guitars/relay/body' }, { label: 'Bonding' }];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

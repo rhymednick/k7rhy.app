@@ -36,12 +36,12 @@ export default async function RelayPartsPage({ searchParams }: Props) {
     });
     const { content, frontmatter } = loadRelayPlatformSectionPage(['parts', 'index']);
     const resolvedList = resolveRelayComponentList(active);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Parts' }];
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Parts' }];
 
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
-            <RelayComponentsShoppingList components={resolvedList.components} voicingTabs={<RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/relay/parts" />} />
+            <RelayComponentsShoppingList components={resolvedList.components} voicingTabs={<RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/guitars/relay/parts" />} />
         </DocPage>
     );
 }

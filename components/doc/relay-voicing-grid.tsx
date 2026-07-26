@@ -44,7 +44,7 @@ export function RelayVoicingGrid({ children }: { children?: React.ReactNode }) {
     const cards =
         children ??
         sortRelayVoicings(relayVoicings).map((voicing) => (
-            <RelayVoicingCard key={voicing.slug} slug={voicing.slug} name={voicing.name} tagline={voicing.tagline} genres={voicing.genres} description={voicing.description} href={voicing.href ?? `/relay/voicings/${voicing.slug}`} />
+            <RelayVoicingCard key={voicing.slug} slug={voicing.slug} name={voicing.name} tagline={voicing.tagline} genres={voicing.genres} description={voicing.description} href={voicing.href ?? `/guitars/relay/voicings/${voicing.slug}`} />
         ));
 
     return <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2">{cards}</div>;

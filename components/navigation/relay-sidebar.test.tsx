@@ -10,7 +10,7 @@ import { RelayLayoutSidebar } from './relay-sidebar';
 
 describe('RelayLayoutSidebar', () => {
     it('shows all five build steps on the platform page', () => {
-        pathnameMock.mockReturnValue('/relay');
+        pathnameMock.mockReturnValue('/guitars/relay');
         render(<RelayLayoutSidebar />);
         for (const step of ['Body', 'Voicing', 'Parts', 'Wiring', 'Assembly']) {
             expect(screen.getByRole('link', { name: new RegExp(`^${step}`) })).toBeInTheDocument();
@@ -18,15 +18,15 @@ describe('RelayLayoutSidebar', () => {
     });
 
     it('renders the same master nav on a voicing page (no separate voicing sidebar, no "All voicings")', () => {
-        pathnameMock.mockReturnValue('/relay/voicings/lipstick');
+        pathnameMock.mockReturnValue('/guitars/relay/voicings/lipstick');
         render(<RelayLayoutSidebar />);
-        expect(screen.getByRole('link', { name: /^Parts/ })).toHaveAttribute('href', '/relay/parts');
-        expect(screen.getByRole('link', { name: /^Wiring/ })).toHaveAttribute('href', '/relay/wiring');
+        expect(screen.getByRole('link', { name: /^Parts/ })).toHaveAttribute('href', '/guitars/relay/parts');
+        expect(screen.getByRole('link', { name: /^Wiring/ })).toHaveAttribute('href', '/guitars/relay/wiring');
         expect(screen.queryByText(/all voicings/i)).not.toBeInTheDocument();
     });
 
     it('expands the active step’s sub-items and collapses inactive ones', () => {
-        pathnameMock.mockReturnValue('/relay/voicings/lipstick');
+        pathnameMock.mockReturnValue('/guitars/relay/voicings/lipstick');
         render(<RelayLayoutSidebar />);
         // Voicing is active → its voicing sub-links show
         expect(screen.getByRole('link', { name: 'Relay Lipstick' })).toBeInTheDocument();

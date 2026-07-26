@@ -8,7 +8,7 @@ import { loadRelayPlatformSectionPage } from '@/lib/relay';
 
 export async function generateMetadata() {
     try {
-        const { frontmatter } = loadRelayPlatformSectionPage(['body', 'index']);
+        const { frontmatter } = loadRelayPlatformSectionPage(['body', 'print']);
         return {
             title: `${frontmatter.title} | K7RHY`,
             description: frontmatter.description,
@@ -19,9 +19,9 @@ export async function generateMetadata() {
     }
 }
 
-export default async function RelayBodyPage() {
-    const { content, frontmatter } = loadRelayPlatformSectionPage(['body', 'index']);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Body' }];
+export default async function RelayBodyPrintPage() {
+    const { content, frontmatter } = loadRelayPlatformSectionPage(['body', 'print']);
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Body', href: '/guitars/relay/body' }, { label: 'Print' }];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

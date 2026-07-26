@@ -34,13 +34,13 @@ describe('CardGrid', () => {
 describe('CardGridItem', () => {
     it('renders as a link when href is provided', () => {
         render(
-            <CardGridItem eyebrow="Step 1" title="Print" href="/relay/body/print" cta="Open print guide">
+            <CardGridItem eyebrow="Step 1" title="Print" href="/guitars/relay/body/print" cta="Open print guide">
                 Download the print files.
             </CardGridItem>
         );
 
         const link = screen.getByRole('link', { name: /step 1/i });
-        expect(link).toHaveAttribute('href', '/relay/body/print');
+        expect(link).toHaveAttribute('href', '/guitars/relay/body/print');
         expect(screen.getByRole('heading', { name: 'Print' })).toBeInTheDocument();
         expect(screen.getByText('Download the print files.')).toBeInTheDocument();
         expect(screen.getByText('Open print guide')).toBeInTheDocument();

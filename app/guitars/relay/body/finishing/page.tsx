@@ -4,11 +4,11 @@ import remarkGfm from 'remark-gfm';
 import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
-import { loadRelayVoicingsGalleryPage } from '@/lib/relay';
+import { loadRelayPlatformSectionPage } from '@/lib/relay';
 
 export async function generateMetadata() {
     try {
-        const { frontmatter } = loadRelayVoicingsGalleryPage();
+        const { frontmatter } = loadRelayPlatformSectionPage(['body', 'finishing']);
         return {
             title: `${frontmatter.title} | K7RHY`,
             description: frontmatter.description,
@@ -19,9 +19,9 @@ export async function generateMetadata() {
     }
 }
 
-export default async function RelayVoicingsGalleryPage() {
-    const { content, frontmatter } = loadRelayVoicingsGalleryPage();
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Voicings' }];
+export default async function RelayBodyFinishingPage() {
+    const { content, frontmatter } = loadRelayPlatformSectionPage(['body', 'finishing']);
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Body', href: '/guitars/relay/body' }, { label: 'Finishing' }];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

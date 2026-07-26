@@ -4,11 +4,11 @@ import remarkGfm from 'remark-gfm';
 import components from '@/components/mdx-components';
 import { DocPage } from '@/components/doc/doc-page';
 import { RelayBreadcrumbBar } from '@/components/navigation/relay-sidebar';
-import { loadRelayPlatformSectionPage } from '@/lib/relay';
+import { loadRelayVoicingsGalleryPage } from '@/lib/relay';
 
 export async function generateMetadata() {
     try {
-        const { frontmatter } = loadRelayPlatformSectionPage(['assembly', 'index']);
+        const { frontmatter } = loadRelayVoicingsGalleryPage();
         return {
             title: `${frontmatter.title} | K7RHY`,
             description: frontmatter.description,
@@ -19,9 +19,9 @@ export async function generateMetadata() {
     }
 }
 
-export default async function RelayAssemblyPage() {
-    const { content, frontmatter } = loadRelayPlatformSectionPage(['assembly', 'index']);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Assembly' }];
+export default async function RelayVoicingsGalleryPage() {
+    const { content, frontmatter } = loadRelayVoicingsGalleryPage();
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Voicings' }];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

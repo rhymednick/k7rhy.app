@@ -31,12 +31,12 @@ export default async function RelayWiringPage({ searchParams }: Props) {
     const tabs = buildable.map((slug) => ({ slug, name: relayVoicings.find((v) => v.slug === slug)!.name }));
     const intro = loadRelayPlatformSectionPage(['wiring', 'index']);
     const wiring = loadRelayWiringPage(active);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/relay' }, { label: 'Wiring' }];
+    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Wiring' }];
 
     return (
         <DocPage title={intro.frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={intro.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
-            <RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/relay/wiring" />
+            <RelayVoicingTabs voicings={tabs} activeSlug={active} basePath="/guitars/relay/wiring" />
             <MDXRemote source={wiring.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </DocPage>
     );
