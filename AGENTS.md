@@ -27,13 +27,7 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 
 **Routing:** Primarily App Router (`app/`). A legacy `pages/` directory still exists (contact page, some API routes) during migration.
 
-**Content pipeline:** Blog posts are MDX files in `content/blog/`. The `content-collections.ts` config (using @content-collections/core) processes them at build time:
-
-- Extracts word count and reading time
-- Strips JSX from content for clean text
-- Generates AI summaries via Google Generative AI (Gemma 3 27B) when no summary is provided in frontmatter
-- Caches summaries keyed by filename + MD5 content hash in `.content-collections/cache/ai-summary.json`
-- Clear cache with `CLEAR_AI_SUMMARY_CACHE=true`
+**Content pipeline:** `content-collections.ts` validates serialized instrument MDX records. Relay and documentation also use MDX without a blog publishing pipeline.
 
 **UI layer:** Shadcn UI components in `components/ui/` (Radix primitives + Tailwind). RSC-enabled. Tailwind with class-based dark mode and HSL CSS variable theming. Fonts: Inter (sans), JetBrains Mono (mono).
 
@@ -43,29 +37,18 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 
 ## Key Directories
 
-- `app/` — pages and layouts (blog, docs, products with dynamic `[slug]`/`[category]` routes)
-- `components/` — organized by domain: `blog/`, `doc/`, `features/`, `navigation/`, `product/`, `shared/`, `ui/`
-- `content/blog/` — MDX blog posts
+- `app/` — pages and layouts (subject landing pages, community, docs, shop, and private serial records)
+- `components/` — organized by domain: `community/`, `doc/`, `features/`, `navigation/`, `product/`, `shared/`, `ui/`
+- `content/instruments/` — private serial-number instrument MDX records
+- `content/relay/` — Relay guitar platform MDX content
 - `content/docs/` — MDX documentation
 - `config/` — site config (`site.ts`), navigation, product catalogs, doc section styling
 - `lib/` — utilities (utils.ts, shopify.ts, toc.ts, version.ts, fonts.ts)
 - `types/` — TypeScript type definitions (content, nav, product, shopify)
 
-## Blog Post Frontmatter
-
-```yaml
----
-title: 'Post Title'
-date: '2024-01-15'
-summary: 'Optional. AI generates one if omitted.'
-tags: ['radio', 'electronics'] # Optional. Used for filtering and product association.
-publish: true # Must be true to appear on the site
----
-```
-
 ## Environment Variables
 
-- `GOOGLE_GENERATIVE_AI_API_KEY` — AI summary generation (required for builds that generate summaries)
+- `DISCORD_BOT_TOKEN` — server-only access for Community announcements and Relay pinned messages
 - `NEXT_PUBLIC_SHOPIFY_PUBLIC_STOREFRONT_ACCESS_TOKEN` — Shopify Storefront API
 - `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` — Shopify store domain
 - Build-time auto-injected: `NEXT_PUBLIC_GIT_COMMIT_SHA`, `NEXT_PUBLIC_BUILD_TIMESTAMP`, `NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC`
