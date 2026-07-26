@@ -122,10 +122,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                         <div>
                             <h1 className={cn('scroll-m-20 text-3xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent dark:from-slate-100 dark:to-slate-300')}>{info.title}</h1>
                             {info.description && <p className="mt-2 text-muted-foreground">{info.description}</p>}
-                            <Badge variant="secondary" className="mt-2">
-                                {products.length} Product
-                                {products.length !== 1 ? 's' : ''}
-                            </Badge>
+                            {products.length > 0 && (
+                                <Badge variant="secondary" className="mt-2">
+                                    {products.length} Product
+                                    {products.length !== 1 ? 's' : ''}
+                                </Badge>
+                            )}
                         </div>
                     </div>
                 </div>
