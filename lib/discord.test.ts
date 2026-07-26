@@ -1,13 +1,24 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchRecentAnnouncements, splitDiscordMessageContent } from './discord';
 
 describe('fetchRecentAnnouncements', () => {
+    let originalToken: string | undefined;
+
+    beforeEach(() => {
+        originalToken = process.env.DISCORD_BOT_TOKEN;
+    });
+
     afterEach(() => {
         vi.unstubAllGlobals();
-        delete process.env.DISCORD_BOT_TOKEN;
+        if (originalToken === undefined) {
+            delete process.env.DISCORD_BOT_TOKEN;
+        } else {
+            process.env.DISCORD_BOT_TOKEN = originalToken;
+        }
     });
 
     it('returns unavailable without a bot token', async () => {
+        delete process.env.DISCORD_BOT_TOKEN;
         expect(await fetchRecentAnnouncements('1432603806704603248')).toEqual({ status: 'unavailable', messages: [] });
     });
 
