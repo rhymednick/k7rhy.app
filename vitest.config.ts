@@ -12,6 +12,7 @@ export default defineConfig({
         exclude: ['**/node_modules/**', 'tests/integration/**', '.worktrees/**', '.claude/**'],
         alias: {
             '@': path.resolve(__dirname, './'),
+            'content-collections': path.resolve(__dirname, './.content-collections/generated'),
         },
         // Use forks pool to avoid jsdom/webidl-conversions compatibility issues in CI environments
         // This isolates each test file in its own process, preventing module loading conflicts
