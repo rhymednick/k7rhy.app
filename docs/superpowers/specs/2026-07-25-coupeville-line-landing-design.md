@@ -6,7 +6,7 @@
 
 Coupeville is the line of instruments Rhy builds by hand, the sibling to the free,
 self-print Relay Guitar platform. Today the only Coupeville presence on the site is a single
-individual instrument record (CPC26001, at `/sn/CPC26001`); the line has no landing page and
+individual instrument record (CVL26001, at `/sn/CVL26001`); the line has no landing page and
 no per-model pages. Visitors have nowhere to learn what the Coupeville line is, how it relates
 to Relay, or what model variations exist. Eventually each Relay voicing becomes a Coupeville
 model that can be purchased.
@@ -22,7 +22,7 @@ model that can be purchased.
 ## Non-goals
 
 - Selling anything yet (no Shopify products, prices, or buy buttons for individual units).
-- Serial/model-code additions for future variants (only Current has serials today; `CPC` is
+- Serial/model-code additions for future variants (only Current has serials today; `CVL` is
   already mapped in `config/instrument-model-codes.ts`).
 - Per-model wiring specs. Coupeville uses a different control scheme than Relay, so model
   pages describe the **voice** (which does not change between lines), not controls or wiring.
@@ -97,7 +97,7 @@ First-person singular voice throughout (per house style). Sections:
 
 1. **Hero** — tagline: the instruments I build by hand.
 2. **The Coupeville line** — what it is and the name's origin (adapted from the existing
-   "The Coupeville line" copy in CPC26001.mdx).
+   "The Coupeville line" copy in CVL26001.mdx).
 3. **Coupeville and Relay** — the sibling-lines explainer: both lines share a common
    parentage — voices I designed. Relay is the free, self-print DIY platform; Coupeville is
    the hand-built line. Two expressions of the same voices, not one derived from the other.
@@ -117,7 +117,7 @@ badge removed — a `CoupevilleModelGrid` + `CoupevilleModelCard` pair.
 - `app/coupeville/[slug]/page.tsx` with `generateStaticParams()` over `coupevilleModels`
   and `generateMetadata()` per model. Unknown slug → `notFound()`.
 - Descriptive prose per model lives in `content/coupeville/models/[slug].mdx`, so copy stays
-  editable in `content/` (repo idiom). Current gets richer copy adapted from CPC26001; the
+  editable in `content/` (repo idiom). Current gets richer copy adapted from CVL26001; the
   other five get honest, coherent copy describing the voice (duplicated/reworded from the
   matching Relay voicing's voice facts — sound only, not controls).
 - Uniform structure for every model:

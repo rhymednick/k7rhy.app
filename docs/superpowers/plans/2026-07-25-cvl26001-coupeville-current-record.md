@@ -1,16 +1,16 @@
-# CPC26001 Coupeville Current Instrument Record Implementation Plan
+# CVL26001 Coupeville Current Instrument Record Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Publish `/sn/CPC26001` and its one-page printable case card as the canonical customer record for the first production Coupeville Current.
+**Goal:** Publish `/sn/CVL26001` and its one-page printable case card as the canonical customer record for the first production Coupeville Current.
 
-**Architecture:** Reuse the validated instrument MDX collection and shared `/sn/[serial]` routes. Add a generic strict six-position control to the web and print component families, then compose it with shared Harmonic Shaper copy through a thin semantic preset so player language is reusable while `CPC26001` retains its installed network values. Keep amplifier, string, and listening guidance in ordinary MDX so the existing print route omits it.
+**Architecture:** Reuse the validated instrument MDX collection and shared `/sn/[serial]` routes. Add a generic strict six-position control to the web and print component families, then compose it with shared Harmonic Shaper copy through a thin semantic preset so player language is reusable while `CVL26001` retains its installed network values. Keep amplifier, string, and listening guidance in ordinary MDX so the existing print route omits it.
 
 **Tech Stack:** Next.js 15 App Router, React 19, TypeScript strict mode, MDX, Content Collections, Tailwind CSS, Vitest, Testing Library.
 
 ## Global Constraints
 
-- Use serial `CPC26001`: `CPC` = Coupeville Current, `26` = 2026, `001` = first Coupeville Current record.
+- Use serial `CVL26001`: `CVL` = Coupeville Current, `26` = 2026, `001` = first Coupeville Current record.
 - Publish the record with `completed: '2026'`, displayed by the existing date system as `Completed 2026`.
 - This is a production instrument record, not prototype or development documentation.
 - Use the exact Current pickups: GFS Vintage 59 Humbucker neck, GFS Retrotron Hot Nashville middle, and GFS Professional Series Alnico V HOT Humbucker bridge.
@@ -34,11 +34,11 @@
 - Modify `components/instrument/instrument-print-spec.tsx`: permit print position controls in the compact control layout.
 - Modify `components/instrument/instrument-mdx-components.tsx`: register generic and Harmonic Shaper web/print tags.
 - Modify `components/instrument/instrument-mdx-components.test.ts`: verify separate print mappings for the new tags.
-- Modify `config/instrument-model-codes.ts`: register `CPC`.
-- Modify `lib/instruments/serial.test.ts`: prove `CPC26001` parsing.
-- Create `public/images/instruments/CPC26001/placeholder.svg`: deliberately non-photographic placeholder.
-- Create `content/instruments/CPC26001.mdx`: published canonical record and web-only owner notes.
-- Create `content/instruments/CPC26001.test.ts`: content, publication, exact copy, boundaries, and placeholder assertions.
+- Modify `config/instrument-model-codes.ts`: register `CVL`.
+- Modify `lib/instruments/serial.test.ts`: prove `CVL26001` parsing.
+- Create `public/images/instruments/CVL26001/placeholder.svg`: deliberately non-photographic placeholder.
+- Create `content/instruments/CVL26001.mdx`: published canonical record and web-only owner notes.
+- Create `content/instruments/CVL26001.test.ts`: content, publication, exact copy, boundaries, and placeholder assertions.
 - Modify `app/sn/instrument-records.css`: compact six-position print styling only if rendered verification shows the existing utilities need reinforcement.
 - Modify `app/sn/instrument-records.test.ts`: retain and, if CSS changes, extend the one-page visibility/geometry regression.
 
@@ -52,7 +52,7 @@
 
 **Interfaces:**
 - Consumes: `parseInstrumentSerial(input: string): InstrumentSerial`
-- Produces: `INSTRUMENT_MODEL_CODES.CPC === 'Coupeville Current'` and valid parsing for `CPC26001`
+- Produces: `INSTRUMENT_MODEL_CODES.CVL === 'Coupeville Current'` and valid parsing for `CVL26001`
 
 - [ ] **Step 1: Write the failing serial test**
 
@@ -60,9 +60,9 @@ Add this test to `lib/instruments/serial.test.ts`:
 
 ```ts
 it('parses the first Coupeville Current production serial', () => {
-    expect(parseInstrumentSerial('CPC26001')).toEqual({
-        serial: 'CPC26001',
-        modelCode: 'CPC',
+    expect(parseInstrumentSerial('CVL26001')).toEqual({
+        serial: 'CVL26001',
+        modelCode: 'CVL',
         modelDescription: 'Coupeville Current',
         year: 2026,
         index: 1,
@@ -74,14 +74,14 @@ it('parses the first Coupeville Current production serial', () => {
 
 Run: `npx vitest run lib/instruments/serial.test.ts`
 
-Expected: FAIL with `Unknown instrument model code: CPC`.
+Expected: FAIL with `Unknown instrument model code: CVL`.
 
 - [ ] **Step 3: Add the minimal model-code mapping**
 
 Add the following entry to `INSTRUMENT_MODEL_CODES` in `config/instrument-model-codes.ts`:
 
 ```ts
-CPC: 'Coupeville Current',
+CVL: 'Coupeville Current',
 ```
 
 - [ ] **Step 4: Run the focused test and verify GREEN**
@@ -314,26 +314,26 @@ git commit -m "feat: add reusable six-position instrument controls"
 
 ---
 
-### Task 3: Publish the CPC26001 customer record
+### Task 3: Publish the CVL26001 customer record
 
 **Files:**
-- Create: `public/images/instruments/CPC26001/placeholder.svg`
-- Create: `content/instruments/CPC26001.mdx`
-- Create: `content/instruments/CPC26001.test.ts`
+- Create: `public/images/instruments/CVL26001/placeholder.svg`
+- Create: `content/instruments/CVL26001.mdx`
+- Create: `content/instruments/CVL26001.test.ts`
 
 **Interfaces:**
 - Consumes: `HarmonicShaper` and `PositionControlPosition` MDX tags; existing instrument frontmatter and route generation
-- Produces: published records at `/sn/CPC26001` and `/sn/CPC26001/print`
+- Produces: published records at `/sn/CVL26001` and `/sn/CVL26001/print`
 
 - [ ] **Step 1: Write the failing record-content tests**
 
-Create `content/instruments/CPC26001.test.ts`. Read `content/instruments/CPC26001.mdx` and assert it contains:
+Create `content/instruments/CVL26001.test.ts`. Read `content/instruments/CVL26001.mdx` and assert it contains:
 
 ```ts
 "publish: true"
 "name: 'Coupeville Current'"
 "completed: '2026'"
-"src: '/images/instruments/CPC26001/placeholder.svg'"
+"src: '/images/instruments/CVL26001/placeholder.svg'"
 'GFS Vintage 59 Humbucker'
 'GFS Retrotron Hot Nashville'
 'GFS Professional Series Alnico V HOT Humbucker'
@@ -361,22 +361,22 @@ Create `content/instruments/CPC26001.test.ts`. Read `content/instruments/CPC2600
 
 Assert the lowercased source does not contain `prototype`, `provisional`, `future revision`, `values may change`, or `subject to change`. Assert the source does not repeat the canonical Harmonic Shaper purpose or six player descriptions; those must come from shared code.
 
-Add a filesystem assertion that `public/images/instruments/CPC26001/placeholder.svg` exists and contains the visible phrases `Coupeville Current` and `Image placeholder`.
+Add a filesystem assertion that `public/images/instruments/CVL26001/placeholder.svg` exists and contains the visible phrases `Coupeville Current` and `Image placeholder`.
 
 - [ ] **Step 2: Run the record test and verify RED**
 
-Run: `npx vitest run content/instruments/CPC26001.test.ts`
+Run: `npx vitest run content/instruments/CVL26001.test.ts`
 
 Expected: FAIL because the record and placeholder do not exist.
 
 - [ ] **Step 3: Create the deliberate placeholder asset**
 
-Create `public/images/instruments/CPC26001/placeholder.svg` as a 1600×1200 neutral slate/sky vector composition. It must visibly include:
+Create `public/images/instruments/CVL26001/placeholder.svg` as a 1600×1200 neutral slate/sky vector composition. It must visibly include:
 
 ```text
 K7RHY Resonance Lab
 Coupeville Current
-CPC26001
+CVL26001
 Image placeholder
 Exact instrument photography will replace this image.
 ```
@@ -385,7 +385,7 @@ Use geometric lines or a restrained pickup/control schematic motif, not a render
 
 - [ ] **Step 4: Author the published MDX record**
 
-Create `content/instruments/CPC26001.mdx` with this frontmatter shape:
+Create `content/instruments/CVL26001.mdx` with this frontmatter shape:
 
 ```yaml
 ---
@@ -395,8 +395,8 @@ completed: '2026'
 origin: 'Designed and built by K7RHY Resonance Lab as the first production Coupeville Current.'
 theme: 'A two-humbucker instrument whose six-position passive Harmonic Shaper introduces repeatable degrees of interaction without replacing the familiar pickup selections.'
 images:
-    - src: '/images/instruments/CPC26001/placeholder.svg'
-      alt: 'Placeholder artwork for Coupeville Current CPC26001; exact instrument photography is pending'
+    - src: '/images/instruments/CVL26001/placeholder.svg'
+      alt: 'Placeholder artwork for Coupeville Current CVL26001; exact instrument photography is pending'
 related:
     label: 'Explore the Relay Current design reference'
     href: '/relay/voicings/current'
@@ -424,20 +424,20 @@ Under Builder Notes, include:
 
 - [ ] **Step 5: Run the content test and verify GREEN**
 
-Run: `npx vitest run content/instruments/CPC26001.test.ts`
+Run: `npx vitest run content/instruments/CVL26001.test.ts`
 
 Expected: the content-boundary test passes.
 
 - [ ] **Step 6: Verify collection validation and route discovery**
 
-Run: `npx vitest run lib/instruments components/instrument content/instruments/CPC26001.test.ts`
+Run: `npx vitest run lib/instruments components/instrument content/instruments/CVL26001.test.ts`
 
-Expected: the Content Collections transform resolves the existing records plus `CPC26001`, the placeholder passes existence validation, and all instrument tests pass.
+Expected: the Content Collections transform resolves the existing records plus `CVL26001`, the placeholder passes existence validation, and all instrument tests pass.
 
 - [ ] **Step 7: Commit the customer record**
 
 ```bash
-git add public/images/instruments/CPC26001/placeholder.svg content/instruments/CPC26001.mdx content/instruments/CPC26001.test.ts
+git add public/images/instruments/CVL26001/placeholder.svg content/instruments/CVL26001.mdx content/instruments/CVL26001.test.ts
 git commit -m "content: publish Coupeville Current record"
 ```
 
@@ -452,7 +452,7 @@ git commit -m "content: publish Coupeville Current record"
 - Modify if compact markup changes: `components/instrument/instrument-print-position-control.test.tsx`
 
 **Interfaces:**
-- Consumes: `/sn/CPC26001/print`, existing `.instrument-case-card` geometry, and compact position-control markup
+- Consumes: `/sn/CVL26001/print`, existing `.instrument-case-card` geometry, and compact position-control markup
 - Produces: a readable one-page Letter/A4 quick-reference card
 
 - [ ] **Step 1: Format only the changed implementation files**
@@ -460,7 +460,7 @@ git commit -m "content: publish Coupeville Current record"
 Run:
 
 ```bash
-npx prettier --write config/harmonic-shaper.ts config/instrument-model-codes.ts lib/instruments/serial.test.ts components/instrument/instrument-position-control.tsx components/instrument/instrument-position-control.test.tsx components/instrument/instrument-print-position-control.tsx components/instrument/instrument-print-position-control.test.tsx components/instrument/instrument-spec.tsx components/instrument/instrument-print-spec.tsx components/instrument/instrument-mdx-components.tsx components/instrument/instrument-mdx-components.test.ts content/instruments/CPC26001.mdx content/instruments/CPC26001.test.ts public/images/instruments/CPC26001/placeholder.svg
+npx prettier --write config/harmonic-shaper.ts config/instrument-model-codes.ts lib/instruments/serial.test.ts components/instrument/instrument-position-control.tsx components/instrument/instrument-position-control.test.tsx components/instrument/instrument-print-position-control.tsx components/instrument/instrument-print-position-control.test.tsx components/instrument/instrument-spec.tsx components/instrument/instrument-print-spec.tsx components/instrument/instrument-mdx-components.tsx components/instrument/instrument-mdx-components.test.ts content/instruments/CVL26001.mdx content/instruments/CVL26001.test.ts public/images/instruments/CVL26001/placeholder.svg
 ```
 
 Expected: Prettier completes without errors and does not touch unrelated files.
@@ -481,7 +481,7 @@ Expected: all test files pass with zero failures.
 
 Run: `npm run build`
 
-Expected: Vitest passes, Content Collections validates `CPC26001`, Next.js compiles with no TypeScript errors, both dynamic instrument routes build, and sitemap generation exits 0.
+Expected: Vitest passes, Content Collections validates `CVL26001`, Next.js compiles with no TypeScript errors, both dynamic instrument routes build, and sitemap generation exits 0.
 
 - [ ] **Step 5: Start the development server for rendered review**
 
@@ -491,10 +491,10 @@ Expected: server starts on an available local port. Record the actual port from 
 
 - [ ] **Step 6: Review the web record**
 
-Open `/sn/CPC26001` at the actual local port and verify:
+Open `/sn/CVL26001` at the actual local port and verify:
 
 - published route resolves without redirect or 404
-- hero shows `CPC26001`, `Coupeville Current`, and `Completed 2026`
+- hero shows `CVL26001`, `Coupeville Current`, and `Completed 2026`
 - placeholder is unmistakably labeled and not presented as a finished-instrument photo
 - musical design intent precedes electrical details
 - pickup selector and Harmonic Shaper are visually distinct controls
@@ -504,11 +504,11 @@ Open `/sn/CPC26001` at the actual local port and verify:
 
 - [ ] **Step 7: Review and print the case card**
 
-Open `/sn/CPC26001/print` and verify:
+Open `/sn/CVL26001/print` and verify:
 
 - the case card contains identity, completion year, pickups, three-way selector, master controls, Harmonic Shaper purpose, and all six exact player descriptions
 - Builder Notes, amplifier pairing, string recommendations, listening notes, and placeholder artwork are absent
-- the QR destination is `https://k7rhy.app/sn/CPC26001`
+- the QR destination is `https://k7rhy.app/sn/CVL26001`
 - Letter portrait at 100% produces one page with no clipping
 - A4 portrait at 100% produces one page with no clipping
 
@@ -550,4 +550,4 @@ git log --oneline --max-count=6
 git diff HEAD~3..HEAD --stat
 ```
 
-Report the files changed, serial `CPC26001`, assumptions (published before exact photography; year-only completion; non-photographic placeholder), fresh test/lint/build results, rendered Letter/A4 outcome, and any unresolved issue. The expected unresolved issue is replacement of the placeholder with exact-instrument photography before sale.
+Report the files changed, serial `CVL26001`, assumptions (published before exact photography; year-only completion; non-photographic placeholder), fresh test/lint/build results, rendered Letter/A4 outcome, and any unresolved issue. The expected unresolved issue is replacement of the placeholder with exact-instrument photography before sale.

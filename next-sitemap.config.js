@@ -1,6 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
     siteUrl: 'https://k7rhy.app',
+    exclude: ['/sn/*'],
     generateRobotsTxt: true,
     robotsTxtOptions: {
         policies: [

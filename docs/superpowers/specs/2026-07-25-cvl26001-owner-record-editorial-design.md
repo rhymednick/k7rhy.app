@@ -1,10 +1,10 @@
-# CPC26001 Owner Record Editorial Design
+# CVL26001 Owner Record Editorial Design
 
 **Status:** Approved in conversation on 2026-07-25
 
 ## Purpose
 
-Refocus the CPC26001 serial-number page as the permanent record of an individually crafted instrument. Its primary reader is the guitar's owner, especially when learning the instrument or sharing its story with someone else.
+Refocus the CVL26001 serial-number page as the permanent record of an individually crafted instrument. Its primary reader is the guitar's owner, especially when learning the instrument or sharing its story with someone else.
 
 The page is not a product listing, a development log, or an advertisement. It may support future marketing because it presents the instrument well, but it must never address prospective buyers at the owner's expense.
 
@@ -46,7 +46,7 @@ Open the narrative with a section titled `The Coupeville line`:
 
 > Coupeville is the name Rhy Mednick gives to the instruments he personally crafts. The line takes its name from the small town community that inspired it, and each instrument carries that community's spirit along with Rhy's personal workmanship.
 >
-> CPC26001 is the first production Coupeville Current—the instrument that establishes the model and begins its recorded lineage.
+> CVL26001 is the first production Coupeville Current—the instrument that establishes the model and begins its recorded lineage.
 
 Do not describe Coupeville as a current or permanent workshop location. Do not turn that constraint into a disclaimer.
 
@@ -54,7 +54,7 @@ Do not describe Coupeville as a current or permanent workshop location. Do not t
 
 Follow with a section titled `The Current lineage`:
 
-> Coupeville Current evolves the pickup philosophy first explored in [Relay Current](/relay/voicings/current): the bridge and neck humbuckers remain the guitar's primary voices, while a middle Filtertron changes how those voices respond. CPC26001 gives that relationship a new control system—a six-position rotary switch with repeatable harmonic-shaping presets instead of the original design's switched contours.
+> Coupeville Current evolves the pickup philosophy first explored in [Relay Current](/relay/voicings/current): the bridge and neck humbuckers remain the guitar's primary voices, while a middle Filtertron changes how those voices respond. CVL26001 gives that relationship a new control system—a six-position rotary switch with repeatable harmonic-shaping presets instead of the original design's switched contours.
 >
 > The result remains familiar at its foundation. The three-way selector chooses neck, both humbuckers, or bridge; the rotary switch determines how strongly the middle Filtertron interacts with that selection.
 
@@ -97,7 +97,7 @@ Use a section titled `Installed voice system`:
 >
 > The three-way selector keeps the guitar's foundation straightforward. Master volume and tone apply across the instrument, while the six-position rotary switch controls the middle Filtertron's interaction with the selected voice.
 >
-> The master volume uses an A500K audio-taper control with a parallel 680 pF and 150 kΩ treble-bleed network. The master tone uses an A500K audio-taper control and a 22 nF capacitor. The six rotary-switch networks documented in the control map are the installed values for CPC26001.
+> The master volume uses an A500K audio-taper control with a parallel 680 pF and 150 kΩ treble-bleed network. The master tone uses an A500K audio-taper control and a 22 nF capacitor. The six rotary-switch networks documented in the control map are the installed values for CVL26001.
 
 This is the permanent as-built reference. Retain the exact pickup models, control values, tone capacitor, treble-bleed topology, and all six rotary-switch networks.
 
@@ -105,7 +105,7 @@ This is the permanent as-built reference. Retain the exact pickup models, contro
 
 Replace `Builder Notes` with `Playing and setup`:
 
-> CPC26001 is designed for 9–42 strings. The plastic body is engineered for a maximum string load equivalent to a 10–46 set. Do not use heavier strings.
+> CVL26001 is designed for 9–42 strings. The plastic body is engineered for a maximum string load equivalent to a 10–46 set. Do not use heavier strings.
 >
 > To hear the harmonic shaper's range most clearly, begin with a clean or lightly driven amplifier setting that preserves pick attack. Select one of the three humbucker voices, start with the rotary switch at position 6, and work toward position 1. Once the relationship between the presets is familiar, they can be used just as readily with heavier gain or effects.
 

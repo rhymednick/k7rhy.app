@@ -1,9 +1,10 @@
-# Future task: serialized instrument authoring skill
+# Serialized instrument authoring skill
 
-Build a narrow agent skill that accepts: serial, record name/submodel, completion date or year, origin, theme, exact-instrument images, related platform link, pickup configuration, control map, owner narrative, and case-card notes.
+Completed on 2026-07-26.
 
-The skill must validate the `MMMYYNNN` format, registered family code, completion-year match, family/year sequence, exact image existence and alt text, MDX control cardinality, unlisted metadata, print layout, and QR destination.
+- Skill: `.agents/skills/author-instrument-record/`
+- Design: `docs/superpowers/specs/2026-07-26-instrument-record-authoring-skill-design.md`
+- Implementation plan: `docs/superpowers/plans/2026-07-26-instrument-record-authoring-skill.md`
+- Manual fallback: `content/instruments/README.md`
 
-It should create or update the instrument MDX record, exact-instrument image directory, focused content test, model-code registration when explicitly approved, and printable case-card output. It must never add the record to navigation, a sitemap, or a public index.
-
-Verification must run focused serial/content/render tests, the full Vitest suite, a production build, desktop/mobile record review, Letter/A4 one-page print review, and QR scanning.
+The skill determines the next contiguous family/year serial, asks for missing record facts, requires approval for new family codes, authors the MDX/image/test set, preserves unlisted and `noindex, nofollow` behavior, and verifies the web record, printable card, sitemap exclusion, and QR destination.
