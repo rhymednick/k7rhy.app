@@ -24,6 +24,7 @@
 
 - Modify: `content/instruments/CPC26001.mdx`
 - Modify: `docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md`
+- Modify: `docs/superpowers/plans/2026-07-25-cpc26001-coupeville-current-record.md`
 - Modify: `docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md`
 - Verify: `content/instruments/CPC26001.test.ts`
 
@@ -50,6 +51,8 @@ CPC26001 is designed for 9–42 strings. The plastic body is engineered for a ma
 
 In `docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md`, replace `maximum recommended string weight: 10–46` with `structural maximum string weight: 10–46; the plastic body is not designed for heavier strings`.
 
+In `docs/superpowers/plans/2026-07-25-cpc26001-coupeville-current-record.md`, replace the two remaining descriptions of 10–46 as a recommendation with language that identifies it as the plastic body's structural maximum.
+
 In `docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md`, replace the obsolete paragraph with the same exact customer-facing wording used in Step 1.
 
 - [ ] **Step 3: Confirm obsolete implications are gone**
@@ -67,7 +70,7 @@ Expected: no matches.
 Run:
 
 ```bash
-npx prettier --write content/instruments/CPC26001.mdx docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md
+npx prettier --write content/instruments/CPC26001.mdx docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md docs/superpowers/plans/2026-07-25-cpc26001-coupeville-current-record.md docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md docs/superpowers/plans/2026-07-25-cpc26001-string-load-warning.md
 git diff --check
 npx vitest run content/instruments/CPC26001.test.ts
 ```
@@ -89,6 +92,6 @@ Expected: build exits 0 and includes `/sn/CPC26001` and `/sn/CPC26001/print` in 
 Confirm the diff contains only the approved string-limit correction and aligned documentation, then run:
 
 ```bash
-git add content/instruments/CPC26001.mdx docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md
+git add content/instruments/CPC26001.mdx docs/superpowers/specs/2026-07-25-cpc26001-coupeville-current-record-design.md docs/superpowers/plans/2026-07-25-cpc26001-coupeville-current-record.md docs/superpowers/plans/2026-07-25-cpc26001-owner-record-editorial.md docs/superpowers/plans/2026-07-25-cpc26001-string-load-warning.md
 git commit -m "fix: clarify CPC26001 string load limit"
 ```
