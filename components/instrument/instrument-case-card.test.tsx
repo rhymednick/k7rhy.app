@@ -14,7 +14,7 @@ vi.mock('qrcode.react', () => ({
 }));
 
 const record: InstrumentRecord = {
-    serial: 'RLY26001',
+    serial: 'REX26001',
     modelCode: 'RLY',
     modelDescription: 'Relay',
     year: 2026,
@@ -47,10 +47,10 @@ describe('InstrumentCaseCard', () => {
             </InstrumentCaseCard>,
         );
 
-        expect(container).toHaveTextContent('RLY26001');
+        expect(container).toHaveTextContent('REX26001');
         expect(screen.getByText('Control map')).toBeInTheDocument();
         expect(screen.getByRole('link', { name: /discord/i })).toHaveAttribute('href', 'https://discord.gg/BuUxCG4W6w');
-        expect(container.querySelector('[data-value="https://k7rhy.app/sn/RLY26001"]')).toBeInTheDocument();
+        expect(container.querySelector('[data-value="https://k7rhy.app/sn/REX26001"]')).toBeInTheDocument();
         expect(container.querySelector('img[src="/front.jpg"]')).not.toBeInTheDocument();
     });
 
