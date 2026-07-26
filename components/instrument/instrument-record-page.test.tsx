@@ -10,7 +10,7 @@ vi.mock('next/image', () => ({
 }));
 
 const record: InstrumentRecord = {
-    serial: 'RLY26001',
+    serial: 'REX26001',
     modelCode: 'RLY',
     modelDescription: 'Relay',
     year: 2026,
@@ -20,8 +20,8 @@ const record: InstrumentRecord = {
     completed: '2026-06-19',
     origin: 'Designed, built, and voiced by K7RHY Resonance Lab.',
     theme: 'Articulate and touch-sensitive.',
-    images: [{ src: '/images/instruments/RLY26001/front.jpg', alt: 'RLY26001 front view' }],
-    related: { label: 'Explore the Relay Guitar family', href: '/relay' },
+    images: [{ src: '/images/instruments/REX26001/front.jpg', alt: 'REX26001 front view' }],
+    related: { label: 'Explore the Relay Guitar family', href: '/guitars/relay' },
     content: '',
 };
 
@@ -30,14 +30,14 @@ describe('InstrumentRecordPage', () => {
         render(
             <InstrumentRecordPage record={record}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
         expect(screen.getByRole('heading', { level: 1, name: 'Relay Lipstick' })).toBeInTheDocument();
-        expect(screen.getAllByText('RLY26001')).toHaveLength(2);
+        expect(screen.getAllByText('REX26001')).toHaveLength(2);
         expect(screen.getByText('Articulate and touch-sensitive.')).toBeInTheDocument();
-        expect(screen.getByRole('img', { name: 'RLY26001 front view' })).toBeInTheDocument();
-        expect(screen.getByRole('link', { name: /print case card/i })).toHaveAttribute('href', '/sn/RLY26001/print');
+        expect(screen.getByRole('img', { name: 'REX26001 front view' })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /print case card/i })).toHaveAttribute('href', '/sn/REX26001/print');
         expect(screen.getByText('Structured specification')).toBeInTheDocument();
     });
 
@@ -45,17 +45,17 @@ describe('InstrumentRecordPage', () => {
         render(
             <InstrumentRecordPage record={record}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
-        expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/relay');
+        expect(screen.getByRole('link', { name: 'Explore the Relay Guitar family' })).toHaveAttribute('href', '/guitars/relay');
     });
 
     it('uses a custom date label with a year-only value', () => {
         render(
             <InstrumentRecordPage record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
                 <div>Structured specification</div>
-            </InstrumentRecordPage>,
+            </InstrumentRecordPage>
         );
 
         expect(screen.getByText('Modified')).toBeInTheDocument();

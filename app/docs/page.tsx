@@ -13,13 +13,13 @@ const relayPlatformProps: DocIndexCardProps = {
     items: [
         {
             title: 'Platform Overview & Models',
-            href: '/relay',
+            href: '/guitars/relay',
             description: 'What the Relay platform is, how the model lineup is organized, and what is planned.',
             type: DocIndexItemType.Internal,
         },
         {
             title: 'Choosing a model',
-            href: '/relay',
+            href: '/guitars/relay',
             description: 'Pick a direction in the lineup, then follow platform printing and build guides — with links to every model page.',
             type: DocIndexItemType.Internal,
         },

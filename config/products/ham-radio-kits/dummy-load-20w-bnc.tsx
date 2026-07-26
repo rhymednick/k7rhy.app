@@ -27,7 +27,6 @@ const product: Product = {
     ] as ProductImage[],
     price: 12.95,
     purchaseLink: 'https://ca0f39-2e.myshopify.com/products/20w-dummy-load-kit?utm_source=copyToPasteBoard&utm_medium=product-links&utm_content=web',
-    relatedBlogTag: 'product',
 };
 
 // Description component with full formatting flexibility

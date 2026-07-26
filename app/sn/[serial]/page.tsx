@@ -7,6 +7,7 @@ import { getInstrument, getInstrumentStaticParams } from '@/lib/instruments/reco
 import { resolveInstrumentRequest } from '@/lib/instruments/route-resolution';
 import { instrumentUrl, normalizeInstrumentSerial } from '@/lib/instruments/serial';
 import { isInstrumentPublished } from '@/lib/instruments/visibility';
+import { privateInstrumentRobots } from '../instrument-metadata';
 
 interface Props {
     params: Promise<{ serial: string }>;
@@ -21,12 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const serial = normalizeInstrumentSerial(input);
     const record = getInstrument(serial);
 
-    if (!record || !isInstrumentPublished(record)) return {};
+    if (!record || !isInstrumentPublished(record)) return { robots: privateInstrumentRobots };
 
     return {
         title: `${record.name} · ${serial} | K7RHY`,
         description: record.theme,
         alternates: { canonical: instrumentUrl(serial) },
+        robots: privateInstrumentRobots,
     };
 }
 

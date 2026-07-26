@@ -4,15 +4,12 @@ import { Balancer } from 'react-wrap-balancer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { allBlogs } from 'content-collections';
-import { Blog } from '@/.content-collections/generated';
 import { GuitarImageGallery } from './guitar-image-gallery';
 import { GuitarSpecs } from './guitar-specs';
 import { GuitarPickups } from './guitar-pickups';
 import { GuitarControls } from './guitar-controls';
 import { GuitarPurchase } from './guitar-purchase';
-import { GuitarRelatedPosts } from './guitar-related-posts';
-import { Guitar as GuitarIcon, Info, BookOpen } from 'lucide-react';
+import { Guitar as GuitarIcon, Info } from 'lucide-react';
 import { IconBadge } from '@/components/shared/icon-badge';
 
 interface GuitarPageProps {
@@ -20,19 +17,7 @@ interface GuitarPageProps {
     Description?: React.ComponentType;
 }
 
-function getRelatedPosts(guitar: Guitar): Blog[] {
-    if (!guitar.relatedBlogTag) {
-        return [];
-    }
-
-    const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
-    const allPosts = environment === 'production' ? allBlogs.filter((post) => post.publish) : allBlogs;
-
-    return allPosts.filter((post) => post.tags?.includes(guitar.relatedBlogTag!)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
 export function GuitarPage({ guitar, Description }: GuitarPageProps) {
-    const relatedPosts = getRelatedPosts(guitar);
     return (
         <main className="flex min-h-screen flex-col justify-between pl-4 pr-4 pt-4 md:pl-24 md:pr-24 md:pt-12">
             <div className="space-y-6">
@@ -105,21 +90,6 @@ export function GuitarPage({ guitar, Description }: GuitarPageProps) {
                         )}
                     </CardContent>
                 </Card>
-
-                {/* Related posts */}
-                {relatedPosts.length > 0 && (
-                    <Card className="border border-border shadow-md bg-gradient-to-br from-sky-50/50 to-indigo-50/50 dark:from-sky-950/20 dark:to-indigo-950/20">
-                        <CardHeader className="pb-3">
-                            <div className="flex items-center gap-2">
-                                <BookOpen className="h-5 w-5 text-primary" />
-                                <CardTitle>Related Content</CardTitle>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <GuitarRelatedPosts guitar={guitar} relatedPosts={relatedPosts} />
-                        </CardContent>
-                    </Card>
-                )}
             </div>
         </main>
     );

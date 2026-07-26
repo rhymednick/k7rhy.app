@@ -4,12 +4,9 @@ import { Balancer } from 'react-wrap-balancer';
 import { cn } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { allBlogs } from 'content-collections';
-import { Blog } from '@/.content-collections/generated';
 import { GuitarImageGallery } from './guitar-image-gallery';
-import { ProductRelatedPosts } from './product-related-posts';
 import { ProductPurchase } from './product-purchase';
-import { Radio, Info, BookOpen, Zap, CheckCircle2 } from 'lucide-react';
+import { Radio, Info, Zap, CheckCircle2 } from 'lucide-react';
 import { IconBadge } from '@/components/shared/icon-badge';
 
 interface HamRadioKitPageProps {
@@ -17,20 +14,7 @@ interface HamRadioKitPageProps {
     Description?: React.ComponentType;
 }
 
-function getRelatedPosts(product: Product): Blog[] {
-    if (!product.relatedBlogTag) {
-        return [];
-    }
-
-    const environment = process.env.NEXT_PUBLIC_ENVIRONMENT;
-    const allPosts = environment === 'production' ? allBlogs.filter((post) => post.publish) : allBlogs;
-
-    return allPosts.filter((post) => post.tags?.includes(product.relatedBlogTag!)).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
 export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) {
-    const relatedPosts = getRelatedPosts(product);
-
     // Special handling for the dummy load kit
     const isDummyLoad = product.slug === 'dummy-load-20w-bnc';
 
@@ -160,21 +144,6 @@ export function HamRadioKitPage({ product, Description }: HamRadioKitPageProps) 
                         )}
                     </CardContent>
                 </Card>
-
-                {/* Related posts */}
-                {relatedPosts.length > 0 && (
-                    <Card className="border border-border shadow-md bg-gradient-to-br from-sky-50/50 to-emerald-50/50 dark:from-sky-950/20 dark:to-emerald-950/20">
-                        <CardHeader className="pb-3">
-                            <div className="flex items-center gap-2">
-                                <BookOpen className="h-5 w-5 text-primary" />
-                                <CardTitle>Related Content</CardTitle>
-                            </div>
-                        </CardHeader>
-                        <CardContent>
-                            <ProductRelatedPosts product={product} relatedPosts={relatedPosts} />
-                        </CardContent>
-                    </Card>
-                )}
             </div>
         </main>
     );

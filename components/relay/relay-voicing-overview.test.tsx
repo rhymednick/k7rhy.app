@@ -47,8 +47,8 @@ describe('RelayVoicingOverview', () => {
 
     it('offers both Parts and Wiring as next-step links', async () => {
         render(await RelayVoicingOverview({ voicingSlug: 'lipstick', children: 'Body copy' }));
-        expect(screen.getByRole('link', { name: /parts/i })).toHaveAttribute('href', '/relay/parts?voicing=lipstick#electronics');
-        expect(screen.getByRole('link', { name: /wiring/i })).toHaveAttribute('href', '/relay/wiring?voicing=lipstick');
+        expect(screen.getByRole('link', { name: /parts/i })).toHaveAttribute('href', '/guitars/relay/parts?voicing=lipstick#electronics');
+        expect(screen.getByRole('link', { name: /wiring/i })).toHaveAttribute('href', '/guitars/relay/wiring?voicing=lipstick');
     });
 
     it('renders the community callout after next build steps', async () => {

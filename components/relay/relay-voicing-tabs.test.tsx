@@ -11,35 +11,35 @@ const voicings = [
 
 describe('RelayVoicingTabs', () => {
     it('frames the tabs with a voice-selection instruction and scroll cue', () => {
-        render(<RelayVoicingTabs voicings={[{ slug: 'lipstick', name: 'Relay Lipstick', genres: 'Blues · Rock' }]} activeSlug="lipstick" basePath="/relay/parts" />);
+        render(<RelayVoicingTabs voicings={[{ slug: 'lipstick', name: 'Relay Lipstick', genres: 'Blues · Rock' }]} activeSlug="lipstick" basePath="/guitars/relay/parts" />);
         expect(screen.getByText('Select your voice')).toBeInTheDocument();
         expect(screen.getByText('Scroll')).toBeInTheDocument();
         expect(screen.getByRole('tablist')).toHaveAttribute('aria-label', 'Select a Relay voice');
     });
 
     it('does not show the scroll cue for compact tabs without genre details', () => {
-        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/relay/wiring" />);
+        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/guitars/relay/wiring" />);
         expect(screen.getByText('Select your voice')).toBeInTheDocument();
         expect(screen.queryByText('Scroll')).not.toBeInTheDocument();
     });
 
     it('renders a link per voicing pointing at basePath with the voicing param', () => {
-        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/relay/parts" />);
-        expect(screen.getByRole('tab', { name: 'Relay Lipstick' })).toHaveAttribute('href', '/relay/parts?voicing=lipstick');
-        expect(screen.getByRole('tab', { name: 'Relay Velvet' })).toHaveAttribute('href', '/relay/parts?voicing=velvet');
+        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/guitars/relay/parts" />);
+        expect(screen.getByRole('tab', { name: 'Relay Lipstick' })).toHaveAttribute('href', '/guitars/relay/parts?voicing=lipstick');
+        expect(screen.getByRole('tab', { name: 'Relay Velvet' })).toHaveAttribute('href', '/guitars/relay/parts?voicing=velvet');
         expect(screen.getByText('Lipstick')).toBeInTheDocument();
         expect(screen.getByText('Velvet')).toBeInTheDocument();
         expect(screen.queryByText('Relay Lipstick')).not.toBeInTheDocument();
     });
 
     it('marks the active voicing with aria-current', () => {
-        render(<RelayVoicingTabs voicings={voicings} activeSlug="velvet" basePath="/relay/wiring" />);
+        render(<RelayVoicingTabs voicings={voicings} activeSlug="velvet" basePath="/guitars/relay/wiring" />);
         expect(screen.getByRole('tab', { name: 'Relay Velvet' })).toHaveAttribute('aria-current', 'page');
         expect(screen.getByRole('tab', { name: 'Relay Lipstick' })).not.toHaveAttribute('aria-current');
     });
 
     it('keeps the tab list on one horizontally scrollable row', () => {
-        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/relay/parts" />);
+        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/guitars/relay/parts" />);
         const tablist = screen.getByRole('tablist');
         expect(tablist.className).toMatch(/overflow-x-auto/);
         expect(tablist.className).toMatch(/flex-nowrap/);
@@ -50,7 +50,7 @@ describe('RelayVoicingTabs', () => {
     });
 
     it('renders the name in a bolder line above a smaller genres line when genres are provided', () => {
-        render(<RelayVoicingTabs voicings={[{ slug: 'lipstick', name: 'Relay Lipstick', genres: 'Blues · Rock' }]} activeSlug="lipstick" basePath="/relay/parts" />);
+        render(<RelayVoicingTabs voicings={[{ slug: 'lipstick', name: 'Relay Lipstick', genres: 'Blues · Rock' }]} activeSlug="lipstick" basePath="/guitars/relay/parts" />);
         const tab = screen.getByRole('tab', { name: 'Relay Lipstick' });
         const name = within(tab).getByText('Lipstick');
         const genres = within(tab).getByText('Blues · Rock');
@@ -60,7 +60,7 @@ describe('RelayVoicingTabs', () => {
     });
 
     it('omits the genres line when a voicing has no genres', () => {
-        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/relay/parts" />);
+        render(<RelayVoicingTabs voicings={voicings} activeSlug="lipstick" basePath="/guitars/relay/parts" />);
         expect(screen.queryByText('Blues · Rock')).not.toBeInTheDocument();
     });
 });

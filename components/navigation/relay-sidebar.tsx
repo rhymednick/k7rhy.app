@@ -10,7 +10,7 @@ import type { RelayBreadcrumb } from '@/lib/relay';
 import type { RelayBuildStage, RelayStageStatus } from '@/types/relay-nav';
 import { MyBreadcrumbs } from '@/components/doc/doc-page';
 
-const PLATFORM_HREF = '/relay';
+const PLATFORM_HREF = '/guitars/relay';
 
 function StageStatusTag({ status }: { status: RelayStageStatus }) {
     if (status === 'live') return null;

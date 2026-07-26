@@ -79,11 +79,11 @@ export async function RelayVoicingOverview({ voicingSlug, children }: { voicingS
                 <h2 className="text-base font-semibold">Next in your build</h2>
                 <p className="mt-1 text-sm text-muted-foreground">This voicing shares the Relay body and hardware; its electronics and wiring are specific to the sound you just picked.</p>
                 <div className="mt-3 flex flex-col gap-2 sm:flex-row">
-                    <Link href={`/relay/parts?voicing=${voicingSlug}#electronics`} className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md border px-4 py-2 text-center text-sm font-medium hover:bg-muted">
+                    <Link href={`/guitars/relay/parts?voicing=${voicingSlug}#electronics`} className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md border px-4 py-2 text-center text-sm font-medium hover:bg-muted">
                         <ShoppingBag className="h-4 w-4" />
                         Parts list
                     </Link>
-                    <Link href={`/relay/wiring?voicing=${voicingSlug}`} className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md border px-4 py-2 text-center text-sm font-medium hover:bg-muted">
+                    <Link href={`/guitars/relay/wiring?voicing=${voicingSlug}`} className="inline-flex min-h-10 flex-1 items-center justify-center gap-2 rounded-md border px-4 py-2 text-center text-sm font-medium hover:bg-muted">
                         <Cable className="h-4 w-4" />
                         Wiring guide
                     </Link>

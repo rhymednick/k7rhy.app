@@ -19,10 +19,10 @@ export default function Home() {
                             <Link href="https://discord.gg/BuUxCG4W6w">Join the K7RHY Discord</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline" className="min-w-[200px] flex-1">
-                            <Link href="/products">Browse Resonant Gear</Link>
+                            <Link href="/shop">Visit the Shop</Link>
                         </Button>
                         <Button asChild size="lg" variant="ghost" className="min-w-[200px] flex-1">
-                            <Link href="/blog">Read the Lab Notes</Link>
+                            <Link href="/community">Community &amp; Announcements</Link>
                         </Button>
                     </>
                 }

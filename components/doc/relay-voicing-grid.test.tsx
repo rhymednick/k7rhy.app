@@ -11,7 +11,7 @@ describe('RelayVoicingGrid (config-driven)', () => {
 
         for (const voicing of relayVoicings) {
             const link = screen.getByRole('link', { name: new RegExp(voicing.name, 'i') });
-            expect(link).toHaveAttribute('href', `/relay/voicings/${voicing.slug}`);
+            expect(link).toHaveAttribute('href', `/guitars/relay/voicings/${voicing.slug}`);
         }
     });
 
@@ -36,7 +36,7 @@ describe('RelayVoicingGrid (config-driven)', () => {
         render(
             <RelayVoicingGrid>
                 <div data-testid="custom-card">Custom</div>
-            </RelayVoicingGrid>,
+            </RelayVoicingGrid>
         );
 
         expect(screen.getByTestId('custom-card')).toBeInTheDocument();
@@ -46,46 +46,19 @@ describe('RelayVoicingGrid (config-driven)', () => {
 
 describe('RelayVoicingCard', () => {
     it('renders the Ready badge for a voicing whose config status is ready', () => {
-        render(
-            <RelayVoicingCard
-                slug="lipstick"
-                name="Relay Lipstick"
-                tagline="Humbuckers · Lipstick shaper"
-                genres="Blues · Rock"
-                description="Reference voicing"
-                href="/relay/voicings/lipstick"
-            />,
-        );
+        render(<RelayVoicingCard slug="lipstick" name="Relay Lipstick" tagline="Humbuckers · Lipstick shaper" genres="Blues · Rock" description="Reference voicing" href="/guitars/relay/voicings/lipstick" />);
 
         expect(screen.getByText('Ready')).toBeInTheDocument();
     });
 
     it('renders the Lab badge for a voicing whose config status is lab', () => {
-        render(
-            <RelayVoicingCard
-                slug="reef"
-                name="Relay Reef"
-                tagline="Humbucker · Dual-lipstick"
-                genres="Indie · Surf"
-                description="Reef voicing"
-                href="/relay/voicings/reef"
-            />,
-        );
+        render(<RelayVoicingCard slug="reef" name="Relay Reef" tagline="Humbucker · Dual-lipstick" genres="Indie · Surf" description="Reef voicing" href="/guitars/relay/voicings/reef" />);
 
         expect(screen.getByText('Lab')).toBeInTheDocument();
     });
 
     it('renders the Concept badge for a voicing whose config status is concept', () => {
-        render(
-            <RelayVoicingCard
-                slug="hammer"
-                name="Relay Hammer"
-                tagline="High gain · Rails"
-                genres="Metal"
-                description="Hammer voicing"
-                href="/relay/voicings/hammer"
-            />,
-        );
+        render(<RelayVoicingCard slug="hammer" name="Relay Hammer" tagline="High gain · Rails" genres="Metal" description="Hammer voicing" href="/guitars/relay/voicings/hammer" />);
 
         expect(screen.getByText('Concept')).toBeInTheDocument();
     });

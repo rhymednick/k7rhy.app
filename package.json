@@ -19,7 +19,6 @@
     "dependencies": {
         "@content-collections/core": "^0.12.0",
         "@content-collections/next": "^0.2.9",
-        "@google/generative-ai": "^0.24.1",
         "@hookform/resolvers": "^3.10.0",
         "@mdx-js/loader": "^3.1.1",
         "@mdx-js/mdx": "^3.1.1",
@@ -51,7 +50,7 @@
         "@types/mathjax": "^0.0.40",
         "@types/mdx": "^2.0.13",
         "@types/react-mathjax": "^1.0.4",
-        "axios": "^1.7.7",
+        "axios": "^1.18.1",
         "base-cli-process": "^0.1.19",
         "base-generators": "^0.4.6",
         "base-pkg": "^1.0.0",

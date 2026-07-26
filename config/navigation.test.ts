@@ -1,17 +1,17 @@
-import { describe, expect, it, vi } from 'vitest';
-
-vi.mock('content-collections', () => ({ allBlogs: [] }));
-vi.mock('@/.content-collections/generated', () => ({ Blog: {} }));
-
+import { describe, expect, it } from 'vitest';
 import { navConfig } from './navigation';
 
-describe('navConfig.mainNav', () => {
-    it('includes a Coupeville entry pointing at /coupeville', () => {
-        expect(navConfig.mainNav).toContainEqual({ title: 'Coupeville', href: '/coupeville' });
+describe('main navigation', () => {
+    it('organizes the site by subject, shopping, and community', () => {
+        expect(navConfig.mainNav).toEqual([
+            { title: 'Ham Radio', href: '/ham-radio' },
+            { title: 'Guitars', href: '/guitars' },
+            { title: 'Shop', href: '/shop' },
+            { title: 'Community', href: '/community' },
+        ]);
     });
 
-    it('keeps Coupeville next to Relay Guitar', () => {
-        const titles = navConfig.mainNav.map((item) => item.title);
-        expect(titles.indexOf('Coupeville')).toBe(titles.indexOf('Relay Guitar') + 1);
+    it('keeps radio docs in the radio-specific navigation group', () => {
+        expect(navConfig.hamRadioNav.flatMap((group) => group.items).map((item) => item.href)).toEqual(['/docs/dl20w_bnc', '/docs/power_measurement']);
     });
 });

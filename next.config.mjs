@@ -41,7 +41,7 @@ const inferredPublic = process.env.VERCEL || process.env.NETLIFY || process.env.
 const isPublicBuild = process.env.NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC ?? inferredPublic;
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+export const nextConfig = {
     // Configure `pageExtensions` to include MDX files
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx', 'md'],
 
@@ -65,38 +65,63 @@ const nextConfig = {
             // Legacy Relay voicing URLs (pre-2026-07 restructure) → the /relay/voicings/ tree.
             {
                 source: '/relay/:voicing(lipstick|reef|velvet|arc|torch|current|hammer)',
-                destination: '/relay/voicings/:voicing',
+                destination: '/guitars/relay/voicings/:voicing',
                 permanent: true,
             },
             {
                 source: '/relay/lipstick/compatibility',
-                destination: '/relay/parts',
+                destination: '/guitars/relay/parts',
                 permanent: true,
             },
             {
                 source: '/relay/:voicing(lipstick|velvet|arc|torch)/wiring',
-                destination: '/relay/wiring?voicing=:voicing',
+                destination: '/guitars/relay/wiring?voicing=:voicing',
                 permanent: true,
             },
             {
                 source: '/relay/voicings/:voicing(lipstick|velvet|arc|torch)/wiring',
-                destination: '/relay/wiring?voicing=:voicing',
+                destination: '/guitars/relay/wiring?voicing=:voicing',
                 permanent: true,
             },
             // Parts lists are consolidated on the shared parts page.
             {
                 source: '/relay/:voicing(lipstick|velvet|arc|torch)/bom',
-                destination: '/relay/parts?voicing=:voicing',
+                destination: '/guitars/relay/parts?voicing=:voicing',
                 permanent: true,
             },
             {
                 source: '/relay/voicings/:voicing(lipstick|velvet|arc|torch)/bom',
-                destination: '/relay/parts?voicing=:voicing',
+                destination: '/guitars/relay/parts?voicing=:voicing',
                 permanent: true,
             },
             {
                 source: '/relay/components',
-                destination: '/relay/parts',
+                destination: '/guitars/relay/parts',
+                permanent: true,
+            },
+            {
+                source: '/products',
+                destination: '/shop',
+                permanent: true,
+            },
+            {
+                source: '/products/:path*',
+                destination: '/shop/:path*',
+                permanent: true,
+            },
+            {
+                source: '/relay',
+                destination: '/guitars/relay',
+                permanent: true,
+            },
+            {
+                source: '/relay/:path*',
+                destination: '/guitars/relay/:path*',
+                permanent: true,
+            },
+            {
+                source: '/blog',
+                destination: '/community',
                 permanent: true,
             },
         ];

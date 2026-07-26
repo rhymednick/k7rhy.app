@@ -35,7 +35,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/lipstick',
+        href: '/guitars/relay/voicings/lipstick',
     },
     {
         slug: 'reef',
@@ -56,7 +56,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'concentric',
             tone: 'concentric',
         },
-        href: '/relay/voicings/reef',
+        href: '/guitars/relay/voicings/reef',
     },
     {
         slug: 'velvet',
@@ -77,7 +77,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/velvet',
+        href: '/guitars/relay/voicings/velvet',
     },
     {
         slug: 'arc',
@@ -98,7 +98,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/arc',
+        href: '/guitars/relay/voicings/arc',
     },
     {
         slug: 'torch',
@@ -119,7 +119,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'standard',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/torch',
+        href: '/guitars/relay/voicings/torch',
     },
     {
         slug: 'current',
@@ -140,7 +140,7 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/current',
+        href: '/guitars/relay/voicings/current',
     },
     {
         slug: 'hammer',
@@ -161,6 +161,6 @@ export const relayVoicings: RelayVoicing[] = [
             volume: 'push-push',
             tone: 'push-pull',
         },
-        href: '/relay/voicings/hammer',
+        href: '/guitars/relay/voicings/hammer',
     },
 ];

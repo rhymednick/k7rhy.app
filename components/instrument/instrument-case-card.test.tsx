@@ -14,7 +14,7 @@ vi.mock('qrcode.react', () => ({
 }));
 
 const record: InstrumentRecord = {
-    serial: 'RLY26001',
+    serial: 'REX26001',
     modelCode: 'RLY',
     modelDescription: 'Relay',
     year: 2026,
@@ -33,7 +33,7 @@ describe('InstrumentCaseCard', () => {
         render(
             <InstrumentCaseCard record={record}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
         expect(screen.getByRole('img', { name: 'K7RHY Resonance Lab logo' })).toBeInTheDocument();
@@ -44,13 +44,13 @@ describe('InstrumentCaseCard', () => {
         const { container } = render(
             <InstrumentCaseCard record={record}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
-        expect(container).toHaveTextContent('RLY26001');
+        expect(container).toHaveTextContent('REX26001');
         expect(screen.getByText('Control map')).toBeInTheDocument();
         expect(screen.getByRole('link', { name: /discord/i })).toHaveAttribute('href', 'https://discord.gg/BuUxCG4W6w');
-        expect(container.querySelector('[data-value="https://k7rhy.app/sn/RLY26001"]')).toBeInTheDocument();
+        expect(container.querySelector('[data-value="https://k7rhy.app/sn/REX26001"]')).toBeInTheDocument();
         expect(container.querySelector('img[src="/front.jpg"]')).not.toBeInTheDocument();
     });
 
@@ -58,7 +58,7 @@ describe('InstrumentCaseCard', () => {
         const { container } = render(
             <InstrumentCaseCard record={{ ...record, completed: '2026', dateLabel: 'Modified' }}>
                 <div>Control map</div>
-            </InstrumentCaseCard>,
+            </InstrumentCaseCard>
         );
 
         expect(container).toHaveTextContent('MODIFIED 2026');

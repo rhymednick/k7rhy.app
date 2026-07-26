@@ -16,7 +16,7 @@ export function ProductTeaserCard({ product, category }: ProductTeaserCardProps)
     const imageAlt = typeof firstImage === 'string' ? product.name : firstImage?.alt || product.name;
 
     return (
-        <Link href={`/products/${category}/${product.slug}`}>
+        <Link href={`/shop/${category}/${product.slug}`}>
             <Card className="cursor-pointer hover:border-sky-500 hover:shadow-[0_2px_10px_rgba(14,165,233,0.18)] transition-all duration-150 h-full">
                 <CardContent className="p-4">
                     <div className="flex gap-3">

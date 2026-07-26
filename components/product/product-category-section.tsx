@@ -17,7 +17,7 @@ export function ProductCategorySection({ category, products, title, showViewAll 
         return null;
     }
 
-    const categoryUrl = `/products/${category}`;
+    const categoryUrl = `/shop/${category}`;
 
     return (
         <div className="group flex flex-col">

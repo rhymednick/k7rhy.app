@@ -8,6 +8,7 @@ import { getInstrument, getInstrumentStaticParams } from '@/lib/instruments/reco
 import { resolveInstrumentRequest } from '@/lib/instruments/route-resolution';
 import { normalizeInstrumentSerial } from '@/lib/instruments/serial';
 import { isInstrumentPublished } from '@/lib/instruments/visibility';
+import { privateInstrumentRobots } from '../../instrument-metadata';
 
 interface Props {
     params: Promise<{ serial: string }>;
@@ -22,11 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const serial = normalizeInstrumentSerial(input);
     const record = getInstrument(serial);
 
-    if (!record || !isInstrumentPublished(record)) return { robots: { index: false, follow: false } };
+    if (!record || !isInstrumentPublished(record)) return { robots: privateInstrumentRobots };
 
     return {
         title: `Case card · ${record.name} · ${serial} | K7RHY`,
-        robots: { index: false, follow: false },
+        robots: privateInstrumentRobots,
     };
 }
 

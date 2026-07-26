@@ -13,11 +13,11 @@ describe('relayBuildProcess config', () => {
     it('points each stage at its in-site route', () => {
         const byslug = Object.fromEntries(relayBuildProcess.stages.map((s) => [s.slug, s.href]));
         expect(byslug).toEqual({
-            body: '/relay/body',
-            voicings: '/relay/voicings',
-            parts: '/relay/parts',
-            wiring: '/relay/wiring',
-            assembly: '/relay/assembly',
+            body: '/guitars/relay/body',
+            voicings: '/guitars/relay/voicings',
+            parts: '/guitars/relay/parts',
+            wiring: '/guitars/relay/wiring',
+            assembly: '/guitars/relay/assembly',
         });
     });
 
