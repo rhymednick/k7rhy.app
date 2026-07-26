@@ -35,7 +35,7 @@ The main navigation has four destinations:
 
 ### Guitars
 
-`/guitars` is a curated landing page for the Relay platform, guitar projects, and guitar-related shopping. It must not list or link serialized instrument records. Relay routes move beneath `/guitars/relay/...` so the visible and routable organization agree.
+`/guitars` is the platform-neutral landing page for all current and future guitar platforms, product lines, projects, documentation, and guitar-related shopping. Relay is one platform within this section, not the identity of the section itself. The page must not list or link serialized instrument records. Relay routes move beneath `/guitars/relay/...` so the visible and routable organization agree.
 
 ### Shop
 
