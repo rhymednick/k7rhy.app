@@ -2,6 +2,10 @@
 
 This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
+## Canonical site organization
+
+Before changing navigation, routes, publishing, commerce boundaries, or serialized instruments, read and follow `docs/architecture/site-organization.md`.
+
 ## Project Overview
 
 K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ham radio electronics kits and musical instruments. Deployed on Netlify.

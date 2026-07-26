@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Canonical site organization
+
+Before changing navigation, routes, publishing, commerce boundaries, or serialized instruments, read and follow `docs/architecture/site-organization.md`.
+
 ## Workflow Preferences
 
 - **Pull requests:** Never create PRs as drafts. The owner merges all PRs directly.
