@@ -28,7 +28,7 @@ describe('RelayVoicingGrid (config-driven)', () => {
         render(<RelayVoicingGrid />);
 
         const names = screen.getAllByRole('heading', { level: 3 }).map((heading) => heading.textContent);
-        expect(names?.slice(0, 4).sort()).toEqual(['Relay Arc', 'Relay Lipstick', 'Relay Torch', 'Relay Velvet']);
+        expect(names?.slice(0, 5).sort()).toEqual(['Relay Arc', 'Relay Current', 'Relay Lipstick', 'Relay Torch', 'Relay Velvet']);
         expect(names?.[names.length - 1]).toBe('Relay Hammer');
     });
 

@@ -127,7 +127,7 @@ export const relayVoicings: RelayVoicing[] = [
         tagline: 'Fast attack · Upper-mid focus',
         genres: 'Funk · Pop · Rock',
         description: 'A rhythm-first humbucker model with a middle augment layer that tightens lows, sharpens attack, and improves mix placement without acting like a boost.',
-        status: 'lab',
+        status: 'ready',
         interaction: {
             category: 'Augment layer',
             summary: 'The middle pickup is added after the humbucker selection to tighten lows and sharpen attack.',
