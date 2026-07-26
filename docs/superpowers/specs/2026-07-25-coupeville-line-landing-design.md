@@ -26,9 +26,11 @@ model that can be purchased.
   already mapped in `config/instrument-model-codes.ts`).
 - Per-model wiring specs. Coupeville uses a different control scheme than Relay, so model
   pages describe the **voice** (which does not change between lines), not controls or wiring.
-- Cross-links between the Coupeville and Relay lines. The two lines are presented as
-  independent. The shared voice description is **duplicated** into the Coupeville content
-  rather than referenced from Relay, so each line stands on its own.
+- Framing Coupeville as a *derivation* of Relay. The two lines are **siblings with shared
+  parentage** — both express voices Rhy designed. Coupeville is never described as the "built
+  version of" a Relay voicing. The brand narrative may speak to the shared voice lineage, but
+  the shared voice description is **duplicated** into the Coupeville content (no runtime
+  dependency on `relay-voicings.ts`), so each line stands on its own in code.
 
 ## Core design decision: models are state-free descriptions
 
@@ -72,10 +74,12 @@ interface CoupevilleModel {
 ```
 
 - No `status` field (per the core decision).
-- No `relayVoicingSlug` / cross-link. Genre and voice descriptions are **duplicated** into
-  this registry. Seed copy comes from the corresponding Relay voicing's *voice* facts, but
-  reworded to describe the sound only (not Relay's controls/wiring, which differ). The lines
-  intentionally do not reference each other.
+- No `relayVoicingSlug` / runtime cross-reference. Genre and voice descriptions are
+  **duplicated** into this registry — copy is owned by Coupeville, with no runtime coupling to
+  `relay-voicings.ts`. Seed copy comes from the corresponding Relay voicing's *voice* facts,
+  reworded to describe the sound only (not Relay's controls/wiring, which differ). The copy
+  may acknowledge the shared, designed voice lineage but must not frame Coupeville as derived
+  from Relay.
 - A helper `getCoupevilleModel(slug)` and the exported `coupevilleModels` array.
 - Types live in `types/coupeville.ts` (new) alongside the existing type modules.
 
@@ -94,9 +98,10 @@ First-person singular voice throughout (per house style). Sections:
 1. **Hero** — tagline: the instruments I build by hand.
 2. **The Coupeville line** — what it is and the name's origin (adapted from the existing
    "The Coupeville line" copy in CPC26001.mdx).
-3. **Coupeville and Relay** — the two-lines explainer: Relay is the free, self-print DIY
-   platform; Coupeville is the same family of voices, built by my hands. Two ways to get the
-   guitar. (Descriptive contrast only — no links into the Relay section.)
+3. **Coupeville and Relay** — the sibling-lines explainer: both lines share a common
+   parentage — voices I designed. Relay is the free, self-print DIY platform; Coupeville is
+   the hand-built line. Two expressions of the same voices, not one derived from the other.
+   This section may link to the Relay line as a sibling reference at the line level.
 4. **The models** — a **grid** (`CoupevilleModelGrid`) with one card per model, driven by the
    registry: model name, genre line, and short voice descriptor. Each card links to its
    `/coupeville/[slug]` page. **No status badges** (state-free).
@@ -117,11 +122,12 @@ badge removed — a `CoupevilleModelGrid` + `CoupevilleModelCard` pair.
   matching Relay voicing's voice facts — sound only, not controls).
 - Uniform structure for every model:
   - Title + one-line lead describing the voice.
-  - Genre line and voice/character description (self-contained; no reference to Relay).
+  - Genre line and voice/character description (copy owned by Coupeville; may note the voice
+    as one of the designed platform voices, but not framed as derived from Relay).
   - "Own one" CTA → `/products/coupeville`.
   - Breadcrumb: Coupeville / [model name].
-- No state, no per-model serial links, no availability badges, no cross-links to Relay — all
-  six read the same way.
+- No state, no per-model serial links, no availability badges, and no per-model links back to
+  Relay voicing pages — all six read the same way.
 
 ### 4. Products — `/products/coupeville` (wired, empty)
 
@@ -164,7 +170,9 @@ badge removed — a `CoupevilleModelGrid` + `CoupevilleModelCard` pair.
 
 - **Models are state-free** — confirmed.
 - **Lineup is a grid** — confirmed (reconsidered from prose).
-- **No cross-links between Coupeville and Relay; voice copy is duplicated** — confirmed.
+- **Siblings with shared parentage, not a derivation** — confirmed. Brand narrative may speak
+  to the shared voice lineage; voice copy is duplicated (no runtime coupling). The landing
+  explainer may link to the Relay line; model pages stay self-contained (no per-model links).
 - **Model pages exist for all Relay models except hammer** — confirmed.
 - **`/products/coupeville` shown on the `/products` index while empty** — proposed default.
 - **Special-order CTA points to `/contact` + Discord** — proposed default.
