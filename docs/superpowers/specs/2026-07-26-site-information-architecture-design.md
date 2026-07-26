@@ -13,7 +13,7 @@ Reorganize K7RHY Resonance Lab around its two subject domains—ham radio and gu
 2. Navigation hierarchy and URL hierarchy do not have to match. Documents remain at concise `/docs/...` URLs while their discovery and breadcrumbs place them in the relevant subject section.
 3. K7RHY.app explains projects, presents products, and hosts durable reference material. Shopify owns commerce facts and transactions: price, availability, inventory, orders, payment, and checkout.
 4. Discord is the home for announcements and ad-hoc discussion. The website provides a read-only view of recent announcements and a durable explanation of the community.
-5. Serial-number URLs are permanent identifiers and remain at `/sn/...`; they do not move with navigation changes.
+5. Serial-number URLs are permanent but unlisted identifiers. They remain at `/sn/...`, do not move with navigation changes, and must not be exposed through navigation, indexes, or search-engine discovery.
 6. Instrument serial prefixes identify product families, not submodels. The record name identifies the submodel.
 
 These principles must be recorded in a canonical vendor-neutral architecture document and linked from root agent instruction files so future agents do not have to reconstruct them.
@@ -25,7 +25,7 @@ The main navigation has four destinations:
 | Label | Route | Responsibility |
 | --- | --- | --- |
 | Ham Radio | `/ham-radio` | Radio projects, radio products, and relevant documentation |
-| Guitars | `/guitars` | Relay, serialized instruments, guitar projects, and guitar shopping |
+| Guitars | `/guitars` | Relay, guitar projects, and guitar shopping |
 | Shop | `/shop` | All currently available items grouped by Ham Radio and Guitars |
 | Community | `/community` | Discord introduction, recent announcements, and join link |
 
@@ -35,7 +35,7 @@ The main navigation has four destinations:
 
 ### Guitars
 
-`/guitars` is a curated landing page for the Relay platform, permanent instrument records, and guitar-related shopping. Relay routes move beneath `/guitars/relay/...` so the visible and routable organization agree.
+`/guitars` is a curated landing page for the Relay platform, guitar projects, and guitar-related shopping. It must not list or link serialized instrument records. Relay routes move beneath `/guitars/relay/...` so the visible and routable organization agree.
 
 ### Shop
 
@@ -62,9 +62,21 @@ When the token is missing, Discord rejects the request, the bot cannot access th
 | `/blog` | Permanent redirect to `/community` |
 | `/blog/<slug>` | 404; retired posts are not equivalent to the Community page |
 | `/docs/...` | Unchanged |
-| `/sn/...` | Unchanged |
+| `/sn/...` | Unchanged, unlisted, excluded from sitemaps, and marked against search-engine indexing |
 
 Redirects must preserve meaningful path segments. Navigation links and internal content links must use canonical new routes rather than relying on redirects.
+
+## Serialized-record privacy and discovery
+
+Serialized instrument records are deliberately available by exact URL but are not a public catalog. A visitor reaches a record by entering a known serial URL or scanning the QR code printed on its case card.
+
+- Do not link serial records from the Guitars landing page, navigation, product listings, or any public serial index.
+- Exclude `/sn/...` routes from generated sitemaps.
+- Emit `noindex, nofollow` metadata for record and print routes so search engines are instructed not to crawl or index them.
+- Do not create a discoverable list of valid serials in page content or public application endpoints.
+- The current dynamic route may still generate known records at build time as an implementation detail; build output must not be presented as a visitor-facing index.
+
+A future exact-serial lookup form may let a visitor type a serial they already possess. Designing or building that lookup is out of scope for this phase.
 
 ## Lab Notes retirement
 
@@ -130,12 +142,14 @@ Automated verification must cover:
 - Discord announcement success, missing-token, non-success-response, and request-failure behavior.
 - Announcement rendering with safe text/links and bounded results.
 - `REX` and `CVL` serial parsing and descriptions.
-- Discovery and route generation for `REX26001` and `CVL26001`.
+- Exact-URL route generation for `REX26001` and `CVL26001` without a public record index.
+- `noindex, nofollow` metadata on serialized record and print routes.
+- Exclusion of all `/sn/...` routes from sitemap output.
 - Absence of the Rainbow Telecaster from the catalog.
 - Absence of runtime/build imports of blog content and related-post UI.
 - Sitemap generation without blog collection imports.
 
-Run focused tests during implementation, then the full Vitest suite, lint, and a production build. Verify that Content Collections still generates the instrument collection and that canonical routes appear in build/sitemap output.
+Run focused tests during implementation, then the full Vitest suite, lint, and a production build. Verify that Content Collections still generates the instrument collection, public canonical routes appear in sitemap output, and serialized routes do not.
 
 ## Out of scope
 
@@ -144,4 +158,6 @@ Run focused tests during implementation, then the full Vitest suite, lint, and a
 - Changing the current Shopify plan or configuring Shopify DNS.
 - Making Shopify the catalog data source in this phase.
 - Building the instrument-record agent skill.
+- Building a serial-number lookup form.
+- Publishing any serial-number index or discoverable instrument-record list.
 - Rendering Discord reactions, embeds, or an interactive Discord client.
