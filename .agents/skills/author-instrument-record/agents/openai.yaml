@@ -1,0 +1,4 @@
+interface:
+  display_name: "Instrument Record Author"
+  short_description: "Author instrument records and printable case cards"
+  default_prompt: "Use $author-instrument-record to create the next serialized instrument record and printable case card."
