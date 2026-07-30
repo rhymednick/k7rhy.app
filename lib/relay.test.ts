@@ -49,18 +49,28 @@ describe('resolveRelayPlatformFilePath', () => {
 describe('buildRelayVoicingBreadcrumbs', () => {
     it('builds breadcrumbs for voicing root page', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayVoicings);
-        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Lipstick' }]);
+        expect(crumbs).toEqual([
+            { label: 'Guitars', href: '/guitars' },
+            { label: 'Relay', href: '/guitars/relay' },
+            { label: 'Relay Lipstick' },
+        ]);
     });
 
-    it('first breadcrumb links to /relay not /docs/relay', () => {
+    it('parents Relay under Guitars with canonical /guitars/relay paths', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('lipstick', [], relayVoicings);
-        expect(crumbs[0].href).toBe('/relay');
-        expect(crumbs[0].href).not.toContain('/docs/');
+        expect(crumbs[0].href).toBe('/guitars');
+        expect(crumbs[1].href).toBe('/guitars/relay');
+        expect(crumbs[1].href).not.toContain('/docs/');
     });
 
     it('titles trailing sub-pages from the raw slug segment', () => {
         const crumbs = buildRelayVoicingBreadcrumbs('arc', ['wiring'], relayVoicings);
-        expect(crumbs).toEqual([{ label: 'Relay Guitar', href: '/relay' }, { label: 'Relay Arc', href: '/relay/voicings/arc' }, { label: 'wiring' }]);
+        expect(crumbs).toEqual([
+            { label: 'Guitars', href: '/guitars' },
+            { label: 'Relay', href: '/guitars/relay' },
+            { label: 'Relay Arc', href: '/guitars/relay/voicings/arc' },
+            { label: 'wiring' },
+        ]);
     });
 
     it('falls back to the raw slug for unknown pages', () => {

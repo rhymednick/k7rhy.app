@@ -6,8 +6,9 @@ This file is the canonical organizational policy for K7RHY.app. Agents must pres
 
 - Organize the public site first by subject: Ham Radio and Guitars.
 - Keep Shop and Community as cross-subject destinations.
-- Guitars is platform-neutral. Relay is one guitar platform, not the definition of the Guitars section.
+- Guitars is platform-neutral. Relay and Coupeville are guitar platforms/lines under `/guitars/...`, not top-level subjects.
 - Surface each document only from its relevant subject area while retaining concise `/docs/...` URLs.
+- Do not present a mixed documentation index. `/docs` redirects to Ham Radio; individual ham documents keep `/docs/...` paths and breadcrumbs under Ham Radio.
 
 ## Publishing and commerce
 

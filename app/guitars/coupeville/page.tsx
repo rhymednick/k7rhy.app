@@ -20,7 +20,10 @@ export async function generateMetadata() {
 
 export default async function CoupevillePage() {
     const { content, frontmatter } = loadCoupevilleLandingPage();
-    const breadcrumbs = [{ label: 'Coupeville' }];
+    const breadcrumbs = [
+        { label: 'Guitars', href: '/guitars' },
+        { label: 'Coupeville' },
+    ];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<MyBreadcrumbs items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

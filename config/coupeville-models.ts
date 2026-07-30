@@ -10,7 +10,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'Fast attack · Upper-mid focus',
 		genres: 'Funk · Pop · Rock',
 		description: 'A rhythm-first voice built around fast attack, controlled low end, and a focused place in the mix.',
-		href: '/coupeville/current',
+		href: '/guitars/coupeville/current',
 	},
 	{
 		slug: 'lipstick',
@@ -18,7 +18,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'Humbucker core · Chime and air',
 		genres: 'Blues · Rock · Alternative · Indie',
 		description: 'A familiar humbucker foundation opened up with chime, air, and a more dimensional, percussive character.',
-		href: '/coupeville/lipstick',
+		href: '/guitars/coupeville/lipstick',
 	},
 	{
 		slug: 'reef',
@@ -26,7 +26,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'High-contrast clean and driven',
 		genres: 'Indie · Surf · Alt Country · Shoegaze · Studio',
 		description: 'Two voice families in one instrument: a focused humbucker voice alongside a bright, glassy voice for high-contrast clean and driven sounds.',
-		href: '/coupeville/reef',
+		href: '/guitars/coupeville/reef',
 	},
 	{
 		slug: 'velvet',
@@ -34,7 +34,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'Warm center · Controlled mids',
 		genres: 'Jazz · Blues · Soul · R&B',
 		description: 'A warm, rounded voice with controlled mids and enough presence to carry a small room clean.',
-		href: '/coupeville/velvet',
+		href: '/guitars/coupeville/velvet',
 	},
 	{
 		slug: 'arc',
@@ -42,7 +42,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'Open · Spatial · Separated',
 		genres: 'Clean pop · Indie · Ambient · Country',
 		description: 'A clear, spatial voice built for separation: wide clean sounds that keep their detail under reverb and delay.',
-		href: '/coupeville/arc',
+		href: '/guitars/coupeville/arc',
 	},
 	{
 		slug: 'torch',
@@ -50,7 +50,7 @@ export const coupevilleModels: CoupevilleModel[] = [
 		tagline: 'Punch · Vocal mids · Presence',
 		genres: 'Rock · Pop · Alternative · Modern country',
 		description: 'A punchy, mid-forward voice with strong presence that sits confidently at the front of a mix.',
-		href: '/coupeville/torch',
+		href: '/guitars/coupeville/torch',
 	},
 ];
 

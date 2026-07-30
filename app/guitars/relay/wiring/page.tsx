@@ -31,7 +31,7 @@ export default async function RelayWiringPage({ searchParams }: Props) {
     const tabs = buildable.map((slug) => ({ slug, name: relayVoicings.find((v) => v.slug === slug)!.name }));
     const intro = loadRelayPlatformSectionPage(['wiring', 'index']);
     const wiring = loadRelayWiringPage(active);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Wiring' }];
+    const breadcrumbs = [{ label: 'Guitars', href: '/guitars' }, { label: 'Relay', href: '/guitars/relay' }, { label: 'Wiring' }];
 
     return (
         <DocPage title={intro.frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>

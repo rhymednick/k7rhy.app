@@ -36,7 +36,7 @@ export default async function RelayPartsPage({ searchParams }: Props) {
     });
     const { content, frontmatter } = loadRelayPlatformSectionPage(['parts', 'index']);
     const resolvedList = resolveRelayComponentList(active);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Parts' }];
+    const breadcrumbs = [{ label: 'Guitars', href: '/guitars' }, { label: 'Relay', href: '/guitars/relay' }, { label: 'Parts' }];
 
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>

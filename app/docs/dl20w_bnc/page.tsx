@@ -12,7 +12,7 @@ import { MdxDocProcedureSubstepGroup } from '@/components/doc/mdx-doc-procedure-
 const DocTitle = '20W Dummy Load Kit Assembly Guide';
 const DocSubTitle = 'How to assemble and use the K7RHY 20W Dummy Load Kit.';
 
-const breadcrumbItems = [{ href: '/docs', label: 'Docs' }, { label: DocTitle }];
+const breadcrumbItems = [{ href: '/ham-radio', label: 'Ham Radio' }, { label: DocTitle }];
 
 const inventoryTableItems = [
     {

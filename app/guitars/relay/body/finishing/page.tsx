@@ -21,7 +21,7 @@ export async function generateMetadata() {
 
 export default async function RelayBodyFinishingPage() {
     const { content, frontmatter } = loadRelayPlatformSectionPage(['body', 'finishing']);
-    const breadcrumbs = [{ label: 'Relay Guitar', href: '/guitars/relay' }, { label: 'Body', href: '/guitars/relay/body' }, { label: 'Finishing' }];
+    const breadcrumbs = [{ label: 'Guitars', href: '/guitars' }, { label: 'Relay', href: '/guitars/relay' }, { label: 'Body', href: '/guitars/relay/body' }, { label: 'Finishing' }];
     return (
         <DocPage title={frontmatter.title} breadcrumbs={<RelayBreadcrumbBar items={breadcrumbs} />}>
             <MDXRemote source={content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />

@@ -62,10 +62,14 @@ export function loadRelayPlatformSectionPage(slug: string[]): { content: string;
 export function buildRelayVoicingBreadcrumbs(voicing: string, slug: string[], voicings: RelayVoicing[]): RelayBreadcrumb[] {
     const entry = voicings.find((v) => v.slug === voicing);
     const title = entry?.name ?? voicing;
+    const root: RelayBreadcrumb[] = [
+        { label: 'Guitars', href: '/guitars' },
+        { label: 'Relay', href: '/guitars/relay' },
+    ];
     if (slug.length === 0) {
-        return [{ label: 'Relay Guitar', href: '/relay' }, { label: title }];
+        return [...root, { label: title }];
     }
-    return [{ label: 'Relay Guitar', href: '/relay' }, { label: title, href: `/relay/voicings/${voicing}` }, { label: slug[slug.length - 1] }];
+    return [...root, { label: title, href: `/guitars/relay/voicings/${voicing}` }, { label: slug[slug.length - 1] }];
 }
 
 /** Loads a voicing's wiring page (content/relay/wiring/<slug>.mdx). */
