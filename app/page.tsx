@@ -9,31 +9,42 @@ export default function Home() {
     return (
         <main className="flex min-h-screen flex-col gap-16 px-4 pb-24 pt-8 md:px-12 lg:px-20">
             <PageHero
-                badge="Resonance Lab Dispatch"
-                title="Bridging radio science and instrument craft."
-                description={<Balancer>K7RHY Resonance Lab explores resonance across radio, audio, and tactile builds—shaping gear that invites you to hear and feel signal paths differently, whether you're chasing clean transmitters or dialing in guitar tone.</Balancer>}
-                secondaryText={<Balancer>I'm K7RHY, an amateur radio tinkerer who splits time between bench-top RF explorations, 3D-printed guitar bodies, and documentation that keeps projects approachable. This space is where I collect the builds, notes, and playable results from ideas I'm working through.</Balancer>}
+                badge="K7RHY Resonance Lab"
+                title="Resonance across radio and instruments."
+                description={<Balancer>Explore ham radio kits and crafted guitars from the same lab bench.</Balancer>}
                 actions={
                     <>
                         <Button asChild size="lg" className="min-w-[200px] flex-1">
-                            <Link href="https://discord.gg/BuUxCG4W6w">Join the K7RHY Discord</Link>
+                            <Link href="/ham-radio">Ham Radio</Link>
+                        </Button>
+                        <Button asChild size="lg" className="min-w-[200px] flex-1">
+                            <Link href="/guitars">Guitars</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline" className="min-w-[200px] flex-1">
-                            <Link href="/shop">Visit the Shop</Link>
+                            <Link href="/shop">Shop</Link>
                         </Button>
-                        <Button asChild size="lg" variant="ghost" className="min-w-[200px] flex-1">
+                    </>
+                }
+            />
+
+            <section className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                <div className="space-y-4">
+                    <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">From the lab</h2>
+                    <p className="text-base text-slate-600 dark:text-slate-400">
+                        <Balancer>I'm K7RHY, an amateur radio tinkerer who splits time between bench-top RF explorations, 3D-printed guitar bodies, and documentation that keeps projects approachable. This space collects the builds, notes, and playable results from ideas I'm working through.</Balancer>
+                    </p>
+                    <div className="flex flex-wrap gap-3">
+                        <Button asChild variant="outline">
                             <Link href="/community">Community &amp; Announcements</Link>
                         </Button>
-                    </>
-                }
-                footer={
-                    <>
-                        <div className="text-sm text-slate-600 dark:text-slate-400">Have an idea you'd like to see me explore? Drop it in the Discord and let's prototype it together.</div>
-                        <div className="text-sm italic text-slate-600 dark:text-slate-400">Catch you on the airwaves—K7RHY</div>
-                    </>
-                }
-            >
-                <div className="w-full max-w-md rounded-2xl border border-white/70 bg-white/70 p-6 shadow-xl backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/60">
+                        <Button asChild variant="ghost">
+                            <Link href="https://discord.gg/BuUxCG4W6w">Join the Discord</Link>
+                        </Button>
+                    </div>
+                    <p className="text-sm italic text-slate-600 dark:text-slate-400">Catch you on the airwaves—K7RHY</p>
+                </div>
+
+                <div className="w-full rounded-2xl border border-border/60 bg-muted/30 p-6">
                     <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Snapshot from the Lab</h2>
                     <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Notes and projects from the bench whenever a new idea takes hold.</p>
                     <dl className="mt-5 space-y-3 text-sm">
@@ -55,7 +66,7 @@ export default function Home() {
                         </div>
                     </dl>
                 </div>
-            </PageHero>
+            </section>
         </main>
     );
 }

@@ -120,6 +120,21 @@ export const nextConfig = {
                 permanent: true,
             },
             {
+                source: '/coupeville',
+                destination: '/guitars/coupeville',
+                permanent: true,
+            },
+            {
+                source: '/coupeville/:path*',
+                destination: '/guitars/coupeville/:path*',
+                permanent: true,
+            },
+            {
+                source: '/docs',
+                destination: '/ham-radio',
+                permanent: true,
+            },
+            {
                 source: '/blog',
                 destination: '/community',
                 permanent: true,

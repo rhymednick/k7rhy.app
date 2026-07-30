@@ -11,7 +11,7 @@ describe('CoupevilleModelGrid', () => {
         render(<CoupevilleModelGrid />);
         for (const model of coupevilleModels) {
             const link = screen.getByRole('link', { name: new RegExp(model.name, 'i') });
-            expect(link).toHaveAttribute('href', `/coupeville/${model.slug}`);
+            expect(link).toHaveAttribute('href', `/guitars/coupeville/${model.slug}`);
         }
     });
 

@@ -23,7 +23,7 @@ export default function GuitarsPage() {
                 icon={Guitar}
                 items={[
                     { title: 'Relay', href: '/guitars/relay', description: 'A modular 3D-printed guitar platform with distinct voicings and an open build process.', type: DocIndexItemType.Internal },
-                    { title: 'Coupeville', href: '/coupeville', description: 'Hand-built instruments organized around distinct voices and playing styles.', type: DocIndexItemType.Internal },
+                    { title: 'Coupeville', href: '/guitars/coupeville', description: 'Hand-built instruments organized around distinct voices and playing styles.', type: DocIndexItemType.Internal },
                 ]}
             />
         </main>

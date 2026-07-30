@@ -16,7 +16,7 @@ describe('coupevilleModels registry', () => {
 			expect(model.tagline.length).toBeGreaterThan(0);
 			expect(model.genres.length).toBeGreaterThan(0);
 			expect(model.description.length).toBeGreaterThan(0);
-			expect(model.href).toBe(`/coupeville/${model.slug}`);
+			expect(model.href).toBe(`/guitars/coupeville/${model.slug}`);
 		}
 	});
 

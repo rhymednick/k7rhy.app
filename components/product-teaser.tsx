@@ -11,7 +11,7 @@ interface ProductTeaserProps {
 
 const ProductTeaser: React.FC<ProductTeaserProps> = ({ product }) => {
     return (
-        <Link href={`/products/${product.handle}`} passHref>
+        <Link href={`/shop/${product.handle}`} passHref>
             <Card className="cursor-pointer hover:shadow-lg transition-shadow">
                 <CardHeader>
                     <CardTitle className="text-lg font-semibold">{product.title}</CardTitle>

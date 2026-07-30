@@ -11,6 +11,7 @@ import type { RelayBuildStage, RelayStageStatus } from '@/types/relay-nav';
 import { MyBreadcrumbs } from '@/components/doc/doc-page';
 
 const PLATFORM_HREF = '/guitars/relay';
+const GUITARS_HREF = '/guitars';
 
 function StageStatusTag({ status }: { status: RelayStageStatus }) {
     if (status === 'live') return null;
@@ -67,6 +68,9 @@ export function RelayLayoutSidebar() {
     return (
         <nav aria-label="Relay Guitar navigation" className="w-full">
             <div className="pb-4">
+                <Link href={GUITARS_HREF} className="flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm text-muted-foreground hover:underline">
+                    ← Guitars
+                </Link>
                 <Link href={PLATFORM_HREF} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm hover:underline', pathname === PLATFORM_HREF ? 'font-medium text-foreground' : 'text-muted-foreground')}>
                     Overview
                 </Link>

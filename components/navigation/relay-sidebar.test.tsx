@@ -12,6 +12,7 @@ describe('RelayLayoutSidebar', () => {
     it('shows all five build steps on the platform page', () => {
         pathnameMock.mockReturnValue('/guitars/relay');
         render(<RelayLayoutSidebar />);
+        expect(screen.getByRole('link', { name: '← Guitars' })).toHaveAttribute('href', '/guitars');
         for (const step of ['Body', 'Voicing', 'Parts', 'Wiring', 'Assembly']) {
             expect(screen.getByRole('link', { name: new RegExp(`^${step}`) })).toBeInTheDocument();
         }

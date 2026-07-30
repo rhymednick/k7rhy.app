@@ -6,7 +6,8 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { coupevilleModels } from '@/config/coupeville-models';
 
-const OVERVIEW_HREF = '/coupeville';
+const OVERVIEW_HREF = '/guitars/coupeville';
+const GUITARS_HREF = '/guitars';
 
 function SidebarLink({ href, label, active }: { href: string; label: string; active: boolean }) {
     return (
@@ -22,6 +23,7 @@ export function CoupevilleLayoutSidebar() {
     return (
         <nav aria-label="Coupeville navigation" className="w-full">
             <div className="pb-4">
+                <SidebarLink href={GUITARS_HREF} label="← Guitars" active={false} />
                 <SidebarLink href={OVERVIEW_HREF} label="Overview" active={pathname === OVERVIEW_HREF} />
             </div>
 

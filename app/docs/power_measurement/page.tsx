@@ -16,7 +16,7 @@ import { MdxDocProcedureStep } from '@/components/doc/mdx-doc-procedure-step';
 const DocTitle = 'Measuring Power';
 const DocSubTitle = 'How to measure RF power using a multimeter on dummy load kits and understanding how to apply the electronics theory behind it.';
 
-const breadcrumbItems = [{ href: '/docs', label: 'Docs' }, { label: DocTitle }];
+const breadcrumbItems = [{ href: '/ham-radio', label: 'Ham Radio' }, { label: DocTitle }];
 
 const Page = () => {
     return (

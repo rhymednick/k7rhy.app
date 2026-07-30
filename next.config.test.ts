@@ -11,6 +11,9 @@ describe('route migrations', () => {
                 { source: '/products/:path*', destination: '/shop/:path*', permanent: true },
                 { source: '/relay', destination: '/guitars/relay', permanent: true },
                 { source: '/relay/:path*', destination: '/guitars/relay/:path*', permanent: true },
+                { source: '/coupeville', destination: '/guitars/coupeville', permanent: true },
+                { source: '/coupeville/:path*', destination: '/guitars/coupeville/:path*', permanent: true },
+                { source: '/docs', destination: '/ham-radio', permanent: true },
                 { source: '/blog', destination: '/community', permanent: true },
             ])
         );
