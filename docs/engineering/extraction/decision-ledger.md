@@ -13,6 +13,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 ## Sources
 
 - [CVPC — Coupeville Velvet Pickup Comparison](sources/2026-07-30-coupeville-velvet-pickup-comparison.md)
+- [CRL — Coupeville Reef Layout](sources/2026-07-30-coupeville-reef-layout.md)
 - [RCCP — Relay Current Coupeville Plan](sources/2026-07-30-relay-current-coupeville-plan.md)
 - [ZGDC — Zebrawood Guitar Documentation Conversation](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md)
 
@@ -97,6 +98,30 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [RCCP-022](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-022--owner-oriented-printable-case-card) | Make the case card a concise owner-oriented operating reference. | Confirmed | Serialized-instrument documentation | Awaiting review | — |
 | [RCCP-023](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-023--keep-platform-wording-separate-from-instrument-values) | Separate reusable shaper wording from instrument-specific values. | Confirmed | Engineering standard | Awaiting review | — |
 | [RCCP-024](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-024--preserve-space-for-post-build-learning) | Support amplifier, string, listening, and revision notes. | Proposed | Listening note | Needs resolution | — |
+| [CRL-001](sources/2026-07-30-coupeville-reef-layout.md#crl-001--lipsticks-define-reef) | Treat the lipstick subsystem as Reef's defining instrument voice. | Proposed | Platform, model, or voicing documentation | Needs resolution | — |
+| [CRL-002](sources/2026-07-30-coupeville-reef-layout.md#crl-002--coupeville-reef-uses-an-hll-layout) | Use neck humbucker, middle lipstick, and bridge lipstick placement. | Confirmed | Design decision | Awaiting review | — |
+| [CRL-003](sources/2026-07-30-coupeville-reef-layout.md#crl-003--voice-family-roles) | Describe the predicted musical role of each Reef pickup voice. | Proposed | Platform, model, or voicing documentation | Needs resolution | — |
+| [CRL-004](sources/2026-07-30-coupeville-reef-layout.md#crl-004--simple-lipstick-selector) | Select bridge lipstick, both parallel, or middle lipstick. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-005](sources/2026-07-30-coupeville-reef-layout.md#crl-005--selector-orientation-follows-pickup-direction) | Orient the selector lever toward the emphasized lipstick. | Proposed | Platform, model, or voicing documentation | Needs resolution | — |
+| [CRL-006](sources/2026-07-30-coupeville-reef-layout.md#crl-006--separate-lipstick-and-humbucker-branches) | Feed one lipstick volume and one humbucker volume into a shared bus. | Confirmed | Reference design | Awaiting review | — |
+| [CRL-007](sources/2026-07-30-coupeville-reef-layout.md#crl-007--global-master-tone) | Place one master tone after the branch outputs join. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-008](sources/2026-07-30-coupeville-reef-layout.md#crl-008--continuous-branch-interaction-is-the-custom-feature) | Make continuous branch interaction Reef's primary custom behavior. | Confirmed | Design decision | Awaiting review | — |
+| [CRL-009](sources/2026-07-30-coupeville-reef-layout.md#crl-009--initial-build-remains-simple) | Build the initial control system without extra push-pull functions. | Confirmed | Design decision | Awaiting review | — |
+| [CRL-010](sources/2026-07-30-coupeville-reef-layout.md#crl-010--partial-split-is-the-only-initial-expansion-candidate) | Consider only a validated partial split as the first expansion. | Proposed | Design decision | Needs resolution | — |
+| [CRL-011](sources/2026-07-30-coupeville-reef-layout.md#crl-011--superseded-complex-switch-proposals) | Exclude series, phase, bass-contour, and full-system switching from the baseline. | Corrected | Design decision | Awaiting review | — |
+| [CRL-012](sources/2026-07-30-coupeville-reef-layout.md#crl-012--selected-neck-humbucker-candidate) | Use the available 7.6 kΩ GFS neck humbucker initially. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-013](sources/2026-07-30-coupeville-reef-layout.md#crl-013--recorded-neck-humbucker-measurements) | Preserve the measured neck-humbucker DCR, inductance, and Q. | Observed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-014](sources/2026-07-30-coupeville-reef-layout.md#crl-014--neck-humbucker-role-after-measurement) | Treat the neck humbucker as a warm, sustaining counterweight. | Proposed | Platform, model, or voicing documentation | Needs resolution | — |
+| [CRL-015](sources/2026-07-30-coupeville-reef-layout.md#crl-015--pickup-measurement-practice) | Compare pickup DCR, inductance, and Q at 1 kHz and 100 Hz. | Proposed | Engineering standard | Needs resolution | — |
+| [CRL-016](sources/2026-07-30-coupeville-reef-layout.md#crl-016--initial-control-values) | Start with three 1 MΩ controls and a 22 nF tone capacitor. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-017](sources/2026-07-30-coupeville-reef-layout.md#crl-017--tone-capacitor-is-22-nf-not-22-µf) | Correct the tone capacitor to 22 nF rather than 22 µF. | Corrected | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-018](sources/2026-07-30-coupeville-reef-layout.md#crl-018--reverse-independent-volume-connection) | Use pickup-to-wiper reverse-independent branch volumes. | Confirmed | Reference design | Awaiting review | — |
+| [CRL-019](sources/2026-07-30-coupeville-reef-layout.md#crl-019--a1m-sweep-failure-is-an-observed-build-result) | Record the non-monotonic A1M blend sweep as an observed failure. | Observed | Platform, model, or voicing documentation | Awaiting review | — |
+| [CRL-020](sources/2026-07-30-coupeville-reef-layout.md#crl-020--production-volume-taper-remains-unresolved) | Test B1M and possibly C1M before selecting the production taper. | Unresolved | Unresolved question | Needs resolution | — |
+| [CRL-021](sources/2026-07-30-coupeville-reef-layout.md#crl-021--match-both-volume-values-and-tapers) | Match both branch-volume resistance values and tapers. | Proposed | Reference design | Needs resolution | — |
+| [CRL-022](sources/2026-07-30-coupeville-reef-layout.md#crl-022--parallel-loading-informs-the-1-m-choice) | Account for the parallel load of both always-connected volume tracks. | Confirmed | Reference design | Awaiting review | — |
+| [CRL-023](sources/2026-07-30-coupeville-reef-layout.md#crl-023--preserve-1-m-unless-brightness-proves-excessive) | Retain 1 MΩ values unless the working guitar proves too bright. | Proposed | Design decision | Needs resolution | — |
+| [CRL-024](sources/2026-07-30-coupeville-reef-layout.md#crl-024--treble-bleeds-remain-undecided) | Decide branch treble bleeds only after the blend controls work. | Proposed | Unresolved question | Needs resolution | — |
 
 ## Consolidation notes
 
@@ -115,6 +140,11 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - RCCP-004 supersedes the prototype framing, and RCCP-001 supersedes the Relay Current and Coupeville Relay Current names for this instrument.
 - RCCP-005 did not define a serial prefix. The later `CVL26001` record and canonical site-organization policy control; the `CPC26001` mention on the current model page is an implementation mismatch to review.
 - RCCP-012 records compact network values, but construction topology should come from a reviewed reference design or installed-instrument record rather than being inferred from the prose shorthand.
+- CRL-001 through CRL-014 capture the intended Coupeville Reef model identity and simple HLL implementation; predictions about completed tone remain separate from measured facts.
+- CRL-006, CRL-018, and CRL-022 describe one reusable two-branch passive architecture, while CRL-019 and CRL-020 show that its pot taper remains unresolved.
+- CRL-011 supersedes the early six-way, series-lipstick, bass-contour, and phase proposals for the simple baseline model.
+- CRL-013 is measured source data; CRL-014 is an interpretation that requires listening confirmation.
+- CRL-015 may inform a future pickup-measurement standard but is not yet an approved cross-platform rule.
 
 ## Open questions
 
@@ -136,6 +166,12 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 16. Which document owns the exact Current Harmonic Shaper topology and revision after the compact source notation is promoted?
 17. How much of the Current instrument record's installed architecture belongs on the public model page versus a shared Harmonic Shaper reference?
 18. Which proposed post-build note fields belong in model documentation, serialized-instrument documentation, or a reusable listening-note template?
+19. Is “the lipsticks are the instrument; the humbucker is the alternate voice” the accepted canonical Coupeville Reef identity?
+20. What taper wins the Reef branch-volume experiment: B1M linear, C1M reverse-audio, or another measured option?
+21. Does either Reef volume branch receive a treble bleed after the taper problem is corrected?
+22. What is the exact model and magnet of the measured 7.6 kΩ GFS neck humbucker, and was it retained in the completed instrument?
+23. Should the two-branch reverse-independent volume architecture become a reference design before its taper and sweep are validated?
+24. Which predicted pickup-role descriptions have been confirmed by listening and are ready for the Coupeville Reef model page?
 
 ## Promotion log
 
