@@ -11,7 +11,7 @@
 
 - This inventory prioritizes decisions useful to future Coupeville Reef model-page documentation while also preserving reusable electrical observations.
 - The conversation begins with design exploration and continues into an assembled-guitar troubleshooting session. Proposed design intent, measured facts, and unverified diagnoses are kept distinct.
-- The final production pot taper is unresolved because the conversation ends before the proposed B1M, reversed A1M, or C1M experiments are reported.
+- A later owner report confirms that replacing the audio-taper pots with linear pots solved the bulk of the Reef mixing problem. The exact installed resistance and any residual sweep behavior remain to be documented.
 - The existing Coupeville Reef model page currently describes only the high-level contrast between voice families; most of the model architecture in this source is not yet represented there.
 
 ## Coupeville Reef identity and layout
@@ -212,15 +212,15 @@
 
 **Notes:** Because both pots behaved similarly, taper geometry is a strong hypothesis. The source does not contain the replacement-pot or reversed-lug result needed to close the diagnosis.
 
-### CRL-020 — Production volume taper remains unresolved
+### CRL-020 — Linear pots solve the bulk of the blend problem
 
-**Statement:** Test matched B1M linear pots and, if reversing the A1M outer lugs produces a broad usable sweep in the opposite direction, consider matched C1M reverse-audio pots before choosing the production taper.
+**Statement:** Replacing the audio-taper branch-volume pots with linear pots solved the bulk of the Coupeville Reef mixing problem.
 
-**Evidence:** Unresolved
+**Evidence:** Confirmed
 
-**Proposed classification:** Unresolved question
+**Proposed classification:** Design decision
 
-**Notes:** The assistant first recommended B1M, then refined that recommendation to include C1M after the owner proposed testing the other side of the logarithmic track. No test outcome is present.
+**Notes:** The owner reported this result after the shared conversation was inventoried. It confirms taper geometry as the main cause and supersedes the proposed C1M experiment as the leading production direction. The update does not state the installed pot resistance, whether both pots have identical values, or what portion of the problem remains.
 
 ### CRL-021 — Match both volume values and tapers
 
@@ -277,11 +277,11 @@
 5. **Automatic partial split:** Reduced to a future option only after the measured humbucker is heard in the completed instrument.
 6. **Incorrect normal-volume diagnosis:** Corrected when the owner confirmed pickup-to-wiper reverse-independent wiring.
 7. **Pot defect or phase as leading cause:** Deprioritized after both A1M controls showed the same repeatable sweep pattern.
-8. **B1M as the settled fix:** Reopened when the reversed-log-track experiment suggested C1M might provide more useful resolution.
+8. **B1M versus C1M taper choice:** Resolved at the taper-family level by the owner's later report that linear pots solved the bulk of the problem; exact installed resistance and residual behavior remain undocumented.
 
 ## Explicit exclusions
 
 - Image-search results and generated learning widgets embedded in the source.
 - Predictions about completed tones that have not been confirmed through listening.
-- A final production volume taper, because the relevant experiment is absent.
+- The exact resistance value of the successful linear pots and any residual blend-sweep problem not described by the owner's later update.
 - A partial-split resistor value, because no split was accepted for the initial build.

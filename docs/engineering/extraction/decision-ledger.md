@@ -117,7 +117,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [CRL-017](sources/2026-07-30-coupeville-reef-layout.md#crl-017--tone-capacitor-is-22-nf-not-22-µf) | Correct the tone capacitor to 22 nF rather than 22 µF. | Corrected | Platform, model, or voicing documentation | Awaiting review | — |
 | [CRL-018](sources/2026-07-30-coupeville-reef-layout.md#crl-018--reverse-independent-volume-connection) | Use pickup-to-wiper reverse-independent branch volumes. | Confirmed | Reference design | Awaiting review | — |
 | [CRL-019](sources/2026-07-30-coupeville-reef-layout.md#crl-019--a1m-sweep-failure-is-an-observed-build-result) | Record the non-monotonic A1M blend sweep as an observed failure. | Observed | Platform, model, or voicing documentation | Awaiting review | — |
-| [CRL-020](sources/2026-07-30-coupeville-reef-layout.md#crl-020--production-volume-taper-remains-unresolved) | Test B1M and possibly C1M before selecting the production taper. | Unresolved | Unresolved question | Needs resolution | — |
+| [CRL-020](sources/2026-07-30-coupeville-reef-layout.md#crl-020--linear-pots-solve-the-bulk-of-the-blend-problem) | Use linear branch-volume pots; they solved the bulk of Reef's mixing problem. | Confirmed | Design decision | Awaiting review | — |
 | [CRL-021](sources/2026-07-30-coupeville-reef-layout.md#crl-021--match-both-volume-values-and-tapers) | Match both branch-volume resistance values and tapers. | Proposed | Reference design | Needs resolution | — |
 | [CRL-022](sources/2026-07-30-coupeville-reef-layout.md#crl-022--parallel-loading-informs-the-1-m-choice) | Account for the parallel load of both always-connected volume tracks. | Confirmed | Reference design | Awaiting review | — |
 | [CRL-023](sources/2026-07-30-coupeville-reef-layout.md#crl-023--preserve-1-m-unless-brightness-proves-excessive) | Retain 1 MΩ values unless the working guitar proves too bright. | Proposed | Design decision | Needs resolution | — |
@@ -141,7 +141,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - RCCP-005 did not define a serial prefix. The later `CVL26001` record and canonical site-organization policy control; the `CPC26001` mention on the current model page is an implementation mismatch to review.
 - RCCP-012 records compact network values, but construction topology should come from a reviewed reference design or installed-instrument record rather than being inferred from the prose shorthand.
 - CRL-001 through CRL-014 capture the intended Coupeville Reef model identity and simple HLL implementation; predictions about completed tone remain separate from measured facts.
-- CRL-006, CRL-018, and CRL-022 describe one reusable two-branch passive architecture, while CRL-019 and CRL-020 show that its pot taper remains unresolved.
+- CRL-006, CRL-018, and CRL-022 describe one reusable two-branch passive architecture; CRL-019 records the failed A1M sweep, and CRL-020 confirms that linear pots solved the bulk of it.
 - CRL-011 supersedes the early six-way, series-lipstick, bass-contour, and phase proposals for the simple baseline model.
 - CRL-013 is measured source data; CRL-014 is an interpretation that requires listening confirmation.
 - CRL-015 may inform a future pickup-measurement standard but is not yet an approved cross-platform rule.
@@ -167,7 +167,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 17. How much of the Current instrument record's installed architecture belongs on the public model page versus a shared Harmonic Shaper reference?
 18. Which proposed post-build note fields belong in model documentation, serialized-instrument documentation, or a reusable listening-note template?
 19. Is “the lipsticks are the instrument; the humbucker is the alternate voice” the accepted canonical Coupeville Reef identity?
-20. What taper wins the Reef branch-volume experiment: B1M linear, C1M reverse-audio, or another measured option?
+20. What resistance value was installed in the successful Reef linear pots, and what residual blend behavior remains?
 21. Does either Reef volume branch receive a treble bleed after the taper problem is corrected?
 22. What is the exact model and magnet of the measured 7.6 kΩ GFS neck humbucker, and was it retained in the completed instrument?
 23. Should the two-branch reverse-independent volume architecture become a reference design before its taper and sweep are validated?
