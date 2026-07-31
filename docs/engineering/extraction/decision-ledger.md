@@ -13,6 +13,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 ## Sources
 
 - [CVPC — Coupeville Velvet Pickup Comparison](sources/2026-07-30-coupeville-velvet-pickup-comparison.md)
+- [RCCP — Relay Current Coupeville Plan](sources/2026-07-30-relay-current-coupeville-plan.md)
 - [ZGDC — Zebrawood Guitar Documentation Conversation](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md)
 
 ## Candidates
@@ -72,6 +73,30 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [CVPC-019](sources/2026-07-30-coupeville-velvet-pickup-comparison.md#cvpc-019--preserve-orthogonal-control-roles) | Keep phase, series selection, and unrelated tricks out of the shaper. | Proposed | Design decision | Needs resolution | — |
 | [CVPC-020](sources/2026-07-30-coupeville-velvet-pickup-comparison.md#cvpc-020--available-part-substitutions) | Approximate nominal shaper networks from the available component set. | Proposed | Platform, model, or voicing documentation | Needs resolution | — |
 | [CVPC-021](sources/2026-07-30-coupeville-velvet-pickup-comparison.md#cvpc-021--reef-mixing-behavior-remains-an-observation) | Preserve Reef's volume anomaly as an observation pending measurement. | Observed | Platform, model, or voicing documentation | Needs resolution | — |
+| [RCCP-001](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-001--model-name-is-coupeville-current) | Name the model Coupeville Current. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-002](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-002--relay-and-coupeville-names-have-different-roles) | Use Relay for the builder platform and Coupeville for crafted instruments. | Confirmed | Project or governance principle | Needs resolution | — |
+| [RCCP-003](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-003--current-lineage-crosses-platforms-without-coupling-implementations) | Share Current lineage while keeping platform implementations distinct. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-004](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-004--first-production-instrument-not-prototype) | Treat the instrument as the first production Current, not a prototype. | Corrected | Serialized-instrument documentation | Awaiting review | — |
+| [RCCP-005](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-005--use-established-serial-number-rules) | Apply established production serial rules rather than inventing a prototype number. | Confirmed | Serialized-instrument documentation | Needs resolution | — |
+| [RCCP-006](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-006--preserve-the-established-current-pickup-set) | Preserve the established Relay Current pickup models. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-007](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-007--humbuckers-remain-the-primary-selectable-voices) | Use neck, neck-plus-bridge, and bridge as the primary selectable voices. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-008](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-008--hot-nashville-is-a-shaper-not-a-selector-voice) | Use the Hot Nashville only as a harmonic shaper. | Confirmed | Design decision | Awaiting review | — |
+| [RCCP-009](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-009--master-volume-and-tone-specification) | Use A500K master volume and tone with a 22 nF tone capacitor. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-010](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-010--production-treble-bleed) | Use a parallel 680 pF and 150 kΩ treble bleed. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [RCCP-011](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-011--six-repeatable-presets-replace-continuous-blend) | Replace the continuous blend with six repeatable shaper presets. | Confirmed | Design decision | Awaiting review | — |
+| [RCCP-012](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-012--current-production-reference-network) | Use the six documented Current production-reference networks. | Confirmed | Reference design | Needs resolution | — |
+| [RCCP-013](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-013--reference-values-may-evolve-through-listening) | Revise future reference values through documented listening tests. | Confirmed | Reference design | Awaiting review | — |
+| [RCCP-014](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-014--platform-wide-documentation-philosophy) | Apply one shaper documentation philosophy across equipped models. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-015](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-015--number-positions-instead-of-naming-them) | Number Harmonic Shaper positions instead of naming them. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-016](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-016--write-from-the-players-perspective) | Write restrained player-facing descriptions instead of circuit or marketing labels. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-017](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-017--refer-to-the-selected-pickup-voice) | Refer to the selected pickup voice in shaper descriptions. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-018](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-018--canonical-harmonic-shaper-explanation) | Reuse the canonical explanation of what the Harmonic Shaper modifies. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-019](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-019--canonical-six-position-descriptions) | Reuse the six accepted player-facing position descriptions. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-020](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-020--player-language-precedes-technical-reference) | Present player language before secondary component details. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-021](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-021--instrument-record-tone-and-purpose) | Write instrument records as restrained boutique technical references. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-022](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-022--owner-oriented-printable-case-card) | Make the case card a concise owner-oriented operating reference. | Confirmed | Serialized-instrument documentation | Awaiting review | — |
+| [RCCP-023](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-023--keep-platform-wording-separate-from-instrument-values) | Separate reusable shaper wording from instrument-specific values. | Confirmed | Engineering standard | Awaiting review | — |
+| [RCCP-024](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-024--preserve-space-for-post-build-learning) | Support amplifier, string, listening, and revision notes. | Proposed | Listening note | Needs resolution | — |
 
 ## Consolidation notes
 
@@ -85,6 +110,11 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - CVPC-014 and CVPC-016 supersede the earlier claim that a passive shunt could affect only the humbucker contribution after its output shares a node with the Nashville.
 - CVPC-017 supersedes the position-dependent split-resistor proposal; CVPC-018 preserves unused rotary poles as an unresolved future choice rather than a feature requirement.
 - CVPC-021 is not a validated diagnosis of Reef. It records a symptom and the measurement gap that remains.
+- RCCP-001 through RCCP-013 provide the strongest model-level source set so far for expanding the Coupeville Current page.
+- RCCP-014 through RCCP-020 are platform-level presentation decisions for every model that uses a Harmonic Shaper; their wording is reusable while electrical networks remain model-specific.
+- RCCP-004 supersedes the prototype framing, and RCCP-001 supersedes the Relay Current and Coupeville Relay Current names for this instrument.
+- RCCP-005 did not define a serial prefix. The later `CVL26001` record and canonical site-organization policy control; the `CPC26001` mention on the current model page is an implementation mismatch to review.
+- RCCP-012 records compact network values, but construction topology should come from a reviewed reference design or installed-instrument record rather than being inferred from the prose shorthand.
 
 ## Open questions
 
@@ -101,6 +131,11 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 11. Are numbered shaper positions with a visibly marked Position 6 bypass part of the final player-facing design?
 12. Which actual components are available for this build, and have their markings and tolerances been checked independently of the source images?
 13. What measurements isolate the cause of Reef's near-full-volume level collapse?
+14. Should the Coupeville Current model page replace its `CPC26001` reference with the canonical `CVL26001` serial?
+15. How should the Relay-builder-platform and Coupeville-crafted-line distinction be stated alongside `docs/architecture/site-organization.md`?
+16. Which document owns the exact Current Harmonic Shaper topology and revision after the compact source notation is promoted?
+17. How much of the Current instrument record's installed architecture belongs on the public model page versus a shared Harmonic Shaper reference?
+18. Which proposed post-build note fields belong in model documentation, serialized-instrument documentation, or a reusable listening-note template?
 
 ## Promotion log
 
