@@ -15,6 +15,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - [CVPC — Coupeville Velvet Pickup Comparison](sources/2026-07-30-coupeville-velvet-pickup-comparison.md)
 - [CRL — Coupeville Reef Layout](sources/2026-07-30-coupeville-reef-layout.md)
 - [RCCP — Relay Current Coupeville Plan](sources/2026-07-30-relay-current-coupeville-plan.md)
+- [VAC — Coupeville Velvet Alternate Control Architecture](sources/2026-08-05-velvet-alternate-control-architecture.md)
 - [VDH — Coupeville Velvet / Relay Velvet Design History](sources/2026-07-31-velvet-design-history.md)
 - [ZGDC — Zebrawood Guitar Documentation Conversation](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md)
 
@@ -113,6 +114,31 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [VDH-036](sources/2026-07-31-velvet-design-history.md#vdh-036--provisional-next-reference-pickup-architecture) | Seek contrasting neck, middle, and bridge roles and retain the conventional five-way. | Proposed | Reference design | Awaiting review | — |
 | [VDH-037](sources/2026-07-31-velvet-design-history.md#vdh-037--provisional-next-reference-controls) | Evaluate 1 MΩ master volume, restrained treble bleed, 500 kΩ no-load tone, and a leakage-tested 18 nF capacitor. | Proposed | Reference design | Awaiting review | — |
 | [VDH-038](sources/2026-07-31-velvet-design-history.md#vdh-038--optional-global-loading-switch) | Keep a global 1 MΩ loading switch only if its two modes are obvious and musically useful. | Proposed | Reference design | Awaiting review | — |
+| [VAC-001](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-001--alternate-architecture-is-bench-only) | Evaluate the alternate Velvet architecture on a bench harness without replacing the current reference specification. | Confirmed | Design decision | Ready to promote | Velvet engineering log |
+| [VAC-002](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-002--four-player-facing-functions) | Separate outer selection, neck blend, Nashville blend, and repeatable voice shaping into distinct functions before global level control. | Confirmed | Design decision | Ready to promote | Velvet engineering log |
+| [VAC-003](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-003--three-way-outer-pickup-selector) | Use a traditional three-way toggle for bridge, bridge plus neck, and neck among the outer humbuckers. | Confirmed | Reference design | Awaiting review | — |
+| [VAC-004](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-004--fixed-bridge-foundation) | Keep the bridge at full output whenever selected and blend neck level against it. | Proposed | Reference design | Awaiting review | — |
+| [VAC-005](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-005--independent-neck-volume) | Use neck volume as inactive in bridge mode, a blend in bridge-plus-neck, and pre-master level in neck mode. | Confirmed | Reference design | Awaiting review | — |
+| [VAC-006](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-006--independently-available-nashville) | Make the Nashville independently blendable into every outer-selector state. | Confirmed | Reference design | Awaiting review | — |
+| [VAC-007](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-007--intentional-middle-only-control-state) | Permit Nashville-only operation through the neck selector state with neck at zero. | Proposed | Reference design | Awaiting review | — |
+| [VAC-008](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-008--five-way-blade-selects-voice-not-pickups) | Use the five-way blade for repeatable passive voices rather than pickup combinations. | Confirmed | Reference design | Awaiting review | — |
+| [VAC-009](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-009--five-intended-voice-positions) | Target five character positions from roundest and softest through direct or nearly direct. | Proposed | Platform, model, or voicing documentation | Awaiting review | — |
+| [VAC-010](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-010--global-post-mix-master-volume) | Place a global master volume after pickup mixing and voice shaping. | Confirmed | Reference design | Awaiting review | — |
+| [VAC-011](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-011--player-facing-mental-model) | Explain the controls as outer pickups, neck amount, Nashville amount, voice, and loudness. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
+| [VAC-012](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-012--final-passive-signal-order-is-unresolved) | Determine the electrical order of selection, mixing, and shaping through bench testing. | Unresolved | Unresolved question | Needs resolution | — |
+| [VAC-013](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-013--outer-bus-only-shaping-is-the-preferred-first-test) | Begin with the voice selector shaping only the outer humbucker bus. | Proposed | Reference design | Awaiting review | — |
+| [VAC-014](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-014--compare-global-shaping) | Compare outer-bus-only shaping with shaping of the complete mixed signal. | Confirmed | Design decision | Ready to promote | Velvet bench-test plan |
+| [VAC-015](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-015--initial-five-position-rc-networks) | Start with four specified series-RC shunts and open bypass, rebalancing if Position 4 to 5 jumps too far. | Proposed | Reference design | Awaiting review | — |
+| [VAC-016](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-016--current-prototype-1-pickup-set-is-retained-for-the-test) | Reuse Prototype 1's GM ’59 / Nashville / GM ’59 pickup set for the bench evaluation only. | Confirmed | Design decision | Ready to promote | Velvet bench-test plan |
+| [VAC-017](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-017--fixed-bridge-usefulness-remains-unresolved) | Test whether a permanently full bridge is useful or too restrictive. | Unresolved | Unresolved question | Needs resolution | — |
+| [VAC-018](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-018--passive-volume-interaction-remains-unresolved) | Test passive volume loading, dead zones, cross-attenuation, treble loss, wiring direction, and taper. | Unresolved | Unresolved question | Needs resolution | — |
+| [VAC-019](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-019--middle-only-usefulness-remains-unresolved) | Test whether Nashville-only operation is practical, useful, and understandable. | Unresolved | Unresolved question | Needs resolution | — |
+| [VAC-020](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-020--master-volume-blend-preservation-remains-unresolved) | Verify that master volume changes level without materially changing pickup balance. | Unresolved | Unresolved question | Needs resolution | — |
+| [VAC-021](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-021--treble-bleed-is-deferred) | Use no treble bleed during the first validation pass. | Confirmed | Design decision | Ready to promote | Velvet bench-test plan |
+| [VAC-022](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-022--use-a-serviceable-bench-harness) | Use an accessible harness with replaceable networks, test points, swappable pots, and selectable shaper placement. | Confirmed | Engineering standard | Ready to promote | Velvet bench-test plan |
+| [VAC-023](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-023--initial-pot-comparison-set) | Compare B500K/A500K neck, B500K/B1M Nashville, and begin with A500K master volume. | Proposed | Reference design | Awaiting review | — |
+| [VAC-024](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-024--validate-interaction-before-tonal-refinement) | Validate control interaction and usable sweeps before final tonal refinement. | Confirmed | Engineering standard | Ready to promote | Velvet bench-test plan |
+| [VAC-025](sources/2026-08-05-velvet-alternate-control-architecture.md#vac-025--eight-acceptance-criteria-govern-canonization) | Canonize the architecture only if it passes all eight documented musical, electrical, and usability criteria. | Confirmed | Design decision | Ready to promote | Velvet engineering log |
 | [RCCP-001](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-001--model-name-is-coupeville-current) | Name the model Coupeville Current. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
 | [RCCP-002](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-002--relay-and-coupeville-names-have-different-roles) | Define Relay as the modular builder platform and Coupeville as the crafted-instrument line beneath the platform-neutral Guitars subject. | Confirmed | Project or governance principle | Ready to promote | `docs/architecture/site-organization.md` |
 | [RCCP-003](sources/2026-07-30-relay-current-coupeville-plan.md#rccp-003--current-lineage-crosses-platforms-without-coupling-implementations) | Share Current lineage while keeping platform implementations distinct. | Confirmed | Platform, model, or voicing documentation | Awaiting review | — |
@@ -193,12 +219,22 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - VDH-026 through VDH-031 define a measurement-and-audition method. Exact screening bands and the minimal-load sequence remain recommendations until reviewed in use.
 - VDH-033 and VDH-034 constrain causal claims about Prototype 1 until the Nashville and remaining passive network are isolated.
 - VDH-035 through VDH-038 are candidates for the next reference, not Coupeville-facing promises. This follows CRL-010's rule against documenting uncommitted future possibilities for Coupeville instruments.
+- VAC-001 and VAC-025 establish a guarded experiment: the alternate controls are approved for bench evaluation but cannot replace the current Velvet reference direction without passing every acceptance criterion and receiving explicit canonization.
+- VAC-004 through VAC-007 revisit passive pickup layering without superseding VDH-020's production rejection. VAC-017 through VAC-020 capture the tests required to decide whether the new topology avoids the earlier interaction problems.
+- VAC-008 and VAC-015 revisit stepped passive shaping using a serviceable five-way blade. VDH-018 continues to reject the original horn-mounted six-position system from reference Velvet.
+- VAC-016 reuses the Prototype 1 pickup set to isolate the control experiment; it does not reverse the set's rejection as the next Velvet reference pickup trio.
+- VAC-012 through VAC-020 are bench questions, not owner-review questions that can be resolved from prose alone.
 
 ## Open questions
 
 1. After player testing, should Reef retain its current neck-humbucker/middle-lipstick/bridge-lipstick layout or move the humbucker to the bridge? (CRL-002)
 2. What are the Nashville pickup's out-of-circuit inductance and Q, and does it retain a distinct clean voice under simplified loading? (VDH-033)
 3. If Prototype 1 diagnosis continues, what does the staged shaper, tone-branch, and direct-to-jack isolation sequence reveal? (VDH-034)
+4. Which passive signal order permits the intended outer selection, Nashville blending, and selectable shaping without unacceptable interaction? (VAC-012)
+5. Is the fixed full-output bridge musically useful or too restrictive? (VAC-017)
+6. Which volume wiring, resistance values, and tapers avoid severe interaction, dead zones, and treble loss? (VAC-018)
+7. Is the Nashville-only control state useful and understandable enough to retain? (VAC-019)
+8. Does the post-mix master volume preserve the internal pickup balance across its usable sweep? (VAC-020)
 
 ## Promotion log
 
