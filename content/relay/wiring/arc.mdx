@@ -1,120 +1,109 @@
 ---
-title: 'Wiring Guide'
-description: 'Bench-side wiring reference for the Relay Arc base harness.'
+title: 'Relay Arc Wiring'
+description: 'Relay Arc super-switch, Arc Mode, master controls, and grounding connections.'
 ---
 
-This is the bench-side reference for the Relay Arc harness. It gives you the selector map, pickup locations, labeled connection points, and the published base wiring without turning into a full step-by-step soldering lesson.
+Relay Arc places a GFS Retrotron Liverpool at the bridge, a GFS Dream 180 in the middle, and a GFS Vintage ’59 at the neck. A four-pole five-way super switch selects the pickups. Pulling the A500k tone control engages Arc Mode: the Liverpool takes a 680 pF series path, while the selected Dream 180 or Vintage ’59 can receive a partial split. The A500k master volume has a parallel 1 nF / 150 kΩ treble bleed; the modern master tone uses a 22 nF capacitor.
 
-## Control Layout
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Relay Arc wiring reference · Rev 1.0 · September 12, 2026</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/wiring-diagrams/relay-arc-rev-1.0.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/wiring-diagrams/relay-arc-rev-1.0.png" download="relay-arc-wiring-rev-1.0.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/wiring-diagrams/relay-arc-rev-1.0.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Relay Arc wiring diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/wiring-diagrams/relay-arc-rev-1.0.png" alt="Relay Arc wiring diagram showing Liverpool bridge, Dream 180 middle, and Vintage 59 neck pickups; four-pole five-way super-switch contacts; six Arc Mode push-pull contacts; rear-view A500k volume and tone pots; ten operating states; and common ground." width="2400" height="1830" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
 
-<ControlPositions switchLabel="5-Way Blade">
-    <ControlPosition label="1" name="Bridge">
-        Retrotron Liverpool alone. The brightest, quickest Arc position.
-    </ControlPosition>
-    <ControlPosition label="2" name="Bridge + Middle">
-        Liverpool and Dream 180 in parallel. Open attack with extra width.
-    </ControlPosition>
-    <ControlPosition label="3" name="Middle">
-        Dream 180 alone. The main Arc voice.
-    </ControlPosition>
-    <ControlPosition label="4" name="Neck + Middle">
-        Vintage 59 and Dream 180 in parallel. Wider and softer than position 3.
-    </ControlPosition>
-    <ControlPosition label="5" name="Neck">
-        Vintage 59 alone. The warmest Arc position.
-    </ControlPosition>
-</ControlPositions>
+The super switch and tone push-pull show **functional contact maps**, not the physical solder-lug numbering of a particular switch. Identify the lugs on the parts in hand with a continuity meter. Colored paths identify circuit roles, not guaranteed GFS wire colors.
 
-**Volume** - Standard 500k audio taper.
+## What each switch position does
 
-**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs remain open until the Arc air contour is finalized.
+| Five-way selector   | Arc Mode down (tone pushed)   | Arc Mode up (tone pulled)                        |
+| ------------------- | ----------------------------- | ------------------------------------------------ |
+| 1 — Bridge          | Liverpool full/direct         | Liverpool full through 680 pF series capacitor   |
+| 2 — Bridge + middle | Liverpool direct + Dream full | Liverpool through 680 pF + Dream partially split |
+| 3 — Middle          | Dream full                    | Dream partially split                            |
+| 4 — Middle + neck   | Dream full + Vintage ’59 full | Dream **full** + Vintage ’59 partially split     |
+| 5 — Neck            | Vintage ’59 full              | Vintage ’59 partially split                      |
 
-## Pickup Layout
+Selected pickups combine in parallel. Arc Mode never splits the Liverpool. In position 4, the Dream 180 remains a full humbucker; only the Vintage ’59 reaches the partial-split resistor. Arc Mode's 680 pF capacitor is **in series with Liverpool hot**, so it affects only positions 1–2. It is not the 22 nF tone capacitor or the 1 nF treble-bleed capacitor.
 
-- Bridge: `GFS Retrotron Liverpool`, bridge cavity, main bright voice.
-- Middle: `GFS Dream 180`, middle cavity, main Arc destination.
-- Neck: `GFS Vintage 59`, neck cavity, warm supporting voice.
+## Parts and lead identification
 
-## Reference Labels
+- **Bridge:** GFS Retrotron Liverpool, hot (`L-H`) and coil return, plus separate shield/case ground if supplied. Its series junction is not used. Insulate a supplied single split lead; with a four-conductor version, join and insulate the specified series pair.
+- **Middle:** GFS Dream 180, hot (`D-H`), coil return, separate shield/case ground, and accessible series junction (`D-J`).
+- **Neck:** GFS Vintage ’59, hot (`V-H`), coil return, separate shield/case ground, and accessible series junction (`V-J`).
+- **Switching:** Four-pole five-position super switch and an A500k push-pull master tone. The switch mechanism and physical lug order must be verified by continuity.
+- **Components:** A500k master volume; 680 pF Liverpool series capacitor; 3.3 kΩ partial-split resistor; 1 nF capacitor and 150 kΩ resistor in parallel for the volume treble bleed; 22 nF (`0.022 µF`, `223`) tone capacitor; mono output jack.
 
-<ComponentLabels>
-    <ComponentLabel id="BP-H" component="Bridge Pickup (Retrotron Liverpool)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="BP-G" component="Bridge Pickup (Retrotron Liverpool)" wire="black" description="Ground wire" />
-    <ComponentLabel id="MP-H" component="Middle Pickup (Dream 180)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="MP-G" component="Middle Pickup (Dream 180)" wire="black" description="Ground wire" />
-    <ComponentLabel id="NP-H" component="Neck Pickup (Vintage 59)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="NP-G" component="Neck Pickup (Vintage 59)" wire="black" description="Ground wire" />
-    <ComponentLabel id="SW-BP" component="5-Way Selector" description="Bridge input lug" />
-    <ComponentLabel id="SW-MP" component="5-Way Selector" description="Middle input lug" />
-    <ComponentLabel id="SW-NP" component="5-Way Selector" description="Neck input lug" />
-    <ComponentLabel id="SW-OUT" component="5-Way Selector" description="Selector common/output lug" />
-    <ComponentLabel id="VOL-IN" component="Volume Pot (500k)" description="Input lug from selector" />
-    <ComponentLabel id="VOL-W" component="Volume Pot (500k)" description="Wiper/output lug to jack" />
-    <ComponentLabel id="VOL-B" component="Volume Pot (500k)" description="Back of pot, tied to ground bus" />
-    <ComponentLabel id="TON-IN" component="Tone Pot (500k push-pull)" description="Tone input lug, tapped from VOL-IN" />
-    <ComponentLabel id="TON-W" component="Tone Pot (500k push-pull)" description="Tone wiper lug to capacitor" />
-    <ComponentLabel id="TON-B" component="Tone Pot (500k push-pull)" description="Back of pot, tied to ground bus" />
-    <ComponentLabel id="TON-A1" component="Tone Push-Pull Switch" description="Pole A, lug 1 - leave open in this revision" />
-    <ComponentLabel id="TON-A2" component="Tone Push-Pull Switch" description="Pole A, lug 2 - leave open in this revision" />
-    <ComponentLabel id="TON-A3" component="Tone Push-Pull Switch" description="Pole A, lug 3 - leave open in this revision" />
-    <ComponentLabel id="TON-B1" component="Tone Push-Pull Switch" description="Pole B, lug 1 - leave open in this revision" />
-    <ComponentLabel id="TON-B2" component="Tone Push-Pull Switch" description="Pole B, lug 2 - leave open in this revision" />
-    <ComponentLabel id="TON-B3" component="Tone Push-Pull Switch" description="Pole B, lug 3 - leave open in this revision" />
-    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg from tone wiper" />
-    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg to ground bus" />
-    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot)" />
-    <ComponentLabel id="J-SLV" component="Output Jack" description="Sleeve lug (ground)" />
-    <ComponentLabel id="GND" component="Ground Bus" description="Common ground point for pot backs, pickup grounds, shielding, and jack sleeve" />
-</ComponentLabels>
+A GFS harness may present its series junction as **one external lead**. Use that single lead for `D-J` or `V-J`. A conventional four-conductor harness exposes **two separate series ends**; join the maker's specified pair to form the junction. Confirm hot, return, junction, and shield on the supplied pickup guides and with a meter before soldering. Keep a separate metal cover or shield lead grounded rather than using it as a switchable coil return.
 
-## Wiring Map
+## Super-switch contact map
 
-<WiringConnections>
-    <WireConnection from="BP-H" to="SW-BP" notes="Bridge pickup hot to bridge selector lug" />
-    <WireConnection from="MP-H" to="SW-MP" notes="Middle pickup hot to middle selector lug" />
-    <WireConnection from="NP-H" to="SW-NP" notes="Neck pickup hot to neck selector lug" />
-    <WireConnection from="SW-OUT" to="VOL-IN" notes="Selector output to volume input" />
-    <WireConnection from="VOL-IN" to="TON-IN" notes="Tone feed tapped from volume input" />
-    <WireConnection from="VOL-W" to="J-TIP" notes="Volume output to jack tip" />
-    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor hot leg" />
-    <WireConnection from="BP-G" to="GND" notes="Bridge pickup ground" />
-    <WireConnection from="MP-G" to="GND" notes="Middle pickup ground" />
-    <WireConnection from="NP-G" to="GND" notes="Neck pickup ground" />
-    <WireConnection from="VOL-B" to="GND" notes="Ground the volume pot body" />
-    <WireConnection from="TON-B" to="GND" notes="Ground the tone pot body" />
-    <WireConnection from="CAP-G" to="GND" notes="Capacitor return to ground" />
-    <WireConnection from="J-SLV" to="GND" notes="Jack sleeve to ground bus" />
-</WiringConnections>
+For each pole, its common contacts the numbered throw matching the five-way blade position. This table is functional; find the physical lugs on the actual super switch by continuity.
 
-Leave `TON-A1` through `TON-B3` open in this published revision. Those six switch lugs are reserved for the Arc air contour and are intentionally unused in the base harness.
+| Pole                 | Common  | Position 1 | Position 2 | Position 3 | Position 4 | Position 5 |
+| -------------------- | ------- | ---------- | ---------- | ---------- | ---------- | ---------- |
+| A — audio            | `BUS`   | `L`        | `L`        | `D-H`      | `D-H`      | open       |
+| B — audio            | `BUS`   | open       | `D-H`      | open       | `V-H`      | `V-H`      |
+| C — Dream junction   | `SPLIT` | open       | `D-J`      | `D-J`      | open       | open       |
+| D — Vintage junction | `SPLIT` | open       | open       | open       | `V-J`      | `V-J`      |
 
-## Build Outline
+Join the two audio commons at `BUS` and the two junction commons at `SPLIT`. Use the two audio poles to form the combined-pickup positions; do not solder two pickup hots together at one throw. The junction poles never select `D-J` and `V-J` in the same position.
 
-<Proc title="Outline">
-    <ProcStep text="Shield the cavity first">
-        Apply copper foil before mounting any electronics. Arc is built for clean, spacious sounds, so noise control matters.
-    </ProcStep>
-    <ProcStep text="Wire the selector and pickups as the core harness">
-        Build the full 5-way signal path first: pickups to selector, selector to volume, volume to jack, and the standard tone branch.
-    </ProcStep>
-    <ProcStep text="Finish the ground bus as a single system">
-        Tie all pickup grounds, pot backs, cavity shielding, capacitor return, and jack sleeve into one ground scheme instead of creating scattered ground islands.
-    </ProcStep>
-    <ProcStep text="Bench-test before installation">
-        Verify every selector position with a meter and a tap test, then install the harness in the body only after the output jack reads and sounds correct.
-    </ProcStep>
-</Proc>
+## Arc Mode push-pull contacts
 
-## Sanity Checks
+The tone push-pull has **two independent poles**. The labels `E` and `F` identify their roles; they are not manufacturer lug numbers.
 
-<Proc title="Checks">
-    <ProcStep text="Continuity">
-        In each selector position, `SW-OUT` should connect only to the lug or lugs for that position. Position 3 should isolate the middle pickup.
-    </ProcStep>
-    <ProcStep text="Resistance">
-        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 9.5 kOhm in position 1, 9.0 kOhm in position 3, and 8.0 kOhm in position 5, with the combined positions reading lower because the pickups are in parallel.
-    </ProcStep>
-    <ProcStep text="Tap test">
-        Plug into an amp at low volume and tap each pickup with a metal screwdriver. You should hear the expected pickup or pickup pair for every switch position.
-    </ProcStep>
-</Proc>
+| Pole               | Common  | Down throw   | Up throw                                               |
+| ------------------ | ------- | ------------ | ------------------------------------------------------ |
+| E — Liverpool path | `L`     | `L-H` direct | `L-C`, the far side of the 680 pF series capacitor     |
+| F — partial split  | `SPLIT` | open         | `R-IN`, one end of 3.3 kΩ; the other end goes to `GND` |
+
+Connect the near side of the 680 pF capacitor to `L-H`. Down, `L` meets `L-H` directly and `SPLIT` floats. Pulled up, `L` meets `L-C` through the capacitor and `SPLIT` reaches ground through 3.3 kΩ. Verify the actual lug pairs in **both** mechanical states before wiring the pickups.
+
+## Connection map
+
+Match identical labels in the diagram. Every `GND` symbol belongs to one common ground network.
+
+| Net     | Connect these points                                                                                                                                                                                    |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `L-H`   | Liverpool hot ↔ push-pull E down throw ↔ one side of the 680 pF capacitor.                                                                                                                            |
+| `L-C`   | Other side of the 680 pF capacitor ↔ push-pull E up throw.                                                                                                                                             |
+| `L`     | Push-pull E common ↔ super-switch A throws 1 and 2.                                                                                                                                                    |
+| `D-H`   | Dream hot ↔ super-switch A throws 3 and 4 ↔ B throw 2.                                                                                                                                                |
+| `V-H`   | Vintage hot ↔ super-switch B throws 4 and 5.                                                                                                                                                           |
+| `D-J`   | Dream series junction ↔ super-switch C throws 2 and 3.                                                                                                                                                 |
+| `V-J`   | Vintage series junction ↔ super-switch D throws 4 and 5.                                                                                                                                               |
+| `SPLIT` | Super-switch C and D commons ↔ push-pull F common.                                                                                                                                                     |
+| `BUS`   | Super-switch A and B commons ↔ volume **left/CW** input lug ↔ tone **right/CCW** feed lug ↔ one end of **both** treble-bleed components.                                                             |
+| `OUT`   | Volume **center/wiper** lug ↔ jack tip ↔ other end of **both** treble-bleed components.                                                                                                               |
+| `GND`   | Pickup coil returns and separate shields/cases; 3.3 kΩ return; volume **right/CCW** lug; 22 nF tone-cap return; pot cases; conductive switch chassis; cavity shield; bridge/string ground; jack sleeve. |
+
+**Pot orientation:** Both pots are shown from the **rear**, shafts away and lugs down. Physical left/center/right correspond to CW/wiper/CCW. Volume lugs are `BUS`/`OUT`/`GND`. Tone lugs are unused/22 nF capacitor to ground/`BUS`. The tone feed is on the volume **input** side (`BUS`), which is modern wiring. Clockwise should increase volume and brighten tone.
+
+**Treble bleed:** Join one end of the 1 nF capacitor and one end of the 150 kΩ resistor at `BUS`; join their other ends at `OUT`. They are **parallel** across the volume input and wiper, separate from the Liverpool series capacitor and the tone branch.
+
+## Build sequence
+
+1. Identify and meter all pickup leads and switch contacts. Label the super-switch poles and five throws from actual continuity in every blade position; label the push-pull's two commons and throws in both mechanical states. Keep separate pickup shields or metal cases grounded.
+2. Wire the selector audio poles A and B to produce the five full-pickup selections. Complete `BUS`, the A500k volume, the modern A500k tone branch, the jack, and common ground. Verify selection before adding Arc Mode.
+3. Wire Dream `D-J` to C throws 2–3 and Vintage `V-J` to D throws 4–5. Join C and D commons at `SPLIT`; connect this to push-pull F common. Wire F up through 3.3 kΩ to ground and leave F down open.
+4. Wire Liverpool `L-H` to E down and one side of 680 pF; connect the capacitor's far side (`L-C`) to E up, and E common (`L`) to A throws 1–2. Add the parallel 1 nF / 150 kΩ treble bleed from `BUS` to `OUT`.
+5. Bench-check all ten operating states before mounting the harness in the guitar.
+
+## Bench checks
+
+- Meter each selector pole and the push-pull separately before attaching pickup leads. In position 4, `D-J` must be isolated from `SPLIT`, while `V-J` connects to it. `D-J` and `V-J` must never be joined by the switch.
+- With Arc Mode down, neither series junction may reach the 3.3 kΩ resistor. With Arc Mode up, only Dream in positions 2–3 or Vintage in positions 4–5 may reach it. The Liverpool hot takes the direct path down and the 680 pF series path up.
+- Confirm every designated ground reaches jack sleeve and that jack tip does not have a near-zero-ohm short to sleeve with volume up. At volume zero, jack tip should reach ground through the volume wiper. Capacitors block steady DC after a meter settles; use measured parts rather than fixed pickup-resistance targets.
+- Tap-test at low amplifier volume in all ten states. Position 4 should keep Dream full while Vintage changes to the partial split. Confirm the Liverpool still sounds in positions 1–2 with Arc Mode up, and check the combined positions for unexpected phase cancellation.
+- Turn the knobs from stop to stop: clockwise should increase volume and brighten the tone. Audition the treble bleed as volume rolls down before final installation.
