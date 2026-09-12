@@ -1,120 +1,67 @@
 ---
-title: 'Wiring Guide'
-description: 'Bench-side wiring reference for the Relay Torch base harness.'
+title: 'Relay Torch Wiring'
+description: 'Relay Torch five-way pickup selection, modern tone circuit, and global Edge Contour connections.'
 ---
 
-This is the bench-side reference for the Relay Torch harness. It gives you the selector map, pickup roles, labeled connection points, and the published base wiring without trying to turn the page into a full soldering class.
+Relay Torch uses a five-way blade for its GFS VEH bridge humbucker, Mean 90 middle pickup, and Professional Series Alnico II neck humbucker. An A500k master volume controls the output without a treble bleed. The A500k push-pull tone pot provides a standard modern 22 nF tone branch and switches the global Edge Contour.
 
-## Control Layout
+## Controls and switching
 
 <ControlPositions switchLabel="5-Way Blade">
     <ControlPosition label="1" name="Bridge">
-        Bridge humbucker alone.
+        VEH bridge humbucker alone.
     </ControlPosition>
     <ControlPosition label="2" name="Bridge + Middle">
-        Bridge humbucker and Mean 90 in parallel.
+        VEH and Mean 90 in parallel.
     </ControlPosition>
     <ControlPosition label="3" name="Middle">
-        Mean 90 alone. This is the main Torch destination.
+        Mean 90 alone.
     </ControlPosition>
     <ControlPosition label="4" name="Neck + Middle">
-        Neck humbucker and Mean 90 in parallel.
+        Professional Alnico II and Mean 90 in parallel.
     </ControlPosition>
     <ControlPosition label="5" name="Neck">
-        Neck humbucker alone.
+        Professional Alnico II neck humbucker alone.
     </ControlPosition>
 </ControlPositions>
 
-**Volume** - Standard 500k audio taper.
+| Tone push-pull | Signal path after the five-way selector                  | Result                                              |
+| -------------- | -------------------------------------------------------- | --------------------------------------------------- |
+| Down           | Selector output directly to volume input                 | Full, unshaped pickup signal.                       |
+| Pulled up      | Selector output through the Edge network to volume input | Tighter lows and a more prominent upper-mid attack. |
 
-**Tone (push-pull)** - The published base harness uses the pot as a standard tone control. The push-pull switch lugs stay open until the Torch edge contour is finalized.
+The **Edge network** is a 2.2 nF (`0.0022 µF`, `222`) capacitor **in parallel** with a 150 kΩ resistor. Those two components form one network that is switched **in series** with the selected pickup signal. It affects every blade position. This passive contour removes some low-frequency energy relative to the highs; it does not add gain.
 
-## Pickup Layout
+The standard tone branch takes its feed from the **volume input**, after the Edge switch, and runs through the A500k tone pot and 22 nF (`0.022 µF`, `223`) capacitor to ground. This is modern master-tone wiring. The tone feed does not come from the volume wiper, and the tone pot is not a no-load control.
 
-- Bridge: `GFS VEH Humbucker`, bridge cavity, strongest driven voice.
-- Middle: `GFS Mean 90`, middle cavity, main Torch voice.
-- Neck: `GFS Professional Series Alnico II Humbucker`, neck cavity, rounded supporting voice.
+## Connection map
 
-## Reference Labels
+The labels below describe electrical nodes. They are **functional contact names**, not physical lug numbers for an arbitrary switch. Check the actual blade and push-pull with a continuity meter before soldering.
 
-<ComponentLabels>
-    <ComponentLabel id="BP-H" component="Bridge Pickup (VEH)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="BP-G" component="Bridge Pickup (VEH)" wire="black" description="Ground wire" />
-    <ComponentLabel id="MP-H" component="Middle Pickup (Mean 90)" wire="red" description="Hot output wire" />
-    <ComponentLabel id="MP-G" component="Middle Pickup (Mean 90)" wire="black" description="Ground wire" />
-    <ComponentLabel id="NP-H" component="Neck Pickup" wire="red" description="Hot output wire" />
-    <ComponentLabel id="NP-G" component="Neck Pickup" wire="black" description="Ground wire" />
-    <ComponentLabel id="SW-BP" component="5-Way Selector" description="Bridge input lug" />
-    <ComponentLabel id="SW-MP" component="5-Way Selector" description="Middle input lug" />
-    <ComponentLabel id="SW-NP" component="5-Way Selector" description="Neck input lug" />
-    <ComponentLabel id="SW-OUT" component="5-Way Selector" description="Selector common/output lug" />
-    <ComponentLabel id="VOL-IN" component="Volume Pot (500k)" description="Input lug from selector" />
-    <ComponentLabel id="VOL-W" component="Volume Pot (500k)" description="Wiper/output lug to jack" />
-    <ComponentLabel id="VOL-B" component="Volume Pot (500k)" description="Back of pot, tied to ground bus" />
-    <ComponentLabel id="TON-IN" component="Tone Pot (500k push-pull)" description="Tone input lug, tapped from VOL-IN" />
-    <ComponentLabel id="TON-W" component="Tone Pot (500k push-pull)" description="Tone wiper lug to capacitor" />
-    <ComponentLabel id="TON-B" component="Tone Pot (500k push-pull)" description="Back of pot, tied to ground bus" />
-    <ComponentLabel id="TON-A1" component="Tone Push-Pull Switch" description="Pole A, lug 1 - leave open in this revision" />
-    <ComponentLabel id="TON-A2" component="Tone Push-Pull Switch" description="Pole A, lug 2 - leave open in this revision" />
-    <ComponentLabel id="TON-A3" component="Tone Push-Pull Switch" description="Pole A, lug 3 - leave open in this revision" />
-    <ComponentLabel id="TON-B1" component="Tone Push-Pull Switch" description="Pole B, lug 1 - leave open in this revision" />
-    <ComponentLabel id="TON-B2" component="Tone Push-Pull Switch" description="Pole B, lug 2 - leave open in this revision" />
-    <ComponentLabel id="TON-B3" component="Tone Push-Pull Switch" description="Pole B, lug 3 - leave open in this revision" />
-    <ComponentLabel id="CAP-H" component="Tone Capacitor" description="Hot leg from tone wiper" />
-    <ComponentLabel id="CAP-G" component="Tone Capacitor" description="Ground leg to ground bus" />
-    <ComponentLabel id="J-TIP" component="Output Jack" description="Tip lug (hot)" />
-    <ComponentLabel id="J-SLV" component="Output Jack" description="Sleeve lug (ground)" />
-    <ComponentLabel id="GND" component="Ground Bus" description="Common ground point for pot backs, pickup grounds, shielding, and jack sleeve" />
-</ComponentLabels>
+| Node          | Connect these points                                                                                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `B`, `M`, `N` | Bridge, middle, and neck pickup hot leads to their respective five-way selector inputs. The selector connects them to its common in the five positions above.                        |
+| `SEL`         | Five-way common output; direct/down switch throw; one end of both Edge components.                                                                                                   |
+| `EDGE`        | Join the other ends of the 2.2 nF capacitor and 150 kΩ resistor; connect that joint to the pulled/up switch throw.                                                                   |
+| `BUS`         | Push-pull switch common; A500k volume input; A500k tone input. Down joins `SEL` to `BUS`; pulled up joins `EDGE` to `BUS`.                                                           |
+| `OUT`         | Volume wiper to mono output-jack tip. No treble-bleed component bridges `BUS` and `OUT`.                                                                                             |
+| Tone branch   | `BUS` to tone pot CCW end; tone wiper through the 22 nF capacitor to `GND`. Leave the tone pot CW end unused.                                                                        |
+| `GND`         | Pickup returns and separate shields/cases, grounded volume-track end, tone-cap return, pot cases, conductive selector chassis, cavity shield, bridge/string ground, and jack sleeve. |
 
-## Wiring Map
+**Pot orientation:** In the rear view with shafts pointing away and solder lugs down, the physical left/center/right terminals are CW/wiper/CCW. The volume's left/center/right lugs are `BUS`/`OUT`/`GND`. The tone's left/center/right lugs are unused/capacitor/`BUS`. Both knobs should brighten or increase level when turned clockwise.
 
-<WiringConnections>
-    <WireConnection from="BP-H" to="SW-BP" notes="Bridge pickup hot to bridge selector lug" />
-    <WireConnection from="MP-H" to="SW-MP" notes="Middle pickup hot to middle selector lug" />
-    <WireConnection from="NP-H" to="SW-NP" notes="Neck pickup hot to neck selector lug" />
-    <WireConnection from="SW-OUT" to="VOL-IN" notes="Selector output to volume input" />
-    <WireConnection from="VOL-IN" to="TON-IN" notes="Tone feed tapped from volume input" />
-    <WireConnection from="VOL-W" to="J-TIP" notes="Volume output to jack tip" />
-    <WireConnection from="TON-W" to="CAP-H" notes="Tone wiper to capacitor hot leg" />
-    <WireConnection from="BP-G" to="GND" notes="Bridge pickup ground" />
-    <WireConnection from="MP-G" to="GND" notes="Middle pickup ground" />
-    <WireConnection from="NP-G" to="GND" notes="Neck pickup ground" />
-    <WireConnection from="VOL-B" to="GND" notes="Ground the volume pot body" />
-    <WireConnection from="TON-B" to="GND" notes="Ground the tone pot body" />
-    <WireConnection from="CAP-G" to="GND" notes="Capacitor return to ground" />
-    <WireConnection from="J-SLV" to="GND" notes="Jack sleeve to ground bus" />
-</WiringConnections>
+**Pickup leads:** Use the supplied guide for each specific GFS lead version and confirm with a meter; wire colors are not interchangeable across pickup models. Each humbucker stays in full series. Insulate an unused single split lead, or join and insulate two separate series ends when the pickup supplies those instead. Keep a separate case or shield lead grounded. The Mean 90 hot feeds `M` and its return and shield go to `GND` as supplied.
 
-Leave `TON-A1` through `TON-B3` open in this published revision. Those six switch lugs are reserved for the Torch edge contour and are intentionally unused in the base harness.
+## Build outline
 
-## Build Outline
+1. Identify the actual five-way contacts and the push-pull common and throws by continuity. Confirm the switch makes a direct `SEL`–`BUS` path down and an `SEL`–Edge network–`BUS` path pulled up.
+2. Wire each pickup hot to its blade input and complete the `GND` network. Build the A500k volume, modern A500k tone branch, 22 nF cap, and output jack.
+3. Wire the 2.2 nF and 150 kΩ Edge components in parallel and connect the two switch paths. Insulate the unused push-pull pole and all unused pickup series-junction leads.
+4. Test the complete harness in every selector and push-pull combination before installing it in the guitar.
 
-<Proc title="Outline">
-    <ProcStep text="Shield the cavity first">
-        Torch puts strong midrange right at the center of the selector map, so keep the control cavity quiet before any hardware goes in.
-    </ProcStep>
-    <ProcStep text="Build the base 5-way harness on the bench">
-        Wire all three pickups to the selector, then complete the volume, standard tone branch, and output jack before you think about installation.
-    </ProcStep>
-    <ProcStep text="Keep the ground scheme simple">
-        Use one ground bus for shielding, pickup returns, pot backs, capacitor ground, and jack sleeve.
-    </ProcStep>
-    <ProcStep text="Install only after the selector map is proven">
-        Verify the 5-way positions and tap-test response before the harness goes into the body.
-    </ProcStep>
-</Proc>
+## Bench checks
 
-## Sanity Checks
-
-<Proc title="Checks">
-    <ProcStep text="Continuity">
-        In each selector position, `SW-OUT` should connect only to the expected pickup lug or lugs. Position 3 should isolate the Mean 90.
-    </ProcStep>
-    <ProcStep text="Resistance">
-        With volume full up, measure between `J-TIP` and `J-SLV`. Expect roughly 11.2 kOhm in position 1, 8.7 kOhm in position 3, and 7.6 kOhm in position 5, with positions 2 and 4 reading lower because the pickups are in parallel.
-    </ProcStep>
-    <ProcStep text="Tap test">
-        Plug into an amp at low volume and tap each pickup with a metal screwdriver. Make sure the Mean 90 is isolated in position 3 and blended only in positions 2 and 4.
-    </ProcStep>
-</Proc>
+- Meter the five-way selector: `SEL` must connect only to bridge, bridge + middle, middle, neck + middle, or neck in the listed positions. Verify both push-pull contact states separately.
+- With the volume full up, confirm no near-zero-ohm short from jack tip to sleeve. At volume zero, the tip should reach ground. DC resistance varies with pickup and pot tolerances; measure the isolated pickups rather than using fixed advertised resistances as pass/fail limits.
+- Tap-test all ten selector/contour states at low amplifier volume. The contour should affect whichever pickup selection is active; it must not add a pickup or change the five-way map.
+- Turn both knobs from stop to stop. Clockwise should increase volume and brighten the tone. Listen to all pickup combinations for unexpected cancellation and verify that rolling down volume cleans up without a treble-bleed network.

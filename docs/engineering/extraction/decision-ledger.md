@@ -17,6 +17,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - [CRL — Coupeville Reef Layout](sources/2026-07-30-coupeville-reef-layout.md)
 - [ERP — Velvet Engineering Reference Prototype V1](sources/2026-08-05-velvet-engineering-reference-prototype-v1.md)
 - [RCCP — Relay Current Coupeville Plan](sources/2026-07-30-relay-current-coupeville-plan.md)
+- [RTC — Relay Torch Case Card and Tone-Wiring Note](sources/2026-09-12-relay-torch-case-card.md)
 - [VAC — Coupeville Velvet Alternate Control Architecture](sources/2026-08-05-velvet-alternate-control-architecture.md)
 - [VDH — Coupeville Velvet / Relay Velvet Design History](sources/2026-07-31-velvet-design-history.md)
 - [VPTC — Coupeville Velvet Pickup Target Correction](sources/2026-08-05-velvet-pickup-target-correction.md)
@@ -239,6 +240,15 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [CRL-023](sources/2026-07-30-coupeville-reef-layout.md#crl-023--preserve-1-m-unless-brightness-proves-excessive) | Retain the B1M branch volumes; the working prototype's brightness is satisfactory. | Confirmed | Design decision | Ready to promote | Reef prototype record and eventual reference design |
 | [CRL-024](sources/2026-07-30-coupeville-reef-layout.md#crl-024--treble-bleeds-remain-undecided) | Record that no treble-bleed network is believed to be installed on either Reef branch volume; verify during physical inspection before treating this as installed-component fact. | Observed | Serialized-instrument documentation | Ready to promote | Reef prototype record after physical verification |
 
+| [RTC-001](sources/2026-09-12-relay-torch-case-card.md#rtc-001--five-way-pickup-map) | Use a conventional five-way map with the middle P90-type pickup as a primary voice. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-002](sources/2026-09-12-relay-torch-case-card.md#rtc-002--modern-master-tone-connection) | Use an A500K modern master tone fed from volume input, with a 22 nF capacitor and no no-load modification. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-003](sources/2026-09-12-relay-torch-case-card.md#rtc-003--no-master-volume-treble-bleed) | Omit the Torch master-volume treble bleed. | Confirmed | Design decision | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-004](sources/2026-09-12-relay-torch-case-card.md#rtc-004--edge-contour-network) | Switch a 2.2 nF capacitor in parallel with 150 kΩ as a series contour after the selector; bypass it in the down state. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-005](sources/2026-09-12-relay-torch-case-card.md#rtc-005--global-contour-and-distinct-control-jobs) | Keep distinct jobs for volume cleanup, tone darkening, and global Edge sharpening. | Confirmed | Platform, model, or voicing documentation | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-006](sources/2026-09-12-relay-torch-case-card.md#rtc-006--a500k-current-master-volume) | Use A500K audio-taper master volume for current Torch. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-007](sources/2026-09-12-relay-torch-case-card.md#rtc-007--source-is-not-a-build-observation) | The supplied v1 bench card is not evidence of a constructed or validated Torch build. | Observed | Discussion only | Not promoted | — |
+| [RTC-008](sources/2026-09-12-relay-torch-case-card.md#rtc-008--shunted-1-m-is-future-research) | Keep shunted 1 MΩ master volume in future Torch research, outside the current reference. | Confirmed | Design decision | Promoted | [Torch reference design](../relay-torch-reference.md) |
+
 ## Consolidation notes
 
 - ZGDC-001, ZGDC-002, and ZGDC-003 overlap but are not duplicates: they separately establish authority, artifact persistence, and preservation of rationale.
@@ -281,6 +291,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - CPAL-014 supplies a repeatable validation matrix for ERP-012 and ERP-013; its eventual results should be recorded as observations rather than inferred from the plan.
 - VPTC-003 through VPTC-014 define the corrected role-based replacement strategy. Screening bands and named construction families prioritize auditions; they do not approve individual pickups.
 - VPTC-015 through VPTC-017 require the voice network, master load, and treble bleed to be retested after the actual trio is chosen. Existing V1 component values remain starting points only.
+- RTC-001 through RTC-006 were adopted by the owner as the current Torch reference on 2026-09-12. RTC-008 holds the shunted 1 MΩ idea for later research. RTC-007 still prevents treating the case card as an installed-build record.
 
 ## Open questions
 
@@ -295,4 +306,4 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 
 ## Promotion log
 
-No candidates have been promoted.
+RTC-001 through RTC-006 and RTC-008 were promoted to the [Relay Torch reference design](../relay-torch-reference.md) on 2026-09-12 after the owner adopted the case card and deferred the 1 MΩ alternative.
