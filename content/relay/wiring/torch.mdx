@@ -5,58 +5,73 @@ description: 'Relay Torch five-way pickup selection, modern tone circuit, and gl
 
 Relay Torch uses a five-way blade for its GFS VEH bridge humbucker, Mean 90 middle pickup, and Professional Series Alnico II neck humbucker. An A500k master volume controls the output without a treble bleed. The A500k push-pull tone pot provides a standard modern 22 nF tone branch and switches the global Edge Contour.
 
-## Controls and switching
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Relay Torch wiring reference · Rev 1.0 · September 12, 2026</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/wiring-diagrams/relay-torch-rev-1.0.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/wiring-diagrams/relay-torch-rev-1.0.png" download="relay-torch-wiring-rev-1.0.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/wiring-diagrams/relay-torch-rev-1.0.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Relay Torch wiring diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/wiring-diagrams/relay-torch-rev-1.0.png" alt="Relay Torch wiring diagram showing three pickups, a five-way selector, the six-lug tone push-pull Edge switch, rear-view A500k volume and tone controls, output jack, ten operating states, and common ground." width="1800" height="1240" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
 
-<ControlPositions switchLabel="5-Way Blade">
-    <ControlPosition label="1" name="Bridge">
-        VEH bridge humbucker alone.
-    </ControlPosition>
-    <ControlPosition label="2" name="Bridge + Middle">
-        VEH and Mean 90 in parallel.
-    </ControlPosition>
-    <ControlPosition label="3" name="Middle">
-        Mean 90 alone.
-    </ControlPosition>
-    <ControlPosition label="4" name="Neck + Middle">
-        Professional Alnico II and Mean 90 in parallel.
-    </ControlPosition>
-    <ControlPosition label="5" name="Neck">
-        Professional Alnico II neck humbucker alone.
-    </ControlPosition>
-</ControlPositions>
+The blade and tone push-pull show **functional contacts**, not a manufacturer-specific physical lug layout. Identify the contacts on the parts in hand with a continuity meter. The diagram's colored paths show circuit roles, not guaranteed GFS lead colors.
 
-| Tone push-pull | Signal path after the five-way selector                  | Result                                              |
-| -------------- | -------------------------------------------------------- | --------------------------------------------------- |
-| Down           | Selector output directly to volume input                 | Full, unshaped pickup signal.                       |
-| Pulled up      | Selector output through the Edge network to volume input | Tighter lows and a more prominent upper-mid attack. |
+## What each switch position does
+
+| Five-way blade      | Edge down (tone pushed)         | Edge up (tone pulled)                 |
+| ------------------- | ------------------------------- | ------------------------------------- |
+| 1 — Bridge          | VEH bridge humbucker            | VEH bridge humbucker through Edge     |
+| 2 — Bridge + middle | VEH + Mean 90 in parallel       | VEH + Mean 90 through Edge            |
+| 3 — Middle          | Mean 90                         | Mean 90 through Edge                  |
+| 4 — Neck + middle   | Alnico II + Mean 90 in parallel | Alnico II + Mean 90 through Edge      |
+| 5 — Neck            | Alnico II neck humbucker        | Alnico II neck humbucker through Edge |
 
 The **Edge network** is a 2.2 nF (`0.0022 µF`, `222`) capacitor **in parallel** with a 150 kΩ resistor. Those two components form one network that is switched **in series** with the selected pickup signal. It affects every blade position. This passive contour removes some low-frequency energy relative to the highs; it does not add gain.
 
 The standard tone branch takes its feed from the **volume input**, after the Edge switch, and runs through the A500k tone pot and 22 nF (`0.022 µF`, `223`) capacitor to ground. This is modern master-tone wiring. The tone feed does not come from the volume wiper, and the tone pot is not a no-load control.
 
+## Parts and lead identification
+
+- **Bridge:** GFS VEH humbucker, wired full series in every position.
+- **Middle:** GFS Mean 90 P90-type pickup, with hot, return, and shield or case ground as supplied.
+- **Neck:** GFS Professional Series Alnico II humbucker, wired full series in every position.
+- **Controls:** Five-way blade, A500k master volume without a treble bleed, A500k push-pull master tone, 22 nF tone capacitor, and mono output jack.
+- **Edge Contour:** 2.2 nF capacitor and 150 kΩ resistor in parallel, switched in series with the selector output when the tone control is pulled up.
+
+Use the supplied guide for each specific GFS lead version and confirm with a meter; wire colors are not interchangeable across pickup models. Insulate an unused single split lead, or join and insulate two separate series ends when the pickup supplies those instead. Keep a separate case or shield lead grounded.
+
 ## Connection map
 
-The labels below describe electrical nodes. They are **functional contact names**, not physical lug numbers for an arbitrary switch. Check the actual blade and push-pull with a continuity meter before soldering.
+Match the boxed labels in the diagram. Every `GND` symbol belongs to one common ground network. The `A1`/`A2`/`A3` push-pull labels describe a **generic terminal map**; check the actual switch with a continuity meter before soldering.
 
-| Node          | Connect these points                                                                                                                                                                 |
-| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `B`, `M`, `N` | Bridge, middle, and neck pickup hot leads to their respective five-way selector inputs. The selector connects them to its common in the five positions above.                        |
-| `SEL`         | Five-way common output; direct/down switch throw; one end of both Edge components.                                                                                                   |
-| `EDGE`        | Join the other ends of the 2.2 nF capacitor and 150 kΩ resistor; connect that joint to the pulled/up switch throw.                                                                   |
-| `BUS`         | Push-pull switch common; A500k volume input; A500k tone input. Down joins `SEL` to `BUS`; pulled up joins `EDGE` to `BUS`.                                                           |
-| `OUT`         | Volume wiper to mono output-jack tip. No treble-bleed component bridges `BUS` and `OUT`.                                                                                             |
-| Tone branch   | `BUS` to tone pot CCW end; tone wiper through the 22 nF capacitor to `GND`. Leave the tone pot CW end unused.                                                                        |
-| `GND`         | Pickup returns and separate shields/cases, grounded volume-track end, tone-cap return, pot cases, conductive selector chassis, cavity shield, bridge/string ground, and jack sleeve. |
+| Node               | Connect these points                                                                                                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `B`, `M`, `N`      | Bridge, middle, and neck pickup hot leads to their respective five-way selector inputs. The selector connects them to its common in the five positions above.                        |
+| `SEL`              | Five-way common output ↔ push-pull `A1` ↔ one end of both Edge components.                                                                                                         |
+| Edge output branch | Join the other ends of the 2.2 nF capacitor and 150 kΩ resistor and wire that joint continuously to push-pull `A3`.                                                                  |
+| `BUS`              | Push-pull common `A2` ↔ A500k volume input ↔ A500k tone input. Down joins `A2–A1` for a direct path; pulled up joins `A2–A3` to insert the Edge network.                           |
+| `OUT`              | Volume wiper to mono output-jack tip. No treble-bleed component bridges `BUS` and `OUT`.                                                                                             |
+| Tone branch        | `BUS` to tone pot CCW end; tone wiper through the 22 nF capacitor to `GND`. Leave the tone pot CW end unused.                                                                        |
+| Unused pole        | Leave push-pull `B1`, `B2`, and `B3` open and insulated.                                                                                                                             |
+| `GND`              | Pickup returns and separate shields/cases, grounded volume-track end, tone-cap return, pot cases, conductive selector chassis, cavity shield, bridge/string ground, and jack sleeve. |
 
 **Pot orientation:** In the rear view with shafts pointing away and solder lugs down, the physical left/center/right terminals are CW/wiper/CCW. The volume's left/center/right lugs are `BUS`/`OUT`/`GND`. The tone's left/center/right lugs are unused/capacitor/`BUS`. Both knobs should brighten or increase level when turned clockwise.
 
-**Pickup leads:** Use the supplied guide for each specific GFS lead version and confirm with a meter; wire colors are not interchangeable across pickup models. Each humbucker stays in full series. Insulate an unused single split lead, or join and insulate two separate series ends when the pickup supplies those instead. Keep a separate case or shield lead grounded. The Mean 90 hot feeds `M` and its return and shield go to `GND` as supplied.
+**Push-pull contacts:** The generic map uses `A2` as the common. Down connects `A2–A1`; pulled up connects `A2–A3`. The `B` pole is unused. Confirm which physical lugs make these connections in both mechanical states before soldering.
 
 ## Build outline
 
-1. Identify the actual five-way contacts and the push-pull common and throws by continuity. Confirm the switch makes a direct `SEL`–`BUS` path down and an `SEL`–Edge network–`BUS` path pulled up.
+1. Identify the pickup leads, actual five-way contacts, and push-pull common and throws by continuity. Confirm the switch makes a direct `SEL`–`BUS` path down and an `SEL`–Edge network–`BUS` path pulled up.
 2. Wire each pickup hot to its blade input and complete the `GND` network. Build the A500k volume, modern A500k tone branch, 22 nF cap, and output jack.
-3. Wire the 2.2 nF and 150 kΩ Edge components in parallel and connect the two switch paths. Insulate the unused push-pull pole and all unused pickup series-junction leads.
+3. Wire `SEL` to `A1` and to one end of both Edge components. Join their other ends at `A3`; wire `A2` to `BUS`. Leave the `B` pole open and insulate all unused pickup series-junction leads.
 4. Test the complete harness in every selector and push-pull combination before installing it in the guitar.
 
 ## Bench checks
