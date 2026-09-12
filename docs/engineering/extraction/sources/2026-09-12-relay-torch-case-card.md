@@ -8,9 +8,9 @@
 
 ## Extraction notes
 
-- The case card says “Starting Specs”; it does not document an assembled or measured Torch guitar. Treat its component values as a proposed bench design, not installed facts.
-- The accompanying text recommends modern wiring and repeats the no-bleed and 22 nF tone choices. Its closing 1 MΩ volume suggestion conflicts with the case card's 500 kΩ starting spec and does not define the suggested shunt.
-- These sources are not instructions to change the public Torch page. The public base harness currently leaves the push-pull switch unused and lists an A500K volume. Promotion requires owner review of the complete circuit.
+- On 2026-09-12, the owner explicitly adopted the case card as the **current Relay Torch reference standard** and put the shunted 1 MΩ idea into future investigation. This resolves the volume-value conflict for the current reference.
+- The case card says “Starting Specs”; it does not document an assembled or measured Torch guitar. Adoption as a reference standard does not establish installed-build facts or listening results.
+- The accompanying text recommends modern wiring and repeats the no-bleed and 22 nF tone choices. Its closing 1 MΩ volume suggestion defines no shunt and is not part of the current reference.
 
 ## Candidates
 
@@ -18,7 +18,7 @@
 
 **Statement:** Use a five-way blade for bridge, bridge plus middle, middle, neck plus middle, and neck. The middle is a P90-type primary voice between a hotter bridge humbucker and a fuller neck humbucker.
 
-**Evidence:** Proposed
+**Evidence:** Confirmed
 
 **Proposed classification:** Reference design
 
@@ -28,7 +28,7 @@
 
 **Statement:** Feed a standard master tone from the volume input node, after any engaged contour network, rather than from the volume wiper. Use an A500K tone pot and a 22 nF (`0.022 µF`, `223`) capacitor to ground, without a no-load modification.
 
-**Evidence:** Proposed
+**Evidence:** Confirmed
 
 **Proposed classification:** Reference design
 
@@ -38,17 +38,17 @@
 
 **Statement:** Leave the master volume without a treble-bleed network so rolling down volume can also soften the high end.
 
-**Evidence:** Proposed
+**Evidence:** Confirmed
 
 **Proposed classification:** Design decision
 
-**Notes:** Both supplied sources say no treble bleed. The user's message presents this as an earlier decision, but no measured build or separately approved canonical specification was supplied here.
+**Notes:** Both supplied sources say no treble bleed; the owner adopted the card as the current reference on 2026-09-12. No measured build was supplied.
 
 ### RTC-004 — Edge Contour network
 
 **Statement:** In the pulled/up state, insert a 2.2 nF (`0.0022 µF`, `222`) capacitor in parallel with a 150 kΩ resistor **as one two-terminal network in series** between selector output and volume input. In the down state, bypass the network for a direct selector-to-volume path.
 
-**Evidence:** Proposed
+**Evidence:** Confirmed
 
 **Proposed classification:** Reference design
 
@@ -58,21 +58,21 @@
 
 **Statement:** Place the Edge Contour after the five-way selector so it affects every pickup position; reserve volume for level and natural amp cleanup, standard tone for darkening, and Edge Contour for deliberate sharpening.
 
-**Evidence:** Proposed
+**Evidence:** Confirmed
 
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This is the stated control intent in both sources; the sonic outcome still needs bench listening with the selected pickups and load.
 
-### RTC-006 — Master-volume value conflict
+### RTC-006 — A500K current master volume
 
-**Statement:** Resolve whether Torch uses the case card's A500K master volume or the accompanying note's optional 1 MΩ volume, and define any proposed shunt before publishing a final circuit.
+**Statement:** Use the case card's A500K audio-taper master volume for the current Relay Torch reference.
 
-**Evidence:** Unresolved
+**Evidence:** Confirmed
 
-**Proposed classification:** Unresolved question
+**Proposed classification:** Reference design
 
-**Notes:** The case card lists “500k audio.” The accompanying recommendation says “good 1M volume pot, ideally shunted if you go that route,” but gives no shunt resistance or wiring. Do not silently substitute 1 MΩ for the published 500 kΩ component.
+**Notes:** The owner resolved the conflict on 2026-09-12: the case card is current, and 1 MΩ is for future investigation only.
 
 ### RTC-007 — Source is not a build observation
 
@@ -83,3 +83,13 @@
 **Proposed classification:** Discussion only
 
 **Notes:** Do not cite the card as installed-component or listening-test evidence without a separate build record.
+
+### RTC-008 — Shunted 1 MΩ is future research
+
+**Statement:** Consider a shunted 1 MΩ master volume only in a future Torch experiment, outside the current reference standard.
+
+**Evidence:** Confirmed
+
+**Proposed classification:** Design decision
+
+**Notes:** The owner deferred this on 2026-09-12. The shunt value and connection were never specified; they are not blanks in the current A500K reference.

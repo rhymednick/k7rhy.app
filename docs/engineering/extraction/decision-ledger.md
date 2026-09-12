@@ -240,13 +240,14 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 | [CRL-023](sources/2026-07-30-coupeville-reef-layout.md#crl-023--preserve-1-m-unless-brightness-proves-excessive) | Retain the B1M branch volumes; the working prototype's brightness is satisfactory. | Confirmed | Design decision | Ready to promote | Reef prototype record and eventual reference design |
 | [CRL-024](sources/2026-07-30-coupeville-reef-layout.md#crl-024--treble-bleeds-remain-undecided) | Record that no treble-bleed network is believed to be installed on either Reef branch volume; verify during physical inspection before treating this as installed-component fact. | Observed | Serialized-instrument documentation | Ready to promote | Reef prototype record after physical verification |
 
-| [RTC-001](sources/2026-09-12-relay-torch-case-card.md#rtc-001--five-way-pickup-map) | Use a conventional five-way map with the middle P90-type pickup as a primary voice. | Proposed | Reference design | Awaiting review | — |
-| [RTC-002](sources/2026-09-12-relay-torch-case-card.md#rtc-002--modern-master-tone-connection) | Use an A500K modern master tone fed from volume input, with a 22 nF capacitor and no no-load modification. | Proposed | Reference design | Awaiting review | — |
-| [RTC-003](sources/2026-09-12-relay-torch-case-card.md#rtc-003--no-master-volume-treble-bleed) | Omit the Torch master-volume treble bleed. | Proposed | Design decision | Awaiting review | — |
-| [RTC-004](sources/2026-09-12-relay-torch-case-card.md#rtc-004--edge-contour-network) | Switch a 2.2 nF capacitor in parallel with 150 kΩ as a series contour after the selector; bypass it in the down state. | Proposed | Reference design | Awaiting review | — |
-| [RTC-005](sources/2026-09-12-relay-torch-case-card.md#rtc-005--global-contour-and-distinct-control-jobs) | Keep distinct jobs for volume cleanup, tone darkening, and global Edge sharpening. | Proposed | Platform, model, or voicing documentation | Awaiting review | — |
-| [RTC-006](sources/2026-09-12-relay-torch-case-card.md#rtc-006--master-volume-value-conflict) | Resolve A500K case-card volume versus optional, unspecified shunted 1 MΩ volume. | Unresolved | Unresolved question | Needs resolution | — |
+| [RTC-001](sources/2026-09-12-relay-torch-case-card.md#rtc-001--five-way-pickup-map) | Use a conventional five-way map with the middle P90-type pickup as a primary voice. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-002](sources/2026-09-12-relay-torch-case-card.md#rtc-002--modern-master-tone-connection) | Use an A500K modern master tone fed from volume input, with a 22 nF capacitor and no no-load modification. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-003](sources/2026-09-12-relay-torch-case-card.md#rtc-003--no-master-volume-treble-bleed) | Omit the Torch master-volume treble bleed. | Confirmed | Design decision | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-004](sources/2026-09-12-relay-torch-case-card.md#rtc-004--edge-contour-network) | Switch a 2.2 nF capacitor in parallel with 150 kΩ as a series contour after the selector; bypass it in the down state. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-005](sources/2026-09-12-relay-torch-case-card.md#rtc-005--global-contour-and-distinct-control-jobs) | Keep distinct jobs for volume cleanup, tone darkening, and global Edge sharpening. | Confirmed | Platform, model, or voicing documentation | Promoted | [Torch reference design](../relay-torch-reference.md) |
+| [RTC-006](sources/2026-09-12-relay-torch-case-card.md#rtc-006--a500k-current-master-volume) | Use A500K audio-taper master volume for current Torch. | Confirmed | Reference design | Promoted | [Torch reference design](../relay-torch-reference.md) |
 | [RTC-007](sources/2026-09-12-relay-torch-case-card.md#rtc-007--source-is-not-a-build-observation) | The supplied v1 bench card is not evidence of a constructed or validated Torch build. | Observed | Discussion only | Not promoted | — |
+| [RTC-008](sources/2026-09-12-relay-torch-case-card.md#rtc-008--shunted-1-m-is-future-research) | Keep shunted 1 MΩ master volume in future Torch research, outside the current reference. | Confirmed | Design decision | Promoted | [Torch reference design](../relay-torch-reference.md) |
 
 ## Consolidation notes
 
@@ -290,7 +291,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 - CPAL-014 supplies a repeatable validation matrix for ERP-012 and ERP-013; its eventual results should be recorded as observations rather than inferred from the plan.
 - VPTC-003 through VPTC-014 define the corrected role-based replacement strategy. Screening bands and named construction families prioritize auditions; they do not approve individual pickups.
 - VPTC-015 through VPTC-017 require the voice network, master load, and treble bleed to be retested after the actual trio is chosen. Existing V1 component values remain starting points only.
-- RTC-002 through RTC-005 preserve the Torch circuit proposed by the supplied case card and modern-wiring note without promoting it to the public build guide. RTC-006 must be resolved before a final diagram; RTC-007 prevents treating the card as an installed-build record.
+- RTC-001 through RTC-006 were adopted by the owner as the current Torch reference on 2026-09-12. RTC-008 holds the shunted 1 MΩ idea for later research. RTC-007 still prevents treating the case card as an installed-build record.
 
 ## Open questions
 
@@ -302,8 +303,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 6. Is the Nashville-only control state useful and understandable enough to retain? (VAC-019)
 7. Does the A500K post-mix master preserve internal pickup balance, and which tested treble-bleed option best preserves voice identity? (VAC-020, ERP-009, ERP-010)
 8. Which measured and auditioned neck, middle, and bridge candidates form the final `VELVET-ERP-V1` replacement trio? (VPTC-018)
-9. Should Relay Torch's master volume be A500K as specified on the case card, or a defined shunted 1 MΩ design? (RTC-006)
 
 ## Promotion log
 
-No candidates have been promoted.
+RTC-001 through RTC-006 and RTC-008 were promoted to the [Relay Torch reference design](../relay-torch-reference.md) on 2026-09-12 after the owner adopted the case card and deferred the 1 MΩ alternative.
