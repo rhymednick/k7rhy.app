@@ -3,14 +3,78 @@ title: 'Relay Lipstick Wiring'
 description: 'Relay Lipstick pickup, selector, control, and grounding connections.'
 ---
 
-The Relay Lipstick uses a three-way selector for the bridge and neck humbuckers. The volume push-push adds the middle lipstick pickup in parallel and partially splits the bridge. The tone control is a conventional A500k pot with a 22 nF capacitor.
+The Relay Lipstick pairs a GFS Vintage ’59 bridge humbucker and GFS Professional Alnico II neck humbucker with a GFS Pro-Tube middle lipstick. The three-way toggle selects the humbuckers; the volume push-push adds the lipstick in parallel and partially splits **only the bridge**. The A500k tone control uses a 22 nF capacitor.
 
-<a href="/wiring-diagrams/relay-lipstick-rev-1.0.png" target="_blank" rel="noopener noreferrer">
-    Open the full-size wiring diagram
-</a>
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Relay Lipstick wiring reference · Rev 1.0 · September 11, 2026</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/wiring-diagrams/relay-lipstick-rev-1.0.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/wiring-diagrams/relay-lipstick-rev-1.0.png" download="relay-lipstick-wiring-rev-1.0.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/wiring-diagrams/relay-lipstick-rev-1.0.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Relay Lipstick wiring diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/wiring-diagrams/relay-lipstick-rev-1.0.png" alt="Relay Lipstick wiring diagram showing the three pickups, three-way selector, lipstick and bridge split switch, rear-view A500k volume and tone controls, treble bleed, output jack, six operating states, and common ground." width="1512" height="1040" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
 
-<img src="/wiring-diagrams/relay-lipstick-rev-1.0.png" alt="Relay Lipstick wiring diagram, revision 1.0, dated September 11, 2026. Shows GFS Vintage '59 bridge humbucker, GFS Pro-Tube middle lipstick, GFS Professional Alnico II neck humbucker, three-way selector, lipstick and bridge partial-split switch, A500k volume and tone controls, treble bleed, output jack, and grounds." width="1512" height="1040" />
+The diagram uses **functional contact labels**, not a photograph of a particular toggle or push-push switch. Identify the solder lugs on the parts in hand with a continuity meter before wiring them. Its colored paths identify circuit roles, not guaranteed GFS lead colors.
 
-<a href="/wiring-diagrams/relay-lipstick-rev-1.0.png" download="relay-lipstick-wiring-rev-1.0.png">
-    Download PNG
-</a>
+## What each switch position does
+
+| Three-way selector | Lipstick off            | Lipstick on (volume pushed)                   |
+| ------------------ | ----------------------- | --------------------------------------------- |
+| Bridge             | Full bridge humbucker   | Partially split bridge + lipstick             |
+| Both               | Full bridge + full neck | Partially split bridge + full neck + lipstick |
+| Neck               | Full neck humbucker     | Full neck + lipstick                          |
+
+Selected pickups combine in parallel. The bridge split switch operates whenever the lipstick is on, but the bridge cannot reach the output when the selector is on neck. The neck remains a full humbucker in all six states. The volume knob controls output level, and the tone knob rolls off high frequencies when turned counterclockwise.
+
+## Parts and lead identification
+
+- **Bridge:** GFS Vintage ’59 humbucker, with hot, coil return, shield, and accessible series junction (`B-LINK`). Measure its isolated full DC resistance before choosing the split resistor.
+- **Middle:** GFS Pro-Tube lipstick, with hot (`L-HOT`), return, and shield or case ground as supplied.
+- **Neck:** GFS Professional Alnico II humbucker, used in full series. On the GFS harness used here, the series junction is joined internally and **one external split lead** is provided. Insulate that single lead and leave it unconnected. A conventional four-conductor humbucker instead exposes two separate coil ends: join the maker's specified series pair together, then insulate the joint. Do not ground either version's neck series junction.
+- **Controls:** A500k master volume with a DPDT push-push switch; standard A500k master tone; 22 nF tone capacitor; mono output jack.
+- **Bridge partial split:** A ¼ W resistor equal to one quarter of the measured isolated full bridge resistance. About 2.2 kΩ is the nominal starting value for an 8.5–8.8 kΩ bridge pickup.
+- **Treble bleed:** 1 nF capacitor and 150 kΩ resistor **in series** between volume input (`BUS`) and wiper (`OUT`). These are starting values to audition with the actual cable and amplifier.
+
+## Connection map
+
+Match the boxed labels in the diagram. Every `GND` symbol belongs to one common ground network. The toggle's `C` is its common output; some three-way toggles have two common lugs that must be joined.
+
+| Label or branch       | Connect these points                                                                                                                                                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `N`                   | Neck hot ↔ selector neck input.                                                                                                                                                                                            |
+| `B`                   | Bridge hot ↔ selector bridge input.                                                                                                                                                                                        |
+| `L-HOT`               | Lipstick hot ↔ push-push `A2`.                                                                                                                                                                                             |
+| `B-LINK`              | Bridge coil series junction ↔ push-push `B2`.                                                                                                                                                                              |
+| `BUS`                 | Selector common `C` ↔ volume **left/CW** lug ↔ tone **right/CCW** lug ↔ push-push `A3` ↔ 1 nF treble-bleed capacitor.                                                                                                   |
+| `OUT`                 | Volume **center/wiper** lug ↔ output jack tip ↔ 150 kΩ treble-bleed resistor.                                                                                                                                             |
+| Split branch          | Push-push `B3` ↔ split resistor ↔ `GND`.                                                                                                                                                                                  |
+| Tone branch           | Tone **center/wiper** lug ↔ 22 nF capacitor ↔ `GND`.                                                                                                                                                                      |
+| Treble-bleed midpoint | Join only the free ends of the 1 nF capacitor and 150 kΩ resistor. This puts them in series from `BUS` to `OUT`.                                                                                                            |
+| `GND`                 | Pickup returns and separate shields/cases, both pot cases, volume **right/CCW** lug, selector chassis, bridge/string ground, cavity shielding, jack sleeve, and the grounded ends of the tone capacitor and split resistor. |
+
+**Pot orientation:** The lug directions above are the **rear view shown in the diagram**, with shafts away and lugs down. The volume's left/center/right lugs are `BUS`/`OUT`/`GND`. The tone's left/CW lug is unused; its center wiper goes through the 22 nF capacitor to ground; its right/CCW lug connects to `BUS`. Check the physical pots if their terminals are arranged differently.
+
+**Push-push contacts:** `A2` and `B2` are the two common terminals. Lipstick off connects `A2–A1` and `B2–B1`; `A1` and `B1` are left open. Lipstick on connects `A2–A3` and `B2–B3`. The two switch poles do not connect to each other. Confirm which physical lugs make these connections in both mechanical states before soldering.
+
+## Build sequence
+
+1. Identify each pickup's hot, return, shield, and series junction from its supplied lead guide and a meter. GFS lead versions differ; the wire colors in an older diagram may not match the pickups in hand. Measure the isolated full bridge resistance and choose a split resistor near one quarter of that reading.
+2. Shield the cavity and wire the humbucker core: bridge and neck to the selector, selector common to `BUS`, volume and tone pots, output jack, and all grounds. Verify these paths before adding the lipstick branch.
+3. Wire the two push-push poles: `A2` to lipstick hot and `A3` to `BUS`; `B2` to the bridge series junction and `B3` through the split resistor to `GND`. Leave `A1` and `B1` open. Add the series treble bleed across the volume input and wiper.
+4. Check the complete harness on the bench in all six operating states before installing it in the guitar.
+
+## Bench checks
+
+- With power disconnected, meter the selector: common `C` connects to bridge, both bridge and neck, then neck in the three positions. Meter the push-push in both states against the contact map above.
+- Confirm continuity among all intended ground points. The jack tip must not have a near-zero-ohm short to sleeve with the volume up. At volume zero, the grounded volume track should bring the jack tip to ground.
+- At maximum volume, the jack's DC reading should be near the selected pickup resistance in parallel with the 500 kΩ volume pot. Pickup and pot tolerances change the exact result, so use the measured parts rather than fixed resistance targets. The capacitors block steady DC after the meter settles.
+- Tap-test the pickups through a low-volume amplifier in all six states. Lipstick off should silence the lipstick; lipstick on should add it in every selector position. Only the bridge should change to a partial split, and the neck should stay full.
+- Turn the knobs from stop to stop: clockwise should increase volume and brighten tone. Check relative pickup phase in combined positions and audition the treble bleed as volume rolls down before final installation.
