@@ -75,3 +75,9 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 - Prettier: 4-space tabs, single quotes, trailing commas (es5), no print width wrapping (printWidth: 999)
 - ESLint: next/core-web-vitals + jsx-a11y + prettier
 - Path alias: `@/*` maps to project root
+
+## Diagram Work
+
+Before creating or revising a diagram, inspect the repository's existing diagrams, component assets, and source notes for the established visual language. For guitar wiring, start with `public/wiring-diagrams/components/` and its metadata; use the physical component drawings and the existing light schematic style unless the user requests a different treatment. Check component art and labels against the actual circuit rather than assuming an asset's name proves its pinout.
+
+Before presenting or committing a diagram, render it at full size and inspect legibility, wire crossings, terminal connections, and consistency with the source notes. Keep unpublished engineering diagrams under `docs/engineering/` and do not add site routes or public asset references unless requested. The Coupeville Velvet reference and its source generator are in `docs/engineering/coupeville-velvet/`.

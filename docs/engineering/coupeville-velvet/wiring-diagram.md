@@ -2,7 +2,9 @@
 
 ![Coupeville Velvet bench wiring schematic](./wiring-diagram.svg)
 
-This is the electrical reference for the 2026-08-23 [engineering log](./2026-08-23-bench-test.md). It is an unpublished bench prototype, not a production harness or a validated physical control layout. The diagram uses **functional switch contacts**, because physical lug order varies by part. Identify each common and throw with a continuity meter before soldering.
+This is the electrical reference for the 2026-08-23 [engineering log](./2026-08-23-bench-test.md). It is an unpublished bench prototype, not a production harness or a validated physical control layout. The SVG is generated from the repository's [physical wiring component artwork](../../../public/wiring-diagrams/components/metadata.json) by [generate-wiring-diagram.mjs](./generate-wiring-diagram.mjs). The pickup tails in the artwork are replaced with generic hot and ground leads so the drawing does not assign an unverified manufacturer color code.
+
+The 3-way's illustrated N/B input and joined common connections are **functional**, not manufacturer lug positions. The 24-lug 4P5T drawing illustrates the discrete five-way switch because the older library asset named `super-switch.svg` is mislabeled as 4P5T despite showing only 12 lugs. The diagram uses one five-throw pole; unused poles stay unconnected. Identify every common and throw with a continuity meter before soldering.
 
 Orient the Nashville pot so its wiper meets the **input** outer lug at knob 10 and the **third** outer lug at knob 0. In solo mode, that makes 10 full output and 0 grounded silence. Confirm the physical 3-way lever order and both push-pull throw states by continuity; the labels below describe electrical behavior, not a manufacturer's lug numbering.
 
@@ -11,7 +13,7 @@ Orient the Nashville pot so its wiper meets the **input** outer lug at knob 10 a
 | From | To | Function |
 | --- | --- | --- |
 | Bridge hot; neck hot | 3-way selector bridge; neck inputs | Positions 1/2/3: bridge, both, neck |
-| 3-way common | Outer volume input | Conventional outer-pickup volume |
+| 3-way selected common(s), joined as the switch requires | Outer volume input | Conventional outer-pickup volume |
 | Outer volume grounded outer lug | Common ground | Conventional volume divider |
 | Outer volume wiper | DPDT pole A common | Outer branch feed |
 | DPDT pole A DOWN throw | Combined signal bus | Connected only when pushed down |
