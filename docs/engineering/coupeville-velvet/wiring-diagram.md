@@ -1,12 +1,27 @@
 # Coupeville Velvet bench wiring diagram
 
-![Coupeville Velvet bench wiring schematic](./wiring-diagram.svg)
+![Coupeville Velvet bench wiring reference](./wiring-diagram.png)
 
-This is the electrical reference for the 2026-08-23 [engineering log](./2026-08-23-bench-test.md). It is an unpublished bench prototype, not a production harness or a validated physical control layout. The SVG is generated from the repository's [physical wiring component artwork](../../../public/wiring-diagrams/components/metadata.json) by [generate-wiring-diagram.mjs](./generate-wiring-diagram.mjs). The pickup tails in the artwork are replaced with generic hot and ground leads so the drawing does not assign an unverified manufacturer color code.
+This is the electrical reference for the 2026-08-23 [engineering log](./2026-08-23-bench-test.md). It is an unpublished bench prototype, not a production harness or a validated physical control layout. Its presentation follows the [Relay Arc wiring reference](../references/relay-arc-rev-1.0.png): numbered light panels, boxed net labels, functional contact maps, rear-view pot diagrams, operating states, and ground checks. The [source generator](./generate-wiring-diagram.mjs) produces the PNG and an editable [SVG](./wiring-diagram.svg). The Arc image is a **visual reference only**; all Coupeville values and connections come from the Coupeville engineering log.
 
-The 3-way's illustrated N/B input and joined common connections are **functional**, not manufacturer lug positions. The 24-lug 4P5T drawing illustrates the discrete five-way switch because the older library asset named `super-switch.svg` is mislabeled as 4P5T despite showing only 12 lugs. The diagram uses one five-throw pole; unused poles stay unconnected. Identify every common and throw with a continuity meter before soldering.
+The 3-way and DPDT panels are **functional contact maps**, not manufacturer lug positions. The five-way voice network requires a true discrete 1P5T pole, available on an appropriate Super Switch; an ordinary combining Fender-style five-way is unsuitable. Identify every common and throw with a continuity meter before soldering. Box colors and pickup illustrations identify electrical roles, not manufacturer wire colors or finalized outer-pickup models.
 
 Orient the Nashville pot so its wiper meets the **input** outer lug at knob 10 and the **third** outer lug at knob 0. In solo mode, that makes 10 full output and 0 grounded silence. Confirm the physical 3-way lever order and both push-pull throw states by continuity; the labels below describe electrical behavior, not a manufacturer's lug numbering.
+
+## Net labels
+
+| Net | Connected points |
+| --- | --- |
+| `B-H` | Bridge hot → 3-way bridge pole throws 1 and 2 |
+| `N-H` | Neck hot → 3-way neck pole throws 2 and 3 |
+| `SEL` | Both 3-way commons → outer-volume input/CW lug |
+| `O-W` | Outer-volume wiper → push-pull pole A common |
+| `M-H` | Nashville hot → B500K input/CW lug |
+| `M-LOW` | B500K third/CCW lug → push-pull pole B common |
+| `BUS` | B500K wiper, pole A DOWN throw, output jack tip, and discrete five-way common |
+| `GND` | Pickup returns and separate shields, outer-volume CCW lug, pole B UP throw, RC returns, pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve |
+
+The source does not specify an exact outer-volume resistance or taper, nor finalized outer-pickup models for this Coupeville experiment. The pickup drawings show their roles only.
 
 ## Connections
 

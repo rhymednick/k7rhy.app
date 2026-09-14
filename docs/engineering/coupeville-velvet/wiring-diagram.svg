@@ -1,704 +1,297 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1550" viewBox="0 0 2200 1550" role="img" aria-labelledby="title desc">
-<title id="title">Coupeville Velvet bench wiring diagram</title>
-<desc id="desc">Physical-style reference using the repository's guitar component drawings. Outer neck and bridge pickups feed a three-way blade and push-pull volume. Nashville middle pickup feeds a B500K blend pot. The push-pull switches between blend and Nashville solo. A discrete five-way voice switch selects one of four resistor-capacitor shunts to ground.</desc>
-<style>
-  text { font-family: Arial, sans-serif; fill: #2f3438; }
-  .title { font-size: 39px; font-weight: 700; }
-  .section { font-size: 24px; font-weight: 700; }
-  .label { font-size: 19px; font-weight: 700; }
-  .small { font-size: 17px; }
-  .note { font-size: 16px; fill: #59636b; }
-  .hot { fill: none; stroke: #b83228; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
-  .ground { fill: none; stroke: #2a7a38; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
-  .hot-dot { fill: #b83228; } .ground-dot { fill: #2a7a38; }
-  .rule { stroke: #c5cbd0; stroke-width: 2; }
-  .callout { fill: #f4f6f7; stroke: #b8c0c6; stroke-width: 1.5; }
-</style>
-<rect width="2200" height="1550" fill="white"/>
-<text id="heading" class="title" x="65" y="61">Coupeville Velvet · bench wiring</text>
-<text class="note" x="67" y="91">Electrical layout using the K7RHY wiring component library · 2026-08-23 experiment · physical lug orientation must be checked</text>
-<line class="rule" x1="65" y1="115" x2="2135" y2="115"/>
-<text class="section" x="66" y="153">Pickups, controls, and output</text>
-<svg x="80" y="180" width="220" height="130" viewBox="0 0 220 130">
-  <rect width="220" height="130" fill="white"/>
-
-  <!-- Pickup body -->
-  <rect x="5" y="20" width="175" height="82" rx="4" fill="#efefef" stroke="#333" stroke-width="2"/>
-
-  <!-- Coil divider (dashed horizontal between screw row and slug row) -->
-  <line x1="5" y1="66" x2="180" y2="66" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>
-
-  <!-- ROW 1 — Coil A screws (adjustable, with cross marks) -->
-  <circle cx="22"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="22"  y1="47" x2="22"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="17"  y1="52" x2="27"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="46"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="46"  y1="47" x2="46"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="41"  y1="52" x2="51"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="70"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="70"  y1="47" x2="70"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="65"  y1="52" x2="75"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="106" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="106" y1="47" x2="106" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="101" y1="52" x2="111" y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="130" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="130" y1="47" x2="130" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="125" y1="52" x2="135" y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="154" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="154" y1="47" x2="154" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="149" y1="52" x2="159" y2="52" stroke="#555" stroke-width="1.2"/>
-
-  <!-- ROW 2 — Coil B slugs (fixed, plain circles) -->
-  <circle cx="22"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="46"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="70"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="106" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="130" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="154" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-
-  <!-- Row labels (left margin) -->
-  <text x="7" y="27" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL A</text>
-  <text x="7" y="35" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">screws</text>
-  <text x="7" y="75" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL B</text>
-  <text x="7" y="83" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">slugs</text>
-
-  <!-- Title -->
-  <text x="88" y="98" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#333">HUMBUCKER (4-COND.)</text>
-
-  <!-- 4-conductor wires (right side) -->
-  <!-- Black — hot -->
-  <line x1="180" y1="35" x2="218" y2="35" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="35" r="4" fill="#1a1a1a"/>
-  <!-- White — coil start/finish -->
-  <line x1="180" y1="52" x2="218" y2="52" stroke="#999" stroke-width="3.5" stroke-linecap="round"/>
-  <line x1="180" y1="52" x2="218" y2="52" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="218" cy="52" r="4" fill="#e0e0e0" stroke="#999" stroke-width="1"/>
-  <!-- Red — coil tap -->
-  <line x1="180" y1="69" x2="218" y2="69" stroke="#cc2200" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="69" r="4" fill="#cc2200"/>
-  <!-- Green — ground/shield -->
-  <line x1="180" y1="86" x2="218" y2="86" stroke="#2a7a38" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="86" r="4" fill="#2a7a38"/>
-</svg>
-<svg x="80" y="395" width="200" height="90" viewBox="0 0 200 90">
-  <defs>
-    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#f2f2f2"/>
-      <stop offset="25%"  stop-color="#d8d8d8"/>
-      <stop offset="55%"  stop-color="#b0b0b0"/>
-      <stop offset="80%"  stop-color="#c8c8c8"/>
-      <stop offset="100%" stop-color="#e0e0e0"/>
-    </linearGradient>
-  </defs>
-  <rect width="200" height="90" fill="white"/>
-
-  <!-- Outer mounting ring (slightly wider, black border) -->
-  <rect x="2" y="12" width="156" height="66" rx="5" fill="#c0c0c0" stroke="#444" stroke-width="2"/>
-  <!-- Chrome cover (unified — no visible coil split) -->
-  <rect x="6" y="15" width="148" height="60" rx="4" fill="url(#chrome)" stroke="#888" stroke-width="1"/>
-
-  <!-- Highlight stripe (chrome sheen) -->
-  <rect x="8" y="17" width="144" height="10" rx="2" fill="white" opacity="0.35"/>
-
-  <!-- 6 pole screws — single row, centered, widely spaced (Filtertron style) -->
-  <circle cx="26"  cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="26"  y1="39" x2="26"  y2="51" stroke="#555" stroke-width="1.5"/>
-  <circle cx="50"  cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="50"  y1="39" x2="50"  y2="51" stroke="#555" stroke-width="1.5"/>
-  <circle cx="74"  cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="74"  y1="39" x2="74"  y2="51" stroke="#555" stroke-width="1.5"/>
-  <circle cx="98"  cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="98"  y1="39" x2="98"  y2="51" stroke="#555" stroke-width="1.5"/>
-  <circle cx="122" cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="122" y1="39" x2="122" y2="51" stroke="#555" stroke-width="1.5"/>
-  <circle cx="146" cy="45" r="6.5" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <line x1="146" y1="39" x2="146" y2="51" stroke="#555" stroke-width="1.5"/>
-
-  <!-- Label -->
-  <text x="79" y="67" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#555">FILTER'TRON</text>
-  <text x="79" y="76" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#888">chrome cover · humbucking</text>
-
-  <!-- Hot wire (black) -->
-  <line x1="158" y1="30" x2="198" y2="30" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="198" cy="30" r="4" fill="#1a1a1a"/>
-  <!-- Ground wire (green) -->
-  <line x1="158" y1="60" x2="198" y2="60" stroke="#2a7a38" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="198" cy="60" r="4" fill="#2a7a38"/>
-</svg>
-<svg x="80" y="600" width="220" height="130" viewBox="0 0 220 130">
-  <rect width="220" height="130" fill="white"/>
-
-  <!-- Pickup body -->
-  <rect x="5" y="20" width="175" height="82" rx="4" fill="#efefef" stroke="#333" stroke-width="2"/>
-
-  <!-- Coil divider (dashed horizontal between screw row and slug row) -->
-  <line x1="5" y1="66" x2="180" y2="66" stroke="#999" stroke-width="1" stroke-dasharray="4,3"/>
-
-  <!-- ROW 1 — Coil A screws (adjustable, with cross marks) -->
-  <circle cx="22"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="22"  y1="47" x2="22"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="17"  y1="52" x2="27"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="46"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="46"  y1="47" x2="46"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="41"  y1="52" x2="51"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="70"  cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="70"  y1="47" x2="70"  y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="65"  y1="52" x2="75"  y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="106" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="106" y1="47" x2="106" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="101" y1="52" x2="111" y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="130" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="130" y1="47" x2="130" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="125" y1="52" x2="135" y2="52" stroke="#555" stroke-width="1.2"/>
-  <circle cx="154" cy="52" r="5.5" fill="#bbb" stroke="#666" stroke-width="1.2"/>
-  <line x1="154" y1="47" x2="154" y2="57" stroke="#555" stroke-width="1.2"/>
-  <line x1="149" y1="52" x2="159" y2="52" stroke="#555" stroke-width="1.2"/>
-
-  <!-- ROW 2 — Coil B slugs (fixed, plain circles) -->
-  <circle cx="22"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="46"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="70"  cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="106" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="130" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-  <circle cx="154" cy="80" r="5.5" fill="#ccc" stroke="#777" stroke-width="1.2"/>
-
-  <!-- Row labels (left margin) -->
-  <text x="7" y="27" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL A</text>
-  <text x="7" y="35" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">screws</text>
-  <text x="7" y="75" font-family="Arial,sans-serif" font-size="6" fill="#999">COIL B</text>
-  <text x="7" y="83" font-family="Arial,sans-serif" font-size="5.5" fill="#bbb">slugs</text>
-
-  <!-- Title -->
-  <text x="88" y="98" font-family="Arial,sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#333">HUMBUCKER (4-COND.)</text>
-
-  <!-- 4-conductor wires (right side) -->
-  <!-- Black — hot -->
-  <line x1="180" y1="35" x2="218" y2="35" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="35" r="4" fill="#1a1a1a"/>
-  <!-- White — coil start/finish -->
-  <line x1="180" y1="52" x2="218" y2="52" stroke="#999" stroke-width="3.5" stroke-linecap="round"/>
-  <line x1="180" y1="52" x2="218" y2="52" stroke="#e8e8e8" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="218" cy="52" r="4" fill="#e0e0e0" stroke="#999" stroke-width="1"/>
-  <!-- Red — coil tap -->
-  <line x1="180" y1="69" x2="218" y2="69" stroke="#cc2200" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="69" r="4" fill="#cc2200"/>
-  <!-- Green — ground/shield -->
-  <line x1="180" y1="86" x2="218" y2="86" stroke="#2a7a38" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="218" cy="86" r="4" fill="#2a7a38"/>
-</svg>
-<rect x="259" y="181" width="43" height="128" fill="white"/><rect x="238" y="396" width="44" height="88" fill="white"/><rect x="259" y="601" width="43" height="128" fill="white"/>
-<text class="label" x="82" y="175" >NECK · outer humbucker</text>
-<text class="label" x="82" y="391" >MIDDLE · Retrotron Nashville</text>
-<text class="label" x="82" y="595" >BRIDGE · outer humbucker</text>
-<path class="hot" d="M259 217 H430 V270 H634 V325"/>
-<path class="hot" d="M238 425 H400 V740 H850 V770 H957 V745"/>
-<path class="hot" d="M259 637 H450 V550 H634 V515"/>
-<path class="ground" d="M259 266 H350 V790 M238 454 H365 V790 M259 685 H380 V790"/>
-<circle class="hot-dot" cx="259" cy="217" r="5"/>
-<circle class="hot-dot" cx="238" cy="425" r="5"/>
-<circle class="hot-dot" cx="259" cy="637" r="5"/>
-<circle class="ground-dot" cx="259" cy="266" r="5"/>
-<circle class="ground-dot" cx="238" cy="454" r="5"/>
-<circle class="ground-dot" cx="259" cy="685" r="5"/>
-<svg x="480" y="320" width="220" height="200" viewBox="0 0 220 200">
-  <rect width="220" height="200" fill="white"/>
-
-  <!-- POLE 1 — top (C, IN) -->
-  <line x1="66"  y1="5" x2="66"  y2="70" stroke="#555" stroke-width="1.5"/>
-  <line x1="154" y1="5" x2="154" y2="70" stroke="#555" stroke-width="1.5"/>
-  <circle cx="66"  cy="5" r="4" fill="#555"/>
-  <circle cx="154" cy="5" r="4" fill="#555"/>
-  <text x="66"  y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
-  <text x="154" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">IN</text>
-  <text x="13" y="68" font-family="Arial,sans-serif" font-size="6.5" fill="#888">P1↑</text>
-
-  <!-- Switch housing -->
-  <rect x="10" y="70" width="200" height="60" rx="3" fill="#efefef" stroke="#333" stroke-width="2"/>
-  <!-- Blade slot -->
-  <rect x="22" y="78" width="176" height="8" rx="4" fill="#ddd" stroke="#888" stroke-width="1"/>
-  <!-- 3 position markers -->
-  <line x1="48"  y1="78" x2="48"  y2="86" stroke="#555" stroke-width="1.5"/>
-  <line x1="110" y1="78" x2="110" y2="86" stroke="#555" stroke-width="1.5"/>
-  <line x1="172" y1="78" x2="172" y2="86" stroke="#555" stroke-width="1.5"/>
-  <text x="48"  y="77" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#444">1</text>
-  <text x="110" y="77" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#444">2</text>
-  <text x="172" y="77" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#444">3</text>
-  <!-- Blade lever at pos 2 -->
-  <rect x="104" y="67" width="12" height="20" rx="3" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-  <!-- Title -->
-  <text x="110" y="111" font-family="Arial,sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#333">3-WAY BLADE  (2P3T)</text>
-  <text x="13" y="128" font-family="Arial,sans-serif" font-size="6.5" fill="#888">P2↓</text>
-
-  <!-- POLE 2 — bottom (C, IN) -->
-  <line x1="66"  y1="130" x2="66"  y2="195" stroke="#555" stroke-width="1.5"/>
-  <line x1="154" y1="130" x2="154" y2="195" stroke="#555" stroke-width="1.5"/>
-  <text x="66"  y="182" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
-  <text x="154" y="182" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">IN</text>
-  <circle cx="66"  cy="195" r="4" fill="#555"/>
-  <circle cx="154" cy="195" r="4" fill="#555"/>
-</svg>
-<text class="small" x="642" y="306" >N IN</text>
-<text class="small" x="642" y="503" >B IN</text>
-<text class="small" x="456" y="310" >C</text>
-<path class="hot" d="M546 325 H465 V540 H780 V555 H968 V445 M546 515 H465"/>
-<circle class="hot-dot" cx="634" cy="325" r="5"/>
-<circle class="hot-dot" cx="634" cy="515" r="5"/>
-<circle class="hot-dot" cx="546" cy="325" r="5"/>
-<circle class="hot-dot" cx="546" cy="515" r="5"/>
-<path d="M634 530 V550" stroke="white" stroke-width="11" fill="none"/><path class="hot" d="M634 530 V550"/>
-<path d="M400 627 V647" stroke="white" stroke-width="11" fill="none"/><path class="hot" d="M400 627 V647"/>
-<text class="note" x="482" y="582" >3-way: 1 bridge · 2 both · 3 neck</text>
-<svg x="930" y="200" width="160" height="245" viewBox="0 0 160 245">
-  <rect width="160" height="245" fill="white"/>
-
-  <!-- ── DPDT SWITCH SECTION (top) ── -->
-  <!-- Pole 1 (left group): C1, NC1, NO1 -->
-  <line x1="22" y1="5" x2="22" y2="48" stroke="#555" stroke-width="1.5"/>
-  <line x1="47" y1="5" x2="47" y2="48" stroke="#555" stroke-width="1.5"/>
-  <line x1="72" y1="5" x2="72" y2="48" stroke="#555" stroke-width="1.5"/>
-  <circle cx="22" cy="5" r="4" fill="#555"/>
-  <circle cx="47" cy="5" r="4" fill="#555"/>
-  <circle cx="72" cy="5" r="4" fill="#555"/>
-  <text x="22" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
-  <text x="47" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NC</text>
-  <text x="72" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NO</text>
-  <text x="14" y="46" font-family="Arial,sans-serif" font-size="6" fill="#888">P1↑</text>
-
-  <!-- Pole 2 (right group): C2, NC2, NO2 -->
-  <line x1="88"  y1="5" x2="88"  y2="48" stroke="#555" stroke-width="1.5"/>
-  <line x1="113" y1="5" x2="113" y2="48" stroke="#555" stroke-width="1.5"/>
-  <line x1="138" y1="5" x2="138" y2="48" stroke="#555" stroke-width="1.5"/>
-  <circle cx="88"  cy="5" r="4" fill="#555"/>
-  <circle cx="113" cy="5" r="4" fill="#555"/>
-  <circle cx="138" cy="5" r="4" fill="#555"/>
-  <text x="88"  y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">C</text>
-  <text x="113" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NC</text>
-  <text x="138" y="19" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#555">NO</text>
-  <text x="105" y="46" font-family="Arial,sans-serif" font-size="6" fill="#888">P2↑</text>
-
-  <!-- Switch housing (small bar above pot body) -->
-  <rect x="8" y="48" width="144" height="22" rx="3" fill="#e0e0e0" stroke="#555" stroke-width="1.5"/>
-  <!-- Pole divider -->
-  <line x1="80" y1="48" x2="80" y2="70" stroke="#999" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="40" y="62" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">POLE 1</text>
-  <text x="120" y="62" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#666">POLE 2</text>
-  <!-- Pull shaft indicator -->
-  <rect x="68" y="40" width="24" height="10" rx="2" fill="#888" stroke="#555" stroke-width="1"/>
-  <text x="80" y="48" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="white" font-weight="bold">PP</text>
-
-  <!-- ── POT SECTION ── -->
-  <!-- Pot body -->
-  <circle cx="80" cy="140" r="52" fill="#efefef" stroke="#333" stroke-width="2"/>
-  <!-- Resistive arc -->
-  <path d="M 37 165 A 46 46 0 1 1 123 165" fill="none" stroke="#bbb" stroke-width="3" stroke-linecap="round"/>
-  <!-- Wiper -->
-  <line x1="80" y1="140" x2="80" y2="96" stroke="#999" stroke-width="1.5" stroke-dasharray="3,2"/>
-  <circle cx="80" cy="96" r="3" fill="#999"/>
-  <!-- Hub -->
-  <circle cx="80" cy="140" r="9" fill="#ccc" stroke="#999" stroke-width="1.5"/>
-  <!-- Label -->
-  <text x="80" y="136" font-family="Arial,sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#444">POT</text>
-  <text x="80" y="150" font-family="Arial,sans-serif" font-size="7.5" text-anchor="middle" fill="#666">PUSH-PULL</text>
-  <!-- Lug labels -->
-  <text x="32" y="175" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">1</text>
-  <text x="80" y="197" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">2</text>
-  <text x="128" y="175" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">3</text>
-
-  <!-- ── POT LUGS (bottom) ── -->
-  <line x1="38"  y1="178" x2="38"  y2="238" stroke="#555" stroke-width="1.5"/>
-  <line x1="80"  y1="192" x2="80"  y2="238" stroke="#555" stroke-width="1.5"/>
-  <line x1="122" y1="178" x2="122" y2="238" stroke="#555" stroke-width="1.5"/>
-  <circle cx="38"  cy="240" r="4" fill="#555"/>
-  <circle cx="80"  cy="240" r="4" fill="#555"/>
-  <circle cx="122" cy="240" r="4" fill="#555"/>
-</svg>
-<text class="label" x="1190" y="321" >OUTER VOLUME · push-pull DPDT</text>
-<text class="small" x="904" y="475" >IN</text>
-<text class="small" x="997" y="475" >WIPER</text>
-<text class="small" x="1062" y="475" >LOW</text>
-<path class="hot" d="M1010 440 V510 H865 V170 H952 V205"/>
-<path class="ground" d="M1052 440 V790"/>
-<path class="hot" d="M977 205 V165 H1570 V420"/>
-<text class="note" x="922" y="137" >P1 C ← wiper · DOWN/NC → bus · UP/NO open</text>
-<circle class="hot-dot" cx="968" cy="440" r="5"/>
-<circle class="hot-dot" cx="1010" cy="440" r="5"/>
-<circle class="ground-dot" cx="1052" cy="440" r="5"/>
-<circle class="hot-dot" cx="952" cy="205" r="5"/>
-<circle class="hot-dot" cx="977" cy="205" r="5"/>
-<svg x="930" y="600" width="130" height="145" viewBox="0 0 130 145">
-  <rect width="130" height="145" fill="white"/>
-  <!-- Shaft stub -->
-  <rect x="59" y="12" width="12" height="8" rx="2" fill="#888" stroke="#555" stroke-width="1"/>
-  <!-- Pot body -->
-  <circle cx="65" cy="63" r="50" fill="#efefef" stroke="#333" stroke-width="2"/>
-  <!-- Resistive arc -->
-  <path d="M 24 90 A 44 44 0 1 1 106 90" fill="none" stroke="#bbb" stroke-width="3" stroke-linecap="round"/>
-  <!-- Wiper indicator -->
-  <line x1="65" y1="63" x2="65" y2="22" stroke="#999" stroke-width="1.5" stroke-dasharray="3,2"/>
-  <circle cx="65" cy="22" r="3" fill="#999"/>
-  <!-- Hub -->
-  <circle cx="65" cy="63" r="8" fill="#ccc" stroke="#999" stroke-width="1.5"/>
-  <!-- Generic label — override with draw.io shape label -->
-  <text x="65" y="60" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#bbb">POT</text>
-  <!-- Lug labels -->
-  <text x="16"  y="116" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">1</text>
-  <text x="65"  y="125" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">2</text>
-  <text x="114" y="116" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#555">3</text>
-  <!-- Lug stubs -->
-  <line x1="27" y1="95"  x2="27" y2="138" stroke="#555" stroke-width="1.5"/>
-  <line x1="65" y1="113" x2="65" y2="138" stroke="#555" stroke-width="1.5"/>
-  <line x1="103" y1="95" x2="103" y2="138" stroke="#555" stroke-width="1.5"/>
-  <circle cx="27"  cy="138" r="4" fill="#555"/>
-  <circle cx="65"  cy="138" r="4" fill="#555"/>
-  <circle cx="103" cy="138" r="4" fill="#555"/>
-</svg>
-<text class="label" x="1190" y="610" >NASHVILLE · B500K linear</text>
-<text class="small" x="923" y="767" >IN</text>
-<text class="small" x="979" y="767" >WIPER</text>
-<text class="small" x="1044" y="767" >THIRD</text>
-<path class="hot" d="M995 745 V700 H1520 V420"/>
-<path class="hot" d="M1033 745 H1110 V195 H1018 V205"/>
-<path class="ground" d="M1068 205 H1170 V790"/>
-<text class="note" x="1178" y="217" >P2 C ← third lug</text>
-<text class="note" x="1178" y="243" >DOWN/NC open · UP/NO ground</text>
-<circle class="hot-dot" cx="957" cy="745" r="5"/>
-<circle class="hot-dot" cx="995" cy="745" r="5"/>
-<circle class="hot-dot" cx="1033" cy="745" r="5"/>
-<circle class="hot-dot" cx="1018" cy="205" r="5"/>
-<circle class="ground-dot" cx="1068" cy="205" r="5"/>
-<path d="M1110 690 V710" stroke="white" stroke-width="11" fill="none"/><path class="hot" d="M1110 690 V710"/>
-<path class="hot" d="M1570 295 H1940 V420 H1850"/>
-<circle class="hot-dot" cx="1570" cy="420" r="5"/>
-<circle class="hot-dot" cx="1520" cy="420" r="5"/>
-<text class="label" x="1330" y="390" >COMBINED SIGNAL BUS</text>
-<svg x="1720" y="360" width="130" height="120" viewBox="0 0 130 120">
-  <rect width="130" height="120" fill="white"/>
-  <text x="65" y="10" font-family="Arial,sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#222">MONO JACK</text>
-  <!-- Jack barrel (outer) -->
-  <circle cx="55" cy="60" r="48" fill="#efefef" stroke="#333" stroke-width="2"/>
-  <!-- Nut hex (simplified as dashed ring) -->
-  <circle cx="55" cy="60" r="42" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="6,4"/>
-  <!-- Jack hole -->
-  <circle cx="55" cy="60" r="15" fill="#ccc" stroke="#666" stroke-width="2"/>
-  <circle cx="55" cy="60" r="7" fill="#888" stroke="#555" stroke-width="1"/>
-  <!-- "1/4 MONO" label -->
-  <text x="55" y="64" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#444">¼″</text>
-  <!-- Tip terminal (right side, 3 o'clock) -->
-  <line x1="103" y1="60" x2="128" y2="60" stroke="#555" stroke-width="1.5"/>
-  <rect x="103" y="55" width="15" height="10" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
-  <circle cx="128" cy="60" r="4" fill="#555"/>
-  <text x="110" y="52" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">TIP</text>
-  <!-- Sleeve terminal (bottom, 6 o'clock) -->
-  <line x1="55" y1="108" x2="55" y2="116" stroke="#555" stroke-width="1.5"/>
-  <rect x="50" y="108" width="10" height="8" rx="1" fill="#ccc" stroke="#555" stroke-width="1"/>
-  <circle cx="55" cy="116" r="4" fill="#555"/>
-  <text x="55" y="107" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#444">SLEEVE</text>
-</svg>
-<text class="label" x="1709" y="340" >MONO OUTPUT JACK</text>
-<path class="ground" d="M1775 480 V790"/>
-<path class="ground" d="M80 790 H2040"/>
-<circle class="ground-dot" cx="350" cy="790" r="5"/>
-<circle class="ground-dot" cx="365" cy="790" r="5"/>
-<circle class="ground-dot" cx="380" cy="790" r="5"/>
-<circle class="ground-dot" cx="1052" cy="790" r="5"/>
-<circle class="ground-dot" cx="1170" cy="790" r="5"/>
-<circle class="ground-dot" cx="1775" cy="790" r="5"/>
-<text class="note" x="85" y="817" >GROUND / SHIELD RETURN: pickup grounds · pot casings · outer-volume LOW · P2 UP · jack sleeve</text>
-<line class="rule" x1="65" y1="865" x2="2135" y2="865"/>
-<text class="section" x="66" y="908" >Five-way global voice selector · one discrete 1P5T pole of a 4P5T switch</text>
-<text class="note" x="67" y="936" >This voice network is a shunt from the combined bus to ground; the audio path to the jack does not pass through an RC pair.</text>
-<svg x="300" y="950" width="512" height="480" viewBox="0 0 320 300">
-  <rect width="320" height="300" fill="white"/>
-
-  <!-- ── POLE 1 — top (6 lugs: C 1 2 3 4 5) ── -->
-  <!-- x positions: 89 117 146 174 203 231 -->
-  <line x1="89"  y1="5" x2="89"  y2="60" stroke="#555" stroke-width="1.5"/>
-  <line x1="117" y1="5" x2="117" y2="60" stroke="#555" stroke-width="1.5"/>
-  <line x1="146" y1="5" x2="146" y2="60" stroke="#555" stroke-width="1.5"/>
-  <line x1="174" y1="5" x2="174" y2="60" stroke="#555" stroke-width="1.5"/>
-  <line x1="203" y1="5" x2="203" y2="60" stroke="#555" stroke-width="1.5"/>
-  <line x1="231" y1="5" x2="231" y2="60" stroke="#555" stroke-width="1.5"/>
-  <circle cx="89"  cy="5" r="4" fill="#555"/>
-  <circle cx="117" cy="5" r="4" fill="#555"/>
-  <circle cx="146" cy="5" r="4" fill="#555"/>
-  <circle cx="174" cy="5" r="4" fill="#555"/>
-  <circle cx="203" cy="5" r="4" fill="#555"/>
-  <circle cx="231" cy="5" r="4" fill="#555"/>
-  <text x="89"  y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">C</text>
-  <text x="117" y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">1</text>
-  <text x="146" y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">2</text>
-  <text x="174" y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">3</text>
-  <text x="203" y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">4</text>
-  <text x="231" y="20" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">5</text>
-  <text x="68" y="58" font-family="Arial,sans-serif" font-size="6.5" text-anchor="end" fill="#888">P1↑</text>
-
-  <!-- ── POLE 3 — left (6 lugs: C 1 2 3 4 5) ── -->
-  <!-- y positions: 86 111 137 163 188 214 -->
-  <line x1="5" y1="86"  x2="60" y2="86"  stroke="#555" stroke-width="1.5"/>
-  <line x1="5" y1="111" x2="60" y2="111" stroke="#555" stroke-width="1.5"/>
-  <line x1="5" y1="137" x2="60" y2="137" stroke="#555" stroke-width="1.5"/>
-  <line x1="5" y1="163" x2="60" y2="163" stroke="#555" stroke-width="1.5"/>
-  <line x1="5" y1="188" x2="60" y2="188" stroke="#555" stroke-width="1.5"/>
-  <line x1="5" y1="214" x2="60" y2="214" stroke="#555" stroke-width="1.5"/>
-  <circle cx="5" cy="86"  r="4" fill="#555"/>
-  <circle cx="5" cy="111" r="4" fill="#555"/>
-  <circle cx="5" cy="137" r="4" fill="#555"/>
-  <circle cx="5" cy="163" r="4" fill="#555"/>
-  <circle cx="5" cy="188" r="4" fill="#555"/>
-  <circle cx="5" cy="214" r="4" fill="#555"/>
-  <text x="20" y="89"  font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">C</text>
-  <text x="20" y="114" font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">1</text>
-  <text x="20" y="140" font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">2</text>
-  <text x="20" y="166" font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">3</text>
-  <text x="20" y="191" font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">4</text>
-  <text x="20" y="217" font-family="Arial,sans-serif" font-size="6" text-anchor="start" fill="#555">5</text>
-  <text x="62" y="76" font-family="Arial,sans-serif" font-size="6.5" text-anchor="start" fill="#888">←P3</text>
-
-  <!-- ── Switch housing ── -->
-  <rect x="60" y="60" width="200" height="180" rx="4" fill="#efefef" stroke="#333" stroke-width="2"/>
-
-  <!-- Blade slot (horizontal, near top of body) -->
-  <rect x="72" y="70" width="176" height="8" rx="4" fill="#ddd" stroke="#888" stroke-width="1"/>
-  <!-- 5 position markers -->
-  <line x1="90"  y1="70" x2="90"  y2="78" stroke="#555" stroke-width="1.5"/>
-  <line x1="122" y1="70" x2="122" y2="78" stroke="#555" stroke-width="1.5"/>
-  <line x1="160" y1="70" x2="160" y2="78" stroke="#555" stroke-width="1.5"/>
-  <line x1="198" y1="70" x2="198" y2="78" stroke="#555" stroke-width="1.5"/>
-  <line x1="228" y1="70" x2="228" y2="78" stroke="#555" stroke-width="1.5"/>
-  <text x="90"  y="69" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="#444">1</text>
-  <text x="122" y="69" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="#444">2</text>
-  <text x="160" y="69" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="#444">3</text>
-  <text x="198" y="69" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="#444">4</text>
-  <text x="228" y="69" font-family="Arial,sans-serif" font-size="5.5" text-anchor="middle" fill="#444">5</text>
-  <!-- Blade lever at pos 3 -->
-  <rect x="154" y="57" width="12" height="20" rx="3" fill="#aaa" stroke="#666" stroke-width="1.5"/>
-
-  <!-- Title and pole key -->
-  <text x="160" y="110" font-family="Arial,sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#333">MEGA SWITCH</text>
-  <text x="160" y="124" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">(4P5T · 24 lugs)</text>
-  <text x="160" y="150" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#888">P1 = top   P2 = bottom</text>
-  <text x="160" y="163" font-family="Arial,sans-serif" font-size="7" text-anchor="middle" fill="#888">P3 = left   P4 = right</text>
-  <text x="160" y="180" font-family="Arial,sans-serif" font-size="6.5" text-anchor="middle" fill="#aaa">C = common · 1–5 = switched</text>
-
-  <!-- ── POLE 4 — right (6 lugs: C 1 2 3 4 5) ── -->
-  <line x1="260" y1="86"  x2="315" y2="86"  stroke="#555" stroke-width="1.5"/>
-  <line x1="260" y1="111" x2="315" y2="111" stroke="#555" stroke-width="1.5"/>
-  <line x1="260" y1="137" x2="315" y2="137" stroke="#555" stroke-width="1.5"/>
-  <line x1="260" y1="163" x2="315" y2="163" stroke="#555" stroke-width="1.5"/>
-  <line x1="260" y1="188" x2="315" y2="188" stroke="#555" stroke-width="1.5"/>
-  <line x1="260" y1="214" x2="315" y2="214" stroke="#555" stroke-width="1.5"/>
-  <circle cx="315" cy="86"  r="4" fill="#555"/>
-  <circle cx="315" cy="111" r="4" fill="#555"/>
-  <circle cx="315" cy="137" r="4" fill="#555"/>
-  <circle cx="315" cy="163" r="4" fill="#555"/>
-  <circle cx="315" cy="188" r="4" fill="#555"/>
-  <circle cx="315" cy="214" r="4" fill="#555"/>
-  <text x="300" y="89"  font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">C</text>
-  <text x="300" y="114" font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">1</text>
-  <text x="300" y="140" font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">2</text>
-  <text x="300" y="166" font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">3</text>
-  <text x="300" y="191" font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">4</text>
-  <text x="300" y="217" font-family="Arial,sans-serif" font-size="6" text-anchor="end" fill="#555">5</text>
-  <text x="258" y="76" font-family="Arial,sans-serif" font-size="6.5" text-anchor="end" fill="#888">P4→</text>
-
-  <!-- ── POLE 2 — bottom (6 lugs: C 1 2 3 4 5) ── -->
-  <line x1="89"  y1="240" x2="89"  y2="295" stroke="#555" stroke-width="1.5"/>
-  <line x1="117" y1="240" x2="117" y2="295" stroke="#555" stroke-width="1.5"/>
-  <line x1="146" y1="240" x2="146" y2="295" stroke="#555" stroke-width="1.5"/>
-  <line x1="174" y1="240" x2="174" y2="295" stroke="#555" stroke-width="1.5"/>
-  <line x1="203" y1="240" x2="203" y2="295" stroke="#555" stroke-width="1.5"/>
-  <line x1="231" y1="240" x2="231" y2="295" stroke="#555" stroke-width="1.5"/>
-  <text x="89"  y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">C</text>
-  <text x="117" y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">1</text>
-  <text x="146" y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">2</text>
-  <text x="174" y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">3</text>
-  <text x="203" y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">4</text>
-  <text x="231" y="282" font-family="Arial,sans-serif" font-size="6" text-anchor="middle" fill="#555">5</text>
-  <circle cx="89"  cy="295" r="4" fill="#555"/>
-  <circle cx="117" cy="295" r="4" fill="#555"/>
-  <circle cx="146" cy="295" r="4" fill="#555"/>
-  <circle cx="174" cy="295" r="4" fill="#555"/>
-  <circle cx="203" cy="295" r="4" fill="#555"/>
-  <circle cx="231" cy="295" r="4" fill="#555"/>
-  <text x="68" y="244" font-family="Arial,sans-serif" font-size="6.5" text-anchor="end" fill="#888">P2↓</text>
-</svg>
-<text class="note" x="320" y="1470" >24-lug 4P5T example · only right-hand pole P4 wired</text>
-<path class="hot" d="M1570 420 V990 H850 V1088 H804"/>
-<path d="M1570 780 V800" stroke="white" stroke-width="11" fill="none"/><path class="hot" d="M1570 780 V800"/>
-<circle class="hot-dot" cx="804" cy="1088" r="5"/>
-<text class="small" x="868" y="1077" >COMMON from bus</text>
-<text class="small" x="837" y="1127" >P1 → no connection (bypass)</text>
-<path class="hot" d="M804 1128 H828"/>
-<circle class="hot-dot" cx="828" cy="1128" r="5"/>
-<path class="hot" d="M804 1169 H1040 M1115 1169 H1220"/>
-<svg x="1040" y="1154" width="75" height="30" viewBox="0 0 100 40">
-  <rect width="100" height="40" fill="white"/>
-  <!-- Left lead -->
-  <line x1="0" y1="20" x2="16" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Zigzag body (North American resistor symbol) -->
-  <polyline
-    points="16,20 20,6 26,34 32,6 38,34 44,6 50,34 56,6 62,34 66,20"
-    fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <!-- Right lead -->
-  <line x1="66" y1="20" x2="100" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots -->
-  <circle cx="0" cy="20" r="4" fill="#333"/>
-  <circle cx="100" cy="20" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="41" y="40" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">RESISTOR</text>
-</svg>
-<svg x="1220" y="1152" width="60" height="34" viewBox="0 0 80 45">
-  <rect width="80" height="45" fill="white"/>
-  <!-- Left lead wire -->
-  <line x1="0" y1="22" x2="28" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Left plate -->
-  <line x1="28" y1="4" x2="28" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right plate -->
-  <line x1="42" y1="4" x2="42" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right lead wire -->
-  <line x1="42" y1="22" x2="80" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots at wire ends -->
-  <circle cx="0" cy="22" r="4" fill="#333"/>
-  <circle cx="80" cy="22" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="35" y="45" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">CAP</text>
-</svg>
-<path class="ground" d="M1280 1169 H1500"/>
-<text class="label" x="934" y="1162" >P2</text>
-<text class="small" x="1131" y="1162" >470 kΩ</text>
-<text class="small" x="1300" y="1162" >2.2 nF</text>
-<circle class="hot-dot" cx="804" cy="1169" r="5"/>
-<circle class="ground-dot" cx="1500" cy="1169" r="5"/>
-<path class="hot" d="M804 1211 H1040 M1115 1211 H1220"/>
-<svg x="1040" y="1196" width="75" height="30" viewBox="0 0 100 40">
-  <rect width="100" height="40" fill="white"/>
-  <!-- Left lead -->
-  <line x1="0" y1="20" x2="16" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Zigzag body (North American resistor symbol) -->
-  <polyline
-    points="16,20 20,6 26,34 32,6 38,34 44,6 50,34 56,6 62,34 66,20"
-    fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <!-- Right lead -->
-  <line x1="66" y1="20" x2="100" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots -->
-  <circle cx="0" cy="20" r="4" fill="#333"/>
-  <circle cx="100" cy="20" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="41" y="40" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">RESISTOR</text>
-</svg>
-<svg x="1220" y="1194" width="60" height="34" viewBox="0 0 80 45">
-  <rect width="80" height="45" fill="white"/>
-  <!-- Left lead wire -->
-  <line x1="0" y1="22" x2="28" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Left plate -->
-  <line x1="28" y1="4" x2="28" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right plate -->
-  <line x1="42" y1="4" x2="42" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right lead wire -->
-  <line x1="42" y1="22" x2="80" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots at wire ends -->
-  <circle cx="0" cy="22" r="4" fill="#333"/>
-  <circle cx="80" cy="22" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="35" y="45" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">CAP</text>
-</svg>
-<path class="ground" d="M1280 1211 H1500"/>
-<text class="label" x="934" y="1204" >P3</text>
-<text class="small" x="1131" y="1204" >220 kΩ</text>
-<text class="small" x="1300" y="1204" >4.7 nF</text>
-<circle class="hot-dot" cx="804" cy="1211" r="5"/>
-<circle class="ground-dot" cx="1500" cy="1211" r="5"/>
-<path class="hot" d="M804 1251 H1040 M1115 1251 H1220"/>
-<svg x="1040" y="1236" width="75" height="30" viewBox="0 0 100 40">
-  <rect width="100" height="40" fill="white"/>
-  <!-- Left lead -->
-  <line x1="0" y1="20" x2="16" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Zigzag body (North American resistor symbol) -->
-  <polyline
-    points="16,20 20,6 26,34 32,6 38,34 44,6 50,34 56,6 62,34 66,20"
-    fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <!-- Right lead -->
-  <line x1="66" y1="20" x2="100" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots -->
-  <circle cx="0" cy="20" r="4" fill="#333"/>
-  <circle cx="100" cy="20" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="41" y="40" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">RESISTOR</text>
-</svg>
-<svg x="1220" y="1234" width="60" height="34" viewBox="0 0 80 45">
-  <rect width="80" height="45" fill="white"/>
-  <!-- Left lead wire -->
-  <line x1="0" y1="22" x2="28" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Left plate -->
-  <line x1="28" y1="4" x2="28" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right plate -->
-  <line x1="42" y1="4" x2="42" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right lead wire -->
-  <line x1="42" y1="22" x2="80" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots at wire ends -->
-  <circle cx="0" cy="22" r="4" fill="#333"/>
-  <circle cx="80" cy="22" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="35" y="45" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">CAP</text>
-</svg>
-<path class="ground" d="M1280 1251 H1500"/>
-<text class="label" x="934" y="1244" >P4</text>
-<text class="small" x="1131" y="1244" >100 kΩ</text>
-<text class="small" x="1300" y="1244" >10 nF</text>
-<circle class="hot-dot" cx="804" cy="1251" r="5"/>
-<circle class="ground-dot" cx="1500" cy="1251" r="5"/>
-<path class="hot" d="M804 1292 H1040 M1115 1292 H1220"/>
-<svg x="1040" y="1277" width="75" height="30" viewBox="0 0 100 40">
-  <rect width="100" height="40" fill="white"/>
-  <!-- Left lead -->
-  <line x1="0" y1="20" x2="16" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Zigzag body (North American resistor symbol) -->
-  <polyline
-    points="16,20 20,6 26,34 32,6 38,34 44,6 50,34 56,6 62,34 66,20"
-    fill="none" stroke="#333" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  <!-- Right lead -->
-  <line x1="66" y1="20" x2="100" y2="20" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots -->
-  <circle cx="0" cy="20" r="4" fill="#333"/>
-  <circle cx="100" cy="20" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="41" y="40" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">RESISTOR</text>
-</svg>
-<svg x="1220" y="1275" width="60" height="34" viewBox="0 0 80 45">
-  <rect width="80" height="45" fill="white"/>
-  <!-- Left lead wire -->
-  <line x1="0" y1="22" x2="28" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Left plate -->
-  <line x1="28" y1="4" x2="28" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right plate -->
-  <line x1="42" y1="4" x2="42" y2="40" stroke="#333" stroke-width="4.5" stroke-linecap="square"/>
-  <!-- Right lead wire -->
-  <line x1="42" y1="22" x2="80" y2="22" stroke="#333" stroke-width="2" stroke-linecap="round"/>
-  <!-- Connection dots at wire ends -->
-  <circle cx="0" cy="22" r="4" fill="#333"/>
-  <circle cx="80" cy="22" r="4" fill="#333"/>
-  <!-- Label -->
-  <text x="35" y="45" font-family="Arial,sans-serif" font-size="8" text-anchor="middle" fill="#555">CAP</text>
-</svg>
-<path class="ground" d="M1280 1292 H1500"/>
-<text class="label" x="934" y="1285" >P5</text>
-<text class="small" x="1131" y="1285" >47 kΩ</text>
-<text class="small" x="1300" y="1285" >22 nF</text>
-<circle class="hot-dot" cx="804" cy="1292" r="5"/>
-<circle class="ground-dot" cx="1500" cy="1292" r="5"/>
-<path class="ground" d="M1500 1169 V1350"/>
-<svg x="1473" y="1350" width="55" height="50" viewBox="0 0 55 50">
-  <rect width="55" height="50" fill="white"/>
-  <!-- Vertical lead wire -->
-  <line x1="27" y1="0" x2="27" y2="14" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Ground symbol: 3 horizontal lines, decreasing width -->
-  <line x1="5" y1="14" x2="49" y2="14" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <line x1="12" y1="24" x2="42" y2="24" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <line x1="19" y1="34" x2="35" y2="34" stroke="#333" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Connection dot at top -->
-  <circle cx="27" cy="0" r="4" fill="#333"/>
-</svg>
-<text class="small" x="1540" y="1381" >Common ground · RC ends joined</text>
-<line class="rule" x1="65" y1="1492" x2="2135" y2="1492"/>
-<text class="note" x="67" y="1521" >BENCH REFERENCE · functional 3-way pads and switch orientation require continuity checks · no treble bleed or continuous tone pot · body fit unverified</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1830" viewBox="0 0 2400 1830" role="img" aria-labelledby="title description">
+<title id="title">Coupeville Velvet wiring reference</title>
+<desc id="description">Bench reference in the same numbered-panel visual language as the Relay Arc wiring diagram. It maps pickup leads, three-way selector contacts, the two push-pull poles, four RC voice shunts, rear-view pots, operating states, and common ground.</desc>
+<rect width="2400" height="1830" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">COUPEVILLE VELVET • WIRING REFERENCE</text>
+<text x="1200" y="96" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL SWITCH CONTACTS MUST BE METERED</text>
+<text x="2370" y="37" fill="#4c5b68" font-size="20" font-weight="400" text-anchor="end">Bench Rev 0.2 • 2026-09-13</text>
+<rect x="25" y="120" width="2350" height="284" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="122" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="159" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. PICKUPS</text>
+<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Electrical lead roles, not manufacturer wire colors</text>
+<text x="65" y="193" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">BRIDGE • OUTER PICKUP</text>
+<rect x="65" y="214" width="202" height="112" rx="14" fill="#303b43" stroke="#17212a" stroke-width="3"/>
+<rect x="74" y="223" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<rect x="74" y="274" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<circle cx="90" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="90" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="120" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="120" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="150" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="150" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="180" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="180" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="210" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="210" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="240" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="240" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<line x1="267" y1="246" x2="301" y2="246" stroke="#b94a2e" stroke-width="4" stroke-linecap="round"/>
+<rect x="301" y="223" width="108" height="46" rx="5" fill="white" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="355" y="253.82" fill="#b94a2e" font-size="23" font-weight="700" text-anchor="middle">B-H</text>
+<line x1="220" y1="326" x2="220" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="201" y1="350" x2="239" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="207" y1="358" x2="233" y2="358" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="213" y1="366" x2="227" y2="366" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="65" y="382" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">RETURN + SHIELD/CASE → GND</text>
+<text x="835" y="193" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">MIDDLE • GFS RETROTRON NASHVILLE</text>
+<rect x="835" y="214" width="202" height="112" rx="14" fill="#303b43" stroke="#17212a" stroke-width="3"/>
+<rect x="844" y="223" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<rect x="844" y="274" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<circle cx="860" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="860" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="890" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="890" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="920" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="920" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="950" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="950" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="980" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="980" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1010" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1010" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<line x1="1037" y1="246" x2="1071" y2="246" stroke="#ae731b" stroke-width="4" stroke-linecap="round"/>
+<rect x="1071" y="223" width="108" height="46" rx="5" fill="white" stroke="#ae731b" stroke-width="2.5"/>
+<text x="1125" y="253.82" fill="#ae731b" font-size="23" font-weight="700" text-anchor="middle">M-H</text>
+<line x1="990" y1="326" x2="990" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="971" y1="350" x2="1009" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="977" y1="358" x2="1003" y2="358" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="983" y1="366" x2="997" y2="366" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="835" y="382" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">RETURN + SHIELD/CASE → GND</text>
+<text x="1605" y="193" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">NECK • OUTER PICKUP</text>
+<rect x="1605" y="214" width="202" height="112" rx="14" fill="#303b43" stroke="#17212a" stroke-width="3"/>
+<rect x="1614" y="223" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<rect x="1614" y="274" width="184" height="43" rx="8" fill="#46525b" stroke="#1c252d" stroke-width="2"/>
+<circle cx="1630" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1630" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1660" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1660" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1690" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1690" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1720" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1720" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1750" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1750" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1780" cy="244" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<circle cx="1780" cy="295" r="8" fill="#e7edf0" stroke="#9ba8ae" stroke-width="1.5"/>
+<line x1="1807" y1="246" x2="1841" y2="246" stroke="#2373a2" stroke-width="4" stroke-linecap="round"/>
+<rect x="1841" y="223" width="108" height="46" rx="5" fill="white" stroke="#2373a2" stroke-width="2.5"/>
+<text x="1895" y="253.82" fill="#2373a2" font-size="23" font-weight="700" text-anchor="middle">N-H</text>
+<line x1="1760" y1="326" x2="1760" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="1741" y1="350" x2="1779" y2="350" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="1747" y1="358" x2="1773" y2="358" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<line x1="1753" y1="366" x2="1767" y2="366" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1605" y="382" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">RETURN + SHIELD/CASE → GND</text>
+<rect x="25" y="424" width="760" height="450" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="426" width="756" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">2. THREE-WAY • OUTER PICKUPS</text>
+<rect x="55" y="499" width="700" height="280" rx="0" fill="#fbfdfe" stroke="#465c70" stroke-width="1.5"/>
+<rect x="55" y="499" width="700" height="58" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<line x1="169" y1="499" x2="169" y2="779" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="287" y1="499" x2="287" y2="779" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="405" y1="499" x2="405" y2="779" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="523" y1="499" x2="523" y2="779" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="557" x2="755" y2="557" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="668" x2="755" y2="668" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<text x="112" y="536" fill="#25303b" font-size="21" font-weight="750" text-anchor="middle">POLE</text>
+<text x="228" y="536" fill="#25303b" font-size="21" font-weight="750" text-anchor="middle">1</text>
+<text x="346" y="536" fill="#25303b" font-size="21" font-weight="750" text-anchor="middle">2</text>
+<text x="464" y="536" fill="#25303b" font-size="21" font-weight="750" text-anchor="middle">3</text>
+<text x="639" y="536" fill="#25303b" font-size="21" font-weight="750" text-anchor="middle">COMMON</text>
+<text x="112" y="609" fill="#25303b" font-size="29" font-weight="750" text-anchor="middle">A</text>
+<text x="112" y="635" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">BRIDGE</text>
+<text x="112" y="719" fill="#25303b" font-size="29" font-weight="750" text-anchor="middle">B</text>
+<text x="112" y="745" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">NECK</text>
+<circle cx="177" cy="606" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="185" y1="606" x2="214" y2="606" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="220" y="584" width="60" height="44" rx="5" fill="white" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="250" y="613.82" fill="#b94a2e" font-size="23" font-weight="700" text-anchor="middle">B-H</text>
+<circle cx="295" cy="606" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="303" y1="606" x2="332" y2="606" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="338" y="584" width="60" height="44" rx="5" fill="white" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="368" y="613.82" fill="#b94a2e" font-size="23" font-weight="700" text-anchor="middle">B-H</text>
+<circle cx="413" cy="606" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="421" y1="606" x2="450" y2="606" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="461" y="614" fill="#445464" font-size="22" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="177" cy="717" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="185" y1="717" x2="214" y2="717" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="225" y="725" fill="#445464" font-size="22" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="295" cy="717" r="8" fill="#2373a2" stroke="none" stroke-width="2"/>
+<line x1="303" y1="717" x2="332" y2="717" stroke="#2373a2" stroke-width="3" stroke-linecap="round"/>
+<rect x="338" y="695" width="60" height="44" rx="5" fill="white" stroke="#2373a2" stroke-width="2.5"/>
+<text x="368" y="724.82" fill="#2373a2" font-size="23" font-weight="700" text-anchor="middle">N-H</text>
+<circle cx="413" cy="717" r="8" fill="#2373a2" stroke="none" stroke-width="2"/>
+<line x1="421" y1="717" x2="450" y2="717" stroke="#2373a2" stroke-width="3" stroke-linecap="round"/>
+<rect x="456" y="695" width="60" height="44" rx="5" fill="white" stroke="#2373a2" stroke-width="2.5"/>
+<text x="486" y="724.82" fill="#2373a2" font-size="23" font-weight="700" text-anchor="middle">N-H</text>
+<circle cx="552" cy="606" r="8" fill="#246c58" stroke="none" stroke-width="2"/>
+<line x1="560" y1="606" x2="589" y2="606" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<rect x="595" y="584" width="83" height="44" rx="5" fill="white" stroke="#246c58" stroke-width="2.5"/>
+<text x="636.5" y="613.82" fill="#246c58" font-size="23" font-weight="700" text-anchor="middle">SEL</text>
+<circle cx="552" cy="717" r="8" fill="#246c58" stroke="none" stroke-width="2"/>
+<line x1="560" y1="717" x2="589" y2="717" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<rect x="595" y="695" width="83" height="44" rx="5" fill="white" stroke="#246c58" stroke-width="2.5"/>
+<text x="636.5" y="724.82" fill="#246c58" font-size="23" font-weight="700" text-anchor="middle">SEL</text>
+<text x="56" y="810" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Join both commons at SEL; position 2 combines bridge and neck in parallel.</text>
+<text x="56" y="841" fill="#4c5b68" font-size="18" font-weight="500" text-anchor="start">This is a functional contact map; identify actual selector lugs by continuity.</text>
+<rect x="805" y="424" width="770" height="450" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="807" y="426" width="766" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="827" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">3. MODE • OUTER VOLUME PUSH-PULL</text>
+<text x="830" y="506" fill="#25303b" font-size="23" font-weight="700" text-anchor="start">DOWN = outer pickups + Nashville blend</text>
+<text x="830" y="542" fill="#25303b" font-size="23" font-weight="700" text-anchor="start">UP = Nashville solo; outer branch disconnected</text>
+<text x="845" y="590" fill="#b94a2e" font-size="22" font-weight="750" text-anchor="start">A • OUTER PATH</text>
+<text x="1208" y="590" fill="#ae731b" font-size="22" font-weight="750" text-anchor="start">B • NASHVILLE LOW</text>
+<rect x="835" y="609" width="327" height="177" rx="5" fill="#fbfdfe" stroke="#465c70" stroke-width="1.5"/>
+<rect x="1197" y="609" width="350" height="177" rx="5" fill="#fbfdfe" stroke="#465c70" stroke-width="1.5"/>
+<text x="844" y="650" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">UP</text>
+<text x="844" y="705" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">COM</text>
+<text x="844" y="760" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">DOWN</text>
+<text x="1207" y="650" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">UP</text>
+<text x="1207" y="705" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">COM</text>
+<text x="1207" y="760" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">DOWN</text>
+<circle cx="914" cy="641" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="922" y1="641" x2="951" y2="641" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="962" y="649" fill="#445464" font-size="22" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="914" cy="696" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="922" y1="696" x2="951" y2="696" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="957" y="674" width="82" height="44" rx="5" fill="white" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="998" y="703.82" fill="#b94a2e" font-size="23" font-weight="700" text-anchor="middle">O-W</text>
+<circle cx="914" cy="751" r="8" fill="#246c58" stroke="none" stroke-width="2"/>
+<line x1="922" y1="751" x2="951" y2="751" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<rect x="957" y="729" width="82" height="44" rx="5" fill="white" stroke="#246c58" stroke-width="2.5"/>
+<text x="998" y="758.82" fill="#246c58" font-size="23" font-weight="700" text-anchor="middle">BUS</text>
+<circle cx="1275" cy="641" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1283" y1="641" x2="1312" y2="641" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<rect x="1318" y="619" width="84" height="44" rx="5" fill="white" stroke="#445464" stroke-width="2.5"/>
+<text x="1360" y="648.82" fill="#445464" font-size="23" font-weight="700" text-anchor="middle">GND</text>
+<circle cx="1275" cy="696" r="8" fill="#ae731b" stroke="none" stroke-width="2"/>
+<line x1="1283" y1="696" x2="1312" y2="696" stroke="#ae731b" stroke-width="3" stroke-linecap="round"/>
+<rect x="1318" y="674" width="97" height="44" rx="5" fill="white" stroke="#ae731b" stroke-width="2.5"/>
+<text x="1366.5" y="703.82" fill="#ae731b" font-size="23" font-weight="700" text-anchor="middle">M-LOW</text>
+<circle cx="1275" cy="751" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1283" y1="751" x2="1312" y2="751" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1323" y="759" fill="#445464" font-size="22" font-weight="700" text-anchor="start">OPEN</text>
+<text x="835" y="822" fill="#25303b" font-size="20" font-weight="700" text-anchor="start">DOWN: O-W ↔ BUS; M-LOW floats.</text>
+<text x="835" y="852" fill="#25303b" font-size="20" font-weight="700" text-anchor="start">UP: O-W open; M-LOW ↔ GND.</text>
+<rect x="1595" y="424" width="780" height="450" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="1597" y="426" width="776" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="1617" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">4. FIVE-WAY • GLOBAL VOICE</text>
+<text x="1623" y="499" fill="#246c58" font-size="21" font-weight="750" text-anchor="start">SWITCH COMMON → BUS</text>
+<rect x="1620" y="522" width="727" height="57" rx="0" fill="#f8fbfd" stroke="#b9c5cf" stroke-width="1"/>
+<text x="1653" y="560" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">1</text>
+<circle cx="1697" cy="550" r="7" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1704" y1="550" x2="1732" y2="550" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<rect x="1733" y="530" width="326" height="41" rx="5" fill="white" stroke="#445464" stroke-width="2.5"/>
+<text x="1896" y="557.3" fill="#445464" font-size="20" font-weight="700" text-anchor="middle">OPEN</text>
+<text x="2080" y="559" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">Full / bypass</text>
+<rect x="1620" y="581" width="727" height="57" rx="0" fill="white" stroke="#b9c5cf" stroke-width="1"/>
+<text x="1653" y="619" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">2</text>
+<circle cx="1697" cy="609" r="7" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1704" y1="609" x2="1732" y2="609" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1733" y="589" width="326" height="41" rx="5" fill="white" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1896" y="616.3" fill="#7950a4" font-size="20" font-weight="700" text-anchor="middle">470 kΩ → 2.2 nF</text>
+<text x="2080" y="618" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">Very light smoothing</text>
+<rect x="1620" y="640" width="727" height="57" rx="0" fill="#f8fbfd" stroke="#b9c5cf" stroke-width="1"/>
+<text x="1653" y="678" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">3</text>
+<circle cx="1697" cy="668" r="7" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1704" y1="668" x2="1732" y2="668" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1733" y="648" width="326" height="41" rx="5" fill="white" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1896" y="675.3" fill="#7950a4" font-size="20" font-weight="700" text-anchor="middle">220 kΩ → 4.7 nF</text>
+<text x="2080" y="677" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">Warmer</text>
+<rect x="1620" y="699" width="727" height="57" rx="0" fill="white" stroke="#b9c5cf" stroke-width="1"/>
+<text x="1653" y="737" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">4</text>
+<circle cx="1697" cy="727" r="7" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1704" y1="727" x2="1732" y2="727" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1733" y="707" width="326" height="41" rx="5" fill="white" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1896" y="734.3" fill="#7950a4" font-size="20" font-weight="700" text-anchor="middle">100 kΩ → 10 nF</text>
+<text x="2080" y="736" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">Stronger reduction</text>
+<rect x="1620" y="758" width="727" height="57" rx="0" fill="#f8fbfd" stroke="#b9c5cf" stroke-width="1"/>
+<text x="1653" y="796" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">5</text>
+<circle cx="1697" cy="786" r="7" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1704" y1="786" x2="1732" y2="786" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1733" y="766" width="326" height="41" rx="5" fill="white" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1896" y="793.3" fill="#7950a4" font-size="20" font-weight="700" text-anchor="middle">47 kΩ → 22 nF</text>
+<text x="2080" y="795" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">Dark / jazz</text>
+<text x="1623" y="834" fill="#25303b" font-size="18" font-weight="650" text-anchor="start">Series R + C to GND; use true discrete throws.</text>
+<text x="1623" y="859" fill="#4c5b68" font-size="18" font-weight="500" text-anchor="start">Audio continues directly from BUS to jack TIP.</text>
+<rect x="25" y="895" width="760" height="530" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="897" width="756" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="934" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">5. OUTER VOLUME • STANDARD</text>
+<text x="55" y="971" fill="#246c58" font-size="24" font-weight="750" text-anchor="start">LEFT / CW → SEL</text>
+<text x="55" y="1012" fill="#187b80" font-size="24" font-weight="750" text-anchor="start">CENTER / WIPER → O-W</text>
+<text x="55" y="1053" fill="#445464" font-size="24" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
+<text x="55" y="1111" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">O-W feeds push-pull pole A common.</text>
+<text x="55" y="1150" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">DOWN, knob 0 grounds BUS: master mute.</text>
+<text x="55" y="1187" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">UP, outer branch is disconnected.</text>
+<circle cx="620" cy="1052" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="620" y="1049" fill="#25303b" font-size="28" font-weight="750" text-anchor="middle">VOL</text>
+<text x="620" y="1082" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">REAR VIEW</text>
+<rect x="546" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="560" y1="1206" x2="560" y2="1224" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="560" y="1246" fill="#246c58" font-size="18" font-weight="700" text-anchor="middle">SEL</text>
+<rect x="606" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="620" y1="1206" x2="620" y2="1224" stroke="#187b80" stroke-width="3" stroke-linecap="round"/>
+<text x="620" y="1246" fill="#187b80" font-size="18" font-weight="700" text-anchor="middle">O-W</text>
+<rect x="666" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="680" y1="1206" x2="680" y2="1224" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="680" y="1246" fill="#445464" font-size="18" font-weight="700" text-anchor="middle">GND</text>
+<text x="55" y="1349" fill="#4c5b68" font-size="19" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down</text>
+<text x="55" y="1386" fill="#4c5b68" font-size="19" font-weight="500" text-anchor="start">Source does not specify this pot’s value or taper.</text>
+<rect x="805" y="895" width="770" height="530" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="807" y="897" width="766" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="827" y="934" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">6. NASHVILLE BLEND • B500K LINEAR</text>
+<text x="835" y="971" fill="#ae731b" font-size="24" font-weight="750" text-anchor="start">LEFT / CW → M-H</text>
+<text x="835" y="1012" fill="#246c58" font-size="24" font-weight="750" text-anchor="start">CENTER / WIPER → BUS</text>
+<text x="835" y="1053" fill="#7950a4" font-size="24" font-weight="750" text-anchor="start">RIGHT / CCW → M-LOW</text>
+<text x="835" y="1111" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">M-LOW feeds push-pull pole B common.</text>
+<text x="835" y="1150" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">DOWN: third lug floats; series blend.</text>
+<text x="835" y="1187" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">At 0, ≈500 kΩ remains; not a hard off.</text>
+<text x="835" y="1224" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">UP: third lug grounded; solo volume.</text>
+<text x="835" y="1261" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">At 0, middle reaches silence.</text>
+<circle cx="1410" cy="1052" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="1410" y="1049" fill="#25303b" font-size="28" font-weight="750" text-anchor="middle">B500K</text>
+<text x="1410" y="1082" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">REAR VIEW</text>
+<rect x="1336" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1350" y1="1206" x2="1350" y2="1224" stroke="#ae731b" stroke-width="3" stroke-linecap="round"/>
+<text x="1350" y="1246" fill="#ae731b" font-size="18" font-weight="700" text-anchor="middle">M-H</text>
+<rect x="1396" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1410" y1="1206" x2="1410" y2="1224" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="1410" y="1246" fill="#246c58" font-size="18" font-weight="700" text-anchor="middle">BUS</text>
+<rect x="1456" y="1134" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1470" y1="1206" x2="1470" y2="1224" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<text x="1470" y="1246" fill="#7950a4" font-size="18" font-weight="700" text-anchor="middle">M-LOW</text>
+<text x="835" y="1386" fill="#4c5b68" font-size="19" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down</text>
+<rect x="1595" y="895" width="780" height="530" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="1597" y="897" width="776" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="1617" y="934" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. OPERATING STATES &amp; JACK</text>
+<rect x="1620" y="971" width="730" height="276" rx="0" fill="white" stroke="#465c70" stroke-width="1.4"/>
+<rect x="1620" y="971" width="730" height="54" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<line x1="1700" y1="971" x2="1700" y2="1247" stroke="#465c70" stroke-width="1" stroke-linecap="round"/>
+<line x1="2050" y1="971" x2="2050" y2="1247" stroke="#465c70" stroke-width="1" stroke-linecap="round"/>
+<line x1="1620" y1="1025" x2="2350" y2="1025" stroke="#465c70" stroke-width="1" stroke-linecap="round"/>
+<line x1="1620" y1="1099" x2="2350" y2="1099" stroke="#465c70" stroke-width="1" stroke-linecap="round"/>
+<line x1="1620" y1="1173" x2="2350" y2="1173" stroke="#465c70" stroke-width="1" stroke-linecap="round"/>
+<text x="1660" y="1007" fill="#25303b" font-size="18" font-weight="750" text-anchor="middle">3-WAY</text>
+<text x="1875" y="1007" fill="#25303b" font-size="18" font-weight="750" text-anchor="middle">DOWN · BLEND</text>
+<text x="2200" y="1007" fill="#25303b" font-size="18" font-weight="750" text-anchor="middle">UP · SOLO</text>
+<text x="1660" y="1070" fill="#25303b" font-size="22" font-weight="700" text-anchor="middle">1</text>
+<text x="1718" y="1070" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Bridge + Nashville blend</text>
+<text x="2070" y="1070" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Nashville only</text>
+<text x="1660" y="1144" fill="#25303b" font-size="22" font-weight="700" text-anchor="middle">2</text>
+<text x="1718" y="1144" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Bridge + neck + blend</text>
+<text x="2070" y="1144" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Nashville only</text>
+<text x="1660" y="1218" fill="#25303b" font-size="22" font-weight="700" text-anchor="middle">3</text>
+<text x="1718" y="1218" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Neck + Nashville blend</text>
+<text x="2070" y="1218" fill="#25303b" font-size="19" font-weight="500" text-anchor="start">Nashville only</text>
+<text x="1624" y="1290" fill="#187b80" font-size="22" font-weight="750" text-anchor="start">Jack TIP ← BUS</text>
+<text x="1905" y="1290" fill="#445464" font-size="22" font-weight="750" text-anchor="start">Jack SLEEVE ← GND</text>
+<text x="1624" y="1330" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">All five voice positions remain global in both modes.</text>
+<text x="1624" y="1370" fill="#4c5b68" font-size="18" font-weight="500" text-anchor="start">No outer mixing resistor · no treble bleed · no tone pot.</text>
+<rect x="25" y="1445" width="2350" height="355" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="1447" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="1484" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">8. COMMON GROUND &amp; BENCH CHECKS</text>
+<text x="55" y="1530" fill="#25303b" font-size="23" font-weight="700" text-anchor="start">GND = pickup returns + separate shields/cases • outer-volume CCW lug • push-pull B UP throw • RC returns • jack sleeve.</text>
+<text x="55" y="1570" fill="#25303b" font-size="22" font-weight="600" text-anchor="start">Also bond pot cases, conductive switch chassis, cavity shielding, and bridge/string ground to the same ground network.</text>
+<text x="55" y="1630" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Meter the 3-way in all positions; confirm both push-pull poles in DOWN and UP; verify 5-way P1 is open and P2–P5 select one RC branch.</text>
+<text x="55" y="1670" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Check middle pot ends: knob 10 ≈0 Ω from M-H to BUS; knob 0 ≈500 kΩ in DOWN, silence in UP. Tap-test every pickup and voice.</text>
+<text x="55" y="1730" fill="#4c5b68" font-size="20" font-weight="650" text-anchor="start">BENCH PROTOTYPE • pickup lead colors and physical switch lugs require the actual part guides and a meter • control/body fit unverified.</text>
+</g></svg>
