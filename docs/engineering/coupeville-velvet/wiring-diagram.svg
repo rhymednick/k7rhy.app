@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1260" viewBox="0 0 1800 1260" role="img" aria-labelledby="title desc">
+  <title id="title">Coupeville Velvet bench wiring diagram</title>
+  <desc id="desc">Neck and bridge pickups feed a three-way selector and outer volume through pole A of a push-pull switch. A Nashville middle pickup feeds a B500K blend pot whose third lug is grounded by pole B only in solo mode. The combined bus feeds the output jack and a five-position discrete RC shunt voice switch.</desc>
+  <style>
+    text { font-family: Inter, Arial, sans-serif; fill: #e7edf5; }
+    .bg { fill: #111827; }
+    .panel { fill: #1d293b; stroke: #42536c; stroke-width: 2; rx: 16; }
+    .block { fill: #27364c; stroke: #69809d; stroke-width: 2; rx: 10; }
+    .signal { fill: none; stroke: #7bd4f6; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .ground { fill: none; stroke: #8ed7a7; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .switch { fill: none; stroke: #ffbf73; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .node { fill: #7bd4f6; }
+    .gndnode { fill: #8ed7a7; }
+    .label { font-size: 22px; font-weight: 650; }
+    .small { font-size: 18px; }
+    .tiny { font-size: 16px; }
+    .muted { fill: #afbdd0; }
+    .accent { fill: #ffbf73; }
+  </style>
+  <rect class="bg" width="1800" height="1260" />
+  <text x="58" y="64" font-size="37" font-weight="750">Coupeville Velvet · bench wiring</text>
+  <text x="60" y="96" class="small muted">Electrical contact map · experimental 2026-08-23 reference · verify lug orientation and physical fit</text>
+
+  <rect class="panel" x="42" y="125" width="1716" height="518" />
+  <text x="65" y="167" class="label">Pickup paths and mode switching</text>
+
+  <!-- Outer pickups and conventional three-way -->
+  <rect class="block" x="75" y="209" width="190" height="62" />
+  <text x="95" y="247" class="label">Neck pickup</text>
+  <rect class="block" x="75" y="320" width="190" height="62" />
+  <text x="95" y="358" class="label">Bridge pickup</text>
+  <rect class="block" x="350" y="226" width="208" height="158" />
+  <text x="373" y="263" class="label">3-way selector</text>
+  <text x="374" y="293" class="small">N · B · COM</text>
+  <text x="374" y="322" class="tiny muted">1 Bridge · 2 Both</text>
+  <text x="374" y="347" class="tiny muted">3 Neck</text>
+  <path class="signal" d="M265 240 H305 V277 H350 M265 351 H315 V337 H350" />
+  <text x="280" y="226" class="tiny">hot</text>
+  <text x="280" y="373" class="tiny">hot</text>
+  <circle class="node" cx="350" cy="277" r="5" /><circle class="node" cx="350" cy="337" r="5" />
+
+  <!-- Outer volume: selector to input, low lug to ground, wiper to pole A -->
+  <rect class="block" x="645" y="218" width="227" height="175" />
+  <text x="666" y="256" class="label">Outer volume</text>
+  <text x="666" y="287" class="small">IN · WIPER · LOW</text>
+  <text x="666" y="320" class="small muted">Conventional divider</text>
+  <text x="666" y="351" class="tiny muted">DPDT push-pull on shaft</text>
+  <path class="signal" d="M558 305 H605 V277 H645 M872 314 H944" />
+  <text x="583" y="267" class="tiny">COM → IN</text>
+  <text x="878" y="303" class="tiny">WIPER</text>
+
+  <rect class="block" x="944" y="226" width="285" height="170" />
+  <text x="967" y="260" class="label">DPDT · pole A</text>
+  <text x="967" y="294" class="small">C ← outer wiper</text>
+  <text x="967" y="325" class="small accent">DOWN → bus</text>
+  <text x="967" y="356" class="small muted">UP → open / no wire</text>
+  <path class="signal" d="M1229 316 H1370" />
+  <text x="1239" y="302" class="tiny">DOWN throw</text>
+
+  <!-- Nashville pickup and mode-changing pot -->
+  <rect class="block" x="75" y="461" width="220" height="82" />
+  <text x="94" y="498" class="label">Nashville middle</text>
+  <text x="95" y="524" class="small muted">GFS Retrotron</text>
+  <rect class="block" x="373" y="447" width="299" height="139" />
+  <text x="393" y="483" class="label">B500K linear</text>
+  <text x="393" y="514" class="small">IN · WIPER · THIRD</text>
+  <text x="393" y="545" class="tiny muted">Blend DOWN · volume UP</text>
+  <path class="signal" d="M295 501 H373 M672 481 H1370" />
+  <text x="305" y="490" class="tiny">hot → IN</text>
+  <text x="688" y="470" class="tiny">WIPER → combined bus</text>
+
+  <rect class="block" x="751" y="523" width="365" height="95" />
+  <text x="772" y="557" class="label">DPDT · pole B</text>
+  <text x="772" y="587" class="small">C ← THIRD · DOWN open · UP ground</text>
+  <path class="switch" d="M672 552 H751" />
+  <text x="678" y="575" class="tiny accent">THIRD</text>
+
+  <!-- Combined signal bus and jack -->
+  <path class="signal" d="M1370 316 V481 H1485 V315 H1520" />
+  <circle class="node" cx="1370" cy="316" r="7" /><circle class="node" cx="1370" cy="481" r="7" /><circle class="node" cx="1485" cy="481" r="7" />
+  <text x="1383" y="408" class="label">Combined</text>
+  <text x="1383" y="437" class="label">signal bus</text>
+  <rect class="block" x="1520" y="265" width="198" height="139" />
+  <text x="1539" y="301" class="label">Output jack</text>
+  <text x="1539" y="335" class="small">TIP ← bus</text>
+  <text x="1539" y="369" class="small">SLEEVE → ground</text>
+
+  <!-- Ground return from all pickup/volume locations; green indicates return, not signal -->
+  <path class="ground" d="M75 240 H58 V597 M75 351 H58 M758 393 V424 H58 M190 543 V607 M520 586 V607 M1116 570 H1160 V607 M1619 404 V607" />
+  <text x="81" y="427" class="tiny" fill="#8ed7a7">pickup grounds</text>
+  <text x="665" y="422" class="tiny" fill="#8ed7a7">LOW + casing</text>
+  <text x="56" y="626" class="tiny" fill="#8ed7a7">GND net</text>
+  <text x="162" y="635" class="tiny" fill="#8ed7a7">pickup ground</text>
+  <text x="486" y="635" class="tiny" fill="#8ed7a7">pot casing</text>
+  <text x="1130" y="635" class="tiny" fill="#8ed7a7">UP throw → GND net</text>
+  <text x="1580" y="632" class="tiny" fill="#8ed7a7">SLEEVE → GND net</text>
+
+  <!-- Global shunt voice network -->
+  <rect class="panel" x="42" y="667" width="1716" height="495" />
+  <text x="65" y="709" class="label">Global voice network · one discrete Super Switch pole</text>
+  <text x="65" y="738" class="small muted">Switch common goes to signal bus. Each throw selects exactly one shunt branch; audio continues directly to jack tip.</text>
+  <path class="signal" d="M1485 481 V782 H305" />
+  <text x="1290" y="771" class="tiny">bus → switch common</text>
+  <rect class="block" x="75" y="763" width="230" height="340" />
+  <text x="96" y="798" class="label">5-way Super</text>
+  <text x="96" y="828" class="small">COMMON ← bus</text>
+  <text x="96" y="860" class="tiny muted">one discrete throw</text>
+  <text x="96" y="886" class="tiny muted">selected at a time</text>
+
+  <path class="switch" d="M305 908 H420 M305 952 H420 M305 996 H420 M305 1040 H420 M305 1084 H420" />
+  <rect class="block" x="420" y="890" width="590" height="36" />
+  <rect class="block" x="420" y="934" width="590" height="36" />
+  <rect class="block" x="420" y="978" width="590" height="36" />
+  <rect class="block" x="420" y="1022" width="590" height="36" />
+  <rect class="block" x="420" y="1066" width="590" height="36" />
+  <text x="445" y="915" class="small accent">P1</text><text x="530" y="915" class="small">OPEN / bypass (no connection)</text>
+  <text x="445" y="959" class="small accent">P2</text><text x="530" y="959" class="small">470 kΩ → 2.2 nF → GND</text>
+  <text x="445" y="1003" class="small accent">P3</text><text x="530" y="1003" class="small">220 kΩ → 4.7 nF → GND</text>
+  <text x="445" y="1047" class="small accent">P4</text><text x="530" y="1047" class="small">100 kΩ → 10 nF → GND</text>
+  <text x="445" y="1091" class="small accent">P5</text><text x="530" y="1091" class="small">47 kΩ → 22 nF → GND</text>
+  <path class="ground" d="M1010 952 H1100 V1118 M1010 996 H1100 M1010 1040 H1100 M1010 1084 H1100" />
+  <circle class="gndnode" cx="1100" cy="1118" r="6" />
+  <text x="1122" y="1125" class="small" fill="#8ed7a7">GND net · shared RC return</text>
+
+  <text x="60" y="1204" class="small muted">No outer isolation resistor · no treble bleed · no continuous tone pot · P1 has no RC path · body fit unverified</text>
+</svg>
