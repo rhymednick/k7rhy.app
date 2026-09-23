@@ -75,3 +75,9 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 - Prettier: 4-space tabs, single quotes, trailing commas (es5), no print width wrapping (printWidth: 999)
 - ESLint: next/core-web-vitals + jsx-a11y + prettier
 - Path alias: `@/*` maps to project root
+
+## Diagram Work
+
+Before creating or revising any diagram, find and inspect the closest user-approved **finished diagram**, not just reusable component assets. For guitar wiring references, use [`docs/engineering/references/relay-arc-rev-1.0.png`](docs/engineering/references/relay-arc-rev-1.0.png), copied from the Relay Arc wiring page, as the visual standard: a high-resolution white reference sheet with pale-blue numbered panels, recognizable pickup illustrations, colored boxed net labels, functional contact maps, rear-view pots, operating states, and common-ground/bench checks. Copy its presentation, never its model-specific circuit. Do not substitute the older `public/wiring-diagrams/components/` artwork or a freeform wire-flow chart for this reference without a user request.
+
+Establish a netlist and operating-state table from source notes before drawing. Before presenting or committing, render the final image at full size and compare its layout with the approved example, then verify every net label, contact state, component value, and unknown against the source. Keep unpublished engineering diagrams under `docs/engineering/`; add no site route or public asset reference unless requested. The Coupeville Velvet reference and its source generator are in `docs/engineering/coupeville-velvet/`.
