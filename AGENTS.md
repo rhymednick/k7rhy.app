@@ -1,6 +1,19 @@
 # AGENTS.md
 
-This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
+Shared guidance for coding agents working in this repository. Update this file for project-wide rules; `CLAUDE.md` imports it for Claude Code.
+
+## Workflow Preferences
+
+- **Pull requests:** Never create PRs as drafts. The owner merges all PRs directly.
+
+## Decisions and Project Memory
+
+- Before changing an area, read its current spec or engineering record and check the implementation. An older approved plan may have been revised or superseded; do not treat its status as current without checking.
+- When the owner makes or changes a durable decision, record it in the relevant spec or engineering record. If no such document exists, create a short dated note under `docs/decisions/`. State the decision, why it was made, its date and status (proposed, approved, implemented, or validated), what it supersedes, and any unresolved questions. Link to source evidence where it matters.
+- When implementation or validation changes a decision's status, update the same record and add a pointer from any superseded document. Keep historical context, but make the current choice easy to find. Do not leave a shipped design labeled as a draft or an untested design labeled as validated.
+- Use `.remember/remember.md` for a brief handoff: current state, next action, and links to durable records. Do not use chat history or a memory summary as the only record of an approved decision.
+- For decisions extracted from older conversations, follow `docs/engineering/extraction/README.md`: keep candidates and source evidence in the extraction ledger until they are reviewed and promoted to a canonical document.
+- Separate source facts from plans and assumptions. For technical claims, use owner-provided evidence, verified product information, or the current implementation; label unknowns and experimental results explicitly. Earlier AI-generated copy and provisional plans are leads to verify, not evidence.
 
 ## Canonical site organization
 
