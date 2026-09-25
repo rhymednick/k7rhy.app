@@ -27,9 +27,7 @@ describe('STR26001 owner record', () => {
         expect(source).toContain('20 kΩ resistor');
         expect(source).toContain('four-pole five-way super switch');
         expect(source).toContain('DPDT on-on');
-        expect(source).toContain('parallel in the standard setting; series in the series setting');
         expect(source.match(/in every pickup setting/g)).toHaveLength(1);
-        expect(source).toContain('Positions 1, 3, and 5 are unchanged by the series switch');
         expect(source).not.toContain('in either mode');
         const body = source.split('---')[2];
         const [playerCopy, technicalCopy] = body.split('## Electronics');
@@ -37,7 +35,12 @@ describe('STR26001 owner record', () => {
         expect(technicalCopy).toContain('1,200 pF capacitor');
         expect(body).toContain('[Open the wiring reference](/sn/STR26001/wiring)');
         expect(body.replace(/\]\([^)]+\)/g, ']')).not.toMatch(/STR26001|CuNiFe S-Type 1|first of two|purchased parts|bamboo-like/i);
-        expect(source).not.toContain('<InstrumentSpec>');
+        expect(source).toContain('<InstrumentSpec>');
+        expect(source.match(/<Pickup position=/g)).toHaveLength(3);
+        expect(source).toContain('brand="Fender" model="CuNiFe Stratocaster"');
+        expect(source).toContain('<Selector label="Pickup selector" positions={5}>');
+        expect(source).toContain('<Toggle label="Series switch" type="DPDT mini toggle">');
+        expect(source).toContain('hum-canceling');
         expect(source).not.toMatch(/in.progress|planned|pending|under review|unfinished/i);
     });
 

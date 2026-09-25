@@ -20,12 +20,7 @@ function PlaceholderDiagram({ modelName }: { modelName?: string }) {
 function LipstickDiagram() {
     return (
         <div className="my-6 overflow-x-auto">
-            <svg
-                viewBox="0 0 520 300"
-                className="mx-auto w-full max-w-[520px]"
-                aria-label="Relay Lipstick wiring diagram"
-                role="img"
-            >
+            <svg viewBox="0 0 520 300" className="mx-auto w-full max-w-[520px]" aria-label="Relay Lipstick wiring diagram" role="img">
                 {/* Background */}
                 <rect width="520" height="300" rx="12" fill="currentColor" className="text-muted/20" />
 
@@ -35,13 +30,17 @@ function LipstickDiagram() {
                     <rect x="0" y="0" width="80" height="30" rx="4" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <rect x="4" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
                     <rect x="42" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
-                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">BRIDGE</text>
+                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        BRIDGE
+                    </text>
                 </g>
 
                 {/* Middle lipstick */}
                 <g transform="translate(220, 60)">
                     <rect x="0" y="0" width="80" height="18" rx="9" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
-                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">MIDDLE</text>
+                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        MIDDLE
+                    </text>
                 </g>
 
                 {/* Neck humbucker */}
@@ -49,7 +48,9 @@ function LipstickDiagram() {
                     <rect x="0" y="0" width="80" height="30" rx="4" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <rect x="4" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
                     <rect x="42" y="4" width="34" height="22" rx="2" fill="currentColor" className="text-muted-foreground/20" />
-                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">NECK</text>
+                    <text x="40" y="-8" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        NECK
+                    </text>
                 </g>
 
                 {/* ── 3-way switch ── */}
@@ -58,7 +59,9 @@ function LipstickDiagram() {
                     {[0, 1, 2].map((i) => (
                         <circle key={i} cx={20 + i * 40} cy={14} r={6} fill="none" stroke="currentColor" className="text-muted-foreground/50" strokeWidth="1.5" />
                     ))}
-                    <text x="60" y="46" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">3-WAY SELECTOR</text>
+                    <text x="60" y="46" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        3-WAY SELECTOR
+                    </text>
                 </g>
 
                 {/* ── Controls row ── */}
@@ -66,28 +69,36 @@ function LipstickDiagram() {
                 <g transform="translate(120, 200)">
                     <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <circle cx="20" cy="20" r="8" fill="currentColor" className="text-muted-foreground/30" />
-                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">VOL</text>
+                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        VOL
+                    </text>
                 </g>
 
                 {/* Tone pot (humbucker) */}
                 <g transform="translate(220, 200)">
                     <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <circle cx="20" cy="20" r="8" fill="currentColor" className="text-muted-foreground/30" />
-                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">TONE HB</text>
+                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        TONE HB
+                    </text>
                 </g>
 
                 {/* Tone pot (lipstick blend) */}
                 <g transform="translate(320, 200)">
                     <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <circle cx="20" cy="20" r="8" fill="currentColor" className="text-muted-foreground/30" />
-                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">BLEND</text>
+                    <text x="20" y="48" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        BLEND
+                    </text>
                 </g>
 
                 {/* ── Output jack ── */}
                 <g transform="translate(430, 200)">
                     <rect x="0" y="0" width="36" height="36" rx="18" fill="none" stroke="currentColor" className="text-border" strokeWidth="1.5" />
                     <circle cx="18" cy="18" r="6" fill="currentColor" className="text-muted-foreground/40" />
-                    <text x="18" y="54" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">OUTPUT</text>
+                    <text x="18" y="54" textAnchor="middle" className="text-[10px] fill-muted-foreground font-mono">
+                        OUTPUT
+                    </text>
                 </g>
 
                 {/* ── Wiring connections (hot signals) ── */}
@@ -105,9 +116,13 @@ function LipstickDiagram() {
                 {/* ── Legend ── */}
                 <g transform="translate(20, 270)">
                     <line x1="0" y1="6" x2="20" y2="6" stroke="#ef4444" strokeWidth="1.5" />
-                    <text x="26" y="10" className="text-[9px] fill-muted-foreground">Hot</text>
+                    <text x="26" y="10" className="text-[9px] fill-muted-foreground">
+                        Hot
+                    </text>
                     <line x1="60" y1="6" x2="80" y2="6" stroke="#f59e0b" strokeWidth="1.5" />
-                    <text x="86" y="10" className="text-[9px] fill-muted-foreground">Lipstick blend</text>
+                    <text x="86" y="10" className="text-[9px] fill-muted-foreground">
+                        Lipstick blend
+                    </text>
                 </g>
 
                 <text x="260" y="290" textAnchor="middle" className="text-[9px] fill-muted-foreground/50">

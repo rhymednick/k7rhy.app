@@ -13,6 +13,10 @@ export function validateInstrumentDocument(path: string, data: InstrumentFrontma
     if (!data.completed && data.publish) throw new Error(`${serialData.serial} cannot publish before completion`);
     if (!data.completed && !data.started) throw new Error(`${serialData.serial} requires a completion or build start date`);
 
+    if (data.completed && !/<InstrumentSpec[\s>/]/.test(data.content)) {
+        throw new Error(`${serialData.serial} requires an InstrumentSpec voice and control map once completed`);
+    }
+
     if (data.started && Number(data.started.slice(0, 4)) !== serialData.year) {
         throw new Error(`${serialData.serial} year does not match start date ${data.started}`);
     }

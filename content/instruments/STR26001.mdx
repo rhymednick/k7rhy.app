@@ -10,20 +10,53 @@ images:
       alt: 'Illustration of the white CuNiFe S-Type with bamboo pickguard; not a photograph of the instrument'
 ---
 
+<InstrumentSpec>
+    <PickupConfiguration>
+        <Pickup position="bridge" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">10.5 kΩ</PickupDetail>
+        </Pickup>
+        <Pickup position="middle" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">10.0 kΩ</PickupDetail>
+            <PickupDetail label="Winding">Reverse-wound</PickupDetail>
+        </Pickup>
+        <Pickup position="neck" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">9.6 kΩ</PickupDetail>
+        </Pickup>
+    </PickupConfiguration>
+
+    <ControlLayout>
+        <Selector label="Pickup selector" positions={5}>
+            <SelectorPosition voice="Bridge">The brightest, most focused voice, with the firmest attack.</SelectorPosition>
+            <SelectorPosition voice="Bridge + Middle">A glassy, percussive in-between sound; hum-canceling.</SelectorPosition>
+            <SelectorPosition voice="Middle">A balanced, open voice between bridge bite and neck warmth.</SelectorPosition>
+            <SelectorPosition voice="Middle + Neck">A warm, glassy in-between sound; hum-canceling.</SelectorPosition>
+            <SelectorPosition voice="Neck">The warmest, roundest voice, with deep lows and sweet highs.</SelectorPosition>
+        </Selector>
+        <Toggle label="Series switch" type="DPDT mini toggle">
+            <ToggleState state="Standard" voice="Parallel pairs">Positions 2 and 4 give the classic in-between sounds. Positions 1, 3, and 5 are unchanged by the series switch.</ToggleState>
+            <ToggleState state="Series" voice="Series pairs" printDescription="Positions 2 and 4 become louder, thicker, hum-canceling voices with a stronger midrange. Positions 1, 3, and 5 are unchanged.">Positions 2 and 4 become louder, thicker, hum-canceling voices with a stronger midrange—well suited to leads and driven parts. Positions 1, 3, and 5 are unchanged.</ToggleState>
+        </Toggle>
+        <Pot label="Master volume" mechanism="standard">
+            <PotPosition position="normal" voice="Master output">Sets the overall level and keeps its clarity as it is turned down.</PotPosition>
+        </Pot>
+        <Pot label="Master tone" mechanism="standard">
+            <PotPosition position="normal" voice="Treble rolloff">Softens the highs in every pickup setting.</PotPosition>
+        </Pot>
+    </ControlLayout>
+</InstrumentSpec>
+
 ## The instrument
 
 The white poplar body and maple neck are paired with a bamboo pickguard and Guyker locking tuners. Fender CuNiFe Stratocaster pickups, sourced directly from Fender, give the guitar its defining voice.
 
 The five-way selector keeps the familiar S-type sounds close at hand. A small switch adds a series option in positions 2 and 4, giving the adjacent-pickup pairs a fuller, more assertive voice when a part calls for it. The three single-pickup positions stay the same.
 
-## Controls and switching
+## What it is voiced to do
 
-Master volume and tone work in every pickup setting. The volume control is designed to retain clarity when turned down. The five-way selector and series switch provide these combinations:
-
-- **Position 2, bridge and middle:** parallel in the standard setting; series in the series setting.
-- **Position 4, middle and neck:** parallel in the standard setting; series in the series setting.
-
-Positions 1, 3, and 5 are unchanged by the series switch: bridge, middle, and neck alone.
+Fender describes the CuNiFe set as a vintage-style voice with deep, piano-like lows, a present midrange, and sweet, sparkling highs that keep their clarity and definition under heavy distortion. The middle pickup is reverse-wound, so the two in-between positions cancel hum. Series mode joins the same pairs end to end instead of side by side. The result is louder and thicker, with more midrange push, while still canceling hum: a stronger voice for leads and driven parts without leaving the familiar layout.
 
 ## Electronics
 
@@ -33,4 +66,4 @@ A four-pole five-way super switch selects the pickups. A latching DPDT on-on mic
 
 ## Wiring reference
 
-[Open the wiring reference](/sn/STR26001/wiring) for the full-size diagram, connection map, and bench checks.
+[Open the wiring reference](/sn/STR26001/wiring) for the full-size diagram, switch contacts, and connection map.

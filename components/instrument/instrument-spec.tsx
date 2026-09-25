@@ -19,6 +19,13 @@ export interface PotPositionProps {
     children: React.ReactNode;
 }
 
+export interface ToggleStateProps {
+    state: string;
+    voice: string;
+    printDescription?: string;
+    children: React.ReactNode;
+}
+
 export interface PickupProps {
     position: string;
     type: string;
@@ -129,7 +136,7 @@ export function ControlLayout({ children }: { children: React.ReactNode }) {
 
     React.Children.forEach(children, (child) => {
         if (isEmptyChild(child)) return;
-        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot && child.type !== PositionControl && child.type !== HarmonicShaper)) {
+        if (!React.isValidElement(child) || (child.type !== Selector && child.type !== Pot && child.type !== Toggle && child.type !== PositionControl && child.type !== HarmonicShaper)) {
             throw new Error('ControlLayout contains an unsupported child');
         }
         controls.push(child);
@@ -216,6 +223,36 @@ export function PotPosition({ position, voice, children }: PotPositionProps) {
     );
 }
 
+export function Toggle({ label, type, children }: { label: string; type: string; children: React.ReactNode }) {
+    requireText(label, 'label', 'Toggle');
+    requireText(type, 'type', label);
+    const items = elementChildren(children, ToggleState, label);
+    const states = new Set(items.map((item) => item.props.state.trim()));
+    if (items.length !== 2 || states.size !== 2) throw new Error(`${label} requires exactly two distinct states`);
+
+    return (
+        <article className="rounded-xl border border-border/60 p-4">
+            <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+                <h3 className="font-semibold">{label}</h3>
+                <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{type}</span>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2">{items}</div>
+        </article>
+    );
+}
+
+export function ToggleState({ state, voice, children }: ToggleStateProps) {
+    requireText(state, 'state', 'ToggleState');
+    requireText(voice, 'voice', `ToggleState ${state}`);
+    return (
+        <div className="rounded-lg border border-border/60 bg-muted/25 p-3">
+            <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-sky-700 dark:text-sky-300">{state}</p>
+            <p className="mt-1 text-sm font-semibold">{voice}</p>
+            <div className="mt-1 text-sm leading-relaxed text-muted-foreground">{children}</div>
+        </div>
+    );
+}
+
 InstrumentSpec.displayName = 'InstrumentSpec';
 PickupConfiguration.displayName = 'PickupConfiguration';
 Pickup.displayName = 'Pickup';
@@ -225,3 +262,5 @@ Selector.displayName = 'Selector';
 SelectorPosition.displayName = 'SelectorPosition';
 Pot.displayName = 'Pot';
 PotPosition.displayName = 'PotPosition';
+Toggle.displayName = 'Toggle';
+ToggleState.displayName = 'ToggleState';

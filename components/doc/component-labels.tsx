@@ -57,11 +57,7 @@ export function ComponentLabel({ id, component, wire, description }: ComponentLa
             <td className="px-3 py-2">
                 {color && (
                     <span className="flex items-center gap-1.5">
-                        <span
-                            className="inline-block h-3 w-3 shrink-0 rounded-full ring-1 ring-black/10 dark:ring-white/10"
-                            style={{ backgroundColor: color }}
-                            aria-hidden="true"
-                        />
+                        <span className="inline-block h-3 w-3 shrink-0 rounded-full ring-1 ring-black/10 dark:ring-white/10" style={{ backgroundColor: color }} aria-hidden="true" />
                         <span className={isDark ? 'text-xs capitalize dark:text-muted-foreground' : 'text-xs capitalize text-muted-foreground'}>{wire}</span>
                     </span>
                 )}

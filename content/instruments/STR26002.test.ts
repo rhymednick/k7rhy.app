@@ -27,8 +27,6 @@ describe('STR26002 owner record', () => {
         expect(source).toContain('20 kΩ resistor');
         expect(source).toContain('standard five-way');
         expect(source).toContain('SPST on-off');
-        expect(source).toContain('bridge and neck with neck-add on');
-        expect(source).toContain('all three pickups with neck-add on');
         expect(source.match(/in every pickup setting/g)).toHaveLength(1);
         const body = source.split('---')[2];
         const [playerCopy, technicalCopy] = body.split('## Electronics');
@@ -36,7 +34,11 @@ describe('STR26002 owner record', () => {
         expect(technicalCopy).toContain('1,200 pF capacitor');
         expect(body).toContain('[Open the wiring reference](/sn/STR26002/wiring)');
         expect(body.replace(/\]\([^)]+\)/g, ']')).not.toMatch(/STR26002|CuNiFe S-Type 2|second of two|purchased parts/i);
-        expect(source).not.toContain('<InstrumentSpec>');
+        expect(source).toContain('<InstrumentSpec>');
+        expect(source.match(/<Pickup position=/g)).toHaveLength(3);
+        expect(source).toContain('brand="Fender" model="CuNiFe Stratocaster"');
+        expect(source).toContain('<Selector label="Pickup selector" positions={5}>');
+        expect(source).toContain('<Toggle label="Neck-add switch" type="SPST mini toggle">');
         expect(source).not.toMatch(/in.progress|planned|pending|under review|unfinished/i);
     });
 

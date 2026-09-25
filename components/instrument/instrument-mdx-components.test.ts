@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { HarmonicShaper, PositionControl, PositionControlPosition } from './instrument-position-control';
 import { PrintHarmonicShaper, PrintPositionControl, PrintPositionControlPosition } from './instrument-print-position-control';
 import { instrumentMdxComponents, instrumentPrintMdxComponents } from './instrument-mdx-components';
+import { PrintToggle, PrintToggleState } from './instrument-print-spec';
+import { Toggle, ToggleState } from './instrument-spec';
 
 describe('instrument MDX component maps', () => {
     it('uses a dedicated component family for the printable case card', () => {
@@ -15,5 +17,9 @@ describe('instrument MDX component maps', () => {
         expect(instrumentPrintMdxComponents.PositionControlPosition).toBe(PrintPositionControlPosition);
         expect(instrumentPrintMdxComponents.HarmonicShaper).toBe(PrintHarmonicShaper);
         expect(instrumentPrintMdxComponents.HarmonicShaper).not.toBe(instrumentMdxComponents.HarmonicShaper);
+        expect(instrumentMdxComponents.Toggle).toBe(Toggle);
+        expect(instrumentMdxComponents.ToggleState).toBe(ToggleState);
+        expect(instrumentPrintMdxComponents.Toggle).toBe(PrintToggle);
+        expect(instrumentPrintMdxComponents.ToggleState).toBe(PrintToggleState);
     });
 });

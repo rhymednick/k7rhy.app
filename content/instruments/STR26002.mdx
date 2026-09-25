@@ -10,21 +10,53 @@ images:
       alt: 'Illustration of the white CuNiFe S-Type with black pickguard; not a photograph of the instrument'
 ---
 
+<InstrumentSpec>
+    <PickupConfiguration>
+        <Pickup position="bridge" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">10.5 kΩ</PickupDetail>
+        </Pickup>
+        <Pickup position="middle" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">10.0 kΩ</PickupDetail>
+            <PickupDetail label="Winding">Reverse-wound</PickupDetail>
+        </Pickup>
+        <Pickup position="neck" type="single-coil" brand="Fender" model="CuNiFe Stratocaster">
+            <PickupDetail label="Magnet">CuNiFe, adjustable poles</PickupDetail>
+            <PickupDetail label="Nominal DCR">9.6 kΩ</PickupDetail>
+        </Pickup>
+    </PickupConfiguration>
+
+    <ControlLayout>
+        <Selector label="Pickup selector" positions={5}>
+            <SelectorPosition voice="Bridge">The brightest, most focused voice, with the firmest attack.</SelectorPosition>
+            <SelectorPosition voice="Bridge + Middle">A glassy, percussive in-between sound; hum-canceling.</SelectorPosition>
+            <SelectorPosition voice="Middle">A balanced, open voice between bridge bite and neck warmth.</SelectorPosition>
+            <SelectorPosition voice="Middle + Neck">A warm, glassy in-between sound; hum-canceling.</SelectorPosition>
+            <SelectorPosition voice="Neck">The warmest, roundest voice, with deep lows and sweet highs.</SelectorPosition>
+        </Selector>
+        <Toggle label="Neck-add switch" type="SPST mini toggle">
+            <ToggleState state="Off" voice="Standard five-way">The five selector positions work as usual.</ToggleState>
+            <ToggleState state="On" voice="Neck added" printDescription="Position 1 becomes bridge + neck; position 2 becomes all three pickups; position 3 matches position 4. Positions 4 and 5 are unchanged.">Position 1 becomes bridge and neck together: bridge definition with neck body. Position 2 becomes all three pickups, the widest and most open blend. Position 3 matches position 4. Positions 4 and 5 are unchanged.</ToggleState>
+        </Toggle>
+        <Pot label="Master volume" mechanism="standard">
+            <PotPosition position="normal" voice="Master output">Sets the overall level and keeps its clarity as it is turned down.</PotPosition>
+        </Pot>
+        <Pot label="Master tone" mechanism="standard">
+            <PotPosition position="normal" voice="Treble rolloff">Softens the highs in every pickup setting.</PotPosition>
+        </Pot>
+    </ControlLayout>
+</InstrumentSpec>
+
 ## The instrument
 
 The white poplar body and maple neck are paired with a black pickguard and Guyker locking tuners. Fender CuNiFe Stratocaster pickups, sourced directly from Fender, give the guitar its defining voice.
 
 The five-way selector provides the familiar S-type choices. The neck-add switch brings the neck pickup into the selected sound in parallel, opening up bridge-and-neck and all-three-pickup combinations without complicating the main controls.
 
-## Controls and switching
+## What it is voiced to do
 
-Master volume and tone work in every pickup setting. The volume control is designed to retain clarity when turned down. The five-way selector and neck-add switch provide these combinations:
-
-1. **Bridge:** bridge alone; bridge and neck with neck-add on.
-2. **Bridge and middle:** bridge and middle; all three pickups with neck-add on.
-3. **Middle:** middle alone; middle and neck with neck-add on.
-4. **Middle and neck:** unchanged by the neck-add switch.
-5. **Neck:** unchanged by the neck-add switch.
+Fender describes the CuNiFe set as a vintage-style voice with deep, piano-like lows, a present midrange, and sweet, sparkling highs that keep their clarity and definition under heavy distortion. The middle pickup is reverse-wound, so the two in-between positions cancel hum. The neck-add switch opens two combinations a standard five-way cannot reach. Bridge and neck together pair the bridge's definition with the neck's body; all three pickups give the widest, most open blend.
 
 ## Electronics
 
@@ -34,4 +66,4 @@ A standard five-way selector selects the pickups. A latching SPST on-off micro s
 
 ## Wiring reference
 
-[Open the wiring reference](/sn/STR26002/wiring) for the full-size diagram, connection map, and bench checks.
+[Open the wiring reference](/sn/STR26002/wiring) for the full-size diagram, switch contacts, and connection map.

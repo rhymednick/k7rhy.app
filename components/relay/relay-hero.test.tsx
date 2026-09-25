@@ -14,6 +14,4 @@ describe('RelayHero', () => {
         render(<RelayHero tagline="A test tagline." />);
         expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
     });
-
-
 });

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { HarmonicShaper, PositionControlPosition } from './instrument-position-control';
-import { ControlLayout, InstrumentSpec, Pickup, PickupConfiguration, Pot, PotPosition, Selector, SelectorPosition } from './instrument-spec';
+import { ControlLayout, InstrumentSpec, Pickup, PickupConfiguration, Pot, PotPosition, Selector, SelectorPosition, Toggle, ToggleState } from './instrument-spec';
 
 const pickups = (
     <PickupConfiguration>
@@ -116,5 +116,50 @@ describe('instrument MDX components', () => {
 
         expect(screen.getByText('A500K Audio with a 680 pF capacitor')).toBeInTheDocument();
         expect(screen.queryByText('Controls overall instrument output.')).not.toBeInTheDocument();
+    });
+
+    it('renders a two-state toggle in the control layout', () => {
+        render(
+            <ControlLayout>
+                <Toggle label="Series switch" type="Mini toggle">
+                    <ToggleState state="Standard" voice="Parallel pairs">
+                        Classic in-between sounds.
+                    </ToggleState>
+                    <ToggleState state="Series" voice="Series pairs">
+                        Louder and thicker.
+                    </ToggleState>
+                </Toggle>
+            </ControlLayout>
+        );
+
+        expect(screen.getByText('Series switch')).toBeInTheDocument();
+        expect(screen.getByText('Mini toggle')).toBeInTheDocument();
+        expect(screen.getByText('Standard')).toBeInTheDocument();
+        expect(screen.getByText('Series pairs')).toBeInTheDocument();
+        expect(screen.getByText('Louder and thicker.')).toBeInTheDocument();
+    });
+
+    it('rejects a toggle without exactly two distinct states', () => {
+        expect(() =>
+            render(
+                <Toggle label="Neck-add switch" type="Mini toggle">
+                    <ToggleState state="On" voice="Neck added">
+                        Adds the neck.
+                    </ToggleState>
+                </Toggle>
+            )
+        ).toThrow('Neck-add switch requires exactly two distinct states');
+        expect(() =>
+            render(
+                <Toggle label="Neck-add switch" type="Mini toggle">
+                    <ToggleState state="On" voice="A">
+                        A
+                    </ToggleState>
+                    <ToggleState state="On" voice="B">
+                        B
+                    </ToggleState>
+                </Toggle>
+            )
+        ).toThrow('Neck-add switch requires exactly two distinct states');
     });
 });

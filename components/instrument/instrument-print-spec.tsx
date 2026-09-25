@@ -19,6 +19,13 @@ interface PotPositionProps {
     children: React.ReactNode;
 }
 
+interface ToggleStateProps {
+    state: string;
+    voice: string;
+    printDescription?: string;
+    children: React.ReactNode;
+}
+
 interface PickupProps {
     position: string;
     type: string;
@@ -65,7 +72,7 @@ export function PrintControlLayout({ children }: { children: React.ReactNode }) 
     const controls: React.ReactElement[] = [];
     React.Children.forEach(children, (child) => {
         if (isEmptyChild(child)) return;
-        if (!React.isValidElement(child) || (child.type !== PrintSelector && child.type !== PrintPot && child.type !== PrintPositionControl && child.type !== PrintHarmonicShaper)) throw new Error('PrintControlLayout contains an unsupported child');
+        if (!React.isValidElement(child) || (child.type !== PrintSelector && child.type !== PrintPot && child.type !== PrintToggle && child.type !== PrintPositionControl && child.type !== PrintHarmonicShaper)) throw new Error('PrintControlLayout contains an unsupported child');
         controls.push(child);
     });
     const pots = controls.filter((control) => control.type === PrintPot);
@@ -140,6 +147,30 @@ export function PrintPotPosition({ position, voice, printDescription, showPositi
         <div className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]">
             {showPosition && <p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{position}</p>}
             <p className={showPosition ? 'mt-0.5 font-semibold text-slate-800' : 'font-semibold text-slate-800'}>{voice}</p>
+            <div className="mt-0.5 text-slate-600">{printDescription ?? children}</div>
+        </div>
+    );
+}
+
+export function PrintToggle({ label, type, children }: { label: string; type: string; children: React.ReactNode }) {
+    const items = elementChildren(children, PrintToggleState, label);
+    if (items.length !== 2 || new Set(items.map((item) => item.props.state.trim())).size !== 2) throw new Error(`${label} requires exactly two distinct states`);
+    return (
+        <section className="rounded-md border border-slate-300 bg-slate-50 p-1.5">
+            <div className="mb-1 flex justify-between">
+                <h3 className="text-[8.5pt] font-semibold">{label}</h3>
+                <span className="font-mono text-[7pt] uppercase tracking-wider text-slate-500">{type}</span>
+            </div>
+            <div className="grid grid-cols-2 gap-1">{items}</div>
+        </section>
+    );
+}
+
+export function PrintToggleState({ state, voice, printDescription, children }: ToggleStateProps) {
+    return (
+        <div className="rounded border border-slate-300 bg-white p-1.5 text-[7.5pt] leading-[1.2]">
+            <p className="font-mono text-[6.8pt] font-semibold uppercase tracking-[0.14em] text-slate-600">{state}</p>
+            <p className="mt-0.5 font-semibold text-slate-800">{voice}</p>
             <div className="mt-0.5 text-slate-600">{printDescription ?? children}</div>
         </div>
     );

@@ -22,15 +22,7 @@ describe('DownloadGroupFile', () => {
 
 describe('DownloadGroup', () => {
     it('passes derived filename labels through to each file row', () => {
-        render(
-            <DownloadGroup
-                title="Relay body print files"
-                files={[
-                    { href: '/downloads/K7RHY Relay Flex Body.3mf' },
-                    { href: '/downloads/K7RHY Relay Flex Cap.3mf' },
-                ]}
-            />
-        );
+        render(<DownloadGroup title="Relay body print files" files={[{ href: '/downloads/K7RHY Relay Flex Body.3mf' }, { href: '/downloads/K7RHY Relay Flex Cap.3mf' }]} />);
 
         expect(screen.getByText('K7RHY Relay Flex Body.3mf')).toBeInTheDocument();
         expect(screen.getByText('K7RHY Relay Flex Cap.3mf')).toBeInTheDocument();
