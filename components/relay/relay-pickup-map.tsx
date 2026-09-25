@@ -88,7 +88,16 @@ function RoleBadge({ role }: { role?: RelayPickupRole }) {
         subsystem: 'subsystem',
         concept: 'concept',
     };
-    return <span className={cn('mt-1.5 inline-block rounded px-1.5 py-0.5 text-xs font-medium', roleStyles[role])}>{roleLabels[role]}</span>;
+    return (
+        <span
+            className={cn(
+                'mt-1.5 inline-block rounded px-1.5 py-0.5 text-xs font-medium',
+                roleStyles[role],
+            )}
+        >
+            {roleLabels[role]}
+        </span>
+    );
 }
 
 function PickupCard({ slot, position }: { slot: RelayPickupSlot; position: string }) {
@@ -98,7 +107,11 @@ function PickupCard({ slot, position }: { slot: RelayPickupSlot; position: strin
             <PickupIcon type={slot.type} />
             <div className="flex flex-col items-center">
                 <p className="text-sm font-medium leading-tight">{typeLabel[slot.type]}</p>
-                {(slot.magnet || slot.resistance) && <p className="mt-0.5 text-xs text-muted-foreground">{[slot.magnet, slot.resistance].filter(Boolean).join(' · ')}</p>}
+                {(slot.magnet || slot.resistance) && (
+                    <p className="mt-0.5 text-xs text-muted-foreground">
+                        {[slot.magnet, slot.resistance].filter(Boolean).join(' · ')}
+                    </p>
+                )}
                 <RoleBadge role={slot.role} />
             </div>
         </div>

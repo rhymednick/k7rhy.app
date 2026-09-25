@@ -20,14 +20,20 @@ describe('RelayDownloadCallout', () => {
                         ],
                     },
                 ]}
-            />
+            />,
         );
         expect(screen.getByText('Relay Body — Print files')).toBeInTheDocument();
         expect(screen.getByText(/three 3mf files/i)).toBeInTheDocument();
     });
 
     it('renders an accent-bordered container (testable via data attribute)', () => {
-        const { container } = render(<RelayDownloadCallout title="x" description="y" sources={[{ kind: 'repo', name: 'n', files: [{ href: '/downloads/K7RHY Santana - Body.3mf', label: 'Body' }] }]} />);
+        const { container } = render(
+            <RelayDownloadCallout
+                title="x"
+                description="y"
+                sources={[{ kind: 'repo', name: 'n', files: [{ href: '/downloads/K7RHY Santana - Body.3mf', label: 'Body' }] }]}
+            />,
+        );
         const root = container.querySelector('[data-relay-download-callout]');
         expect(root).not.toBeNull();
     });
@@ -47,14 +53,22 @@ describe('RelayDownloadCallout', () => {
                         ],
                     },
                 ]}
-            />
+            />,
         );
         expect(screen.getByTitle('Download Body')).toBeInTheDocument();
         expect(screen.getByTitle('Download Cap')).toBeInTheDocument();
     });
 
     it('renders an external link card for a non-repo source', () => {
-        render(<RelayDownloadCallout title="x" description="y" sources={[{ kind: 'makerworld', label: 'MakerWorld', href: 'https://makerworld.example/relay-body' }]} />);
+        render(
+            <RelayDownloadCallout
+                title="x"
+                description="y"
+                sources={[
+                    { kind: 'makerworld', label: 'MakerWorld', href: 'https://makerworld.example/relay-body' },
+                ]}
+            />,
+        );
         const link = screen.getByRole('link', { name: /makerworld/i });
         expect(link).toHaveAttribute('href', 'https://makerworld.example/relay-body');
         expect(link).toHaveAttribute('target', '_blank');

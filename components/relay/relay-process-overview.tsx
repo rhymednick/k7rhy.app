@@ -42,9 +42,7 @@ export function RelayProcessOverview() {
 
     return (
         <div className="my-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {stages.map((stage, index) => (
-                <RelayProcessCard key={stage.slug} stage={stage} className={isLastRowAlone && index === stages.length - 1 ? 'md:col-span-2' : undefined} />
-            ))}
+            {stages.map((stage, index) => <RelayProcessCard key={stage.slug} stage={stage} className={isLastRowAlone && index === stages.length - 1 ? 'md:col-span-2' : undefined} />)}
         </div>
     );
 }
