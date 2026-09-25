@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1830" viewBox="0 0 2400 1830" role="img" aria-labelledby="title description"><title id="title">CuNiFe S-Type STR26002 wiring reference</title><desc id="description">High-resolution wiring reference with Fender CuNiFe Stratocaster pickup roles, standard five-way functional contact map, neck-add SPST, rear-view volume and tone pots, treble-bleed topology, ten operating states, and common-ground checks.</desc><rect width="2400" height="1830" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
-<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">CuNiFe S-Type • WIRING REFERENCE</text>
-<text x="1200" y="96" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL SWITCH CONTACTS MUST BE METERED</text>
-<text x="2370" y="37" fill="#4c5b68" font-size="19" font-weight="400" text-anchor="end">STR26002 • Rev 1.0 • 2026-09-24</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1830" viewBox="0 0 2400 1830" role="img" aria-labelledby="title description"><title id="title">STR26002 CuNiFe S-Type wiring reference</title><desc id="description">As-built wiring reference with Fender CuNiFe Stratocaster pickup roles, standard five-way contact map, neck-add SPST, rear-view volume and tone pots, treble-bleed topology, ten operating states, and common ground.</desc><rect width="2400" height="1830" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">STR26002 CuNiFe S-Type • WIRING REFERENCE</text>
+<text x="1200" y="96" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">AS BUILT • MATCH IDENTICAL BOXED NET LABELS • SWITCH CONTACTS SHOWN BY FUNCTION</text>
+<text x="2370" y="37" fill="#4c5b68" font-size="19" font-weight="400" text-anchor="end">Rev 1.1 • 2026-09-25</text>
 <rect x="25" y="120" width="2350" height="284" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="122" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="159" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. FENDER CUNIFE STRATOCASTER PICKUPS</text>
-<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Electrical roles, not manufacturer lead colors</text>
+<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Labeled by electrical role</text>
 <text x="65" y="194" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">BRIDGE</text>
 <rect x="65" y="213" width="222" height="91" rx="40" fill="#f1f3f2" stroke="#2d3940" stroke-width="3"/>
 <circle cx="89" cy="258" r="9" fill="#8e9da4" stroke="#4c5b63" stroke-width="1.5"/>
@@ -21,7 +21,7 @@
 <line x1="200" y1="326" x2="236" y2="326" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="206" y1="334" x2="230" y2="334" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="212" y1="342" x2="224" y2="342" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
-<text x="65" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD/CASE → GND</text>
+<text x="65" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD LEAD → GND</text>
 <text x="835" y="194" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">MIDDLE</text>
 <rect x="835" y="213" width="222" height="91" rx="40" fill="#f1f3f2" stroke="#2d3940" stroke-width="3"/>
 <circle cx="859" cy="258" r="9" fill="#8e9da4" stroke="#4c5b63" stroke-width="1.5"/>
@@ -37,7 +37,7 @@
 <line x1="970" y1="326" x2="1006" y2="326" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="976" y1="334" x2="1000" y2="334" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="982" y1="342" x2="994" y2="342" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
-<text x="835" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD/CASE → GND</text>
+<text x="835" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD LEAD → GND</text>
 <text x="1605" y="194" fill="#25303b" font-size="24" font-weight="700" text-anchor="start">NECK</text>
 <rect x="1605" y="213" width="222" height="91" rx="40" fill="#f1f3f2" stroke="#2d3940" stroke-width="3"/>
 <circle cx="1629" cy="258" r="9" fill="#8e9da4" stroke="#4c5b63" stroke-width="1.5"/>
@@ -53,11 +53,11 @@
 <line x1="1740" y1="326" x2="1776" y2="326" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="1746" y1="334" x2="1770" y2="334" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <line x1="1752" y1="342" x2="1764" y2="342" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
-<text x="1605" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD/CASE → GND</text>
+<text x="1605" y="380" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">COIL RETURN + SHIELD LEAD → GND</text>
 <rect x="25" y="424" width="1170" height="614" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="426" width="1166" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">2. STANDARD FIVE-WAY PICKUP POLE</text>
-<text x="1175" y="461" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Functional contacts • throws overlap in 2 and 4</text>
+<text x="1175" y="461" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Adjacent throws overlap in positions 2 and 4</text>
 <rect x="55" y="499" width="1109" height="438" rx="0" fill="#fbfdfe" stroke="#465c70" stroke-width="1.4"/>
 <rect x="55" y="499" width="1109" height="65" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <line x1="190" y1="499" x2="190" y2="937" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
@@ -70,11 +70,11 @@
 <line x1="55" y1="688" x2="1164" y2="688" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
 <line x1="55" y1="812" x2="1164" y2="812" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
 <text x="122.5" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">THROW</text>
-<text x="270" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">1</text>
-<text x="430" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">2</text>
-<text x="590" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">3</text>
-<text x="750" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">4</text>
-<text x="910" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">5</text>
+<text x="270" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">POS 1</text>
+<text x="430" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">POS 2</text>
+<text x="590" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">POS 3</text>
+<text x="750" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">POS 4</text>
+<text x="910" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">POS 5</text>
 <text x="1077" y="540" fill="#25303b" font-size="23" font-weight="750" text-anchor="middle">COMMON</text>
 <text x="129" y="638" fill="#25303b" font-size="29" font-weight="750" text-anchor="middle">1</text>
 <circle cx="198" cy="629" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
@@ -143,8 +143,8 @@
 <line x1="1006" y1="877" x2="1033" y2="877" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
 <rect x="1040" y="855" width="89" height="44" rx="5" fill="white" stroke="#246c58" stroke-width="2.5"/>
 <text x="1084.5" y="884.48" fill="#246c58" font-size="22" font-weight="700" text-anchor="middle">BUS</text>
-<text x="55" y="977" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">One pole supplies BUS. The other standard five-way pole is unused.</text>
-<text x="55" y="1009" fill="#4c5b68" font-size="20" font-weight="500" text-anchor="start">Find physical commons, throws, and overlap with a continuity meter.</text>
+<text x="55" y="977" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">Rows are the blade throws; columns are the five selector positions.</text>
+<text x="55" y="1009" fill="#4c5b68" font-size="20" font-weight="500" text-anchor="start">One pole supplies BUS. The second pole of the standard five-way is unused.</text>
 <rect x="1215" y="424" width="1160" height="614" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="1217" y="426" width="1156" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="1237" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">3. NECK-ADD • SPST ON/OFF</text>
@@ -169,15 +169,15 @@
 <text x="1795" y="754" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">CLOSED</text>
 <text x="1245" y="889" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">SPST common → BUS; other terminal → N-H.</text>
 <text x="1245" y="928" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">In positions 4 and 5, ON adds no new pickup.</text>
-<text x="1245" y="978" fill="#4c5b68" font-size="20" font-weight="500" text-anchor="start">Contact view is functional, not a physical lug layout.</text>
 <rect x="25" y="1058" width="760" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="1060" width="756" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">4. MASTER VOLUME • A250K AUDIO</text>
 <text x="55" y="1130" fill="#246c58" font-size="23" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
 <text x="55" y="1171" fill="#187b80" font-size="23" font-weight="750" text-anchor="start">CENTER / WIPER → OUT</text>
 <text x="55" y="1212" fill="#445464" font-size="23" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
-<text x="55" y="1280" fill="#25303b" font-size="19" font-weight="700" text-anchor="start">Treble bleed: (1,200 pF ∥ 150 kΩ) in series with 20 kΩ</text>
-<text x="55" y="1314" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">BUS → parallel pair → TB-J → 20 kΩ → OUT</text>
+<text x="55" y="1280" fill="#25303b" font-size="20" font-weight="750" text-anchor="start">TREBLE BLEED • across BUS and OUT</text>
+<text x="55" y="1314" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">BUS → (1,200 pF ∥ 150 kΩ) → TB-J</text>
+<text x="55" y="1348" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">TB-J → 20 kΩ → OUT</text>
 <circle cx="630" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
 <text x="630" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">A250K</text>
 <text x="630" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">VOLUME</text>
@@ -245,10 +245,9 @@
 <text x="2045" y="1435" fill="#25303b" font-size="18" font-weight="500" text-anchor="start">Neck</text>
 <rect x="25" y="1512" width="2350" height="288" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="1514" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="47" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND &amp; BENCH CHECKS</text>
-<text x="55" y="1592" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">GND = all coil returns + separate shields/cases • volume CCW lug • 22 nF tone return • output jack sleeve.</text>
-<text x="55" y="1631" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Bond both pot cases, conductive switch chassis, cavity shielding, and bridge/string ground to the same ground network.</text>
-<text x="55" y="1685" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Identify pickup leads from Fender guide + meter; check phase in combined positions. Meter five-way overlap and SPST ON/OFF.</text>
-<text x="55" y="1724" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Tap-test all ten states; positions 4 and 5 should stay unchanged. Check clockwise controls, jack polarity, and cavity clearance.</text>
-<text x="55" y="1772" fill="#4c5b68" font-size="19" font-weight="650" text-anchor="start">Physical lead colors, switch lug order, and pickup phase are to be established on the actual parts.</text>
+<text x="47" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND</text>
+<text x="55" y="1592" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">GND = all coil returns + shield leads • volume CCW lug • 22 nF tone return • output jack sleeve.</text>
+<text x="55" y="1631" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Both pot cases, conductive switch chassis, cavity shielding, and bridge/string ground are bonded to the same ground network.</text>
+<text x="55" y="1685" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Pickup leads follow the Fender CuNiFe pickup-set diagram. Wire colors and switch lug positions are not drawn.</text>
+<text x="55" y="1724" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Every coil return stays on GND in all ten states. Neck-add changes positions 1–3 only.</text>
 </g></svg>

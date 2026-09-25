@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1810" viewBox="0 0 2400 1810" role="img" aria-labelledby="title description"><title id="title">STR26001 CuNiFe S-Type wiring reference</title><desc id="description">Numbered bench reference for three Fender CuNiFe single-coil pickups, a four-pole five-way super switch, DPDT parallel or series toggle, master volume and tone, treble bleed, ten operating states, and common ground.</desc><rect width="2400" height="1810" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
-<text x="1200" y="54" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">CuNiFe S-Type • WIRING REFERENCE</text>
-<text x="1200" y="94" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL CONTACTS MUST BE METERED</text>
-<text x="2370" y="38" fill="#4c5b68" font-size="19" font-weight="450" text-anchor="end">STR26001 • Rev 1.0 • 2026-09-24</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1810" viewBox="0 0 2400 1810" role="img" aria-labelledby="title description"><title id="title">STR26001 CuNiFe S-Type wiring reference</title><desc id="description">As-built wiring reference for three Fender CuNiFe single-coil pickups, a four-pole five-way super switch, DPDT parallel or series toggle, master volume and tone, treble bleed, ten operating states, and common ground.</desc><rect width="2400" height="1810" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="54" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">STR26001 CuNiFe S-Type • WIRING REFERENCE</text>
+<text x="1200" y="94" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">AS BUILT • MATCH IDENTICAL BOXED NET LABELS • SWITCH CONTACTS SHOWN BY FUNCTION</text>
+<text x="2370" y="38" fill="#4c5b68" font-size="19" font-weight="450" text-anchor="end">Rev 1.1 • 2026-09-25</text>
 <rect x="25" y="120" width="2350" height="290" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="122" width="2346" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="160" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. PICKUPS</text>
-<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="450" text-anchor="end">Fender CuNiFe Stratocaster SSS • electrical roles, not lead colors</text>
+<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="450" text-anchor="end">Fender CuNiFe Stratocaster SSS • labeled by electrical role</text>
 <text x="65" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">BRIDGE</text>
 <rect x="65" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
 <rect x="77" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
@@ -21,7 +21,7 @@
 <line x1="275" y1="289" x2="306" y2="289" stroke="#445464" stroke-width="4" stroke-linecap="round"/>
 <rect x="306" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
 <text x="353" y="296.64" fill="#445464" font-size="21" font-weight="700" text-anchor="middle">B_C</text>
-<text x="65" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">B_C + separate cover/case → GND</text>
+<text x="65" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">B_C + shield lead → GND</text>
 <text x="835" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">MIDDLE</text>
 <rect x="835" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
 <rect x="847" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
@@ -37,7 +37,7 @@
 <line x1="1045" y1="289" x2="1076" y2="289" stroke="#7950a4" stroke-width="4" stroke-linecap="round"/>
 <rect x="1076" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
 <text x="1123" y="296.64" fill="#7950a4" font-size="21" font-weight="700" text-anchor="middle">M_C</text>
-<text x="835" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">M_C is switched; isolated cover → GND</text>
+<text x="835" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">M_C is switched; shield lead → GND</text>
 <text x="1605" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">NECK</text>
 <rect x="1605" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
 <rect x="1617" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
@@ -53,8 +53,8 @@
 <line x1="1815" y1="289" x2="1846" y2="289" stroke="#445464" stroke-width="4" stroke-linecap="round"/>
 <rect x="1846" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
 <text x="1893" y="296.64" fill="#445464" font-size="21" font-weight="700" text-anchor="middle">N_C</text>
-<text x="1605" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">N_C + separate cover/case → GND</text>
-<text x="833" y="389" fill="#7950a4" font-size="19" font-weight="750" text-anchor="start">MIDDLE COVER MUST REMAIN GROUNDED WHEN M_C IS LIFTED</text>
+<text x="1605" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">N_C + shield lead → GND</text>
+<text x="833" y="389" fill="#7950a4" font-size="19" font-weight="750" text-anchor="start">MIDDLE SHIELD STAYS ON GND WHEN M_C IS SWITCHED</text>
 <rect x="25" y="430" width="1480" height="650" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="432" width="1476" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="470" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">2. FOUR-POLE FIVE-WAY SUPER SWITCH</text>
@@ -236,8 +236,8 @@
 <line x1="682" y1="1362" x2="682" y2="1374" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
 <text x="682" y="1395" fill="#445464" font-size="17" font-weight="750" text-anchor="middle">GND</text>
 <text x="55" y="1302" fill="#25303b" font-size="20" font-weight="750" text-anchor="start">TREBLE BLEED • across BUS and OUT</text>
-<text x="55" y="1341" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">BUS → 20 kΩ → TB_J</text>
-<text x="55" y="1380" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">TB_J → (1,200 pF ∥ 150 kΩ) → OUT</text>
+<text x="55" y="1341" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">BUS → (1,200 pF ∥ 150 kΩ) → TB_J</text>
+<text x="55" y="1380" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">TB_J → 20 kΩ → OUT</text>
 <text x="55" y="1449" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">REAR VIEW • shaft away • lugs down • clockwise = louder</text>
 <rect x="805" y="1100" width="770" height="405" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
 <rect x="807" y="1102" width="766" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
@@ -295,9 +295,9 @@
 <text x="1623" y="1481" fill="#4c5b68" font-size="17" font-weight="650" text-anchor="start">∥ = parallel     — = series</text>
 <rect x="25" y="1525" width="2350" height="260" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="1527" width="2346" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="47" y="1565" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND &amp; BENCH CHECKS</text>
-<text x="55" y="1609" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">GND = B_C + N_C + separately isolated middle cover/shield • volume CCW lug • selector D3 • DPDT Y normal throw • tone cap return.</text>
-<text x="55" y="1650" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Bond other pickup shields/cases, pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve to GND.</text>
-<text x="55" y="1701" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Identify actual CuNiFe leads with Fender guide and meter. Confirm middle cover isolation, phase, super-switch lugs, and DPDT throws.</text>
-<text x="55" y="1743" fill="#7950a4" font-size="21" font-weight="700" text-anchor="start">Meter all 10 states; tap-test pickup selection and confirm clockwise volume/tone action. Do not ground M_C outside the selector.</text>
+<text x="47" y="1565" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND</text>
+<text x="55" y="1609" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">GND = B_C + N_C + all three pickup shield leads • volume CCW lug • selector D3 • DPDT Y normal throw • tone cap return.</text>
+<text x="55" y="1650" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve are bonded to GND.</text>
+<text x="55" y="1701" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Pickup leads follow the Fender CuNiFe pickup-set diagram. Wire colors and switch lug positions are not drawn.</text>
+<text x="55" y="1743" fill="#7950a4" font-size="21" font-weight="700" text-anchor="start">M_C reaches GND only through selector D3 or the DPDT normal throw; it has no other ground connection.</text>
 </g></svg>
