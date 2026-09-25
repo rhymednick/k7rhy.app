@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { PrintHarmonicShaper, PrintPositionControlPosition } from './instrument-print-position-control';
-import { PrintControlLayout, PrintInstrumentSpec, PrintPickup, PrintPickupConfiguration, PrintPickupDetail, PrintPot, PrintPotPosition, PrintSelector, PrintSelectorPosition } from './instrument-print-spec';
+import { PrintControlLayout, PrintInstrumentSpec, PrintPickup, PrintPickupConfiguration, PrintPickupDetail, PrintPot, PrintPotPosition, PrintSelector, PrintSelectorPosition, PrintToggle, PrintToggleState } from './instrument-print-spec';
 
 describe('compact instrument print components', () => {
     it('renders the full control map and compact pickup identities from the same MDX shape', () => {
@@ -101,5 +101,25 @@ describe('compact instrument print components', () => {
         expect(container.querySelector('[data-print-pickup-grid]')).toHaveClass('grid-cols-3');
         expect(screen.getByRole('heading', { name: 'Pickup configuration' })).toBeInTheDocument();
         expect(screen.queryByText('filtertron')).not.toBeInTheDocument();
+    });
+
+    it('renders a compact toggle with its print descriptions', () => {
+        render(
+            <PrintControlLayout>
+                <PrintToggle label="Neck-add switch" type="Mini toggle">
+                    <PrintToggleState state="Off" voice="Standard five-way">
+                        The five positions work as usual.
+                    </PrintToggleState>
+                    <PrintToggleState state="On" voice="Neck added" printDescription="Short print text.">
+                        Long web text.
+                    </PrintToggleState>
+                </PrintToggle>
+            </PrintControlLayout>
+        );
+
+        expect(screen.getByText('Neck-add switch')).toBeInTheDocument();
+        expect(screen.getByText('Off')).toBeInTheDocument();
+        expect(screen.getByText('Short print text.')).toBeInTheDocument();
+        expect(screen.queryByText('Long web text.')).not.toBeInTheDocument();
     });
 });

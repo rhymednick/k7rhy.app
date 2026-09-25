@@ -1,8 +1,25 @@
 # White CuNiFe S-Type builds
 
-Date: 2026-09-24
+Date: 2026-09-24 · updated 2026-09-25
 
-## Record decision — implemented locally
+## Current state — owner confirmed, 2026-09-25
+
+Both guitars are built and wired to the final specification below. The owner confirmed on 2026-09-25:
+
+- **Completion.** Both records use `completed: '2026-09-24'` with the date label **Built**. This supersedes the `started` date and the “Record date” label.
+- **Tuners.** Guyker locking tuners are confirmed on both guitars.
+- **Pickup shields.** All three Fender CuNiFe pickups on each guitar have isolated shield ground leads, tested by the owner. This settles the middle-cover concern for `STR26001`'s switched middle coil return.
+- **Specification status.** Treat every approved choice in this file as installed and confirmed. Earlier notes below that call parts unconfirmed, not installed, or not bench validated are historical.
+- **Wiring references, Rev 1.1.** The serial pages and diagrams now read as an as-built record rather than a build and test guide: the build outline, bench checks, and “meter before wiring” notes are removed. Each diagram title includes its serial, both diagrams describe the treble bleed in the same order (`BUS → (1,200 pF ∥ 150 kΩ) → junction → 20 kΩ → OUT`), and the `STR26002` selector table labels its columns by position. Rev 1.0 files are removed; the Rev 1.1 PNGs are `public/wiring-diagrams/STR26001-wiring-rev-1.1.png` and `STR26002-wiring-rev-1.1.png`.
+- **Owner copy.** “New” is removed from the pickup description, and repeated control wording is trimmed.
+- **Voice and control map, 2026-09-25 — implemented.** Both records now carry an `InstrumentSpec`, so their case cards are complete. Voices are inferred from the as-built wiring and Fender's published description of the set (vintage-style voice, deep lows, present mids, sparkling highs, clarity under distortion; reverse-wound middle to eliminate hum). Series pairs on `STR26001` are described as louder, thicker, and hum-canceling, which follows from the series connection of a reverse-wound middle; this is circuit inference, not a measurement. A new `Toggle` control represents each guitar's mini switch. Validation now rejects a completed record without an `InstrumentSpec`.
+- **Public diagrams.** The owner accepts that the diagram PNGs are publicly reachable while the records remain unpublished.
+
+Both records remain `publish: false` with placeholder illustrations until exact-instrument photographs are added and publication is approved.
+
+## History
+
+### Record decision — implemented locally, 2026-09-24
 
 The owner reserved `STR26001` and `STR26002` for two white S-type guitars being assembled from purchased parts. Both records now use the standalone name **CuNiFe S-Type**; the earlier working names with `1` and `2` are superseded. Both have poplar bodies and maple necks. `STR26001` has a bamboo pickguard; `STR26002` has a black pickguard. Both records use 2026 serials and September 24, 2026 as the build start date. Both remain unpublished and use owner-approved temporary image placeholders until exact-instrument photographs are available. The owner has purchased Fender CuNiFe Stratocaster pickup sets directly from Fender and selected Guyker locking tuners for both builds. Exact tuner model and installation status remain unconfirmed.
 
@@ -10,7 +27,7 @@ This implements an in-progress record state with `started` and no `completed` va
 
 **Owner-facing copy decision, 2026-09-24 — implemented locally:** each serial page must read as a concise, independent ownership record. The serial appears in page metadata, not descriptive prose; neither page calls its guitar the first or second of a pair. The owner replaced the provisional “bamboo-like” language with **bamboo pickguard** and asked for a direct builder origin, without emphasis on purchased parts. The page highlights the new Fender pickups sourced directly from Fender and explains the musical purpose of its particular switch. This supersedes the earlier working names, parts-centered origin lines, and build-plan narrative. The engineering details below retain sourcing and validation history outside the owner-facing copy.
 
-## Final specification — owner approved
+### Final specification — owner approved
 
 The [shared wiring discussion](https://chatgpt.com/share/6ab58f95-50fc-83e8-98cc-6d8afc3a772b) raised a conventional five-way base, a series option in positions 2 and 4, and neck-add as candidates. It does not establish a verified contact map or an installed circuit. No proposed control state is represented as installed in either record.
 
@@ -60,7 +77,7 @@ Fender's [CuNiFe Stratocaster pickup set specification](https://www.fender.com/p
 
 The [Fender pickup-set wiring diagram](https://www.fmicassets.com/Damroot/Original/10008/Diagram_0992367000_CuNiFe-Stratocaster-Pickup-Set.pdf) is the manufacturer reference for lead identification. The logical mode table and functional contact topology above are established; physical lug orientation, pickup phase, chrome-cover isolation, and final harness behavior have not been observed. The owner accepts the design without requiring a pre-build verification step. Do not describe those physical properties as measured or bench validated in engineering records.
 
-## Headstock QR and record labels — implemented locally
+### Headstock QR and record labels — implemented locally
 
 The owner's [headstock mockup](headstock-mockup-reference.png) establishes a separate QR-and-record block to the right of the company identification. The printable block has a thin vertical divider, a QR code, another divider, italic serif text reading “Scan for this instrument’s build record.”, “Instrument No.”, and the bold serial. The QR is logo-free, preserving the owner's earlier scale-test decision despite the logo shown in the mockup. Company identification and “Built in Coupeville, Washington” are outside this print file.
 
@@ -72,8 +89,8 @@ node scripts/generate-instrument-headstock-qr.mjs STR26001 STR26002
 
 The files are held under `docs/engineering/`, outside deployed public assets. Production URLs return 404 while the records remain unpublished. A printed proof on the actual label material and a phone scan at final physical size are still required before applying a headstock label.
 
-## Individual wiring references — implemented locally, logically reviewed
+### Individual wiring references — implemented locally, logically reviewed
 
-The owner requested a separate builder-facing wiring diagram for each one-of-a-kind guitar, linked from its serial page without displaying the image on that page. `STR26001-wiring-reference.md` and `STR26002-wiring.md` are the circuit sources, paired with editable SVGs and generators under this directory. The final 2400-pixel-wide PNGs are copied to `public/wiring-diagrams/`, and each local serial page links to `/sn/<SERIAL>/wiring`. Those noindex wiring pages provide a full-size/downloadable diagram plus searchable operating states, parts, contact map, netlist, build outline, and bench checks. The records and their wiring pages remain unpublished.
+The owner requested a separate builder-facing wiring diagram for each one-of-a-kind guitar, linked from its serial page without displaying the image on that page. (Superseded in part by Rev 1.1 above.) `STR26001-wiring-reference.md` and `STR26002-wiring.md` are the circuit sources, paired with editable SVGs and generators under this directory. The final 2400-pixel-wide PNGs are copied to `public/wiring-diagrams/`, and each local serial page links to `/sn/<SERIAL>/wiring`. Those noindex wiring pages provide a full-size/downloadable diagram plus searchable operating states, parts, contact map, netlist, build outline, and bench checks. The records and their wiring pages remain unpublished.
 
 Both final PNGs were compared at full resolution with the approved Relay Arc presentation and independently reviewed for electrical states and physical/readability guidance. The 001 contact map produces the specified five normal and five series states; the 002 blade and neck-add switch produce its specified ten states. The treble-bleed, tone, volume, jack, and ground paths match the text sources. The visual reviewer checked rear-view pot orientation, legibility, and the explicit functional-contact labeling. After the 002 title was aligned with 001, its final export received a second presentation review. The reviews validate the **drawn functional circuit**, not an assembled harness. In particular, the 001 middle pickup cover must be identified and kept grounded separately from its switchable coil return; actual switch lugs, leads, phase, and cavity fit remain bench checks.

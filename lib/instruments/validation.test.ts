@@ -53,4 +53,12 @@ describe('validateInstrumentDocument', () => {
     it('rejects a start date that differs from the serial year', () => {
         expect(() => validateInstrumentDocument('STR26001', { ...valid, completed: undefined, started: '2027-01-01' })).toThrow('STR26001 year does not match start date 2027-01-01');
     });
+
+    it('requires a voice and control map once the instrument is completed', () => {
+        expect(() => validateInstrumentDocument('STR26001', { ...valid, content: '## The instrument' })).toThrow('STR26001 requires an InstrumentSpec voice and control map once completed');
+    });
+
+    it('allows an unfinished build to defer its voice and control map', () => {
+        expect(validateInstrumentDocument('STR26001', { ...valid, completed: undefined, started: '2026-09-24', content: '## The instrument' })).toMatchObject({ serial: 'STR26001' });
+    });
 });

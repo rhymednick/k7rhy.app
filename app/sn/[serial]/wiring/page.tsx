@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
+import { formatInstrumentDate } from '@/lib/instruments/date';
 import { getInstrument } from '@/lib/instruments/records';
 import { resolveInstrumentRequest } from '@/lib/instruments/route-resolution';
 import { normalizeInstrumentSerial } from '@/lib/instruments/serial';
@@ -45,8 +46,10 @@ export default async function InstrumentWiringPage({ params }: Props) {
                 <Link href={`/sn/${reference.serial}`} className="text-sm font-semibold text-sky-700 underline-offset-4 hover:underline dark:text-sky-300">
                     ← Back to instrument record
                 </Link>
-                <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{reference.serial} · Rev 1.0 · September 24, 2026</p>
-                <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">CuNiFe S-Type wiring reference</h1>
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    {reference.serial} · Rev {reference.revision} · {formatInstrumentDate(reference.revised)}
+                </p>
+                <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">{resolution.record.name} wiring reference</h1>
                 <p className="max-w-3xl text-lg text-muted-foreground">{reference.summary}</p>
             </header>
 
@@ -66,8 +69,6 @@ export default async function InstrumentWiringPage({ params }: Props) {
                     <Image src={reference.diagram} alt={reference.diagramAlt} width={reference.diagramWidth} height={reference.diagramHeight} unoptimized className="h-auto w-full" />
                 </a>
             </figure>
-
-            <p className="rounded-lg border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-slate-700 dark:border-sky-900 dark:bg-sky-950/30 dark:text-slate-300">The switch diagrams show functional contacts. Identify the actual pickup leads and switch lugs with the supplied guide and a continuity meter before wiring.</p>
 
             <section className="space-y-3" aria-labelledby="operating-states">
                 <h2 id="operating-states" className="text-2xl font-semibold">
@@ -105,14 +106,14 @@ export default async function InstrumentWiringPage({ params }: Props) {
 
             <section className="space-y-3" aria-labelledby="parts-and-leads">
                 <h2 id="parts-and-leads" className="text-2xl font-semibold">
-                    Parts and lead identification
+                    Parts
                 </h2>
                 <p className="text-slate-700 dark:text-slate-300">
-                    Use the{' '}
+                    Pickup leads follow the{' '}
                     <a href="https://www.fmicassets.com/Damroot/Original/10008/Diagram_0992367000_CuNiFe-Stratocaster-Pickup-Set.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
-                        Fender pickup-set diagram
-                    </a>{' '}
-                    with the pickups in hand. The wire colors and physical switch lugs must be identified on the actual parts.
+                        Fender CuNiFe pickup-set diagram
+                    </a>
+                    .
                 </p>
                 <ul className="list-disc space-y-2 pl-6 text-slate-700 dark:text-slate-300">
                     {reference.parts.map((part) => (
@@ -187,29 +188,7 @@ export default async function InstrumentWiringPage({ params }: Props) {
                         </tbody>
                     </table>
                 </div>
-                <p className="text-sm text-muted-foreground">In the diagram’s rear pot view, the shaft points away and the lugs point down. Left, center, and right are clockwise end, wiper, and counterclockwise end. Check clockwise knob behavior after assembly.</p>
-            </section>
-
-            <section className="space-y-3" aria-labelledby="build-outline">
-                <h2 id="build-outline" className="text-2xl font-semibold">
-                    Build outline
-                </h2>
-                <ol className="list-decimal space-y-2 pl-6 text-slate-700 dark:text-slate-300">
-                    {reference.buildSteps.map((step) => (
-                        <li key={step}>{step}</li>
-                    ))}
-                </ol>
-            </section>
-
-            <section className="space-y-3" aria-labelledby="bench-checks">
-                <h2 id="bench-checks" className="text-2xl font-semibold">
-                    Bench checks
-                </h2>
-                <ol className="list-decimal space-y-2 pl-6 text-slate-700 dark:text-slate-300">
-                    {reference.checks.map((check) => (
-                        <li key={check}>{check}</li>
-                    ))}
-                </ol>
+                <p className="text-sm text-muted-foreground">In the diagram’s rear pot view, the shaft points away and the lugs point down. Left, center, and right are clockwise end, wiper, and counterclockwise end.</p>
             </section>
         </main>
     );

@@ -3,8 +3,8 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
-// Circuit source: STR26001-wiring-reference.md. Switches show functional
-// contacts, deliberately not an unverified physical manufacturer's lug layout.
+// Circuit source: STR26001-wiring-reference.md. As-built record; switches
+// show contacts by function rather than by physical lug position.
 const here = dirname(fileURLToPath(import.meta.url));
 const W = 2400;
 const H = 1810;
@@ -74,17 +74,17 @@ function pot(x, y, label, lugs) {
     });
 }
 
-add(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="title description"><title id="title">STR26001 CuNiFe S-Type wiring reference</title><desc id="description">Numbered bench reference for three Fender CuNiFe single-coil pickups, a four-pole five-way super switch, DPDT parallel or series toggle, master volume and tone, treble bleed, ten operating states, and common ground.</desc><rect width="${W}" height="${H}" fill="white"/><g font-family="Arial, Helvetica, sans-serif">`);
-txt(1200, 54, 'CuNiFe S-Type • WIRING REFERENCE', 45, C.ink, 800, 'middle');
-txt(1200, 94, 'MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL CONTACTS MUST BE METERED', 24, C.ink, 700, 'middle');
-txt(2370, 38, 'STR26001 • Rev 1.0 • 2026-09-24', 19, C.muted, 450, 'end');
+add(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="title description"><title id="title">STR26001 CuNiFe S-Type wiring reference</title><desc id="description">As-built wiring reference for three Fender CuNiFe single-coil pickups, a four-pole five-way super switch, DPDT parallel or series toggle, master volume and tone, treble bleed, ten operating states, and common ground.</desc><rect width="${W}" height="${H}" fill="white"/><g font-family="Arial, Helvetica, sans-serif">`);
+txt(1200, 54, 'STR26001 CuNiFe S-Type • WIRING REFERENCE', 45, C.ink, 800, 'middle');
+txt(1200, 94, 'AS BUILT • MATCH IDENTICAL BOXED NET LABELS • SWITCH CONTACTS SHOWN BY FUNCTION', 24, C.ink, 700, 'middle');
+txt(2370, 38, 'Rev 1.1 • 2026-09-25', 19, C.muted, 450, 'end');
 
-// 1. Pickups and independent cover ground.
-card(25, 120, 2350, 290, '1. PICKUPS', 'Fender CuNiFe Stratocaster SSS • electrical roles, not lead colors');
-pickup(65, 173, 'BRIDGE', 'B_H', 'B_C', C.bridge, 'B_C + separate cover/case → GND');
-pickup(835, 173, 'MIDDLE', 'M_H', 'M_C', C.middle, 'M_C is switched; isolated cover → GND');
-pickup(1605, 173, 'NECK', 'N_H', 'N_C', C.neck, 'N_C + separate cover/case → GND');
-txt(833, 389, 'MIDDLE COVER MUST REMAIN GROUNDED WHEN M_C IS LIFTED', 19, C.route, 750);
+// 1. Pickups and isolated shield leads.
+card(25, 120, 2350, 290, '1. PICKUPS', 'Fender CuNiFe Stratocaster SSS • labeled by electrical role');
+pickup(65, 173, 'BRIDGE', 'B_H', 'B_C', C.bridge, 'B_C + shield lead → GND');
+pickup(835, 173, 'MIDDLE', 'M_H', 'M_C', C.middle, 'M_C is switched; shield lead → GND');
+pickup(1605, 173, 'NECK', 'N_H', 'N_C', C.neck, 'N_C + shield lead → GND');
+txt(833, 389, 'MIDDLE SHIELD STAYS ON GND WHEN M_C IS SWITCHED', 19, C.route, 750);
 
 // 2. Four independent selector poles. Every cell is an isolated throw.
 card(25, 430, 1480, 650, '2. FOUR-POLE FIVE-WAY SUPER SWITCH', 'Common closes to one numbered throw per position');
@@ -192,8 +192,8 @@ pot(630, 1231, 'A250K', [
     ['GND', C.ground],
 ]);
 txt(55, 1302, 'TREBLE BLEED • across BUS and OUT', 20, C.ink, 750);
-txt(55, 1341, 'BUS → 20 kΩ → TB_J', 20, C.route, 700);
-txt(55, 1380, 'TB_J → (1,200 pF ∥ 150 kΩ) → OUT', 20, C.route, 700);
+txt(55, 1341, 'BUS → (1,200 pF ∥ 150 kΩ) → TB_J', 20, C.route, 700);
+txt(55, 1380, 'TB_J → 20 kΩ → OUT', 20, C.route, 700);
 txt(55, 1449, 'REAR VIEW • shaft away • lugs down • clockwise = louder', 18, C.muted, 650);
 
 // 5. Tone, cap and output jack.
@@ -240,15 +240,15 @@ states.forEach((r, i) => {
 });
 txt(1623, 1481, '∥ = parallel     — = series', 17, C.muted, 650);
 
-// 7. Common ground and physical checks.
-card(25, 1525, 2350, 260, '7. COMMON GROUND & BENCH CHECKS');
-txt(55, 1609, 'GND = B_C + N_C + separately isolated middle cover/shield • volume CCW lug • selector D3 • DPDT Y normal throw • tone cap return.', 22, C.ink, 700);
-txt(55, 1650, 'Bond other pickup shields/cases, pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve to GND.', 21, C.ink, 600);
-txt(55, 1701, 'Identify actual CuNiFe leads with Fender guide and meter. Confirm middle cover isolation, phase, super-switch lugs, and DPDT throws.', 21, C.ink, 600);
-txt(55, 1743, 'Meter all 10 states; tap-test pickup selection and confirm clockwise volume/tone action. Do not ground M_C outside the selector.', 21, C.route, 700);
+// 7. Common ground.
+card(25, 1525, 2350, 260, '7. COMMON GROUND');
+txt(55, 1609, 'GND = B_C + N_C + all three pickup shield leads • volume CCW lug • selector D3 • DPDT Y normal throw • tone cap return.', 22, C.ink, 700);
+txt(55, 1650, 'Pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve are bonded to GND.', 21, C.ink, 600);
+txt(55, 1701, 'Pickup leads follow the Fender CuNiFe pickup-set diagram. Wire colors and switch lug positions are not drawn.', 21, C.ink, 600);
+txt(55, 1743, 'M_C reaches GND only through selector D3 or the DPDT normal throw; it has no other ground connection.', 21, C.route, 700);
 
 add('</g></svg>');
 const svg = e.join('\n') + '\n';
-writeFileSync(join(here, 'STR26001-wiring-rev-1.0.svg'), svg);
-await sharp(Buffer.from(svg)).png().toFile(join(here, 'STR26001-wiring-rev-1.0.png'));
+writeFileSync(join(here, 'STR26001-wiring-rev-1.1.svg'), svg);
+await sharp(Buffer.from(svg)).png().toFile(join(here, 'STR26001-wiring-rev-1.1.png'));
 console.log('Generated STR26001 wiring reference SVG and PNG.');
