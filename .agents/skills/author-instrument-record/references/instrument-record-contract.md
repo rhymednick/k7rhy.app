@@ -17,10 +17,12 @@ Read live source before authoring; do not copy an old plan’s component API.
 ## Record contract
 
 - Filename: uppercase `MMMYYNNN.mdx`; frontmatter does not duplicate the serial.
-- Completion: honest `YYYY` or `YYYY-MM-DD`; its year must match `YY`.
+- Completion: honest `YYYY` or `YYYY-MM-DD`; its year must match `YY`. An unpublished build in progress may instead use an honest `started: YYYY-MM-DD` matching `YY`, with no `completed` value. It cannot publish or expose a print card until completion is recorded.
 - Images: at least one exact-instrument image under `/images/instruments/<SERIAL>/` with useful alt text. A clearly marked placeholder is acceptable only when explicitly approved.
-- Drafting: new records remain `publish: false` until explicit publication approval.
-- Narrative: explain identity, provenance, installed work, musical character, use, and care when known. Exclude private owner history, price, availability, transaction details, and authenticity claims.
+- Drafting: new records remain `publish: false` until explicit publication approval. If wiring, parts, or voice are undecided, keep that status in the engineering record and omit uncertain owner-facing claims; defer the structured control map until the design is decided. An approved design is still distinct from an installed or physically verified circuit.
+- Narrative: give the buyer a concise, standalone account of this instrument's identity, provenance, musical character, use, and care when known. Exclude private owner history, price, availability, transaction details, and authenticity claims. Do not repeat the displayed serial in prose, rank the instrument against sibling records, or use a numbered working name unless it is the actual model name.
+- Provenance: use a short factual builder origin. Do not foreground ordinary purchased parts or supply-chain facts. Call out maker-direct sourcing when verified and meaningful to the owner, such as new pickups obtained from their manufacturer.
+- Information hierarchy: explain controls and distinctive switching in player terms first; put pot types, component values, and circuit topology in a later technical section for service. Interpret the confirmed circuit's musical utility without inventing the owner's reasons for choosing it or promising untested sonic results. Keep exact values and relationships accessible to a future repairer.
 
 ## Structured MDX invariants
 

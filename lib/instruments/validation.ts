@@ -10,8 +10,14 @@ export function validateInstrumentDocument(path: string, data: InstrumentFrontma
         throw new Error(`${serialData.serial} requires at least one instrument image`);
     }
 
-    const completedYear = Number(data.completed.slice(0, 4));
-    if (completedYear !== serialData.year) {
+    if (!data.completed && data.publish) throw new Error(`${serialData.serial} cannot publish before completion`);
+    if (!data.completed && !data.started) throw new Error(`${serialData.serial} requires a completion or build start date`);
+
+    if (data.started && Number(data.started.slice(0, 4)) !== serialData.year) {
+        throw new Error(`${serialData.serial} year does not match start date ${data.started}`);
+    }
+
+    if (data.completed && Number(data.completed.slice(0, 4)) !== serialData.year) {
         throw new Error(`${serialData.serial} year does not match completion date ${data.completed}`);
     }
 

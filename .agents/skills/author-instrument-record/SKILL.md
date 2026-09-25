@@ -5,7 +5,7 @@ description: Use when creating or updating K7RHY serial-numbered instrument MDX 
 
 # Author an Instrument Record
 
-Create one durable instrument record from the existing project schema. Treat serial allocation and discoverability as hard invariants; use editorial judgment for the instrument’s story and player guidance.
+Create one durable instrument record from the existing project schema. Treat serial allocation and discoverability as hard invariants; write the page for the person who owns the instrument. The record should be useful to a player now and to a repairer later.
 
 ## Start with current truth
 
@@ -15,9 +15,17 @@ Create one durable instrument record from the existing project schema. Treat ser
 
 ## Collect the record brief
 
-Confirm the family, record name/submodel, completion date or year, date label, origin, theme, exact-instrument images and alt text, related platform link, pickups, complete control map, instrument-centered narrative, print descriptions, and intended publish state. Ask for missing required facts one question at a time. Never invent technical values, dates, provenance, or image descriptions.
+Confirm the family, record name/submodel, completion date or year (or build start date for an unfinished draft), date label, origin, theme, exact-instrument images and alt text, related platform link, pickups, complete control map, instrument-centered narrative, print descriptions, and intended publish state. Ask for missing required facts one question at a time. Never invent technical values, dates, provenance, or image descriptions. An unfinished draft may use an owner-approved placeholder and defer the structured control map while the wiring is undecided. Record unknowns in the engineering notes or omit them from owner-facing prose; never turn an approved final specification into a conspicuous build-plan disclaimer.
 
 Keep owner identity history, private details, price, availability, transaction language, and authenticity claims outside the permanent record.
+
+## Write for the owner
+
+- Make each page stand alone. Use the instrument's name, materials, visible details, and distinctive voice to identify it. The page already displays its serial, so avoid repeating the serial in descriptions or prose. Do not number otherwise identical names or compare sibling records unless the distinction is part of this instrument's actual identity.
+- State a concise, factual builder origin when supported. Do not emphasize that ordinary components were purchased, explain the supply chain, or use assembly language that makes the instrument sound provisional. Name direct manufacturer sourcing only when it is a meaningful, verified provenance detail, such as a new pickup set bought from its maker.
+- Lead with what a player can hear and do: familiar controls, useful added voices, and how to reach them. Describe the benefit of distinctive switching in grounded, musician-friendly terms. A musical rationale may interpret the confirmed circuit, but do not invent the owner's intent, acoustic test results, installed parts, or measured performance.
+- Keep pot tapers, capacitor and resistor values, switch poles, and wiring topology in a lower technical section or structured specification where a future repairer can find them. Preserve exact values and component relationships; do not let them dominate the introductory or functional description.
+- Keep copy short and specific. Prefer a clear description of the instrument over promotional claims or generic praise. Avoid repeating information already supplied by the page heading, metadata, control map, or adjacent paragraph.
 
 ## Allocate a new serial
 
@@ -35,11 +43,13 @@ Use the emitted serial exactly. If allocation reports a gap, stop. Create or res
 
 ## Author with tests first
 
-1. Keep a new record at `publish: false` while drafting.
+1. Keep a new record at `publish: false` while drafting. An unfinished record may use `started: YYYY-MM-DD` with no `completed` value; add `completed` only after the build is actually complete.
 2. Write a focused failing `content/instruments/<SERIAL>.test.ts` contract before the MDX record.
 3. Put exact-instrument images in `public/images/instruments/<SERIAL>/`; require useful alt text and keep photographs off the case card.
 4. Author `content/instruments/<SERIAL>.mdx` with the existing strict component vocabulary. Match selector and switched-control cardinality exactly. Use concise print descriptions when web prose is too long for one page.
 5. Make the focused tests pass without weakening shared validation.
+
+Before finishing, read the rendered page as its new owner: can they identify the guitar and understand its controls without knowing electronics terms? Then read the technical section as a repairer: are the exact selected values and switch behavior recoverable? Compare with maintained records for information hierarchy, but never copy their instrument-specific claims or assume older wording is exemplary.
 
 ## Preserve obscurity
 

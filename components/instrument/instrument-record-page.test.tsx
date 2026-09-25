@@ -62,4 +62,29 @@ describe('InstrumentRecordPage', () => {
         expect(screen.getAllByText('2026').length).toBeGreaterThan(0);
         expect(screen.queryByText('January 1, 2026')).not.toBeInTheDocument();
     });
+
+    it('labels an unfinished draft honestly and omits the case card action', () => {
+        render(
+            <InstrumentRecordPage record={{ ...record, publish: false, completed: undefined, started: '2026-09-24' }}>
+                <div>Wiring under review</div>
+            </InstrumentRecordPage>
+        );
+
+        expect(screen.getByText('Build started')).toBeInTheDocument();
+        expect(screen.getByText('Wiring under review')).toBeInTheDocument();
+        expect(screen.queryByRole('link', { name: /print case card/i })).not.toBeInTheDocument();
+    });
+
+    it('uses a custom record date label for an unpublished specification', () => {
+        render(
+            <InstrumentRecordPage record={{ ...record, publish: false, completed: undefined, started: '2026-09-24', dateLabel: 'Record date' }}>
+                <div>Final build specification</div>
+            </InstrumentRecordPage>
+        );
+
+        expect(screen.getByText('Record date')).toBeInTheDocument();
+        expect(screen.getByText('September 24, 2026')).toBeInTheDocument();
+        expect(screen.queryByText('Build started')).not.toBeInTheDocument();
+        expect(screen.queryByRole('link', { name: /print case card/i })).not.toBeInTheDocument();
+    });
 });

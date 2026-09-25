@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const serial = normalizeInstrumentSerial(input);
     const record = getInstrument(serial);
 
-    if (!record || !isInstrumentPublished(record)) return { robots: privateInstrumentRobots };
+    if (!record || !isInstrumentPublished(record) || !record.completed) return { robots: privateInstrumentRobots };
 
     return {
         title: `Case card · ${record.name} · ${serial} | K7RHY`,
@@ -38,6 +38,7 @@ export default async function InstrumentPrintPage({ params }: Props) {
     if (resolution.kind === 'redirect') redirect(`${resolution.location}/print`);
     if (resolution.kind === 'not-found') notFound();
     const { record } = resolution;
+    if (!record.completed) notFound();
 
     return (
         <main>

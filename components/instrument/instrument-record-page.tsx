@@ -12,7 +12,8 @@ export interface InstrumentRecordPageProps {
 
 export function InstrumentRecordPage({ record, children }: InstrumentRecordPageProps) {
     const primaryImage = record.images[0];
-    const dateLabel = instrumentDateLabel(record.dateLabel);
+    const dateLabel = record.completed ? instrumentDateLabel(record.dateLabel) : record.dateLabel?.trim() || 'Build started';
+    const displayDate = record.completed ?? record.started;
 
     return (
         <main className="container mx-auto max-w-6xl space-y-8 px-4 py-8 md:px-8 md:py-12">
@@ -29,7 +30,9 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                             <span className="font-mono text-sm font-semibold tracking-[0.16em] text-sky-700 dark:text-sky-300">{record.serial}</span>
                         </div>
                         <div>
-                            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{record.modelDescription} · {dateLabel.toLowerCase()} {record.year}</p>
+                            <p className="mb-2 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                {record.modelDescription} · {dateLabel.toLowerCase()} {record.year}
+                            </p>
                             <h1 className="text-4xl font-semibold tracking-tight text-slate-950 dark:text-slate-50 sm:text-5xl">{record.name}</h1>
                         </div>
                         <p className="max-w-2xl text-lg leading-relaxed text-slate-700 dark:text-slate-300">{record.theme}</p>
@@ -40,15 +43,17 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                             </div>
                             <div>
                                 <dt className="font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground">{dateLabel}</dt>
-                                <dd className="mt-1 text-slate-800 dark:text-slate-200">{formatInstrumentDate(record.completed)}</dd>
+                                <dd className="mt-1 text-slate-800 dark:text-slate-200">{displayDate ? formatInstrumentDate(displayDate) : 'Date pending'}</dd>
                             </div>
                         </dl>
-                        <div>
-                            <Link href={`/sn/${record.serial}/print`} className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">
-                                <Printer className="h-4 w-4" aria-hidden="true" />
-                                Print case card
-                            </Link>
-                        </div>
+                        {record.completed && (
+                            <div>
+                                <Link href={`/sn/${record.serial}/print`} className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">
+                                    <Printer className="h-4 w-4" aria-hidden="true" />
+                                    Print case card
+                                </Link>
+                            </div>
+                        )}
                     </div>
                     <div className="relative min-h-80 overflow-hidden border-t border-border/60 bg-slate-100 dark:bg-slate-900 lg:min-h-[36rem] lg:border-l lg:border-t-0">
                         <Image src={primaryImage.src} alt={primaryImage.alt} fill priority className="object-cover" sizes="(min-width: 1024px) 42vw, 100vw" />

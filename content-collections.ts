@@ -5,7 +5,8 @@ import { validateInstrumentDocument } from './lib/instruments/validation';
 const instrumentSchema = z.object({
     publish: z.boolean().optional().default(false),
     name: z.string().min(1),
-    completed: z.union([z.string().regex(/^\d{4}$/, 'Expected YYYY or YYYY-MM-DD.'), z.string().date('Invalid completion date.')]),
+    started: z.string().date('Invalid build start date.').optional(),
+    completed: z.union([z.string().regex(/^\d{4}$/, 'Expected YYYY or YYYY-MM-DD.'), z.string().date('Invalid completion date.')]).optional(),
     dateLabel: z.string().min(1).optional(),
     origin: z.string().min(1),
     theme: z.string().min(1),

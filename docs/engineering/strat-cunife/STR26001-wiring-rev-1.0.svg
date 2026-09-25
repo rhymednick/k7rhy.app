@@ -1,0 +1,303 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1810" viewBox="0 0 2400 1810" role="img" aria-labelledby="title description"><title id="title">STR26001 CuNiFe S-Type wiring reference</title><desc id="description">Numbered bench reference for three Fender CuNiFe single-coil pickups, a four-pole five-way super switch, DPDT parallel or series toggle, master volume and tone, treble bleed, ten operating states, and common ground.</desc><rect width="2400" height="1810" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="54" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">CuNiFe S-Type • WIRING REFERENCE</text>
+<text x="1200" y="94" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL CONTACTS MUST BE METERED</text>
+<text x="2370" y="38" fill="#4c5b68" font-size="19" font-weight="450" text-anchor="end">STR26001 • Rev 1.0 • 2026-09-24</text>
+<rect x="25" y="120" width="2350" height="290" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="122" width="2346" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="160" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. PICKUPS</text>
+<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="450" text-anchor="end">Fender CuNiFe Stratocaster SSS • electrical roles, not lead colors</text>
+<text x="65" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">BRIDGE</text>
+<rect x="65" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
+<rect x="77" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
+<circle cx="93" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="124" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="155" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="186" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="217" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="248" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<line x1="275" y1="242" x2="306" y2="242" stroke="#b94a2e" stroke-width="4" stroke-linecap="round"/>
+<rect x="306" y="221" width="94" height="43" rx="5" fill="#ffffff" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="353" y="249.64" fill="#b94a2e" font-size="21" font-weight="700" text-anchor="middle">B_H</text>
+<line x1="275" y1="289" x2="306" y2="289" stroke="#445464" stroke-width="4" stroke-linecap="round"/>
+<rect x="306" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
+<text x="353" y="296.64" fill="#445464" font-size="21" font-weight="700" text-anchor="middle">B_C</text>
+<text x="65" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">B_C + separate cover/case → GND</text>
+<text x="835" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">MIDDLE</text>
+<rect x="835" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
+<rect x="847" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
+<circle cx="863" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="894" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="925" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="956" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="987" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1018" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<line x1="1045" y1="242" x2="1076" y2="242" stroke="#ad731b" stroke-width="4" stroke-linecap="round"/>
+<rect x="1076" y="221" width="94" height="43" rx="5" fill="#ffffff" stroke="#ad731b" stroke-width="2.5"/>
+<text x="1123" y="249.64" fill="#ad731b" font-size="21" font-weight="700" text-anchor="middle">M_H</text>
+<line x1="1045" y1="289" x2="1076" y2="289" stroke="#7950a4" stroke-width="4" stroke-linecap="round"/>
+<rect x="1076" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1123" y="296.64" fill="#7950a4" font-size="21" font-weight="700" text-anchor="middle">M_C</text>
+<text x="835" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">M_C is switched; isolated cover → GND</text>
+<text x="1605" y="193" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">NECK</text>
+<rect x="1605" y="217" width="210" height="91" rx="27" fill="#e3e9eb" stroke="#303b43" stroke-width="3"/>
+<rect x="1617" y="229" width="186" height="67" rx="21" fill="#f8faf9" stroke="#8c9ca5" stroke-width="1.5"/>
+<circle cx="1633" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1664" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1695" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1726" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1757" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<circle cx="1788" cy="262" r="9" fill="#cbd4d8" stroke="#788994" stroke-width="1.4"/>
+<line x1="1815" y1="242" x2="1846" y2="242" stroke="#2373a2" stroke-width="4" stroke-linecap="round"/>
+<rect x="1846" y="221" width="94" height="43" rx="5" fill="#ffffff" stroke="#2373a2" stroke-width="2.5"/>
+<text x="1893" y="249.64" fill="#2373a2" font-size="21" font-weight="700" text-anchor="middle">N_H</text>
+<line x1="1815" y1="289" x2="1846" y2="289" stroke="#445464" stroke-width="4" stroke-linecap="round"/>
+<rect x="1846" y="268" width="94" height="43" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
+<text x="1893" y="296.64" fill="#445464" font-size="21" font-weight="700" text-anchor="middle">N_C</text>
+<text x="1605" y="347" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">N_C + separate cover/case → GND</text>
+<text x="833" y="389" fill="#7950a4" font-size="19" font-weight="750" text-anchor="start">MIDDLE COVER MUST REMAIN GROUNDED WHEN M_C IS LIFTED</text>
+<rect x="25" y="430" width="1480" height="650" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="432" width="1476" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="470" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">2. FOUR-POLE FIVE-WAY SUPER SWITCH</text>
+<text x="1485" y="467" fill="#4c5b68" font-size="18" font-weight="450" text-anchor="end">Common closes to one numbered throw per position</text>
+<rect x="55" y="510" width="1420" height="512" rx="0" fill="#ffffff" stroke="#465c70" stroke-width="1.5"/>
+<rect x="55" y="510" width="1420" height="64" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<line x1="211" y1="510" x2="211" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="421" y1="510" x2="421" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="631" y1="510" x2="631" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="841" y1="510" x2="841" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1051" y1="510" x2="1051" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1261" y1="510" x2="1261" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="686" x2="1475" y2="686" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="798" x2="1475" y2="798" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="910" x2="1475" y2="910" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="55" y1="1022" x2="1475" y2="1022" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<text x="133" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">POLE</text>
+<text x="316" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">1</text>
+<text x="526" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">2</text>
+<text x="736" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">3</text>
+<text x="946" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">4</text>
+<text x="1156" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">5</text>
+<text x="1368" y="551" fill="#25303b" font-size="24" font-weight="750" text-anchor="middle">COMMON</text>
+<text x="133" y="622" fill="#25303b" font-size="30" font-weight="750" text-anchor="middle">A</text>
+<text x="133" y="649" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">SELECT</text>
+<circle cx="226" cy="629" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="234" y1="629" x2="262" y2="629" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="268" y="608" width="88" height="42" rx="5" fill="#ffffff" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="312" y="636.48" fill="#b94a2e" font-size="22" font-weight="700" text-anchor="middle">B_H</text>
+<circle cx="436" cy="629" r="8" fill="#ad731b" stroke="none" stroke-width="2"/>
+<line x1="444" y1="629" x2="472" y2="629" stroke="#ad731b" stroke-width="3" stroke-linecap="round"/>
+<rect x="478" y="608" width="88" height="42" rx="5" fill="#ffffff" stroke="#ad731b" stroke-width="2.5"/>
+<text x="522" y="636.48" fill="#ad731b" font-size="22" font-weight="700" text-anchor="middle">M_H</text>
+<circle cx="646" cy="629" r="8" fill="#ad731b" stroke="none" stroke-width="2"/>
+<line x1="654" y1="629" x2="682" y2="629" stroke="#ad731b" stroke-width="3" stroke-linecap="round"/>
+<rect x="688" y="608" width="88" height="42" rx="5" fill="#ffffff" stroke="#ad731b" stroke-width="2.5"/>
+<text x="732" y="636.48" fill="#ad731b" font-size="22" font-weight="700" text-anchor="middle">M_H</text>
+<circle cx="856" cy="629" r="8" fill="#ad731b" stroke="none" stroke-width="2"/>
+<line x1="864" y1="629" x2="892" y2="629" stroke="#ad731b" stroke-width="3" stroke-linecap="round"/>
+<rect x="898" y="608" width="88" height="42" rx="5" fill="#ffffff" stroke="#ad731b" stroke-width="2.5"/>
+<text x="942" y="636.48" fill="#ad731b" font-size="22" font-weight="700" text-anchor="middle">M_H</text>
+<circle cx="1066" cy="629" r="8" fill="#2373a2" stroke="none" stroke-width="2"/>
+<line x1="1074" y1="629" x2="1102" y2="629" stroke="#2373a2" stroke-width="3" stroke-linecap="round"/>
+<rect x="1108" y="608" width="88" height="42" rx="5" fill="#ffffff" stroke="#2373a2" stroke-width="2.5"/>
+<text x="1152" y="636.48" fill="#2373a2" font-size="22" font-weight="700" text-anchor="middle">N_H</text>
+<circle cx="1280" cy="629" r="8" fill="#246c58" stroke="none" stroke-width="2"/>
+<line x1="1288" y1="629" x2="1316" y2="629" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<rect x="1322" y="608" width="99" height="42" rx="5" fill="#ffffff" stroke="#246c58" stroke-width="2.5"/>
+<text x="1371.5" y="636.48" fill="#246c58" font-size="22" font-weight="700" text-anchor="middle">BUS</text>
+<text x="133" y="734" fill="#25303b" font-size="30" font-weight="750" text-anchor="middle">B</text>
+<text x="133" y="761" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">OUTER</text>
+<circle cx="226" cy="741" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="234" y1="741" x2="262" y2="741" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="273" y="749" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="436" cy="741" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="444" y1="741" x2="472" y2="741" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="478" y="720" width="88" height="42" rx="5" fill="#ffffff" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="522" y="748.48" fill="#b94a2e" font-size="22" font-weight="700" text-anchor="middle">B_H</text>
+<circle cx="646" cy="741" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="654" y1="741" x2="682" y2="741" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="693" y="749" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="856" cy="741" r="8" fill="#2373a2" stroke="none" stroke-width="2"/>
+<line x1="864" y1="741" x2="892" y2="741" stroke="#2373a2" stroke-width="3" stroke-linecap="round"/>
+<rect x="898" y="720" width="88" height="42" rx="5" fill="#ffffff" stroke="#2373a2" stroke-width="2.5"/>
+<text x="942" y="748.48" fill="#2373a2" font-size="22" font-weight="700" text-anchor="middle">N_H</text>
+<circle cx="1066" cy="741" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1074" y1="741" x2="1102" y2="741" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1113" y="749" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="1280" cy="741" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1288" y1="741" x2="1316" y2="741" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1322" y="720" width="99" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1371.5" y="748.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">OR</text>
+<text x="133" y="846" fill="#25303b" font-size="30" font-weight="750" text-anchor="middle">C</text>
+<text x="133" y="873" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">SERIES J</text>
+<circle cx="226" cy="853" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="234" y1="853" x2="262" y2="853" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="273" y="861" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="436" cy="853" r="8" fill="#b94a2e" stroke="none" stroke-width="2"/>
+<line x1="444" y1="853" x2="472" y2="853" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<rect x="478" y="832" width="88" height="42" rx="5" fill="#ffffff" stroke="#b94a2e" stroke-width="2.5"/>
+<text x="522" y="860.48" fill="#b94a2e" font-size="22" font-weight="700" text-anchor="middle">B_H</text>
+<circle cx="646" cy="853" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="654" y1="853" x2="682" y2="853" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="693" y="861" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="856" cy="853" r="8" fill="#2373a2" stroke="none" stroke-width="2"/>
+<line x1="864" y1="853" x2="892" y2="853" stroke="#2373a2" stroke-width="3" stroke-linecap="round"/>
+<rect x="898" y="832" width="88" height="42" rx="5" fill="#ffffff" stroke="#2373a2" stroke-width="2.5"/>
+<text x="942" y="860.48" fill="#2373a2" font-size="22" font-weight="700" text-anchor="middle">N_H</text>
+<circle cx="1066" cy="853" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1074" y1="853" x2="1102" y2="853" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1113" y="861" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="1280" cy="853" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1288" y1="853" x2="1316" y2="853" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1322" y="832" width="99" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1371.5" y="860.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">J</text>
+<text x="133" y="958" fill="#25303b" font-size="30" font-weight="750" text-anchor="middle">D</text>
+<text x="133" y="985" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="middle">M RETURN</text>
+<circle cx="226" cy="965" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="234" y1="965" x2="262" y2="965" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="273" y="973" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="436" cy="965" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="444" y1="965" x2="472" y2="965" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="478" y="944" width="88" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="522" y="972.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">MR</text>
+<circle cx="646" cy="965" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="654" y1="965" x2="682" y2="965" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<rect x="688" y="944" width="88" height="42" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
+<text x="732" y="972.48" fill="#445464" font-size="22" font-weight="700" text-anchor="middle">GND</text>
+<circle cx="856" cy="965" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="864" y1="965" x2="892" y2="965" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="898" y="944" width="88" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="942" y="972.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">MR</text>
+<circle cx="1066" cy="965" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1074" y1="965" x2="1102" y2="965" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1113" y="973" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="1280" cy="965" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1288" y1="965" x2="1316" y2="965" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1322" y="944" width="99" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1371.5" y="972.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">M_C</text>
+<text x="55" y="1051" fill="#25303b" font-size="18" font-weight="650" text-anchor="start">Poles B and C carry the same selected outer hot but have separate commons; OR and J never join.</text>
+<rect x="1525" y="430" width="850" height="650" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="1527" y="432" width="846" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="1547" y="470" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">3. DPDT ON-ON • SERIES MODE</text>
+<text x="1555" y="510" fill="#25303b" font-size="23" font-weight="750" text-anchor="start">NORMAL = adjacent pairs parallel</text>
+<text x="1555" y="548" fill="#25303b" font-size="23" font-weight="750" text-anchor="start">SERIES = adjacent pairs in series</text>
+<text x="1580" y="612" fill="#b94a2e" font-size="23" font-weight="750" text-anchor="start">X • OUTER HOT</text>
+<text x="1985" y="612" fill="#7950a4" font-size="23" font-weight="750" text-anchor="start">Y • MIDDLE RETURN</text>
+<rect x="1555" y="631" width="380" height="231" rx="5" fill="#fbfdfe" stroke="#465c70" stroke-width="1.5"/>
+<rect x="1960" y="631" width="385" height="231" rx="5" fill="#fbfdfe" stroke="#465c70" stroke-width="1.5"/>
+<text x="1568" y="679" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">NORMAL</text>
+<text x="1568" y="756" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">COMMON</text>
+<text x="1568" y="833" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">SERIES</text>
+<text x="1971" y="679" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">NORMAL</text>
+<text x="1971" y="756" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">COMMON</text>
+<text x="1971" y="833" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">SERIES</text>
+<circle cx="1690" cy="667" r="8" fill="#246c58" stroke="none" stroke-width="2"/>
+<line x1="1698" y1="667" x2="1726" y2="667" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<rect x="1732" y="646" width="92" height="42" rx="5" fill="#ffffff" stroke="#246c58" stroke-width="2.5"/>
+<text x="1778" y="674.48" fill="#246c58" font-size="22" font-weight="700" text-anchor="middle">BUS</text>
+<circle cx="1690" cy="744" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="1698" y1="744" x2="1726" y2="744" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="1732" y="723" width="92" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="1778" y="751.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">OR</text>
+<circle cx="1690" cy="821" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="1698" y1="821" x2="1726" y2="821" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1737" y="829" fill="#445464" font-size="21" font-weight="700" text-anchor="start">OPEN</text>
+<circle cx="2091" cy="667" r="8" fill="#445464" stroke="none" stroke-width="2"/>
+<line x1="2099" y1="667" x2="2127" y2="667" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<rect x="2133" y="646" width="92" height="42" rx="5" fill="#ffffff" stroke="#445464" stroke-width="2.5"/>
+<text x="2179" y="674.48" fill="#445464" font-size="22" font-weight="700" text-anchor="middle">GND</text>
+<circle cx="2091" cy="744" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="2099" y1="744" x2="2127" y2="744" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="2133" y="723" width="92" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="2179" y="751.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">MR</text>
+<circle cx="2091" cy="821" r="8" fill="#7950a4" stroke="none" stroke-width="2"/>
+<line x1="2099" y1="821" x2="2127" y2="821" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<rect x="2133" y="800" width="92" height="42" rx="5" fill="#ffffff" stroke="#7950a4" stroke-width="2.5"/>
+<text x="2179" y="828.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">J</text>
+<text x="1555" y="919" fill="#25303b" font-size="23" font-weight="700" text-anchor="start">NORMAL: OR ↔ BUS; MR ↔ GND</text>
+<text x="1555" y="955" fill="#25303b" font-size="23" font-weight="700" text-anchor="start">SERIES: OR open; MR ↔ J</text>
+<text x="1555" y="1014" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">In P2 / P4: BUS → M_H → M_C → B_H / N_H → GND</text>
+<text x="1555" y="1050" fill="#4c5b68" font-size="19" font-weight="600" text-anchor="start">P1, P3, P5 are unchanged in either mode.</text>
+<rect x="25" y="1100" width="760" height="405" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="1102" width="756" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="1140" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">4. MASTER VOLUME • A250K</text>
+<text x="55" y="1175" fill="#246c58" font-size="22" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
+<text x="55" y="1210" fill="#187b80" font-size="22" font-weight="750" text-anchor="start">CENTER / WIPER → OUT</text>
+<text x="55" y="1245" fill="#445464" font-size="22" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
+<circle cx="630" cy="1231" r="70" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="630" y="1229" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">A250K</text>
+<text x="630" y="1258" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="middle">REAR VIEW</text>
+<rect x="565" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="578" y1="1362" x2="578" y2="1374" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="578" y="1395" fill="#246c58" font-size="17" font-weight="750" text-anchor="middle">BUS</text>
+<rect x="617" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="630" y1="1362" x2="630" y2="1374" stroke="#187b80" stroke-width="3" stroke-linecap="round"/>
+<text x="630" y="1395" fill="#187b80" font-size="17" font-weight="750" text-anchor="middle">OUT</text>
+<rect x="669" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="682" y1="1362" x2="682" y2="1374" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="682" y="1395" fill="#445464" font-size="17" font-weight="750" text-anchor="middle">GND</text>
+<text x="55" y="1302" fill="#25303b" font-size="20" font-weight="750" text-anchor="start">TREBLE BLEED • across BUS and OUT</text>
+<text x="55" y="1341" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">BUS → 20 kΩ → TB_J</text>
+<text x="55" y="1380" fill="#7950a4" font-size="20" font-weight="700" text-anchor="start">TB_J → (1,200 pF ∥ 150 kΩ) → OUT</text>
+<text x="55" y="1449" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">REAR VIEW • shaft away • lugs down • clockwise = louder</text>
+<rect x="805" y="1100" width="770" height="405" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="807" y="1102" width="766" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="827" y="1140" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">5. MASTER TONE &amp; JACK</text>
+<text x="835" y="1175" fill="#445464" font-size="22" font-weight="700" text-anchor="start">LEFT / CW → unused</text>
+<text x="835" y="1210" fill="#7950a4" font-size="22" font-weight="750" text-anchor="start">CENTER / WIPER → 22 nF → GND</text>
+<text x="835" y="1245" fill="#246c58" font-size="22" font-weight="750" text-anchor="start">RIGHT / CCW → BUS</text>
+<circle cx="1410" cy="1231" r="70" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="1410" y="1229" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">A500K</text>
+<text x="1410" y="1258" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="middle">REAR VIEW</text>
+<rect x="1345" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1358" y1="1362" x2="1358" y2="1374" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="1358" y="1395" fill="#445464" font-size="17" font-weight="750" text-anchor="middle">OPEN</text>
+<rect x="1397" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1410" y1="1362" x2="1410" y2="1374" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<text x="1410" y="1395" fill="#7950a4" font-size="17" font-weight="750" text-anchor="middle">22 nF</text>
+<rect x="1449" y="1301" width="26" height="61" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1462" y1="1362" x2="1462" y2="1374" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="1462" y="1395" fill="#246c58" font-size="17" font-weight="750" text-anchor="middle">BUS</text>
+<text x="835" y="1317" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">BUS feeds tone in all positions</text>
+<text x="835" y="1349" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">and both modes.</text>
+<text x="835" y="1388" fill="#187b80" font-size="22" font-weight="750" text-anchor="start">Jack TIP ← OUT</text>
+<text x="835" y="1420" fill="#445464" font-size="22" font-weight="750" text-anchor="start">Jack SLEEVE ← GND</text>
+<text x="835" y="1449" fill="#4c5b68" font-size="18" font-weight="650" text-anchor="start">REAR VIEW • shaft away • lugs down • clockwise = brighter</text>
+<rect x="1595" y="1100" width="780" height="405" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="1597" y="1102" width="776" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="1617" y="1140" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">6. OPERATING STATES</text>
+<rect x="1620" y="1163" width="730" height="293" rx="0" fill="#ffffff" stroke="#465c70" stroke-width="1.5"/>
+<rect x="1620" y="1163" width="730" height="48" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<line x1="1700" y1="1163" x2="1700" y2="1456" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="2027" y1="1163" x2="2027" y2="1456" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1620" y1="1260" x2="2350" y2="1260" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1620" y1="1309" x2="2350" y2="1309" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1620" y1="1358" x2="2350" y2="1358" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1620" y1="1407" x2="2350" y2="1407" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="1620" y1="1456" x2="2350" y2="1456" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
+<text x="1660" y="1198" fill="#25303b" font-size="19" font-weight="750" text-anchor="middle">POS</text>
+<text x="1863" y="1198" fill="#25303b" font-size="19" font-weight="750" text-anchor="middle">NORMAL</text>
+<text x="2189" y="1198" fill="#25303b" font-size="19" font-weight="750" text-anchor="middle">SERIES</text>
+<text x="1660" y="1242" fill="#25303b" font-size="20" font-weight="700" text-anchor="middle">1</text>
+<text x="1717" y="1242" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Bridge</text>
+<text x="2042" y="1242" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Bridge</text>
+<text x="1660" y="1291" fill="#25303b" font-size="20" font-weight="700" text-anchor="middle">2</text>
+<text x="1717" y="1291" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Bridge ∥ Middle</text>
+<text x="2042" y="1291" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Middle — Bridge</text>
+<text x="1660" y="1340" fill="#25303b" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text x="1717" y="1340" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Middle</text>
+<text x="2042" y="1340" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Middle</text>
+<text x="1660" y="1389" fill="#25303b" font-size="20" font-weight="700" text-anchor="middle">4</text>
+<text x="1717" y="1389" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Middle ∥ Neck</text>
+<text x="2042" y="1389" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Middle — Neck</text>
+<text x="1660" y="1438" fill="#25303b" font-size="20" font-weight="700" text-anchor="middle">5</text>
+<text x="1717" y="1438" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Neck</text>
+<text x="2042" y="1438" fill="#25303b" font-size="20" font-weight="550" text-anchor="start">Neck</text>
+<text x="1623" y="1481" fill="#4c5b68" font-size="17" font-weight="650" text-anchor="start">∥ = parallel     — = series</text>
+<rect x="25" y="1525" width="2350" height="260" rx="6" fill="#ffffff" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="1527" width="2346" height="55" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="1565" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND &amp; BENCH CHECKS</text>
+<text x="55" y="1609" fill="#25303b" font-size="22" font-weight="700" text-anchor="start">GND = B_C + N_C + separately isolated middle cover/shield • volume CCW lug • selector D3 • DPDT Y normal throw • tone cap return.</text>
+<text x="55" y="1650" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Bond other pickup shields/cases, pot cases, conductive switch chassis, cavity shield, bridge/string ground, and jack sleeve to GND.</text>
+<text x="55" y="1701" fill="#25303b" font-size="21" font-weight="600" text-anchor="start">Identify actual CuNiFe leads with Fender guide and meter. Confirm middle cover isolation, phase, super-switch lugs, and DPDT throws.</text>
+<text x="55" y="1743" fill="#7950a4" font-size="21" font-weight="700" text-anchor="start">Meter all 10 states; tap-test pickup selection and confirm clockwise volume/tone action. Do not ground M_C outside the selector.</text>
+</g></svg>
