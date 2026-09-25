@@ -19,7 +19,8 @@ export interface InstrumentRelatedLink {
 export interface InstrumentFrontmatter {
     publish: boolean;
     name: string;
-    completed: string;
+    started?: string;
+    completed?: string;
     dateLabel?: string;
     origin: string;
     theme: string;

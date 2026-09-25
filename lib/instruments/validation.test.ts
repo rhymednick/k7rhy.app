@@ -41,4 +41,16 @@ describe('validateInstrumentDocument', () => {
     it('rejects a year-only completion value that differs from the serial year', () => {
         expect(() => validateInstrumentDocument('PRS26001', { ...valid, completed: '2025' })).toThrow('PRS26001 year does not match completion date 2025');
     });
+
+    it('accepts an unpublished build with a start date and no completion claim', () => {
+        expect(validateInstrumentDocument('STR26001', { ...valid, completed: undefined, started: '2026-09-24' })).toMatchObject({ serial: 'STR26001', year: 2026 });
+    });
+
+    it('rejects publication before completion', () => {
+        expect(() => validateInstrumentDocument('STR26001', { ...valid, completed: undefined, started: '2026-09-24', publish: true })).toThrow('STR26001 cannot publish before completion');
+    });
+
+    it('rejects a start date that differs from the serial year', () => {
+        expect(() => validateInstrumentDocument('STR26001', { ...valid, completed: undefined, started: '2027-01-01' })).toThrow('STR26001 year does not match start date 2027-01-01');
+    });
 });
