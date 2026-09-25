@@ -5,13 +5,14 @@ import { describe, expect, it } from 'vitest';
 describe('STR26002 owner record', () => {
     it('presents a standalone instrument and its controls', () => {
         const source = readFileSync(join(process.cwd(), 'content/instruments/STR26002.mdx'), 'utf8');
-        expect(source).toContain('publish: false');
+        expect(source).toContain('publish: true');
         expect(source).toContain("name: 'CuNiFe S-Type'");
         expect(source).toContain("completed: '2026-09-24'");
         expect(source).toContain("dateLabel: 'Built'");
         expect(source).not.toMatch(/^started:/m);
         expect(source).toContain("origin: 'Built by Rhy Mednick in Coupeville, Washington.'");
-        expect(source).toContain("src: '/images/instruments/STR26002/placeholder.svg'");
+        expect(source).toContain("src: '/images/instruments/STR26002/coming-soon.svg'");
+        expect(source).toContain("alt: 'CuNiFe S-Type photographs coming soon'");
         expect(source).toContain('Fender CuNiFe Stratocaster pickups');
         expect(source).toContain('Guyker locking tuners');
         expect(source).not.toMatch(/\bnew Fender/i);
@@ -42,9 +43,12 @@ describe('STR26002 owner record', () => {
         expect(source).not.toMatch(/in.progress|planned|pending|under review|unfinished/i);
     });
 
-    it('marks its image as an illustration', () => {
-        const path = join(process.cwd(), 'public/images/instruments/STR26002/placeholder.svg');
+    it('shows a coming-soon placeholder until photographs are added', () => {
+        const path = join(process.cwd(), 'public/images/instruments/STR26002/coming-soon.svg');
         expect(existsSync(path)).toBe(true);
-        expect(readFileSync(path, 'utf8')).toContain('Specification illustration');
+        const svg = readFileSync(path, 'utf8');
+        expect(svg).toMatch(/photos coming soon/i);
+        expect(svg).not.toContain('STR26002');
+        expect(existsSync(join(process.cwd(), 'public/images/instruments/STR26002/placeholder.svg'))).toBe(false);
     });
 });

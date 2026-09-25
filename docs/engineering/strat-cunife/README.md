@@ -15,7 +15,7 @@ Both guitars are built and wired to the final specification below. The owner con
 - **Voice and control map, 2026-09-25 — implemented.** Both records now carry an `InstrumentSpec`, so their case cards are complete. Voices are inferred from the as-built wiring and Fender's published description of the set (vintage-style voice, deep lows, present mids, sparkling highs, clarity under distortion; reverse-wound middle to eliminate hum). Series pairs on `STR26001` are described as louder, thicker, and hum-canceling, which follows from the series connection of a reverse-wound middle; this is circuit inference, not a measurement. A new `Toggle` control represents each guitar's mini switch. Validation now rejects a completed record without an `InstrumentSpec`.
 - **Public diagrams.** The owner accepts that the diagram PNGs are publicly reachable while the records remain unpublished.
 
-Both records remain `publish: false` with placeholder illustrations until exact-instrument photographs are added and publication is approved.
+**Publication, 2026-09-25 — owner approved.** Both records are published (`publish: true`) with a “Photos coming soon” placeholder (`coming-soon.svg`) in place of exact-instrument photographs, which remain to be added. This supersedes the earlier specification-illustration placeholders. Record, print, and wiring routes remain `noindex, nofollow` and out of the sitemap. A printed headstock QR proof and a phone scan at final size are still outstanding.
 
 ## History
 
