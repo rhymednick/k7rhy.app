@@ -30,7 +30,7 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     d += elm.Dot().at((q1x, 9))
     d += elm.Resistor().at((q1x, 9)).to((q1x, 12))
     d += elm.Dot().at((q1x, 12))
-    d += elm.Label().at((q1x + 0.2, 12)).label('R1_MID', fontsize=S, halign='left')
+    d += elm.Label().at((q1x + 0.2, 12)).label('R2_R3', fontsize=S, halign='left')
     d += elm.Resistor().at((q1x, 12)).to((q1x, V))
 
     # ---- C5 optional: Q1 collector -> Q1 base (anti-oscillation / RF) ----
@@ -121,12 +121,12 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
 
 
     L = lambda xy, t, **k: d.add(elm.Label().at(xy).label(t, halign=k.pop('h','right'), **k))
-    L((1.0, 4.5), 'RPD\n1M')
-    L((q1x - 0.6, 10.5), 'R1B\n10k')
-    L((q1x - 0.6, 15.0), 'R1A\n22k')
+    L((1.0, 4.5), 'R1\n1M')
+    L((q1x - 0.6, 10.5), 'R3\n10k')
+    L((q1x - 0.6, 15.0), 'R2\n22k')
     L((wx + 0.6, 2.9), 'C2 22µ\nelectrolytic', h='left')
-    L((cx - 0.6, 14.75), 'R3\n2.2k')
-    L((cx - 0.6, 17.0), 'R2\n470')
+    L((cx - 0.6, 14.75), 'R6\n2.2k')
+    L((cx - 0.6, 17.0), 'R5\n470')
     L((2.0, 16.75), 'C4 100n\n(optional)', h='left')
     d += elm.Label().at((-1, -0.8)).label(
         '2N3904 Fuzz Face — NPN, negative ground, 9 V.  All grounds common (battery −, J1/J2 sleeves).\n'

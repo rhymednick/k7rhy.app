@@ -9,12 +9,12 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | Qty | Ref    | Value        | Type and specification                                                    | Board location         | Notes                                                                 |
 | --- | ------ | ------------ | ------------------------------------------------------------------------- | ---------------------- | --------------------------------------------------------------------- |
 | 2   | Q1, Q2 | 2N3904       | NPN transistor, TO-92                                                     | Q1: C6–E6, Q2: D13–F13 | Check the pinout of the stocked part.                                 |
-| 1   | R1A    | 22 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A3–A7                  | Lies along strip A over the A5 cut.                                   |
-| 1   | R1B    | 10 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A2–E2                  |                                                                       |
-| 1   | R2     | 470 Ω        | Resistor, 1/4 W, metal or carbon film                                     | A14–A18                | Lies along strip A over the A16 cut.                                  |
-| 1   | R3     | 2.2 kΩ       | Resistor, 1/4 W, metal or carbon film                                     | A19–F19                |                                                                       |
+| 1   | R1     | 1 MΩ         | Resistor, 1/4 W, metal or carbon film                                     | B1–H1                  | Input pulldown.                                                       |
+| 1   | R2     | 22 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A3–A7                  | Lies along strip A over the A5 cut.                                   |
+| 1   | R3     | 10 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A2–E2                  |                                                                       |
 | 1   | R4     | 100 kΩ       | Resistor, 1/4 W **mini** (body ≤ 3.5 mm), metal or carbon film            | D7–F10                 | Mounted diagonally; the 9.2 mm span is too short for a standard body. |
-| 1   | RPD    | 1 MΩ         | Resistor, 1/4 W, metal or carbon film                                     | B1–H1                  | Input pulldown.                                                       |
+| 1   | R5     | 470 Ω        | Resistor, 1/4 W, metal or carbon film                                     | A14–A18                | Lies along strip A over the A16 cut.                                  |
+| 1   | R6     | 2.2 kΩ       | Resistor, 1/4 W, metal or carbon film                                     | A19–F19                |                                                                       |
 | 1   | VR1    | 50 kΩ        | Trimmer, single-turn, inline pins at 0.1 in, e.g. 3362P-style _(assumed)_ | D17–F17                | The layout needs A-W-B pins in a straight line.                       |
 | 1   | C1     | 470 nF       | Film capacitor, 5 mm pitch, ≥ 50 V _(assumed)_                            | B4–D4                  | Not polarized.                                                        |
 | 1   | C2     | 22 µF        | Aluminum electrolytic, radial, ≥ 16 V, 2.5 mm pitch _(assumed)_           | + G12, − H12           | Polarized.                                                            |
@@ -32,7 +32,7 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | 1   | VOLUME | A500k  | 16 mm potentiometer, audio (log), solder lugs, 6 mm knurled shaft | Lug 1 H19, lug 2 SW lug 3, lug 3 C18             |                                                       |
 | 1   | SW1    | 3PDT   | Latching footswitch, 9 solder lugs                                | See footswitch diagram                           | True bypass.                                          |
 | 1   | LED    | 5 mm   | LED, color to taste, plus panel bezel _(assumed)_                 | Cathode to SW lug 4                              | Mounted through the case on leads.                    |
-| 1   | R5     | 4.7 kΩ | Resistor, 1/4 W                                                   | LED anode to board A12                           | About 1.5 mA LED current at 9 V. Soldered at the LED. |
+| 1   | R7     | 4.7 kΩ | Resistor, 1/4 W                                                   | LED anode to board A12                           | About 1.5 mA LED current at 9 V. Soldered at the LED. |
 | 1   | J1     | 1/4 in | Stereo (TRS) jack, enclosed barrel (kit); open-frame also works   | Tip to SW lug 5, ring to battery −, sleeve to C8 | The ring switches the battery.                        |
 | 1   | J2     | 1/4 in | Mono jack, enclosed barrel (kit); open-frame also works           | Tip to SW lug 6, sleeve to H18                   |                                                       |
 | 1   | —      | 9 V    | Battery snap with leads                                           | + to A10, − to J1 ring                           |                                                       |
@@ -43,7 +43,7 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | Qty    | Item                                                     | Notes                                                                          |
 | ------ | -------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | ~1 m   | Stranded hookup wire, 24 AWG, several colors _(assumed)_ | Suggested colors: red +9 V, black ground, green input, blue output and wipers. |
-| ~10 cm | Heat-shrink tubing, 2–3 mm                               | For R5 and the LED leads.                                                      |
+| ~10 cm | Heat-shrink tubing, 2–3 mm                               | For R7 and the LED leads.                                                      |
 | 2–4    | Board standoffs or insulating tape _(assumed)_           | Keep the copper side off the foil shield.                                      |
 
 ## Kit options
