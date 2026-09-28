@@ -192,8 +192,9 @@ def main():
         'keeps INPUT from floating in bypass,',
         'which prevents switching pops.',
         '',
-        'Ground the foil shield through the jack',
-        'sleeves; keep switch lugs off the foil.',
+        'Ground the foil shield with a wire to any',
+        'free hole in board row H; keep switch',
+        'lugs off the foil.',
     ]
     for st in steps:
         text(px, py, st, 13, anchor='start'); py += 19

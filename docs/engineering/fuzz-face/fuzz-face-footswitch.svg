@@ -121,6 +121,7 @@
 <text x="1290" y="569" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">keeps INPUT from floating in bypass,</text>
 <text x="1290" y="588" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">which prevents switching pops.</text>
 <text x="1290" y="607" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
-<text x="1290" y="626" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Ground the foil shield through the jack</text>
-<text x="1290" y="645" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">sleeves; keep switch lugs off the foil.</text>
+<text x="1290" y="626" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Ground the foil shield with a wire to any</text>
+<text x="1290" y="645" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">free hole in board row H; keep switch</text>
+<text x="1290" y="664" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">lugs off the foil.</text>
 </svg>
