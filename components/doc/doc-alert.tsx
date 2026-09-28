@@ -67,8 +67,14 @@ const levelConfig: Record<Level, { borderColor: string; iconColor: string; badge
     },
 };
 
+// MDX passes `level` as a raw string, so accept any casing and fall back to Default for unknown values.
+function resolveLevel(level: Level | string | undefined): Level {
+    const normalized = typeof level === 'string' ? level.toLowerCase() : level;
+    return Object.values(Level).includes(normalized as Level) ? (normalized as Level) : Level.Default;
+}
+
 const DocAlert: React.FC<DocAlertProps> = ({ title, level = Level.Default, icon, overrideTitleClass, appendTitleClass, overrideDescriptionClass, appendDescriptionClass, children }) => {
-    const config = levelConfig[level];
+    const config = levelConfig[resolveLevel(level)];
     const iconName = icon ?? config.iconName;
     const rawIcon = lucideIcons[iconName];
     const IconComponent = rawIcon != null ? (rawIcon as React.ElementType) : null;
