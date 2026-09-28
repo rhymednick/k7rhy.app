@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="980" viewBox="0 0 1640 980">
+<rect width="100%" height="100%" fill="white"/>
+<text x="40" y="42" font-size="24" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">2N3904 Fuzz Face — footswitch, jacks, LED, and battery wiring</text>
+<text x="40" y="68" font-size="14" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Switch drawn from the lug (back) side. Board hole names match the stripboard layout. Both switch positions auto-checked.</text>
+<rect x="530" y="110" width="140" height="64" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="600.0" y="134" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board H16</text>
+<text x="600.0" y="154" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">GND</text>
+<rect x="650" y="190" width="140" height="64" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="720.0" y="214" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board B11</text>
+<text x="720.0" y="234" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">INPUT</text>
+<rect x="770" y="110" width="140" height="64" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="840.0" y="134" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">VOLUME lug 2</text>
+<text x="840.0" y="154" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">effect output</text>
+<rect x="530" y="280" width="380" height="340" rx="18" fill="#dcdcdc" stroke="#8a8a8a" stroke-width="2"/>
+<text x="720" y="648" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">3PDT footswitch — lug side</text>
+<text x="518" y="345" font-size="13" text-anchor="end" fill="#555" font-weight="bold" font-family="Helvetica, Arial, sans-serif">ON row</text>
+<text x="518" y="455" font-size="13" text-anchor="end" fill="#555" font-weight="bold" font-family="Helvetica, Arial, sans-serif">commons</text>
+<text x="518" y="565" font-size="13" text-anchor="end" fill="#555" font-weight="bold" font-family="Helvetica, Arial, sans-serif">BYPASS row</text>
+<text x="600" y="612" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">pole 1</text>
+<text x="720" y="612" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">pole 2</text>
+<text x="840" y="612" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">pole 3</text>
+<polyline points="600,340 600,174" fill="none" stroke="#222" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="720,340 720,254" fill="none" stroke="#27ae60" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="840,340 840,174" fill="none" stroke="#2471a3" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="150,395 720,395 720,450" fill="none" stroke="#27ae60" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="840,450 1150,450" fill="none" stroke="#2471a3" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="720,560 840,560" fill="none" stroke="#8e44ad" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="600,450 600,505 380,505 380,700 470,700 470,776" fill="none" stroke="#e67e22" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="584" y="329" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="600" y="345" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">1</text>
+<rect x="704" y="329" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="720" y="345" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">2</text>
+<rect x="824" y="329" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="840" y="345" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">3</text>
+<rect x="584" y="439" width="32" height="22" rx="4" fill="#f5d76e" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="600" y="455" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">4</text>
+<rect x="704" y="439" width="32" height="22" rx="4" fill="#f5d76e" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="720" y="455" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">5</text>
+<rect x="824" y="439" width="32" height="22" rx="4" fill="#f5d76e" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="840" y="455" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">6</text>
+<rect x="584" y="549" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="600" y="565" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">7</text>
+<rect x="704" y="549" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="720" y="565" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">8</text>
+<rect x="824" y="549" width="32" height="22" rx="4" fill="#e8e8e8" stroke="#6d6d6d" stroke-width="1.5"/>
+<text x="840" y="565" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">9</text>
+<line x1="578" y1="538" x2="622" y2="582" stroke="#999" stroke-width="2"/>
+<text x="600" y="594" font-size="11" text-anchor="middle" fill="#777" font-weight="normal" font-family="Helvetica, Arial, sans-serif">unused</text>
+<text x="780" y="594" font-size="12" text-anchor="middle" fill="#8e44ad" font-weight="bold" font-family="Helvetica, Arial, sans-serif">bypass jumper 8–9</text>
+<rect x="40" y="340" width="110" height="160" rx="10" fill="#555"/>
+<text x="95" y="318" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">J1 INPUT</text>
+<text x="95" y="334" font-size="11" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">stereo (TRS) jack</text>
+<circle cx="150" cy="395" r="7" fill="#f5d76e"/>
+<text x="162" y="385" font-size="12" text-anchor="start" fill="#27ae60" font-weight="bold" font-family="Helvetica, Arial, sans-serif">tip</text>
+<circle cx="75" cy="500" r="7" fill="#bbb"/>
+<text x="66" y="522" font-size="12" text-anchor="end" fill="#c0392b" font-weight="bold" font-family="Helvetica, Arial, sans-serif">ring</text>
+<circle cx="120" cy="500" r="7" fill="#bbb"/>
+<text x="130" y="522" font-size="12" text-anchor="start" fill="#333" font-weight="normal" font-family="Helvetica, Arial, sans-serif">sleeve</text>
+<polyline points="120,500 120,540 170,540 170,580" fill="none" stroke="#222" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="100" y="580" width="140" height="58" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="170.0" y="604" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board C8</text>
+<text x="170.0" y="624" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">GND (sleeve)</text>
+<polyline points="75,500 75,760" fill="none" stroke="#222" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8 5"/>
+<rect x="40" y="760" width="170" height="64" rx="8" fill="#333"/>
+<text x="125" y="800" font-size="14" text-anchor="middle" fill="white" font-weight="bold" font-family="Helvetica, Arial, sans-serif">9 V battery</text>
+<text x="62" y="752" font-size="18" text-anchor="middle" fill="#222" font-weight="bold" font-family="Helvetica, Arial, sans-serif">−</text>
+<polyline points="210,792 260,792" fill="none" stroke="#c0392b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="260" y="764" width="140" height="58" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="330.0" y="788" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board A10</text>
+<text x="330.0" y="808" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">BAT +</text>
+<text x="40" y="860" font-size="12" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Battery − goes to the jack ring only.</text>
+<text x="40" y="878" font-size="12" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">A plugged-in mono cable links ring to sleeve,</text>
+<text x="40" y="896" font-size="12" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">which switches the pedal on. Unplug the input</text>
+<text x="40" y="914" font-size="12" text-anchor="start" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">cable to save the battery.</text>
+<rect x="1150" y="400" width="110" height="130" rx="10" fill="#555"/>
+<text x="1205" y="390" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">J2 OUTPUT</text>
+<circle cx="1150" cy="450" r="7" fill="#f5d76e"/>
+<text x="1138" y="440" font-size="12" text-anchor="end" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">tip</text>
+<circle cx="1150" cy="500" r="7" fill="#bbb"/>
+<polyline points="1150,500 1080,500 1080,580" fill="none" stroke="#222" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="1010" y="580" width="140" height="58" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="1080.0" y="604" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board H18</text>
+<text x="1080.0" y="624" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">GND (sleeve)</text>
+<text x="1138" y="495" font-size="12" text-anchor="end" fill="#333" font-weight="normal" font-family="Helvetica, Arial, sans-serif">sleeve</text>
+<circle cx="470" cy="810" r="24" fill="#ff5252" stroke="#b71c1c" stroke-width="2"/>
+<line x1="446" y1="788" x2="494" y2="788" stroke="#b71c1c" stroke-width="3"/>
+<text x="508" y="792" font-size="13" text-anchor="start" fill="#e67e22" font-weight="bold" font-family="Helvetica, Arial, sans-serif">LED cathode (−): short leg, flat edge</text>
+<text x="508" y="840" font-size="13" text-anchor="start" fill="#c0392b" font-weight="bold" font-family="Helvetica, Arial, sans-serif">LED anode (+): long leg</text>
+<polyline points="470,834 470,880 560,880" fill="none" stroke="#c0392b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="560" y="868" width="90" height="24" rx="10" fill="#e8d3a8" stroke="#a1887f"/>
+<rect x="578" y="868" width="8" height="24" fill="#f9a825"/>
+<rect x="594" y="868" width="8" height="24" fill="#6a1b9a"/>
+<rect x="610" y="868" width="8" height="24" fill="#d32f2f"/>
+<text x="605" y="915" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5 4.7k</text>
+<polyline points="650,880 760,880" fill="none" stroke="#c0392b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="760" y="850" width="150" height="58" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
+<text x="835.0" y="874" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board A12</text>
+<text x="835.0" y="894" font-size="12" text-anchor="middle" fill="#555" font-weight="normal" font-family="Helvetica, Arial, sans-serif">+9 V</text>
+<text x="470" y="948" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">LED on leads, mounted through the case (5 mm LED + bezel)</text>
+<text x="1290" y="110" font-size="17" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">What the switch does</text>
+<text x="1290" y="140" font-size="15" text-anchor="start" fill="#1b5e20" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Effect ON</text>
+<text x="1302" y="162" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">J1 tip → board INPUT (B11)</text>
+<text x="1302" y="182" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">VOLUME lug 2 → J2 tip</text>
+<text x="1302" y="202" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">LED cathode → GND: LED lit</text>
+<text x="1290" y="232" font-size="15" text-anchor="start" fill="#4a148c" font-weight="bold" font-family="Helvetica, Arial, sans-serif">BYPASS</text>
+<text x="1302" y="254" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">J1 tip → jumper 8–9 → J2 tip</text>
+<text x="1302" y="274" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Board input and output open</text>
+<text x="1302" y="294" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">LED off</text>
+<text x="1290" y="334" font-size="17" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Which row is ON?</text>
+<text x="1290" y="360" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">It doesn’t matter. Each click swaps the</text>
+<text x="1290" y="379" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">commons (middle row) between the top and</text>
+<text x="1290" y="398" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">bottom rows, so one click is effect ON and</text>
+<text x="1290" y="417" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">the next is BYPASS. The LED shows which.</text>
+<text x="1290" y="436" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
+<text x="1290" y="455" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">What matters: wire exactly the lugs shown.</text>
+<text x="1290" y="474" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Check first with a meter on continuity:</text>
+<text x="1290" y="493" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each middle lug beeps to one outer lug</text>
+<text x="1290" y="512" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">in its own column, never to another column.</text>
+<text x="1290" y="531" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
+<text x="1290" y="550" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">The 1M pulldown (RPD) on the board</text>
+<text x="1290" y="569" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">keeps INPUT from floating in bypass,</text>
+<text x="1290" y="588" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">which prevents switching pops.</text>
+<text x="1290" y="607" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
+<text x="1290" y="626" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Ground the foil shield through the jack</text>
+<text x="1290" y="645" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">sleeves; keep switch lugs off the foil.</text>
+</svg>

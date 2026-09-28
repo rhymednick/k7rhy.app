@@ -242,10 +242,12 @@
 <circle cx="414.0" cy="188.0" r="3" fill="#2471a3"/>
 <circle cx="312.0" cy="222.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
 <circle cx="312.0" cy="222.0" r="3" fill="#2471a3"/>
+<circle cx="584.0" cy="392.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
+<circle cx="584.0" cy="392.0" r="3" fill="#2471a3"/>
+<circle cx="448.0" cy="154.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
+<circle cx="448.0" cy="154.0" r="3" fill="#2471a3"/>
 <circle cx="380.0" cy="154.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
 <circle cx="380.0" cy="154.0" r="3" fill="#2471a3"/>
-<circle cx="720.0" cy="392.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
-<circle cx="720.0" cy="392.0" r="3" fill="#2471a3"/>
 <circle cx="482.0" cy="392.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
 <circle cx="482.0" cy="392.0" r="3" fill="#2471a3"/>
 <circle cx="516.0" cy="358.0" r="7" fill="none" stroke="#2471a3" stroke-width="2.4"/>
@@ -390,14 +392,16 @@
 <text x="472.1" y="398.0" font-size="15" text-anchor="start" fill="#1b3a66" font-weight="bold" font-family="Helvetica, Arial, sans-serif">−</text>
 <rect x="437.8" y="370.7" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
 <text x="448.0" y="381.7" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C2</text>
-<rect x="420.0" y="169.0" width="45.6" height="15" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="423.0" y="179.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">J1 tip</text>
+<rect x="420.0" y="169.0" width="58.8" height="15" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="423.0" y="179.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">SW lug 2</text>
 <rect x="318.0" y="203.0" width="65.4" height="15" rx="3" fill="white" fill-opacity="0.9"/>
 <text x="321.0" y="213.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">J1 sleeve</text>
-<rect x="386.0" y="135.0" width="32.4" height="15" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="389.0" y="145.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">+9 V</text>
-<text x="720.0" y="448.0" font-size="11" text-anchor="middle" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">0 V</text>
-<line x1="720.0" y1="399.0" x2="720.0" y2="434.0" stroke="#2471a3" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
+<text x="584.0" y="448.0" font-size="11" text-anchor="middle" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">SW lug 1</text>
+<line x1="584.0" y1="399.0" x2="584.0" y2="434.0" stroke="#2471a3" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
+<rect x="454.0" y="135.0" width="58.8" height="15" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="457.0" y="145.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">LED +9 V</text>
+<rect x="386.0" y="135.0" width="39.0" height="15" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="389.0" y="145.0" font-size="11" text-anchor="start" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">BAT +</text>
 <text x="482.0" y="462.0" font-size="11" text-anchor="middle" fill="#2471a3" font-weight="bold" font-family="Helvetica, Arial, sans-serif">FUZZ 1</text>
 <line x1="482.0" y1="399.0" x2="482.0" y2="448.0" stroke="#2471a3" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
 <rect x="522.0" y="339.0" width="45.6" height="15" rx="3" fill="white" fill-opacity="0.9"/>
@@ -705,8 +709,10 @@
 <text x="784.0" y="796.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C2: stripe (−) toward row H (GND).</text>
 <text x="784.0" y="814.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C4, C5 optional (dashed).</text>
 <text x="784.0" y="832.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Blue rings = off-board wire pads.</text>
-<text x="784.0" y="850.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">VOL 2 → J2 tip: wire directly, off-board.</text>
-<text x="784.0" y="868.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
-<text x="784.0" y="886.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Bias: no signal, meter red on Q2 C (strip D,</text>
-<text x="784.0" y="904.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  11–20), black on GND. Set VR1 for ≈ 4.5 V.</text>
+<text x="784.0" y="850.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Footswitch, jacks, LED, battery: see the</text>
+<text x="784.0" y="868.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  footswitch diagram. Battery − goes to the</text>
+<text x="784.0" y="886.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  input jack ring, not to the board.</text>
+<text x="784.0" y="904.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
+<text x="784.0" y="922.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Bias: no signal, meter red on Q2 C (strip D,</text>
+<text x="784.0" y="940.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  11–20), black on GND. Set VR1 for ≈ 4.5 V.</text>
 </svg>

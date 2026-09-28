@@ -38,16 +38,27 @@ LINKS = [((4, 18), (5, 18)), ((3, 15), (8, 15))]
 
 # Off-board wire pads: pin -> hole
 PADS = {
-    'J1.tip': (2, 11), 'J1.sleeve': (3, 8),
-    'BAT.+': (1, 10), 'BAT.-': (8, 20),
+    'SW.L2': (2, 11), 'J1.sleeve': (3, 8), 'SW.L1': (8, 16), 'R5.1': (1, 12),
+    'BAT.+': (1, 10),
     'FUZZ.1': (8, 13), 'FUZZ.2': (7, 14), 'FUZZ.3': (6, 11),
     'VOL.1': (8, 19), 'VOL.3': (3, 18),
     'J2.sleeve': (8, 18),
 }
-OFF_WIRES = [('VOL.2', 'J2.tip')]   # direct, not on the board
+# Off-board wiring (footswitch, jacks, LED). 3PDT lugs L1-L9, lug-side view:
+# top row L1-L3 = ON throws, middle L4-L6 = commons, bottom L7-L9 = BYPASS throws.
+OFF_WIRES = [
+    ('J1.tip', 'SW.L5'), ('J2.tip', 'SW.L6'), ('VOL.2', 'SW.L3'),
+    ('SW.L8', 'SW.L9'), ('LED.K', 'SW.L4'), ('R5.2', 'LED.A'),
+    ('BAT.-', 'J1.ring'),   # stereo input jack switches the battery
+]
+PLUG_IN = [('J1.ring', 'J1.sleeve')]   # a mono plug shorts ring to sleeve
+SWITCH_STATES = {
+    'ON': [('SW.L4', 'SW.L1'), ('SW.L5', 'SW.L2'), ('SW.L6', 'SW.L3')],
+    'BYPASS': [('SW.L5', 'SW.L8'), ('SW.L6', 'SW.L9')],   # L7 unused
+}
 
 EXPECTED = {
-    'INPUT': {'J1.tip', 'RPD.1', 'C1.1'},
+    'INPUT': {'SW.L2', 'RPD.1', 'C1.1'},
     'Q1_BASE': {'C1.2', 'Q1.B', 'R4.1', 'C5.1'},
     'Q1C_Q2B': {'Q1.C', 'Q2.B', 'R1B.2', 'C5.2'},
     'R1_MID': {'R1B.1', 'R1A.1'},
@@ -57,9 +68,15 @@ EXPECTED = {
     'BIAS_TOP': {'VR1.A', 'R3.1'},
     'OUT_TAP': {'R3.2', 'R2.2', 'C3.1'},
     'VOL_IN': {'C3.2', 'VOL.3'},
-    'OUTPUT': {'VOL.2', 'J2.tip'},
-    'GND': {'J1.sleeve', 'RPD.2', 'Q1.E', 'FUZZ.1', 'C2.-', 'VOL.1', 'J2.sleeve', 'BAT.-', 'C4.2'},
-    'VCC': {'R1A.2', 'R2.1', 'BAT.+', 'C4.1'},
+    'OUTPUT': {'VOL.2', 'SW.L3'},
+    'J1_TIP': {'J1.tip', 'SW.L5'},
+    'J2_TIP': {'J2.tip', 'SW.L6'},
+    'BYPASS': {'SW.L8', 'SW.L9'},
+    'LED_K': {'LED.K', 'SW.L4'},
+    'LED_A': {'LED.A', 'R5.2'},
+    'GND': {'J1.sleeve', 'RPD.2', 'Q1.E', 'FUZZ.1', 'C2.-', 'VOL.1', 'J2.sleeve', 'C4.2', 'SW.L1'},
+    'BAT_NEG': {'BAT.-', 'J1.ring'},
+    'VCC': {'R1A.2', 'R2.1', 'BAT.+', 'C4.1', 'R5.1'},
 }
 
 
@@ -80,7 +97,7 @@ def seg_span(seg):
     return r, lo, hi
 
 
-def verify():
+def verify(extra=(), return_find=False):
     parent = {}
 
     def find(a):
@@ -109,8 +126,10 @@ def verify():
         union(name, segment(loc))
     for i, (a, b) in enumerate(LINKS):
         union(segment(a), segment(b))
-    for a, b in OFF_WIRES:
+    for a, b in list(OFF_WIRES) + list(extra):
         union(a, b)
+    if return_find:
+        return find
 
     # TO-92 orientation: E-B-C read left to right when facing the flat side.
     for kind, ref, _, pm, ex in PARTS:
@@ -309,7 +328,7 @@ def components(hx, hy):
 
 
 PAD_LABEL = {
-    'J1.tip': 'J1 tip', 'J1.sleeve': 'J1 sleeve', 'BAT.+': '+9 V', 'BAT.-': '0 V',
+    'SW.L2': 'SW lug 2', 'SW.L1': 'SW lug 1', 'R5.1': 'LED +9 V', 'J1.sleeve': 'J1 sleeve', 'BAT.+': 'BAT +',
     'FUZZ.1': 'FUZZ 1', 'FUZZ.2': 'FUZZ 2', 'FUZZ.3': 'FUZZ 3', 'VOL.1': 'VOL 1', 'VOL.3': 'VOL 3', 'J2.sleeve': 'J2 sleeve',
 }
 
@@ -381,7 +400,9 @@ def main():
         ('C2: stripe (−) toward row H (GND).', False),
         ('C4, C5 optional (dashed).', False),
         ('Blue rings = off-board wire pads.', False),
-        ('VOL 2 → J2 tip: wire directly, off-board.', False),
+        ('Footswitch, jacks, LED, battery: see the', False),
+        ('  footswitch diagram. Battery − goes to the', False),
+        ('  input jack ring, not to the board.', False),
         ('', False),
         ('Bias: no signal, meter red on Q2 C (strip D,', False),
         ('  11–20), black on GND. Set VR1 for ≈ 4.5 V.', False),
