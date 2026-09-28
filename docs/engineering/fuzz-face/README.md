@@ -34,6 +34,9 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 
 ## Open items for a kit
 
+- Board: stripboard, chosen 2026-09-28 over a custom PCB, a 3D-printed component matrix (melt risk), and free-wired assembly (vibration and short risk against foil shielding).
+- The stripboard layout assumes an inline-pin trimmer for VR1. Confirm the stocked part's footprint.
+
 - Add reverse-polarity protection, such as a series 1N5817, if the kit uses a DC jack.
 - C5 (100 pF, Q1 collector to Q1 base) is drawn as optional. Record whether the prototype needs it.
 - Record bench results (measured voltages, VR1 setting, sound notes) here after the build.
@@ -44,3 +47,5 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 - `generate_schematic.py`: schematic source (schemdraw)
 - `fuzz-face-breadboard.svg` / `.png`: half-size breadboard layout
 - `generate_breadboard.py`: breadboard source; checks the layout's strip connectivity against the schematic netlist before drawing
+- `fuzz-face-stripboard.svg` / `.png`: 20 × 8 stripboard layout (component side and copper side with track cuts); the chosen board for the kit
+- `generate_stripboard.py`: stripboard source; checks strips, cuts, links, and transistor orientation against the netlist before drawing
