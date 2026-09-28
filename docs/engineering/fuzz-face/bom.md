@@ -46,17 +46,25 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | ~10 cm | Heat-shrink tubing, 2–3 mm                               | For R5 and the LED leads.                                                      |
 | 2–4    | Board standoffs or insulating tape _(assumed)_           | Keep the copper side off the foil shield.                                      |
 
+## Kit options
+
+Decided by the owner on 2026-09-28:
+
+- K7RHY sells the kit with the parts. The part specifications are published, so builders can source parts themselves instead.
+- There are two kits: one includes a 3D-printed case, and the other has builders download the case files and print it themselves.
+- VR1: the stocked trimmer has three pins in a row and fits the stripboard layout as drawn.
+- C4 and C5 ship in every kit, because the guide discusses them.
+
 ## Not in the kit (customer supplies)
 
-| Item        | Notes                                                                                                                                                |
-| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 9 V battery | Only power source for this design.                                                                                                                   |
-| Enclosure   | Owner is designing a 3D-printed case. It must hold a footswitch, two pots, two jacks, and the LED bezel. Whether it ships with the kit is undecided. |
-| Foil tape   | For shielding the inside of the case. Ground it through the jack sleeves.                                                                            |
+| Item        | Notes                                                                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 9 V battery | Only power source for this design.                                                                                                                       |
+| Enclosure   | Only in the kit without a case: the builder prints it from the downloadable case files. It holds the footswitch, two pots, two jacks, and the LED bezel. |
+| Foil tape   | For shielding the inside of the case. Ground it through the jack sleeves.                                                                                |
 
 ## Open questions
 
-- Pick exact part numbers and suppliers. None have been chosen yet.
-- Confirm the trimmer footprint (inline pins) for VR1.
-- Decide whether C4 and C5 ship in every kit or only on request.
-- Decide whether the case is part of the kit.
+- Choose exact part numbers for the kit. Owner review is also needed for the specs marked _(assumed)_, because they will be published for self-sourcing.
+- Case design and downloadable case files: not made yet. The guide needs the download link once they exist.
+- C4 and C5 in every kit is the working plan ("probably"); confirm before launch.
