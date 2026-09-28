@@ -59,4 +59,22 @@ describe('DocAlert', () => {
         const card = container.firstChild as HTMLElement;
         expect(card).toHaveClass('border-l-4');
     });
+
+    it('normalizes a capitalized level string from MDX', () => {
+        render(
+            <DocAlert title="Test" level={'Important' as Level}>
+                Content
+            </DocAlert>
+        );
+        expect(screen.getByText('Important')).toBeInTheDocument();
+    });
+
+    it('falls back to Default for an unknown level', () => {
+        render(
+            <DocAlert title="Test" level={'bogus' as Level}>
+                Content
+            </DocAlert>
+        );
+        expect(screen.getByText('Note')).toBeInTheDocument();
+    });
 });
