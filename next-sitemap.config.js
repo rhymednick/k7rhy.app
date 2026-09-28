@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 const config = {
     siteUrl: 'https://k7rhy.app',
-    exclude: ['/sn/*'],
+    exclude: ['/sn/*', '/guitars/pedals/*'],
     generateRobotsTxt: true,
     robotsTxtOptions: {
         policies: [
@@ -11,6 +11,8 @@ const config = {
     },
     transform: async (config, path) => {
         if (path === '/sn' || path.startsWith('/sn/')) return null;
+        // Unreleased pedal kit guides stay unlisted until launch.
+        if (path.startsWith('/guitars/pedals/')) return null;
 
         return {
             loc: path,

@@ -7,14 +7,16 @@ tags: ['assembly_guide', 'fuzz', 'kit', 'stripboard']
 ---
 
 {/*
-DRAFT, 2026-09-28. Not published and not bench-tested. Written in the style of
-content/docs/dl20w_sma.mdx so it can be moved into content/docs later.
-Voltages marked "estimated" come from a paper calculation, not a measurement.
-Replace them with measured values after the prototype build.
-Photos: every step marked PHOTO needs a picture before publishing.
-Diagrams: fuzz-face-stripboard.png and fuzz-face-footswitch.png in this folder
-would need to be copied to public/ for the site.
+Unlisted page (noindex, not in navigation or the sitemap) until the kit is released.
+Not bench-tested yet. Voltages marked "estimated" come from a paper calculation;
+replace them with measured values after the prototype build.
+Every step marked PHOTO needs a picture before the page is listed.
+Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to public/images/fuzz_face/guide/).
 */}
+
+<DocAlert title="Kit in development" level="important">
+    This kit hasn't been released yet. The instructions are complete, but some values are estimates that will be replaced with measurements from the prototype build.
+</DocAlert>
 
 <Proc title="Assembly Procedure">
     <ProcStep text="Prepare your workspace">
@@ -63,7 +65,11 @@ would need to be copied to public/ for the site.
     <ProcStep text="Learn the board">
         Stripboard has copper strips running along its length. Every hole in a strip is connected, so the strips do the wiring for you. You break a strip where two parts must not connect.
 
-        Holes are named by row and column, like a map. Rows run A to H from top to bottom, and columns run 1 to 20 from left to right, with the parts on top and the copper underneath. For example, D10 is row D, column 10. Keep the layout diagram open while you work.
+        Holes are named by row and column, like a map. Rows run A to H from top to bottom, and columns run 1 to 20 from left to right, with the parts on top and the copper underneath. For example, D10 is row D, column 10. Keep the layout diagram open while you work. Select it to open the full-size image.
+
+        <a href="/images/fuzz_face/guide/stripboard-layout.png" target="_blank" rel="noopener">
+            <img src="/images/fuzz_face/guide/stripboard-layout.png" alt="Stripboard layout: component side with every part and its holes, and the copper side showing the six track cuts" width={2000} height={1605} />
+        </a>
 
         <DocAlert title="The copper side is a mirror image" level="important">
             When you flip the board over to cut or solder, left and right swap. Column 1 is now on your right. The layout's copper-side view is already flipped for you, so use that view whenever the copper is facing up.
@@ -192,7 +198,11 @@ would need to be copied to public/ for the site.
     </ProcStep>
 
     <ProcStep text="Wire the footswitch, jacks, and LED">
-        Follow the footswitch wiring diagram. The footswitch connects everything off the board.
+        Follow the footswitch wiring diagram. The footswitch connects everything off the board. Select the diagram to open the full-size image.
+
+        <a href="/images/fuzz_face/guide/footswitch-wiring.png" target="_blank" rel="noopener">
+            <img src="/images/fuzz_face/guide/footswitch-wiring.png" alt="Footswitch wiring: the 3PDT switch's nine lugs, seen from the back, wired to the jacks, LED, battery, and board pads" width={2000} height={1195} />
+        </a>
 
         <ProcSubgroup>
             <ProcStep text="Check the footswitch">

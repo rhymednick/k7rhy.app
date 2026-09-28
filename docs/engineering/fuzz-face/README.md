@@ -50,7 +50,7 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 ## Files
 
 - `bom.md`: kit bill of materials (draft)
-- `build-guide.mdx`: kit assembly guide (draft), in the same MDX format as `content/docs/dl20w_sma.mdx`
+- Assembly guide: published unlisted at `/guitars/pedals/fuzz-face`, source `content/pedals/fuzz-face.mdx`. Diagram copies live in `public/images/fuzz_face/guide/`; regenerate here, then copy them over.
 
 - `fuzz-face-2n3904.svg` / `.png`: schematic
 - `generate_schematic.py`: schematic source (schemdraw)
