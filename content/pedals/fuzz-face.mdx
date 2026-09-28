@@ -39,13 +39,13 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
         | ----- | ---- | ---------------- |
         | 1 | Stripboard, 20 × 8 holes | |
         | 2 | Transistors, Q1 and Q2 | 2N3904 |
-        | 1 | Resistor, R1A | 22 kΩ (red, red, orange) |
-        | 1 | Resistor, R1B | 10 kΩ (brown, black, orange) |
-        | 1 | Resistor, R2 | 470 Ω (yellow, violet, brown) |
-        | 1 | Resistor, R3 | 2.2 kΩ (red, red, red) |
-        | 1 | Resistor, R4 | 100 kΩ (brown, black, yellow) |
-        | 1 | Resistor, RPD | 1 MΩ (brown, black, green) |
-        | 1 | Resistor, R5 (LED) | 4.7 kΩ (yellow, violet, red) |
+        | 1 | Resistor, R1 | 1 MΩ (brown, black, green) |
+        | 1 | Resistor, R2 | 22 kΩ (red, red, orange) |
+        | 1 | Resistor, R3 | 10 kΩ (brown, black, orange) |
+        | 1 | Resistor, R4 (small size) | 100 kΩ (brown, black, yellow) |
+        | 1 | Resistor, R5 | 470 Ω (yellow, violet, brown) |
+        | 1 | Resistor, R6 | 2.2 kΩ (red, red, red) |
+        | 1 | Resistor, R7 (LED) | 4.7 kΩ (yellow, violet, red) |
         | 1 | Trimmer, VR1 | 50 kΩ (503) |
         | 2 | Film capacitors, C1 and C3 | 470 nF (474), 10 nF (103) |
         | 1 | Electrolytic capacitor, C2 | 22 µF |
@@ -111,15 +111,15 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
 
         | Resistor | Value | Holes |
         | -------- | ----- | ----- |
-        | R1A | 22 kΩ | A3 to A7 |
-        | R2 | 470 Ω | A14 to A18 |
-        | R1B | 10 kΩ | A2 to E2 |
-        | RPD | 1 MΩ | B1 to H1 |
-        | R3 | 2.2 kΩ | A19 to F19 |
-        | R4 | 100 kΩ | D7 to F10 (diagonal) |
+        | R2 | 22 kΩ | A3 to A7 |
+        | R5 | 470 Ω | A14 to A18 |
+        | R3 | 10 kΩ | A2 to E2 |
+        | R1 | 1 MΩ | B1 to H1 |
+        | R6 | 2.2 kΩ | A19 to F19 |
+        | R4 | 100 kΩ | D7 to F10 (diagonal; the small resistor) |
 
-        <DocAlert title="Why R1A and R2 lie along a strip" level="default">
-            R1A and R2 each sit along strip A, over one of the cuts you made. The cut underneath splits the strip, so each resistor connects the two pieces. That saves a row on the board.
+        <DocAlert title="Why R2 and R5 lie along a strip" level="default">
+            R2 and R5 each sit along strip A, over one of the cuts you made. The cut underneath splits the strip, so each resistor connects the two pieces. That saves a row on the board.
         </DocAlert>
 
         The colors in the parts table are the 4-band codes. If your resistors have five bands, they're 1% parts with an extra digit band. Either way, use your multimeter to check each value before you solder it, because color bands are easy to misread.
@@ -185,7 +185,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
         | Pad | Goes to | Suggested color |
         | --- | ------- | --------------- |
         | A10 | Battery snap + | Red |
-        | A12 | R5 at the LED | Red |
+        | A12 | R7 at the LED | Red |
         | B11 | Footswitch lug 2 | Green |
         | C8 | Input jack sleeve | Black |
         | C18 | VOLUME lug 3 | Blue |
@@ -218,7 +218,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
                 * Lugs 1 and 2 already have wires from the board. Lug 7 stays empty.
             </ProcStep>
             <ProcStep text="Wire the LED">
-                The LED's longer lead is the anode (+). Solder R5 to it, then solder the wire from pad A12 to the other end of R5. Solder a wire from the LED's short lead (cathode, −) to footswitch **lug 4**. Cover the joints with heat-shrink tubing.
+                The LED's longer lead is the anode (+). Solder R7 to it, then solder the wire from pad A12 to the other end of R7. Solder a wire from the LED's short lead (cathode, −) to footswitch **lug 4**. Cover the joints with heat-shrink tubing.
             </ProcStep>
             <ProcStep text="Wire the battery">
                 Solder the battery snap's red lead to pad A10, if you haven't already. Solder the black lead to the input jack's **ring** lug, not to the board.
@@ -284,7 +284,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
         {/* TODO: link the downloadable case files once they exist. */}
         <ProcSubgroup>
             <ProcStep text="Shield the case (optional)">
-                Line the inside of the case with foil tape. Make sure the foil touches the input and output jacks' metal mounting nuts or sleeve lugs, so it's grounded through them. Shielding reduces hum and radio pickup.
+                Line the inside of the case with foil tape, then ground the foil: solder a short wire to any free hole in row H, and fasten its other end to the foil under one of the jacks' or pots' mounting nuts. Don't rely on the jacks alone: jacks with plastic bodies won't ground the foil by touching it. Shielding reduces hum and radio pickup.
             </ProcStep>
             <ProcStep text="Mount the hardware">
                 Mount the footswitch, both pots, both jacks, and the LED bezel in their holes, and tighten their nuts. The stereo jack is the input. Push the LED into its bezel from the inside.
@@ -310,22 +310,23 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
     | Part | Value | Specification |
     | ---- | ----- | ------------- |
     | Q1, Q2 | 2N3904 | NPN transistor, TO-92 (check the pinout of your part) |
-    | R1A, R1B, R2, R3, R4, RPD, R5 | See the parts list | Resistors, 1/4 W, 1% metal film |
+    | R2, R3, R5, R6, R1, R7 | See the parts list | Resistors, 1/4 W, metal or carbon film |
+    | R4 | 100 kΩ | Mini resistor, 1/4 W, body no longer than 3.5 mm (a standard size doesn't fit its diagonal position) |
     | VR1 | 50 kΩ | Single-turn trimmer, three pins in a row at 0.1 in (2.54 mm) |
     | C1 | 470 nF | Film capacitor, 5 mm lead spacing, 50 V or higher |
     | C3 | 10 nF | Film capacitor, 5 mm lead spacing, 50 V or higher |
     | C2 | 22 µF | Aluminum electrolytic, radial, 2.5 mm lead spacing, 16 V or higher |
     | C4 | 100 nF | Ceramic capacitor, 5 mm lead spacing |
     | C5 | 100 pF | Ceramic capacitor, 2.5 mm lead spacing |
-    | FUZZ | B1k | 16 mm potentiometer, linear, solder lugs |
-    | VOLUME | A500k | 16 mm potentiometer, audio (log), solder lugs |
+    | FUZZ | B1k | 16 mm potentiometer, linear, solder lugs, 6 mm knurled shaft |
+    | VOLUME | A500k | 16 mm potentiometer, audio (log), solder lugs, 6 mm knurled shaft |
     | SW1 | 3PDT | Latching footswitch, 9 solder lugs |
     | LED | 5 mm | Any color, with a panel bezel |
-    | J1 | 1/4 in | Stereo (TRS) jack, open-frame |
-    | J2 | 1/4 in | Mono jack, open-frame |
+    | J1 | 1/4 in | Stereo (TRS) jack, enclosed barrel or open-frame |
+    | J2 | 1/4 in | Mono jack, enclosed barrel or open-frame |
     | Board | 20 × 8 holes | Stripboard, 0.1 in pitch, strips along the 20-hole length |
     | Battery snap | 9 V | With leads |
-    | Knobs | — | Two, to fit your pots' shafts |
+    | Knobs | — | Two push-on knobs for 6 mm knurled shafts |
     | Wire | 24 AWG | Stranded hookup wire, plus heat-shrink tubing |
 </DocSection>
 
@@ -344,7 +345,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
     </DocSection>
 
     <DocSection title="Precautions">
-        If you line the case with foil tape for shielding, keep the copper side of the board and the switch lugs from touching the foil. Use standoffs or insulating tape under the board. Ground the foil through the jack sleeves.
+        If you line the case with foil tape for shielding, keep the copper side of the board and the switch lugs from touching the foil. Use standoffs or insulating tape under the board. Ground the foil with a wire to row H, as described in the case-mounting step.
 
         Take the battery out if you store the pedal for a long time.
     </DocSection>

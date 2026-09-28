@@ -19,10 +19,10 @@ CUTS = [(1, 5), (1, 16), (3, 16), (4, 10), (5, 16), (6, 16)]
 
 # kind, ref, value, {pin: (row, col)}, extra
 PARTS = [
-    ('res', 'R1A', '22k', {'1': (1, 3), '2': (1, 7)}, {}),          # along strip, over cut 1/5
-    ('res', 'R2', '470', {'1': (1, 14), '2': (1, 18)}, {}),         # along strip, over cut 1/16
-    ('res', 'R1B', '10k', {'1': (1, 2), '2': (5, 2)}, {}),
-    ('res', 'RPD', '1M', {'1': (2, 1), '2': (8, 1)}, {}),
+    ('res', 'R2', '22k', {'1': (1, 3), '2': (1, 7)}, {}),          # along strip, over cut 1/5
+    ('res', 'R5', '470', {'1': (1, 14), '2': (1, 18)}, {}),         # along strip, over cut 1/16
+    ('res', 'R3', '10k', {'1': (1, 2), '2': (5, 2)}, {}),
+    ('res', 'R1', '1M', {'1': (2, 1), '2': (8, 1)}, {}),
     ('film', 'C1', '470n', {'1': (2, 4), '2': (4, 4)}, {}),
     ('ceramic', 'C5', '100p opt.', {'1': (4, 3), '2': (5, 3)}, {'optional': True}),
     ('ceramic', 'C4', '100n opt.', {'1': (1, 9), '2': (3, 9)}, {'optional': True}),
@@ -30,7 +30,7 @@ PARTS = [
     ('to92', 'Q2', '2N3904', {'C': (4, 13), 'B': (5, 13), 'E': (6, 13)}, {'flat': 'right'}),
     ('res', 'R4', '100k', {'1': (4, 7), '2': (6, 10)}, {}),
     ('trim', 'VR1', '50k', {'B': (4, 17), 'W': (5, 17), 'A': (6, 17)}, {}),
-    ('res', 'R3', '2.2k', {'1': (6, 19), '2': (1, 19)}, {}),
+    ('res', 'R6', '2.2k', {'1': (6, 19), '2': (1, 19)}, {}),
     ('film', 'C3', '10n', {'1': (1, 20), '2': (3, 20)}, {}),
     ('elec', 'C2', '22µ', {'+': (7, 12), '-': (8, 12)}, {}),
 ]
@@ -38,7 +38,7 @@ LINKS = [((4, 18), (5, 18)), ((3, 15), (8, 15))]
 
 # Off-board wire pads: pin -> hole
 PADS = {
-    'SW.L2': (2, 11), 'J1.sleeve': (3, 8), 'SW.L1': (8, 16), 'R5.1': (1, 12),
+    'SW.L2': (2, 11), 'J1.sleeve': (3, 8), 'SW.L1': (8, 16), 'R7.1': (1, 12),
     'BAT.+': (1, 10),
     'FUZZ.1': (8, 13), 'FUZZ.2': (7, 14), 'FUZZ.3': (6, 11),
     'VOL.1': (8, 19), 'VOL.3': (3, 18),
@@ -48,7 +48,7 @@ PADS = {
 # top row L1-L3 = ON throws, middle L4-L6 = commons, bottom L7-L9 = BYPASS throws.
 OFF_WIRES = [
     ('J1.tip', 'SW.L5'), ('J2.tip', 'SW.L6'), ('VOL.2', 'SW.L3'),
-    ('SW.L8', 'SW.L9'), ('LED.K', 'SW.L4'), ('R5.2', 'LED.A'),
+    ('SW.L8', 'SW.L9'), ('LED.K', 'SW.L4'), ('R7.2', 'LED.A'),
     ('BAT.-', 'J1.ring'),   # stereo input jack switches the battery
 ]
 PLUG_IN = [('J1.ring', 'J1.sleeve')]   # a mono plug shorts ring to sleeve
@@ -58,25 +58,25 @@ SWITCH_STATES = {
 }
 
 EXPECTED = {
-    'INPUT': {'SW.L2', 'RPD.1', 'C1.1'},
+    'INPUT': {'SW.L2', 'R1.1', 'C1.1'},
     'Q1_BASE': {'C1.2', 'Q1.B', 'R4.1', 'C5.1'},
-    'Q1C_Q2B': {'Q1.C', 'Q2.B', 'R1B.2', 'C5.2'},
-    'R1_MID': {'R1B.1', 'R1A.1'},
+    'Q1C_Q2B': {'Q1.C', 'Q2.B', 'R3.2', 'C5.2'},
+    'R2_R3': {'R3.1', 'R2.1'},
     'Q2_EMIT': {'Q2.E', 'R4.2', 'FUZZ.3'},
     'FUZZ_WIPER': {'FUZZ.2', 'C2.+'},
     'Q2_COL': {'Q2.C', 'VR1.B', 'VR1.W'},
-    'BIAS_TOP': {'VR1.A', 'R3.1'},
-    'OUT_TAP': {'R3.2', 'R2.2', 'C3.1'},
+    'BIAS_TOP': {'VR1.A', 'R6.1'},
+    'OUT_TAP': {'R6.2', 'R5.2', 'C3.1'},
     'VOL_IN': {'C3.2', 'VOL.3'},
     'OUTPUT': {'VOL.2', 'SW.L3'},
     'J1_TIP': {'J1.tip', 'SW.L5'},
     'J2_TIP': {'J2.tip', 'SW.L6'},
     'BYPASS': {'SW.L8', 'SW.L9'},
     'LED_K': {'LED.K', 'SW.L4'},
-    'LED_A': {'LED.A', 'R5.2'},
-    'GND': {'J1.sleeve', 'RPD.2', 'Q1.E', 'FUZZ.1', 'C2.-', 'VOL.1', 'J2.sleeve', 'C4.2', 'SW.L1'},
+    'LED_A': {'LED.A', 'R7.2'},
+    'GND': {'J1.sleeve', 'R1.2', 'Q1.E', 'FUZZ.1', 'C2.-', 'VOL.1', 'J2.sleeve', 'C4.2', 'SW.L1'},
     'BAT_NEG': {'BAT.-', 'J1.ring'},
-    'VCC': {'R1A.2', 'R2.1', 'BAT.+', 'C4.1', 'R5.1'},
+    'VCC': {'R2.2', 'R5.1', 'BAT.+', 'C4.1', 'R7.1'},
 }
 
 
@@ -243,9 +243,9 @@ BANDS = {'1M': ['#795548', '#111', '#2e7d32'], '100k': ['#795548', '#111', '#f9a
          '2.2k': ['#d32f2f', '#d32f2f', '#d32f2f'], '470': ['#f9a825', '#6a1b9a', '#795548']}
 
 LABEL = {  # label offset in pitch units from body centre (default: on the body)
-    'C5': (-0.75, 0.0), 'C4': (0.8, 0.0), 'C2': (0, 0.05), 'RPD': (0, 1.2),
+    'C5': (-0.75, 0.0), 'C4': (0.8, 0.0), 'C2': (0, 0.05), 'R1': (0, 1.2),
 }
-LABEL_ANCHOR = {'R1B': 'end', 'RPD': 'start', 'C1': 'start', 'C4': 'start', 'C3': 'end', 'C2': 'end', 'R3': 'start', 'R4': 'start', 'C5': 'end'}
+LABEL_ANCHOR = {'R3': 'end', 'R1': 'start', 'C1': 'start', 'C4': 'start', 'C3': 'end', 'C2': 'end', 'R6': 'start', 'R4': 'start', 'C5': 'end'}
 
 
 def axial(pa, pb, fill, stroke, blen, bw, bands=None, dashed=False):
@@ -328,7 +328,7 @@ def components(hx, hy):
 
 
 PAD_LABEL = {
-    'SW.L2': 'SW lug 2', 'SW.L1': 'SW lug 1', 'R5.1': 'LED +9 V', 'J1.sleeve': 'J1 sleeve', 'BAT.+': 'BAT +',
+    'SW.L2': 'SW lug 2', 'SW.L1': 'SW lug 1', 'R7.1': 'LED +9 V', 'J1.sleeve': 'J1 sleeve', 'BAT.+': 'BAT +',
     'FUZZ.1': 'FUZZ 1', 'FUZZ.2': 'FUZZ 2', 'FUZZ.3': 'FUZZ 3', 'VOL.1': 'VOL 1', 'VOL.3': 'VOL 3', 'J2.sleeve': 'J2 sleeve',
 }
 
@@ -393,7 +393,7 @@ def main():
         ('  edge of each drawing). Legs', False),
         ('  read E-B-C when you face the flat side.', False),
         ('  Check your parts’ datasheet pinout.', False),
-        ('R1A and R2 lie along their strip over a cut.', False),
+        ('R2 and R5 lie along their strip over a cut.', False),
         ('VR1 assumes an inline-pin trimmer (A-W-B in', False),
         ('  a row). Check yours; the W and B pins must', False),
         ('  both reach strip D/E via the D18–E18 link.', False),

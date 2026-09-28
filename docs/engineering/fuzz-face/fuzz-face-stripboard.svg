@@ -269,8 +269,8 @@
 <rect x="-10.6" y="-8.5" width="7.3" height="17.0" fill="#d32f2f"/>
 <rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#e65100"/>
 </g>
-<rect x="196.2" y="148.0" width="27.6" height="16" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="210.0" y="159.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1A</text>
+<rect x="199.8" y="148.0" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="210.0" y="159.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
 <line x1="516.0" y1="154.0" x2="652.0" y2="154.0" stroke="#8a8a8a" stroke-width="2.4" stroke-linecap="round"/>
 <circle cx="516.0" cy="154.0" r="4" fill="#666"/>
 <circle cx="652.0" cy="154.0" r="4" fill="#666"/>
@@ -281,7 +281,7 @@
 <rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#795548"/>
 </g>
 <rect x="573.8" y="148.0" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="584.0" y="159.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
+<text x="584.0" y="159.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
 <line x1="108.0" y1="154.0" x2="108.0" y2="290.0" stroke="#8a8a8a" stroke-width="2.4" stroke-linecap="round"/>
 <circle cx="108.0" cy="154.0" r="4" fill="#666"/>
 <circle cx="108.0" cy="290.0" r="4" fill="#666"/>
@@ -291,8 +291,8 @@
 <rect x="-10.6" y="-8.5" width="7.3" height="17.0" fill="#111"/>
 <rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#e65100"/>
 </g>
-<rect x="94.2" y="216.0" width="27.6" height="16" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="108.0" y="227.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1B</text>
+<rect x="97.8" y="216.0" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="108.0" y="227.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R3</text>
 <line x1="74.0" y1="188.0" x2="74.0" y2="392.0" stroke="#8a8a8a" stroke-width="2.4" stroke-linecap="round"/>
 <circle cx="74.0" cy="188.0" r="4" fill="#666"/>
 <circle cx="74.0" cy="392.0" r="4" fill="#666"/>
@@ -302,8 +302,8 @@
 <rect x="-10.6" y="-8.5" width="7.3" height="17.0" fill="#111"/>
 <rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#2e7d32"/>
 </g>
-<rect x="60.2" y="324.8" width="27.6" height="16" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="74.0" y="335.8" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">RPD</text>
+<rect x="63.8" y="324.8" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
+<text x="74.0" y="335.8" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1</text>
 <line x1="176.0" y1="188.0" x2="176.0" y2="256.0" stroke="#8a8a8a" stroke-width="2.4" stroke-linecap="round"/>
 <circle cx="176.0" cy="188.0" r="4" fill="#666"/>
 <circle cx="176.0" cy="256.0" r="4" fill="#666"/>
@@ -373,7 +373,7 @@
 <rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#d32f2f"/>
 </g>
 <rect x="675.8" y="233.0" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
-<text x="686.0" y="244.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R3</text>
+<text x="686.0" y="244.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R6</text>
 <line x1="720.0" y1="154.0" x2="720.0" y2="222.0" stroke="#8a8a8a" stroke-width="2.4" stroke-linecap="round"/>
 <circle cx="720.0" cy="154.0" r="4" fill="#666"/>
 <circle cx="720.0" cy="222.0" r="4" fill="#666"/>
@@ -416,7 +416,7 @@
 <line x1="652.0" y1="399.0" x2="652.0" y2="434.0" stroke="#2471a3" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 2"/>
 <text x="784.0" y="130.0" font-size="15" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Strips</text>
 <text x="784.0" y="152.0" font-size="13" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">A:</text>
-<text x="808.0" y="152.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">R1_MID (1–4)  |  VCC (6–15)  |  OUT_TAP (17–20)</text>
+<text x="808.0" y="152.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">R2_R3 (1–4)  |  VCC (6–15)  |  OUT_TAP (17–20)</text>
 <text x="784.0" y="172.0" font-size="13" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">B:</text>
 <text x="808.0" y="172.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">INPUT (1–20)</text>
 <text x="784.0" y="192.0" font-size="13" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C:</text>
@@ -437,13 +437,13 @@
 <text x="784.0" y="380.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">D18 – E18  (Q2_COL to VR1 wiper)</text>
 <text x="784.0" y="398.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C15 – H15  (insulated; crosses B–G)</text>
 <text x="784.0" y="426.0" font-size="15" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Parts</text>
-<text x="784.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1A</text>
+<text x="784.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
 <text x="824.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">22k</text>
-<text x="954.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
+<text x="954.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
 <text x="994.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470</text>
-<text x="784.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1B</text>
+<text x="784.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R3</text>
 <text x="824.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">10k</text>
-<text x="954.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">RPD</text>
+<text x="954.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1</text>
 <text x="994.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1M</text>
 <text x="784.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C1</text>
 <text x="824.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470n</text>
@@ -459,7 +459,7 @@
 <text x="994.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100k</text>
 <text x="784.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">VR1</text>
 <text x="824.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">50k</text>
-<text x="954.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R3</text>
+<text x="954.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R6</text>
 <text x="994.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2.2k</text>
 <text x="784.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C3</text>
 <text x="824.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">10n</text>
@@ -702,7 +702,7 @@
 <text x="784.0" y="670.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  edge of each drawing). Legs</text>
 <text x="784.0" y="688.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  read E-B-C when you face the flat side.</text>
 <text x="784.0" y="706.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  Check your parts’ datasheet pinout.</text>
-<text x="784.0" y="724.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">R1A and R2 lie along their strip over a cut.</text>
+<text x="784.0" y="724.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">R2 and R5 lie along their strip over a cut.</text>
 <text x="784.0" y="742.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">VR1 assumes an inline-pin trimmer (A-W-B in</text>
 <text x="784.0" y="760.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  a row). Check yours; the W and B pins must</text>
 <text x="784.0" y="778.0" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">  both reach strip D/E via the D18–E18 link.</text>

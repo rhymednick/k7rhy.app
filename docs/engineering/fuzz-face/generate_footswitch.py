@@ -156,7 +156,7 @@ def main():
     svg('<rect x="560" y="868" width="90" height="24" rx="10" fill="#e8d3a8" stroke="#a1887f"/>')
     for i, c in enumerate(['#f9a825', '#6a1b9a', '#d32f2f']):
         svg(f'<rect x="{578 + i * 16}" y="868" width="8" height="24" fill="{c}"/>')
-    text(605, 915, 'R5 4.7k', 13, weight='bold')
+    text(605, 915, 'R7 4.7k', 13, weight='bold')
     wire([(650, 880), (760, 880)], RED)
     box(760, 850, 150, 58, 'Board A12', '+9 V')
     text(470, 948, 'LED on leads, mounted through the case (5 mm LED + bezel)', 13, weight='bold')
@@ -188,12 +188,13 @@ def main():
         'each middle lug beeps to one outer lug',
         'in its own column, never to another column.',
         '',
-        'The 1M pulldown (RPD) on the board',
+        'The 1M pulldown (R1) on the board',
         'keeps INPUT from floating in bypass,',
         'which prevents switching pops.',
         '',
-        'Ground the foil shield through the jack',
-        'sleeves; keep switch lugs off the foil.',
+        'Ground the foil shield with a wire to any',
+        'free hole in board row H; keep switch',
+        'lugs off the foil.',
     ]
     for st in steps:
         text(px, py, st, 13, anchor='start'); py += 19

@@ -6,30 +6,34 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 
 ![Schematic](fuzz-face-2n3904.png)
 
+## Reference designators
+
+Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision) so the kit has no gaps or letter suffixes. Mapping from the owner's original netlist: RPD → R1, R1A → R2, R1B → R3, R4 → R4, R2 → R5, R3 → R6. R7 is the LED resistor, added later. The net R1_MID is now R2_R3.
+
 ## Parts
 
-| Ref       | Value                    | Notes                                                                                    |
-| --------- | ------------------------ | ---------------------------------------------------------------------------------------- |
-| Q1, Q2    | 2N3904                   | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet. |
-| RPD       | 1 MΩ                     | Input pulldown (optional)                                                                |
-| C1        | 470 nF film              | Tighter than the classic ~2.2 µF                                                         |
-| R1A + R1B | 22 kΩ + 10 kΩ            | 32 kΩ total (classic: 33 kΩ)                                                             |
-| R4        | 100 kΩ                   | Feedback, Q2 emitter to Q1 base                                                          |
-| FUZZ      | B1k                      | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                            |
-| C2        | 22 µF electrolytic       | + to fuzz wiper, − to GND                                                                |
-| R2        | 470 Ω                    | VCC to OUT_TAP                                                                           |
-| R3        | 2.2 kΩ                   | OUT_TAP to BIAS_TOP                                                                      |
-| VR1       | 50 kΩ trimmer            | Rheostat; wiper tied to Q2_COL lug                                                       |
-| C3        | 10 nF film               | OUT_TAP to VOL_IN                                                                        |
-| VOLUME    | A500k                    | Lug 3 to VOL_IN, lug 1 to GND, wiper to output                                           |
-| C4        | 100 nF film              | Optional supply decoupling                                                               |
-| C5        | 100 pF ceramic           | Optional; Q1 collector to Q1 base. Fit only if the build oscillates or picks up radio.   |
-| SW1       | 3PDT latching footswitch | True bypass; pole 1 switches the LED                                                     |
-| LED       | 5 mm LED + bezel         | On leads through the case; lit when the effect is on                                     |
-| R5        | 4.7 kΩ                   | LED current limit, about 1.5 mA from 9 V (off-board, at the LED)                         |
-| J1        | Stereo (TRS) 1/4 in jack | Input; ring switches battery − so unplugging saves the battery                           |
-| J2        | Mono 1/4 in jack         | Output                                                                                   |
-| BAT       | 9 V battery + clip       | Only power source; + to board A10, − to J1 ring                                          |
+| Ref     | Value                    | Notes                                                                                    |
+| ------- | ------------------------ | ---------------------------------------------------------------------------------------- |
+| Q1, Q2  | 2N3904                   | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet. |
+| R1      | 1 MΩ                     | Input pulldown (optional)                                                                |
+| C1      | 470 nF film              | Tighter than the classic ~2.2 µF                                                         |
+| R2 + R3 | 22 kΩ + 10 kΩ            | 32 kΩ total (classic: 33 kΩ)                                                             |
+| R4      | 100 kΩ                   | Feedback, Q2 emitter to Q1 base                                                          |
+| FUZZ    | B1k                      | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                            |
+| C2      | 22 µF electrolytic       | + to fuzz wiper, − to GND                                                                |
+| R5      | 470 Ω                    | VCC to OUT_TAP                                                                           |
+| R6      | 2.2 kΩ                   | OUT_TAP to BIAS_TOP                                                                      |
+| VR1     | 50 kΩ trimmer            | Rheostat; wiper tied to Q2_COL lug                                                       |
+| C3      | 10 nF film               | OUT_TAP to VOL_IN                                                                        |
+| VOLUME  | A500k                    | Lug 3 to VOL_IN, lug 1 to GND, wiper to output                                           |
+| C4      | 100 nF film              | Optional supply decoupling                                                               |
+| C5      | 100 pF ceramic           | Optional; Q1 collector to Q1 base. Fit only if the build oscillates or picks up radio.   |
+| SW1     | 3PDT latching footswitch | True bypass; pole 1 switches the LED                                                     |
+| LED     | 5 mm LED + bezel         | On leads through the case; lit when the effect is on                                     |
+| R7      | 4.7 kΩ                   | LED current limit, about 1.5 mA from 9 V (off-board, at the LED)                         |
+| J1      | Stereo (TRS) 1/4 in jack | Input; ring switches battery − so unplugging saves the battery                           |
+| J2      | Mono 1/4 in jack         | Output                                                                                   |
+| BAT     | 9 V battery + clip       | Only power source; + to board A10, − to J1 ring                                          |
 
 ## Verification notes (paper check, not measured)
 

@@ -91,7 +91,7 @@
 <rect x="578" y="868" width="8" height="24" fill="#f9a825"/>
 <rect x="594" y="868" width="8" height="24" fill="#6a1b9a"/>
 <rect x="610" y="868" width="8" height="24" fill="#d32f2f"/>
-<text x="605" y="915" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5 4.7k</text>
+<text x="605" y="915" font-size="13" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R7 4.7k</text>
 <polyline points="650,880 760,880" fill="none" stroke="#c0392b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="760" y="850" width="150" height="58" rx="8" fill="#f4efe2" stroke="#a8956a" stroke-width="1.5"/>
 <text x="835.0" y="874" font-size="15" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Board A12</text>
@@ -117,10 +117,11 @@
 <text x="1290" y="493" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">each middle lug beeps to one outer lug</text>
 <text x="1290" y="512" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">in its own column, never to another column.</text>
 <text x="1290" y="531" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
-<text x="1290" y="550" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">The 1M pulldown (RPD) on the board</text>
+<text x="1290" y="550" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">The 1M pulldown (R1) on the board</text>
 <text x="1290" y="569" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">keeps INPUT from floating in bypass,</text>
 <text x="1290" y="588" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">which prevents switching pops.</text>
 <text x="1290" y="607" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif"></text>
-<text x="1290" y="626" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Ground the foil shield through the jack</text>
-<text x="1290" y="645" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">sleeves; keep switch lugs off the foil.</text>
+<text x="1290" y="626" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">Ground the foil shield with a wire to any</text>
+<text x="1290" y="645" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">free hole in board row H; keep switch</text>
+<text x="1290" y="664" font-size="13" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">lugs off the foil.</text>
 </svg>
