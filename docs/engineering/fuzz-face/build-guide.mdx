@@ -1,0 +1,290 @@
+---
+title: 'Fuzz Face Kit Assembly Guide'
+subTitle: 'How to assemble and use the K7RHY 2N3904 Fuzz Face kit.'
+date: 2026-09-28
+summary: 'Stripboard assembly, footswitch wiring, biasing, and first test for the 2N3904 Fuzz Face kit.'
+tags: ['assembly_guide', 'fuzz', 'kit', 'stripboard']
+---
+
+{/*
+DRAFT, 2026-09-28. Not published and not bench-tested. Written in the style of
+content/docs/dl20w_sma.mdx so it can be moved into content/docs later.
+Voltages marked "estimated" come from a paper calculation, not a measurement.
+Replace them with measured values after the prototype build.
+Photos: every step marked PHOTO needs a picture before publishing.
+Diagrams: fuzz-face-stripboard.png and fuzz-face-footswitch.png in this folder
+would need to be copied to public/ for the site.
+*/}
+
+<Proc title="Assembly Procedure">
+    <ProcStep text="Prepare your workspace">
+        Find a clean, well-lit area to work. Collect your kit components and tools. You will need the following:
+        * Soldering iron
+        * Flux-core solder
+        * Small wire cutters and wire strippers
+        * Multimeter (required: you use it to cut tracks, check the board, and set the bias)
+        * A 3 mm (1/8 in) drill bit or a stripboard track cutter
+        * Small flat screwdriver for the trimmer
+        * Heat gun or lighter for heat-shrink tubing
+        * Needle-nose pliers (optional)
+        * Helping hands, or similar device, to hold parts while soldering
+    </ProcStep>
+
+    <ProcStep text="Inventory the parts">
+        Open your project bag and verify that all the components are there. You will have the following:
+
+        | Count | Item | Marking or value |
+        | ----- | ---- | ---------------- |
+        | 1 | Stripboard, 20 × 8 holes | |
+        | 2 | Transistors, Q1 and Q2 | 2N3904 |
+        | 1 | Resistor, R1A | 22 kΩ (red, red, orange) |
+        | 1 | Resistor, R1B | 10 kΩ (brown, black, orange) |
+        | 1 | Resistor, R2 | 470 Ω (yellow, violet, brown) |
+        | 1 | Resistor, R3 | 2.2 kΩ (red, red, red) |
+        | 1 | Resistor, R4 | 100 kΩ (brown, black, yellow) |
+        | 1 | Resistor, RPD | 1 MΩ (brown, black, green) |
+        | 1 | Resistor, R5 (LED) | 4.7 kΩ (yellow, violet, red) |
+        | 1 | Trimmer, VR1 | 50 kΩ (503) |
+        | 2 | Film capacitors, C1 and C3 | 470 nF (474), 10 nF (103) |
+        | 1 | Electrolytic capacitor, C2 | 22 µF |
+        | 2 | Ceramic capacitors, C4 and C5 | 100 nF (104), 100 pF (101) |
+        | 2 | Potentiometers | B1k (FUZZ), A500k (VOLUME) |
+        | 1 | 3PDT footswitch | |
+        | 1 | LED and bezel | |
+        | 2 | 1/4 in jacks | stereo (input), mono (output) |
+        | 1 | 9 V battery snap | |
+        | — | Hookup wire, link wire, heat-shrink tubing | |
+
+        {/* PHOTO: all parts laid out on a mat, labeled. */}
+
+        If anything in your kit is missing or damaged, please contact me at [de.k7rhy@gmail.com](mailto:de.k7rhy@gmail.com). I will send you a replacement part.
+    </ProcStep>
+
+    <ProcStep text="Learn the board">
+        Stripboard has copper strips running along its length. Every hole in a strip is connected, so the strips do the wiring for you. You break a strip where two parts must not connect.
+
+        Holes are named by row and column, like a map. Rows run A to H from top to bottom, and columns run 1 to 20 from left to right, with the parts on top and the copper underneath. For example, D10 is row D, column 10. Keep the layout diagram open while you work.
+
+        <DocAlert title="The copper side is a mirror image" level="important">
+            When you flip the board over to cut or solder, left and right swap. Column 1 is now on your right. The layout's copper-side view is already flipped for you, so use that view whenever the copper is facing up.
+        </DocAlert>
+    </ProcStep>
+
+    <ProcStep text="Cut the tracks">
+        Six holes need their copper cut: **A5, A16, C16, D10, E16, and F16**. Cut the tracks before you install any parts.
+
+        <ProcSubgroup>
+            <ProcStep text="Mark the cuts">
+                With the copper side up, find each cut on the copper-side view and mark it with a fine marker. Count columns from the right-hand edge, because the board is flipped.
+
+                {/* PHOTO: copper side with the six cut holes marked. */}
+            </ProcStep>
+            <ProcStep text="Cut each hole">
+                Place the drill bit in the marked hole and twist it by hand, with light pressure, until the copper ring around the hole is gone. You only need to cut through the copper, not through the board.
+
+                {/* PHOTO: close-up of one finished cut. */}
+            </ProcStep>
+            <ProcStep text="Check every cut">
+                Set your multimeter to continuity. For each cut, touch the probes to the holes on either side of it. It must not beep. If it beeps, a thin sliver of copper remains: twist the bit again, or scrape the gap with a hobby knife.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Install the wire links">
+        Links are short wires that connect two strips.
+        * **D18 to E18:** bare wire is fine.
+        * **C15 to H15:** use insulated wire. It crosses strips D through G, and it must not touch them.
+
+        Solder both ends and trim the excess on the copper side.
+    </ProcStep>
+
+    <ProcStep text="Install the resistors">
+        Resistors are not polarized, so either direction is fine. Install them in the order below, from the flattest part to the tallest. For each one, bend the leads to fit the holes, push the resistor flat against the board, bend the leads outward on the copper side to hold it, solder, and trim.
+
+        | Resistor | Value | Holes |
+        | -------- | ----- | ----- |
+        | R1A | 22 kΩ | A3 to A7 |
+        | R2 | 470 Ω | A14 to A18 |
+        | R1B | 10 kΩ | A2 to E2 |
+        | RPD | 1 MΩ | B1 to H1 |
+        | R3 | 2.2 kΩ | A19 to F19 |
+        | R4 | 100 kΩ | D7 to F10 (diagonal) |
+
+        <DocAlert title="Why R1A and R2 lie along a strip" level="default">
+            R1A and R2 each sit along strip A, over one of the cuts you made. The cut underneath splits the strip, so each resistor connects the two pieces. That saves a row on the board.
+        </DocAlert>
+
+        The colors in the parts table are the 4-band codes. If your resistors have five bands, they're 1% parts with an extra digit band. Either way, use your multimeter to check each value before you solder it, because color bands are easy to misread.
+
+        {/* PHOTO: board with all resistors installed. */}
+    </ProcStep>
+
+    <ProcStep text="Install the capacitors">
+        <ProcSubgroup>
+            <ProcStep text="Install the film capacitors">
+                Install C1 (470 nF) from B4 to D4, and C3 (10 nF) from A20 to C20. Film capacitors are not polarized.
+            </ProcStep>
+            <ProcStep text="Install the ceramic capacitors">
+                Install C4 (100 nF) from A9 to C9. C4 filters the battery supply.
+
+                <DocAlert title="Understanding Your Options - C5" level="choice">
+                    C5 (100 pF, from D3 to E3) is optional. High-gain silicon fuzz circuits sometimes squeal or pick up radio stations. C5 cures that, but it also takes off a little of the top end. You can leave it out, test the pedal, and add it later if you hear squealing or radio.
+                </DocAlert>
+            </ProcStep>
+            <ProcStep text="Install the electrolytic capacitor">
+                C2 (22 µF) is polarized. The stripe on its side marks the negative (−) lead, which is also the shorter lead. Put the negative lead in **H12** and the positive lead in **G12**.
+
+                <DocAlert title="Check C2's direction" level="warning">
+                    An electrolytic capacitor installed backwards can fail and leak. Check the stripe before you solder.
+                </DocAlert>
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Set and install the trimmer">
+        VR1 sets the bias, which is the most important adjustment in a Fuzz Face. Set it roughly before you install it, so the pedal works the first time you power it up.
+
+        <ProcSubgroup>
+            <ProcStep text="Preset the trimmer">
+                Measure the resistance between the trimmer's outer pin A and its middle pin W (the wiper). Turn the screw until it reads about 4.7 kΩ.
+            </ProcStep>
+            <ProcStep text="Install the trimmer">
+                Install VR1 with pin B in **D17**, the wiper W in **E17**, and pin A in **F17**. The D18 to E18 link you already installed connects the wiper to pin B.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Install the transistors">
+        Install the transistors last, because they are the most heat-sensitive parts. Work quickly: about 2 seconds per joint, and let the part cool between joints.
+
+        Both transistors have a flat face. When you look at the flat face with the leads pointing down, the leads are E, B, and C from left to right.
+
+        | Transistor | Flat face points | Holes |
+        | ---------- | ---------------- | ----- |
+        | Q1 | Left (toward column 1) | E in C6, B in D6, C in E6 |
+        | Q2 | Right (toward column 20) | C in D13, B in E13, E in F13 |
+
+        <DocAlert title="Q1 and Q2 face opposite ways" level="warning">
+            This is on purpose, so both transistors can share strip E. Installing a transistor backwards is the most common mistake in this build, so match each one to the layout diagram before you solder.
+        </DocAlert>
+
+        {/* PHOTO: close-up of Q1 and Q2 showing the flat faces. */}
+    </ProcStep>
+
+    <ProcStep text="Attach the off-board wires">
+        Solder a wire into each pad below from the component side, long enough to reach its part in the case. Leave some slack.
+
+        | Pad | Goes to | Suggested color |
+        | --- | ------- | --------------- |
+        | A10 | Battery snap + | Red |
+        | A12 | R5 at the LED | Red |
+        | B11 | Footswitch lug 2 | Green |
+        | C8 | Input jack sleeve | Black |
+        | C18 | VOLUME lug 3 | Blue |
+        | F11 | FUZZ lug 3 | Orange |
+        | G14 | FUZZ lug 2 | Blue |
+        | H13 | FUZZ lug 1 | Black |
+        | H16 | Footswitch lug 1 | Black |
+        | H18 | Output jack sleeve | Black |
+        | H19 | VOLUME lug 1 | Black |
+
+        Pot lugs are numbered 1, 2, 3 from left to right when you look at the back of the pot with its lugs pointing up.
+    </ProcStep>
+
+    <ProcStep text="Wire the footswitch, jacks, and LED">
+        Follow the footswitch wiring diagram. The footswitch connects everything off the board.
+
+        <ProcSubgroup>
+            <ProcStep text="Check the footswitch">
+                With your meter on continuity, check that each middle-row lug beeps to exactly one outer lug in its own column. Click the switch and check again: it should now beep to the lug at the other end of the same column. Each column is one independent switch.
+            </ProcStep>
+            <ProcStep text="Wire the footswitch">
+                * **Lug 5** (middle) to the input jack tip.
+                * **Lug 6** (middle) to the output jack tip.
+                * **Lug 3** to VOLUME lug 2.
+                * **Lug 8 to lug 9:** a short bare jumper. In bypass, this carries your guitar signal straight from the input jack to the output jack.
+                * Lugs 1 and 2 already have wires from the board. Lug 7 stays empty.
+            </ProcStep>
+            <ProcStep text="Wire the LED">
+                The LED's longer lead is the anode (+). Solder R5 to it, then solder the wire from pad A12 to the other end of R5. Solder a wire from the LED's short lead (cathode, −) to footswitch **lug 4**. Cover the joints with heat-shrink tubing.
+            </ProcStep>
+            <ProcStep text="Wire the battery">
+                Solder the battery snap's red lead to pad A10, if you haven't already. Solder the black lead to the input jack's **ring** lug, not to the board.
+
+                <DocAlert title="How the input jack turns the pedal on" level="important">
+                    A guitar cable's plug connects the input jack's ring and sleeve together. That completes the battery's ground connection, so the pedal only draws power while a cable is plugged into the input. Unplug the input cable when you're done playing.
+                </DocAlert>
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Verify the build">
+        Before you connect a battery, inspect and test the assembly.
+        <ProcSubgroup>
+            <ProcStep text="Inspect the copper side">
+                Check every joint. Joints should be shiny and smooth, with no solder bridging two strips. Run a hobby knife along the gaps between strips if you're unsure. Most stripboard faults are a solder bridge or a missed cut.
+            </ProcStep>
+            <ProcStep text="Check for a short">
+                With no battery connected, measure the resistance between pad A10 (+9 V) and any hole in row H (ground). It must not read close to 0 Ω. If it does, find and fix the short before you go on.
+            </ProcStep>
+            <ProcStep text="Check the polarized parts">
+                Check that C2's stripe faces row H, that Q1's flat face points left and Q2's points right, and that the LED's short lead goes to footswitch lug 4.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Set the bias">
+        This is where the pedal comes to life. You need a battery, a cable plugged into the input jack, and your multimeter.
+        <ProcSubgroup>
+            <ProcStep text="Power up">
+                Connect the battery and plug a cable into the input jack. Measure between pad A10 and row H: you should see close to 9 V.
+            </ProcStep>
+            <ProcStep text="Adjust VR1">
+                Put the black probe on any hole in row H. Put the red probe on **strip D, anywhere in columns 11 to 20** (Q2's collector). With no guitar signal, turn VR1 until the meter reads about **4.5 V**.
+
+                <DocAlert title="Measure strip D, not the output" level="warning">
+                    Don't measure strip A in columns 17 to 20. That's the output tap, and it reads close to 9 V whatever the bias is.
+                </DocAlert>
+            </ProcStep>
+            <ProcStep text="Check the other voltages">
+                These are estimates from the design, not measurements. Readings a little different are normal.
+                * Strip E, columns 1 to 15 (Q1's collector): about 1.4 V (estimated).
+                * Strip F, columns 1 to 15 (Q2's emitter): about 0.75 V (estimated).
+
+                If Q2's collector won't reach 4.5 V at any trimmer setting, check the transistors' direction first.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Test it">
+        Connect your guitar to the input and your amplifier to the output. Start with the amplifier quiet.
+        * Click the footswitch until the LED is off. You should hear your clean guitar: that's bypass.
+        * Click again. The LED lights and you should hear the fuzz.
+        * Turn FUZZ and VOLUME through their full range. Clockwise gives more fuzz and more volume.
+
+        <DocAlert title="Understanding Your Options - Bias by ear" level="choice">
+            4.5 V is a starting point, not a rule. Once everything works, try small adjustments to VR1 while you play. Lower collector voltages tend to sound gated and spitty; higher ones tend to sound smoother. Pick what you like.
+        </DocAlert>
+    </ProcStep>
+</Proc>
+
+<DocSection title="Operating Instructions" bookmarkId="operating_instructions">
+    The Fuzz Face is a two-knob fuzz. **FUZZ** sets how much gain and saturation you get, and **VOLUME** sets the output level. The footswitch switches between the effect and a true-bypass path. In bypass, your guitar signal goes straight from the input jack to the output jack without passing through any circuitry. The LED is lit when the effect is on.
+
+    The pedal runs on a 9 V battery. It draws power only while a cable is plugged into the input jack, so unplug the input cable when you're not playing.
+
+    Fuzz Face circuits are sensitive to what comes before them. They sound and respond best with the guitar plugged straight into the pedal, and they clean up when you turn down your guitar's volume knob.
+
+    <DocSection title="Troubleshooting">
+        * **Bypass works, but there's no sound with the effect on:** check the wires from pad B11 to footswitch lug 2 and from VOLUME lug 2 to footswitch lug 3. Then check the bias voltage.
+        * **The LED doesn't light:** the LED is probably backwards. Check that its short lead goes to footswitch lug 4.
+        * **Squealing, or you can hear a radio station:** install C5 (100 pF, D3 to E3).
+        * **Nothing works at all:** check the battery, and check that a cable is plugged into the input jack.
+    </DocSection>
+
+    <DocSection title="Precautions">
+        If you line the case with foil tape for shielding, keep the copper side of the board and the switch lugs from touching the foil. Use standoffs or insulating tape under the board. Ground the foil through the jack sleeves.
+
+        Take the battery out if you store the pedal for a long time.
+    </DocSection>
+</DocSection>

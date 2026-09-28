@@ -49,6 +49,9 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 
 ## Files
 
+- `bom.md`: kit bill of materials (draft)
+- `build-guide.mdx`: kit assembly guide (draft), in the same MDX format as `content/docs/dl20w_sma.mdx`
+
 - `fuzz-face-2n3904.svg` / `.png`: schematic
 - `generate_schematic.py`: schematic source (schemdraw)
 - `fuzz-face-breadboard.svg` / `.png`: half-size breadboard layout
