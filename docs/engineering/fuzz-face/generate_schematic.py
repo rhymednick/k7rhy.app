@@ -33,6 +33,13 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     d += elm.Label().at((q1x + 0.2, 12)).label('R1_MID', fontsize=S, halign='left')
     d += elm.Resistor().at((q1x, 12)).to((q1x, V))
 
+    # ---- C5 optional: Q1 collector -> Q1 base (anti-oscillation / RF) ----
+    d += elm.Line().at((4, 6)).to((4, 7)).linestyle('--')
+    d += elm.Capacitor().at((4, 7)).to((4, 8.4)).linestyle('--')
+    d += elm.Line().at((4, 8.4)).to((q1x, 8.4)).linestyle('--')
+    d += elm.Dot().at((q1x, 8.4))
+    d += elm.Label().at((3.55, 7.9)).label('C5 100p\n(optional)', halign='right', fontsize=10)
+
     # ---- Q1C_Q2B (direct coupling) ----
     q2b = (9.0, 9)
     d += elm.Line().at((q1x, 9)).to(q2b)
@@ -109,7 +116,7 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     d += elm.Dot().at((q1x, V))
     d += elm.Vdd().at((-0.5, V)).label('+9 V (VCC)')
     d += elm.Dot().at((1.5, V))
-    d += elm.Capacitor().at((1.5, V)).to((1.5, 15.5))
+    d += elm.Capacitor().at((1.5, V)).to((1.5, 15.5)).linestyle('--')
     d += elm.Ground().at((1.5, 15.5))
 
 
@@ -123,5 +130,5 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     L((2.0, 16.75), 'C4 100n\n(optional)', h='left')
     d += elm.Label().at((-1, -0.8)).label(
         '2N3904 Fuzz Face — NPN, negative ground, 9 V.  All grounds common (battery −, J1/J2 sleeves).\n'
-        'Pot lugs shown in ( ).  VR1 wiper tied to its Q2_COL lug.  Bias: measure Q2_COL to GND, no signal.',
+        'Dashed = optional (C5 only if it oscillates or picks up radio).  Pot lugs shown in ( ).  VR1 wiper tied to its Q2_COL lug.  Bias: measure Q2_COL to GND, no signal.',
         halign='left', fontsize=9)

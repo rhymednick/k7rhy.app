@@ -8,21 +8,22 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 
 ## Parts
 
-| Ref | Value | Notes |
-| --- | --- | --- |
-| Q1, Q2 | 2N3904 | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet. |
-| RPD | 1 MΩ | Input pulldown (optional) |
-| C1 | 470 nF film | Tighter than the classic ~2.2 µF |
-| R1A + R1B | 22 kΩ + 10 kΩ | 32 kΩ total (classic: 33 kΩ) |
-| R4 | 100 kΩ | Feedback, Q2 emitter to Q1 base |
-| FUZZ | B1k | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 + |
-| C2 | 22 µF electrolytic | + to fuzz wiper, − to GND |
-| R2 | 470 Ω | VCC to OUT_TAP |
-| R3 | 2.2 kΩ | OUT_TAP to BIAS_TOP |
-| VR1 | 50 kΩ trimmer | Rheostat; wiper tied to Q2_COL lug |
-| C3 | 10 nF film | OUT_TAP to VOL_IN |
-| VOLUME | A500k | Lug 3 to VOL_IN, lug 1 to GND, wiper to output |
-| C4 | 100 nF film | Optional supply decoupling |
+| Ref       | Value              | Notes                                                                                    |
+| --------- | ------------------ | ---------------------------------------------------------------------------------------- |
+| Q1, Q2    | 2N3904             | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet. |
+| RPD       | 1 MΩ               | Input pulldown (optional)                                                                |
+| C1        | 470 nF film        | Tighter than the classic ~2.2 µF                                                         |
+| R1A + R1B | 22 kΩ + 10 kΩ      | 32 kΩ total (classic: 33 kΩ)                                                             |
+| R4        | 100 kΩ             | Feedback, Q2 emitter to Q1 base                                                          |
+| FUZZ      | B1k                | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                            |
+| C2        | 22 µF electrolytic | + to fuzz wiper, − to GND                                                                |
+| R2        | 470 Ω              | VCC to OUT_TAP                                                                           |
+| R3        | 2.2 kΩ             | OUT_TAP to BIAS_TOP                                                                      |
+| VR1       | 50 kΩ trimmer      | Rheostat; wiper tied to Q2_COL lug                                                       |
+| C3        | 10 nF film         | OUT_TAP to VOL_IN                                                                        |
+| VOLUME    | A500k              | Lug 3 to VOL_IN, lug 1 to GND, wiper to output                                           |
+| C4        | 100 nF film        | Optional supply decoupling                                                               |
+| C5        | 100 pF ceramic     | Optional; Q1 collector to Q1 base. Fit only if the build oscillates or picks up radio.   |
 
 ## Verification notes (paper check, not measured)
 
@@ -34,7 +35,7 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 ## Open items for a kit
 
 - Add reverse-polarity protection, such as a series 1N5817, if the kit uses a DC jack.
-- Add 100 pF from Q1 collector to Q1 base only if the prototype oscillates or picks up radio.
+- C5 (100 pF, Q1 collector to Q1 base) is drawn as optional. Record whether the prototype needs it.
 - Record bench results (measured voltages, VR1 setting, sound notes) here after the build.
 
 ## Files
