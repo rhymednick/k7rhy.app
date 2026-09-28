@@ -42,3 +42,5 @@ Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, inte
 
 - `fuzz-face-2n3904.svg` / `.png`: schematic
 - `generate_schematic.py`: schematic source (schemdraw)
+- `fuzz-face-breadboard.svg` / `.png`: half-size breadboard layout
+- `generate_breadboard.py`: breadboard source; checks the layout's strip connectivity against the schematic netlist before drawing
