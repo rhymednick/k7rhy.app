@@ -14,8 +14,13 @@ const typeLabel: Record<RelayPickupType, string> = {
 
 const selectorLabel: Record<string, string> = {
     '3-way': '3-way toggle',
+    '3-way-blade': '3-way blade',
     '5-way': '5-way blade',
     'super-switch': 'Super Switch (4-pole)',
+};
+
+const controlLabel: Record<string, string> = {
+    'two-branch': 'two branch volumes',
 };
 
 function PickupIcon({ type }: { type: RelayPickupType }) {
@@ -143,8 +148,8 @@ export function RelayPickupMap({ bridge, middle, neck, selector, volume = 'stand
             </div>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-1 border-t bg-muted/40 px-5 py-3">
                 <ControlChip label="Selector" value={selectorLabel[selector]} />
-                <ControlChip label="Volume" value={volume} />
-                <ControlChip label="Tone" value={tone} />
+                <ControlChip label="Volume" value={controlLabel[volume] ?? volume} />
+                <ControlChip label="Tone" value={controlLabel[tone] ?? tone} />
             </div>
         </div>
     );

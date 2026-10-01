@@ -26,9 +26,9 @@ export interface RelayVoicingPickupMap {
     bridge: RelayPickupSlot;
     middle: RelayPickupSlot;
     neck: RelayPickupSlot;
-    selector: '3-way' | '5-way' | 'super-switch';
-    volume?: 'standard' | 'push-push' | 'push-pull' | 'concentric';
-    tone?: 'standard' | 'push-pull' | 'push-push' | 'concentric';
+    selector: '3-way' | '3-way-blade' | '5-way' | 'super-switch';
+    volume?: 'standard' | 'push-push' | 'push-pull' | 'concentric' | 'two-branch';
+    tone?: 'standard' | 'push-pull' | 'push-push' | 'concentric' | 'none';
 }
 
 export interface RelayVoicingInteraction {

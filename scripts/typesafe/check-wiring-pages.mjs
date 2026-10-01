@@ -84,6 +84,15 @@ const PAIRS = [
         source: 'docs/engineering/relay-velvet-reference.md',
         tables: [{ name: 'Operating states', kind: 'states', page: /Five-way blade/, source: /Selected pickups/, options: { pickups: { bridge: /bridge/i, middle: /Nashville|middle/i, neck: /neck/i } } }],
     },
+    {
+        name: 'Relay Reef',
+        page: { kind: 'mdx', file: 'content/relay/wiring/reef.mdx' },
+        source: 'docs/engineering/relay-reef-reference.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: /Lipstick branch/, source: /Lipstick branch/, options: { pickups: { bridge: /humbucker/i, middle: /middle/i, neck: /neck/i } } },
+            { name: 'Blade contacts', kind: 'contacts', page: /Throw 1/, source: /Throw 1/ },
+        ],
+    },
 ];
 
 const RELATION = {

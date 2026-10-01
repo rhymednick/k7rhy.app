@@ -81,7 +81,7 @@ describe('buildRelayVoicingBreadcrumbs', () => {
 
 describe('listVoicingsWithWiring', () => {
     it('returns voicings that have a wiring file, in registry order, Lipstick first', () => {
-        expect(listVoicingsWithWiring()).toEqual(['lipstick', 'velvet', 'arc', 'torch']);
+        expect(listVoicingsWithWiring()).toEqual(['lipstick', 'reef', 'velvet', 'arc', 'torch']);
     });
 });
 
