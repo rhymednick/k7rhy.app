@@ -1,6 +1,6 @@
 # Relay Torch reference circuit
 
-**Revision:** 1.0
+**Revision:** 1.0 (netlist labels added 2026-10-01; circuit unchanged)
 
 **Adopted:** 2026-09-12
 
@@ -17,13 +17,32 @@ This is the current Relay Torch electrical reference. It specifies the circuit t
 - Global Edge Contour: 2.2 nF (`0.0022 µF`, `222`) capacitor in parallel with a 150 kΩ resistor, forming one two-terminal network. Tone push-pull down bypasses this network; pulled up inserts it in series between selector output and volume input.
 - Mono output jack; common ground including pickup returns, separate shields/cases, pot cases, selector chassis if conductive, cavity shield, bridge/string ground, and jack sleeve.
 
+## Operating states
+
+| Five-way blade | Edge down (tone pushed)     | Edge up (tone pulled)        |
+| -------------- | --------------------------- | ---------------------------- |
+| 1              | Bridge                      | Bridge through Edge          |
+| 2              | Bridge + middle in parallel | Bridge + middle through Edge |
+| 3              | Middle                      | Middle through Edge          |
+| 4              | Neck + middle in parallel   | Neck + middle through Edge   |
+| 5              | Neck                        | Neck through Edge            |
+
+## Push-pull contacts
+
+The tone push-pull is a DPDT. The terminal names are a **generic functional map**, not manufacturer lug numbers; identify the actual contacts by continuity in both mechanical states.
+
+| Pole       | Common       | Down throw   | Up throw      |
+| ---------- | ------------ | ------------ | ------------- |
+| A — Edge   | `A2` = `BUS` | `A1` = `SEL` | `A3` = `EDGE` |
+| B — unused | `B2` open    | `B1` open    | `B3` open     |
+
 ## Functional netlist
 
 | Node   | Connections                                                                                                                                         |
 | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `SEL`  | Five-way selector common output; down-state direct contact; one end of both parallel Edge components.                                               |
-| `EDGE` | Other ends of both the 2.2 nF capacitor and 150 kΩ resistor joined; up-state Edge contact.                                                          |
-| `BUS`  | Push-pull common; volume input; tone input. Down connects `SEL` directly to `BUS`; up connects `SEL` through the Edge network to `BUS`.             |
+| `SEL`  | Five-way selector common output; push-pull `A1` (down-state direct contact); one end of both parallel Edge components.                              |
+| `EDGE` | Other ends of both the 2.2 nF capacitor and 150 kΩ resistor joined; push-pull `A3` (up-state Edge contact).                                         |
+| `BUS`  | Push-pull common `A2`; volume input; tone input. Down connects `SEL` directly to `BUS`; up connects `SEL` through the Edge network to `BUS`.        |
 | `OUT`  | Volume wiper; output jack tip.                                                                                                                      |
 | `GND`  | Volume grounded track end; 22 nF tone-cap return; pickup returns and separate shields/cases; conductive hardware and shielding; output jack sleeve. |
 

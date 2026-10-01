@@ -2,8 +2,7 @@
 
 **Status:** Owner-approved builder reference, published as Revision 1.0.
 
-**Date:** 2026-09-12
-**Source:** [Owner-supplied Arc lug-map reconciliation](extraction/sources/2026-09-12-relay-arc-lug-map.md) and the owner's subsequent pickup-order, tone-pot, and position-4 decisions.
+**Date:** 2026-09-12 **Source:** [Owner-supplied Arc lug-map reconciliation](extraction/sources/2026-09-12-relay-arc-lug-map.md) and the owner's subsequent pickup-order, tone-pot, and position-4 decisions.
 
 ## Parts and behavior
 
@@ -35,10 +34,10 @@ Do not join multiple pickup hots to a single throw: the two audio commons are jo
 
 The tone push-pull DPDT has two independent poles. Its physical terminals must be identified by meter; the names below are functional:
 
-| Pole               | Common  | Down throw   | Up throw                              |
-| ------------------ | ------- | ------------ | ------------------------------------- |
-| E — Liverpool path | `L`     | `L-H` direct | `L-C` (far side of 680 pF series cap) |
-| F — partial split  | `SPLIT` | open         | one end of 3.3 kΩ; other end `GND`    |
+| Pole               | Common  | Down throw   | Up throw                                   |
+| ------------------ | ------- | ------------ | ------------------------------------------ |
+| E — Liverpool path | `L`     | `L-H` direct | `L-C` (far side of 680 pF series cap)      |
+| F — partial split  | `SPLIT` | open         | `R-IN`, one end of 3.3 kΩ; other end `GND` |
 
 The near side of the 680 pF capacitor is `L-H`. The source specified one shared 3.3 kΩ resistor; it sees either Dream or Vintage junction, never both.
 
@@ -54,6 +53,7 @@ The near side of the 680 pF capacitor is `L-H`. The source specified one shared 
 | `D-J`   | Dream series junction; super-switch C throws 2 and 3                                                                                                                                                   |
 | `V-J`   | Vintage series junction; super-switch D throws 4 and 5                                                                                                                                                 |
 | `SPLIT` | Super-switch C and D commons; push-pull F common                                                                                                                                                       |
+| `R-IN`  | Push-pull F up throw; one end of the 3.3 kΩ partial-split resistor (other end to `GND`)                                                                                                                |
 | `BUS`   | Super-switch A and B commons; volume CW/input lug; tone CCW/feed lug; input sides of 1 nF and 150 kΩ treble-bleed components                                                                           |
 | `OUT`   | Volume wiper; jack tip; output sides of 1 nF and 150 kΩ treble-bleed components                                                                                                                        |
 | `GND`   | Pickup coil returns and separate shields/cases; 3.3 kΩ resistor return; volume CCW lug; 22 nF tone-cap return; pot cases; selector chassis if conductive; cavity and bridge/string ground; jack sleeve |
