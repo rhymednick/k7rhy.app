@@ -34,8 +34,8 @@ Every candidate decision records:
 - **Project or governance principle:** How the project makes, records, and governs decisions across products.
 - **Engineering standard:** A required practice for designing, building, measuring, or documenting, across products or a product family.
 - **Engineering recommendation:** An advised practice that is not required, such as a screening band or measurement method, pending review in use.
-- **Reference design:** A reusable circuit, layout, or fixture specification that products build from and declare by revision.
-- **Design decision:** A choice about one model's or experiment's architecture, with its rationale.
+- **Reference design:** The default circuit, layout, or fixture for a model, platform, or experiment, including the choices that shape it and their rationale. Products build from it and declare its revision.
+- **Validation plan:** How a design is tested, compared, or selected before adoption: bench tests, promotion criteria, and part-candidate screening.
 - **Platform, model, or voicing documentation:** A player-facing description of a platform, model, or voice: its identity, controls, and intended sound.
 - **Serialized-instrument documentation:** Facts about one built instrument or prototype: installed parts, measurements, and history.
 - **Listening note:** A result heard while playing a built instrument or prototype.

@@ -84,6 +84,8 @@ Every candidate decision records:
 - Unresolved question
 - Discussion only
 
+> **Superseded 2026-10-01:** The current vocabulary and its definitions are in [`docs/engineering/extraction/README.md`](../../engineering/extraction/README.md#classification-vocabulary). "Design decision" was merged into "Reference design" and "Validation plan".
+
 ## Promotion rule
 
 Extraction is not adoption. A candidate becomes authoritative only through an explicitly reviewed change to its canonical destination. Promotion must preserve a link back to the source inventory.
