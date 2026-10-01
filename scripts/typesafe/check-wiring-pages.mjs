@@ -82,7 +82,7 @@ const PAIRS = [
         name: 'Relay Velvet',
         page: { kind: 'mdx', file: 'content/relay/wiring/velvet.mdx' },
         source: 'docs/engineering/relay-velvet-reference.md',
-        tables: [{ name: 'Operating states', kind: 'states', page: 'controlPositions', source: /Selected pickups/, options: { pickups: { bridge: /bridge/i, middle: /Nashville|middle/i, neck: /neck/i } } }],
+        tables: [{ name: 'Operating states', kind: 'states', page: /Five-way blade/, source: /Selected pickups/, options: { pickups: { bridge: /bridge/i, middle: /Nashville|middle/i, neck: /neck/i } } }],
     },
 ];
 
@@ -368,7 +368,7 @@ function renderReport(results, meta) {
     lines.push('');
     lines.push('- The diagram images are not checked. TypeSafe reads text only, and the Torch and Arc diagrams have no text source in the repository.');
     lines.push('- TypeSafe judges claims one at a time and the table comparison checks one table at a time. Neither traces a full circuit path, so a page can be wrong in a way that no single claim or cell reveals.');
-    lines.push('- The Relay Lipstick netlist is a text form of its approved diagram. The Relay Velvet netlist was transcribed from its page, so the Velvet check is circular until that netlist has an independent source.');
+    lines.push('- The Relay Lipstick netlist is a text form of its approved diagram. The Relay Velvet netlist came from its earlier page plus owner decisions, and its diagram is generated from the netlist.');
     lines.push('- "Supports" means the netlist document agrees with the page text. It is not evidence that a physical harness was built or measured.');
     lines.push('');
     return lines.join('\n');
