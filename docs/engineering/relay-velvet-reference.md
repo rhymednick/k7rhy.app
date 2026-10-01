@@ -11,8 +11,8 @@ This is the Relay Velvet **base harness** only. It is unrelated to the Coupevill
 - Neck: GFS Professional Series Alnico II humbucker.
 - Five-way blade selector.
 - Volume: 500k audio taper.
-- Tone: 500k push-pull pot used as a standard tone control. The push-pull switch lugs are left open, reserved for a future Velvet focus contour.
-- Tone capacitor: **value not specified** on the page.
+- Tone: A500k (audio-taper) push-pull pot used as a standard tone control. The push-pull switch lugs are left open, reserved for a future Velvet focus contour.
+- Tone capacitor: 22 nF (`0.022 µF`, `223`).
 - Mono output jack.
 
 ## Operating states
@@ -47,6 +47,9 @@ The volume CCW lug is grounded. The page does not list it because the same volum
 
 ## Unknowns
 
-- Tone-capacitor value.
-- Tone-pot taper.
 - Pickup lead colors. The page lists red hot and black ground for all three pickups; the actual lead versions are unverified.
+
+## Decisions
+
+- 2026-10-01, owner: 22 nF tone capacitor and audio-taper tone pot, the same as the other Relay models.
+- 2026-10-01, owner: the volume CCW lug is grounded, a fixed convention on every K7RHY guitar.

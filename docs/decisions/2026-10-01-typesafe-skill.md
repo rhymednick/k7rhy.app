@@ -86,6 +86,8 @@ The owner approved all three open questions from the first run.
 - **Velvet volume ground.** The same volume lug (CCW) is grounded on every K7RHY guitar. It is a fixed convention, not a per-model decision, so it is recorded in the Velvet netlist without further validation.
 - **Lipstick netlist.** No separate owner check is needed. It is the text form of the approved Rev 1.0 diagram, and the published page matches it.
 
+- **Velvet tone values.** 22 nF tone capacitor and audio-taper tone pot, the same as the other Relay models. Added to the Velvet netlist and page.
+
 ## Open questions
 
-- Relay Velvet: the tone-capacitor value and tone-pot taper are still not stated on the page or in its netlist.
+None from these pilots.
