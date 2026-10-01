@@ -10,7 +10,7 @@ Updated 2026-10-01. Brief working state only; durable decisions live in the link
 
 ## Next actions
 
-1. Coupeville Reef: [reference design](../docs/engineering/coupeville-reef/reference-design.md) drafted 2026-10-01. Open: lipstick models (roughly 6 kΩ DCR), residual volume anomalies (CRL-021), and model-page copy (CRL-001, CRL-003). A builder wiring diagram would follow the [wiring workflow](../docs/engineering/wiring-diagrams.md).
+1. Coupeville Reef: [reference design](../docs/engineering/coupeville-reef/reference-design.md) drafted 2026-10-01. Open: lipstick models (roughly 6 kΩ DCR), residual volume anomalies (CRL-021), and model-page copy (CRL-001, CRL-003). An unpublished Rev 1.0 [wiring diagram](../docs/engineering/coupeville-reef/wiring-diagram.md) exists; publishing it would need a page decision.
 2. Remaining ledger open questions are bench tests for Velvet (VDH-033, VDH-034, VAC-017 to VAC-020, VPTC-018).
 3. Owner decisions on the four "Not yet applied" items in the [guitar documentation standard](../docs/engineering/guitar-documentation-standard.md) (ZGDC-010, ZGDC-012, ZGDC-013, ZGDC-018).
 

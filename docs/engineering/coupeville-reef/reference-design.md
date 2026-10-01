@@ -1,7 +1,7 @@
 # Coupeville Reef reference design
 
 - **Date:** 2026-10-01
-- **Status:** approved by owner merge; matches the rewired prototype. Not yet a builder wiring diagram.
+- **Status:** approved by owner merge; matches the rewired prototype. Unpublished engineering [wiring diagram](wiring-diagram.md), Rev 1.0, 2026-10-01.
 - **Source:** [Coupeville Reef layout inventory](../extraction/sources/2026-07-30-coupeville-reef-layout.md), candidates CRL-002 through CRL-009, CRL-011 through CRL-014, CRL-016 through CRL-020, and CRL-022 through CRL-024, promoted 2026-10-01. CRL-024 was promoted after the owner confirmed it on 2026-10-01. CRL-021 is cited but stays unpromoted until end-user testing
 
 Coupeville Reef holds two voice families in one instrument: a lipstick subsystem and a humbucker, mixed by two independent branch volumes. This record is the circuit and parts direction. Player-facing descriptions belong on the [Coupeville Reef model page](../../../content/coupeville/models/reef.mdx) (CRL-001, CRL-003).
