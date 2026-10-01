@@ -36,15 +36,18 @@ const HIGH_CONFIDENCE = 0.8; // A disagreement at or above this is a priority-1 
 const LOW_CONFIDENCE = 0.4; // Choice confidence below this is flagged as uncertain (about the p25 of label confidence)
 const NOUL_YES = 0.5; // Noul value at or above this reads as "yes"
 
-const EVIDENCE_LABELS = {
-    Confirmed: 'Explicitly accepted by the owner.',
-    Corrected: 'An earlier proposal was superseded later in the source.',
-    Proposed: 'Suggested but not explicitly accepted.',
-    Observed: 'Factual or contextual material that is not itself a decision.',
-    Unresolved: 'Requires owner review or supporting evidence.',
-};
-
-const CLASSIFICATIONS = ['Project or governance principle', 'Engineering standard', 'Reference design', 'Design decision', 'Platform, model, or voicing documentation', 'Serialized-instrument documentation', 'Listening note', 'Unresolved question', 'Discussion only'];
+// Labels, classes, and their definitions come from the README so the questions track the rules.
+function readVocabulary() {
+    const text = fs.readFileSync(path.join(EXTRACTION_DIR, 'README.md'), 'utf8');
+    const section = (heading) => {
+        const m = text.match(new RegExp(`## ${heading}\\n([\\s\\S]*?)(?=\\n## |$)`));
+        if (!m) throw new Error(`README section not found: ${heading}`);
+        return Object.fromEntries([...m[1].matchAll(/^- \*\*(.+?):\*\* (.+)$/gm)].map((x) => [x[1], x[2].trim()]));
+    };
+    return { labels: section('Evidence labels'), classes: section('Classification vocabulary') };
+}
+const { labels: EVIDENCE_LABELS, classes: CLASS_DEFINITIONS } = readVocabulary();
+const CLASSIFICATIONS = Object.keys(CLASS_DEFINITIONS);
 
 // ---------- argument parsing ----------
 
@@ -157,7 +160,7 @@ function buildRequest(candidate, source) {
         classification: {
             type: 'choice',
             instructions: 'Which knowledge class best describes `candidate.statement`?',
-            criteria: Object.fromEntries(CLASSIFICATIONS.map((c) => [c, null])),
+            criteria: CLASS_DEFINITIONS,
         },
         owner_acceptance: {
             type: 'noul',
@@ -225,9 +228,8 @@ function assess(row, inv, answer) {
     const accept = a.owner_acceptance.noul;
     const conflict = a.conflict_or_superseded.noul;
 
-    // Model-free checks: the ledger should use the README vocabulary and agree with its inventory.
-    if (inv.evidence !== row.evidence) add(1, `inventory says ${inv.evidence}, ledger says ${row.evidence}`);
-    if (inv.classification !== row.classification) add(1, `inventory class "${inv.classification}" differs from ledger`);
+    // Model-free check: the ledger should use the README vocabulary. Where the ledger and inventory
+    // differ, the ledger controls (README, "Ledger and inventory labels"), so that is not a flag.
     if (!CLASSIFICATIONS.includes(row.classification)) add(1, `ledger class "${row.classification}" is not in the README vocabulary`);
 
     if (ev.choice !== row.evidence) add(ev.confidence >= HIGH_CONFIDENCE ? 1 : 2, `label: TypeSafe ${ev.choice} (conf. ${ev.confidence.toFixed(2)})`);
@@ -277,11 +279,12 @@ function renderReport({ items, meta }) {
     lines.push('- Code parses every candidate row in [decision-ledger.md](decision-ledger.md) and its entry in [sources/](sources/).');
     lines.push("- One TypeSafe request per candidate. State: the source title and extraction notes, the candidate's statement, section, and inventory notes, and the IDs and statements of the other candidates from the same source. The ledger's and inventory's current labels are left out of state, so the answers are independent.");
     lines.push('- Questions: evidence label (Choice over the README labels and definitions), classification (Choice over the README vocabulary), explicit owner acceptance (Noul), and same-source conflict or supersession (Noul).');
-    lines.push('- Code compares the answers with the ledger and raises flags. It also flags, without the model, ledger classes outside the README vocabulary and disagreements between the ledger and its source inventory.');
+    lines.push('- Code compares the answers with the ledger and raises flags. It also flags, without the model, ledger classes outside the README vocabulary. Where the ledger and inventory differ, the ledger controls (README, "Ledger and inventory labels"), so the comparison uses the ledger.');
     lines.push('');
     lines.push('## Summary');
     lines.push('');
     lines.push(`- Candidates evaluated: ${items.length}. Priority 1: ${tier(1).length}. Priority 2: ${tier(2).length}. Priority 3: ${tier(3).length}. Unflagged: ${tier(4).length}.`);
+    lines.push(`- The ledger's label or class differs from the source inventory on ${items.filter((i) => i.inventoryDiffers).length} candidates; the ledger controls.`);
     lines.push(`- Evidence label agrees with the ledger: ${agreeEv}/${items.length}. Classification agrees: ${agreeCl}/${items.length}.`);
     lines.push(`- Requests: ${meta.requests}. Input tokens: ${meta.inputTokens.toLocaleString('en-US')} (about $${((meta.inputTokens / 1e6) * PRICE_PER_MTOK_USD).toFixed(4)} at $${PRICE_PER_MTOK_USD}/Mtok). Latency per request: median ${meta.latency.median} ms, p90 ${meta.latency.p90} ms, max ${meta.latency.max} ms.`);
     lines.push('');
@@ -305,7 +308,7 @@ function renderReport({ items, meta }) {
         return `| [${i.row.id}](${i.row.link}) | ${i.row.evidence} | ${ev.choice} (${pct(ev.probabilities[ev.choice])}, ${ev.confidence.toFixed(2)}) | ${esc(i.row.classification)} | ${esc(cl.choice)} (${pct(cl.probabilities[cl.choice])}, ${cl.confidence.toFixed(2)}) | ${i.answer.owner_acceptance.noul.toFixed(2)} | ${i.answer.conflict_or_superseded.noul.toFixed(2)} | ${esc(i.flags.map((f) => f.text).join('; ') || '—')} |`;
     };
     const tiers = [
-        [1, 'Priority 1: data issues, confident disagreements, unrecorded conflicts', 'Ledger rows that disagree with their source inventory or the README vocabulary, TypeSafe disagreements at confidence ' + HIGH_CONFIDENCE + ' or above, and likely same-source conflicts the ledger does not record.'],
+        [1, 'Priority 1: data issues, confident disagreements, unrecorded conflicts', 'Ledger classes outside the README vocabulary, TypeSafe disagreements at confidence ' + HIGH_CONFIDENCE + ' or above, and likely same-source conflicts the ledger does not record.'],
         [2, 'Priority 2: other disagreements', 'TypeSafe disagrees with the ledger at confidence below ' + HIGH_CONFIDENCE + ', or a Proposed candidate whose notes read as explicit acceptance.'],
         [3, 'Priority 3: acceptance not cited, or uncertain answers', "TypeSafe agrees with the ledger's label and class, but a Confirmed candidate's notes do not cite the owner's acceptance, or an answer's confidence is below " + LOW_CONFIDENCE + '.'],
         [4, 'Unflagged', 'TypeSafe agrees with the ledger, the notes support the label, and both answers are at or above the low-confidence threshold.'],
@@ -367,7 +370,8 @@ async function main() {
     }
 
     const items = rows.map((r, i) => {
-        return { row: r, answer: answers[i].response.answers, ...assess(r, byId.get(r.id).candidate, answers[i]) };
+        const inv = byId.get(r.id).candidate;
+        return { row: r, answer: answers[i].response.answers, inventoryDiffers: inv.evidence !== r.evidence || inv.classification !== r.classification, ...assess(r, inv, answers[i]) };
     });
 
     const latencies = answers.map((a) => Math.round(a.ms)).sort((x, y) => x - y);
@@ -379,7 +383,7 @@ async function main() {
         inputTokens: answers.reduce((n, a) => n + (a.response.usage?.input_tokens || 0), 0),
         latency: { median: at(0.5), p90: at(0.9), max: latencies[latencies.length - 1] },
         thresholdNote: `A disagreement at Choice confidence ${HIGH_CONFIDENCE} or above is priority 1; this is about the 75th percentile of label confidence. Confidence below ${LOW_CONFIDENCE} (about the 25th percentile of label confidence and the 10th of class confidence) is flagged as uncertain. A Noul at or above ${NOUL_YES} reads as yes; most Noul values sit far below it (medians 0.08 for acceptance and 0.13 for conflict).`,
-        limits: ["TypeSafe judged the inventories' extracted statements and notes, not the original conversations. If an inventory note misstates the source, the answer inherits that error.", 'The conflict question sees only candidates from the same source. Cross-source supersession (for example, VPTC-001 superseding VAC-016) is out of its view.', 'The README defines the evidence labels but not the classification vocabulary, so the classification Choice uses the bare class names.', ...tableBreaks.map((id) => `The ledger's candidate table is broken by a blank line before ${id}, so Markdown renders that row and those after it as plain text. The script parsed them anyway.`), ...(unlisted.length ? [`Inventory candidates missing from the ledger (not evaluated): ${unlisted.join(', ')}.`] : [])],
+        limits: ["TypeSafe judged the inventories' extracted statements and notes, not the original conversations. If an inventory note misstates the source, the answer inherits that error.", 'The conflict question sees only candidates from the same source. Cross-source supersession (for example, VPTC-001 superseding VAC-016) is out of its view.', ...tableBreaks.map((id) => `The ledger's candidate table is broken by a blank line before ${id}, so Markdown renders that row and those after it as plain text. The script parsed them anyway.`), ...(unlisted.length ? [`Inventory candidates missing from the ledger (not evaluated): ${unlisted.join(', ')}.`] : [])],
     };
 
     fs.writeFileSync(args.out, renderReport({ items, meta }));

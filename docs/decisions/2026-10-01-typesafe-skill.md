@@ -40,8 +40,14 @@ The owner has a TypeSafe account and wants its System One models (Jev) available
 - 220 requests, 495,763 input tokens (about 1,400–3,100 per request): about $0.02 at the listed $0.042 per million input tokens. Output tokens are free.
 - With 4 parallel requests the full run took about 9 seconds. Per request: median 148 ms, p90 185 ms, max 313 ms. No rate-limit errors.
 
+### Second run (2026-10-01)
+
+After the [extraction ledger conventions](2026-10-01-extraction-ledger-conventions.md) were adopted, the script reads the labels, classes, and definitions from the README. The ledger now controls where it differs from an inventory, so those 34 differences are counted but no longer flagged.
+
+- Priority 1: 51. Priority 2: 132. Priority 3: 12. Unflagged: 25.
+- Label agreement 74/220; class agreement 103/220. The class definitions barely changed agreement. The largest class disagreement is Reference design versus Design decision (24 rows).
+- Confidence spread matched the first run, so the thresholds stand. Cost: 552,303 input tokens, about $0.02. Median latency 142 ms.
+
 ## Open questions
 
-- Should the inventories quote the owner's acceptance for each Confirmed candidate, so that the evidence is checkable?
-- Should the README define each classification, so that the Choice question has criteria rather than bare names?
-- Which pilot comes next: the check that wiring pages match their netlists, or a second ledger pass after the inventories are reconciled?
+- Which pilot comes next: the check that wiring pages match their netlists, or a third ledger pass after Confirmed entries cite their acceptance?
