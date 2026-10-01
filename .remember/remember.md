@@ -10,7 +10,7 @@ Updated 2026-10-01. Brief working state only; durable decisions live in the link
 
 ## Next actions
 
-1. Coupeville Reef follow-up after the humbucker moved to the bridge (CRL-002, 2026-10-01): choose the bridge humbucker, define the lipstick selector's positions, and re-describe the voices (CRL-003, CRL-004, CRL-005, CRL-012, CRL-014).
+1. Promote the settled Coupeville Reef candidates (CRL-002 through CRL-005, CRL-012, CRL-014, and the ready CRL architecture entries) to a Coupeville Reef reference design. The prototype is rewired with the humbucker in the bridge.
 2. Remaining ledger open questions are bench tests for Velvet (VDH-033, VDH-034, VAC-017 to VAC-020, VPTC-018).
 3. Owner decisions on the four "Not yet applied" items in the [guitar documentation standard](../docs/engineering/guitar-documentation-standard.md) (ZGDC-010, ZGDC-012, ZGDC-013, ZGDC-018).
 

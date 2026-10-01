@@ -48,6 +48,8 @@
 
 **Notes:** These descriptions are predictions based on placement and pickup type. They need post-build listening confirmation before becoming definitive model copy.
 
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The ledger moves each description to the pickup's new position.
+
 ### CRL-004 — Simple lipstick selector
 
 **Statement:** Use a three-way selector for bridge lipstick, both lipsticks in parallel, and middle lipstick.
@@ -58,6 +60,8 @@
 
 **Notes:** The owner explicitly constrained the design to the available three-way switch. Lipstick series operation and full-system six-way routing were abandoned.
 
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "Keep the selector the same." With the lipsticks now at the neck and middle, it selects one lipstick, both, or the other.
+
 ### CRL-005 — Selector orientation follows pickup direction
 
 **Statement:** Orient the physical three-way lever so it points toward the emphasized lipstick pickup, without a clever reversal.
@@ -67,6 +71,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This is an ergonomic recommendation rather than an explicitly accepted build decision.
+
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The selector should point in the direction of the pickup it selects."
 
 ## Two-branch control architecture
 
@@ -142,6 +148,8 @@
 
 **Notes:** The exact GFS model and magnet were not identified in the conversation. The pickup was accepted for testing after measurement rather than from DCR alone.
 
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "Reuse the 7.6k humbucker." It now sits in the bridge.
+
 ### CRL-013 — Recorded neck-humbucker measurements
 
 **Statement:** The candidate neck humbucker measures 4.29 H with Q 2.36 at 1 kHz and 4.62 H with Q 0.37 at 100 Hz, alongside approximately 7.6 kΩ DCR.
@@ -161,6 +169,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This is an engineering interpretation of the measurements and needs listening validation in the assembled instrument.
+
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The description now applies to the same humbucker in the bridge.
 
 ### CRL-015 — Pickup measurement practice
 
