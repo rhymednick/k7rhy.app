@@ -36,6 +36,8 @@
 
 **Notes:** The owner proceeded by selecting and measuring a neck humbucker after discussing this layout. The neck humbucker provides body and sustain without displacing the lipsticks from Reef's bright, spatial identity.
 
+**Acceptance:** Superseded by the owner on 2026-10-01 after testing: "Reef humbucker should be at the bridge. It was too weird in the neck position." The ledger records the current decision.
+
 ### CRL-003 — Voice-family roles
 
 **Statement:** The bridge lipstick is the sharpest and most percussive voice, the middle lipstick is fuller and less pointed, both lipsticks in parallel form the broad glassy voice, and the neck humbucker provides the thick, sustaining melodic counterweight.
