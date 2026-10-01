@@ -20,6 +20,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { canonical, compareTables, controlPositionTable, findTable, markdownTables } from './wiring-tables.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const API_URL = 'https://api.typesafe.ai/v1/systemone';
@@ -27,19 +28,62 @@ const MODEL = 'jev-latest';
 const PRICE_PER_MTOK_USD = 0.042; // jev-1.13 input price from https://docs.typesafe.ai/models (output tokens are free)
 const QUESTIONS_PER_REQUEST = 40;
 
-// Thresholds chosen from the observed spread of the 2026-10-01 run; the report prints that spread.
+// Thresholds chosen from the observed spread of the 2026-10-01 runs; the report prints that spread.
 const REVIEW_CONFIDENCE = 0.6; // A verdict below this goes to human review.
 
-// Each published page and the engineering document that holds its netlist.
+// Each published page, the engineering document that holds its netlist, and the tables to compare
+// exactly. A table spec names the page table and the netlist table by a header pattern; `kind` is
+// "states" (operating states, compared by selected pickups and modifiers) or "contacts" (switch
+// contacts, compared by net labels).
+const ROLE = { bridge: /bridge/i, middle: /middle/i, neck: /neck/i };
+const SPLIT = { name: 'split', re: /partial|split/i, scope: 'part' };
 const PAIRS = [
-    { name: 'Relay Torch', page: { kind: 'mdx', file: 'content/relay/wiring/torch.mdx', route: '/relay/wiring/torch' }, source: 'docs/engineering/relay-torch-reference.md' },
-    { name: 'Relay Arc', page: { kind: 'mdx', file: 'content/relay/wiring/arc.mdx', route: '/relay/wiring/arc' }, source: 'docs/engineering/relay-arc-reference.md' },
-    { name: 'STR26001', page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'STR26001', route: '/sn/STR26001/wiring' }, source: 'docs/engineering/strat-cunife/STR26001-wiring-reference.md' },
-    { name: 'STR26002', page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'STR26002', route: '/sn/STR26002/wiring' }, source: 'docs/engineering/strat-cunife/STR26002-wiring.md' },
-];
-const UNCHECKED = [
-    { name: 'Relay Lipstick', file: 'content/relay/wiring/lipstick.mdx', reason: 'no separate netlist document; the page itself is the only circuit record' },
-    { name: 'Relay Velvet', file: 'content/relay/wiring/velvet.mdx', reason: 'no netlist document for the Relay Velvet base harness (the Coupeville Velvet bench diagram is a different circuit)' },
+    {
+        name: 'Relay Torch',
+        page: { kind: 'mdx', file: 'content/relay/wiring/torch.mdx' },
+        source: 'docs/engineering/relay-torch-reference.md',
+        tables: [{ name: 'Operating states', kind: 'states', page: /Edge down/, source: /Edge down/, options: { pickups: { bridge: /VEH|bridge/i, middle: /Mean 90|middle/i, neck: /Alnico II|neck/i }, mods: [{ name: 'edge', re: /\bEdge\b/, scope: 'cell' }] } }],
+    },
+    {
+        name: 'Relay Arc',
+        page: { kind: 'mdx', file: 'content/relay/wiring/arc.mdx' },
+        source: 'docs/engineering/relay-arc-reference.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: /Arc Mode down/, source: /Arc Mode down/, options: { pickups: { bridge: /Liverpool/, middle: /Dream/, neck: /Vintage/ }, mods: [SPLIT, { name: '680pF', re: /680/, scope: 'part' }] } },
+            { name: 'Super-switch contacts', kind: 'contacts', page: /Position 1/, source: /Throw 1/ },
+            { name: 'Push-pull contacts', kind: 'contacts', page: /Down throw/, source: /Down throw/ },
+        ],
+    },
+    {
+        name: 'STR26001',
+        page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'STR26001' },
+        source: 'docs/engineering/strat-cunife/STR26001-wiring-reference.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: 'positions', source: /Series mode/, options: { pickups: ROLE, mods: [{ name: 'series', re: /series|—/, scope: 'cell' }] } },
+            { name: 'Five-way contacts', kind: 'contacts', page: 'contacts', source: /Pole\/common \| P1/ },
+        ],
+    },
+    {
+        name: 'STR26002',
+        page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'STR26002' },
+        source: 'docs/engineering/strat-cunife/STR26002-wiring.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: 'positions', source: /Neck-add on/, options: { pickups: ROLE } },
+            { name: 'Five-way contacts', kind: 'contacts', page: 'contacts', source: /Pickup pole common/, options: { transposeColumn: 1 } },
+        ],
+    },
+    {
+        name: 'Relay Lipstick',
+        page: { kind: 'mdx', file: 'content/relay/wiring/lipstick.mdx' },
+        source: 'docs/engineering/relay-lipstick-reference.md',
+        tables: [{ name: 'Operating states', kind: 'states', page: /Lipstick off/, source: /Lipstick off/, options: { pickups: { bridge: /bridge/i, middle: /lipstick/i, neck: /neck/i }, mods: [SPLIT] } }],
+    },
+    {
+        name: 'Relay Velvet',
+        page: { kind: 'mdx', file: 'content/relay/wiring/velvet.mdx' },
+        source: 'docs/engineering/relay-velvet-reference.md',
+        tables: [{ name: 'Operating states', kind: 'states', page: 'controlPositions', source: /Selected pickups/, options: { pickups: { bridge: /bridge/i, middle: /Nashville|middle/i, neck: /neck/i } } }],
+    },
 ];
 
 const RELATION = {
@@ -84,8 +128,18 @@ const cells = (line) =>
         .split('|')
         .map((c) => clean(c));
 
+// Turn the documentation components that carry circuit facts into plain list items.
+function jsxToText(text) {
+    const attr = (tag, name) => (tag.match(new RegExp(`${name}="([^"]*)"`)) || [])[1] || '';
+    return text
+        .replace(/<ControlPosition label="([^"]+)" name="([^"]+)">\s*([\s\S]*?)\s*<\/ControlPosition>/g, (m, l, n, body) => `- Position ${l} (${n}): ${body.replace(/\s+/g, ' ')}`)
+        .replace(/<ComponentLabel [^>]*\/>/g, (t) => `- \`${attr(t, 'id')}\`: ${attr(t, 'component')}${attr(t, 'wire') ? ` (${attr(t, 'wire')} wire)` : ''}, ${attr(t, 'description')}.`)
+        .replace(/<WireConnection [^>]*\/>/g, (t) => `- \`${attr(t, 'from')}\` to \`${attr(t, 'to')}\`: ${attr(t, 'notes')}.`)
+        .replace(/<ProcStep text="([^"]*)">\s*([\s\S]*?)\s*<\/ProcStep>/g, (m, title, body) => `- ${title}: ${body.replace(/\s+/g, ' ')}`);
+}
+
 function mdxClaims(text) {
-    const body = text
+    const body = jsxToText(text)
         .replace(/^---\n[\s\S]*?\n---\n/, '')
         .replace(/<figure[\s\S]*?<\/figure>/g, '')
         .split('\n')
@@ -128,10 +182,15 @@ function mdxClaims(text) {
     return claims;
 }
 
-async function instrumentClaims(file, serial) {
+async function instrumentData(file, serial) {
     const { instrumentWiringReferences } = await import(path.join(ROOT, file));
     const r = instrumentWiringReferences[serial];
     if (!r) throw new Error(`No wiring reference for ${serial} in ${file}`);
+    return r;
+}
+
+async function instrumentClaims(file, serial) {
+    const r = await instrumentData(file, serial);
     const claims = [];
     const add = (section, text, context = '') => claims.push({ section, text: clean(text), context });
     const addUnit = (section, unit) => {
@@ -158,7 +217,10 @@ function values(text) {
     const out = new Set();
     for (const m of text.matchAll(/(\d[\d,]*(?:\.\d+)?)\s?(p|n|u|µ)F\b/g)) out.add(`${+(parseFloat(m[1].replace(/,/g, '')) * UNIT[m[2]]).toPrecision(3)} F`);
     for (const m of text.matchAll(/(\d[\d,]*(?:\.\d+)?)\s?(k|M)?Ω/g)) out.add(`${+(parseFloat(m[1].replace(/,/g, '')) * UNIT[m[2] || '']).toPrecision(3)} Ω`);
-    for (const m of text.matchAll(/\b([AB])(\d+)\s?(k|K|M)\b/g)) out.add(`${m[1]}${+m[2] * UNIT[m[3]]} pot`);
+    for (const m of text.matchAll(/\b([AB])(\d+)\s?(k|K|M)\b/g)) {
+        out.add(`${m[1]}${+m[2] * UNIT[m[3]]} pot`);
+        out.add(`${+(+m[2] * UNIT[m[3]]).toPrecision(3)} Ω`); // a pot's track resistance
+    }
     return out;
 }
 
@@ -243,13 +305,16 @@ function renderReport(results, meta) {
     lines.push('');
     lines.push('- Code splits each page into claims: one per sentence or table row. A sentence from a longer paragraph or list item carries that unit as context, so pronouns still resolve. For STR26001 and STR26002 the claims come from the data in `lib/instruments/wiring-reference.ts` that the `/sn/<serial>/wiring` pages render.');
     lines.push('- Code compares every component value (capacitors, resistors, pot values and tapers) and every net label on the page with the netlist document. A value or label that the document lacks is a priority-1 flag. No model is involved.');
+    lines.push('- Code also compares the operating-state and switch-contact tables cell by cell with the matching netlist tables. A state cell is reduced to the pickups it selects and their modifiers (split, series, contour); a contact cell is reduced to its net labels. No model is involved.');
     lines.push('- TypeSafe reads each claim against the full netlist document and answers one Choice: supports, contradicts, or says nothing. Claims are sent as parallel questions over one shared state, up to ' + QUESTIONS_PER_REQUEST + ' per request.');
     lines.push('');
     lines.push('## Summary');
     lines.push('');
     lines.push(`- Pages checked: ${results.length}. Claims: ${all.length}. Priority 1: ${count(1)}. Priority 2: ${count(2)}. Priority 3: ${count(3)}. Supported: ${count(4)}.`);
     lines.push(`- Requests: ${meta.requests}. Input tokens: ${meta.inputTokens.toLocaleString('en-US')} (about $${((meta.inputTokens / 1e6) * PRICE_PER_MTOK_USD).toFixed(4)} at $${PRICE_PER_MTOK_USD}/Mtok). Latency per request: median ${meta.latency.median} ms, max ${meta.latency.max} ms.`);
-    lines.push(`- Not checked: ${UNCHECKED.map((u) => `${u.name} (\`${u.file}\`): ${u.reason}`).join('; ')}.`);
+    const tables = results.flatMap((r) => r.tables.map((t) => ({ ...t, page: r.pair.name })));
+    const tableIssues = tables.flatMap((t) => t.issues.map((i) => `${t.page} — ${i}`));
+    lines.push(`- Tables compared in code: ${tables.length}, covering ${tables.reduce((n, t) => n + t.compared, 0)} cells. Mismatches: ${tableIssues.length}.`);
     lines.push('');
     lines.push('| Page | Claims | Supports | Contradicts | Says nothing | Code flags |');
     lines.push('|---|---|---|---|---|---|');
@@ -266,6 +331,18 @@ function renderReport(results, meta) {
     lines.push('');
     lines.push(meta.thresholdNote);
     lines.push('');
+    lines.push('## Table comparison (code)');
+    lines.push('');
+    lines.push('| Page | Table | Cells compared | Result |');
+    lines.push('|---|---|---|---|');
+    for (const t of tables) lines.push(`| ${t.page} | ${t.name} | ${t.compared} | ${t.issues.length ? `${t.issues.length} mismatch${t.issues.length > 1 ? 'es' : ''}` : 'All match'} |`);
+    lines.push('');
+    if (tableIssues.length) {
+        lines.push('Mismatches:');
+        lines.push('');
+        for (const i of tableIssues) lines.push(`- ${i}`);
+        lines.push('');
+    }
     const tiers = [
         [1, 'Priority 1: value or label mismatches and confident contradictions', `A component value or net label on the page is missing from the netlist document, or TypeSafe reads the document as contradicting the claim at confidence ${REVIEW_CONFIDENCE} or above.`],
         [2, 'Priority 2: uncertain verdicts', `TypeSafe's confidence is below ${REVIEW_CONFIDENCE}. A person should read the claim against the netlist.`],
@@ -290,7 +367,8 @@ function renderReport(results, meta) {
     lines.push('## Limits');
     lines.push('');
     lines.push('- The diagram images are not checked. TypeSafe reads text only, and the Torch and Arc diagrams have no text source in the repository.');
-    lines.push('- TypeSafe judges claims one at a time. It does not trace a full circuit path, so a page can be wrong in a way that no single claim reveals. Exact tables (selector contacts, operating states) are better compared field by field in code; that is the next step if this pilot proves useful.');
+    lines.push('- TypeSafe judges claims one at a time and the table comparison checks one table at a time. Neither traces a full circuit path, so a page can be wrong in a way that no single claim or cell reveals.');
+    lines.push('- The Relay Lipstick netlist was transcribed from its approved diagram, and the Relay Velvet netlist from its page, both on 2026-10-01 and pending owner confirmation. The Velvet check is circular until the Velvet netlist has an independent source.');
     lines.push('- "Supports" means the netlist document agrees with the page text. It is not evidence that a physical harness was built or measured.');
     lines.push('');
     return lines.join('\n');
@@ -320,7 +398,20 @@ async function main() {
             for (const n of nets) if (!sourceNets.has(n) && !sourceText.includes(n)) c.codeFlags.push(`net label ${n} not in netlist document`);
         }
 
+        const tableResults = [];
+        for (const spec of pair.tables) {
+            let pageTable;
+            if (spec.page === 'positions' || spec.page === 'contacts') {
+                const r = await instrumentData(pair.page.file, pair.page.serial);
+                pageTable = spec.page === 'positions' ? { headers: ['Position', ...r.modeLabels], rows: r.positions.map(([n, a, b]) => [String(n), a, b]) } : { headers: ['Pole', 'P1', 'P2', 'P3', 'P4', 'P5'], rows: r.contacts };
+            } else if (spec.page === 'controlPositions') pageTable = controlPositionTable(pageText);
+            else pageTable = findTable(markdownTables(pageText), spec.page, pair.page.file);
+            const sourceTable = findTable(markdownTables(sourceText), spec.source, pair.source);
+            tableResults.push(compareTables(spec.name, canonical(pageTable, spec.kind, { ...spec.options, transposeColumn: undefined }), canonical(sourceTable, spec.kind, spec.options || {})));
+        }
+
         if (args.dryRun) {
+            for (const t of tableResults) console.log(`${pair.name} table ${t.name}: ${t.compared} cells compared; ${t.issues.length ? t.issues.join(' | ') : 'all match'}`);
             for (const c of claims) console.log(`${pair.name} ${c.id} [${c.section}] ${c.text}${c.codeFlags.length ? `  <<${c.codeFlags.join('; ')}>>` : ''}`);
             continue;
         }
@@ -339,7 +430,7 @@ async function main() {
             calls.push(result);
             for (const c of batch) c.answer = result.response.answers[c.id];
         }
-        results.push({ pair, claims: claims.map(classify) });
+        results.push({ pair, claims: claims.map(classify), tables: tableResults });
     }
     if (args.dryRun) return;
     if (!args.fromCache) {
@@ -355,11 +446,12 @@ async function main() {
         requests: calls.length,
         inputTokens: calls.reduce((n, c) => n + (c.response.usage?.input_tokens || 0), 0),
         latency: { median: latencies[Math.floor((latencies.length - 1) / 2)], max: latencies[latencies.length - 1] },
-        thresholdNote: `Confidence is bimodal: three quarters of verdicts are at 0.86 or above, and the rest trail down to 0.13. A verdict below ${REVIEW_CONFIDENCE} goes to human review (priority 2), including a low-confidence "contradicts". A "contradicts" at ${REVIEW_CONFIDENCE} or above is priority 1. In the 2026-10-01 run, every "contradicts" verdict was below 0.35, and on review each was a false positive.`,
+        thresholdNote: `Confidence is bimodal: three quarters of verdicts are at 0.9 or above, and the rest trail down toward 0.05. A verdict below ${REVIEW_CONFIDENCE} goes to human review (priority 2), including a low-confidence "contradicts". A "contradicts" at ${REVIEW_CONFIDENCE} or above is priority 1. In the 2026-10-01 runs, no "contradicts" verdict that survived review was a real wiring error; the one that reached 0.83 came from ambiguous netlist wording, which was then clarified.`,
     };
     fs.writeFileSync(args.out, renderReport(results, meta));
     const all = results.flatMap((r) => r.claims);
-    process.stderr.write(`Wrote ${path.relative(ROOT, args.out)}: ${all.length} claims, ${all.filter((c) => c.priority === 1).length} at priority 1.\n`);
+    const mismatches = results.reduce((n, r) => n + r.tables.reduce((m, t) => m + t.issues.length, 0), 0);
+    process.stderr.write(`Wrote ${path.relative(ROOT, args.out)}: ${all.length} claims, ${all.filter((c) => c.priority === 1).length} at priority 1, ${mismatches} table mismatches.\n`);
 }
 
 main().catch((err) => {

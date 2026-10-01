@@ -56,7 +56,7 @@ After "Design decision" was merged into Reference design and Validation plan, th
 
 - **Started:** 2026-10-01, at the owner's request after pilot 1.
 - **Script:** [`scripts/typesafe/check-wiring-pages.mjs`](../../scripts/typesafe/check-wiring-pages.mjs). Code splits each published wiring page into claims (one per sentence or table row, with the paragraph as context) and compares every component value and net label with the netlist document exactly. TypeSafe answers one Choice per claim: the netlist document supports it, contradicts it, or says nothing. The netlist document is one shared state, and up to 40 claims go in one request as parallel questions.
-- **Scope:** Relay Torch, Relay Arc, `STR26001`, and `STR26002`, each against its engineering netlist. Relay Lipstick and Relay Velvet have no separate netlist document, so they were not checked. Diagram images are not checked.
+- **Scope:** Relay Torch, Relay Arc, `STR26001`, and `STR26002`, each against its engineering netlist. Relay Lipstick and Relay Velvet have no separate netlist document, so they were not checked in the first run (see the follow-up below). Diagram images are not checked.
 - **Output:** [`docs/engineering/wiring-check-report.md`](../engineering/wiring-check-report.md). It proposes fixes only.
 
 ### Results of the first run (2026-10-01)
@@ -68,8 +68,20 @@ After "Design decision" was merged into Reference design and Validation plan, th
 - Confidence is bimodal (median 0.99, p25 0.86, p10 0.43). Review threshold: 0.6.
 - Cost: 7 requests, 66,873 input tokens, about $0.003. Median latency 185 ms per 40-claim request.
 
+### Follow-up (2026-10-01): netlist labels, two new netlists, exact table checks
+
+The owner approved all three open questions from the first run.
+
+- **Terminal labels.** The [Torch netlist](../engineering/relay-torch-reference.md) now names its push-pull terminals (`A1`–`A3`, `B1`–`B3`) and has operating-state and contact tables. The [Arc netlist](../engineering/relay-arc-reference.md) names `R-IN`. The circuits are unchanged.
+- **New netlists.**
+    - [Relay Lipstick](../engineering/relay-lipstick-reference.md): transcribed from the approved Rev 1.0 diagram, which agrees with the page on every connection. Owner confirmation pending.
+    - [Relay Velvet](../engineering/relay-velvet-reference.md): a draft transcribed from the page, which is the only source. Checking the page against it is circular until an independent source exists.
+- **Exact table checks.** [`scripts/typesafe/wiring-tables.mjs`](../../scripts/typesafe/wiring-tables.mjs) compares operating-state and switch-contact tables cell by cell in code. A state cell reduces to its selected pickups and modifiers (split, series, contour, series capacitor); a contact cell reduces to its net labels. A mutation test caught all four planted errors: a wrong split, a dropped capacitor, a wrong throw, and an opened contact.
+- **Results:** 6 pages and 353 claims. Priority 1: 0. 10 tables, 106 cells, 0 mismatches. The one priority-1 item in the first pass was ambiguous wording in the new Lipstick netlist (`A1` "open" versus "off connects `A2–A1`"), now clarified. Cost: 11 requests, 105,411 input tokens, about $0.004.
+- **Found while transcribing Velvet:** the Velvet page grounds the volume pot's back (`VOL-B`) but connects no volume lug to ground. An ordinary volume control needs its CCW lug grounded; if the page means a lug bent to the pot back, it should say so. The page also gives no tone-capacitor value or tone-pot taper.
+
 ## Open questions
 
-- Should the Torch and Arc netlist documents name the push-pull terminals (`A1`–`A3`, `B1`–`B3`, `R-IN`) that their pages use?
-- Should Relay Lipstick and Relay Velvet get netlist documents so they can be checked?
-- Should the selector-contact and operating-state tables be compared field by field in code? That is exact, and TypeSafe handles it least reliably.
+- Confirm the Relay Lipstick netlist transcription.
+- Relay Velvet: which volume lug is grounded, the tone-capacitor value, and the tone-pot taper.
+- Should the wiring-diagram workflow require running `check-wiring-pages.mjs` before publishing a wiring page?
