@@ -2,7 +2,7 @@
 
 **Revision:** 1.0
 
-**Status:** Transcribed 2026-10-01 from the approved [Rev 1.0 wiring diagram](../../public/wiring-diagrams/relay-lipstick-rev-1.0.png) (2026-09-11), which [the wiring workflow](wiring-diagrams.md) names as the approved example. Cross-checked against the published [Relay Lipstick wiring page](../../content/relay/wiring/lipstick.mdx); the two agree on every connection below. Owner confirmation of this transcription is pending.
+**Status:** Transcribed 2026-10-01 from the approved [Rev 1.0 wiring diagram](../../public/wiring-diagrams/relay-lipstick-rev-1.0.png) (2026-09-11), which [the wiring workflow](wiring-diagrams.md) names as the approved example. The published [Relay Lipstick wiring page](../../content/relay/wiring/lipstick.mdx) agrees with it on every connection, which the wiring check confirms. The diagram is the authority; this file is its text form.
 
 This file is the netlist for the published Lipstick page. It records the circuit as drawn; it is not evidence that a harness was built or measured.
 

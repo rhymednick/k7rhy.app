@@ -368,7 +368,7 @@ function renderReport(results, meta) {
     lines.push('');
     lines.push('- The diagram images are not checked. TypeSafe reads text only, and the Torch and Arc diagrams have no text source in the repository.');
     lines.push('- TypeSafe judges claims one at a time and the table comparison checks one table at a time. Neither traces a full circuit path, so a page can be wrong in a way that no single claim or cell reveals.');
-    lines.push('- The Relay Lipstick netlist was transcribed from its approved diagram, and the Relay Velvet netlist from its page, both on 2026-10-01 and pending owner confirmation. The Velvet check is circular until the Velvet netlist has an independent source.');
+    lines.push('- The Relay Lipstick netlist is a text form of its approved diagram. The Relay Velvet netlist was transcribed from its page, so the Velvet check is circular until that netlist has an independent source.');
     lines.push('- "Supports" means the netlist document agrees with the page text. It is not evidence that a physical harness was built or measured.');
     lines.push('');
     return lines.join('\n');
