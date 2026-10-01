@@ -54,6 +54,8 @@
 
 **Notes:** Contrast must exist before splits, shapers, distortion, or elaborate wiring are added.
 
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
+
 ### VDH-005 — Familiar player interface
 
 **Statement:** Let the blade select musical voices and familiar master controls adjust the instrument globally; the player should not need to manage or understand the electronics continually.
@@ -61,6 +63,8 @@
 **Evidence:** Confirmed
 
 **Proposed classification:** Design decision
+
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
 
 ## Prototype 1 facts
 
@@ -178,6 +182,8 @@
 
 **Proposed classification:** Design decision
 
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
+
 ### VDH-019 — Remove partial splits from Velvet
 
 **Statement:** Do not use partial splits in the Velvet reference architecture because the prototype results were thin or hollow rather than genuinely distinct voices.
@@ -185,6 +191,8 @@
 **Evidence:** Confirmed
 
 **Proposed classification:** Design decision
+
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
 
 ### VDH-020 — Reject passive blend architectures for Velvet
 
@@ -194,6 +202,8 @@
 
 **Proposed classification:** Design decision
 
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
+
 ### VDH-021 — Reject three electrically similar warm humbuckers
 
 **Statement:** Do not build the Velvet reference set from three pickups that converge on broad, moderate-Q, PAF-adjacent behavior.
@@ -201,6 +211,8 @@
 **Evidence:** Confirmed
 
 **Proposed classification:** Design decision
+
+**Acceptance:** Labeled Confirmed in the source review (2026-07-31). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
 
 ### VDH-022 — Preserve shaper research outside Velvet
 

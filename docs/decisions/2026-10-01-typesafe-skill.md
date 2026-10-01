@@ -52,6 +52,10 @@ After the [extraction ledger conventions](2026-10-01-extraction-ledger-conventio
 
 After "Design decision" was merged into Reference design and Validation plan, the rerun gave priority 1: 50, priority 2: 132, priority 3: 5, unflagged: 33. Label agreement 73/220; class agreement 100/220. Cost about $0.02 (558,903 input tokens); median latency 149 ms.
 
+### Fourth run (2026-10-01): after the first promotions
+
+Twenty candidates were promoted to the [guitar documentation standard](../engineering/guitar-documentation-standard.md) and the [Coupeville Velvet reference design](../engineering/coupeville-velvet/reference-design.md), each with an **Acceptance** line in its source entry. The script now reads that line. For those 20, the owner-acceptance Noul rose from 0.05–0.53 (1 of 20 at 0.5 or above) to 0.92–0.98 (20 of 20). Overall: priority 1: 46, priority 2: 123, priority 3: 5, unflagged: 46.
+
 ## Pilot 2: wiring pages against their netlists
 
 - **Started:** 2026-10-01, at the owner's request after pilot 1.

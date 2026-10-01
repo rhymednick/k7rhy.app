@@ -46,6 +46,8 @@
 
 **Notes:** The architecture was selected to avoid the severe passive interaction observed on Reef and to keep each control's job understandable. This does not retroactively change Reef.
 
+**Acceptance:** Labeled Confirmed in the source review (2026-07-30). Promotion to the [Coupeville Velvet reference design](../../coupeville-velvet/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CVPC-004 — Nashville-centered five-way selection
 
 **Statement:** The five-way blade positions are bridge; bridge plus Nashville; Nashville; Nashville plus neck; neck.
