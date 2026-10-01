@@ -48,6 +48,10 @@ After the [extraction ledger conventions](2026-10-01-extraction-ledger-conventio
 - Label agreement 74/220; class agreement 103/220. The class definitions barely changed agreement. The largest class disagreement is Reference design versus Design decision (24 rows).
 - Confidence spread matched the first run, so the thresholds stand. Cost: 552,303 input tokens, about $0.02. Median latency 142 ms.
 
+### Third run (2026-10-01)
+
+After "Design decision" was merged into Reference design and Validation plan, the rerun gave priority 1: 50, priority 2: 132, priority 3: 5, unflagged: 33. Label agreement 73/220; class agreement 100/220. Cost about $0.02 (558,903 input tokens); median latency 149 ms.
+
 ## Open questions
 
 - Which pilot comes next: the check that wiring pages match their netlists, or a third ledger pass after Confirmed entries cite their acceptance?

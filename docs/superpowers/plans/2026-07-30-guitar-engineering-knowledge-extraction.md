@@ -32,9 +32,11 @@
 ### Task 1: Define the extraction staging area
 
 **Files:**
+
 - Create: `docs/engineering/extraction/README.md`
 
 **Interfaces:**
+
 - Consumes: The authority, extraction, and classification rules in `docs/superpowers/specs/2026-07-30-guitar-engineering-knowledge-design.md`.
 - Produces: The canonical format and evidence vocabulary used by the source inventory and decision ledger in Tasks 2 and 3.
 
@@ -84,6 +86,8 @@ Every candidate decision records:
 - Unresolved question
 - Discussion only
 
+> **Superseded 2026-10-01:** The current vocabulary and its definitions are in [`docs/engineering/extraction/README.md`](../../engineering/extraction/README.md#classification-vocabulary). "Design decision" was merged into "Reference design" and "Validation plan".
+
 ## Promotion rule
 
 Extraction is not adoption. A candidate becomes authoritative only through an explicitly reviewed change to its canonical destination. Promotion must preserve a link back to the source inventory.
@@ -127,9 +131,11 @@ git commit -m "docs: define engineering knowledge extraction"
 ### Task 2: Inventory the reviewed conversation
 
 **Files:**
+
 - Create: `docs/engineering/extraction/sources/2026-07-30-zebrawood-guitar-documentation-conversation.md`
 
 **Interfaces:**
+
 - Consumes: Evidence labels and classifications from `docs/engineering/extraction/README.md`; the reviewed shared conversation; boundaries from the approved design spec.
 - Produces: Source-local candidate IDs `ZGDC-001` through `ZGDC-032`, referenced by the decision ledger in Task 3.
 
@@ -159,15 +165,15 @@ Begin the source inventory with:
 
 Add entries `ZGDC-001` through `ZGDC-008`. Each entry must use subheadings `Statement`, `Evidence`, `Proposed classification`, and `Notes`.
 
-| ID | Statement | Evidence | Proposed classification |
-|---|---|---|---|
-| ZGDC-001 | The repository, rather than an AI's memory or conversation history, is the authoritative shared knowledge source. | Confirmed | Project or governance principle |
-| ZGDC-002 | Durable decisions should become versioned artifacts rather than memories. | Confirmed | Project or governance principle |
+| ID       | Statement                                                                                                                             | Evidence  | Proposed classification         |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------- |
+| ZGDC-001 | The repository, rather than an AI's memory or conversation history, is the authoritative shared knowledge source.                     | Confirmed | Project or governance principle |
+| ZGDC-002 | Durable decisions should become versioned artifacts rather than memories.                                                             | Confirmed | Project or governance principle |
 | ZGDC-003 | The repository should preserve engineering intent—the reason behind a design—not only schematics, bills of materials, and procedures. | Confirmed | Project or governance principle |
-| ZGDC-004 | Begin with industry-standard practice and require a strong justification for deviations. | Confirmed | Project or governance principle |
-| ZGDC-005 | Preserve an instrument's musical personality over theoretical optimization. | Confirmed | Project or governance principle |
-| ZGDC-006 | Favor controls that behave intuitively and as a player expects. | Confirmed | Project or governance principle |
-| ZGDC-007 | Validate designs through both measurement and listening. | Confirmed | Project or governance principle |
+| ZGDC-004 | Begin with industry-standard practice and require a strong justification for deviations.                                              | Confirmed | Project or governance principle |
+| ZGDC-005 | Preserve an instrument's musical personality over theoretical optimization.                                                           | Confirmed | Project or governance principle |
+| ZGDC-006 | Favor controls that behave intuitively and as a player expects.                                                                       | Confirmed | Project or governance principle |
+| ZGDC-007 | Validate designs through both measurement and listening.                                                                              | Confirmed | Project or governance principle |
 | ZGDC-008 | New durable knowledge should be classified and proposed for an appropriate repository artifact instead of remaining tribal knowledge. | Confirmed | Project or governance principle |
 
 For every `Notes` subsection, explain whether the candidate is cross-product and identify any dependency. `ZGDC-008` must note that not every conversation requires promotion.
@@ -176,20 +182,20 @@ For every `Notes` subsection, explain whether the candidate is cross-product and
 
 Add entries `ZGDC-009` through `ZGDC-020` using the same four subheadings.
 
-| ID | Statement | Evidence | Proposed classification |
-|---|---|---|---|
-| ZGDC-009 | Every wiring package begins with design intent and musical goals before implementation detail. | Confirmed | Engineering standard |
-| ZGDC-010 | A wiring specification describes what the design is; a separate assembly guide describes how to build it. | Confirmed | Engineering standard |
-| ZGDC-011 | Electrical schematics use conventional notation and optimize for understanding circuit operation rather than physical assembly. | Confirmed | Engineering standard |
-| ZGDC-012 | Harness layouts use a top view of the control cavity and show physical component placement, routing, and wire identifiers. | Confirmed | Engineering standard |
-| ZGDC-013 | Individual pot diagrams use the canonical bottom view, looking directly at the solder lugs with the lugs facing the reader. | Confirmed | Engineering standard |
-| ZGDC-014 | Component drawings are never mirrored to match a particular installation. | Confirmed | Engineering standard |
-| ZGDC-015 | Prefer positional pot-lug language tied to the explicit viewing convention when numeric lug conventions could be ambiguous. | Confirmed | Engineering standard |
-| ZGDC-016 | Name wires consistently so assembly and debugging can trace each connection. | Confirmed | Engineering standard |
-| ZGDC-017 | Use one concept per figure or page, minimize crossed wires, provide white space and large labels, and make bench documents printable on US Letter without scaling. | Confirmed | Engineering standard |
-| ZGDC-018 | Wiring packages include overview, schematic, harness layout, component details, grounding, assembly sequence, validation, revision history, and design intent. | Confirmed | Engineering standard |
-| ZGDC-019 | Validation includes output-jack resistance ranges, continuity checks, tap tests, expected control behavior, and useful failure-mode guidance. | Confirmed | Engineering standard |
-| ZGDC-020 | Post-build listening notes record surprises, possible changes, strengths, useful settings or playing contexts, and compatible future modifications. | Confirmed | Listening note |
+| ID       | Statement                                                                                                                                                          | Evidence  | Proposed classification |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- | ----------------------- |
+| ZGDC-009 | Every wiring package begins with design intent and musical goals before implementation detail.                                                                     | Confirmed | Engineering standard    |
+| ZGDC-010 | A wiring specification describes what the design is; a separate assembly guide describes how to build it.                                                          | Confirmed | Engineering standard    |
+| ZGDC-011 | Electrical schematics use conventional notation and optimize for understanding circuit operation rather than physical assembly.                                    | Confirmed | Engineering standard    |
+| ZGDC-012 | Harness layouts use a top view of the control cavity and show physical component placement, routing, and wire identifiers.                                         | Confirmed | Engineering standard    |
+| ZGDC-013 | Individual pot diagrams use the canonical bottom view, looking directly at the solder lugs with the lugs facing the reader.                                        | Confirmed | Engineering standard    |
+| ZGDC-014 | Component drawings are never mirrored to match a particular installation.                                                                                          | Confirmed | Engineering standard    |
+| ZGDC-015 | Prefer positional pot-lug language tied to the explicit viewing convention when numeric lug conventions could be ambiguous.                                        | Confirmed | Engineering standard    |
+| ZGDC-016 | Name wires consistently so assembly and debugging can trace each connection.                                                                                       | Confirmed | Engineering standard    |
+| ZGDC-017 | Use one concept per figure or page, minimize crossed wires, provide white space and large labels, and make bench documents printable on US Letter without scaling. | Confirmed | Engineering standard    |
+| ZGDC-018 | Wiring packages include overview, schematic, harness layout, component details, grounding, assembly sequence, validation, revision history, and design intent.     | Confirmed | Engineering standard    |
+| ZGDC-019 | Validation includes output-jack resistance ranges, continuity checks, tap tests, expected control behavior, and useful failure-mode guidance.                      | Confirmed | Engineering standard    |
+| ZGDC-020 | Post-build listening notes record surprises, possible changes, strengths, useful settings or playing contexts, and compatible future modifications.                | Confirmed | Listening note          |
 
 `ZGDC-013` must cite the correction sequence in which the first generated view was reversed, the owner clarified “with the lugs facing you,” and the final wording was accepted. `ZGDC-015` must state that the exact balance between positional and numeric identifiers remains subject to the eventual drawing standard.
 
@@ -197,15 +203,15 @@ Add entries `ZGDC-009` through `ZGDC-020` using the same four subheadings.
 
 Add entries `ZGDC-021` through `ZGDC-027` using the same four subheadings.
 
-| ID | Statement | Evidence | Proposed classification |
-|---|---|---|---|
-| ZGDC-021 | Reusable wiring designs receive canonical identities and explicit revisions. | Confirmed | Reference design |
-| ZGDC-022 | Product or instrument documentation identifies the exact reference-design revision used rather than duplicating the entire design. | Confirmed | Engineering standard |
+| ID       | Statement                                                                                                                                                                                                                  | Evidence  | Proposed classification         |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------- |
+| ZGDC-021 | Reusable wiring designs receive canonical identities and explicit revisions.                                                                                                                                               | Confirmed | Reference design                |
+| ZGDC-022 | Product or instrument documentation identifies the exact reference-design revision used rather than duplicating the entire design.                                                                                         | Confirmed | Engineering standard            |
 | ZGDC-023 | Standards contain stable cross-product rules; reusable solutions belong in reference designs; consequential rationale belongs in decision records; product discoveries belong in product documentation or listening notes. | Confirmed | Project or governance principle |
-| ZGDC-024 | Standards distinguish requirements, recommendations, and examples so an example is not mistaken for a rule. | Confirmed | Engineering standard |
-| ZGDC-025 | Significant decisions record status, context, decision, consequences, and references. | Confirmed | Engineering standard |
-| ZGDC-026 | Candidate knowledge may move through Draft, Experimental, Validated, Approved, and Deprecated states. | Confirmed | Unresolved question |
-| ZGDC-027 | Engineering learning follows an observe, experiment, measure, listen, decide, document, reuse, and teach cycle. | Confirmed | Project or governance principle |
+| ZGDC-024 | Standards distinguish requirements, recommendations, and examples so an example is not mistaken for a rule.                                                                                                                | Confirmed | Engineering standard            |
+| ZGDC-025 | Significant decisions record status, context, decision, consequences, and references.                                                                                                                                      | Confirmed | Engineering standard            |
+| ZGDC-026 | Candidate knowledge may move through Draft, Experimental, Validated, Approved, and Deprecated states.                                                                                                                      | Confirmed | Unresolved question             |
+| ZGDC-027 | Engineering learning follows an observe, experiment, measure, listen, decide, document, reuse, and teach cycle.                                                                                                            | Confirmed | Project or governance principle |
 
 `ZGDC-021` must not adopt the conversation's example `RL-HAR-*` identifiers as policy. `ZGDC-026` must explain that the lifecycle concept was accepted but the exact applicability and transition rules remain unresolved.
 
@@ -213,13 +219,13 @@ Add entries `ZGDC-021` through `ZGDC-027` using the same four subheadings.
 
 Add entries `ZGDC-028` through `ZGDC-032` using the same four subheadings.
 
-| ID | Statement | Evidence | Proposed classification |
-|---|---|---|---|
-| ZGDC-028 | Harvest conversations into persistent intermediate artifacts before designing or populating the final knowledge hierarchy. | Corrected | Project or governance principle |
-| ZGDC-029 | Preserve one source inventory per conversation and maintain a consolidated decision ledger. | Confirmed | Project or governance principle |
+| ID       | Statement                                                                                                                     | Evidence  | Proposed classification         |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------- | --------- | ------------------------------- |
+| ZGDC-028 | Harvest conversations into persistent intermediate artifacts before designing or populating the final knowledge hierarchy.    | Corrected | Project or governance principle |
+| ZGDC-029 | Preserve one source inventory per conversation and maintain a consolidated decision ledger.                                   | Confirmed | Project or governance principle |
 | ZGDC-030 | Use small, reviewable changes for extraction, governance, standards, templates, and migration rather than one large refactor. | Confirmed | Project or governance principle |
-| ZGDC-031 | Create separate top-level engineering and products hierarchies matching the examples in the conversation. | Proposed | Unresolved question |
-| ZGDC-032 | Add a separate root `AI_CONTRIBUTING.md` as the universal agent entry point. | Proposed | Unresolved question |
+| ZGDC-031 | Create separate top-level engineering and products hierarchies matching the examples in the conversation.                     | Proposed  | Unresolved question             |
+| ZGDC-032 | Add a separate root `AI_CONTRIBUTING.md` as the universal agent entry point.                                                  | Proposed  | Unresolved question             |
 
 `ZGDC-028` must preserve the correction: the conversation first recommended building repository governance before harvesting, then reversed that advice after the owner identified the risk of losing decisions. `ZGDC-031` and `ZGDC-032` must note the current repository structures that make literal adoption inappropriate without further review.
 
@@ -278,9 +284,11 @@ git commit -m "docs: inventory guitar documentation decisions"
 ### Task 3: Create the consolidated decision ledger
 
 **Files:**
+
 - Create: `docs/engineering/extraction/decision-ledger.md`
 
 **Interfaces:**
+
 - Consumes: Candidate IDs `ZGDC-001` through `ZGDC-032` and their evidence/classification fields from Task 2.
 - Produces: The review and consolidation index future source inventories and promotion work will update.
 
@@ -312,7 +320,7 @@ Add `## Candidates` with a table containing exactly these columns:
 
 ```markdown
 | Candidate | Summary | Evidence | Proposed classification | Ledger status | Canonical destination |
-|---|---|---|---|---|---|
+| --------- | ------- | -------- | ----------------------- | ------------- | --------------------- |
 ```
 
 Add one row for every candidate `ZGDC-001` through `ZGDC-032`. Link each candidate ID to its anchor in the source inventory. Use the source statement in shortened form without changing its meaning.
@@ -418,11 +426,13 @@ git commit -m "docs: add engineering decision ledger"
 ### Task 4: Final extraction audit
 
 **Files:**
+
 - Verify: `docs/engineering/extraction/README.md`
 - Verify: `docs/engineering/extraction/decision-ledger.md`
 - Verify: `docs/engineering/extraction/sources/2026-07-30-zebrawood-guitar-documentation-conversation.md`
 
 **Interfaces:**
+
 - Consumes: All artifacts from Tasks 1 through 3.
 - Produces: A verified extraction phase ready for owner review, not automatic promotion.
 

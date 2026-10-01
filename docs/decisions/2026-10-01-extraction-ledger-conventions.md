@@ -20,4 +20,15 @@
 ## Open questions
 
 - The class definitions are a first draft written from current usage. Adjust any that misstate your intent.
-- The rerun suggests many rows may belong in a different class, mainly Reference design versus Design decision (24 rows). Review that pair before promoting Velvet and Reef reference designs.
+- TypeSafe places 12 Engineering standard rows (such as ERP-012 and CPAL-014) in Validation plan. Review them when those candidates are promoted.
+
+## Revision: Design decision merged (2026-10-01)
+
+- **Status:** approved by the owner; implemented in the README and ledger.
+- **Decision:** "Design decision" is retired. A Reference design is the default design for a model, platform, or experiment, including the choices that shape it. A new class, **Validation plan**, covers how a design is tested, compared, or selected before adoption.
+- **Why:** In the notes, most "Design decision" rows described the design itself, the same as Reference design. The rest described tests, promotion gates, and pickup screening.
+- **Relabeled in the ledger (41 rows):**
+    - Reference design (25): CVPC-003, CVPC-005–CVPC-008, CVPC-014, CVPC-017, CVPC-019, VDH-005, VDH-018–VDH-021, VAC-002, RCCP-008, RCCP-011, CRL-002, CRL-005, CRL-008, CRL-009, CRL-011, CRL-020, CRL-021, CRL-023, RTC-003.
+    - Validation plan (15): VAC-001, VAC-014, VAC-016, VAC-021, VAC-025, ERP-010, ERP-011, ERP-013, ERP-015, VPTC-001, VPTC-003, VPTC-006, VPTC-008, VPTC-010, RTC-008.
+    - Build observation (1): VDH-016.
+- **Result:** A third triage run removed the Reference design versus Design decision disagreement. Overall class agreement held at 100/220: TypeSafe now most often moves Reference design rows to Engineering recommendation (21) and Engineering standard rows to Validation plan (12).
