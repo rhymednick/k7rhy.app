@@ -25,9 +25,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Claude Code — project folder stays local (worktrees, caches, etc.), except shared skills
+# Claude Code — project folder stays local (worktrees, caches, etc.), except shared skills and settings
 /.claude/*
 !/.claude/skills/
+!/.claude/settings.json
 
 # Claude Code session-report HTML artifacts (generated locally; do not commit)
 session-report-*.html

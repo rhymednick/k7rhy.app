@@ -23,6 +23,10 @@ Before changing navigation, routes, publishing, commerce boundaries, or serializ
 
 Before creating or publishing a builder-facing guitar wiring diagram, follow `docs/engineering/wiring-diagrams.md`.
 
+## TypeSafe
+
+The TypeSafe skill (`typesafe@typesafe-ai`) is enabled in `.claude/settings.json`. Use it when a task needs a typed judgment over natural language, such as triaging extraction candidates or checking published text against a source. Keep circuit logic, calculations and exact lookups in code. See `docs/decisions/2026-10-01-typesafe-skill.md`.
+
 ## Project Overview
 
 K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ham radio electronics kits and musical instruments. Deployed on Netlify.
