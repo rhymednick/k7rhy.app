@@ -36,6 +36,8 @@
 
 **Notes:** The owner proceeded by selecting and measuring a neck humbucker after discussing this layout. The neck humbucker provides body and sustain without displacing the lipsticks from Reef's bright, spatial identity.
 
+**Acceptance:** Superseded by the owner on 2026-10-01 after testing: "Reef humbucker should be at the bridge. It was too weird in the neck position." The ledger records the current decision.
+
 ### CRL-003 — Voice-family roles
 
 **Statement:** The bridge lipstick is the sharpest and most percussive voice, the middle lipstick is fuller and less pointed, both lipsticks in parallel form the broad glassy voice, and the neck humbucker provides the thick, sustaining melodic counterweight.
@@ -45,6 +47,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** These descriptions are predictions based on placement and pickup type. They need post-build listening confirmation before becoming definitive model copy.
+
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The ledger moves each description to the pickup's new position; the owner confirmed that wording the same day.
 
 ### CRL-004 — Simple lipstick selector
 
@@ -56,6 +60,8 @@
 
 **Notes:** The owner explicitly constrained the design to the available three-way switch. Lipstick series operation and full-system six-way routing were abandoned.
 
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "Keep the selector the same." With the lipsticks now at the neck and middle, it selects one lipstick, both, or the other.
+
 ### CRL-005 — Selector orientation follows pickup direction
 
 **Statement:** Orient the physical three-way lever so it points toward the emphasized lipstick pickup, without a clever reversal.
@@ -65,6 +71,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This is an ergonomic recommendation rather than an explicitly accepted build decision.
+
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The selector should point in the direction of the pickup it selects."
 
 ## Two-branch control architecture
 
@@ -78,6 +86,8 @@
 
 **Notes:** The owner supplied this topology from prior successful experiments and constrained the design around it. The selector configures the lipstick subsystem before its shared volume.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-007 — Global master tone
 
 **Statement:** Connect one master tone after the two volume branches join so it affects the complete output.
@@ -87,6 +97,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** The tone circuit belongs on the common output rather than on either branch's wiper.
+
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
 
 ### CRL-008 — Continuous branch interaction is the custom feature
 
@@ -98,6 +110,8 @@
 
 **Notes:** The owner leaned toward simplicity, and the final simple recommendation retained the two volumes as the defining custom behavior.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-009 — Initial build remains simple
 
 **Statement:** Build the three-way selector, lipstick volume, humbucker volume, and master tone without additional push-pull functions unless testing reveals a specific missing voice.
@@ -107,6 +121,8 @@
 **Proposed classification:** Design decision
 
 **Notes:** Bass contour and phase reversal were rejected as premature feature accumulation. Push-pull pots may be installed mechanically while leaving their switch sections unused.
+
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
 
 ### CRL-010 — Partial split is the only initial expansion candidate
 
@@ -128,6 +144,8 @@
 
 **Notes:** These ideas were explored and then superseded by the owner's preference for a simple, coherent instrument. They may remain experiments for another design but are not part of the selected Reef baseline.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ## Pickup selection and measurements
 
 ### CRL-012 — Selected neck-humbucker candidate
@@ -140,6 +158,8 @@
 
 **Notes:** The exact GFS model and magnet were not identified in the conversation. The pickup was accepted for testing after measurement rather than from DCR alone.
 
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "Reuse the 7.6k humbucker." It now sits in the bridge.
+
 ### CRL-013 — Recorded neck-humbucker measurements
 
 **Statement:** The candidate neck humbucker measures 4.29 H with Q 2.36 at 1 kHz and 4.62 H with Q 0.37 at 100 Hz, alongside approximately 7.6 kΩ DCR.
@@ -150,6 +170,8 @@
 
 **Notes:** These owner-supplied readings characterize a normal-to-warm PAF-like pickup with healthy 1 kHz Q. They belong in a builder or installed-instrument record if the pickup remains in the completed guitar.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-014 — Neck-humbucker role after measurement
 
 **Statement:** Treat the measured neck humbucker as a full, mid-present, sustaining counterweight rather than an ultra-clear or airy humbucker.
@@ -159,6 +181,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This is an engineering interpretation of the measurements and needs listening validation in the assembled instrument.
+
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The description now applies to the same humbucker in the bridge.
 
 ### CRL-015 — Pickup measurement practice
 
@@ -182,6 +206,8 @@
 
 **Notes:** The owner built or tested the guitar with 1 MΩ volume controls and explicitly confirmed the tone-cap discussion. The final production taper remains unresolved.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-017 — Tone capacitor is 22 nF, not 22 µF
 
 **Statement:** The master tone capacitor is 22 nF, equivalently 0.022 µF or code `223`; 22 µF is not a passive guitar tone value for this design.
@@ -191,6 +217,8 @@
 **Proposed classification:** Platform, model, or voicing documentation
 
 **Notes:** This corrects a unit typo in the owner's question. A 47 nF starting value was rejected as likely to darken the neck humbucker too quickly.
+
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
 
 ### CRL-018 — Reverse-independent volume connection
 
@@ -202,6 +230,8 @@
 
 **Notes:** The owner confirmed both pots were wired this way. This topology preserves independent endpoint behavior but does not remove passive loading or taper interaction.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-019 — A1M sweep failure is an observed build result
 
 **Statement:** With A1M audio-taper pots in the reverse-independent topology, both controls exhibited an unusable non-monotonic sweep: full output at 10, collapse near 9, partial recovery around 8–7, and near silence through much of the remaining rotation.
@@ -212,6 +242,8 @@
 
 **Notes:** Because both pots behaved similarly, taper geometry is a strong hypothesis. The source does not contain the replacement-pot or reversed-lug result needed to close the diagnosis.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-020 — Linear pots solve the bulk of the blend problem
 
 **Statement:** Replacing the audio-taper branch-volume pots with linear pots solved the bulk of the Coupeville Reef mixing problem.
@@ -221,6 +253,8 @@
 **Proposed classification:** Design decision
 
 **Notes:** The owner reported this result after the shared conversation was inventoried. It confirms taper geometry as the main cause and supersedes the proposed C1M experiment as the leading production direction. The update does not state the installed pot resistance, whether both pots have identical values, or what portion of the problem remains.
+
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
 
 ### CRL-021 — Match both volume values and tapers
 
@@ -242,6 +276,8 @@
 
 **Notes:** The owner explicitly checked this understanding. Once either wiper moves, the circuit is more complex than two fixed parallel resistors because pickup impedance and track division participate.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-023 — Preserve 1 MΩ unless brightness proves excessive
 
 **Statement:** Resolve taper first while retaining 1 MΩ pot values; consider two 500 kΩ volumes only later as a deliberate global darkening change if the working blend remains too bright.
@@ -252,6 +288,8 @@
 
 **Notes:** Two 500 kΩ branch volumes could remove the airy edge Reef is intended to preserve. The source contains no later listening result.
 
+**Acceptance:** Labeled Confirmed or Observed in the source review (2026-07-30) or a later owner build report. Promotion to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md) approved by the owner on 2026-10-01.
+
 ### CRL-024 — Treble bleeds remain undecided
 
 **Statement:** Do not standardize a treble bleed on either Reef branch until the volume controls operate correctly and the assembled guitar reveals whether each branch benefits from preserved high-frequency response while being reduced.
@@ -261,6 +299,8 @@
 **Proposed classification:** Unresolved question
 
 **Notes:** The early discussion leaned toward a modest bleed on the lipstick branch and none on the neck humbucker, but the simple-build decision and later taper problem leave this unresolved.
+
+**Acceptance:** Owner, 2026-10-01: "no treble bleeds." Promoted to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md).
 
 ## Current repository reconciliation
 
