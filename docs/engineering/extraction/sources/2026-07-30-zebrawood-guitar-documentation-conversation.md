@@ -108,6 +108,8 @@
 
 **Notes:** This is a candidate cross-product documentation requirement. The source described the wiring as an implementation of the instrument's musical idea.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-010 — Separate specification and assembly
 
 **Statement:** A wiring specification describes what the design is; a separate assembly guide describes how to build it.
@@ -117,6 +119,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is cross-product. The separation allows physical parts or procedures to change without silently changing the electrical design.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). On 2026-10-01 it was recorded as "Not yet applied" in the [guitar documentation standard](../../guitar-documentation-standard.md) pending an owner decision, because current wiring pages differ.
 
 ### ZGDC-011 — Schematic purpose
 
@@ -128,6 +132,8 @@
 
 **Notes:** This is a cross-product drawing convention and complements, rather than replaces, a physical harness layout.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-012 — Harness-layout perspective
 
 **Statement:** Harness layouts use a top view of the control cavity and show physical component placement, routing, and wire identifiers.
@@ -137,6 +143,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is a cross-product drawing convention. Product-specific cavity geometry remains in the relevant assembly documentation.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). On 2026-10-01 it was recorded as "Not yet applied" in the [guitar documentation standard](../../guitar-documentation-standard.md) pending an owner decision, because current wiring pages differ.
 
 ### ZGDC-013 — Canonical pot view
 
@@ -148,6 +156,8 @@
 
 **Notes:** The first generated pot view was reversed from what the owner saw at the bench. The owner clarified that the view must be from the underside of the mounted pot “with the lugs facing you,” and explicitly accepted the corrected wording. This correction is essential context for any future drawing standard.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). On 2026-10-01 it was recorded as "Not yet applied" in the [guitar documentation standard](../../guitar-documentation-standard.md) pending an owner decision, because current wiring pages differ.
+
 ### ZGDC-014 — Never mirror component drawings
 
 **Statement:** Component drawings are never mirrored to match a particular installation.
@@ -157,6 +167,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is cross-product. A physical component may be rotated in an installation, but its canonical detail drawing retains one learned orientation.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
 
 ### ZGDC-015 — Positional pot-lug language
 
@@ -168,6 +180,8 @@
 
 **Notes:** The owner accepted the clarified viewing phrase, and the conversation proposed left, center, and right as less ambiguous identifiers. The exact balance between positional labels and conventional numeric identifiers remains subject to the eventual drawing standard.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-016 — Name every wire
 
 **Statement:** Name wires consistently so assembly and debugging can trace each connection.
@@ -177,6 +191,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is cross-product. The source offered names such as `N_HOT` and `BUS_GND` as examples, not an approved universal naming schema.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
 
 ### ZGDC-017 — Bench-page presentation
 
@@ -188,6 +204,8 @@
 
 **Notes:** This is a cross-product presentation convention intended to produce readable service-manual-style bench documents.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-018 — Wiring-package contents
 
 **Statement:** Wiring packages include overview, schematic, harness layout, component details, grounding, assembly sequence, validation, revision history, and design intent.
@@ -197,6 +215,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is a cross-product content baseline. The eventual standard should reconcile ordering and determine which sections may be omitted when they are genuinely inapplicable.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). On 2026-10-01 it was recorded as "Not yet applied" in the [guitar documentation standard](../../guitar-documentation-standard.md) pending an owner decision, because current wiring pages differ.
 
 ### ZGDC-019 — Validation and failure modes
 
@@ -208,6 +228,8 @@
 
 **Notes:** This is cross-product in principle. Exact measurements and troubleshooting steps remain specific to a reference design or product.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-020 — Listening notes
 
 **Statement:** Post-build listening notes record surprises, possible changes, strengths, useful settings or playing contexts, and compatible future modifications.
@@ -217,6 +239,8 @@
 **Proposed classification:** Listening note
 
 **Notes:** This is a reusable product-documentation practice. Listening notes preserve subjective learning after construction and complement measured validation.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
 
 ## Reusable-design and lifecycle candidates
 
@@ -230,6 +254,8 @@
 
 **Notes:** This is cross-product in intent. The conversation's example `RL-HAR-*` identifiers were illustrative and are not adopted as repository policy by this inventory.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-022 — Declare the design revision used
 
 **Statement:** Product or instrument documentation identifies the exact reference-design revision used rather than duplicating the entire design.
@@ -239,6 +265,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is a cross-product anti-duplication rule. It depends on reference designs having stable identities, revisions, and accessible canonical records.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
 
 ### ZGDC-023 — Separate knowledge classes
 
@@ -250,6 +278,8 @@
 
 **Notes:** This is cross-product. Its terms must be reconciled with the repository's existing Coupeville model, Relay voicing, wiring, and serialized-instrument structures before promotion.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-024 — Separate rules from examples
 
 **Statement:** Standards distinguish requirements, recommendations, and examples so an example is not mistaken for a rule.
@@ -260,6 +290,8 @@
 
 **Notes:** This is cross-product and protects future contributors from promoting an illustrative value or layout into a mandatory convention.
 
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
+
 ### ZGDC-025 — Decision-record contents
 
 **Statement:** Significant decisions record status, context, decision, consequences, and references.
@@ -269,6 +301,8 @@
 **Proposed classification:** Engineering standard
 
 **Notes:** This is a candidate cross-product requirement for consequential decision records. The exact metadata format remains a later design concern.
+
+**Acceptance:** Owner replied "Agreed" to the proposal in the source conversation (2026-07-30; see the extraction notes). Promotion to the [guitar documentation standard](../../guitar-documentation-standard.md) approved by the owner on 2026-10-01.
 
 ### ZGDC-026 — Knowledge lifecycle states
 

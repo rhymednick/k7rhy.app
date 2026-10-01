@@ -128,6 +128,7 @@ function parseSource(file) {
             evidence: field(chunk, 'Evidence'),
             classification: field(chunk, 'Proposed classification'),
             notes: field(chunk, 'Notes'),
+            acceptance: field(chunk, 'Acceptance'),
         });
     }
     return { file: path.basename(file), title, extractionNotes, candidates };
@@ -147,7 +148,7 @@ function buildRequest(candidate, source) {
             title: candidate.title,
             section: candidate.section,
             statement: candidate.statement,
-            evidence_notes: candidate.notes || '(none recorded)',
+            evidence_notes: [candidate.notes, candidate.acceptance && `Acceptance: ${candidate.acceptance}`].filter(Boolean).join('\n') || '(none recorded)',
         },
         other_candidates_from_same_source: others,
     };
