@@ -6,11 +6,11 @@ Updated 2026-10-01. Brief working state only; durable decisions live in the link
 
 - **TypeSafe pilots: done.** Ledger triage and the wiring-page check both run; see [the TypeSafe decision record](../docs/decisions/2026-10-01-typesafe-skill.md). No open questions.
 - **Wiring pages:** every published wiring page has a netlist document and passes `scripts/typesafe/check-wiring-pages.mjs` (0 priority-1 items, 0 table mismatches). The check is required before a wiring page is published or changed ([workflow](../docs/engineering/wiring-diagrams.md)).
-- **Extraction ledger:** conventions settled in [the ledger conventions record](../docs/decisions/2026-10-01-extraction-ledger-conventions.md). 29 candidates are promoted; the rest are indexed in the ledger.
+- **Extraction ledger:** conventions settled in [the ledger conventions record](../docs/decisions/2026-10-01-extraction-ledger-conventions.md). 47 candidates are promoted; the rest are indexed in the ledger.
 
 ## Next actions
 
-1. Promote the settled Coupeville Reef candidates (CRL-002 through CRL-005, CRL-012, CRL-014, and the ready CRL architecture entries) to a Coupeville Reef reference design. The prototype is rewired with the humbucker in the bridge.
+1. Coupeville Reef: [reference design](../docs/engineering/coupeville-reef/reference-design.md) drafted 2026-10-01. Open: master-tone taper, lipstick models, residual volume anomalies (CRL-021), treble-bleed check (CRL-024), and model-page copy (CRL-001, CRL-003). A builder wiring diagram would follow the [wiring workflow](../docs/engineering/wiring-diagrams.md).
 2. Remaining ledger open questions are bench tests for Velvet (VDH-033, VDH-034, VAC-017 to VAC-020, VPTC-018).
 3. Owner decisions on the four "Not yet applied" items in the [guitar documentation standard](../docs/engineering/guitar-documentation-standard.md) (ZGDC-010, ZGDC-012, ZGDC-013, ZGDC-018).
 
