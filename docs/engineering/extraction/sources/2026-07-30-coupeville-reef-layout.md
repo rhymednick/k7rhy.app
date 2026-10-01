@@ -48,7 +48,7 @@
 
 **Notes:** These descriptions are predictions based on placement and pickup type. They need post-build listening confirmation before becoming definitive model copy.
 
-**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The ledger moves each description to the pickup's new position.
+**Acceptance:** Owner, 2026-10-01, after the humbucker moved to the bridge and the prototype was rewired: "The sound descriptions are still the same though, I'd think (with relevant modifications)." The ledger moves each description to the pickup's new position; the owner confirmed that wording the same day.
 
 ### CRL-004 — Simple lipstick selector
 
