@@ -300,6 +300,8 @@
 
 **Notes:** The early discussion leaned toward a modest bleed on the lipstick branch and none on the neck humbucker, but the simple-build decision and later taper problem leave this unresolved.
 
+**Acceptance:** Owner, 2026-10-01: "no treble bleeds." Promoted to the [Coupeville Reef reference design](../../coupeville-reef/reference-design.md).
+
 ## Current repository reconciliation
 
 - `content/coupeville/models/reef.mdx` already captures the high-contrast two-voice-family identity but does not document the HLL placement, three-way lipstick subsystem, independent branch volumes, measured neck pickup, or unresolved volume-taper work.
