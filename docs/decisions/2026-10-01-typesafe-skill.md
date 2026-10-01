@@ -52,6 +52,24 @@ After the [extraction ledger conventions](2026-10-01-extraction-ledger-conventio
 
 After "Design decision" was merged into Reference design and Validation plan, the rerun gave priority 1: 50, priority 2: 132, priority 3: 5, unflagged: 33. Label agreement 73/220; class agreement 100/220. Cost about $0.02 (558,903 input tokens); median latency 149 ms.
 
+## Pilot 2: wiring pages against their netlists
+
+- **Started:** 2026-10-01, at the owner's request after pilot 1.
+- **Script:** [`scripts/typesafe/check-wiring-pages.mjs`](../../scripts/typesafe/check-wiring-pages.mjs). Code splits each published wiring page into claims (one per sentence or table row, with the paragraph as context) and compares every component value and net label with the netlist document exactly. TypeSafe answers one Choice per claim: the netlist document supports it, contradicts it, or says nothing. The netlist document is one shared state, and up to 40 claims go in one request as parallel questions.
+- **Scope:** Relay Torch, Relay Arc, `STR26001`, and `STR26002`, each against its engineering netlist. Relay Lipstick and Relay Velvet have no separate netlist document, so they were not checked. Diagram images are not checked.
+- **Output:** [`docs/engineering/wiring-check-report.md`](../engineering/wiring-check-report.md). It proposes fixes only.
+
+### Results of the first run (2026-10-01)
+
+- 216 claims: 183 supported, 9 priority 1, 22 priority 2 (uncertain), 2 priority 3 (not covered).
+- No component value on any page disagrees with its netlist.
+- All 9 priority-1 items are terminal labels that the page uses and the netlist document lacks: push-pull `A1`–`A3` and `B1`–`B3` on the Torch page, and `R-IN` on the Arc page. The pages describe the same connections as the netlists, so these are gaps in the netlist documents, not wiring errors.
+- TypeSafe returned four "contradicts" verdicts, all below confidence 0.35. On review each was a false positive, so a low-confidence contradiction goes to human review rather than priority 1. An earlier pass flagged "Its series junction is not used" at 0.94 because sentence splitting lost the subject; adding the paragraph as context removed it.
+- Confidence is bimodal (median 0.99, p25 0.86, p10 0.43). Review threshold: 0.6.
+- Cost: 7 requests, 66,873 input tokens, about $0.003. Median latency 185 ms per 40-claim request.
+
 ## Open questions
 
-- Which pilot comes next: the check that wiring pages match their netlists, or a third ledger pass after Confirmed entries cite their acceptance?
+- Should the Torch and Arc netlist documents name the push-pull terminals (`A1`–`A3`, `B1`–`B3`, `R-IN`) that their pages use?
+- Should Relay Lipstick and Relay Velvet get netlist documents so they can be checked?
+- Should the selector-contact and operating-state tables be compared field by field in code? That is exact, and TypeSafe handles it least reliably.
