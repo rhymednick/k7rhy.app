@@ -16,6 +16,8 @@ This directory contains persistent intermediate artifacts harvested from source 
 - **Observed:** Factual or contextual material that is not itself a decision.
 - **Unresolved:** Requires owner review or supporting evidence.
 
+For a **Confirmed** candidate, the notes quote or cite the owner's acceptance, such as the owner's reply or the date and place of the decision. Apply this to new entries and to existing entries when they are reviewed for promotion.
+
 ## Required source entry fields
 
 Every candidate decision records:
@@ -29,15 +31,21 @@ Every candidate decision records:
 
 ## Classification vocabulary
 
-- Project or governance principle
-- Engineering standard
-- Reference design
-- Design decision
-- Platform, model, or voicing documentation
-- Serialized-instrument documentation
-- Listening note
-- Unresolved question
-- Discussion only
+- **Project or governance principle:** How the project makes, records, and governs decisions across products.
+- **Engineering standard:** A required practice for designing, building, measuring, or documenting, across products or a product family.
+- **Engineering recommendation:** An advised practice that is not required, such as a screening band or measurement method, pending review in use.
+- **Reference design:** A reusable circuit, layout, or fixture specification that products build from and declare by revision.
+- **Design decision:** A choice about one model's or experiment's architecture, with its rationale.
+- **Platform, model, or voicing documentation:** A player-facing description of a platform, model, or voice: its identity, controls, and intended sound.
+- **Serialized-instrument documentation:** Facts about one built instrument or prototype: installed parts, measurements, and history.
+- **Listening note:** A result heard while playing a built instrument or prototype.
+- **Build observation:** A measured or observed behavior of a physical build that is not a listening result, recorded pending diagnosis.
+- **Unresolved question:** An open question that needs owner review, testing, or evidence.
+- **Discussion only:** Source context that will not become a canonical document.
+
+## Ledger and inventory labels
+
+A source inventory records each candidate's evidence label and classification as extracted. When review or a later source changes either one, the ledger records the current value, and the ledger controls. The inventory keeps its extracted value as history.
 
 ## Promotion rule
 
