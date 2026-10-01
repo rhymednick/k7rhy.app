@@ -29,23 +29,24 @@ This is the Relay Velvet **base harness** only. It is unrelated to the Coupevill
 
 Labels follow the page.
 
-| Net      | Connected terminals                                                                                                                         |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BP-H`   | Bridge pickup hot; selector bridge input `SW-BP`                                                                                            |
-| `MP-H`   | Middle pickup hot; selector middle input `SW-MP`                                                                                            |
-| `NP-H`   | Neck pickup hot; selector neck input `SW-NP`                                                                                                |
-| `SW-OUT` | Selector common; volume input `VOL-IN`; tone input `TON-IN`                                                                                 |
-| `VOL-W`  | Volume wiper; jack tip `J-TIP`                                                                                                              |
-| `TON-W`  | Tone wiper; tone capacitor hot leg `CAP-H`                                                                                                  |
-| `GND`    | Pickup grounds `BP-G`, `MP-G`, `NP-G`; volume and tone pot backs `VOL-B`, `TON-B`; capacitor return `CAP-G`; jack sleeve `J-SLV`; shielding |
+| Net      | Connected terminals                                                                                                                                         |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BP-H`   | Bridge pickup hot; selector bridge input `SW-BP`                                                                                                            |
+| `MP-H`   | Middle pickup hot; selector middle input `SW-MP`                                                                                                            |
+| `NP-H`   | Neck pickup hot; selector neck input `SW-NP`                                                                                                                |
+| `SW-OUT` | Selector common; volume input `VOL-IN`; tone input `TON-IN`                                                                                                 |
+| `VOL-W`  | Volume wiper; jack tip `J-TIP`                                                                                                                              |
+| `TON-W`  | Tone wiper; tone capacitor hot leg `CAP-H`                                                                                                                  |
+| `GND`    | Pickup grounds `BP-G`, `MP-G`, `NP-G`; volume CCW lug; volume and tone pot backs `VOL-B`, `TON-B`; capacitor return `CAP-G`; jack sleeve `J-SLV`; shielding |
 
 Unused: push-pull lugs `TON-A1`, `TON-A2`, `TON-A3`, `TON-B1`, `TON-B2`, and `TON-B3`.
 
 The tone feed is tapped from the volume input, not the wiper.
 
+The volume CCW lug is grounded. The page does not list it because the same volume lug is grounded on every K7RHY guitar; the owner confirmed on 2026-10-01 that this is a fixed convention, not a per-model decision.
+
 ## Unknowns
 
 - Tone-capacitor value.
 - Tone-pot taper.
-- Which volume outer lug is grounded. The page grounds the pot back (`VOL-B`) but does not connect a volume lug to ground, which an ordinary volume control needs. Confirm before treating this netlist as complete.
 - Pickup lead colors. The page lists red hot and black ground for all three pickups; the actual lead versions are unverified.

@@ -80,8 +80,12 @@ The owner approved all three open questions from the first run.
 - **Results:** 6 pages and 353 claims. Priority 1: 0. 10 tables, 106 cells, 0 mismatches. The one priority-1 item in the first pass was ambiguous wording in the new Lipstick netlist (`A1` "open" versus "off connects `A2–A1`"), now clarified. Cost: 11 requests, 105,411 input tokens, about $0.004.
 - **Found while transcribing Velvet:** the Velvet page grounds the volume pot's back (`VOL-B`) but connects no volume lug to ground. An ordinary volume control needs its CCW lug grounded; if the page means a lug bent to the pot back, it should say so. The page also gives no tone-capacitor value or tone-pot taper.
 
+### Owner decisions (2026-10-01)
+
+- **Check required before publishing.** A wiring page must pass `check-wiring-pages.mjs` before it is published or changed: no priority-1 items, no table mismatches, and every priority-2 item reviewed. Recorded in the [wiring-diagram workflow](../engineering/wiring-diagrams.md).
+- **Velvet volume ground.** The same volume lug (CCW) is grounded on every K7RHY guitar. It is a fixed convention, not a per-model decision, so it is recorded in the Velvet netlist without further validation.
+- **Lipstick netlist.** No separate owner check is needed. It is the text form of the approved Rev 1.0 diagram, and the published page matches it.
+
 ## Open questions
 
-- Confirm the Relay Lipstick netlist transcription.
-- Relay Velvet: which volume lug is grounded, the tone-capacitor value, and the tone-pot taper.
-- Should the wiring-diagram workflow require running `check-wiring-pages.mjs` before publishing a wiring page?
+- Relay Velvet: the tone-capacitor value and tone-pot taper are still not stated on the page or in its netlist.
