@@ -1,6 +1,6 @@
 # Bazz Fuss, silicon Darlington (prototype)
 
-Status: **proposed**, 2026-10-03. Netlist simulated in ngspice; not yet built or bench-tested. Unpublished; no site route.
+Status: **proposed**, 2026-10-03. Netlist simulated in ngspice; not yet built or bench-tested. Unlisted build guide at `/guitars/pedals/bazz-fuss` (source `content/pedals/bazz-fuss.mdx`); after regenerating, copy the PNGs to `public/images/bazz_fuss/guide/`.
 
 Owner request: a Bazz Fuss from on-hand parts, no germanium, 1N4148 or LED clipping.
 

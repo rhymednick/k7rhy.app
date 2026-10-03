@@ -1,6 +1,6 @@
 # Bosstone, silicon (prototype)
 
-Status: **proposed**, 2026-10-03. Netlist reconstructed and simulated in ngspice; not yet built or bench-tested. Unpublished; no site route.
+Status: **proposed**, 2026-10-03. Netlist reconstructed and simulated in ngspice; not yet built or bench-tested. Unlisted build guide at `/guitars/pedals/bosstone` (source `content/pedals/bosstone.mdx`); after regenerating, copy the PNGs to `public/images/bosstone/guide/`.
 
 Owner request: a Bosstone (Jordan Boss Tone) from on-hand parts, no germanium, 1N4148 or LED clipping.
 
