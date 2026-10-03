@@ -126,7 +126,7 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     L((q1x - 0.6, 15.0), 'R2\n22k')
     L((wx + 0.6, 2.9), 'C2 22µ\nelectrolytic', h='left')
     L((cx - 0.6, 14.75), 'R6\n2.2k')
-    L((cx - 0.6, 17.0), 'R5\n470')
+    L((cx - 0.6, 17.0), 'R5\n1k')
     L((2.0, 16.75), 'C4 100n\n(optional)', h='left')
     d += elm.Label().at((-1, -0.8)).label(
         '2N3904 Fuzz Face — NPN, negative ground, 9 V.  All grounds common (battery −, J1/J2 sleeves).\n'

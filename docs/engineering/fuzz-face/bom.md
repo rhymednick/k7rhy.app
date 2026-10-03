@@ -13,7 +13,7 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | 1   | R2     | 22 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A3–A7                  | Lies along strip A over the A5 cut.                                   |
 | 1   | R3     | 10 kΩ        | Resistor, 1/4 W, metal or carbon film                                     | A2–E2                  |                                                                       |
 | 1   | R4     | 100 kΩ       | Resistor, 1/4 W **mini** (body ≤ 3.5 mm), metal or carbon film            | D7–F10                 | Mounted diagonally; the 9.2 mm span is too short for a standard body. |
-| 1   | R5     | 470 Ω        | Resistor, 1/4 W, metal or carbon film                                     | A14–A18                | Lies along strip A over the A16 cut.                                  |
+| 1   | R5     | 1 kΩ         | Resistor, 1/4 W, metal or carbon film                                     | A14–A18                | Lies along strip A over the A16 cut. Was 470 Ω (changed 2026-10-03).  |
 | 1   | R6     | 2.2 kΩ       | Resistor, 1/4 W, metal or carbon film                                     | A19–F19                |                                                                       |
 | 1   | VR1    | 50 kΩ        | Trimmer, single-turn, inline pins at 0.1 in, e.g. 3362P-style _(assumed)_ | D17–F17                | The layout needs A-W-B pins in a straight line.                       |
 | 1   | C1     | 470 nF       | Film capacitor, 5 mm pitch, ≥ 50 V _(assumed)_                            | B4–D4                  | Not polarized.                                                        |

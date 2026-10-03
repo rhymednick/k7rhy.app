@@ -21,7 +21,7 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 | R4      | 100 kΩ                   | Feedback, Q2 emitter to Q1 base                                                               |
 | FUZZ    | B1k                      | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                                 |
 | C2      | 22 µF electrolytic       | + to fuzz wiper, − to GND                                                                     |
-| R5      | 470 Ω                    | VCC to OUT_TAP                                                                                |
+| R5      | 1 kΩ                     | VCC to OUT_TAP. Was 470 Ω; raised 2026-10-03 for output level (see open items).               |
 | R6      | 2.2 kΩ                   | OUT_TAP to BIAS_TOP                                                                           |
 | VR1     | 50 kΩ trimmer            | Rheostat; wiper tied to Q2_COL lug                                                            |
 | C3      | 10 nF film               | OUT_TAP to VOL_IN                                                                             |
@@ -39,7 +39,7 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 
 - Topology matches the classic Fuzz Face, polarities flipped correctly for NPN and negative ground.
 - The full 1 kΩ fuzz pot stays in the DC emitter path, so the fuzz setting does not shift the bias.
-- Estimated DC point: Q1 base ≈ 0.65 V, Q2 emitter ≈ 0.7 V, Q2 current ≈ 0.7 mA. That puts Q2_COL at 4.5 V with about 6.5–7 kΩ total collector resistance, so VR1 should land near 4 kΩ.
+- Estimated DC point: Q1 base ≈ 0.65 V, Q2 emitter ≈ 0.7 V, Q2 current ≈ 0.7 mA. That puts Q2_COL at 4.5 V with about 6.5–7 kΩ total collector resistance, so VR1 should land near 3.5 kΩ with R5 at 1 kΩ (near 4 kΩ with the original 470 Ω).
 - Bias: with no signal, measure Q2_COL (not OUT_TAP) to GND and set about 4.5 V.
 
 ## Open items for a kit
@@ -50,7 +50,7 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 - Add reverse-polarity protection, such as a series 1N5817, if the kit uses a DC jack.
 - C5: the prototype doesn't need it (see Bench results). Owner decision 2026-10-03 (approved): every kit ships a 47 pF C5, left out unless the pedal squeals. Supersedes the 100 pF value.
 - Record measured DC voltages and the final VR1 setting here.
-- Output level: the effect is quieter than bypass. Untested option: R5 470 Ω → 1 kΩ (same holes, A14–A18) for about +6 dB; re-bias afterward. Try 2.2 kΩ if that isn't enough.
+- Output level: the effect was quieter than bypass. Owner decision 2026-10-03 (approved, not yet bench-tested): R5 470 Ω → 1 kΩ, same holes (A14–A18), for about +6 dB. Supersedes 470 Ω. VR1 should land about 0.5 kΩ lower (near 3.5 kΩ) and OUT_TAP should read about 8.3 V. If it's still too quiet, try 2.2 kΩ.
 - Q2 gain: the owner finds the fuzz smooth and polite with a 2N3904. See Q2 substitution notes; final choice pending.
 
 ## Files

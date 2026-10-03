@@ -663,12 +663,12 @@
 <circle cx="430.0" cy="590.0" r="3.2" fill="#555"/>
 <g transform="translate(430.0,558.8) rotate(90.0)">
 <rect x="-20.4" y="-7.4" width="40.8" height="14.9" rx="6.0" fill="#e8d3a8" stroke="#a1887f" stroke-width="1.4"/>
-<rect x="-11.4" y="-7.4" width="3.3" height="14.9" fill="#f9a825"/>
-<rect x="-4.9" y="-7.4" width="3.3" height="14.9" fill="#6a1b9a"/>
-<rect x="1.6" y="-7.4" width="3.3" height="14.9" fill="#795548"/>
+<rect x="-11.4" y="-7.4" width="3.3" height="14.9" fill="#795548"/>
+<rect x="-4.9" y="-7.4" width="3.3" height="14.9" fill="#111"/>
+<rect x="1.6" y="-7.4" width="3.3" height="14.9" fill="#d32f2f"/>
 </g>
-<rect x="439.1" y="561.2" width="44.3" height="15" rx="3" fill="white" fill-opacity="0.85"/>
-<text x="461.2" y="571.2" font-size="11" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5 470</text>
+<rect x="442.2" y="561.2" width="37.9" height="15" rx="3" fill="white" fill-opacity="0.85"/>
+<text x="461.2" y="571.2" font-size="11" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5 1k</text>
 <line x1="430.0" y1="455.6" x2="526.0" y2="455.6" stroke="#8a8a8a" stroke-width="2.2" stroke-linecap="round"/>
 <circle cx="430.0" cy="455.6" r="3.2" fill="#555"/>
 <circle cx="526.0" cy="455.6" r="3.2" fill="#555"/>

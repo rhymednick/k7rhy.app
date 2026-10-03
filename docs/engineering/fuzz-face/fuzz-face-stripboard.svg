@@ -276,9 +276,9 @@
 <circle cx="652.0" cy="154.0" r="4" fill="#666"/>
 <g transform="translate(584.0,154.0) rotate(0.0)">
 <rect x="-40.8" y="-8.5" width="81.6" height="17.0" rx="6.5" fill="#e8d3a8" stroke="#a1887f" stroke-width="1.4"/>
-<rect x="-24.5" y="-8.5" width="7.3" height="17.0" fill="#f9a825"/>
-<rect x="-10.6" y="-8.5" width="7.3" height="17.0" fill="#6a1b9a"/>
-<rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#795548"/>
+<rect x="-24.5" y="-8.5" width="7.3" height="17.0" fill="#795548"/>
+<rect x="-10.6" y="-8.5" width="7.3" height="17.0" fill="#111"/>
+<rect x="3.3" y="-8.5" width="7.3" height="17.0" fill="#d32f2f"/>
 </g>
 <rect x="573.8" y="148.0" width="20.4" height="16" rx="3" fill="white" fill-opacity="0.9"/>
 <text x="584.0" y="159.0" font-size="12" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
@@ -446,7 +446,7 @@
 <text x="954.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R4</text>
 <text x="994.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100k</text>
 <text x="784.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
-<text x="824.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470</text>
+<text x="824.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1k</text>
 <text x="954.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R6</text>
 <text x="994.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2.2k</text>
 <text x="784.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C1</text>
