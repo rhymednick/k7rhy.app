@@ -1,0 +1,28 @@
+* Bosstone, silicon (2N2222 + 2N3906). Attack at full. Run: ngspice -b bosstone.cir
+.include models.lib
+VCC vcc 0 9
+VIN in 0 dc 0 sin(0 0.1 440) ac 1
+RA in w 1
+RA2 w 0 100k
+C1 w b1 22n
+R1 b1 0 150k
+R2 c1 fb 560k
+R3 fb b1 560k
+C2 fb 0 22n
+C3 c1 b1 47p
+R4 vcc c1 18k
+Q1 c1 b1 0 2N2222
+Q2 0 c1 e2 2N3906
+R5 vcc e2 18k
+C4 e2 clip 22n
+D1 clip 0 1N4148
+D2 0 clip 1N4148
+RV clip 0 100k
+.control
+op
+print v(b1) v(c1) v(e2) v(fb)
+ac dec 20 10 20k
+meas ac g100 find vdb(clip) at=100
+meas ac g1k find vdb(clip) at=1k
+.endc
+.end
