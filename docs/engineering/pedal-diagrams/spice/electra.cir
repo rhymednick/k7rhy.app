@@ -1,0 +1,24 @@
+* Electra distortion, silicon. Drive at full. Run: ngspice -b electra.cir
+* Swap the D1/D2 lines for D3/D4 (LEDR) to model the LED setting.
+.include models.lib
+VCC vcc 0 9
+VIN in 0 dc 0 sin(0 0.2 440) ac 1
+RDRV in w 1
+RDRV2 w 0 100k
+C1 w base 100n
+R1 col base 2.2MEG
+Q1 col base emi 2N3904
+R2 emi 0 470
+R3 vcc col 4.7k
+C2 col clip 100n
+D1 clip 0 1N4148
+D2 0 clip 1N4148
+RV clip 0 100k
+.control
+op
+print v(base) v(emi) v(col)
+tran 10u 20m 10m
+meas tran vmax max v(clip)
+meas tran vmin min v(clip)
+.endc
+.end

@@ -1,0 +1,21 @@
+* Bazz Fuss, silicon Darlington (two 2N3904). Run: ngspice -b bazz-fuss.cir
+* For the LED variant, change D1's model from 1N4148 to LEDR.
+.include models.lib
+VCC vcc 0 9
+VIN in 0 dc 0 sin(0 0.1 440) ac 1
+R2 in 0 1MEG
+C1 base in 10u
+QA col base mid 2N3904
+QB col mid 0 2N3904
+R1 vcc col 10k
+D1 col base 1N4148
+C2 col volin 100n
+RV volin 0 100k
+.control
+op
+print v(base) v(mid) v(col)
+tran 10u 20m 10m
+meas tran vmax max v(volin)
+meas tran vmin min v(volin)
+.endc
+.end
