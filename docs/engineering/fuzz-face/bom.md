@@ -1,6 +1,6 @@
 # 2N3904 Fuzz Face kit: bill of materials
 
-Status: **draft**, 2026-09-28. The prototype has not been built or bench-tested. Values come from the owner's netlist and the stripboard and footswitch layouts in this folder. Part specifications marked _(assumed)_ are my suggestions, not tested choices.
+Status: **draft**, 2026-09-28; updated 2026-10-03 after the prototype build (see the README's Bench results). Values come from the owner's netlist and the stripboard and footswitch layouts in this folder. Part specifications marked _(assumed)_ are my suggestions, not tested choices.
 
 Board locations use the stripboard hole names (row letter + column) from `fuzz-face-stripboard.png`.
 
@@ -20,7 +20,7 @@ Board locations use the stripboard hole names (row letter + column) from `fuzz-f
 | 1   | C2     | 22 µF        | Aluminum electrolytic, radial, ≥ 16 V, 2.5 mm pitch _(assumed)_           | + G12, − H12           | Polarized.                                                            |
 | 1   | C3     | 10 nF        | Film capacitor, 5 mm pitch, ≥ 50 V _(assumed)_                            | A20–C20                | Not polarized.                                                        |
 | 1   | C4     | 100 nF       | Ceramic (MLCC), 5 mm pitch _(assumed)_                                    | A9–C9                  | Optional supply decoupling. Include in kit.                           |
-| 1   | C5     | 100 pF       | Ceramic, 2.5 mm pitch _(assumed)_                                         | D3–E3                  | Optional; fit only if the build oscillates or picks up radio.         |
+| 1   | C5     | 47 pF        | Ceramic, 2.5 mm pitch _(assumed)_                                         | D3–E3                  | Optional; leave out unless it squeals. 100 pF muffled the prototype.  |
 | 1   | —      | 20 × 8 holes | Stripboard, 0.1 in pitch, cut from a larger board                         | —                      | Strips run along the 20-hole length.                                  |
 | 1   | —      | ~10 cm       | Solid bare or insulated wire for the two links _(assumed)_                | D18–E18, C15–H15       | C15–H15 must be insulated.                                            |
 
@@ -55,7 +55,7 @@ Decided by the owner on 2026-09-28:
 - K7RHY sells the kit with the parts. The part specifications are published, so builders can source parts themselves instead.
 - There are two kits: one includes a 3D-printed case, and the other has builders download the case files and print it themselves.
 - VR1: the stocked trimmer has three pins in a row and fits the stripboard layout as drawn.
-- C4 and C5 ship in every kit, because the guide discusses them.
+- C4 and C5 ship in every kit, because the guide discusses them. C5's value changed from 100 pF to 47 pF on 2026-10-03 after the prototype build (proposed; awaiting owner confirmation).
 
 ## Not in the kit (customer supplies)
 

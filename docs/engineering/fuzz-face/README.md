@@ -1,6 +1,6 @@
 # 2N3904 Fuzz Face (prototype)
 
-Status: **proposed** — netlist verified on paper 2026-09-28; not yet built or bench-tested. Unpublished; no site route or kit listing.
+Status: **prototype built** — netlist verified on paper 2026-09-28; the owner built the stripboard layout and had it working on 2026-10-02 (see [Bench results](#bench-results-2026-10-02)). DC voltages not yet recorded. The assembly guide is published unlisted; no kit listing.
 
 Owner-supplied netlist: NPN, negative ground, 9 V build from on-hand parts, intended as a possible future kit.
 
@@ -12,28 +12,28 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 
 ## Parts
 
-| Ref     | Value                    | Notes                                                                                    |
-| ------- | ------------------------ | ---------------------------------------------------------------------------------------- |
-| Q1, Q2  | 2N3904                   | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet. |
-| R1      | 1 MΩ                     | Input pulldown (optional)                                                                |
-| C1      | 470 nF film              | Tighter than the classic ~2.2 µF                                                         |
-| R2 + R3 | 22 kΩ + 10 kΩ            | 32 kΩ total (classic: 33 kΩ)                                                             |
-| R4      | 100 kΩ                   | Feedback, Q2 emitter to Q1 base                                                          |
-| FUZZ    | B1k                      | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                            |
-| C2      | 22 µF electrolytic       | + to fuzz wiper, − to GND                                                                |
-| R5      | 470 Ω                    | VCC to OUT_TAP                                                                           |
-| R6      | 2.2 kΩ                   | OUT_TAP to BIAS_TOP                                                                      |
-| VR1     | 50 kΩ trimmer            | Rheostat; wiper tied to Q2_COL lug                                                       |
-| C3      | 10 nF film               | OUT_TAP to VOL_IN                                                                        |
-| VOLUME  | A500k                    | Lug 3 to VOL_IN, lug 1 to GND, wiper to output                                           |
-| C4      | 100 nF film              | Optional supply decoupling                                                               |
-| C5      | 100 pF ceramic           | Optional; Q1 collector to Q1 base. Fit only if the build oscillates or picks up radio.   |
-| SW1     | 3PDT latching footswitch | True bypass; pole 1 switches the LED                                                     |
-| LED     | 5 mm LED + bezel         | On leads through the case; lit when the effect is on                                     |
-| R7      | 4.7 kΩ                   | LED current limit, about 1.5 mA from 9 V (off-board, at the LED)                         |
-| J1      | Stereo (TRS) 1/4 in jack | Input; ring switches battery − so unplugging saves the battery                           |
-| J2      | Mono 1/4 in jack         | Output                                                                                   |
-| BAT     | 9 V battery + clip       | Only power source; + to board A10, − to J1 ring                                          |
+| Ref     | Value                    | Notes                                                                                         |
+| ------- | ------------------------ | --------------------------------------------------------------------------------------------- |
+| Q1, Q2  | 2N3904                   | TO-92, E-B-C with flat face toward you, leads down. Verify against the part's datasheet.      |
+| R1      | 1 MΩ                     | Input pulldown (optional)                                                                     |
+| C1      | 470 nF film              | Tighter than the classic ~2.2 µF                                                              |
+| R2 + R3 | 22 kΩ + 10 kΩ            | 32 kΩ total (classic: 33 kΩ)                                                                  |
+| R4      | 100 kΩ                   | Feedback, Q2 emitter to Q1 base                                                               |
+| FUZZ    | B1k                      | Lug 3 to Q2_EMIT, lug 1 to GND, wiper to C2 +                                                 |
+| C2      | 22 µF electrolytic       | + to fuzz wiper, − to GND                                                                     |
+| R5      | 470 Ω                    | VCC to OUT_TAP                                                                                |
+| R6      | 2.2 kΩ                   | OUT_TAP to BIAS_TOP                                                                           |
+| VR1     | 50 kΩ trimmer            | Rheostat; wiper tied to Q2_COL lug                                                            |
+| C3      | 10 nF film               | OUT_TAP to VOL_IN                                                                             |
+| VOLUME  | A500k                    | Lug 3 to VOL_IN, lug 1 to GND, wiper to output                                                |
+| C4      | 100 nF film              | Optional supply decoupling                                                                    |
+| C5      | 47 pF ceramic            | Optional; Q1 collector to Q1 base. Leave out unless it squeals. 100 pF muffled the prototype. |
+| SW1     | 3PDT latching footswitch | True bypass; pole 1 switches the LED                                                          |
+| LED     | 5 mm LED + bezel         | On leads through the case; lit when the effect is on                                          |
+| R7      | 4.7 kΩ                   | LED current limit, about 1.5 mA from 9 V (off-board, at the LED)                              |
+| J1      | Stereo (TRS) 1/4 in jack | Input; ring switches battery − so unplugging saves the battery                                |
+| J2      | Mono 1/4 in jack         | Output                                                                                        |
+| BAT     | 9 V battery + clip       | Only power source; + to board A10, − to J1 ring                                               |
 
 ## Verification notes (paper check, not measured)
 
@@ -48,8 +48,10 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 - The stripboard layout assumes an inline-pin trimmer for VR1. Confirm the stocked part's footprint.
 
 - Add reverse-polarity protection, such as a series 1N5817, if the kit uses a DC jack.
-- C5 (100 pF, Q1 collector to Q1 base) is drawn as optional. Record whether the prototype needs it.
-- Record bench results (measured voltages, VR1 setting, sound notes) here after the build.
+- C5: the prototype doesn't need it (see Bench results). Kit value changed to 47 pF, left out by default; confirm the kit still ships one.
+- Record measured DC voltages and the final VR1 setting here.
+- Output level: the effect is quieter than bypass. Untested option: R5 470 Ω → 1 kΩ (same holes, A14–A18) for about +6 dB; re-bias afterward. Try 2.2 kΩ if that isn't enough.
+- Q2 gain: the owner finds the fuzz smooth and polite with a 2N3904. See Q2 substitution notes; final choice pending.
 
 ## Files
 
@@ -64,3 +66,33 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 - `fuzz-face-footswitch.svg` / `.png`: 3PDT true-bypass footswitch, jacks, LED, and battery wiring
 - `generate_footswitch.py`: footswitch source; checks both switch positions and the battery switching against the stripboard netlist before drawing
 - `generate_stripboard.py`: stripboard source; checks strips, cuts, links, and transistor orientation against the netlist before drawing
+
+## Bench results (2026-10-02)
+
+Owner's stripboard build, all optional parts fitted (C4, C5 at 100 pF, R1).
+
+- **Silent with the effect on, bypass fine.** Cause: input and output cables swapped. The owner's quick checks, continuity tests, and DC voltages all matched the diagnostic plan before the swap was found. The plan is now in the guide's Troubleshooting section.
+- **Tested once without the FUZZ pot:** silent, as expected (Q2's emitter has no DC path to ground). No damage.
+- **Muffled, about half the bypass volume, and little change across the FUZZ knob.** Cause: C5 at 100 pF. Across Q1's collector and base, Miller multiplication makes it act like roughly 10–20 nF from the input to ground (estimate), a treble cut near 1 kHz with typical pickups. Removing C5 fixed it, and the pedal didn't squeal or pick up radio without it. C5 was changed to 47 pF and is now left out unless needed.
+- **After removing C5:** the FUZZ knob works and the volume drop is smaller, but the owner finds the fuzz smooth and woolly and still too quiet. Open experiments, cheapest first: lower bias (strip D at 3.8–4.2 V), smaller C1 (100 nF or 47 nF), smaller C2 (4.7–10 µF), R5 at 1 kΩ, and a higher-gain Q2.
+
+Bias character (strip D, Q2's collector): about 3–4 V sounds gated and spitty; about 4.5 V is the most even; about 5–6 V is smoother and more open. Adding VR1 resistance lowers the voltage.
+
+## Q2 substitution notes
+
+Status: **experimental**, not tested. Gain ranges are datasheet grades, not measurements of the owner's parts.
+
+- The circuit is NPN, negative ground. PNP parts (A1015, BC327, S8550, 2N2907, 2N3906) and germanium parts don't fit without reversing the circuit's polarity.
+- Higher hFE in Q2 gives a harsher, more saturated fuzz. Q1 works best with moderate gain.
+- After any swap, re-set strip D to about 4.5 V, then tune by ear. A 3-pin machined-pin socket in Q2's holes (D13–F13) makes swaps quick.
+
+| Part                    | hFE by grade                                    | Leg order (flat face toward you, leads down) | Fitting Q2's holes                                                |
+| ----------------------- | ----------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------- |
+| 2N3904 (stock)          | about 100–300                                   | E-B-C                                        | As drawn                                                          |
+| BC337                   | -16: 100–250, -25: 160–400, -40: 250–630        | C-B-E                                        | Turn it around: flat face toward column 1.                        |
+| 2SC1815                 | O: 70–140, Y: 120–240, GR: 200–400, BL: 350–700 | E-C-B                                        | B and C legs must cross; sleeve one.                              |
+| S8050                   | B: 85–160, C: 120–200, D: 160–300               | Usually E-B-C (check the datasheet)          | As drawn                                                          |
+| 2N2222 / PN2222         | about 100–300                                   | E-B-C (TO-92; varies by maker)               | As drawn; little change from a 2N3904.                            |
+| 2N5088 / 2N5089, MPSA18 | about 300–1500                                  | E-B-C                                        | As drawn; roughly twice the gain of the parts above. Not on hand. |
+
+The owner has BC337-25, C1815-GR, and S8050-D on hand. Measure hFE and use the highest for Q2.

@@ -437,34 +437,34 @@
 <text x="784.0" y="380.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">D18 – E18  (Q2_COL to VR1 wiper)</text>
 <text x="784.0" y="398.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">C15 – H15  (insulated; crosses B–G)</text>
 <text x="784.0" y="426.0" font-size="15" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Parts</text>
-<text x="784.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
-<text x="824.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">22k</text>
-<text x="954.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
-<text x="994.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470</text>
+<text x="784.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1</text>
+<text x="824.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1M</text>
+<text x="954.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R2</text>
+<text x="994.0" y="446.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">22k</text>
 <text x="784.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R3</text>
 <text x="824.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">10k</text>
-<text x="954.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R1</text>
-<text x="994.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">1M</text>
-<text x="784.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C1</text>
-<text x="824.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470n</text>
-<text x="954.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C5</text>
-<text x="994.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100p (optional)</text>
-<text x="784.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C4</text>
-<text x="824.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100n (optional)</text>
-<text x="954.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Q1</text>
-<text x="994.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2N3904</text>
-<text x="784.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Q2</text>
-<text x="824.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2N3904</text>
-<text x="954.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R4</text>
-<text x="994.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100k</text>
-<text x="784.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">VR1</text>
-<text x="824.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">50k</text>
-<text x="954.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R6</text>
-<text x="994.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2.2k</text>
-<text x="784.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C3</text>
-<text x="824.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">10n</text>
-<text x="954.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C2</text>
-<text x="994.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">22µ</text>
+<text x="954.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R4</text>
+<text x="994.0" y="464.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100k</text>
+<text x="784.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R5</text>
+<text x="824.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470</text>
+<text x="954.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">R6</text>
+<text x="994.0" y="482.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2.2k</text>
+<text x="784.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C1</text>
+<text x="824.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">470n</text>
+<text x="954.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C2</text>
+<text x="994.0" y="500.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">22µ</text>
+<text x="784.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C3</text>
+<text x="824.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">10n</text>
+<text x="954.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C4</text>
+<text x="994.0" y="518.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">100n (optional)</text>
+<text x="784.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C5</text>
+<text x="824.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">47p (optional)</text>
+<text x="954.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Q1</text>
+<text x="994.0" y="536.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2N3904</text>
+<text x="784.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Q2</text>
+<text x="824.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">2N3904</text>
+<text x="954.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">VR1</text>
+<text x="994.0" y="554.0" font-size="12" text-anchor="start" fill="#111" font-weight="normal" font-family="Helvetica, Arial, sans-serif">50k</text>
 <rect x="51.9" y="547.9" width="690.2" height="282.2" rx="6" fill="#d9c9a3" stroke="#a8956a" stroke-width="1.5"/>
 <text x="53.6" y="539.4" font-size="14" text-anchor="start" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">Copper side (flipped left–right) — cut here</text>
 <rect x="603.7" y="557.8" width="130.6" height="24.5" rx="3" fill="#c8793a" fill-opacity="0.95"/>

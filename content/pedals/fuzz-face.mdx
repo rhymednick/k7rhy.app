@@ -8,8 +8,9 @@ tags: ['assembly_guide', 'fuzz', 'kit', 'stripboard']
 
 {/*
 Unlisted page (noindex, not in navigation or the sitemap) until the kit is released.
-Not bench-tested yet. Voltages marked "estimated" come from a paper calculation;
-replace them with measured values after the prototype build.
+Prototype built and working 2026-10-02 (see docs/engineering/fuzz-face/README.md, "Bench results").
+Voltages marked "estimated" come from a paper calculation; the owner's readings fell
+within them, but measured values haven't been recorded yet.
 Every step marked PHOTO needs a picture before the page is listed.
 Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to public/images/fuzz_face/guide/).
 */}
@@ -49,7 +50,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
         | 1 | Trimmer, VR1 | 50 kΩ (503) |
         | 2 | Film capacitors, C1 and C3 | 470 nF (474), 10 nF (103) |
         | 1 | Electrolytic capacitor, C2 | 22 µF |
-        | 2 | Ceramic capacitors, C4 and C5 | 100 nF (104), 100 pF (101) |
+        | 2 | Ceramic capacitors, C4 and C5 | 100 nF (104), 47 pF (470) |
         | 2 | Potentiometers | B1k (FUZZ), A500k (VOLUME) |
         | 1 | 3PDT footswitch | |
         | 1 | LED and bezel | |
@@ -136,7 +137,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
                 Install C4 (100 nF) from A9 to C9. C4 filters the battery supply.
 
                 <DocAlert title="Understanding Your Options - C5" level="choice">
-                    C5 (100 pF, from D3 to E3) is optional. High-gain silicon fuzz circuits sometimes squeal or pick up radio stations. C5 cures that, but it also takes off a little of the top end. You can leave it out, test the pedal, and add it later if you hear squealing or radio.
+                    Leave C5 (47 pF, D3 to E3) out for now. High-gain silicon fuzz circuits sometimes squeal or pick up radio stations, and C5 cures that, but it costs treble, gain, and volume. Q1 multiplies its effect, so even a small value acts like a much larger capacitor at the input. On the prototype, a 100 pF C5 made the pedal sound muffled and quiet, and the FUZZ knob barely changed anything. Without C5 it didn't squeal. Test the pedal first, and install C5 only if you hear squealing or radio.
                 </DocAlert>
             </ProcStep>
             <ProcStep text="Install the electrolytic capacitor">
@@ -302,6 +303,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
         </ProcSubgroup>
         {/* PHOTO: finished board and wiring inside the case. */}
     </ProcStep>
+
 </Proc>
 
 <DocSection title="Sourcing your own parts" bookmarkId="parts_specifications">
@@ -310,14 +312,14 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
     | Part | Value | Specification |
     | ---- | ----- | ------------- |
     | Q1, Q2 | 2N3904 | NPN transistor, TO-92 (check the pinout of your part) |
-    | R2, R3, R5, R6, R1, R7 | See the parts list | Resistors, 1/4 W, metal or carbon film |
+    | R1–R3, R5–R7 | See the parts list | Resistors, 1/4 W, metal or carbon film |
     | R4 | 100 kΩ | Mini resistor, 1/4 W, body no longer than 3.5 mm (a standard size doesn't fit its diagonal position) |
     | VR1 | 50 kΩ | Single-turn trimmer, three pins in a row at 0.1 in (2.54 mm) |
     | C1 | 470 nF | Film capacitor, 5 mm lead spacing, 50 V or higher |
     | C3 | 10 nF | Film capacitor, 5 mm lead spacing, 50 V or higher |
     | C2 | 22 µF | Aluminum electrolytic, radial, 2.5 mm lead spacing, 16 V or higher |
     | C4 | 100 nF | Ceramic capacitor, 5 mm lead spacing |
-    | C5 | 100 pF | Ceramic capacitor, 2.5 mm lead spacing |
+    | C5 | 47 pF | Ceramic capacitor, 2.5 mm lead spacing. Optional: fit only if the pedal squeals. |
     | FUZZ | B1k | 16 mm potentiometer, linear, solder lugs, 6 mm knurled shaft |
     | VOLUME | A500k | 16 mm potentiometer, audio (log), solder lugs, 6 mm knurled shaft |
     | SW1 | 3PDT | Latching footswitch, 9 solder lugs |
@@ -328,6 +330,7 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
     | Battery snap | 9 V | With leads |
     | Knobs | — | Two push-on knobs for 6 mm knurled shafts |
     | Wire | 24 AWG | Stranded hookup wire, plus heat-shrink tubing |
+
 </DocSection>
 
 <DocSection title="Operating Instructions" bookmarkId="operating_instructions">
@@ -338,10 +341,65 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
     Fuzz Face circuits are sensitive to what comes before them. They sound and respond best with the guitar plugged straight into the pedal, and they clean up when you turn down your guitar's volume knob.
 
     <DocSection title="Troubleshooting">
-        * **Bypass works, but there's no sound with the effect on:** check the wires from pad B11 to footswitch lug 2 and from VOLUME lug 2 to footswitch lug 3. Then check the bias voltage.
+        * **Bypass works, but there's no sound with the effect on:** first check that the guitar is plugged into the input (the stereo jack) and the amplifier into the output. With the cables swapped, bypass still works but the effect is silent. Then work through the diagnostic tests below.
         * **The LED doesn't light:** the LED is probably backwards. Check that its short lead goes to footswitch lug 4.
-        * **Squealing, or you can hear a radio station:** install C5 (100 pF, D3 to E3).
-        * **Nothing works at all:** check the battery, and check that a cable is plugged into the input jack.
+        * **Muffled, quiet, and FUZZ barely changes anything:** if you installed C5, remove it. Desolder or snip one lead, then play again.
+        * **Squealing, or you can hear a radio station:** install C5 (47 pF, D3 to E3). If 47 pF doesn't stop it, try 100 pF, but expect less treble and output.
+        * **Nothing works at all:** check the battery, and check that a mono cable is plugged into the input jack.
+        * **Silent with the FUZZ pot disconnected:** that's expected. Without the pot, Q2's emitter has no path to ground, so Q2 can't conduct. It doesn't damage anything.
+
+        <DocSection title="Diagnostic tests" bookmarkId="diagnostic_tests">
+            Use these when the pedal works in bypass but not with the effect on. Work through them in order. Each group needs more effort than the one before, and most faults turn up in the first three.
+
+            <DocSection title="1. Quick checks (no meter)">
+                | Check | Why it matters |
+                | ----- | -------------- |
+                | The guitar goes to the input (stereo) jack, and the amplifier to the output | With the cables swapped, bypass works but the effect is silent. |
+                | The input cable is mono | The pedal only gets power when a mono plug connects the input jack's ring to its sleeve. A stereo (TRS) cable never turns it on. |
+                | The LED lights with the effect on | If it does, the battery, R7, and footswitch pole 1 all work. If it doesn't, suspect the power or the footswitch first. |
+                | Both knobs are at least halfway up | VOLUME at zero gives silence. |
+            </DocSection>
+
+            <DocSection title="2. Continuity (battery unplugged)">
+                | Test | Expected | If not |
+                | ---- | -------- | ------ |
+                | Effect on: input jack tip to pad B11 | Beeps | The footswitch's effect path is broken. |
+                | Effect on: VOLUME lug 2 to output jack tip | Beeps | Same. |
+                | Bypass: repeat both tests | Neither beeps | |
+                | Footswitch only: each middle-row lug to the lugs above and below it | Beeps to one of them, never to a lug beside it | If it beeps sideways, the switch is rotated 90° from the diagram. That fault gives a working bypass and a silent effect. Rotate the switch, or rewire it to match. |
+                | Each track cut: A4–A6, A15–A17, C15–C17, D9–D11, E15–E17, F15–F17 | No beep | Cut that hole again. |
+            </DocSection>
+
+            <DocSection title="3. DC voltages (battery in)">
+                Plug a mono cable into the input, with no guitar signal, and turn FUZZ fully clockwise. Put the black probe on any hole in row H. These are estimates from the design, so readings within about 0.2 V of the low values are normal.
+
+                | Point | Expected (estimated) | What a wrong reading means |
+                | ----- | -------------------- | -------------------------- |
+                | A10 (+9 V) | 8.5–9.6 V | About 0 V: no power. Check the battery, the snap, the battery − wire to the input jack ring, and the cable (it must be mono). |
+                | Strip A, columns 1–4 (between R2 and R3) | About 3.8 V | About 9 V: R3 or Q1 isn't conducting. |
+                | Strip D, columns 1–9 (Q1's base) | About 0.6 V | |
+                | Strip E, columns 1–15 (Q1's collector, Q2's base) | About 1.4 V | Well above 2 V: Q1 is off, backwards, or its emitter isn't grounded at C6. About 0 V: a short to ground or a solder bridge. |
+                | Strip F, columns 1–15 (Q2's emitter) | About 0.75 V | About 0 V: Q2 isn't conducting or is backwards, or the F11 wire to FUZZ lug 3 is off. |
+                | Strip D, columns 11–20 (Q2's collector) | 4.5 V, and turning VR1 moves it from about 7 V down to under 1 V | About 9 V: Q2 isn't conducting. Stuck low: VR1 is set too high. Doesn't move: check VR1, the D18–E18 link, and R6. |
+                | Strip A, columns 17–20 (output tap) | About 8.6 V | |
+                | Strip C, columns 17–20 (after C3) | 0 V | |
+
+                If the voltages point to a transistor, unplug the battery and test it on your meter's diode setting. Red on B and black on E should read about 0.6–0.7 V, and red on B and black on C should read about the same. With the probes swapped, both should read open.
+            </DocSection>
+
+            <DocSection title="4. Signal trace">
+                If every voltage is right, follow the signal with an audio probe. Plug a spare cable into your amplifier, with the volume low. Clip its sleeve to row H, and put a capacitor of 10 nF to 1 µF in series with its tip so the probe blocks DC. Play a note with the effect on, and touch each point in order:
+
+                1. Strip B: clean guitar.
+                2. Strip E, columns 1–15: louder, gritty.
+                3. Strip D, columns 11–20: loud fuzz.
+                4. Strip A, columns 17–20: fuzz, a little quieter.
+                5. Strip C, columns 17–20: the same.
+                6. VOLUME lug 2, then footswitch lug 3, then the output jack tip: the same, at the level the VOLUME knob sets.
+
+                Where the sound stops, the fault is between that point and the one before it.
+            </DocSection>
+        </DocSection>
     </DocSection>
 
     <DocSection title="Precautions">
@@ -349,4 +407,5 @@ Diagram sources: docs/engineering/fuzz-face/ (regenerate there, then copy to pub
 
         Take the battery out if you store the pedal for a long time.
     </DocSection>
+
 </DocSection>

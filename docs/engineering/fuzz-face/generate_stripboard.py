@@ -24,7 +24,7 @@ PARTS = [
     ('res', 'R3', '10k', {'1': (1, 2), '2': (5, 2)}, {}),
     ('res', 'R1', '1M', {'1': (2, 1), '2': (8, 1)}, {}),
     ('film', 'C1', '470n', {'1': (2, 4), '2': (4, 4)}, {}),
-    ('ceramic', 'C5', '100p opt.', {'1': (4, 3), '2': (5, 3)}, {'optional': True}),
+    ('ceramic', 'C5', '47p opt.', {'1': (4, 3), '2': (5, 3)}, {'optional': True}),
     ('ceramic', 'C4', '100n opt.', {'1': (1, 9), '2': (3, 9)}, {'optional': True}),
     ('to92', 'Q1', '2N3904', {'E': (3, 6), 'B': (4, 6), 'C': (5, 6)}, {'flat': 'left'}),
     ('to92', 'Q2', '2N3904', {'C': (4, 13), 'B': (5, 13), 'E': (6, 13)}, {'flat': 'right'}),
@@ -375,7 +375,10 @@ def main():
 
     ly += 10
     text(lx, ly, 'Parts', 15, anchor='start', weight='bold'); ly += 20
-    bom = [(ref, value.replace(' opt.', ' (optional)')) for _, ref, value, _, _ in PARTS]
+    # Sorted by type (R, C, Q, VR), then number, so the list reads R1, R2, ...
+    order = {'R': 0, 'C': 1, 'Q': 2, 'VR': 3}
+    bom = sorted(((ref, value.replace(' opt.', ' (optional)')) for _, ref, value, _, _ in PARTS),
+                 key=lambda rv: (order[rv[0].rstrip('0123456789')], int(rv[0].lstrip('ACQRV'))))
     for i, (ref, value) in enumerate(bom):
         col = i % 2
         text(lx + col * 170, ly + (i // 2) * 18, f'{ref}', 12, anchor='start', weight='bold')

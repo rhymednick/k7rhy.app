@@ -581,8 +581,8 @@
 <line x1="214.0" y1="340.4" x2="226.0" y2="329.6" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round"/>
 <line x1="238.0" y1="340.4" x2="226.0" y2="329.6" stroke="#8a8a8a" stroke-width="2" stroke-linecap="round"/>
 <ellipse cx="226.0" cy="329.6" rx="10.1" ry="8.2" fill="#e67e22" stroke="#a04000" stroke-width="1.4" stroke-dasharray="3 2"/>
-<rect x="278.3" y="359.6" width="82.6" height="15" rx="3" fill="white" fill-opacity="0.85"/>
-<text x="319.6" y="369.6" font-size="11" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C5 100p opt.</text>
+<rect x="281.5" y="359.6" width="76.2" height="15" rx="3" fill="white" fill-opacity="0.85"/>
+<text x="319.6" y="369.6" font-size="11" text-anchor="middle" fill="#111" font-weight="bold" font-family="Helvetica, Arial, sans-serif">C5 47p opt.</text>
 <line x1="214.0" y1="388.4" x2="238.0" y2="431.6" stroke="#8a8a8a" stroke-width="2.2" stroke-linecap="round"/>
 <circle cx="214.0" cy="388.4" r="3.2" fill="#555"/>
 <circle cx="238.0" cy="431.6" r="3.2" fill="#555"/>
