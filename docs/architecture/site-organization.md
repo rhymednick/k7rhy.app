@@ -9,7 +9,7 @@ This file is the canonical organizational policy for K7RHY.app. Agents must pres
 - Guitars is platform-neutral. Relay and Coupeville are guitar platforms/lines under `/guitars/...`, not top-level subjects.
 - Surface each document only from its relevant subject area while retaining concise `/docs/...` URLs.
 - Do not present a mixed documentation index. `/docs` redirects to Ham Radio; individual ham documents keep `/docs/...` paths and breadcrumbs under Ham Radio.
-- Guitar effects pedal kits live under `/guitars/pedals/...` with Guitars breadcrumbs. An unreleased kit's guide is unlisted: `noindex, nofollow`, excluded from the sitemap, and not linked from navigation until the owner releases it. See `docs/decisions/2026-09-28-pedal-kit-guides.md`.
+- Guitar effects pedal kits live under `/guitars/pedals/...` with Guitars breadcrumbs. `/guitars` and the `/guitars/pedals` index link every pedal guide (list in `config/pedal-guides.ts`). An unreleased kit's guide and the index stay `noindex, nofollow` and out of the sitemap until the owner releases it. See `docs/decisions/2026-09-28-pedal-kit-guides.md`.
 
 ## Publishing and commerce
 

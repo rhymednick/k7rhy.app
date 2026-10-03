@@ -1,0 +1,257 @@
+---
+title: 'Electra Distortion Build Guide'
+subTitle: 'How to build the silicon Electra distortion on stripboard.'
+date: 2026-10-03
+summary: 'Stripboard assembly, footswitch and clipping-switch wiring, voltage checks, and first test for a silicon Electra distortion.'
+tags: ['assembly_guide', 'distortion', 'stripboard']
+---
+
+{/*
+Unlisted page (noindex, not in navigation or the sitemap).
+Design status: proposed, simulated in ngspice, not yet bench-built (docs/engineering/electra/README.md).
+Voltages marked "simulated" come from ngspice; replace them with measurements after the first build.
+Diagram sources: docs/engineering/electra/ (regenerate there, then copy to public/images/electra/guide/).
+*/}
+
+<DocAlert title="Prototype design" level="important">
+    This circuit has been simulated but not built yet. The layout is checked against the schematic by the script that draws it, and the voltages in this guide are simulated, not measured. Consider trying it on a breadboard first.
+</DocAlert>
+
+<Proc title="Assembly Procedure">
+    <ProcStep text="Prepare your workspace">
+        Find a clean, well-lit area to work. You will need the following:
+        * Soldering iron and flux-core solder
+        * Small wire cutters and wire strippers
+        * Multimeter (you use it to check cuts, parts, and voltages)
+        * A 3 mm (1/8 in) drill bit or a stripboard track cutter
+        * Heat gun or lighter for heat-shrink tubing
+        * Helping hands, or similar device, to hold parts while soldering
+    </ProcStep>
+
+    <ProcStep text="Gather the parts">
+        The Electra is one transistor gain stage followed by a pair of clipping diodes. The original used germanium diodes. This version uses a three-way toggle to pick 1N4148 silicon diodes, no diodes, or two LEDs.
+
+        | Count | Part | Value | Notes |
+        | ----- | ---- | ----- | ----- |
+        | 1 | Stripboard | 16 × 7 holes | 0.1 in pitch, strips along the 16-hole length |
+        | 1 | Transistor, Q1 | 2N3904 | Or 2N2222, BC337-25, C1815-GR, S8050-D |
+        | 1 | Resistor, R1 | 2.2 MΩ (red, red, green) | |
+        | 1 | Resistor, R2 | 470 Ω (yellow, violet, brown) | |
+        | 1 | Resistor, R3 | 4.7 kΩ (yellow, violet, red) | |
+        | 2 | Film capacitors, C1 and C2 | 100 nF (104) | |
+        | 2 | Diodes, D1 and D2 | 1N4148 | |
+        | 2 | LEDs, D3 and D4 | | Same color, so both halves of the wave clip alike |
+        | 1 | Potentiometer, DRIVE | B100k | 16 mm, linear |
+        | 1 | Potentiometer, VOLUME | A100k | 16 mm, audio (log) |
+        | 1 | Toggle switch, CLIP | SPDT on-off-on | |
+        | 1 | 3PDT footswitch | | 9 solder lugs |
+        | 1 | LED and bezel | 5 mm | Effect-on indicator |
+        | 1 | LED resistor | 4.7 kΩ (yellow, violet, red) | |
+        | 2 | 1/4 in jacks | | Stereo (input), mono (output) |
+        | 1 | 9 V battery snap | | |
+        | — | Hookup wire, heat-shrink tubing | | |
+    </ProcStep>
+
+    <ProcStep text="Try it on a breadboard (optional)">
+        Because this design hasn't been built yet, you can build it on a half-size breadboard first. The breadboard layout wires the jacks straight to the circuit, without the footswitch. Select the diagram to open the full-size image.
+
+        <a href="/images/electra/guide/breadboard.png" target="_blank" rel="noopener">
+            <img src="/images/electra/guide/breadboard.png" alt="Electra breadboard layout: Q1, R1 to R3, C1, C2, and both diode pairs on a half-size breadboard, with the pots, clipping switch, and jacks wired off the board" width={2400} height={1664} />
+        </a>
+    </ProcStep>
+
+    <ProcStep text="Learn the board">
+        Stripboard has copper strips running along its length. Every hole in a strip is connected, so the strips do the wiring for you. You break a strip where two parts must not connect.
+
+        Holes are named by row and column. Rows run A to G from top to bottom, and columns run 1 to 16 from left to right, with the parts on top and the copper underneath. For example, E16 is row E, column 16. Keep the layout diagram open while you work.
+
+        <a href="/images/electra/guide/stripboard.png" target="_blank" rel="noopener">
+            <img src="/images/electra/guide/stripboard.png" alt="Electra stripboard layout: component side with every part and its holes, and the copper side showing the two track cuts" width={2400} height={1526} />
+        </a>
+
+        <DocAlert title="The copper side is a mirror image" level="important">
+            When you flip the board over to cut or solder, left and right swap. Column 1 is now on your right. The layout's copper-side view is already flipped for you, so use that view whenever the copper is facing up.
+        </DocAlert>
+
+        The schematic shows the same circuit. It's useful when you check voltages or trace a fault.
+
+        <a href="/images/electra/guide/schematic.png" target="_blank" rel="noopener">
+            <img src="/images/electra/guide/schematic.png" alt="Electra schematic: DRIVE pot into C1 and Q1's base, R1 from collector to base, C2 to the clipping diodes and LEDs selected by the CLIP switch, then the volume pot" width={2000} height={1229} />
+        </a>
+    </ProcStep>
+
+    <ProcStep text="Cut the tracks">
+        Two holes need their copper cut: **C3 and F8**. Cut the tracks before you install any parts.
+
+        <ProcSubgroup>
+            <ProcStep text="Mark the cuts">
+                With the copper side up, find each cut on the copper-side view and mark it with a fine marker. Count columns from the right-hand edge, because the board is flipped.
+            </ProcStep>
+            <ProcStep text="Cut each hole">
+                Place the drill bit in the marked hole and twist it by hand, with light pressure, until the copper ring around the hole is gone. You only need to cut through the copper, not through the board.
+            </ProcStep>
+            <ProcStep text="Check every cut">
+                Set your multimeter to continuity. Check **C2 to C4** and **F7 to F9**. Neither may beep. If one beeps, a sliver of copper remains: twist the bit again, or scrape the gap with a hobby knife.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Install the resistors">
+        Resistors are not polarized. For each one, bend the leads to fit the holes, push it flat against the board, solder, and trim. Check each value with your multimeter before you solder it.
+
+        | Resistor | Value | Holes |
+        | -------- | ----- | ----- |
+        | R3 | 4.7 kΩ | A2 to B5 (diagonal) |
+        | R1 | 2.2 MΩ | B9 to C12 (diagonal) |
+        | R2 | 470 Ω | D10 to G10 (crosses strips E and F) |
+    </ProcStep>
+
+    <ProcStep text="Install the clipping diodes">
+        D1 and D2 face opposite ways, so one clips the top of the wave and the other clips the bottom. D3 and D4 do the same. The band on a 1N4148 marks its cathode. On an LED, the short lead is the cathode.
+
+        | Diode | Anode | Cathode |
+        | ----- | ----- | ------- |
+        | D1 (1N4148) | E2 | F4 (band) |
+        | D2 (1N4148) | F5 | E7 (band) |
+        | D3 (LED) | E12 (long lead) | F12 (short lead) |
+        | D4 (LED) | F14 (long lead) | E14 (short lead) |
+
+        <DocAlert title="Check each pair is opposed" level="warning">
+            If both diodes in a pair face the same way, that switch position clips only one half of the wave and sounds lopsided. Check the bands and short leads against the table before you solder.
+        </DocAlert>
+    </ProcStep>
+
+    <ProcStep text="Install the capacitors">
+        Film capacitors are not polarized.
+        * C1 (100 nF): C2 to C5. It lies along strip C, over the cut at C3, so it connects the two pieces of the strip.
+        * C2 (100 nF): B15 to E15.
+    </ProcStep>
+
+    <ProcStep text="Install the transistor">
+        Install Q1 last, because it's the most heat-sensitive part. Work quickly: about 2 seconds per joint.
+
+        Q1's flat face points **right, toward column 16**: C in **B7**, B in **C7**, E in **D7**.
+
+        <DocAlert title="Check the pinout of your transistor" level="warning">
+            When you look at the flat face with the leads pointing down, a 2N3904, 2N2222, or BC337 reads E, B, C from left to right. A C1815 or S8050 reads E, C, B. With an E-C-B part, bend or rotate it so each lead still lands in the hole given for that lead. Check your part's datasheet if you're unsure.
+        </DocAlert>
+    </ProcStep>
+
+    <ProcStep text="Attach the off-board wires">
+        Solder a wire into each pad below from the component side, long enough to reach its part in the case. Leave some slack.
+
+        | Pad | Goes to | Suggested color |
+        | --- | ------- | --------------- |
+        | A14 | Battery snap + | Red |
+        | A16 | LED resistor, then the LED's long lead | Red |
+        | C1 | DRIVE lug 2 | Green |
+        | E16 | VOLUME lug 3 | Blue |
+        | F1 | CLIP switch lug 1 | Yellow |
+        | F16 | CLIP switch lug 3 | Yellow |
+        | G2 | Input jack sleeve | Black |
+        | G4 | DRIVE lug 1 | Black |
+        | G6 | CLIP switch lug 2 (middle) | Black |
+        | G8 | Footswitch lug 1 | Black |
+        | G12 | VOLUME lug 1 | Black |
+        | G14 | Output jack sleeve | Black |
+
+        Pot lugs are numbered 1, 2, 3 from left to right when you look at the back of the pot with its lugs pointing up.
+    </ProcStep>
+
+    <ProcStep text="Wire the footswitch, jacks, and LED">
+        The footswitch wiring is the same as the Fuzz Face kit's, except that footswitch lug 2 goes to the DRIVE pot instead of the board. The diagram shows Fuzz Face hole names, so use the pad table above for the board end of each wire. Select the diagram to open the full-size image.
+
+        <a href="/images/fuzz_face/guide/footswitch-wiring.png" target="_blank" rel="noopener">
+            <img src="/images/fuzz_face/guide/footswitch-wiring.png" alt="Footswitch wiring: the 3PDT switch's nine lugs, seen from the back, wired to the jacks, LED, battery, and board pads (Fuzz Face hole names)" width={2000} height={1195} />
+        </a>
+
+        <ProcSubgroup>
+            <ProcStep text="Check the footswitch">
+                With your meter on continuity, check that each middle-row lug beeps to exactly one outer lug in its own column. Click the switch and check again: it should now beep to the lug at the other end of the same column.
+            </ProcStep>
+            <ProcStep text="Wire the footswitch">
+                * **Lug 2** to DRIVE lug 3.
+                * **Lug 3** to VOLUME lug 2.
+                * **Lug 5** (middle) to the input jack tip.
+                * **Lug 6** (middle) to the output jack tip.
+                * **Lug 8 to lug 9:** a short bare jumper. This is the bypass path.
+                * Lug 1 already has a wire from the board. Lug 7 stays empty.
+            </ProcStep>
+            <ProcStep text="Wire the LED">
+                Solder the LED resistor to the LED's long lead (anode, +), and the wire from pad A16 to the resistor's other end. Solder a wire from the LED's short lead (cathode, −) to footswitch **lug 4**. Cover the joints with heat-shrink tubing.
+            </ProcStep>
+            <ProcStep text="Wire the battery">
+                Solder the battery snap's red lead to pad A14. Solder the black lead to the input jack's **ring** lug, not to the board. A mono plug in the input jack connects the ring to the sleeve, so the pedal only draws power while a cable is plugged in.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Verify the build">
+        Before you connect a battery, inspect and test the assembly.
+        <ProcSubgroup>
+            <ProcStep text="Inspect the copper side">
+                Check every joint. Joints should be shiny and smooth, with no solder bridging two strips. Most stripboard faults are a solder bridge or a missed cut.
+            </ProcStep>
+            <ProcStep text="Check for a short">
+                With no battery connected, measure the resistance between pad A14 (+9 V) and any hole in row G (ground). It must not read close to 0 Ω.
+            </ProcStep>
+            <ProcStep text="Check the clipping switch">
+                On continuity, check that pad G6 beeps to F1 with the toggle one way, to F16 the other way, and to neither in the middle.
+            </ProcStep>
+        </ProcSubgroup>
+    </ProcStep>
+
+    <ProcStep text="Check the voltages">
+        Connect the battery, plug a cable into the input jack, and put the black probe on any hole in row G. With no guitar signal, measure:
+
+        | Point | Expected (simulated, 2N3904) |
+        | ----- | ---------------------------- |
+        | Strip A (+9 V) | About 9 V |
+        | Strip B (collector) | About 7.3 V (5 to 7.5 V is fine) |
+        | Strip C, columns 4 to 16 (base) | About 0.8 V |
+        | Strip D (emitter) | About 0.17 V |
+
+        <DocAlert title="Understanding Your Options - R1" level="choice">
+            The collector sits high in this circuit, and the exact voltage depends on your transistor's gain. If strip B reads above 7.5 V, replace R1 with 1.5 MΩ or 1 MΩ to bring it down toward the middle of the supply. That gives the stage more room before it clips on its own.
+        </DocAlert>
+    </ProcStep>
+
+    <ProcStep text="Test it">
+        Connect your guitar to the input and your amplifier to the output. Start with the amplifier quiet.
+        * Click the footswitch until the LED is off. You should hear your clean guitar.
+        * Click again. The LED lights and you should hear the distortion.
+        * Try all three CLIP positions, and turn DRIVE and VOLUME through their full range.
+
+        <DocAlert title="The middle CLIP position is much louder" level="warning">
+            With no diodes in circuit, nothing limits the output level. Turn VOLUME down before you switch to the middle position.
+        </DocAlert>
+    </ProcStep>
+
+    <ProcStep text="Mount it in the case">
+        Mount the footswitch, both pots, the toggle, both jacks, and the LED bezel, and tighten their nuts. Put standoffs or insulating tape on the copper side of the board, then fit it in the case. Place the battery where its terminals can't touch the board or the switch lugs. Close the case and test again.
+
+        <DocAlert title="Keep bare metal off the case" level="warning">
+            If you line the case with foil tape, any bare lead or joint that touches it causes a short. Ground the foil with a wire to any free hole in row G.
+        </DocAlert>
+    </ProcStep>
+
+</Proc>
+
+<DocSection title="Operating Instructions" bookmarkId="operating_instructions">
+    The Electra is a simple, bright distortion. **DRIVE** sets how hard your signal hits the transistor, **VOLUME** sets the output level, and the **CLIP** toggle picks the clipping:
+    * **1N4148 diodes:** the hardest, most compressed distortion, and the quietest.
+    * **Middle (no diodes):** only the transistor clips. The loudest and most open setting.
+    * **LEDs:** between the two. Louder and more open than the 1N4148s.
+
+    The toggle's lever connects the middle lug to the lug at the opposite end, so mark which way is which after you test it. The footswitch switches between the effect and true bypass, and the LED is lit when the effect is on. The pedal draws power only while a cable is plugged into the input jack.
+
+    <DocSection title="Troubleshooting" bookmarkId="troubleshooting">
+        * **Bypass works, but there's no sound with the effect on:** check that the guitar goes into the input (stereo) jack, and that footswitch lug 2 goes to DRIVE lug 3.
+        * **Collector (strip B) reads close to 9 V:** Q1 isn't conducting. Check its pinout and direction, and check R1 and the cut at C3.
+        * **Collector reads under 1 V:** look for a solder bridge between strip B and strip C.
+        * **One CLIP position sounds lopsided or harsh:** one diode in that pair is backwards.
+        * **The LED position sounds the same as the 1N4148 position:** the cut at F8 is missing or bridged.
+        * **A diode position is as loud as the middle position:** that pair's wire to the toggle is loose.
+        * **The LED doesn't light:** the LED is probably backwards. Its short lead goes to footswitch lug 4.
+    </DocSection>
+</DocSection>
