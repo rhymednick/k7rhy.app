@@ -20,11 +20,11 @@ CUTS = [(1, 5), (1, 16), (3, 16), (4, 10), (5, 16), (6, 16)]
 # kind, ref, value, {pin: (row, col)}, extra
 PARTS = [
     ('res', 'R2', '22k', {'1': (1, 3), '2': (1, 7)}, {}),          # along strip, over cut 1/5
-    ('res', 'R5', '470', {'1': (1, 14), '2': (1, 18)}, {}),         # along strip, over cut 1/16
+    ('res', 'R5', '1k', {'1': (1, 14), '2': (1, 18)}, {}),         # along strip, over cut 1/16
     ('res', 'R3', '10k', {'1': (1, 2), '2': (5, 2)}, {}),
     ('res', 'R1', '1M', {'1': (2, 1), '2': (8, 1)}, {}),
     ('film', 'C1', '470n', {'1': (2, 4), '2': (4, 4)}, {}),
-    ('ceramic', 'C5', '100p opt.', {'1': (4, 3), '2': (5, 3)}, {'optional': True}),
+    ('ceramic', 'C5', '47p opt.', {'1': (4, 3), '2': (5, 3)}, {'optional': True}),
     ('ceramic', 'C4', '100n opt.', {'1': (1, 9), '2': (3, 9)}, {'optional': True}),
     ('to92', 'Q1', '2N3904', {'E': (3, 6), 'B': (4, 6), 'C': (5, 6)}, {'flat': 'left'}),
     ('to92', 'Q2', '2N3904', {'C': (4, 13), 'B': (5, 13), 'E': (6, 13)}, {'flat': 'right'}),
@@ -240,7 +240,7 @@ def lead_end(p):
 
 BANDS = {'1M': ['#795548', '#111', '#2e7d32'], '100k': ['#795548', '#111', '#f9a825'],
          '10k': ['#795548', '#111', '#e65100'], '22k': ['#d32f2f', '#d32f2f', '#e65100'],
-         '2.2k': ['#d32f2f', '#d32f2f', '#d32f2f'], '470': ['#f9a825', '#6a1b9a', '#795548']}
+         '2.2k': ['#d32f2f', '#d32f2f', '#d32f2f'], '1k': ['#795548', '#111', '#d32f2f']}
 
 LABEL = {  # label offset in pitch units from body centre (default: on the body)
     'C5': (-0.75, 0.0), 'C4': (0.8, 0.0), 'C2': (0, 0.05), 'R1': (0, 1.2),
@@ -375,7 +375,10 @@ def main():
 
     ly += 10
     text(lx, ly, 'Parts', 15, anchor='start', weight='bold'); ly += 20
-    bom = [(ref, value.replace(' opt.', ' (optional)')) for _, ref, value, _, _ in PARTS]
+    # Sorted by type (R, C, Q, VR), then number, so the list reads R1, R2, ...
+    order = {'R': 0, 'C': 1, 'Q': 2, 'VR': 3}
+    bom = sorted(((ref, value.replace(' opt.', ' (optional)')) for _, ref, value, _, _ in PARTS),
+                 key=lambda rv: (order[rv[0].rstrip('0123456789')], int(rv[0].lstrip('ACQRV'))))
     for i, (ref, value) in enumerate(bom):
         col = i % 2
         text(lx + col * 170, ly + (i // 2) * 18, f'{ref}', 12, anchor='start', weight='bold')

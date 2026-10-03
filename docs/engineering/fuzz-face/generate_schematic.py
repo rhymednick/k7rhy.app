@@ -33,12 +33,12 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     d += elm.Label().at((q1x + 0.2, 12)).label('R2_R3', fontsize=S, halign='left')
     d += elm.Resistor().at((q1x, 12)).to((q1x, V))
 
-    # ---- C5 optional: Q1 collector -> Q1 base (anti-oscillation / RF) ----
+    # ---- C5 optional: Q1 collector -> Q1 base (anti-oscillation / RF; 100p muffled the prototype) ----
     d += elm.Line().at((4, 6)).to((4, 7)).linestyle('--')
     d += elm.Capacitor().at((4, 7)).to((4, 8.4)).linestyle('--')
     d += elm.Line().at((4, 8.4)).to((q1x, 8.4)).linestyle('--')
     d += elm.Dot().at((q1x, 8.4))
-    d += elm.Label().at((3.55, 7.9)).label('C5 100p\n(optional)', halign='right', fontsize=10)
+    d += elm.Label().at((3.55, 7.9)).label('C5 47p\n(optional)', halign='right', fontsize=10)
 
     # ---- Q1C_Q2B (direct coupling) ----
     q2b = (9.0, 9)
@@ -72,7 +72,7 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     fx = ex - 2.3
     d += elm.Line().at((ex, 6)).to((fx, 6))
     d += elm.Line().at((fx, 6)).to((fx, 1.2))
-    d += elm.Resistor().at((fx, 1.2)).to((4, 1.2)).label('R4  100k  (feedback)', 'bottom')
+    d += elm.Resistor().at((fx, 1.2)).to((4, 1.2)).label('R4\n100k (feedback)', 'bottom')
     d += elm.Line().at((4, 1.2)).to((4, 6))
 
     # ---- Q2 collector network ----
@@ -126,9 +126,9 @@ with schemdraw.Drawing(file=str(__import__('pathlib').Path(__file__).with_name('
     L((q1x - 0.6, 15.0), 'R2\n22k')
     L((wx + 0.6, 2.9), 'C2 22µ\nelectrolytic', h='left')
     L((cx - 0.6, 14.75), 'R6\n2.2k')
-    L((cx - 0.6, 17.0), 'R5\n470')
+    L((cx - 0.6, 17.0), 'R5\n1k')
     L((2.0, 16.75), 'C4 100n\n(optional)', h='left')
     d += elm.Label().at((-1, -0.8)).label(
         '2N3904 Fuzz Face — NPN, negative ground, 9 V.  All grounds common (battery −, J1/J2 sleeves).\n'
-        'Dashed = optional (C5 only if it oscillates or picks up radio).  Pot lugs shown in ( ).  VR1 wiper tied to its Q2_COL lug.  Bias: measure Q2_COL to GND, no signal.',
+        'Dashed = optional (C5 only if it squeals or picks up radio).  Pot lugs shown in ( ).  VR1 wiper tied to its Q2_COL lug.  Bias: measure Q2_COL to GND, no signal.',
         halign='left', fontsize=9)
