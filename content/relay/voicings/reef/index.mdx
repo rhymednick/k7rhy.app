@@ -1,12 +1,12 @@
 ---
 title: 'Relay Reef'
-description: 'Bridge humbucker plus a dual-lipstick subsystem: two separate signal domains in one guitar, with independent volume and tone control.'
+description: 'Bridge humbucker plus a dual-lipstick subsystem, mixed by two independent volumes: two voice families in one guitar.'
 voicing: 'reef'
 ---
 
 <RelayVoicingSection name="what-it-is">
 
-Relay Reef puts two voice families in one body: a bridge humbucker and a two-pickup lipstick subsystem. It is not the Lipstick model with more lipstick pickups. The lipsticks are their own system with their own controls.
+Relay Reef puts two voice families in one body: a bridge humbucker and a two-pickup lipstick subsystem. It is not the Lipstick model with more lipstick pickups. The lipsticks are their own system, and each side has its own volume, so you mix the two families instead of switching between them.
 
 </RelayVoicingSection>
 
@@ -14,35 +14,47 @@ Relay Reef puts two voice families in one body: a bridge humbucker and a two-pic
 
 **Category:** Subsystem.
 
-The middle and neck lipsticks work as a grouped subsystem. They have their own volume and tone on concentric controls, separate from the humbucker side. The humbucker and lipstick subsystem share the 5-way switch, but they remain separate signal domains.
+A 3-way blade chooses the lipstick side: neck lipstick, both lipsticks in parallel, or middle lipstick. The bridge humbucker does not go through the blade; it is always available on its own volume. The two volumes meet at the output, so any lipstick choice can be blended with as much or as little humbucker as you want.
 
-That matters because Reef is built for contrast. The humbucker can carry thicker drive and sustain, while the lipstick side can stay clean, glassy, and wide without being forced through the same control behavior.
+That continuous blend is Reef's defining feature. It matters more here than extra switching: the controls stay simple, and the contrast between the two families stays under your hands.
 
 </RelayVoicingSection>
 
 <RelayVoicingSection name="controls">
 
-**5-way blade**
+<ControlPositions switchLabel="3-Way Blade (lipsticks)">
+    <ControlPosition label="1" name="Neck lipstick">
+        The fuller, less pointed lipstick voice.
+    </ControlPosition>
+    <ControlPosition label="2" name="Both lipsticks">
+        Neck and middle lipsticks in parallel. Broad and glassy, the key Reef clean sound.
+    </ControlPosition>
+    <ControlPosition label="3" name="Middle lipstick">
+        The sharper, more percussive lipstick voice.
+    </ControlPosition>
+</ControlPositions>
 
-1. Bridge humbucker
-2. Bridge humbucker + middle lipstick
-3. Middle lipstick
-4. Middle + neck lipsticks
-5. Neck lipstick
+The blade points toward the lipstick it selects.
 
-**Concentric volume** - One volume for the humbucker side, one volume for the lipstick subsystem.
+**Lipstick volume** — B1M linear. Sets the level of the selected lipstick voice.
 
-**Concentric tone** - One tone for the humbucker side, one tone for the lipstick subsystem.
+**Humbucker volume** — B1M linear. Sets the level of the bridge humbucker. Turn it down for lipsticks alone, or turn the lipstick volume down for the humbucker alone.
+
+There is no tone control. The body has room for two knobs and a blade, and Reef spends both knobs on the blend. [Relay Reef Plus](/guitars/relay/voicings/reef-plus) adds a tone for each side.
 
 </RelayVoicingSection>
 
 <RelayVoicingSection name="how-it-behaves">
 
-The bridge humbucker gives Reef its heavier voice. It is the side you use when you want more weight, more push into an amp, or a stronger driven sound.
+Relay Reef has not been built yet. These descriptions come from the Coupeville Reef prototype, which uses the same circuit with a master tone and a different bridge humbucker.
 
-The lipsticks provide the separate clean family. Position 4, with both lipsticks together, is the key Reef sound: low-output, open, and clear across a wide frequency range. Because the lipstick subsystem has its own controls, you can keep that side bright and fast while the humbucker side stays thicker.
+The bridge humbucker gives Reef its heavier voice: a thick, sustaining counterweight for driven sounds and for pushing an amp. The lipsticks provide the separate clean family, bright and open, with the two together as the widest, glassiest sound.
 
-Choose Reef if you want maximum contrast inside one instrument instead of a single voice that changes gradually.
+Because each side has its own volume, the blend is continuous. Either volume at zero leaves the other side playing alone; anywhere between mixes the two.
+
+The volumes are linear and 1 MΩ on purpose. In this circuit, audio-taper volumes give an uneven sweep with a sudden drop near the top, and 1 MΩ preserves the lipsticks' airy edge. Use the parts list values.
+
+Choose Reef if you want maximum contrast inside one instrument and want to mix it rather than switch it.
 
 </RelayVoicingSection>
 
@@ -52,8 +64,8 @@ Indie, surf, alt-country, shoegaze, and studio players who want radically differ
 
 </RelayVoicingSection>
 
-<RelayVoicingPickupChoices bridge="Bridge humbucker - target specs finalized during testing" middle="GFS Lipstick Tube Pickup, low-output target around 6K" neck="GFS Lipstick Tube Pickup, low-output target around 6K">
+<RelayVoicingPickupChoices bridge="GFS Vintage ’59 humbucker" middle="GFS Pro Tube lipstick, around 6K" neck="GFS Pro Tube lipstick, around 6K">
 
-If you substitute parts, keep the lipsticks low output with a wide frequency response. Avoid hot single coils or anything mid-heavy enough to collapse the lipstick subsystem into a generic Strat-style sound. The bridge pickup should contrast clearly with the lipsticks instead of trying to match them.
+If you substitute parts, keep the lipsticks low output with a wide frequency response. Avoid hot single coils or anything mid-heavy enough to collapse the lipstick subsystem into a generic Strat-style sound. The bridge pickup should contrast clearly with the lipsticks instead of trying to match them; a tamer, lower-output humbucker narrows that contrast.
 
 </RelayVoicingPickupChoices>

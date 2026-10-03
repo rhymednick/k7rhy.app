@@ -1,4 +1,4 @@
 {
     "model": "reef",
-    "components": []
+    "components": ["reef-lipstick-pickups", "gfs-bridge-pickup", "volume-pot-1m-linear", "selector-switch-3way-blade"]
 }

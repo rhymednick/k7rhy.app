@@ -10,9 +10,10 @@ Updated 2026-10-01. Brief working state only; durable decisions live in the link
 
 ## Next actions
 
-1. Coupeville Reef: [reference design](../docs/engineering/coupeville-reef/reference-design.md) drafted 2026-10-01. Open: lipstick models (roughly 6 kΩ DCR), residual volume anomalies (CRL-021), and model-page copy (CRL-001, CRL-003). An unpublished Rev 1.0 [wiring diagram](../docs/engineering/coupeville-reef/wiring-diagram.md) exists; publishing it would need a page decision.
-2. Remaining ledger open questions are bench tests for Velvet (VDH-033, VDH-034, VAC-017 to VAC-020, VPTC-018).
-3. Owner decisions on the four "Not yet applied" items in the [guitar documentation standard](../docs/engineering/guitar-documentation-standard.md) (ZGDC-010, ZGDC-012, ZGDC-013, ZGDC-018).
+1. **Relay Reef and Reef Plus** are documented (PR #130, both `lab`). Validate on the first builds: Reef Plus uses stock 500k/500k audio concentric pots (owner, 2026-10-02), so check for the CRL-019 volume-sweep problem, and concentric fit in the Relay body is unverified. The two Reef Plus tones interact when a branch volume is up; the owner accepted that on 2026-10-03. See [Relay Reef variants](../docs/decisions/2026-10-01-relay-reef-variants.md).
+2. Coupeville Reef: [reference design](../docs/engineering/coupeville-reef/reference-design.md) drafted 2026-10-01. Open: lipstick models (roughly 6 kΩ DCR), residual volume anomalies (CRL-021), and model-page copy (CRL-001, CRL-003). An unpublished Rev 1.0 [wiring diagram](../docs/engineering/coupeville-reef/wiring-diagram.md) exists; publishing it would need a page decision.
+3. Remaining ledger open questions are bench tests for Velvet (VDH-033, VDH-034, VAC-017 to VAC-020, VPTC-018).
+4. Owner decisions on the four "Not yet applied" items in the [guitar documentation standard](../docs/engineering/guitar-documentation-standard.md) (ZGDC-010, ZGDC-012, ZGDC-013, ZGDC-018).
 
 Done 2026-10-01: Relay Velvet Rev 1.0 diagram and page; guitar documentation standard and Coupeville Velvet reference design promoted from the ledger.
 

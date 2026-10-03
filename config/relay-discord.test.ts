@@ -14,7 +14,7 @@ describe('getRelayVoicingDiscordTarget', () => {
     });
 
     it('falls back to the voicing forum channel for voicings without a thread', () => {
-        for (const slug of ['reef', 'hammer']) {
+        for (const slug of ['reef', 'reef-plus', 'hammer']) {
             expect(getRelayVoicingDiscordTarget(slug)).toEqual({
                 threadId: relayDiscordVoicingChannelId,
                 channelHref: relayDiscordVoicingChannelHref,
