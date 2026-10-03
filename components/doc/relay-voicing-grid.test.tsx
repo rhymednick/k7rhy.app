@@ -9,9 +9,11 @@ describe('RelayVoicingGrid (config-driven)', () => {
     it('renders a card for every voicing in the registry when no children are given', () => {
         render(<RelayVoicingGrid />);
 
+        const links = screen.getAllByRole('link');
         for (const voicing of relayVoicings) {
-            const link = screen.getByRole('link', { name: new RegExp(voicing.name, 'i') });
-            expect(link).toHaveAttribute('href', `/guitars/relay/voicings/${voicing.slug}`);
+            const link = links.find((a) => a.getAttribute('href') === `/guitars/relay/voicings/${voicing.slug}`);
+            expect(link).toBeDefined();
+            expect(link).toHaveTextContent(voicing.name);
         }
     });
 

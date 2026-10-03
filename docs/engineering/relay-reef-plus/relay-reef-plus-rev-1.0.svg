@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1940" viewBox="0 0 2400 1940" role="img" aria-labelledby="title description"><title id="title">Relay Reef Rev 1.0 wiring reference</title><desc id="description">Wiring reference with neck and middle lipsticks on a two-pole three-way blade, a GFS Vintage 59 bridge humbucker, two reverse-independent B1M branch volumes joined at BUS, no tone control, operating states, and common ground.</desc><rect width="2400" height="1940" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
-<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">RELAY REEF • WIRING REFERENCE</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1940" viewBox="0 0 2400 1940" role="img" aria-labelledby="title description"><title id="title">Relay Reef Plus Rev 1.0 wiring reference</title><desc id="description">Wiring reference with neck and middle lipsticks on a two-pole three-way blade, a GFS Vintage 59 bridge humbucker, two 500k audio concentric pots giving each branch a reverse-independent volume and its own tone, branches joined at BUS, operating states, and common ground.</desc><rect width="2400" height="1940" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">RELAY REEF PLUS • WIRING REFERENCE</text>
 <text x="1200" y="96" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">MATCH IDENTICAL BOXED NET LABELS • FUNCTIONAL SWITCH CONTACTS MUST BE METERED</text>
-<text x="2370" y="37" fill="#4c5b68" font-size="19" font-weight="400" text-anchor="end">Rev 1.0 • 2026-10-01</text>
+<text x="2370" y="37" fill="#4c5b68" font-size="19" font-weight="400" text-anchor="end">Rev 1.0 • 2026-10-02</text>
 <rect x="25" y="120" width="2350" height="284" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="122" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="47" y="159" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. PICKUPS</text>
@@ -104,23 +104,23 @@
 <text x="55" y="860" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">Rows are the two poles; columns are the three blade positions (throws 1, 2, 3).</text>
 <text x="55" y="896" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">Jumper A1–A2 (NL-H), B2–B3 (ML-H), and the two commons (L-SEL). A3 and B1 stay open.</text>
 <text x="55" y="932" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">The blade points toward the lipstick it selects. Position 2 joins both in parallel.</text>
-<text x="55" y="968" fill="#4c5b68" font-size="20" font-weight="500" text-anchor="start">L-SEL goes to the lipstick volume wiper. The humbucker does not pass through this switch.</text>
+<text x="55" y="968" fill="#4c5b68" font-size="20" font-weight="500" text-anchor="start">L-SEL goes to the lipstick volume wiper and tone. The humbucker does not pass through this switch.</text>
 <rect x="1215" y="424" width="1160" height="614" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="1217" y="426" width="1156" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <text x="1237" y="463" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">3. TWO BRANCHES JOIN AT BUS</text>
-<text x="2355" y="461" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Reverse-independent volumes</text>
+<text x="2355" y="461" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Tone per branch • reverse-independent volumes</text>
 <rect x="1245" y="520" width="110" height="44" rx="5" fill="white" stroke="#7950a4" stroke-width="2.5"/>
 <text x="1300" y="549.48" fill="#7950a4" font-size="22" font-weight="700" text-anchor="middle">L-SEL</text>
 <line x1="1355" y1="542" x2="1420" y2="542" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
 <rect x="1420" y="505" width="250" height="74" rx="6" fill="#fbfdfe" stroke="#25303b" stroke-width="2"/>
-<text x="1545" y="538" fill="#25303b" font-size="19" font-weight="750" text-anchor="middle">LIPSTICK VOLUME</text>
-<text x="1545" y="564" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">B1M • wiper in</text>
+<text x="1545" y="538" fill="#25303b" font-size="17" font-weight="750" text-anchor="middle">LIPSTICK TONE + VOL</text>
+<text x="1545" y="564" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">A500k/A500k concentric</text>
 <rect x="1245" y="650" width="110" height="44" rx="5" fill="white" stroke="#b94a2e" stroke-width="2.5"/>
 <text x="1300" y="679.48" fill="#b94a2e" font-size="22" font-weight="700" text-anchor="middle">HB-H</text>
 <line x1="1355" y1="672" x2="1420" y2="672" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
 <rect x="1420" y="635" width="250" height="74" rx="6" fill="#fbfdfe" stroke="#25303b" stroke-width="2"/>
-<text x="1545" y="668" fill="#25303b" font-size="19" font-weight="750" text-anchor="middle">HUMBUCKER VOLUME</text>
-<text x="1545" y="694" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">B1M • wiper in</text>
+<text x="1545" y="668" fill="#25303b" font-size="17" font-weight="750" text-anchor="middle">HUMBUCKER TONE + VOL</text>
+<text x="1545" y="694" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">A500k/A500k concentric</text>
 <line x1="1670" y1="542" x2="1760" y2="542" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
 <line x1="1670" y1="672" x2="1760" y2="672" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
 <line x1="1760" y1="542" x2="1760" y2="672" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
@@ -133,69 +133,88 @@
 <text x="1245" y="828" fill="#25303b" font-size="20" font-weight="700" text-anchor="start">CW lug → BUS • CCW lug → GND • clockwise = louder.</text>
 <text x="1245" y="876" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">Turning one volume down grounds only its own source,</text>
 <text x="1245" y="910" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">never BUS, so the other branch keeps playing.</text>
-<text x="1245" y="958" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">No tone, no master volume, no treble bleed.</text>
-<rect x="25" y="1058" width="770" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
-<rect x="27" y="1060" width="766" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="47" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">4. LIPSTICK VOLUME • B1M LINEAR</text>
-<text x="55" y="1130" fill="#246c58" font-size="22" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
-<text x="55" y="1171" fill="#7950a4" font-size="22" font-weight="750" text-anchor="start">CENTER / WIPER ← L-SEL</text>
-<text x="55" y="1212" fill="#445464" font-size="22" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
-<text x="55" y="1280" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">Source on WIPER: not a standard volume.</text>
-<text x="55" y="1314" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">Linear taper; audio taper gave an</text>
-<text x="55" y="1348" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">unusable sweep in this circuit.</text>
-<circle cx="640" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
-<text x="640" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">B1M</text>
-<text x="640" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">LIPSTICK</text>
-<rect x="566" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="580" y1="1349" x2="580" y2="1367" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
-<text x="580" y="1389" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
-<rect x="626" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="640" y1="1349" x2="640" y2="1367" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
-<text x="640" y="1389" fill="#7950a4" font-size="19" font-weight="700" text-anchor="middle">L-SEL</text>
-<rect x="686" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="700" y1="1349" x2="700" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
-<text x="700" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">GND</text>
-<text x="55" y="1421" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down</text>
-<text x="55" y="1455" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Clockwise = louder.</text>
-<rect x="805" y="1058" width="770" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
-<rect x="807" y="1060" width="766" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="827" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">5. HUMBUCKER VOLUME • B1M LINEAR</text>
-<text x="835" y="1130" fill="#246c58" font-size="22" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
-<text x="835" y="1171" fill="#b94a2e" font-size="22" font-weight="750" text-anchor="start">CENTER / WIPER ← HB-H</text>
-<text x="835" y="1212" fill="#445464" font-size="22" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
-<text x="835" y="1280" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">Source on WIPER: not a standard volume.</text>
-<text x="835" y="1314" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">Matched to the lipstick volume</text>
-<text x="835" y="1348" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">(pending end-user testing).</text>
-<circle cx="1420" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
-<text x="1420" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">B1M</text>
-<text x="1420" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">HUMBUCKER</text>
-<rect x="1346" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="1360" y1="1349" x2="1360" y2="1367" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
-<text x="1360" y="1389" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
-<rect x="1406" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="1420" y1="1349" x2="1420" y2="1367" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
-<text x="1420" y="1389" fill="#b94a2e" font-size="19" font-weight="700" text-anchor="middle">HB-H</text>
-<rect x="1466" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
-<line x1="1480" y1="1349" x2="1480" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
-<text x="1480" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">GND</text>
-<text x="835" y="1421" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down</text>
-<text x="835" y="1455" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Clockwise = louder.</text>
-<rect x="1585" y="1058" width="790" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
-<rect x="1587" y="1060" width="786" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="1607" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">6. OUTPUT JACK • NO TONE</text>
-<rect x="1615" y="1120" width="100" height="44" rx="5" fill="white" stroke="#246c58" stroke-width="2.5"/>
-<text x="1665" y="1149.48" fill="#246c58" font-size="22" font-weight="700" text-anchor="middle">BUS</text>
-<line x1="1715" y1="1142" x2="1785" y2="1142" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
-<text x="1800" y="1150" fill="#25303b" font-size="24" font-weight="750" text-anchor="start">TIP</text>
-<text x="1615" y="1222" fill="#445464" font-size="24" font-weight="750" text-anchor="start">GND → SLEEVE</text>
-<text x="1615" y="1290" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">BUS goes straight to the jack tip.</text>
-<text x="1615" y="1324" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">No tone pot, tone capacitor, master</text>
-<text x="1615" y="1358" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">volume, or treble bleed: both knobs</text>
-<text x="1615" y="1392" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">are branch volumes.</text>
-<text x="1615" y="1426" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Relay Reef Plus adds a tone per side.</text>
+<text x="1245" y="950" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">Each tone taps its own source before the volume. With</text>
+<text x="1245" y="982" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">that volume up, the tone also darkens the whole output.</text>
+<text x="1245" y="1014" fill="#25303b" font-size="21" font-weight="650" text-anchor="start">No master volume or tone. No treble bleed.</text>
+<rect x="25" y="1058" width="1170" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="27" y="1060" width="1166" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="47" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">4. LIPSTICK CONCENTRIC • 500k/500k AUDIO</text>
+<text x="1175" y="1095" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Two stacked decks of one part</text>
+<text x="55" y="1146" fill="#25303b" font-size="21" font-weight="800" text-anchor="start">VOLUME • A500k • suggested upper knob</text>
+<text x="55" y="1178" fill="#246c58" font-size="20" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
+<text x="55" y="1209" fill="#7950a4" font-size="20" font-weight="750" text-anchor="start">CENTER / WIPER ← L-SEL</text>
+<text x="55" y="1240" fill="#445464" font-size="20" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
+<text x="55" y="1284" fill="#25303b" font-size="21" font-weight="800" text-anchor="start">TONE • A500k • suggested lower knob</text>
+<text x="55" y="1316" fill="#445464" font-size="20" font-weight="750" text-anchor="start">LEFT / CW → OPEN</text>
+<text x="55" y="1347" fill="#8a5a12" font-size="20" font-weight="750" text-anchor="start">CENTER / WIPER → LT-W → 22 nF → GND</text>
+<text x="55" y="1378" fill="#7950a4" font-size="20" font-weight="750" text-anchor="start">RIGHT / CCW ← L-SEL</text>
+<circle cx="785" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="785" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">VOL</text>
+<text x="785" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">LIPSTICK</text>
+<rect x="711" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="725" y1="1349" x2="725" y2="1367" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="725" y="1389" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
+<rect x="771" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="785" y1="1349" x2="785" y2="1367" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<text x="785" y="1389" fill="#7950a4" font-size="19" font-weight="700" text-anchor="middle">L-SEL</text>
+<rect x="831" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="845" y1="1349" x2="845" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="845" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">GND</text>
+<circle cx="1035" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="1035" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">TONE</text>
+<text x="1035" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">LIPSTICK</text>
+<rect x="961" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="975" y1="1349" x2="975" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="975" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">OPEN</text>
+<rect x="1021" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1035" y1="1349" x2="1035" y2="1367" stroke="#8a5a12" stroke-width="3" stroke-linecap="round"/>
+<text x="1035" y="1389" fill="#8a5a12" font-size="19" font-weight="700" text-anchor="middle">LT-W</text>
+<rect x="1081" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1095" y1="1349" x2="1095" y2="1367" stroke="#7950a4" stroke-width="3" stroke-linecap="round"/>
+<text x="1095" y="1389" fill="#7950a4" font-size="19" font-weight="700" text-anchor="middle">L-SEL</text>
+<text x="55" y="1421" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down • meter which deck each shaft turns</text>
+<text x="55" y="1455" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Volume: clockwise = louder. Tone: clockwise = brighter.</text>
+<rect x="1205" y="1058" width="1170" height="434" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
+<rect x="1207" y="1060" width="1166" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
+<text x="1227" y="1097" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">5. HUMBUCKER CONCENTRIC • 500k/500k AUDIO</text>
+<text x="2355" y="1095" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Two stacked decks of one part</text>
+<text x="1235" y="1146" fill="#25303b" font-size="21" font-weight="800" text-anchor="start">VOLUME • A500k • suggested upper knob</text>
+<text x="1235" y="1178" fill="#246c58" font-size="20" font-weight="750" text-anchor="start">LEFT / CW → BUS</text>
+<text x="1235" y="1209" fill="#b94a2e" font-size="20" font-weight="750" text-anchor="start">CENTER / WIPER ← HB-H</text>
+<text x="1235" y="1240" fill="#445464" font-size="20" font-weight="750" text-anchor="start">RIGHT / CCW → GND</text>
+<text x="1235" y="1284" fill="#25303b" font-size="21" font-weight="800" text-anchor="start">TONE • A500k • suggested lower knob</text>
+<text x="1235" y="1316" fill="#445464" font-size="20" font-weight="750" text-anchor="start">LEFT / CW → OPEN</text>
+<text x="1235" y="1347" fill="#8f3a5c" font-size="20" font-weight="750" text-anchor="start">CENTER / WIPER → HT-W → 22 nF → GND</text>
+<text x="1235" y="1378" fill="#b94a2e" font-size="20" font-weight="750" text-anchor="start">RIGHT / CCW ← HB-H</text>
+<circle cx="1965" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="1965" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">VOL</text>
+<text x="1965" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">HUMBUCKER</text>
+<rect x="1891" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1905" y1="1349" x2="1905" y2="1367" stroke="#246c58" stroke-width="3" stroke-linecap="round"/>
+<text x="1905" y="1389" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
+<rect x="1951" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="1965" y1="1349" x2="1965" y2="1367" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<text x="1965" y="1389" fill="#b94a2e" font-size="19" font-weight="700" text-anchor="middle">HB-H</text>
+<rect x="2011" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="2025" y1="1349" x2="2025" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="2025" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">GND</text>
+<circle cx="2215" cy="1195" r="82" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5"/>
+<text x="2215" y="1193" fill="#25303b" font-size="27" font-weight="750" text-anchor="middle">TONE</text>
+<text x="2215" y="1225" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="middle">HUMBUCKER</text>
+<rect x="2141" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="2155" y1="1349" x2="2155" y2="1367" stroke="#445464" stroke-width="3" stroke-linecap="round"/>
+<text x="2155" y="1389" fill="#445464" font-size="19" font-weight="700" text-anchor="middle">OPEN</text>
+<rect x="2201" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="2215" y1="1349" x2="2215" y2="1367" stroke="#8f3a5c" stroke-width="3" stroke-linecap="round"/>
+<text x="2215" y="1389" fill="#8f3a5c" font-size="19" font-weight="700" text-anchor="middle">HT-W</text>
+<rect x="2261" y="1277" width="28" height="72" rx="3" fill="#d3b082" stroke="#735c3f" stroke-width="1.5"/>
+<line x1="2275" y1="1349" x2="2275" y2="1367" stroke="#b94a2e" stroke-width="3" stroke-linecap="round"/>
+<text x="2275" y="1389" fill="#b94a2e" font-size="19" font-weight="700" text-anchor="middle">HB-H</text>
+<text x="1235" y="1421" fill="#4c5b68" font-size="18" font-weight="700" text-anchor="start">REAR VIEW • shaft away • lugs down • meter which deck each shaft turns</text>
+<text x="1235" y="1455" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Volume: clockwise = louder. Tone: clockwise = brighter.</text>
 <rect x="25" y="1512" width="1160" height="400" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="27" y="1514" width="1156" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="47" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. OPERATING STATES</text>
+<text x="47" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">6. OPERATING STATES</text>
 <rect x="50" y="1587" width="1110" height="280" rx="0" fill="white" stroke="#465c70" stroke-width="1.5"/>
 <rect x="50" y="1587" width="1110" height="54" rx="0" fill="#eef7fb" stroke="none" stroke-width="2"/>
 <line x1="270" y1="1587" x2="270" y2="1867" stroke="#465c70" stroke-width="1.2" stroke-linecap="round"/>
@@ -216,9 +235,9 @@
 <text x="710" y="1836" fill="#25303b" font-size="20" font-weight="500" text-anchor="start">Bridge humbucker, blended</text>
 <rect x="1205" y="1512" width="1170" height="400" rx="6" fill="white" stroke="#465c70" stroke-width="2"/>
 <rect x="1207" y="1514" width="1166" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2"/>
-<text x="1227" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">8. COMMON GROUND &amp; CHECKS</text>
+<text x="1227" y="1551" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">7. COMMON GROUND &amp; CHECKS</text>
 <text x="1235" y="1592" fill="#25303b" font-size="21" font-weight="700" text-anchor="start">GND = pickup returns + separate shields/cases, both volume CCW lugs,</text>
-<text x="1235" y="1630" fill="#25303b" font-size="21" font-weight="700" text-anchor="start">and the jack sleeve.</text>
+<text x="1235" y="1630" fill="#25303b" font-size="21" font-weight="700" text-anchor="start">both tone-cap returns, and the jack sleeve.</text>
 <text x="1235" y="1678" fill="#25303b" font-size="20" font-weight="600" text-anchor="start">Standard practice: pot cases, switch chassis, cavity shielding, and</text>
 <text x="1235" y="1716" fill="#25303b" font-size="20" font-weight="600" text-anchor="start">bridge/string ground join the same ground network.</text>
 <text x="1235" y="1764" fill="#25303b" font-size="20" font-weight="600" text-anchor="start">Humbucker in full series: insulate a single split lead, or join and</text>

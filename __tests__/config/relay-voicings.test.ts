@@ -2,14 +2,15 @@ import { describe, it, expect } from 'vitest';
 import { relayVoicings } from '@/config/relay-voicings';
 
 describe('relayVoicings config', () => {
-    it('contains exactly 7 voicings', () => {
-        expect(relayVoicings).toHaveLength(7);
+    it('contains exactly 8 voicings', () => {
+        expect(relayVoicings).toHaveLength(8);
     });
 
     it('includes all expected voicing slugs', () => {
         const slugs = relayVoicings.map((v) => v.slug);
         expect(slugs).toContain('lipstick');
         expect(slugs).toContain('reef');
+        expect(slugs).toContain('reef-plus');
         expect(slugs).toContain('velvet');
         expect(slugs).toContain('arc');
         expect(slugs).toContain('torch');
@@ -40,6 +41,7 @@ describe('relayVoicings config', () => {
         expect(statuses).toEqual({
             lipstick: 'ready',
             reef: 'lab',
+            'reef-plus': 'lab',
             velvet: 'ready',
             arc: 'ready',
             torch: 'ready',

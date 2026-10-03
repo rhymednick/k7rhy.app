@@ -89,6 +89,6 @@ describe('groupRelayComponentsByCategory', () => {
 
 describe('listVoicingsWithParts', () => {
     it('returns only voicings with a non-empty manifest, in registry order, Lipstick first', () => {
-        expect(listVoicingsWithParts()).toEqual(['lipstick', 'reef', 'velvet', 'arc', 'torch']);
+        expect(listVoicingsWithParts()).toEqual(['lipstick', 'reef', 'reef-plus', 'velvet', 'arc', 'torch']);
     });
 });

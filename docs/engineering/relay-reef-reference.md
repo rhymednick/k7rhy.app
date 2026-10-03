@@ -8,7 +8,7 @@ This file is the netlist for the Relay Reef wiring page. It records the circuit 
 
 ## Differences from Coupeville Reef
 
-- **No tone control.** The Relay body has two knob positions; both go to the branch volumes (owner, 2026-10-01). A planned Relay Reef Plus trim restores tone control with concentric pots. Without the master tone's 1 MΩ track on the output, Relay Reef loads the pickups slightly less than Coupeville Reef with its tone fully up, so expect it to be slightly brighter.
+- **No tone control.** The Relay body has two knob positions; both go to the branch volumes (owner, 2026-10-01). [Relay Reef Plus](relay-reef-plus-reference.md) restores tone control with concentric pots. Without the master tone's 1 MΩ track on the output, Relay Reef loads the pickups slightly less than Coupeville Reef with its tone fully up, so expect it to be slightly brighter.
 - **Selector.** A two-pole 3-way blade instead of the Coupeville three-way selector. Same three lipstick states and the same lever rule: the blade points toward the lipstick it selects.
 - **Bridge humbucker.** GFS Vintage ’59 (KPH65, Alnico V), chosen over the Classic II for more contrast with the lipsticks (owner, 2026-10-01). The Coupeville prototype uses an unidentified 7.6 kΩ GFS humbucker.
 

@@ -1,0 +1,4 @@
+{
+    "model": "reef-plus",
+    "components": ["reef-lipstick-pickups", "gfs-bridge-pickup", "concentric-pot-500k-audio", "concentric-knobs", "selector-switch-3way-blade", "tone-capacitor"]
+}

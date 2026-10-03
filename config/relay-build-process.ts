@@ -30,6 +30,7 @@ export const relayBuildProcess: RelayBuildProcess = {
             items: [
                 { title: 'Lipstick', href: '/guitars/relay/voicings/lipstick' },
                 { title: 'Reef', href: '/guitars/relay/voicings/reef' },
+                { title: 'Reef Plus', href: '/guitars/relay/voicings/reef-plus' },
                 { title: 'Velvet', href: '/guitars/relay/voicings/velvet' },
                 { title: 'Arc', href: '/guitars/relay/voicings/arc' },
                 { title: 'Torch', href: '/guitars/relay/voicings/torch' },

@@ -26,9 +26,9 @@ describe('relayBuildProcess config', () => {
         expect(body.items?.map((i) => i.title)).toEqual(['Print', 'Bonding', 'Finishing']);
     });
 
-    it('lists the seven voicings under the Voicing step', () => {
+    it('lists the eight voicings under the Voicing step', () => {
         const voicings = relayBuildProcess.stages.find((s) => s.slug === 'voicings')!;
-        expect(voicings.items?.map((i) => i.title)).toEqual(['Lipstick', 'Reef', 'Velvet', 'Arc', 'Torch', 'Current', 'Hammer']);
+        expect(voicings.items?.map((i) => i.title)).toEqual(['Lipstick', 'Reef', 'Reef Plus', 'Velvet', 'Arc', 'Torch', 'Current', 'Hammer']);
     });
 
     it('every stage has a non-empty summary', () => {

@@ -59,6 +59,27 @@ export const relayVoicings: RelayVoicing[] = [
         href: '/guitars/relay/voicings/reef',
     },
     {
+        slug: 'reef-plus',
+        name: 'Relay Reef Plus',
+        tagline: 'Humbucker · Dual-lipstick subsystem · Tone per side',
+        genres: 'Indie · Surf · Alt Country · Shoegaze · Studio',
+        description: 'Relay Reef with a volume and a tone for each voice family on two concentric pots, so each side has its own tone control as well as its own level.',
+        status: 'lab',
+        interaction: {
+            category: 'Subsystem',
+            summary: 'The middle and neck lipsticks share a 3-way blade and their own volume and tone; the bridge humbucker has a separate volume and tone, and the two are blended at the output.',
+        },
+        pickupMap: {
+            bridge: { type: 'humbucker' },
+            middle: { type: 'lipstick', role: 'subsystem' },
+            neck: { type: 'lipstick', role: 'subsystem' },
+            selector: '3-way-blade',
+            volume: 'concentric',
+            tone: 'concentric',
+        },
+        href: '/guitars/relay/voicings/reef-plus',
+    },
+    {
         slug: 'velvet',
         name: 'Relay Velvet',
         tagline: 'Jazz-club center · Controlled warmth',

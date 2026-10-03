@@ -93,6 +93,15 @@ const PAIRS = [
             { name: 'Blade contacts', kind: 'contacts', page: /Throw 1/, source: /Throw 1/ },
         ],
     },
+    {
+        name: 'Relay Reef Plus',
+        page: { kind: 'mdx', file: 'content/relay/wiring/reef-plus.mdx' },
+        source: 'docs/engineering/relay-reef-plus-reference.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: /Lipstick branch/, source: /Lipstick branch/, options: { pickups: { bridge: /humbucker/i, middle: /middle/i, neck: /neck/i } } },
+            { name: 'Blade contacts', kind: 'contacts', page: /Throw 1/, source: /Throw 1/ },
+        ],
+    },
 ];
 
 const RELATION = {
