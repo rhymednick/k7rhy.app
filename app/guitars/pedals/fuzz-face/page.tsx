@@ -21,7 +21,7 @@ function loadGuide() {
 
 export default function FuzzFaceGuidePage() {
     const { content, data } = loadGuide();
-    const breadcrumbItems = [{ href: '/guitars', label: 'Guitars' }, { label: 'Pedals' }, { label: data.title }];
+    const breadcrumbItems = [{ href: '/guitars', label: 'Guitars' }, { href: '/guitars/pedals', label: 'Pedals' }, { label: data.title }];
 
     return (
         <DocPage title={data.title} subTitle={data.subTitle} breadcrumbs={<MyBreadcrumbs items={breadcrumbItems} />}>

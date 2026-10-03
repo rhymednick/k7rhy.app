@@ -8,6 +8,7 @@ describe('sitemap visibility', () => {
     });
 
     it('excludes unlisted pedal kit guides', async () => {
+        expect(await config.transform!(config, '/guitars/pedals')).toBeNull();
         expect(await config.transform!(config, '/guitars/pedals/fuzz-face')).toBeNull();
         expect(await config.transform!(config, '/guitars/pedals/bazz-fuss')).toBeNull();
         expect(await config.transform!(config, '/guitars/pedals/electra')).toBeNull();

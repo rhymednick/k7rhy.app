@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { DocIndexCard, DocIndexItemType } from '@/components/doc/doc-index-card';
 import { PageHero } from '@/components/shared/page-hero';
-import { Guitar } from 'lucide-react';
+import { Guitar, Zap } from 'lucide-react';
+import { pedalGuides } from '@/config/pedal-guides';
 
 export default function GuitarsPage() {
     return (
@@ -26,6 +27,7 @@ export default function GuitarsPage() {
                     { title: 'Coupeville', href: '/guitars/coupeville', description: 'Hand-built instruments organized around distinct voices and playing styles.', type: DocIndexItemType.Internal },
                 ]}
             />
+            <DocIndexCard title="Pedals" description="Build guides for guitar effects pedals on stripboard." icon={Zap} items={pedalGuides} />
         </main>
     );
 }
