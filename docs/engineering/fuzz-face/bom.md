@@ -55,7 +55,7 @@ Decided by the owner on 2026-09-28:
 - K7RHY sells the kit with the parts. The part specifications are published, so builders can source parts themselves instead.
 - There are two kits: one includes a 3D-printed case, and the other has builders download the case files and print it themselves.
 - VR1: the stocked trimmer has three pins in a row and fits the stripboard layout as drawn.
-- C4 and C5 ship in every kit, because the guide discusses them. C5's value changed from 100 pF to 47 pF on 2026-10-03 after the prototype build (proposed; awaiting owner confirmation).
+- C4 and C5 ship in every kit, because the guide discusses them. C5's value changed from 100 pF to 47 pF on 2026-10-03 after the prototype build (approved by the owner 2026-10-03). The guide tells builders to leave it out unless the pedal squeals..
 
 ## Not in the kit (customer supplies)
 

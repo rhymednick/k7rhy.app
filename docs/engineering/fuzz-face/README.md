@@ -48,7 +48,7 @@ Resistors were renumbered R1–R7 in signal order on 2026-09-28 (owner decision)
 - The stripboard layout assumes an inline-pin trimmer for VR1. Confirm the stocked part's footprint.
 
 - Add reverse-polarity protection, such as a series 1N5817, if the kit uses a DC jack.
-- C5: the prototype doesn't need it (see Bench results). Kit value changed to 47 pF, left out by default; confirm the kit still ships one.
+- C5: the prototype doesn't need it (see Bench results). Owner decision 2026-10-03 (approved): every kit ships a 47 pF C5, left out unless the pedal squeals. Supersedes the 100 pF value.
 - Record measured DC voltages and the final VR1 setting here.
 - Output level: the effect is quieter than bypass. Untested option: R5 470 Ω → 1 kΩ (same holes, A14–A18) for about +6 dB; re-bias afterward. Try 2.2 kΩ if that isn't enough.
 - Q2 gain: the owner finds the fuzz smooth and polite with a 2N3904. See Q2 substitution notes; final choice pending.
