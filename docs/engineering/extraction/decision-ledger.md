@@ -12,6 +12,7 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 
 ## Sources
 
+- [HG — Electric Hurdy-Gurdy Design Conversation](sources/2026-10-04-hurdy-gurdy-design-conversation.md)
 - [CPAL — Coupeville Passive Audio Laboratory Bench Plan](sources/2026-08-05-passive-audio-laboratory-bench-plan.md)
 - [CVPC — Coupeville Velvet Pickup Comparison](sources/2026-07-30-coupeville-velvet-pickup-comparison.md)
 - [CRL — Coupeville Reef Layout](sources/2026-07-30-coupeville-reef-layout.md)
@@ -27,6 +28,19 @@ This ledger consolidates candidate knowledge from reviewed sources. It is an ext
 
 | Candidate | Summary | Evidence | Proposed classification | Ledger status | Canonical destination |
 |---|---|---|---|---|---|
+| [HG-001](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-001--wheel-bows-across-the-strings) | Wheel rim motion crosses the strings. | Corrected | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-002](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-002--starting-mechanical-envelope-and-editable-files) | 160 mm-class wheel, roughly 345 mm melody scale, separate-component STEP and print STLs. | Confirmed | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-003](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-003--modular-printed-structure) | Modular 256 mm-bed PET-CF structure, with metal support if needed. | Confirmed | Reference design | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-004](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-004--crank-at-the-tail) | Reachable tail-end crank. | Corrected | Reference design | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-005](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-005--guitar-strings-as-a-trial-no-tuning-preference) | Available electric guitar strings are trial material; gauge and pitch remain open. | Confirmed | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-006](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-006--guitar-tuner-orientation-and-access) | Correct tuner mechanism and braced, accessible support. | Corrected | Reference design | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-007](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-007--far-edge-keys-and-full-cover) | Far-edge keys and cover over the full keyed span. | Confirmed | Reference design | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-008](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-008--string-anchor-and-load-path) | Credible tuner-to-tail string load path; physical strength pending. | Confirmed | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-009](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-009--pickup-dimensions-and-independent-adjustment) | Supplied GFS dimensions and independently adjustable removable mounts. | Confirmed | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-010](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-010--tangents-must-withstand-actuation) | Fragile tangents rejected; supported steel version awaiting test. | Corrected | Reference design | Promoted | [Prototype record](../hurdy-gurdy/2026-10-04-rev-b4-prototype.md) |
+| [HG-011](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-011--rev-b4-is-a-test-candidate) | Rev B4 is a test candidate, not validated hardware. | Confirmed | Validation plan | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-012](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-012--restrict-key-throw-in-the-next-revision) | Add a positive key-travel stop in the next revision. | Confirmed | Reference design | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
+| [HG-013](sources/2026-10-04-hurdy-gurdy-design-conversation.md#hg-013--keep-this-work-unpublished) | Keep engineering records internal pending a separate publishing decision. | Confirmed | Project or governance principle | Promoted | [Prototype direction](../../decisions/2026-10-04-hurdy-gurdy-prototype-direction.md) |
 | [ZGDC-001](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md#zgdc-001--repository-authority) | The repository is the authoritative shared knowledge source. | Confirmed | Project or governance principle | Awaiting review | — |
 | [ZGDC-002](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md#zgdc-002--decisions-become-artifacts) | Durable decisions become versioned artifacts rather than memories. | Confirmed | Project or governance principle | Awaiting review | — |
 | [ZGDC-003](sources/2026-07-30-zebrawood-guitar-documentation-conversation.md#zgdc-003--preserve-engineering-intent) | Preserve engineering intent, not only implementation artifacts. | Confirmed | Project or governance principle | Awaiting review | — |
