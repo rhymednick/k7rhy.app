@@ -25,5 +25,7 @@ This direction supersedes the rejected aspects of earlier Rev B sketches and Rev
 - Which actual 2-left/2-right guitar tuners fit, and what are their bushing and anti-rotation dimensions?
 - Which string gauges, pitch, patch, wheel surface, and bridge adjustments produce reliable bowing?
 - What key return and adjustable tangent/intonation arrangement work after physical testing?
+- Which purchasable M2.5 insert fits the printed boss, and what smooth tangent surface prevents the sideways string contact from rubbing on screw threads?
+- What complete hardware bill of materials follows from the selected parts and verified fits?
 - What exact stopped key travel prevents excess tangent and string load while allowing reliable notes?
 - Are three independently adjustable pickups useful after listening, and what placement gives good balance?

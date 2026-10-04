@@ -34,6 +34,12 @@ The local Rev B4 package contains `rev_b4_assembly.step`, `rev_b4_master.FCStd`,
 
 The STEP assembly was reimported and its native shapes and nominal clearances were checked. The audit reported 361 separate assembly objects, 107 printable parts, and no modeled penetration in the checked wheel, key, pickup, tuner, fastener, crank, and print-part interfaces. The drawings show intended string-wheel intersection. CAD checks cannot establish wheel traction, PET-CF strength or creep, actual tuner fit, key feel, tangent survival, acoustic quality, or pickup balance.
 
+## Hardware and first-print limits (reviewed 2026-10-04)
+
+There is no complete purchase-ready bill of materials. The M2.5 insert is a **3.8 mm diameter × 5.7 mm long reference cylinder**, and the tangent is a **2.5 mm diameter × 10 mm long smooth reference cylinder**. Neither defines a selected, fitted commercial part. Each key needs two inserts and two tangents; keys 17–18 therefore need four of each for a fit trial. The printed insert coupon varies the **hole** diameter (3.6, 3.8, 4.0 mm), not the insert's diameter. Actual insert outside diameter, length, installation, and retention must be checked on the coupon and one key before purchasing a full set.
+
+The string moves sideways into the tangent, so it would touch the **side** of a real M2.5 set screw. The CAD omits threads and cannot show string abrasion. A standard threaded set screw is suitable only as a provisional insert/adjustment fit gauge; a smooth string-contact surface remains an unresolved design requirement. The earlier build guide overreached by asking for string contact and reliable return from just two keys and a cover. Those three parts allow a hand-reach and boss-quality check. Adding `Keyboard_floor.stl`, `Keyboard_guide_inner.stl`, and `Keyboard_guide_outer.stl` permits a clamped guided-motion dry fit, but Rev B4 still has no return spring or positive travel stop. The local build guide now states these limits explicitly.
+
 ## Physical test and next revision
 
 Start with the fit coupons and keys 17–18, including a reliable return mechanism and finger reach with the cover installed. Fit actual tuners before drilling their anti-rotation features. Assemble the load path, then bring strings to pitch gradually while measuring nut-to-bridge length, wheel contact, joint movement, and tuning drift. Test bowing and tangent action before printing the complete keyboard. Record findings here or in a dated follow-up test record.
