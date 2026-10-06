@@ -1,0 +1,287 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1480" viewBox="0 0 2400 1480" role="img" aria-labelledby="title description">
+<title id="title">Coupeville Red Lipstick Special series schematic</title>
+<desc id="description">Conventional schematic of the series pickup chain. Ground enters the neck module; each module has a single-pole enable switch that either inserts the pickup or joins the module input to its output; neck and middle have a cross-wired DPDT phase switch; the bridge module has none. The bridge output is the bus feeding the volume pot, the tone pot with its 22 nF capacitor, and the output jack.</desc>
+<defs>
+<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f7f9"/><stop offset="0.35" stop-color="#c3ced5"/><stop offset="0.62" stop-color="#8b99a3"/><stop offset="1" stop-color="#d9e1e6"/></linearGradient>
+</defs>
+<rect width="2400" height="1480" fill="white"/><g font-family="Arial, Helvetica, sans-serif">
+<text x="1200" y="56" fill="#25303b" font-size="45" font-weight="800" text-anchor="middle">COUPEVILLE RED LIPSTICK SPECIAL • SERIES SCHEMATIC</text>
+<text x="1200" y="96" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle">SHOWN WITH EVERY LEVER UP: ALL PICKUPS ON • BOTH PHASE SWITCHES NORMAL</text>
+<text x="2370" y="37" fill="#4c5b68" font-size="20" font-weight="400" text-anchor="end">Rev 0.2 • 2026-10-05</text>
+<rect x="25" y="120" width="2350" height="640" rx="6" fill="white" stroke="#465c70" stroke-width="2" />
+<rect x="27" y="122" width="2346" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2" />
+<text x="47" y="159" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">1. SERIES CHAIN • GND → NECK → MIDDLE → BRIDGE → BUS</text>
+<text x="2355" y="157" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">Dot = connection • crossing without a dot is not connected</text>
+<rect x="122" y="212" width="172" height="142" rx="8" fill="none" stroke="#9aa7b2" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="124" y="206" fill="#25303b" font-size="17" font-weight="750" text-anchor="start">E-N • SPDT ON-ON</text>
+<polyline data-wire="1" points="70,280 140,280" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="70,280 70,286" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="70" cy="286" r="0.5" fill="none"/>
+<line x1="70" y1="286" x2="70" y2="310" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="51" y1="310" x2="89" y2="310" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="57" y1="318" x2="83" y2="318" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="63" y1="326" x2="77" y2="326" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<circle data-dot="1" cx="70" cy="280" r="6" fill="#445464"/>
+<circle data-term="E-N.C" cx="140" cy="280" r="0.5" fill="none"/>
+<circle cx="140" cy="280" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="E-N.ON" cx="260" cy="240" r="0.5" fill="none"/>
+<circle cx="260" cy="240" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<circle data-term="E-N.OFF" cx="260" cy="320" r="0.5" fill="none"/>
+<circle cx="260" cy="320" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<line data-blade="1" x1="140" y1="280" x2="252" y2="244" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<text x="300" y="230" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">ON • UP</text>
+<text x="294" y="311" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="start">OFF • DOWN</text>
+<polyline data-wire="1" points="267,240 450,240 450,420 500,420" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="267,320 390,320 390,730" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="338" y="443" width="104" height="34" rx="4" fill="white" stroke="#2373a2" stroke-width="2.2" data-netlabel="N-OUT" data-cx="390" data-cy="460"/>
+<text x="390" y="466.46" fill="#2373a2" font-size="19" font-weight="700" text-anchor="middle">N-OUT</text>
+<rect x="412" y="283" width="76" height="34" rx="4" fill="white" stroke="#2373a2" stroke-width="2.2" data-netlabel="N-Y" data-cx="450" data-cy="300"/>
+<text x="450" y="306.46" fill="#2373a2" font-size="19" font-weight="700" text-anchor="middle">N-Y</text>
+<rect x="476" y="358" width="120" height="290" rx="8" fill="none" stroke="#9aa7b2" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="476" y="346" fill="#25303b" font-size="17" font-weight="750" text-anchor="start">P-N • DPDT ON-ON</text>
+<polyline data-wire="1" points="390,590 500,590" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-dot="1" cx="390" cy="590" r="6" fill="#2373a2"/>
+<circle data-term="P-N.2C" cx="500" cy="420" r="0.5" fill="none"/>
+<circle cx="500" cy="420" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="P-N.1C" cx="500" cy="590" r="0.5" fill="none"/>
+<circle cx="500" cy="590" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="P-N.2N" cx="560" cy="390" r="0.5" fill="none"/>
+<circle cx="560" cy="390" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<circle data-term="P-N.2R" cx="560" cy="450" r="0.5" fill="none"/>
+<circle cx="560" cy="450" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<circle data-term="P-N.1N" cx="560" cy="560" r="0.5" fill="none"/>
+<circle cx="560" cy="560" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<circle data-term="P-N.1R" cx="560" cy="620" r="0.5" fill="none"/>
+<circle cx="560" cy="620" r="7" fill="white" stroke="#2373a2" stroke-width="3"/>
+<line data-blade="1" x1="500" y1="420" x2="552" y2="393" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<line data-blade="1" x1="500" y1="590" x2="552" y2="563" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<line x1="527" y1="406" x2="527" y2="576" stroke="#445464" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 5"/>
+<text x="566" y="382" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">NORM</text>
+<text x="566" y="442" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">REV</text>
+<text x="566" y="552" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">NORM</text>
+<text x="566" y="612" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">REV</text>
+<polyline data-wire="1" points="567,390 680,390 680,620 745,620 745,585" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="567,620 680,620" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="567,450 630,450 630,560 567,560" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="630,505 671,505" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linecap="round"/>
+<polyline data-wire="1" points="689,505 745,505" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linecap="round"/>
+<path data-bridge="671,505 689,505" d="M671,505 A9,9 0 0 1 689,505" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linecap="round"/>
+<circle data-dot="1" cx="630" cy="505" r="6" fill="#2373a2"/>
+<circle data-dot="1" cx="680" cy="620" r="6" fill="#2373a2"/>
+<rect x="594" y="463" width="72" height="34" rx="4" fill="white" stroke="#2373a2" stroke-width="2.2" data-netlabel="N-H" data-cx="630" data-cy="480"/>
+<text x="630" y="486.46" fill="#2373a2" font-size="19" font-weight="700" text-anchor="middle">N-H</text>
+<rect x="648" y="423" width="64" height="34" rx="4" fill="white" stroke="#2373a2" stroke-width="2.2" data-netlabel="N-R" data-cx="680" data-cy="440"/>
+<text x="680" y="446.46" fill="#2373a2" font-size="19" font-weight="700" text-anchor="middle">N-R</text>
+<rect x="707" y="486" width="78" height="128" rx="8" fill="none" stroke="#7d8b95" stroke-width="1.8" stroke-dasharray="7 6"/>
+<path d="M745,505 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="PU-N.H" cx="745" cy="505" r="0.5" fill="none"/>
+<circle data-term="PU-N.R" cx="745" cy="585" r="0.5" fill="none"/>
+<text x="713" y="652" fill="#2373a2" font-size="18" font-weight="800" text-anchor="start">NECK PICKUP</text>
+<text x="715" y="493" fill="#2373a2" font-size="16" font-weight="800" text-anchor="middle">H</text>
+<text x="715" y="600" fill="#2373a2" font-size="16" font-weight="800" text-anchor="middle">R</text>
+<circle data-term="PU-N.CASE" cx="785" cy="550" r="0.5" fill="none"/>
+<polyline data-wire="1" points="785,550 811,550" fill="none" stroke="#445464" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="811" cy="550" r="0.5" fill="none"/>
+<line x1="811" y1="550" x2="811" y2="574" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="792" y1="574" x2="830" y2="574" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="798" y1="582" x2="824" y2="582" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="804" y1="590" x2="818" y2="590" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<text x="811" y="608" fill="#445464" font-size="15" font-weight="700" text-anchor="middle">CASE</text>
+<rect x="922" y="212" width="172" height="142" rx="8" fill="none" stroke="#9aa7b2" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="924" y="206" fill="#25303b" font-size="17" font-weight="750" text-anchor="start">E-M • SPDT ON-ON</text>
+<polyline data-wire="1" points="870,280 940,280" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-dot="1" cx="870" cy="280" r="6" fill="#2373a2"/>
+<circle data-term="E-M.C" cx="940" cy="280" r="0.5" fill="none"/>
+<circle cx="940" cy="280" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="E-M.ON" cx="1060" cy="240" r="0.5" fill="none"/>
+<circle cx="1060" cy="240" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<circle data-term="E-M.OFF" cx="1060" cy="320" r="0.5" fill="none"/>
+<circle cx="1060" cy="320" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<line data-blade="1" x1="940" y1="280" x2="1052" y2="244" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<text x="1100" y="230" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">ON • UP</text>
+<text x="1094" y="311" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="start">OFF • DOWN</text>
+<polyline data-wire="1" points="1067,240 1250,240 1250,420 1300,420" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1067,320 1190,320 1190,730" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1138" y="443" width="104" height="34" rx="4" fill="white" stroke="#ae731b" stroke-width="2.2" data-netlabel="M-OUT" data-cx="1190" data-cy="460"/>
+<text x="1190" y="466.46" fill="#ae731b" font-size="19" font-weight="700" text-anchor="middle">M-OUT</text>
+<rect x="1212" y="283" width="76" height="34" rx="4" fill="white" stroke="#ae731b" stroke-width="2.2" data-netlabel="M-Y" data-cx="1250" data-cy="300"/>
+<text x="1250" y="306.46" fill="#ae731b" font-size="19" font-weight="700" text-anchor="middle">M-Y</text>
+<rect x="1276" y="358" width="120" height="290" rx="8" fill="none" stroke="#9aa7b2" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="1276" y="346" fill="#25303b" font-size="17" font-weight="750" text-anchor="start">P-M • DPDT ON-ON</text>
+<polyline data-wire="1" points="1190,590 1300,590" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-dot="1" cx="1190" cy="590" r="6" fill="#ae731b"/>
+<circle data-term="P-M.2C" cx="1300" cy="420" r="0.5" fill="none"/>
+<circle cx="1300" cy="420" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="P-M.1C" cx="1300" cy="590" r="0.5" fill="none"/>
+<circle cx="1300" cy="590" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="P-M.2N" cx="1360" cy="390" r="0.5" fill="none"/>
+<circle cx="1360" cy="390" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<circle data-term="P-M.2R" cx="1360" cy="450" r="0.5" fill="none"/>
+<circle cx="1360" cy="450" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<circle data-term="P-M.1N" cx="1360" cy="560" r="0.5" fill="none"/>
+<circle cx="1360" cy="560" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<circle data-term="P-M.1R" cx="1360" cy="620" r="0.5" fill="none"/>
+<circle cx="1360" cy="620" r="7" fill="white" stroke="#ae731b" stroke-width="3"/>
+<line data-blade="1" x1="1300" y1="420" x2="1352" y2="393" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<line data-blade="1" x1="1300" y1="590" x2="1352" y2="563" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<line x1="1327" y1="406" x2="1327" y2="576" stroke="#445464" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="6 5"/>
+<text x="1366" y="382" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">NORM</text>
+<text x="1366" y="442" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">REV</text>
+<text x="1366" y="552" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">NORM</text>
+<text x="1366" y="612" fill="#4c5b68" font-size="15" font-weight="700" text-anchor="start">REV</text>
+<polyline data-wire="1" points="1367,390 1480,390 1480,620 1545,620 1545,585" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1367,620 1480,620" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1367,450 1430,450 1430,560 1367,560" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1430,505 1471,505" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linecap="round"/>
+<polyline data-wire="1" points="1489,505 1545,505" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linecap="round"/>
+<path data-bridge="1471,505 1489,505" d="M1471,505 A9,9 0 0 1 1489,505" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linecap="round"/>
+<circle data-dot="1" cx="1430" cy="505" r="6" fill="#ae731b"/>
+<circle data-dot="1" cx="1480" cy="620" r="6" fill="#ae731b"/>
+<rect x="1394" y="463" width="72" height="34" rx="4" fill="white" stroke="#ae731b" stroke-width="2.2" data-netlabel="M-H" data-cx="1430" data-cy="480"/>
+<text x="1430" y="486.46" fill="#ae731b" font-size="19" font-weight="700" text-anchor="middle">M-H</text>
+<rect x="1448" y="423" width="64" height="34" rx="4" fill="white" stroke="#ae731b" stroke-width="2.2" data-netlabel="M-R" data-cx="1480" data-cy="440"/>
+<text x="1480" y="446.46" fill="#ae731b" font-size="19" font-weight="700" text-anchor="middle">M-R</text>
+<rect x="1507" y="486" width="78" height="128" rx="8" fill="none" stroke="#7d8b95" stroke-width="1.8" stroke-dasharray="7 6"/>
+<path d="M1545,505 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="PU-M.H" cx="1545" cy="505" r="0.5" fill="none"/>
+<circle data-term="PU-M.R" cx="1545" cy="585" r="0.5" fill="none"/>
+<text x="1513" y="652" fill="#ae731b" font-size="18" font-weight="800" text-anchor="start">MIDDLE PICKUP</text>
+<text x="1513" y="674" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="start">RWRP</text>
+<text x="1515" y="493" fill="#ae731b" font-size="16" font-weight="800" text-anchor="middle">H</text>
+<text x="1515" y="600" fill="#ae731b" font-size="16" font-weight="800" text-anchor="middle">R</text>
+<circle data-term="PU-M.CASE" cx="1585" cy="550" r="0.5" fill="none"/>
+<polyline data-wire="1" points="1585,550 1611,550" fill="none" stroke="#445464" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="1611" cy="550" r="0.5" fill="none"/>
+<line x1="1611" y1="550" x2="1611" y2="574" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1592" y1="574" x2="1630" y2="574" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1598" y1="582" x2="1624" y2="582" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1604" y1="590" x2="1618" y2="590" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<text x="1611" y="608" fill="#445464" font-size="15" font-weight="700" text-anchor="middle">CASE</text>
+<rect x="1722" y="212" width="172" height="142" rx="8" fill="none" stroke="#9aa7b2" stroke-width="1.6" stroke-dasharray="7 6"/>
+<text x="1724" y="206" fill="#25303b" font-size="17" font-weight="750" text-anchor="start">E-B • SPDT ON-ON</text>
+<polyline data-wire="1" points="1670,280 1740,280" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-dot="1" cx="1670" cy="280" r="6" fill="#ae731b"/>
+<circle data-term="E-B.C" cx="1740" cy="280" r="0.5" fill="none"/>
+<circle cx="1740" cy="280" r="6" fill="#25303b" stroke="none" stroke-width="2"/>
+<circle data-term="E-B.ON" cx="1860" cy="240" r="0.5" fill="none"/>
+<circle cx="1860" cy="240" r="7" fill="white" stroke="#b94a2e" stroke-width="3"/>
+<circle data-term="E-B.OFF" cx="1860" cy="320" r="0.5" fill="none"/>
+<circle cx="1860" cy="320" r="7" fill="white" stroke="#246c58" stroke-width="3"/>
+<line data-blade="1" x1="1740" y1="280" x2="1852" y2="244" stroke="#25303b" stroke-width="4" stroke-linecap="round"/>
+<text x="1900" y="230" fill="#4c5b68" font-size="17" font-weight="700" text-anchor="start">ON • UP</text>
+<text x="1894" y="311" fill="#4c5b68" font-size="16" font-weight="700" text-anchor="start">OFF • DOWN</text>
+<polyline data-wire="1" points="1867,240 2270,240 2270,500" fill="none" stroke="#b94a2e" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1867,320 1990,320 1990,730" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1948" y="443" width="84" height="34" rx="4" fill="white" stroke="#246c58" stroke-width="2.2" data-netlabel="BUS" data-cx="1990" data-cy="460"/>
+<text x="1990" y="466.46" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
+<rect x="2232" y="343" width="76" height="34" rx="4" fill="white" stroke="#b94a2e" stroke-width="2.2" data-netlabel="B-R" data-cx="2270" data-cy="360"/>
+<text x="2270" y="366.46" fill="#b94a2e" font-size="19" font-weight="700" text-anchor="middle">B-R</text>
+<rect x="2092" y="402" width="78" height="118" rx="8" fill="none" stroke="#7d8b95" stroke-width="1.8" stroke-dasharray="7 6"/>
+<path d="M2130,420 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20 a10,10 0 0 1 0,20" fill="none" stroke="#b94a2e" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="PU-B.H" cx="2130" cy="420" r="0.5" fill="none"/>
+<circle data-term="PU-B.R" cx="2130" cy="500" r="0.5" fill="none"/>
+<polyline data-wire="1" points="1990,420 2130,420" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-dot="1" cx="1990" cy="420" r="6" fill="#246c58"/>
+<polyline data-wire="1" points="2130,500 2270,500" fill="none" stroke="#b94a2e" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<text x="2130" y="386" fill="#b94a2e" font-size="18" font-weight="800" text-anchor="middle">BRIDGE PICKUP</text>
+<text x="2104" y="434" fill="#b94a2e" font-size="16" font-weight="800" text-anchor="middle">H</text>
+<text x="2104" y="494" fill="#b94a2e" font-size="16" font-weight="800" text-anchor="middle">R</text>
+<circle data-term="PU-B.CASE" cx="2130" cy="520" r="0.5" fill="none"/>
+<polyline data-wire="1" points="2130,520 2130,540" fill="none" stroke="#445464" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="2130" cy="540" r="0.5" fill="none"/>
+<line x1="2130" y1="540" x2="2130" y2="564" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2111" y1="564" x2="2149" y2="564" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2117" y1="572" x2="2143" y2="572" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2123" y1="580" x2="2137" y2="580" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<text x="2170" y="562" fill="#445464" font-size="15" font-weight="700" text-anchor="middle">CASE</text>
+<polyline data-wire="1" points="390,730 870,730 870,280" fill="none" stroke="#2373a2" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1190,730 1670,730 1670,280" fill="none" stroke="#ae731b" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<polyline data-wire="1" points="1990,730 1990,900" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1265" y="780" width="1110" height="640" rx="6" fill="white" stroke="#465c70" stroke-width="2" />
+<rect x="1267" y="782" width="1106" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2" />
+<text x="1287" y="819" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">2. OUTPUT STAGE</text>
+<text x="2355" y="817" fill="#4c5b68" font-size="18" font-weight="400" text-anchor="end">A500K volume • A500K tone • 22 nF • mono jack</text>
+<polyline data-wire="1" points="1990,900 1450,900" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1948" y="851" width="84" height="34" rx="4" fill="white" stroke="#246c58" stroke-width="2.2" data-netlabel="BUS" data-cx="1990" data-cy="868"/>
+<text x="1990" y="874.46" fill="#246c58" font-size="19" font-weight="700" text-anchor="middle">BUS</text>
+<circle data-dot="1" cx="1790" cy="900" r="6" fill="#246c58"/>
+<polyline data-wire="1" points="1790,900 1790,930" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1775" y="930" width="30" height="160" rx="3" fill="white" stroke="#25303b" stroke-width="3" />
+<circle data-term="VOL.CW" cx="1790" cy="930" r="0.5" fill="none"/>
+<circle data-term="VOL.CCW" cx="1790" cy="1090" r="0.5" fill="none"/>
+<circle data-term="VOL.WIPER" cx="1806" cy="1010" r="0.5" fill="none"/>
+<polyline data-wire="1" points="1790,1090 1790,1130" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="1790" cy="1130" r="0.5" fill="none"/>
+<line x1="1790" y1="1130" x2="1790" y2="1154" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1771" y1="1154" x2="1809" y2="1154" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1777" y1="1162" x2="1803" y2="1162" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1783" y1="1170" x2="1797" y2="1170" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<polygon points="1806,1010 1822,1002 1822,1018" fill="#187b80"/>
+<polyline data-wire="1" points="1806,1010 2150,1010" fill="none" stroke="#187b80" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1983" y="993" width="84" height="34" rx="4" fill="white" stroke="#187b80" stroke-width="2.2" data-netlabel="OUT" data-cx="2025" data-cy="1010"/>
+<text x="2025" y="1016.46" fill="#187b80" font-size="19" font-weight="700" text-anchor="middle">OUT</text>
+<text x="1764" y="925" fill="#246c58" font-size="17" font-weight="700" text-anchor="end">1 • CW</text>
+<text x="1764" y="1118" fill="#445464" font-size="17" font-weight="700" text-anchor="end">3 • CCW</text>
+<text x="1816" y="1000" fill="#187b80" font-size="17" font-weight="700" text-anchor="start">2 • WIPER</text>
+<text x="1790" y="1210" fill="#25303b" font-size="20" font-weight="800" text-anchor="middle">VOLUME • A500K AUDIO</text>
+<text x="1790" y="1236" fill="#4c5b68" font-size="16" font-weight="600" text-anchor="middle">lug numbers as in bottom view</text>
+<circle data-dot="1" cx="1450" cy="900" r="6" fill="#246c58"/>
+<polyline data-wire="1" points="1450,900 1450,930" fill="none" stroke="#246c58" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1435" y="930" width="30" height="160" rx="3" fill="white" stroke="#25303b" stroke-width="3" />
+<circle data-term="TONE.CCW" cx="1450" cy="930" r="0.5" fill="none"/>
+<circle data-term="TONE.CW" cx="1450" cy="1090" r="0.5" fill="none"/>
+<circle data-term="TONE.WIPER" cx="1466" cy="1010" r="0.5" fill="none"/>
+<polyline data-wire="1" points="1450,1090 1450,1110" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<g stroke="#445464" stroke-width="3.5" stroke-linecap="round"><line x1="1440" y1="1110" x2="1460" y2="1130"/><line x1="1460" y1="1110" x2="1440" y2="1130"/></g>
+<text x="1476" y="1124" fill="#445464" font-size="17" font-weight="700" text-anchor="start">1 • CW unused</text>
+<text x="1424" y="925" fill="#246c58" font-size="17" font-weight="700" text-anchor="end">3 • CCW</text>
+<text x="1476" y="1000" fill="#187b80" font-size="17" font-weight="700" text-anchor="start">2 • WIPER</text>
+<polygon points="1466,1010 1482,1002 1482,1018" fill="#187b80"/>
+<polyline data-wire="1" points="1466,1010 1660,1010 1660,1058" fill="none" stroke="#187b80" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<rect x="1559" y="994" width="92" height="32" rx="4" fill="white" stroke="#187b80" stroke-width="2.2" data-netlabel="TONE-W" data-cx="1605" data-cy="1010"/>
+<text x="1605" y="1015.78" fill="#187b80" font-size="17" font-weight="700" text-anchor="middle">TONE-W</text>
+<line x1="1640" y1="1058" x2="1680" y2="1058" stroke="#25303b" stroke-width="4" stroke-linecap="round" />
+<line x1="1640" y1="1078" x2="1680" y2="1078" stroke="#25303b" stroke-width="4" stroke-linecap="round" />
+<circle data-term="C22.HOT" cx="1660" cy="1058" r="0.5" fill="none"/>
+<circle data-term="C22.GND" cx="1660" cy="1078" r="0.5" fill="none"/>
+<polyline data-wire="1" points="1660,1078 1660,1130" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="1660" cy="1130" r="0.5" fill="none"/>
+<line x1="1660" y1="1130" x2="1660" y2="1154" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1641" y1="1154" x2="1679" y2="1154" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1647" y1="1162" x2="1673" y2="1162" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="1653" y1="1170" x2="1667" y2="1170" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<text x="1698" y="1074" fill="#25303b" font-size="20" font-weight="800" text-anchor="start">22 nF</text>
+<text x="1450" y="1210" fill="#25303b" font-size="20" font-weight="800" text-anchor="middle">TONE • A500K AUDIO</text>
+<text x="1450" y="1236" fill="#4c5b68" font-size="16" font-weight="600" text-anchor="middle">fed from BUS, not the wiper</text>
+<rect x="2150" y="960" width="190" height="150" rx="8" fill="#fbfdfe" stroke="#25303b" stroke-width="2.5" />
+<text x="2245" y="990" fill="#25303b" font-size="18" font-weight="800" text-anchor="middle">OUTPUT JACK</text>
+<circle cx="2150" cy="1010" r="7" fill="white" stroke="#187b80" stroke-width="3"/>
+<circle cx="2150" cy="1085" r="7" fill="white" stroke="#445464" stroke-width="3"/>
+<circle data-term="JACK.TIP" cx="2150" cy="1010" r="0.5" fill="none"/>
+<circle data-term="JACK.SLV" cx="2150" cy="1085" r="0.5" fill="none"/>
+<text x="2170" y="1016" fill="#187b80" font-size="17" font-weight="700" text-anchor="start">TIP</text>
+<text x="2170" y="1091" fill="#445464" font-size="17" font-weight="700" text-anchor="start">SLEEVE</text>
+<polyline data-wire="1" points="2150,1085 2100,1085 2100,1135" fill="none" stroke="#445464" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" />
+<circle data-term="GNDSYM" cx="2100" cy="1135" r="0.5" fill="none"/>
+<line x1="2100" y1="1135" x2="2100" y2="1159" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2081" y1="1159" x2="2119" y2="1159" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2087" y1="1167" x2="2113" y2="1167" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<line x1="2093" y1="1175" x2="2107" y2="1175" stroke="#445464" stroke-width="3" stroke-linecap="round" />
+<text x="1295" y="1330" fill="#4c5b68" font-size="18" font-weight="600" text-anchor="start">No treble bleed • no loading resistors • no per-pickup controls.</text>
+<rect x="25" y="780" width="1220" height="640" rx="6" fill="white" stroke="#465c70" stroke-width="2" />
+<rect x="27" y="782" width="1216" height="54" rx="4" fill="#eef7fb" stroke="none" stroke-width="2" />
+<text x="47" y="819" fill="#25303b" font-size="30" font-weight="750" text-anchor="start">SHOWN STATE &amp; CONVENTIONS</text>
+<text x="55" y="878" fill="#25303b" font-size="22" font-weight="750" text-anchor="start">Shown state S10: every lever UP — all pickups ON, both phase switches NORMAL.</text>
+<text x="55" y="912" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Chain GND → N+ → M+ → B+ → BUS. The same circuit is checked in all 32 lever states (14 distinct, incl. mute).</text>
+<text x="55" y="966" fill="#25303b" font-size="20" font-weight="750" text-anchor="start">LEVER UP = ON (E-x) / NORMAL (P-x)  •  LEVER DOWN = OFF / REVERSE</text>
+<text x="55" y="1000" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">ON: IN → pickup → OUT. OFF: IN joined to OUT through the enable switch; the pickup keeps one lead unconnected.</text>
+<text x="55" y="1034" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">NORMAL: hot lead toward volume (x-OUT), return lead toward ground (x-Y). REVERSE swaps them.</text>
+<text x="55" y="1088" fill="#25303b" font-size="20" font-weight="750" text-anchor="start">All OFF: BUS joins GND — mute. Bridge is the fixed phase reference; it has no phase switch.</text>
+<text x="55" y="1142" fill="#25303b" font-size="19" font-weight="650" text-anchor="start">Dot = junction  •  crossing without a dot = not connected  •  arch = wire passes over</text>
+<text x="55" y="1176" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Dashed link between blades = the two ganged poles of one DPDT toggle.</text>
+<text x="55" y="1210" fill="#25303b" font-size="20" font-weight="650" text-anchor="start">Dashed box around a coil = the pickup case. The case lead is separate from the coil and goes to GND.</text>
+<text x="55" y="1264" fill="#4c5b68" font-size="19" font-weight="650" text-anchor="start">Switch contacts are functional, not lug numbers: identify each toggle’s lugs by continuity before wiring.</text>
+<text x="55" y="1298" fill="#4c5b68" font-size="19" font-weight="650" text-anchor="start">Net labels (N-Y, N-OUT, N-H, N-R, M-…, BUS, B-R, OUT, TONE-W) match reference.md §6 and the builder sheet.</text>
+<text x="55" y="1346" fill="#4c5b68" font-size="19" font-weight="650" text-anchor="start">Pickup lead identification (hot / return / case) comes from the supplied lead guide and a meter, not wire color alone.</text>
+<text x="55" y="1388" fill="#4c5b68" font-size="18" font-weight="500" text-anchor="start">Netlist check: 887 checks across 32 switch states passed when this sheet was generated.</text>
+</g></svg>
