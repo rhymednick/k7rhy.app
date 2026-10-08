@@ -29,7 +29,7 @@ The TypeSafe skill (`typesafe@typesafe-ai`) is enabled in `.claude/settings.json
 
 **Where Jev belongs.** Use Jev only where it replaces a step an agent does now and is cheaper, faster, and just as accurate. Do not add it as an extra check on top of an agent's work. Show "just as accurate" with a head-to-head on labeled data before relying on it.
 
-**Standing rule: look for Jev opportunities.** When you create or change a workflow, skill, or recurring process, check whether a step makes many closed-choice judgments (pick-one, yes/no, or a score) over natural language that an agent would otherwise read item by item. If one does, propose it to the owner, for example as a new skill that does the step with Jev, with the step it replaces, the expected savings, and how you would test accuracy. Do not build it until the owner approves.
+**Standing rule: look for Jev opportunities.** This applies to every agent, not only Claude. When you create or change a workflow, skill, or recurring process, check whether a step makes many closed-choice judgments (pick-one, yes/no, or a score) over natural language that an agent would otherwise read item by item. If one does, propose it to the owner, for example as a new script or skill that does the step with Jev, with the step it replaces, the expected savings, and how you would test accuracy. Do not build it until the owner approves.
 
 The plugin does not always install itself in cloud sessions. If the `typesafe:typesafe-ai` skill is not in the session's skill list, run `claude plugin marketplace add typesafe-ai/skills` and `claude plugin install typesafe@typesafe-ai`; the skill loads in the next session. The `scripts/typesafe/` scripts need only `TYPESAFE_API_KEY`, not the plugin.
 
