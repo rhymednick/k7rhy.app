@@ -21,7 +21,7 @@ Before changing navigation, routes, publishing, commerce boundaries, or serializ
 
 ## Guitar wiring diagrams
 
-Before creating or publishing a builder-facing guitar wiring diagram, follow `docs/engineering/wiring-diagrams.md`.
+Before creating or publishing a builder-facing guitar wiring diagram, follow `docs/engineering/wiring-diagrams.md`. Before publishing or changing a wiring page, run `scripts/typesafe/check-wiring-pages.mjs`. Resolve every priority-2 item yourself against the netlist (fix it, clear it, or escalate it), and bring the owner only what you can't settle.
 
 ## TypeSafe
 
