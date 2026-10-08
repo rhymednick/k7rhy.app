@@ -97,6 +97,7 @@ The owner approved all three open questions from the first run.
 - **Rule (owner, 2026-10-08):** use Jev only where it replaces a step an agentic LLM does now and is cheaper, faster, and just as accurate. Do not add it as an extra check on top of an LLM's work or put it where it performs poorly.
 - **Engineering-log ingestion does not meet the rule.** Extraction reads a source and writes statements, which Jev cannot do. Jev's evidence-label and class answers agreed with the ledger on only 90 and 101 of 220 candidates. Its owner-acceptance answer is reliable but would add a check rather than replace one. A proposed ingestion skill was dropped.
 - The 2026-10-06 [ledger-tagging pilot design](../engineering/extraction/jev-tagging-pilot.md) duplicated pilot 1 and is marked superseded. Its topic and scope tags and its `jev-1.13.0` pin remain unapproved ideas.
+- **Standing rule (owner, 2026-10-08):** agents keep looking for steps where Jev meets the rule above as workflows are developed, and propose them to the owner (for example, as a new skill) before building them. Recorded in `AGENTS.md`.
 - **Access:** the cloud environment has `TYPESAFE_API_KEY` set and can reach `api.typesafe.ai`, so agents can run the scripts directly (verified 2026-10-08).
 
 ## Open questions
