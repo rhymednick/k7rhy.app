@@ -1,8 +1,15 @@
 # Jev Ledger-Tagging Pilot — Design
 
 - **Date:** 2026-10-01 (revised 2026-10-06 against the current ledger; API facts verified 2026-10-08)
-- **Status:** Proposed (not approved; nothing is wired up)
+- **Status:** Superseded (2026-10-08). This design was written without knowing that ledger triage was already implemented: [`scripts/typesafe/triage-ledger.mjs`](../../../scripts/typesafe/triage-ledger.mjs) has tagged every candidate since 2026-10-01. See [the TypeSafe decision record](../../decisions/2026-10-01-typesafe-skill.md) for the current workflow and results. The verified API facts below remain accurate; the two ideas the script lacks are listed under **Carried forward**.
 - **Scope:** Use TypeSafe Jev as a second reader on the decision-extraction ledger. Jev suggests tags; the owner decides. Jev output never edits the ledger or a source inventory.
+
+## Carried forward
+
+Two ideas in this design are not in the triage script. Neither is approved.
+
+- **Topic and scope tags** (the `topic` and `scope` fields below). They would group candidates by product and separate cross-product conventions from model-specific facts.
+- **Pinning `jev-1.13.0`.** The script calls `jev-latest`, so its thresholds could drift when the alias moves.
 
 ## Why this fits
 

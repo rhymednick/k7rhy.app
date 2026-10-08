@@ -92,6 +92,16 @@ The owner approved all three open questions from the first run.
 
 - **Velvet tone values.** 22 nF tone capacitor and audio-taper tone pot, the same as the other Relay models. Added to the Velvet netlist and page.
 
+## Where Jev belongs (2026-10-08)
+
+- **Rule (owner, 2026-10-08):** use Jev only where it replaces a step an agentic LLM does now and is cheaper, faster, and just as accurate. Do not add it as an extra check on top of an LLM's work or put it where it performs poorly.
+- **Engineering-log ingestion does not meet the rule.** Extraction reads a source and writes statements, which Jev cannot do. Jev's evidence-label and class answers agreed with the ledger on only 90 and 101 of 220 candidates. Its owner-acceptance answer is reliable but would add a check rather than replace one. A proposed ingestion skill was dropped.
+- The 2026-10-06 [ledger-tagging pilot design](../engineering/extraction/jev-tagging-pilot.md) duplicated pilot 1 and is marked superseded. Its topic and scope tags and its `jev-1.13.0` pin remain unapproved ideas.
+- **Standing rule (owner, 2026-10-08):** agents keep looking for steps where Jev meets the rule above as workflows are developed, and propose them to the owner (for example, as a new skill) before building them. Recorded in `AGENTS.md`.
+- **Head-to-head on wiring claims (2026-10-08):** [results](../engineering/jev-benchmarks/2026-10-08-wiring-claims.md). On 466 published claims plus 36 planted errors, Jev was more accurate than Claude Haiku and Sonnet and 10 to 100 times cheaper. It was less accurate than Claude Opus (33 of 36 caught against 36 of 36) but about 225 times cheaper and 60 times faster per batch. Jev first, then Opus on the claims Jev flagged, matched Opus on every unambiguous error at 30% of the cost. No workflow was changed.
+- **Agent re-check of flagged wiring claims (owner, 2026-10-08):** the agent running `check-wiring-pages.mjs` resolves every priority-2 item against the netlist and brings the owner only what it can't settle. This replaces the unassigned "every priority-2 item reviewed" step. The rule is written for any agent and is recorded in the [wiring-diagram workflow](../engineering/wiring-diagrams.md) and `AGENTS.md`.
+- **Access:** the cloud environment has `TYPESAFE_API_KEY` set and can reach `api.typesafe.ai`, so agents can run the scripts directly (verified 2026-10-08).
+
 ## Open questions
 
-None from these pilots.
+- Cross-source supersession: the conflict question sees only candidates from the same source. A check against earlier candidates for the same model was proposed on 2026-10-08 and not adopted.

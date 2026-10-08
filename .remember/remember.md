@@ -1,6 +1,6 @@
 # Handoff
 
-Updated 2026-10-01. Brief working state only; durable decisions live in the linked records.
+Updated 2026-10-08. Brief working state only; durable decisions live in the linked records.
 
 ## Current state
 
@@ -26,6 +26,6 @@ Done 2026-10-01: Relay Velvet Rev 1.0 diagram and page; guitar documentation sta
     claude plugin install typesafe@typesafe-ai
     ```
 
-    The skill loads in the **next** session. The scripts in `scripts/typesafe/` do not need the plugin, only `TYPESAFE_API_KEY`; without the key, `check-wiring-pages.mjs --dry-run` still runs the exact checks.
+    The skill loads in the **next** session. The scripts in `scripts/typesafe/` do not need the plugin, only `TYPESAFE_API_KEY`, which the cloud environment sets (with network access to `api.typesafe.ai`, verified 2026-10-08); without the key, `check-wiring-pages.mjs --dry-run` still runs the exact checks.
 
 - **Dependencies.** `node_modules` is not installed by default in cloud sessions; run `npm ci` before `npm run build` or the tests.
