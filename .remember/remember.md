@@ -6,7 +6,6 @@ Updated 2026-10-08. Brief working state only; durable decisions live in the link
 
 - **TypeSafe pilots: done.** Ledger triage and the wiring-page check both run; see [the TypeSafe decision record](../docs/decisions/2026-10-01-typesafe-skill.md). No open questions.
 - **Wiring pages:** every published wiring page has a netlist document and passes `scripts/typesafe/check-wiring-pages.mjs` (0 priority-1 items, 0 table mismatches). The check is required before a wiring page is published or changed ([workflow](../docs/engineering/wiring-diagrams.md)).
-- **Ingesting new sources:** use the `ingest-engineering-log` skill; it runs the TypeSafe check on the new candidates ([decision record](../docs/decisions/2026-10-01-typesafe-skill.md#ingestion-workflow-2026-10-08)).
 - **Extraction ledger:** conventions settled in [the ledger conventions record](../docs/decisions/2026-10-01-extraction-ledger-conventions.md). 47 candidates are promoted; the rest are indexed in the ledger.
 
 ## Next actions
