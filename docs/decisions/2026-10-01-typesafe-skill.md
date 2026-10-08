@@ -96,6 +96,7 @@ The owner approved all three open questions from the first run.
 
 - **Approved:** 2026-10-08, by the owner. New engineering logs and other sources are ingested with the [`ingest-engineering-log` skill](../../.claude/skills/ingest-engineering-log/SKILL.md). Claude writes the source inventory and ledger rows; `triage-ledger.mjs --only <new IDs>` then checks them blind before the owner reviews. Jev does not extract or summarize sources.
 - A Confirmed candidate whose owner-acceptance Noul is below 0.5 must quote the owner's acceptance in an **Acceptance** line or be relabeled Proposed.
+- **Narrowed:** 2026-10-08, by the owner. The owner sees only the acceptance check and priority-1 rows. Priority-2 and uncertain label and class answers are counted, not listed: in the fourth run, 169 of 220 candidates were flagged at priority 1 or 2, so listing them would not reduce review.
 - The 2026-10-06 [ledger-tagging pilot design](../engineering/extraction/jev-tagging-pilot.md) duplicated pilot 1 and is marked superseded. Its topic and scope tags and its `jev-1.13.0` pin are carried forward as unapproved ideas.
 - **Access:** the cloud environment has `TYPESAFE_API_KEY` set and can reach `api.typesafe.ai`, so agents can run the scripts directly (verified 2026-10-08).
 

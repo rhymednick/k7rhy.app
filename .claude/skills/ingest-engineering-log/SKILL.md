@@ -43,11 +43,13 @@ node scripts/typesafe/triage-ledger.mjs --only <ID,ID,...> --out node_modules/.c
 
 ## 5. Act on the flags
 
-- **Priority 1** (a confident disagreement, a class outside the README vocabulary, or an unrecorded conflict): re-read the source. Fix your own extraction error; otherwise list it for the owner.
-- **Confirmed with acceptance below 0.5:** quote the owner's acceptance in an **Acceptance** line, or relabel the candidate **Proposed**.
-- **Priority 2 and uncertain answers:** list them for the owner with Jev's answer and confidence beside your label.
+Show the owner only the checks Jev has proven reliable on this ledger.
+
+- **Confirmed with acceptance below 0.5:** quote the owner's acceptance in an **Acceptance** line, or relabel the candidate **Proposed** and list the relabel for the owner. This check is reliable: adding Acceptance lines to 20 promoted candidates raised their acceptance score from 1 of 20 above 0.5 to 20 of 20.
+- **Priority 1** (a disagreement at confidence 0.8 or above, a class outside the README vocabulary, or an unrecorded conflict): re-read the source. Fix your own extraction error; otherwise list it for the owner.
+- **Priority 2 and uncertain answers:** count them in the handoff; do not list them. Jev's label and class guesses agreed with the ledger on only 90 and 101 of 220 candidates, so a low-confidence disagreement is not a review signal.
 - Never change a label only because Jev disagrees. Model confidence is not owner approval, and Jev output never edits the ledger by itself.
 
 ## 6. Hand off to the owner
 
-Report the new source, the candidate count, and only the rows that need the owner's call. Promotion follows the README's promotion rule and stays the owner's decision. Update `.remember/remember.md` if the ingestion changes the next actions.
+Report the new source, the candidate count, the relabels and priority-1 rows from step 5, and the number of priority-2 and uncertain rows. Promotion follows the README's promotion rule and stays the owner's decision. Update `.remember/remember.md` if the ingestion changes the next actions.
