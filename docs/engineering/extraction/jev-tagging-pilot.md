@@ -1,6 +1,6 @@
 # Jev Ledger-Tagging Pilot — Design
 
-- **Date:** 2026-10-01 (revised 2026-10-06 against the current ledger)
+- **Date:** 2026-10-01 (revised 2026-10-06 against the current ledger; API facts verified 2026-10-08)
 - **Status:** Proposed (not approved; nothing is wired up)
 - **Scope:** Use TypeSafe Jev as a second reader on the decision-extraction ledger. Jev suggests tags; the owner decides. Jev output never edits the ledger or a source inventory.
 
@@ -12,11 +12,19 @@ The README now says the ledger controls: when review changes a label, the ledger
 
 ## Jev facts
 
-The TypeSafe skill (`typesafe-ai/skills`, v0.5.7) confirms the three primitives and how to use them. The live docs at `docs.typesafe.ai` could not be read from the build environment, so API field names and limits remain unverified. Read them before writing the script.
+The TypeSafe skill (`typesafe-ai/skills`, v0.5.7) confirms the three primitives and how to use them. The API facts below were verified on 2026-10-08 against the official [Quick start](https://docs.typesafe.ai/introduction/quickstart) and [Models](https://docs.typesafe.ai/models) pages, which the owner supplied because the build environment cannot reach `docs.typesafe.ai`.
 
-- Three question types: `choice` (one of a declared set), `score` (ordered levels), and `noul` (yes/no probability, 0–1).
-- Inputs can be strings or structured JSON. Default endpoint `https://api.typesafe.ai`. Listed price about $0.042 per million input tokens.
-- Also reachable through Netlify AI Gateway, which this site already deploys on.
+- Endpoint: `POST https://api.typesafe.ai/v1/systemone` with `Authorization: Bearer $TYPESAFE_API_KEY`. The body has `model`, `state`, and `questions` (a map of named questions).
+- `choice`: `criteria` is a map of option label to description. The answer has `choice`, `confidence`, and a `probabilities` entry for every option.
+- `score`: `criteria` is an ordered list of levels. The answer has `score` (the level index), `confidence`, a `legend` mapping indexes to levels, and `probabilities`.
+- `noul`: no `criteria`. The answer has only `noul`, a yes probability from 0 to 1; there is no `confidence`.
+- `state` can be a string, a JSON object, or an array of text values. Text only.
+- Model: Jev 1.13 (`jev-1.13.0`). The `jev-latest` and `jev-preview` aliases both point to it today but move when a release ships. **Pin `jev-1.13.0`** so pilot results and thresholds are tied to one model version. The response's `model` field reports the version that answered.
+- Price: $0.042 per million input tokens; output is free.
+- Limits: 100K tokens per second and 80 requests per second; over either returns `429`. The official SDKs retry with backoff. Context is 64k tokens per request, and 32k for `state` plus the longest question. TypeSafe says limits may change without notice.
+- SDKs: JavaScript (`@typesafe-ai/sdk`) and Python (`typesafe-sdk`). The JavaScript SDK fits a Node script in `scripts/`.
+- Unverified (secondary sources only): the maximum number of `choice` options (reported as 255) and of `score` levels (reported as 2 to 10). Neither limit affects this pilot's fields.
+- Also reachable through Netlify AI Gateway, which this site already deploys on (secondary source).
 
 Guidance from the skill that shapes this design:
 
