@@ -1,14 +1,20 @@
-# White CuNiFe S-Type builds
+# White S-Type builds
 
-Date: 2026-09-24 · updated 2026-09-25
+Date: 2026-09-24 · updated 2026-10-10
 
-## Current state — owner confirmed, 2026-09-25
+## STR26001 revision — owner report, 2026-10-10
 
-Both guitars are built and wired to the final specification below. The owner confirmed on 2026-09-25:
+The owner reports that STR26001 now has a **cream pickguard** and a **Fender tremolo bridge**. These installed changes supersede the bamboo pickguard description for STR26001; the exact Fender tremolo model has not been identified. The owner also reports that its CuNiFe middle pickup is broken and will replace the complete three-pickup set with Fender Custom Shop Tomatillo Stratocaster pickups. The replacement is an owner-approved specification, not a claim that the Tomatillo pickups have already been installed or measured. The owner chose the standalone record name **Tomatillo S-Type** and wants its live page to describe the revised instrument without recounting a configuration that never left the shop. STR26002 remains the CuNiFe S-Type.
+
+The STR26001 record, printable card, and linked wiring reference use the Rev 2.0 specification in this repository change. The selected series-switching topology remains the documented target; its physical lead mapping and behavior with the replacement set have not been supplied. Fender's [Custom Shop Tomatillo Stratocaster set specification](https://www.fender.com/products/custom-shop-tomatillo-stratocaster-pickup-set) lists an SSS set with Alnico 2 magnets, a reverse-wound middle pickup, cloth-covered leads, and nominal DC resistances of 5.9 kΩ neck, 5.92 kΩ middle, and 6.19 kΩ bridge. These are manufacturer product specifications, not measurements of STR26001. The revised diagram keeps the middle coil return separate from fixed common ground for series mode and does not inherit the prior CuNiFe set's separate shield-lead assumption.
+
+## Previous state — owner confirmed, 2026-09-25; superseded for STR26001
+
+At that date, both guitars were built and wired to the specification below. The pickup, shield, pickguard, bridge, and diagram details for STR26001 in this section are historical and superseded by its 2026-10-10 revision above. The owner confirmed on 2026-09-25:
 
 - **Completion.** Both records use `completed: '2026-09-24'` with the date label **Built**. This supersedes the `started` date and the “Record date” label.
 - **Tuners.** Guyker locking tuners are confirmed on both guitars.
-- **Pickup shields.** All three Fender CuNiFe pickups on each guitar have isolated shield ground leads, tested by the owner. This settles the middle-cover concern for `STR26001`'s switched middle coil return.
+- **Pickup shields, historical for STR26001.** All three Fender CuNiFe pickups on each guitar had isolated shield ground leads, tested by the owner. This settled the middle-cover concern for the earlier `STR26001` pickup set; it provides no lead or shield evidence for the Tomatillo set.
 - **Specification status.** Treat every approved choice in this file as installed and confirmed. Earlier notes below that call parts unconfirmed, not installed, or not bench validated are historical.
 - **Wiring references, Rev 1.1.** The serial pages and diagrams now read as an as-built record rather than a build and test guide: the build outline, bench checks, and “meter before wiring” notes are removed. Each diagram title includes its serial, both diagrams describe the treble bleed in the same order (`BUS → (1,200 pF ∥ 150 kΩ) → junction → 20 kΩ → OUT`), and the `STR26002` selector table labels its columns by position. Rev 1.0 files are removed; the Rev 1.1 PNGs are `public/wiring-diagrams/STR26001-wiring-rev-1.1.png` and `STR26002-wiring-rev-1.1.png`.
 - **Owner copy.** “New” is removed from the pickup description, and repeated control wording is trimmed.
