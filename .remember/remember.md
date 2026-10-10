@@ -1,9 +1,10 @@
 # Handoff
 
-Updated 2026-10-08. Brief working state only; durable decisions live in the linked records.
+Updated 2026-10-10. Brief working state only; durable decisions live in the linked records.
 
 ## Current state
 
+- **STR26001 Tomatillo revision:** the owner approved a cream pickguard, Fender tremolo bridge, complete Fender Custom Shop Tomatillo pickup set, and the name Tomatillo S-Type. The record and Rev 2.0 wiring reference are updated in the local change; the replacement pickup installation and lead mapping are not yet owner-reported. See [the dated STR26001 revision](../docs/engineering/strat-cunife/README.md) and [Rev 2.0 netlist](../docs/engineering/strat-cunife/STR26001-wiring-reference.md). Next: merge and verify production deploy, then record physical lead/phase findings when available.
 - **TypeSafe pilots: done.** Ledger triage and the wiring-page check both run; see [the TypeSafe decision record](../docs/decisions/2026-10-01-typesafe-skill.md). No open questions.
 - **Wiring pages:** every published wiring page has a netlist document and passes `scripts/typesafe/check-wiring-pages.mjs` (0 priority-1 items, 0 table mismatches). The check is required before a wiring page is published or changed ([workflow](../docs/engineering/wiring-diagrams.md)).
 - **Extraction ledger:** conventions settled in [the ledger conventions record](../docs/decisions/2026-10-01-extraction-ledger-conventions.md). 47 candidates are promoted; the rest are indexed in the ledger.

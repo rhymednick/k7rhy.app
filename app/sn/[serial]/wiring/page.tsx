@@ -109,9 +109,9 @@ export default async function InstrumentWiringPage({ params }: Props) {
                     Parts
                 </h2>
                 <p className="text-slate-700 dark:text-slate-300">
-                    Pickup leads follow the{' '}
-                    <a href="https://www.fmicassets.com/Damroot/Original/10008/Diagram_0992367000_CuNiFe-Stratocaster-Pickup-Set.pdf" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
-                        Fender CuNiFe pickup-set diagram
+                    Manufacturer pickup specifications:{' '}
+                    <a href={reference.pickupReferenceUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                        {reference.pickupReferenceLabel}
                     </a>
                     .
                 </p>
@@ -190,6 +190,32 @@ export default async function InstrumentWiringPage({ params }: Props) {
                 </div>
                 <p className="text-sm text-muted-foreground">In the diagram’s rear pot view, the shaft points away and the lugs point down. Left, center, and right are clockwise end, wiper, and counterclockwise end.</p>
             </section>
+
+            {reference.buildOrder && (
+                <section className="space-y-3" aria-labelledby="build-order">
+                    <h2 id="build-order" className="text-2xl font-semibold">
+                        Build order
+                    </h2>
+                    <ol className="list-decimal space-y-2 pl-6 text-slate-700 dark:text-slate-300">
+                        {reference.buildOrder.map((step) => (
+                            <li key={step}>{step}</li>
+                        ))}
+                    </ol>
+                </section>
+            )}
+
+            {reference.benchChecks && (
+                <section className="space-y-3" aria-labelledby="bench-checks">
+                    <h2 id="bench-checks" className="text-2xl font-semibold">
+                        Bench checks
+                    </h2>
+                    <ol className="list-decimal space-y-2 pl-6 text-slate-700 dark:text-slate-300">
+                        {reference.benchChecks.map((check) => (
+                            <li key={check}>{check}</li>
+                        ))}
+                    </ol>
+                </section>
+            )}
         </main>
     );
 }

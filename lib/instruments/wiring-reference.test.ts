@@ -14,13 +14,14 @@ describe('instrument wiring references', () => {
         }
     });
 
-    it('records the instrument as built rather than as a build guide', () => {
+    it('keeps descriptive circuit data factual while including STR26001 service checks', () => {
         for (const reference of references) {
-            const text = JSON.stringify(reference);
+            const { buildOrder, benchChecks, ...descriptiveData } = reference;
+            const text = JSON.stringify(descriptiveData);
             expect(text).not.toMatch(/before (wiring|soldering|installing)|bench|tap-test|continuity meter|must be|identify (the|actual)|confirm/i);
-            expect(reference).not.toHaveProperty('buildSteps');
-            expect(reference).not.toHaveProperty('checks');
         }
+        expect(instrumentWiringReferences.STR26001.buildOrder?.length).toBeGreaterThan(0);
+        expect(instrumentWiringReferences.STR26001.benchChecks?.length).toBeGreaterThan(0);
     });
 
     it('describes the treble bleed in the same order on both instruments', () => {

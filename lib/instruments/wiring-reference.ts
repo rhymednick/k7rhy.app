@@ -8,6 +8,8 @@ export interface InstrumentWiringReference {
     diagramWidth: number;
     diagramHeight: number;
     diagramAlt: string;
+    pickupReferenceUrl: string;
+    pickupReferenceLabel: string;
     modeLabels: [string, string];
     positions: Array<[number, string, string]>;
     switchIntro: string;
@@ -15,6 +17,8 @@ export interface InstrumentWiringReference {
     modeSwitch: string;
     parts: string[];
     nets: Array<[string, string]>;
+    buildOrder?: string[];
+    benchChecks?: string[];
 }
 
 const trebleBleed = 'Treble bleed: a 1,200 pF capacitor in parallel with a 150 kΩ resistor, from the volume input, then a 20 kΩ resistor to the volume wiper.';
@@ -25,12 +29,14 @@ export const instrumentWiringReferences: Record<string, InstrumentWiringReferenc
         serial: 'STR26001',
         title: 'Series switching',
         summary: 'The five-way selector keeps the familiar S-type choices. The small switch changes the bridge-and-middle and middle-and-neck combinations from parallel to series; the single-pickup positions are unchanged.',
-        revision: '1.1',
-        revised: '2026-09-25',
-        diagram: '/wiring-diagrams/STR26001-wiring-rev-1.1.png',
+        revision: '2.0',
+        revised: '2026-10-10',
+        diagram: '/wiring-diagrams/STR26001-wiring-rev-2.0.png',
         diagramWidth: 2400,
         diagramHeight: 1810,
-        diagramAlt: 'STR26001 CuNiFe S-Type wiring reference showing Fender CuNiFe pickups, four-pole five-way super-switch contacts, a DPDT series switch, rear-view volume and tone controls, ten operating states, and common ground.',
+        diagramAlt: 'STR26001 Tomatillo S-Type wiring reference showing Fender Custom Shop Tomatillo pickups, four-pole five-way super-switch contacts, a DPDT series switch, rear-view volume and tone controls, ten operating states, and common ground.',
+        pickupReferenceUrl: 'https://www.fender.com/products/custom-shop-tomatillo-stratocaster-pickup-set',
+        pickupReferenceLabel: 'Fender Tomatillo pickup specifications',
         modeLabels: ['Normal', 'Series'],
         positions: [
             [1, 'Bridge', 'Bridge'],
@@ -46,8 +52,8 @@ export const instrumentWiringReferences: Record<string, InstrumentWiringReferenc
             ['C / J', 'open', 'B_H', 'open', 'N_H', 'open'],
             ['D / M_C', 'open', 'MR', 'GND', 'MR', 'open'],
         ],
-        modeSwitch: 'The DPDT has two independent poles. In normal mode, pole X joins OR to BUS and pole Y joins MR to GND. In series mode, X leaves OR open and Y joins MR to J, so the middle coil return feeds the selected outer pickup. OR and J are never joined. Each pickup has its own shield lead to GND, so the middle pickup stays shielded when M_C is switched.',
-        parts: ['Fender CuNiFe Stratocaster bridge, middle, and neck pickups, each with an isolated shield lead.', 'Four-pole five-way super switch and latching DPDT on-on micro switch.', controls, trebleBleed],
+        modeSwitch: 'The DPDT has two independent poles. In normal mode, pole X joins OR to BUS and pole Y joins MR to GND. In series mode, X leaves OR open and Y joins MR to J, so the middle coil return feeds the selected outer pickup. OR and J are never joined. M_C has no permanent ground connection; any separate shield on the actual pickup goes independently to GND.',
+        parts: ['Fender Custom Shop Tomatillo Stratocaster bridge, reverse-wound middle, and neck single-coil pickups with cloth-covered leads.', 'Four-pole five-way super switch and latching DPDT on-on micro switch.', controls, trebleBleed],
         nets: [
             ['B_H', 'Bridge hot to super-switch A1, B2, and C2.'],
             ['M_H', 'Middle hot to super-switch A2, A3, and A4.'],
@@ -58,8 +64,10 @@ export const instrumentWiringReferences: Record<string, InstrumentWiringReferenc
             ['TB_J', 'The 1,200 pF capacitor and 150 kΩ resistor run in parallel from BUS to TB_J. The 20 kΩ resistor runs from TB_J to OUT.'],
             ['TC_J', 'The A500K tone wiper runs through the 22 nF capacitor to GND. The tone pot CCW lug takes BUS; its CW lug is unused.'],
             ['OUT', 'Volume wiper, treble-bleed output, and output-jack tip.'],
-            ['GND', 'Bridge and neck coil returns; all three pickup shield leads; DPDT Y normal throw; volume track ground; tone-cap return; pot and switch cases, cavity shield, bridge/string ground, and jack sleeve.'],
+            ['GND', 'Bridge and neck coil returns; DPDT Y normal throw; volume track ground; tone-cap return; pot and switch cases, cavity shield, Fender tremolo/string ground, and jack sleeve.'],
         ],
+        buildOrder: ['Identify each pickup coil lead and map every contact of the actual super switch and DPDT by continuity.', 'Connect coil hots to the selector, keep M_C isolated from fixed ground, and wire the two DPDT poles as separate routes.', 'Wire BUS to master volume and tone, add the treble-bleed network and output jack, then bond all listed ground points.'],
+        benchChecks: ['Identify the actual coil hot and return leads with a meter. The middle coil return M_C must have no fixed connection to ground; ground a separate shield independently if present.', 'Map the actual super-switch and DPDT contacts by continuity before connecting the pickups. Keep OR and J separate.', 'Tap-test the pickups in all ten selector and mode states against the table above. Check electrical phase and hum in both paired positions.', 'Confirm clockwise volume and tone behavior, output-jack polarity, and continuity from the Fender tremolo and strings to jack sleeve.'],
     },
     STR26002: {
         serial: 'STR26002',
@@ -71,6 +79,8 @@ export const instrumentWiringReferences: Record<string, InstrumentWiringReferenc
         diagramWidth: 2400,
         diagramHeight: 1830,
         diagramAlt: 'STR26002 CuNiFe S-Type wiring reference showing Fender CuNiFe pickups, standard five-way contacts, an SPST neck-add switch, rear-view volume and tone controls, ten operating states, and common ground.',
+        pickupReferenceUrl: 'https://www.fmicassets.com/Damroot/Original/10008/Diagram_0992367000_CuNiFe-Stratocaster-Pickup-Set.pdf',
+        pickupReferenceLabel: 'Fender CuNiFe pickup-set diagram',
         modeLabels: ['Neck-add off', 'Neck-add on'],
         positions: [
             [1, 'Bridge', 'Bridge and neck in parallel'],
