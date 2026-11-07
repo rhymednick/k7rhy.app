@@ -7,8 +7,17 @@ const css = readFileSync(join(process.cwd(), 'app/sn/instrument-records.css'), '
 describe('instrument case-card print geometry', () => {
     it('fits Letter and A4 at 100% with printer-safe tolerance', () => {
         expect(css).toMatch(/@page\s*{[^}]*size:\s*auto;/s);
+        expect(css).toMatch(/@media print[\s\S]*?main:has\(\.instrument-case-card\)\s*{[\s\S]*?margin:\s*0\.35in auto 0;[\s\S]*?overflow:\s*hidden;/);
         expect(css).toMatch(/@media print[\s\S]*?main:has\(\.instrument-case-card\)\s*{[\s\S]*?width:\s*7\.2in;[\s\S]*?height:\s*9\.8in;/);
         expect(css).toMatch(/@media print[\s\S]*?\.instrument-case-card\s*{[\s\S]*?width:\s*7\.57in;[\s\S]*?height:\s*10\.3in;[\s\S]*?transform:\s*scale\(0\.95\);/);
+    });
+
+    it('suppresses browser page headers and footers with a zero page margin', () => {
+        expect(css).toMatch(/@page\s*{[^}]*margin:\s*0;/s);
+    });
+
+    it('collapses the screen-height layout wrapper so the card never spills onto a second page', () => {
+        expect(css).toMatch(/@media print[\s\S]*?body:has\(\.instrument-case-card\) \.min-h-screen\s*{[\s\S]*?min-height:\s*0 !important;/);
     });
 
     it('keeps the dedicated print-spec root visible', () => {

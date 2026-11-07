@@ -1,6 +1,11 @@
+/*
+ * Case cards are always one page. A zero page margin leaves the browser no
+ * room for its own header/footer (title, URL, "Page 1 of N"); the printer-safe
+ * margin lives on the card's container instead.
+ */
 @page {
     size: auto;
-    margin: 0.35in;
+    margin: 0;
 }
 
 .instrument-case-card {
@@ -104,12 +109,27 @@
         display: none !important;
     }
 
+    /*
+     * The root layout's min-h-screen wrapper can resolve 100vh to the browser
+     * window rather than the sheet (Safari), which spills a blank second page.
+     * Collapse everything around the card to exactly one sheet's worth.
+     */
+    html:has(.instrument-case-card),
+    body:has(.instrument-case-card),
+    body:has(.instrument-case-card) .min-h-screen {
+        min-height: 0 !important;
+        height: auto !important;
+        overflow: hidden !important;
+    }
+
     main:has(.instrument-case-card) {
         display: block;
         position: relative;
         width: 7.2in;
         height: 9.8in;
-        margin: 0 auto;
+        margin: 0.35in auto 0;
+        overflow: hidden;
+        break-after: avoid;
     }
 
     .instrument-case-card {
