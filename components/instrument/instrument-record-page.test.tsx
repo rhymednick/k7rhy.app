@@ -41,6 +41,35 @@ describe('InstrumentRecordPage', () => {
         expect(screen.getByText('Structured specification')).toBeInTheDocument();
     });
 
+    it('shows additional exact-instrument photographs after the hero image', () => {
+        const images = [
+            { src: '/images/instruments/REX26001/front.jpg', alt: 'REX26001 front view' },
+            { src: '/images/instruments/REX26001/headstock.jpg', alt: 'Headstock' },
+            { src: '/images/instruments/REX26001/back.jpg', alt: 'Back' },
+        ];
+        render(
+            <InstrumentRecordPage record={{ ...record, images }}>
+                <div>Structured specification</div>
+            </InstrumentRecordPage>
+        );
+
+        const gallery = screen.getByRole('region', { name: 'Photographs' });
+        expect(gallery).toBeInTheDocument();
+        expect(screen.getAllByRole('img', { name: 'REX26001 front view' })).toHaveLength(1);
+        expect(screen.getByRole('img', { name: 'Headstock' })).toHaveAttribute('src', '/images/instruments/REX26001/headstock.jpg');
+        expect(screen.getByRole('img', { name: 'Back' })).toBeInTheDocument();
+    });
+
+    it('omits the photograph gallery when there is only a hero image', () => {
+        render(
+            <InstrumentRecordPage record={record}>
+                <div>Structured specification</div>
+            </InstrumentRecordPage>
+        );
+
+        expect(screen.queryByRole('region', { name: 'Photographs' })).not.toBeInTheDocument();
+    });
+
     it('renders the optional discovery link without replacing site navigation', () => {
         render(
             <InstrumentRecordPage record={record}>

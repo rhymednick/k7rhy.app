@@ -11,8 +11,6 @@ describe('STR26001 owner record', () => {
         expect(source).toContain("dateLabel: 'Built'");
         expect(source).not.toMatch(/^started:/m);
         expect(source).toContain("origin: 'Built by Rhy Mednick in Coupeville, Washington.'");
-        expect(source).toContain("src: '/images/instruments/STR26001/coming-soon.svg'");
-        expect(source).toContain("alt: 'Tomatillo S-Type photographs coming soon'");
         expect(source).toContain('Fender Custom Shop Tomatillo Stratocaster pickups');
         expect(source).toContain('Guyker locking tuners');
         expect(source).not.toMatch(/\bnew Fender/i);
@@ -21,6 +19,7 @@ describe('STR26001 owner record', () => {
         expect(source).toContain('maple neck');
         expect(source).toContain('cream pickguard');
         expect(source).toContain('Fender tremolo bridge');
+        expect(source).toContain('It weighs 8 lb (3.6 kg).');
         expect(source).not.toContain('bamboo pickguard');
         expect(source).toContain('A250K audio-taper master volume');
         expect(source).toContain('A500K audio-taper master tone');
@@ -50,13 +49,19 @@ describe('STR26001 owner record', () => {
         expect(source).not.toMatch(/in.progress|planned|pending|under review|unfinished/i);
     });
 
-    it('shows a coming-soon placeholder until photographs are added', () => {
-        const path = join(process.cwd(), 'public/images/instruments/STR26001/coming-soon.svg');
-        expect(existsSync(path)).toBe(true);
-        const svg = readFileSync(path, 'utf8');
-        expect(svg).toMatch(/photos coming soon/i);
-        expect(svg).toContain('Tomatillo S-Type');
-        expect(svg).not.toContain('STR26001');
-        expect(existsSync(join(process.cwd(), 'public/images/instruments/STR26001/placeholder.svg'))).toBe(false);
+    it('leads with the full-front photograph and ships every listed photograph', () => {
+        const source = readFileSync(join(process.cwd(), 'content/instruments/STR26001.mdx'), 'utf8');
+        const srcs = [...source.matchAll(/src: '([^']+)'/g)].map((m) => m[1]);
+        expect(srcs[0]).toBe('/images/instruments/STR26001/front.jpg');
+        expect(srcs.length).toBeGreaterThan(1);
+        for (const src of srcs) {
+            expect(src).toMatch(/^\/images\/instruments\/STR26001\/[a-z-]+\.jpg$/);
+            expect(existsSync(join(process.cwd(), 'public', src))).toBe(true);
+            const bytes = readFileSync(join(process.cwd(), 'public', src));
+            expect(bytes.length).toBeLessThan(300_000);
+            expect(bytes.includes(Buffer.from('Exif'))).toBe(false);
+        }
+        expect(source).not.toMatch(/coming-soon|photographs coming soon/i);
+        expect(existsSync(join(process.cwd(), 'public/images/instruments/STR26001/coming-soon.svg'))).toBe(false);
     });
 });
