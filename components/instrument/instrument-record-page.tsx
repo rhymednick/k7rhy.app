@@ -11,7 +11,7 @@ export interface InstrumentRecordPageProps {
 }
 
 export function InstrumentRecordPage({ record, children }: InstrumentRecordPageProps) {
-    const primaryImage = record.images[0];
+    const [primaryImage, ...galleryImages] = record.images;
     const dateLabel = record.completed ? instrumentDateLabel(record.dateLabel) : record.dateLabel?.trim() || 'Build started';
     const displayDate = record.completed ?? record.started;
 
@@ -66,6 +66,21 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
             <article className="space-y-8" aria-label={`${record.name} instrument details`}>
                 {children}
             </article>
+
+            {galleryImages.length > 0 && (
+                <section aria-labelledby="instrument-photographs-heading" className="space-y-4">
+                    <h2 id="instrument-photographs-heading" className="text-2xl font-semibold tracking-tight">
+                        Photographs
+                    </h2>
+                    <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
+                        {galleryImages.map((image) => (
+                            <figure key={image.src} className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border/60 bg-slate-100 dark:bg-slate-900">
+                                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="(min-width: 768px) 33vw, 50vw" />
+                            </figure>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             {record.related && (
                 <aside className="flex flex-col gap-5 rounded-2xl border border-sky-200 bg-gradient-to-r from-sky-50 to-emerald-50 p-6 dark:border-sky-900/70 dark:from-sky-950/30 dark:to-emerald-950/20 sm:flex-row sm:items-center sm:justify-between">
