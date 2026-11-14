@@ -50,15 +50,36 @@ export const liveDeps: SyncDeps = {
     alert: sendSalesAlert,
 };
 
-interface ShopifyOrder {
+export interface ShopifyOrder {
+    id?: number | string;
     name?: string;
+    email?: string | null;
+    test?: boolean;
     line_items?: { product_id?: number | string | null; title?: string }[];
 }
 
+/**
+ * Shopify's "Send test" notification builds its sample order from real store
+ * products, so on 2026-11-13 a test ended the amp's live Reverb listing.
+ * Never act on anything that looks like a test or sample order.
+ */
+export function isShopifyTestOrder(order: ShopifyOrder, testHeader: string | null = null): boolean {
+    if (testHeader?.toLowerCase() === 'true') return true;
+    if (order.test === true) return true;
+    if (order.name === '#9999' || String(order.id ?? '') === '820982911946154508') return true;
+    if (typeof order.email === 'string' && /@example\.(com|org|net)$/i.test(order.email)) return true;
+    return false;
+}
+
 /** A Shopify order came in: end the matching Reverb listings, or flag a double sale. */
-export async function handleShopifyOrder(order: ShopifyOrder, deps: SyncDeps = liveDeps): Promise<string[]> {
+export async function handleShopifyOrder(order: ShopifyOrder, deps: SyncDeps = liveDeps, options: { testHeader?: string | null } = {}): Promise<string[]> {
     const results: string[] = [];
     const orderName = order.name ?? 'a Shopify order';
+    if (isShopifyTestOrder(order, options.testHeader ?? null)) {
+        const message = `🧪 Ignored a Shopify test notification (${orderName}). Nothing on Reverb was changed.`;
+        await deps.alert(message);
+        return [message];
+    }
     const productIds = [...new Set((order.line_items ?? []).map((item) => item.product_id).filter((id): id is number | string => id !== null && id !== undefined))];
 
     for (const productId of productIds) {

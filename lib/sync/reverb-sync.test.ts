@@ -59,6 +59,23 @@ describe('handleShopifyOrder', () => {
         expect(d.alerts[0]).toMatch(/End it by hand/);
     });
 
+    it('never touches Reverb for a Shopify test notification', async () => {
+        for (const testOrder of [
+            { ...order, test: true },
+            { ...order, name: '#9999' },
+            { ...order, email: 'jon@example.com' },
+        ]) {
+            const d = deps();
+            await handleShopifyOrder(testOrder, d);
+            expect(d.lookupByProductId).not.toHaveBeenCalled();
+            expect(d.endListing).not.toHaveBeenCalled();
+            expect(d.alerts[0]).toMatch(/Ignored a Shopify test notification/);
+        }
+        const d = deps();
+        await handleShopifyOrder(order, d, { testHeader: 'true' });
+        expect(d.endListing).not.toHaveBeenCalled();
+    });
+
     it('ignores products with no Reverb listing', async () => {
         const d = deps({ lookupByProductId: vi.fn(async () => ({ handle: 'kit', title: 'Kit', reverbListingId: null })) });
         expect(await handleShopifyOrder(order, d)).toEqual([]);

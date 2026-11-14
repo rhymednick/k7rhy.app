@@ -99,6 +99,8 @@ These live in the Netlify site environment. The owner creates and pastes all sec
 Shopify webhooks (Settings → Notifications → Webhooks → Create webhook, format JSON, URL `https://k7rhy.app/api/shopify/webhooks`):
 - **Order creation** only. Don't add a Product update webhook; prices never flow from Shopify to Reverb.
 
+**Never click "Send test" on this webhook.** Shopify builds its sample order from real store products. On 2026-11-13 a test ended the amp's live Reverb listing. The handler now ignores anything that looks like a test order (the `test` flag, the sample `#9999` name or ID, or an `@example.com` email) and posts 🧪 to Discord instead. But a sample that matches none of those would still look like a real sale.
+
 Without a variable, its feature degrades safely:
 - **No Storefront token:** no Reverb linking at all.
 - **No Reverb token:** sale alerts still post, asking for a manual Reverb end.
