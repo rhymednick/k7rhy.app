@@ -96,7 +96,7 @@ export function buildReverbListing(product: ShopifyProductPayload, fields: Rever
         ...(fields.reverbFinish?.trim() ? { finish: fields.reverbFinish.trim() } : {}),
         year: String(now.getFullYear()),
         title: product.title || fields.title,
-        description: sanitizeDescriptionHtml(product.body_html ?? ''),
+        description: reverbDescription(product.body_html),
         condition: { uuid: REVERB_CONDITION_BRAND_NEW },
         categories: [{ uuid: defaults.reverbCategoryUuid }],
         photos: (product.images ?? []).map((image) => image.src).filter(Boolean),
@@ -122,6 +122,18 @@ export function buildReverbListing(product: ShopifyProductPayload, fields: Rever
         },
         draft: { ...base, publish: false },
     };
+}
+
+/**
+ * The Shopify description as Reverb receives it: sanitized, with every link
+ * unwrapped to its text. Reverb listings can't send buyers off Reverb, so links
+ * that belong on the website (to Relay pages, serial records, and so on) stay
+ * on Shopify and k7rhy.app only.
+ */
+export function reverbDescription(html: string | undefined | null): string {
+    return sanitizeDescriptionHtml(html ?? '')
+        .replace(/<a\b[^>]*>/gi, '')
+        .replace(/<\/a\s*>/gi, '');
 }
 
 /** Plain text of an HTML description, for comparing Shopify's copy with Reverb's. */

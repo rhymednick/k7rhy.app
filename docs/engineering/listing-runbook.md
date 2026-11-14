@@ -17,7 +17,8 @@ How to list an item for sale across channels. Follow this every time; don't re-d
   - Their listings include: "The body and neck are factory-made; I chose the parts, wired the electronics, and assembled it here in Coupeville."
   - Hand-wired amps keep "Hand-Built" and are Handmade on Reverb.
   - Copy is first person singular ("I", never "we").
-- **Serial records:** catalog listings never link to `/sn/...` pages. Mentioning the QR code on the headstock is fine. The sync strips any `/sn/` link from the description it sends to Reverb.
+- **Serial records:** catalog listings never link to `/sn/...` pages. Mentioning the QR code on the headstock is fine.
+- **Links:** Shopify and site descriptions may link to k7rhy.app pages, such as the Relay voicings. Reverb listings can't send buyers off Reverb, so the sync unwraps every link to plain text in the description it sends to Reverb, on create and on every later edit (`reverbDescription` in `lib/sync/reverb-listing.ts`). Write linked sentences so they still read well as plain text.
 - **Facebook Marketplace:**
   - Listings are local pickup only, from a personal profile, with a 10-photo limit.
   - There's no API, so it's always updated by hand.
