@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { handleShopifyOrder } from '@/lib/sync/reverb-sync';
+import { handleShopifyOrder, type ShopifyOrder } from '@/lib/sync/reverb-sync';
 import { verifyShopifyWebhook } from '@/lib/sync/shopify-webhook';
 
 export const dynamic = 'force-dynamic';
@@ -26,7 +26,10 @@ export async function POST(request: Request) {
 
     try {
         if (topic === 'orders/create') {
-            await handleShopifyOrder(payload as Parameters<typeof handleShopifyOrder>[0]);
+            const order = payload as ShopifyOrder;
+            // A safe summary (no customer details) so test and real deliveries can be told apart in the Netlify log.
+            console.log('[shopify-webhook] orders/create', JSON.stringify({ name: order.name, test: order.test, testHeader: request.headers.get('x-shopify-test'), productIds: (order.line_items ?? []).map((item) => item.product_id) }));
+            await handleShopifyOrder(order, undefined, { testHeader: request.headers.get('x-shopify-test') });
         }
     } catch (error) {
         // Answer 200 anyway: the handlers already alert on failures, and a Shopify retry won't fix them.

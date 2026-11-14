@@ -4,7 +4,7 @@
 - **Status:**
   - Implemented and deployed (PR #144, 2026-11-13).
   - Validated: the Order creation webhook's signature check (Shopify test notification accepted 2026-11-13) and the page check against live Reverb listings from Netlify (once reads were signed).
-  - Not yet exercised by a real sale: ending a Reverb listing and the Discord alerts. The end-listing reason value (`not_sold`) stays unverified until the first real end.
+  - Ending a listing (reason `not_sold`) and the Discord alert both ran during the 2026-11-13 test incident below. A real sale hasn't run yet.
 - **Builds on:** `docs/decisions/2026-11-13-shopify-driven-shop.md`.
 
 ## Decision
@@ -34,6 +34,15 @@ Keep Reverb and Shopify consistent for one-off items using only event-driven che
 - Shopify's in-checkout validation with outside calls is limited to Enterprise (Plus) stores.
 - Shopify no longer lets stores create Admin API tokens from the admin (since 2026-01-01), so this design avoids the Admin API. Shopify webhooks come from Settings → Notifications, and the Reverb ID is read through the existing Headless Storefront token.
 
+## Incident: a Shopify test ended a live Reverb listing (2026-11-13)
+
+The owner used "Send test" on the new Order creation webhook. Shopify's sample order used the real 5E3 amp product, so the handler ended the amp's live Reverb listing (101259462) with the no-fee "not sold" reason. This also confirmed the end-listing call and reason work.
+
+Fix:
+- The handler skips orders flagged `test`, carrying Shopify's sample name `#9999` or ID, or with an `@example.com` email, and posts 🧪 to Discord instead.
+- Every order delivery logs a summary (no customer details) to the Netlify log.
+- The runbook says never to use "Send test" on this webhook.
+
 ## Known gap
 
 A buyer who goes straight to shop.k7rhy.app after a Reverb sale, without anyone opening the k7rhy.app product page, can still check out. The order webhook then flags the double sale immediately, so the owner can cancel before shipping.
@@ -43,6 +52,5 @@ This closes if Reverb grants OAuth access with the `orders/paid` webhook (ask in
 ## Unresolved
 
 - **Reverb blocks unsigned reads from Netlify:** on the PR #144 preview, Reverb returned 403 to the page check's public read. The same request works from a home connection, so the block is likely on cloud-server addresses. The client now signs reads with `REVERB_API_TOKEN` when it is set. Re-test the page check after the token is in Netlify. If Reverb still returns 403, the page check can't run from Netlify, but the Shopify webhooks may still work, since they use signed calls.
-- **End reason:** confirm Reverb accepts `{"reason": "not_sold"}` on `PUT /api/my/listings/{id}/state/end`. If the first real end fails, the alert says to end it by hand.
 - **STR26001's Shopify price:** it is $799. The rule gives $800 from its $845 Reverb price. Nothing changes it automatically; the owner decides whether to keep $799.
 - **Automatic Reverb → Shopify price sync:** not built. It needs a Shopify Admin token (a Dev Dashboard app using client credentials) and a trigger. A product page opening is the natural no-polling trigger, since that check already reads the Reverb listing.
