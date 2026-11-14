@@ -1,81 +1,76 @@
-// PRS26001 circuit source of truth. PRS26001-wiring-reference.md describes this
-// netlist in prose and tables; check-netlist.mjs simulates every operating state
-// from it; generate-PRS26001-wiring-reference.mjs draws its switch tables from it.
+// PRS26001 circuit source of truth (Rev 2.0, from in-circuit measurements).
+// PRS26001-wiring-reference.md describes it; check-netlist.mjs simulates every
+// selector position, compares DC resistance with the owner's readings, and
+// checks the tone bypass; generate-PRS26001-wiring-reference.mjs draws its
+// switch tables from it.
 
-// Seymour Duncan four-conductor convention. The slug coil is north (black start,
-// white finish); the screw coil is south (green start, red finish). Both pickups
-// are mounted with the screw coil toward the bridge, so the inside coils are the
-// bridge slug coil and the neck screw coil.
-// `plus` is the end that faces BUS when the coil is in phase.
+// Seymour Duncan four-conductor convention: black = slug-coil start (hot),
+// white = slug-coil finish, red = screw-coil finish, green + bare = ground.
+// White and red stay joined as each pickup's series link (B_L, N_L).
+// Coil resistances are nominal halves of each humbucker's measured total.
 export const coils = [
-    { id: 'BN', name: 'Bridge slug coil (north)', plus: 'BUS', minus: 'B_W' },
-    { id: 'BS', name: 'Bridge screw coil (south)', plus: 'B_R', minus: 'GND' },
-    { id: 'NN', name: 'Neck slug coil (north)', plus: 'BUS', minus: 'N_W' },
-    { id: 'NS', name: 'Neck screw coil (south)', plus: 'N_R', minus: 'GND' },
+    { id: 'BN', name: 'Bridge slug coil', a: 'B_H', b: 'B_L', ohms: 3500 },
+    { id: 'BS', name: 'Bridge screw coil', a: 'B_L', b: 'GND', ohms: 3500 },
+    { id: 'NN', name: 'Neck slug coil', a: 'N_H', b: 'N_L', ohms: 3975 },
+    { id: 'NS', name: 'Neck screw coil', a: 'N_L', b: 'GND', ohms: 3975 },
 ];
 
 export const resistors = [
-    { id: 'RB', value: '1.8 kΩ', a: 'B_SP', b: 'GND', role: 'Bridge partial split: shunts the bridge screw coil' },
-    { id: 'RN', value: '1.8 kΩ', a: 'N_SP', b: 'BUS', role: 'Neck partial split: shunts the neck slug coil' },
+    { id: 'RB', value: '1.8 kΩ', ohms: 1800, a: 'B_SP', b: 'GND', role: 'Bridge partial split' },
+    { id: 'RN', value: '1.8 kΩ', ohms: 1800, a: 'N_SP', b: 'GND', role: 'Neck partial split' },
+    { id: 'VOL', value: '500 kΩ', ohms: 500000, a: 'BUS', b: 'GND', role: 'Volume track (full up: wiper at BUS end)' },
 ];
 
 export const positions = [1, 2, 3, 4, 5];
-export const modes = ['down', 'up'];
 
 // Four-pole five-way super switch. Each common closes to one throw per position.
 export const superSwitch = [
-    { pole: 'A', common: 'B_W', throws: ['X', 'B_SP', 'X', 'open', 'open'] },
-    { pole: 'B', common: 'B_R', throws: ['Y', 'B_SP', 'Y', 'open', 'open'] },
-    { pole: 'C', common: 'N_W', throws: ['open', 'N_SP', 'X', 'N_SP', 'X'] },
-    { pole: 'D', common: 'N_R', throws: ['open', 'N_SP', 'Y', 'N_SP', 'Y'] },
+    { pole: 'A', common: 'BUS', throws: ['B_H', 'B_H', 'B_H', 'open', 'open'] },
+    { pole: 'B', common: 'BUS', throws: ['open', 'open', 'N_H', 'N_H', 'N_H'] },
+    { pole: 'C', common: 'B_L', throws: ['open', 'B_SP', 'B_SP', 'open', 'open'] },
+    { pole: 'D', common: 'N_L', throws: ['open', 'open', 'N_SP', 'N_SP', 'open'] },
 ];
 
-// DPDT on the master-tone push-pull pot.
+// DPDT on the master-tone push-pull pot. Pole P lifts the tone capacitor
+// when pulled up; pole Q is unused.
 export const pushPull = [
-    { pole: 'P', common: 'X', down: 'Y', up: 'GND' },
-    { pole: 'Q', common: 'Y', down: 'open', up: 'BUS' },
+    { pole: 'P', common: 'TC_R', down: 'GND', up: 'open' },
+    { pole: 'Q', common: 'open', down: 'open', up: 'open' },
 ];
 
 export const nets = [
-    ['BUS', 'Bridge and neck black (slug-coil start) leads; DPDT Q up throw; 1.8 kΩ neck split resistor; volume CW lug; tone CCW lug'],
-    ['B_W', 'Bridge white (slug-coil finish); super-switch A common'],
-    ['B_R', 'Bridge red (screw-coil finish); super-switch B common'],
-    ['N_W', 'Neck white (slug-coil finish); super-switch C common'],
-    ['N_R', 'Neck red (screw-coil finish); super-switch D common'],
-    ['X', 'Super-switch A1, A3, C3, C5; DPDT P common'],
-    ['Y', 'Super-switch B1, B3, D3, D5; DPDT P down throw; DPDT Q common'],
-    ['B_SP', 'Super-switch A2, B2; 1.8 kΩ bridge split resistor to GND'],
-    ['N_SP', 'Super-switch C2, C4, D2, D4; 1.8 kΩ neck split resistor to BUS'],
-    ['OUT', 'Volume wiper; output-jack tip'],
-    ['TC_J', 'Tone wiper; 0.022 µF film capacitor to GND'],
-    ['GND', 'Bridge and neck green and bare leads; DPDT P up throw; 1.8 kΩ bridge split resistor; volume CCW lug; tone capacitor return; pot cases, switch frame, bridge/string ground, jack sleeve'],
+    ['B_H', 'Bridge black lead; super-switch A1, A2, A3'],
+    ['N_H', 'Neck black lead; super-switch B3, B4, B5'],
+    ['B_L', 'Bridge white and red leads joined (series link); super-switch C common'],
+    ['N_L', 'Neck white and red leads joined (series link); super-switch D common'],
+    ['B_SP', 'Super-switch C2, C3; 1.8 kΩ bridge split resistor to GND'],
+    ['N_SP', 'Super-switch D3, D4; 1.8 kΩ neck split resistor to GND'],
+    ['BUS', 'Super-switch A and B commons; 500 kΩ volume CW lug; 180 pF treble-bleed capacitor; 500 kΩ tone CCW lug'],
+    ['OUT', 'Volume wiper; treble-bleed capacitor; output-jack tip'],
+    ['TC_J', 'Tone wiper; 0.022 µF film capacitor'],
+    ['TC_R', 'Tone capacitor return; push-pull P common'],
+    ['GND', 'Bridge and neck green and bare leads; both 1.8 kΩ split resistors; push-pull P down throw; volume CCW lug; pot cases, switch frame, cavity shielding, bridge/string ground, jack sleeve'],
 ];
 
-// Expected state of every coil, written by hand from the voice map in
-// content/instruments/PRS26001.mdx. check-netlist.mjs derives the same from
-// the switch tables and fails on any difference.
-// series: the coil carries signal in series with its partner.
-// parallel: the coil spans BUS to GND directly.
-// shunted: the coil is bridged by its 1.8 kΩ split resistor.
-// off: the coil carries no signal.
+// Owner's readings, 2026-11-13: tip to sleeve at the output jack, volume full
+// up, identical with the tone pushed down or pulled up.
+export const measuredOhms = { 1: 7000, 2: 4800, 3: 2520, 4: 5300, 5: 7950 };
+
+// Expected coil roles, written by hand. series: full humbucker coil.
+// shunted: bridged by its 1.8 kΩ split resistor. off: carries no signal.
 export const expected = {
-    '1-down': { BN: 'series', BS: 'series', NN: 'off', NS: 'off' },
-    '1-up': { BN: 'parallel', BS: 'parallel', NN: 'off', NS: 'off' },
-    '2-down': { BN: 'series', BS: 'shunted', NN: 'shunted', NS: 'series' },
-    '2-up': { BN: 'series', BS: 'shunted', NN: 'shunted', NS: 'series' },
-    '3-down': { BN: 'series', BS: 'series', NN: 'series', NS: 'series' },
-    '3-up': { BN: 'parallel', BS: 'parallel', NN: 'parallel', NS: 'parallel' },
-    '4-down': { BN: 'off', BS: 'off', NN: 'shunted', NS: 'series' },
-    '4-up': { BN: 'off', BS: 'off', NN: 'shunted', NS: 'series' },
-    '5-down': { BN: 'off', BS: 'off', NN: 'series', NS: 'series' },
-    '5-up': { BN: 'off', BS: 'off', NN: 'parallel', NS: 'parallel' },
+    1: { BN: 'series', BS: 'series', NN: 'off', NS: 'off' },
+    2: { BN: 'series', BS: 'shunted', NN: 'off', NS: 'off' },
+    3: { BN: 'series', BS: 'shunted', NN: 'series', NS: 'shunted' },
+    4: { BN: 'off', BS: 'off', NN: 'series', NS: 'shunted' },
+    5: { BN: 'off', BS: 'off', NN: 'series', NS: 'series' },
 };
 
 // Owner-facing table, shared with the wiring page and the drawing.
 export const operatingStates = [
-    [1, 'Bridge humbucker, coils in series', 'Bridge humbucker, coils in parallel'],
-    [2, 'Bridge slug coil and neck screw coil, each partial split', 'Bridge slug coil and neck screw coil, each partial split'],
-    [3, 'Both humbuckers, coils in series', 'Both humbuckers, coils in parallel'],
-    [4, 'Neck screw coil, partial split', 'Neck screw coil, partial split'],
-    [5, 'Neck humbucker, coils in series', 'Neck humbucker, coils in parallel'],
+    [1, 'Bridge humbucker', 'Bridge humbucker, tone bypassed'],
+    [2, 'Bridge partial split', 'Bridge partial split, tone bypassed'],
+    [3, 'Bridge and neck partial splits together', 'Bridge and neck partial splits together, tone bypassed'],
+    [4, 'Neck partial split', 'Neck partial split, tone bypassed'],
+    [5, 'Neck humbucker', 'Neck humbucker, tone bypassed'],
 ];

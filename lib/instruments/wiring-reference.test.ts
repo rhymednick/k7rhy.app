@@ -35,6 +35,9 @@ describe('instrument wiring references', () => {
         const reference = instrumentWiringReferences.PRS26001;
         expect(reference.positions).toEqual(netlist.operatingStates);
         expect(reference.contacts).toEqual(netlist.superSwitch.map((p: { pole: string; common: string; throws: string[] }) => [`${p.pole} / ${p.common}`, ...p.throws]));
+        for (const [position, ohms] of Object.entries(netlist.measuredOhms as Record<string, number>)) {
+            expect(reference.measurements).toContain(`position ${position}, ${(ohms / 1000).toFixed(ohms % 100 ? 2 : 1)} kΩ`);
+        }
     });
 
     it('returns undefined for a serial without a wiring reference', () => {

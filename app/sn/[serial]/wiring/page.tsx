@@ -102,6 +102,7 @@ export default async function InstrumentWiringPage({ params }: Props) {
                         </tbody>
                     </table>
                 </div>
+                {reference.measurements && <p className="text-slate-700 dark:text-slate-300">{reference.measurements}</p>}
             </section>
 
             <section className="space-y-3" aria-labelledby="parts-and-leads">

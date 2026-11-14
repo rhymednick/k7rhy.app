@@ -87,7 +87,7 @@ The short theme statement on the case card will preserve this idea in compact fo
 
 ## Installed Electronics
 
-> **Superseded 2026-11-13:** the wiring source is now [`docs/engineering/prs26001/PRS26001-wiring-reference.md`](../../engineering/prs26001/PRS26001-wiring-reference.md), derived from the installed parts and voice map at the owner's direction. The lug-by-lug PDF below does not describe a buildable circuit; see that file for why.
+> **Superseded 2026-11-13:** the wiring source is now [`docs/engineering/prs26001/PRS26001-wiring-reference.md`](../../engineering/prs26001/PRS26001-wiring-reference.md) (Rev 2.0), validated by the owner's cavity photos and in-circuit resistance readings. The voice map below is also superseded: position 2 is a bridge partial split, position 3 is both partial splits, and the push-pull is a tone bypass, not series/parallel switching.
 
 The two supplied PDFs are the authoritative as-built wiring source. The HTML guide is treated as an earlier planning document where it conflicts with the PDFs.
 
