@@ -4,7 +4,7 @@ name: 'PRS SE Custom 24 Burled Ash'
 completed: '2026'
 dateLabel: 'Modified'
 origin: 'A 2024-production PRS SE Custom 24 Burled Ash Limited Edition, upgraded and individually voiced by K7RHY Resonance Lab in 2026.'
-theme: 'Warm Alnico II authority, partial-split snap, and articulate parallel cleans—voiced for blues, funk, soul, folk, jazz, yacht rock, and expressive clean-to-edge-of-breakup playing.'
+theme: 'Warm Alnico II authority, partial-split snap, and a one-pull tone bypass—voiced for blues, funk, soul, folk, jazz, yacht rock, and expressive clean-to-edge-of-breakup playing.'
 images:
     - src: '/images/instruments/PRS26001/front.jpg'
       alt: 'Natural-finish PRS SE Custom 24 Burled Ash reference guitar, full front view'
@@ -14,28 +14,28 @@ images:
     <PickupConfiguration>
         <Pickup position="bridge" type="humbucker" brand="Seymour Duncan" model="APH-1b Alnico II Pro">
             <PickupDetail label="Magnet">Alnico II</PickupDetail>
-            <PickupDetail label="Split coil">Slug coil (inside)</PickupDetail>
+            <PickupDetail label="Split">Partial, 1.8 kΩ</PickupDetail>
         </Pickup>
         <Pickup position="neck" type="humbucker" brand="Seymour Duncan" model="APH-1n Alnico II Pro">
             <PickupDetail label="Magnet">Alnico II</PickupDetail>
-            <PickupDetail label="Split coil">Screw coil (inside)</PickupDetail>
+            <PickupDetail label="Split">Partial, 1.8 kΩ</PickupDetail>
         </Pickup>
     </PickupConfiguration>
 
     <ControlLayout>
         <Selector label="Pickup selector" positions={5}>
             <SelectorPosition voice="Bridge — Full Punch">The full bridge humbucker: firm lows, a rounded attack, and enough output for rhythm or lead.</SelectorPosition>
-            <SelectorPosition voice="Inside Coils — Money Funk">The two inside coils together, each partly split: bright, percussive, and hum-canceling, with more body than a hard split.</SelectorPosition>
-            <SelectorPosition voice="Both Humbuckers — Wide Blend">Both humbuckers together: broad, creamy, and balanced.</SelectorPosition>
-            <SelectorPosition voice="Neck Partial Split — Touch Voice">The neck pickup's inside coil, partly split: open and responsive like a single coil, but with more body.</SelectorPosition>
+            <SelectorPosition voice="Bridge Partial Split — Snap">The bridge pickup partly split: brighter and quicker than the full humbucker, with more body than a hard split.</SelectorPosition>
+            <SelectorPosition voice="Both Partial Splits — Money Funk">Both pickups partly split and played together: open, percussive, and airy.</SelectorPosition>
+            <SelectorPosition voice="Neck Partial Split — Touch Voice">The neck pickup partly split: open and responsive like a single coil, but with more body.</SelectorPosition>
             <SelectorPosition voice="Neck — Warm Voice">The full neck humbucker: warm, articulate, and expressive.</SelectorPosition>
         </Selector>
         <Pot label="Master volume" mechanism="standard">
-            <PotPosition position="normal" voice="Master output">Sets the overall level in every selector position and in both tone-knob modes.</PotPosition>
+            <PotPosition position="normal" voice="Master output">Sets the overall level. A treble bleed keeps the highs as you turn it down.</PotPosition>
         </Pot>
         <Pot label="Master tone" mechanism="push-pull">
-            <PotPosition position="down" voice="Core mode">The tone control rolls off treble as usual. Positions 1, 3, and 5 use full series humbuckers.</PotPosition>
-            <PotPosition position="up" voice="Refined / clean mode" printDescription="Tone still works. Positions 1, 3, and 5 switch to parallel humbuckers: clearer, lower output, still hum-canceling. Positions 2 and 4 don't change.">The tone control still works. Positions 1, 3, and 5 switch each humbucker's coils to parallel: clearer and lower in output, and still hum-canceling. Positions 2 and 4 don't change.</PotPosition>
+            <PotPosition position="down" voice="Tone on">The tone control rolls off treble as usual, in every selector position.</PotPosition>
+            <PotPosition position="up" voice="Tone bypass" printDescription="Takes the tone control out: full brightness, and the knob has no effect. Push down to return to the knob's setting.">Takes the tone control out of the circuit for full brightness; the knob has no effect. Push it back down to return to wherever the knob was set, so the knob works like a preset.</PotPosition>
         </Pot>
     </ControlLayout>
 
@@ -53,18 +53,18 @@ While other K7RHY guitars were being designed, assembled, and evaluated, this wa
 
 The Alnico II Pro pickups give the guitar a warm, touch-sensitive center. The two controls work like any two-knob guitar, and the five-way selector moves from bridge to neck in order.
 
-Positions 1, 3, and 5 are full humbucker sounds with the weight for stronger rhythm parts and sustained leads. Positions 2 and 4 use partial splits: one coil of each selected pickup is mostly bypassed, not cut off completely, so these voices sound open and quick without turning thin. Position 2 pairs the two coils nearest the middle of the guitar, and those two coils cancel hum.
+Positions 1 and 5 are the full humbuckers, with the weight for stronger rhythm parts and sustained leads. Positions 2, 3, and 4 use partial splits: one coil of each selected pickup is mostly bypassed, not cut off completely, so these voices sound open and quick without turning thin. Position 3 plays both partly split pickups together.
 
-Pulling the tone knob up gives three more voices. Positions 1, 3, and 5 become clearer and lower in output while still canceling hum, which suits clean playing and riding the volume knob into light breakup. Positions 2 and 4 stay the same, so the selector behaves predictably in either mode.
+Pulling the tone knob up takes the tone control out of the circuit. Set the knob where you like it for a darker sound, then pull up for full brightness and push down to get your setting back, without reaching for the knob mid-song.
 
-Together, the eight voices suit blues, funk, soul, folk, jazz, and yacht rock, and especially expressive playing that moves between clean and the edge of breakup, where changes in touch and guitar volume stay easy to hear.
+The guitar suits blues, funk, soul, folk, jazz, and yacht rock, and especially expressive playing that moves between clean and the edge of breakup, where changes in touch and guitar volume stay easy to hear.
 
 ## Electronics
 
-The factory electronics were replaced with a Seymour Duncan APH-1b/APH-1n Alnico II Pro set, both mounted with the screw coil toward the bridge. The selector is an Oak Grigsby four-pole five-way super switch. The controls are a 500 kΩ master volume and a 500 kΩ push-pull master tone with a 0.022 µF film capacitor.
+The factory electronics were replaced with a Seymour Duncan APH-1b/APH-1n Alnico II Pro set, both mounted with the screw coil toward the bridge. The selector is an Oak Grigsby four-pole five-way super switch. The 500 kΩ master volume has a 180 pF treble-bleed capacitor. The 500 kΩ push-pull master tone uses a 0.022 µF film capacitor, which the push-pull disconnects when pulled up. The control cavity is shielded with copper foil.
 
-Each partial split bridges one coil with a 1.8 kΩ resistor. The bridge split keeps the bridge slug coil; the neck split keeps the neck screw coil. Both are the inside coils, nearest the middle of the guitar. The push-pull's two poles change every selected humbucker between series and parallel, and are not used in the split positions.
+Each partial split bridges one coil of a pickup with a 1.8 kΩ resistor: the bridge pickup in positions 2 and 3, the neck pickup in positions 3 and 4.
 
 ## Wiring reference
 
-[Open the wiring reference](/sn/PRS26001/wiring) for the full-size diagram, switch contacts, and connection map.
+[Open the wiring reference](/sn/PRS26001/wiring) for the full-size diagram, switch contacts, connection map, and measured resistance in each position.

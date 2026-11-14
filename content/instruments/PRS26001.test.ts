@@ -20,13 +20,14 @@ describe('PRS26001 permanent record', () => {
         expect(source).toContain('platform-reference instrument');
     });
 
-    it('records the split coils and links the wiring reference', () => {
+    it('records the measured switching and links the wiring reference', () => {
         const source = readFileSync(path, 'utf8');
 
         expect(source).toContain('four-pole five-way super switch');
         expect(source).toContain('1.8 kΩ');
-        expect(source).toContain('bridge slug coil');
-        expect(source).toContain('neck screw coil');
+        expect(source).toContain('180 pF treble-bleed');
+        expect(source).toContain('voice="Tone bypass"');
+        expect(source).not.toMatch(/parallel|inside coil|eight voices/i);
         expect(source).toContain('(/sn/PRS26001/wiring)');
     });
 
