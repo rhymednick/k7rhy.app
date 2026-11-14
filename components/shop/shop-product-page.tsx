@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { siteConfig } from '@/config/site';
 import { formatPrice, formatPriceRange, type ShopProduct } from '@/lib/shop/catalog';
 import { shopCategories } from '@/lib/shop/categories';
 import { ShopGallery } from './shop-gallery';
@@ -49,13 +50,26 @@ export function ShopProductPage({ product }: { product: ShopProduct }) {
                         </div>
                     ) : (
                         <p className="text-muted-foreground">
-                            This one has found a home.{' '}
+                            This one has sold.{' '}
                             <Link href={`/shop/${product.category}`} className="font-medium text-sky-700 underline-offset-4 hover:underline dark:text-sky-300">
                                 See what&apos;s available now
                             </Link>
                             .
                         </p>
                     )}
+
+                    <div className="rounded-xl border border-border bg-card p-4">
+                        <p className="font-semibold text-foreground">Questions about this one?</p>
+                        <p className="mt-1 text-sm text-muted-foreground">I&apos;m happy to talk about how it plays, how it was built, or shipping.</p>
+                        <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                            <Link href="/contact" className="inline-flex items-center justify-center rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">
+                                Reach out
+                            </Link>
+                            <a href={siteConfig.links.discord} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-lg border px-4 py-2 text-sm font-medium transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500">
+                                Ask in Discord
+                            </a>
+                        </div>
+                    </div>
                 </section>
             </div>
 
