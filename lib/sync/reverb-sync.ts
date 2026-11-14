@@ -1,54 +1,126 @@
 /**
- * Shopify ↔ Reverb sync rules.
+ * Shopify → Reverb sync. Shopify is the hub (owner, 2026-11-13).
  *
- * Reverb leads on price; this sync never changes a Reverb price. Each Shopify product that is also
- * listed on Reverb carries the Reverb listing number in the custom field
- * custom.reverb_listing_id. Nothing here polls: every action is triggered by a
- * Shopify webhook or by someone opening the product page on k7rhy.app.
+ * - Product created/updated in Shopify with "List on Reverb" on → create or
+ *   update the Reverb listing (price = Shopify + 5%, rounded up to $5).
+ * - Product set to Draft/Archived, sold out, switched off, or deleted → end
+ *   the Reverb listing (no-fee "not sold" end). Back to Active → relist.
+ * - Shopify order → end the Reverb listing, or flag a double sale.
+ * - Product page opened on k7rhy.app → check Reverb hasn't sold it.
+ *
+ * A listing is found by its Reverb SKU (shopify-<product id>) or, for
+ * listings made by hand, the product's Reverb listing ID field. Nothing polls.
  * See docs/decisions/2026-11-13-reverb-shopify-sync.md.
  */
 
-import { getReverbListing, endReverbListing, reverbListingUrl, isReverbListingId, hasReverbToken, type ReverbListing } from '@/lib/reverb/client';
+import { createReverbListing, endReverbListing, findReverbListingIdsBySku, getReverbListing, hasReverbToken, isReverbListingId, relistReverbListing, reverbListingUrl, updateReverbListing, type ReverbListing } from '@/lib/reverb/client';
+import { classifyProduct } from '@/lib/shop/catalog';
 import { canReadMetafields, storefrontQuery } from '@/lib/shop/storefront';
 import { sendSalesAlert } from './alert';
-
-export interface ReverbLink {
-    handle: string;
-    title: string;
-    reverbListingId: string | null;
-}
+import { reverbPriceFor } from './price-rule';
+import { buildReverbListing, cannotListReason, descriptionText, shopifyPrice, shopifyStock, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
 
 export interface SyncDeps {
-    lookupByProductId(productId: string): Promise<ReverbLink | null>;
-    lookupByHandle(handle: string): Promise<ReverbLink | null>;
+    /** The product's Reverb fields from Shopify, or null when Shopify won't show the product (Draft, Archived, unpublished). */
+    lookupFields(by: { productId: string } | { handle: string }): Promise<(ReverbFields & { productId: string }) | null>;
+    findListingIdsBySku(sku: string): Promise<string[]>;
     getListing(id: string): Promise<ReverbListing>;
+    createListing(body: Record<string, unknown>): Promise<string>;
+    updateListing(id: string, fields: Record<string, unknown>): Promise<void>;
     endListing(id: string): Promise<void>;
+    relistListing(id: string): Promise<void>;
     canWriteReverb(): boolean;
     alert(message: string): Promise<void>;
 }
 
-const LINK_FIELDS = `handle title reverb: metafield(namespace: "custom", key: "reverb_listing_id") { value }`;
+const FIELD_QUERY = `
+    id handle title
+    category { name ancestors { name } }
+    tags
+    listOnReverb: metafield(namespace: "custom", key: "list_on_reverb") { value }
+    reverbListingId: metafield(namespace: "custom", key: "reverb_listing_id") { value }
+    reverbModel: metafield(namespace: "custom", key: "reverb_model") { value }
+    reverbFinish: metafield(namespace: "custom", key: "reverb_finish") { value }
+`;
 
-async function lookup(query: string, variables: Record<string, unknown>): Promise<ReverbLink | null> {
+interface FieldNode {
+    id: string;
+    handle: string;
+    title: string;
+    category: { name: string; ancestors: { name: string }[] } | null;
+    tags: string[];
+    listOnReverb: { value: string } | null;
+    reverbListingId: { value: string } | null;
+    reverbModel: { value: string } | null;
+    reverbFinish: { value: string } | null;
+}
+
+async function lookupFields(by: { productId: string } | { handle: string }) {
     if (!canReadMetafields()) {
         return null;
     }
-    const data = await storefrontQuery<{ product: { handle: string; title: string; reverb: { value: string } | null } | null }>(query, variables, { fresh: true });
-    if (!data.product) {
+    const data = 'handle' in by ? await storefrontQuery<{ product: FieldNode | null }>(`query ($handle: String!) { product(handle: $handle) { ${FIELD_QUERY} } }`, { handle: by.handle }, { fresh: true }) : await storefrontQuery<{ product: FieldNode | null }>(`query ($id: ID!) { product(id: $id) { ${FIELD_QUERY} } }`, { id: by.productId.startsWith('gid://') ? by.productId : `gid://shopify/Product/${by.productId}` }, { fresh: true });
+    const node = data.product;
+    if (!node) {
         return null;
     }
-    const value = data.product.reverb?.value?.trim() ?? null;
-    return { handle: data.product.handle, title: data.product.title, reverbListingId: isReverbListingId(value) ? value : null };
+    const listingId = node.reverbListingId?.value?.trim() ?? null;
+    return {
+        productId: node.id.replace('gid://shopify/Product/', ''),
+        handle: node.handle,
+        title: node.title,
+        category: classifyProduct({ category: node.category, tags: node.tags }),
+        listOnReverb: node.listOnReverb ? node.listOnReverb.value === 'true' : null,
+        reverbListingId: isReverbListingId(listingId) ? listingId : null,
+        reverbModel: node.reverbModel?.value ?? null,
+        reverbFinish: node.reverbFinish?.value ?? null,
+    };
 }
 
 export const liveDeps: SyncDeps = {
-    lookupByProductId: (productId) => lookup(`query ($id: ID!) { product(id: $id) { ${LINK_FIELDS} } }`, { id: productId.startsWith('gid://') ? productId : `gid://shopify/Product/${productId}` }),
-    lookupByHandle: (handle) => lookup(`query ($handle: String!) { product(handle: $handle) { ${LINK_FIELDS} } }`, { handle }),
+    lookupFields,
+    findListingIdsBySku: findReverbListingIdsBySku,
     getListing: getReverbListing,
+    createListing: createReverbListing,
+    updateListing: updateReverbListing,
     endListing: endReverbListing,
+    relistListing: relistReverbListing,
     canWriteReverb: hasReverbToken,
     alert: sendSalesAlert,
 };
+
+function errorText(error: unknown): string {
+    return error instanceof Error ? error.message : 'unknown error';
+}
+
+/**
+ * Find the Reverb listing for a Shopify product: by SKU first, then by the
+ * Reverb listing ID field (for listings made by hand). A listing found by the
+ * field gets the SKU written onto it, so it can be found later even when
+ * Shopify hides the product.
+ */
+async function resolveListingId(productId: string, fields: ReverbFields | null, deps: SyncDeps): Promise<string | null> {
+    const sku = skuForProduct(productId);
+    if (deps.canWriteReverb()) {
+        const bySku = await deps.findListingIdsBySku(sku);
+        if (bySku.length > 0) {
+            return bySku[0];
+        }
+    }
+    if (fields?.reverbListingId) {
+        if (deps.canWriteReverb()) {
+            try {
+                await deps.updateListing(fields.reverbListingId, { sku });
+            } catch {
+                // Not fatal: the field still links them while the product is visible.
+            }
+        }
+        return fields.reverbListingId;
+    }
+    return null;
+}
+
+// ---------------------------------------------------------------- orders
 
 export interface ShopifyOrder {
     id?: number | string;
@@ -80,34 +152,38 @@ export async function handleShopifyOrder(order: ShopifyOrder, deps: SyncDeps = l
         await deps.alert(message);
         return [message];
     }
-    const productIds = [...new Set((order.line_items ?? []).map((item) => item.product_id).filter((id): id is number | string => id !== null && id !== undefined))];
+    const lineItems = (order.line_items ?? []).filter((item) => item.product_id !== null && item.product_id !== undefined);
+    const seen = new Set<string>();
 
-    for (const productId of productIds) {
-        const link = await deps.lookupByProductId(String(productId));
-        if (!link?.reverbListingId) {
-            continue;
-        }
-        const id = link.reverbListingId;
+    for (const item of lineItems) {
+        const productId = String(item.product_id);
+        if (seen.has(productId)) continue;
+        seen.add(productId);
+
+        const fields = await deps.lookupFields({ productId });
+        const title = fields?.title ?? item.title ?? 'An item';
+        const id = await resolveListingId(productId, fields, deps);
+        if (!id) continue;
         try {
             const listing = await deps.getListing(id);
             if (listing.state === 'sold') {
-                const message = `⚠️ Double sale: "${link.title}" was bought on Shopify (${orderName}), but it already sold on Reverb. Cancel and refund ${orderName} before shipping. ${reverbListingUrl(id)}`;
+                const message = `⚠️ Double sale: "${title}" was bought on Shopify (${orderName}), but it already sold on Reverb. Cancel and refund ${orderName} before shipping. ${reverbListingUrl(id)}`;
                 await deps.alert(message);
                 results.push(message);
             } else if (listing.state === 'live') {
                 if (!deps.canWriteReverb()) {
-                    const message = `"${link.title}" sold on Shopify (${orderName}). End the Reverb listing by hand: ${reverbListingUrl(id)} (REVERB_API_TOKEN isn't set).`;
+                    const message = `"${title}" sold on Shopify (${orderName}). End the Reverb listing by hand: ${reverbListingUrl(id)} (REVERB_API_TOKEN isn't set).`;
                     await deps.alert(message);
                     results.push(message);
                     continue;
                 }
                 await deps.endListing(id);
-                const message = `✅ "${link.title}" sold on Shopify (${orderName}). I ended its Reverb listing. End the Facebook listing by hand.`;
+                const message = `✅ "${title}" sold on Shopify (${orderName}). I ended its Reverb listing. End the Facebook listing by hand.`;
                 await deps.alert(message);
                 results.push(message);
             }
         } catch (error) {
-            const message = `⚠️ "${link.title}" sold on Shopify (${orderName}), but I couldn't end its Reverb listing. End it by hand: ${reverbListingUrl(id)} (${error instanceof Error ? error.message : 'unknown error'})`;
+            const message = `⚠️ "${title}" sold on Shopify (${orderName}), but I couldn't end its Reverb listing. End it by hand: ${reverbListingUrl(id)} (${errorText(error)})`;
             await deps.alert(message);
             results.push(message);
         }
@@ -115,15 +191,159 @@ export async function handleShopifyOrder(order: ShopifyOrder, deps: SyncDeps = l
     return results;
 }
 
+// ---------------------------------------------------------------- products
+
+/** Shopify's sample product used by "Send test" on product webhooks. */
+export function isShopifyTestProduct(product: { id?: number | string; title?: string }): boolean {
+    return String(product.id ?? '') === '788032119674292922' || product.title === 'Example T-Shirt';
+}
+
+/** A Shopify product was created or updated: make Reverb match. */
+export async function handleShopifyProduct(product: ShopifyProductPayload, deps: SyncDeps = liveDeps): Promise<string | null> {
+    if (!deps.canWriteReverb() || isShopifyTestProduct(product)) {
+        return null;
+    }
+    const productId = String(product.id);
+    const fields = await deps.lookupFields({ productId });
+    const title = product.title ?? fields?.title ?? 'A product';
+    const status = (product.status ?? '').toLowerCase();
+    const stock = shopifyStock(product);
+
+    // Reasons the item should NOT be on Reverb. Each is an explicit signal from Shopify.
+    const offReason = status === 'draft' || status === 'archived' ? `it's ${status} in Shopify` : stock !== null && stock <= 0 ? "it's sold out in Shopify" : fields?.listOnReverb === false ? '"List on Reverb" is off' : null;
+
+    const id = await resolveListingId(productId, fields, deps);
+
+    try {
+        if (!id) {
+            if (offReason || fields?.listOnReverb !== true || status !== 'active') {
+                return null;
+            }
+            return await createFor(product, fields, deps);
+        }
+
+        const listing = await deps.getListing(id);
+        if (listing.state === 'sold') {
+            return null; // Reverb sold it; the page check and order alerts handle the rest.
+        }
+
+        if (offReason) {
+            if (listing.state !== 'live') return null;
+            await deps.endListing(id);
+            return await say(deps, `🛑 Ended the Reverb listing for "${title}" because ${offReason}. ${reverbListingUrl(id)}`);
+        }
+
+        if (!fields) {
+            // Active but Shopify won't show it to the site (not published to the Headless channel). Don't guess.
+            return null;
+        }
+
+        const changes: string[] = [];
+        if (listing.state === 'ended' || listing.state === 'draft') {
+            await deps.relistListing(id);
+            changes.push('relisted it');
+        }
+        const update: Record<string, unknown> = {};
+        const price = shopifyPrice(product);
+        if (price !== null) {
+            const target = reverbPriceFor(price);
+            if (listing.price !== target) {
+                update.price = { amount: target.toFixed(2), currency: 'USD' };
+                changes.push(`price $${listing.price ?? '?'} → $${target}`);
+            }
+        }
+        if (product.title && listing.title !== undefined && product.title !== listing.title) {
+            update.title = product.title;
+            changes.push('title');
+        }
+        if (product.body_html && listing.description !== undefined && descriptionText(product.body_html) !== descriptionText(listing.description)) {
+            update.description = product.body_html;
+            changes.push('description');
+        }
+        if (Object.keys(update).length > 0) {
+            await deps.updateListing(id, update);
+        }
+        return changes.length > 0 ? await say(deps, `🔄 Updated the Reverb listing for "${title}": ${changes.join(', ')}. ${reverbListingUrl(id)}`) : null;
+    } catch (error) {
+        return await say(deps, `⚠️ Couldn't sync "${title}" to Reverb: ${errorText(error)}${id ? ` ${reverbListingUrl(id)}` : ''}`);
+    }
+}
+
+async function createFor(product: ShopifyProductPayload, fields: ReverbFields, deps: SyncDeps): Promise<string> {
+    const title = product.title ?? fields.title;
+    const reason = cannotListReason(product, fields);
+    if (reason) {
+        return say(deps, `⚠️ "${title}" has "List on Reverb" on, but I can't list it because ${reason}.`);
+    }
+    // Another webhook for the same product may have just created it.
+    const sku = skuForProduct(product.id);
+    if ((await deps.findListingIdsBySku(sku)).length > 0) {
+        return say(deps, `"${title}" is already on Reverb.`);
+    }
+    const bodies = buildReverbListing(product, fields);
+    let id: string;
+    let live = true;
+    let liveError = '';
+    try {
+        id = await deps.createListing(bodies.live);
+    } catch (error) {
+        live = false;
+        liveError = errorText(error);
+        id = await deps.createListing(bodies.draft);
+    }
+    // If two webhooks raced, keep the first listing and end the rest.
+    const all = await deps.findListingIdsBySku(sku);
+    for (const extra of all.filter((other) => other !== all[0])) {
+        await deps.endListing(extra).catch(() => {});
+    }
+    if (all.length > 0) id = all[0];
+
+    if (live) {
+        return say(deps, `🆕 Listed "${title}" on Reverb at $${reverbPriceFor(shopifyPrice(product)!)} with calculated shipping. ${reverbListingUrl(id)}`);
+    }
+    return say(deps, `📝 Created "${title}" on Reverb as a draft: Reverb didn't accept calculated shipping (${liveError.slice(0, 200)}). Set its shipping in Reverb and publish it; later Shopify edits will keep it in sync. ${reverbListingUrl(id)}`);
+}
+
+/** A Shopify product was deleted: end its Reverb listing. */
+export async function handleShopifyProductDelete(payload: { id?: number | string }, deps: SyncDeps = liveDeps): Promise<string | null> {
+    if (payload.id === undefined || !deps.canWriteReverb() || isShopifyTestProduct(payload)) {
+        return null;
+    }
+    const ids = await deps.findListingIdsBySku(skuForProduct(payload.id));
+    for (const id of ids) {
+        try {
+            const listing = await deps.getListing(id);
+            if (listing.state === 'live') {
+                await deps.endListing(id);
+                return await say(deps, `🛑 Ended Reverb listing ${id} because its Shopify product was deleted. ${reverbListingUrl(id)}`);
+            }
+        } catch (error) {
+            return await say(deps, `⚠️ A Shopify product was deleted, but I couldn't end its Reverb listing: ${errorText(error)} ${reverbListingUrl(id)}`);
+        }
+    }
+    return null;
+}
+
+async function say(deps: SyncDeps, message: string): Promise<string> {
+    await deps.alert(message);
+    return message;
+}
+
+// ---------------------------------------------------------------- product page
+
 export type PageAvailability = { status: 'available' } | { status: 'sold-elsewhere'; title: string; reverbListingId: string };
 
 /** Someone opened a product page: make sure the item hasn't already sold on Reverb. */
 export async function checkProductAvailability(handle: string, deps: SyncDeps = liveDeps): Promise<PageAvailability> {
-    const link = await deps.lookupByHandle(handle);
-    if (!link?.reverbListingId) {
+    const fields = await deps.lookupFields({ handle });
+    if (!fields) {
         return { status: 'available' };
     }
-    const listing = await deps.getListing(link.reverbListingId);
+    const id = fields.reverbListingId ?? (deps.canWriteReverb() ? ((await deps.findListingIdsBySku(skuForProduct(fields.productId)))[0] ?? null) : null);
+    if (!id) {
+        return { status: 'available' };
+    }
+    const listing = await deps.getListing(id);
     // Only a Reverb sale blocks the page. An ended listing (taken down by hand, or by this sync) doesn't mean it sold.
-    return listing.state === 'sold' ? { status: 'sold-elsewhere', title: link.title, reverbListingId: link.reverbListingId } : { status: 'available' };
+    return listing.state === 'sold' ? { status: 'sold-elsewhere', title: fields.title, reverbListingId: id } : { status: 'available' };
 }

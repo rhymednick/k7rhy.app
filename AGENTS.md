@@ -21,7 +21,7 @@ Before changing navigation, routes, publishing, commerce boundaries, or serializ
 
 ## Listing items for sale
 
-Anything listed on Reverb also goes on Shopify, linked by the Shopify custom field `custom.reverb_listing_id`. Before listing or changing a listing, follow `docs/engineering/listing-runbook.md`.
+Shopify is the hub: create and edit items in Shopify, and the site keeps Reverb in step through Shopify webhooks (opt in with the product's **List on Reverb** field). Before listing or changing a listing, follow `docs/engineering/listing-runbook.md`.
 
 ## Guitar wiring diagrams
 
