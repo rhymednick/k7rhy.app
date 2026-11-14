@@ -18,7 +18,7 @@ import { classifyProduct } from '@/lib/shop/catalog';
 import { canReadMetafields, storefrontQuery } from '@/lib/shop/storefront';
 import { sendSalesAlert } from './alert';
 import { reverbPriceFor } from './price-rule';
-import { buildReverbListing, cannotListReason, descriptionText, reverbDescription, shopifyPrice, shopifyStock, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
+import { buildReverbListing, cannotListReason, describePackage, descriptionText, packageFor, reverbDescription, shopifyPrice, shopifyStock, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
 
 export interface SyncDeps {
     /** The product's Reverb fields from Shopify, or null when Shopify won't show the product (Draft, Archived, unpublished). */
@@ -41,6 +41,11 @@ const FIELD_QUERY = `
     reverbListingId: metafield(namespace: "custom", key: "reverb_listing_id") { value }
     reverbModel: metafield(namespace: "custom", key: "reverb_model") { value }
     reverbFinish: metafield(namespace: "custom", key: "reverb_finish") { value }
+    reverbMake: metafield(namespace: "custom", key: "reverb_make") { value }
+    reverbYear: metafield(namespace: "custom", key: "reverb_year") { value }
+    reverbCondition: metafield(namespace: "custom", key: "reverb_condition") { value }
+    reverbPackageSize: metafield(namespace: "custom", key: "reverb_package_size") { value }
+    reverbPackageWeight: metafield(namespace: "custom", key: "reverb_package_weight") { value }
 `;
 
 interface FieldNode {
@@ -53,6 +58,11 @@ interface FieldNode {
     reverbListingId: { value: string } | null;
     reverbModel: { value: string } | null;
     reverbFinish: { value: string } | null;
+    reverbMake: { value: string } | null;
+    reverbYear: { value: string } | null;
+    reverbCondition: { value: string } | null;
+    reverbPackageSize: { value: string } | null;
+    reverbPackageWeight: { value: string } | null;
 }
 
 async function lookupFields(by: { productId: string } | { handle: string }) {
@@ -74,6 +84,11 @@ async function lookupFields(by: { productId: string } | { handle: string }) {
         reverbListingId: isReverbListingId(listingId) ? listingId : null,
         reverbModel: node.reverbModel?.value ?? null,
         reverbFinish: node.reverbFinish?.value ?? null,
+        reverbMake: node.reverbMake?.value ?? null,
+        reverbYear: node.reverbYear?.value ?? null,
+        reverbCondition: node.reverbCondition?.value ?? null,
+        reverbPackageSize: node.reverbPackageSize?.value ?? null,
+        reverbPackageWeight: node.reverbPackageWeight?.value ?? null,
     };
 }
 
@@ -239,10 +254,6 @@ export async function handleShopifyProduct(product: ShopifyProductPayload, deps:
         }
 
         const changes: string[] = [];
-        if (listing.state === 'ended' || listing.state === 'draft') {
-            await deps.relistListing(id);
-            changes.push('relisted it');
-        }
         const update: Record<string, unknown> = {};
         const price = shopifyPrice(product);
         if (price !== null) {
@@ -260,10 +271,28 @@ export async function handleShopifyProduct(product: ShopifyProductPayload, deps:
             update.description = reverbDescription(product.body_html);
             changes.push('description');
         }
+        // Edits go in first, so a refused relist can't hold them back.
         if (Object.keys(update).length > 0) {
             await deps.updateListing(id, update);
         }
-        return changes.length > 0 ? await say(deps, `🔄 Updated the Reverb listing for "${title}": ${changes.join(', ')}. ${reverbListingUrl(id)}`) : null;
+
+        if (listing.state === 'ended') {
+            try {
+                await deps.relistListing(id);
+                changes.push('relisted it');
+            } catch (error) {
+                const updated = changes.length > 0 ? `I updated its ${changes.join(', ')}, but ` : '';
+                return await say(deps, `⚠️ "${title}" is Active in Shopify, but ${updated}Reverb wouldn't relist it: ${errorText(error)}. Relist it in Reverb's editor. ${reverbListingUrl(id)}`);
+            }
+        }
+
+        if (changes.length === 0) {
+            return null;
+        }
+        // A draft is never published from here. It's a draft because Reverb refused its shipping (or it was made by hand),
+        // so publishing would fail the same way. I publish it in Reverb's editor once its shipping is set.
+        const draftNote = listing.state === 'draft' ? " It's still a draft on Reverb: set its shipping in Reverb's editor and publish it there." : '';
+        return await say(deps, `🔄 Updated the Reverb listing for "${title}": ${changes.join(', ')}.${draftNote} ${reverbListingUrl(id)}`);
     } catch (error) {
         return await say(deps, `⚠️ Couldn't sync "${title}" to Reverb: ${errorText(error)}${id ? ` ${reverbListingUrl(id)}` : ''}`);
     }
@@ -301,7 +330,7 @@ async function createFor(product: ShopifyProductPayload, fields: ReverbFields, d
     if (live) {
         return say(deps, `🆕 Listed "${title}" on Reverb at $${reverbPriceFor(shopifyPrice(product)!)} with calculated shipping. ${reverbListingUrl(id)}`);
     }
-    return say(deps, `📝 Created "${title}" on Reverb as a draft: Reverb didn't accept calculated shipping (${liveError.slice(0, 200)}). Set its shipping in Reverb and publish it; later Shopify edits will keep it in sync. ${reverbListingUrl(id)}`);
+    return say(deps, `📝 Created "${title}" on Reverb as a draft: Reverb didn't accept calculated shipping (${liveError.slice(0, 200)}). In Reverb's editor, set calculated shipping with the box (${describePackage(packageFor(fields))}) and publish it. Later Shopify edits keep the draft's price, title, and description in sync but never publish it. ${reverbListingUrl(id)}`);
 }
 
 /** A Shopify product was deleted: end its Reverb listing. */

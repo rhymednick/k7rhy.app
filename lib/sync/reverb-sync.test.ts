@@ -2,14 +2,14 @@ import { createHmac } from 'node:crypto';
 import { describe, expect, it, vi } from 'vitest';
 import type { ReverbListing } from '@/lib/reverb/client';
 import { reverbPriceFor } from './price-rule';
-import { buildReverbListing, reverbDescription, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
+import { buildReverbListing, cannotListReason, parsePackageSize, parsePackageWeight, REVERB_CONDITION_BRAND_NEW, reverbDescription, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
 import { checkProductAvailability, handleShopifyOrder, handleShopifyProduct, handleShopifyProductDelete, type SyncDeps } from './reverb-sync';
 import { verifyShopifyWebhook } from './shopify-webhook';
 
 const PRODUCT_ID = '15437136035997';
 
 function fields(overrides: Partial<ReverbFields> = {}): ReverbFields & { productId: string } {
-    return { productId: PRODUCT_ID, handle: 'cunife-s-type', title: 'CuNiFe S-Type', category: 'guitars', listOnReverb: true, reverbListingId: '103882256', reverbModel: 'CuNiFe S-Type', reverbFinish: 'Gloss White', ...overrides };
+    return { productId: PRODUCT_ID, handle: 'cunife-s-type', title: 'CuNiFe S-Type', category: 'guitars', listOnReverb: true, reverbListingId: '103882256', reverbModel: 'CuNiFe S-Type', reverbFinish: 'Gloss White', reverbMake: null, reverbYear: null, reverbCondition: null, reverbPackageSize: null, reverbPackageWeight: null, ...overrides };
 }
 
 function product(overrides: Partial<ShopifyProductPayload> = {}): ShopifyProductPayload {
@@ -70,10 +70,90 @@ describe('buildReverbListing', () => {
         expect(buildReverbListing(product(), fields({ category: 'amplifiers' })).live.handmade).toBe(true);
     });
 
+    it('lists my own builds as Brand New, this year', () => {
+        const { live } = buildReverbListing(product(), fields(), new Date('2026-11-13'));
+        expect(live).toMatchObject({ make: 'K7RHY Resonance Lab', year: '2026', condition: { uuid: REVERB_CONDITION_BRAND_NEW } });
+    });
+
+    it("uses the make, year, and condition fields for someone else's guitar", () => {
+        const prs = fields({ reverbMake: 'PRS', reverbYear: '2024', reverbCondition: 'Excellent', reverbModel: 'SE Custom 24' });
+        const { live, draft } = buildReverbListing(product(), prs, new Date('2026-11-13'));
+        // UUID from GET https://api.reverb.com/api/listing_conditions.
+        expect(live).toMatchObject({ make: 'PRS', model: 'SE Custom 24', year: '2024', condition: { uuid: 'df268ad1-c462-4ba6-b6db-e007e23922ea' }, handmade: false });
+        expect(draft).toMatchObject({ make: 'PRS', year: '2024', condition: { uuid: 'df268ad1-c462-4ba6-b6db-e007e23922ea' } });
+    });
+
+    it('reads condition names loosely', () => {
+        expect(buildReverbListing(product(), fields({ reverbCondition: 'very-good' })).live.condition).toEqual({ uuid: 'ae4d9114-1bd7-4ec5-a4ba-6653af5ac84d' });
+        expect(buildReverbListing(product(), fields({ reverbCondition: ' NON FUNCTIONING ' })).live.condition).toEqual({ uuid: 'fbf35668-96a0-4baa-bcde-ab18d6b1b329' });
+    });
+
+    it("never marks someone else's amp handmade", () => {
+        expect(buildReverbListing(product(), fields({ category: 'amplifiers', reverbMake: 'Fender', reverbYear: '1998', reverbCondition: 'Good' })).live.handmade).toBe(false);
+    });
+
+    it('uses the actual box when the product gives one', () => {
+        const { live } = buildReverbListing(product(), fields({ reverbPackageSize: '42 x 16 x 5', reverbPackageWeight: '14.5' }));
+        expect(live.package).toEqual({ length: { value: 42, unit: 'in' }, width: { value: 16, unit: 'in' }, height: { value: 5, unit: 'in' }, weight: { value: 14.5, unit: 'lb' } });
+    });
+
+    it("falls back to the category's box", () => {
+        const { live } = buildReverbListing(product(), fields());
+        expect(live.package).toEqual({ length: { value: 44, unit: 'in' }, width: { value: 17, unit: 'in' }, height: { value: 6, unit: 'in' }, weight: { value: 19, unit: 'lb' } });
+    });
+
     it('keeps link text but drops every link from the Reverb description', () => {
         const body_html = '<p>It shaped the <a href="https://k7rhy.app/guitars/relay/voicings">Relay voicings</a> and its <a href="/sn/PRS26001">record</a>.</p>';
         const { live } = buildReverbListing(product({ body_html }), fields());
         expect(live.description).toBe('<p>It shaped the Relay voicings and its record.</p>');
+    });
+});
+
+describe('cannotListReason', () => {
+    it('only allows Brand New for my own builds', () => {
+        expect(cannotListReason(product(), fields({ reverbCondition: 'Brand New' }))).toBeNull();
+        expect(cannotListReason(product(), fields({ reverbMake: 'k7rhy resonance lab', reverbCondition: 'Brand New' }))).toBeNull();
+        expect(cannotListReason(product(), fields({ reverbMake: 'PRS', reverbYear: '2024', reverbCondition: 'Brand New' }))).toMatch(/Brand New is only for my own builds/);
+    });
+
+    it("needs a condition and year for someone else's gear", () => {
+        expect(cannotListReason(product(), fields({ reverbMake: 'PRS', reverbYear: '2024' }))).toMatch(/needs a Reverb condition/);
+        expect(cannotListReason(product(), fields({ reverbMake: 'PRS', reverbCondition: 'Excellent' }))).toMatch(/needs a Reverb year/);
+        expect(cannotListReason(product(), fields({ reverbMake: 'PRS', reverbYear: '2024', reverbCondition: 'Excellent' }))).toBeNull();
+    });
+
+    it('lets my own builds carry a used condition', () => {
+        expect(cannotListReason(product(), fields({ reverbCondition: 'Mint' }))).toBeNull();
+    });
+
+    it("rejects a condition Reverb doesn't have", () => {
+        expect(cannotListReason(product(), fields({ reverbCondition: 'Like new' }))).toMatch(/isn't one of Reverb's.*Excellent/);
+    });
+
+    it("rejects a box it can't read", () => {
+        expect(cannotListReason(product(), fields({ reverbPackageSize: '44 by 17' }))).toMatch(/package size/);
+        expect(cannotListReason(product(), fields({ reverbPackageWeight: 'heavy' }))).toMatch(/package weight/);
+    });
+});
+
+describe('package fields', () => {
+    it('reads box sizes', () => {
+        expect(parsePackageSize('44 x 17 x 6')).toEqual({ length: 44, width: 17, height: 6 });
+        expect(parsePackageSize('44×17×6 in')).toEqual({ length: 44, width: 17, height: 6 });
+        expect(parsePackageSize('42.5in x 16in x 5in')).toEqual({ length: 42.5, width: 16, height: 5 });
+        expect(parsePackageSize('')).toBeNull();
+        expect(parsePackageSize('44 x 17')).toBeUndefined();
+        expect(parsePackageSize('44 x 0 x 6')).toBeUndefined();
+    });
+
+    it('reads weights as pounds, including Shopify weight values', () => {
+        expect(parsePackageWeight('14.5')).toBe(14.5);
+        expect(parsePackageWeight('14.5 lb')).toBe(14.5);
+        expect(parsePackageWeight('{"value":14.5,"unit":"POUNDS"}')).toBe(14.5);
+        expect(parsePackageWeight('{"value":8,"unit":"KILOGRAMS"}')).toBe(17.6);
+        expect(parsePackageWeight(null)).toBeNull();
+        expect(parsePackageWeight('0')).toBeUndefined();
+        expect(parsePackageWeight('12 stone')).toBeUndefined();
     });
 });
 
@@ -100,6 +180,23 @@ describe('handleShopifyProduct', () => {
         await handleShopifyProduct(product(), d);
         expect(vi.mocked(d.createListing).mock.calls[1][0]).toMatchObject({ publish: false });
         expect(d.alerts[0]).toMatch(/as a draft/);
+        expect(d.alerts[0]).toMatch(/44 × 17 × 6 in, 19 lb/);
+    });
+
+    it('lists a resold guitar with its own make, year, and condition, and its box in the draft alert', async () => {
+        const d = deps({ fields: fields({ reverbListingId: null, reverbMake: 'PRS', reverbYear: '2024', reverbCondition: 'Excellent', reverbPackageSize: '42 x 16 x 5', reverbPackageWeight: '14' }) });
+        d.createListing = vi.fn().mockRejectedValueOnce(new Error('Reverb POST /listings failed (422): missing rate information on shipping')).mockResolvedValueOnce('200000003');
+        await handleShopifyProduct(product(), d);
+        expect(vi.mocked(d.createListing).mock.calls[0][0]).toMatchObject({ make: 'PRS', year: '2024', condition: { uuid: 'df268ad1-c462-4ba6-b6db-e007e23922ea' } });
+        expect(d.alerts[0]).toMatch(/missing rate information on shipping/);
+        expect(d.alerts[0]).toMatch(/42 × 16 × 5 in, 14 lb/);
+    });
+
+    it("won't list someone else's guitar as Brand New", async () => {
+        const d = deps({ fields: fields({ reverbListingId: null, reverbMake: 'PRS', reverbYear: '2024' }) });
+        await handleShopifyProduct(product(), d);
+        expect(d.createListing).not.toHaveBeenCalled();
+        expect(d.alerts[0]).toMatch(/can't list it because its Reverb make is "PRS", so it needs a Reverb condition/);
     });
 
     it('does nothing for products that are not opted in', async () => {
@@ -169,6 +266,28 @@ describe('handleShopifyProduct', () => {
         const d = deps({ listing: { state: 'ended' } });
         await handleShopifyProduct(product(), d);
         expect(d.relistListing).toHaveBeenCalledWith('103882256');
+        expect(d.alerts[0]).toMatch(/relisted it/);
+    });
+
+    it('still syncs edits when Reverb refuses to relist, and says to relist by hand', async () => {
+        const d = deps({ listing: { state: 'ended', price: 845 }, overrides: { relistListing: vi.fn(async () => Promise.reject(new Error('422 nope'))) } });
+        await handleShopifyProduct(product({ variants: [{ price: '799.00', inventory_quantity: 1 }] }), d);
+        expect(d.updateListing).toHaveBeenCalledWith('103882256', expect.objectContaining({ price: { amount: '840.00', currency: 'USD' } }));
+        expect(d.alerts[0]).toMatch(/I updated its price.*but Reverb wouldn't relist it: 422 nope\. Relist it in Reverb's editor/);
+    });
+
+    it('never publishes a draft, but keeps its details in sync and says it is still a draft', async () => {
+        const d = deps({ listing: { state: 'draft', price: 845 } });
+        await handleShopifyProduct(product({ variants: [{ price: '799.00', inventory_quantity: 1 }] }), d);
+        expect(d.relistListing).not.toHaveBeenCalled();
+        expect(d.updateListing).toHaveBeenCalledWith('103882256', expect.objectContaining({ price: { amount: '840.00', currency: 'USD' } }));
+        expect(d.alerts[0]).toMatch(/still a draft on Reverb: set its shipping in Reverb's editor and publish it there/);
+    });
+
+    it('stays quiet about a draft when nothing changed', async () => {
+        const d = deps({ listing: { state: 'draft' } });
+        expect(await handleShopifyProduct(product(), d)).toBeNull();
+        expect(d.relistListing).not.toHaveBeenCalled();
     });
 
     it('never touches a listing that sold on Reverb', async () => {

@@ -52,10 +52,18 @@ How to list an item for sale across channels. Follow this every time; don't re-d
    - **Reverb model:** for example "CuNiFe S-Type". Blank uses the product title.
    - **Reverb finish:** for example "Gloss White". Optional.
    - **Reverb listing ID:** leave blank. The site finds listings it created by their Reverb SKU, `shopify-<product id>`. Fill it in only to link a listing that was made by hand on Reverb.
+   - **Reverb make** (`custom.reverb_make`): blank for my own builds (K7RHY Resonance Lab). For anything I'm reselling, the real brand, for example "PRS".
+   - **Reverb year** (`custom.reverb_year`): blank for my own builds (the current year). For resold gear, the year it was made, for example "2024" (Reverb also accepts "1960s"). Required when the make isn't K7RHY.
+   - **Reverb condition** (`custom.reverb_condition`): one of Reverb's conditions: Brand New, Mint, Excellent, Very Good, Good, Fair, Poor, Non Functioning. Blank means Brand New, for my own builds only. Required when the make isn't K7RHY, and Brand New is refused then (Reverb reserves it for the original builder or an authorized dealer). The UUIDs are in `REVERB_CONDITIONS` in `lib/sync/reverb-listing.ts`, from Reverb's `GET /api/listing_conditions`.
+   - **Reverb package size** (`custom.reverb_package_size`): the actual box, "L x W x H" in inches, for example "42 x 16 x 5". Blank uses the category's box (step 2).
+   - **Reverb package weight** (`custom.reverb_package_weight`): the packed weight in pounds, for example "14.5" (a Shopify weight field also works). Blank uses the category's weight.
+   - Resold gear (make not K7RHY) is never marked Handmade, whatever its category.
+   - Define these as single-line text (weight may be a Shopify weight) product metafields with **Storefront access** on, like the existing Reverb fields, or the site can't read them. A blank or missing field keeps the defaults above.
 5. **Make it Active** (with the owner's OK) and save. Within seconds, the site creates the Reverb listing and posts to the sales-alert Discord channel:
    - 🆕 means live on Reverb with calculated shipping.
-   - 📝 means Reverb rejected the calculated-shipping fields, so it's a draft. Open it on Reverb, set shipping (package size and weight from step 2), and publish. Later Shopify edits keep it in sync.
-   - ⚠️ explains why it couldn't list (no category, no single price, no photos).
+   - 📝 means Reverb rejected the calculated-shipping fields, so it's a draft. The message gives the box size and weight. Open it on Reverb, set calculated shipping with that box, and publish. Later Shopify edits keep the draft's price, title, and description in sync, but **never publish it**; only the owner publishes a draft, in Reverb's editor.
+     - Expect 📝 for now. On 2026-11-13 Reverb refused the PRS SE create with `missing rate information on shipping`. Reverb's create-listing docs only show rates with a fixed `rate` amount, and the sync sends `carrier_calculated: true` with no amount, so the refusal comes from the rate entry, not from the box size or weight.
+   - ⚠️ explains why it couldn't list (no category, no single price, no photos, an unknown Reverb condition, Brand New on someone else's gear, a missing year or condition for resold gear, or a box it can't read).
 6. **Browser mechanics:**
    - The description editor is TinyMCE: `tinymce.get('product-description-rp').setContent(html); ed.fire('change'); ed.save()`.
    - The media file input is inside a shadow DOM. Upload through a light-DOM proxy `<input type=file>`, copy its files to the shadow input with a `DataTransfer`, and dispatch `change`.
@@ -82,7 +90,7 @@ All in Shopify; the site follows within seconds and posts to Discord.
 |---|---|
 | Edit the price, title, or description | Updated to match (price by the +5% rule) 🔄 |
 | Set to Draft or Archived, set the quantity to 0, or switch **List on Reverb** off | Listing ended (no-fee "not sold") 🛑 |
-| Make it Active again (with stock and **List on Reverb** not off) | Ended listing relisted 🔄 |
+| Make it Active again (with stock and **List on Reverb** not off) | Ended listing relisted 🔄. If Reverb refuses, the edits still sync and ⚠️ asks for a relist by hand. A **draft** listing is never published; its edits sync and 🔄 says it's still a draft. |
 | Delete the product | Listing ended 🛑 |
 | Change photos | **Not synced.** The owner asks the agent, who changes both sites (see below). |
 

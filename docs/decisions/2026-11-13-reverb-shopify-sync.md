@@ -27,12 +27,13 @@
      |---|---|
      | Title, description (HTML, `/sn/` links stripped), photos | Shopify |
      | Price | Shopify + 5%, rounded up to $5 |
-     | Make | K7RHY Resonance Lab |
+     | Make | **Reverb make** field, or K7RHY Resonance Lab |
      | Model | **Reverb model** field, or the product title |
      | Finish | **Reverb finish** field |
-     | Year | the current year |
-     | Condition | Brand New |
-     | Category, box size, Handmade flag | the Shopify category (guitars: Solid Body, 44×17×6 in, 19 lb, not handmade; amps: Guitar Combos, 21×21×11 in, 39.5 lb, handmade) |
+     | Year | **Reverb year** field, or the current year (my own builds only) |
+     | Condition | **Reverb condition** field, or Brand New (my own builds only) |
+     | Category, Handmade flag | the Shopify category (guitars: Solid Body, not handmade; amps: Guitar Combos, handmade). Gear whose make isn't K7RHY is never handmade. |
+     | Box size and weight | **Reverb package size** and **Reverb package weight** fields, or the category's box (guitars 44×17×6 in, 19 lb; amps 21×21×11 in, 39.5 lb) |
      | Offers | on |
 3. **Link:** the site sets each listing's Reverb SKU to `shopify-<product id>` and finds listings by SKU through the Reverb API.
    - This also works when the product is Draft or Archived, which Shopify hides from the Storefront API.
@@ -49,6 +50,16 @@
    - If it sold, the page shows "Sold" and reminds the owner, at most hourly, to archive the product in Shopify.
    - The check fails open after 4 s.
 8. **Alerts:** posted to a private Discord channel by the site's existing bot.
+
+## Resold gear and drafts (2026-11-13, implemented, not yet deployed)
+
+The first resold item, a used 2024 PRS SE Custom 24 (Shopify product 15437296697501, Reverb listing 104136246), was created as Make "K7RHY Resonance Lab", Year 2026, Brand New. The owner fixed it by hand in Reverb. So:
+
+- **Per-product make, year, condition, and box.** Five optional product fields (`custom.reverb_make`, `reverb_year`, `reverb_condition`, `reverb_package_size`, `reverb_package_weight`) override the defaults. Blank keeps the defaults for my own builds. Condition names map to the UUIDs from Reverb's `GET /api/listing_conditions` (fetched 2026-11-13).
+- **Brand New is only for my own builds.** When the make isn't K7RHY Resonance Lab, the sync refuses to create the listing unless the product has a Reverb condition other than Brand New and a Reverb year, because the defaults (Brand New, this year) are wrong for resold gear. Such gear is never marked handmade.
+- **Calculated shipping on create:** the PRS create was refused with `missing rate information on shipping`. Reverb's create-listing docs (reverb-api.com/docs/create-listings) only show `shipping.rates[]` entries with a fixed `rate: {amount, currency}`, and document no `carrier_calculated` field or package fields. The sync's rate entry has `carrier_calculated: true` and no amount, so that entry causes the refusal, not the default box size or weight. The live attempt and the draft fallback stay as they are, and the 📝 alert now gives the box to enter in Reverb's editor. I didn't send a placeholder amount, which could publish a listing with that fixed shipping price.
+- **Drafts are never published by an update.** Before, any Shopify edit on a product whose listing was a draft sent `PUT {publish: true}`. For a draft made because shipping was refused, that publish fails the same way, and the thrown error also stopped the price, title, and description edits. Now edits sync first, a draft stays a draft, and 🔄 says it's still a draft that the owner publishes in Reverb's editor. Ended listings still relist. If Reverb refuses the relist, the edits still sync and ⚠️ asks for a relist by hand.
+- **Not covered:** a change to make, year, condition, or box in Shopify after the listing exists isn't sent to Reverb (only price, title, and description are). Change those in Reverb's editor too.
 
 ## Why
 
@@ -86,6 +97,8 @@ A Reverb sale doesn't reach Shopify automatically. A buyer who goes straight to 
 This closes if Reverb grants OAuth access with the `orders/paid` webhook (ask integrations@reverb.com), or if Shopify Admin access is added so the site can archive or zero the Shopify product itself.
 
 ## Unresolved
+
+- Whether Reverb's API can create a listing with calculated shipping at all. If Reverb documents it (or support explains the field), the live create path can be fixed; until then creates land as 📝 drafts.
 
 - Whether Reverb accepts the calculated-shipping fields on create. The first real create will tell, by 🆕 or 📝.
 - Whether `PUT /api/listings/{id}` with `{publish: true}` relists an ended listing. If not, Discord says so and the owner relists by hand.
