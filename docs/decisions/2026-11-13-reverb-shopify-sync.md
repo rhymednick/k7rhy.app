@@ -2,9 +2,9 @@
 
 - **Date:** 2026-11-13
 - **Status:**
-  - Implemented in code.
-  - Not yet validated in production: needs the environment variables and Shopify webhooks in `docs/engineering/listing-runbook.md`.
-  - The Reverb end-listing reason value (`not_sold`) is unverified until the first real end.
+  - Implemented and deployed (PR #144, 2026-11-13).
+  - Validated: the Order creation webhook's signature check (Shopify test notification accepted 2026-11-13) and the page check against live Reverb listings from Netlify (once reads were signed).
+  - Not yet exercised by a real sale: ending a Reverb listing and the Discord alerts. The end-listing reason value (`not_sold`) stays unverified until the first real end.
 - **Builds on:** `docs/decisions/2026-11-13-shopify-driven-shop.md`.
 
 ## Decision
