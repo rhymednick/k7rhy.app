@@ -2,7 +2,7 @@ import { createHmac } from 'node:crypto';
 import { describe, expect, it, vi } from 'vitest';
 import type { ReverbListing } from '@/lib/reverb/client';
 import { reverbPriceFor } from './price-rule';
-import { buildReverbListing, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
+import { buildReverbListing, reverbDescription, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
 import { checkProductAvailability, handleShopifyOrder, handleShopifyProduct, handleShopifyProductDelete, type SyncDeps } from './reverb-sync';
 import { verifyShopifyWebhook } from './shopify-webhook';
 
@@ -69,6 +69,18 @@ describe('buildReverbListing', () => {
     it('marks amps handmade', () => {
         expect(buildReverbListing(product(), fields({ category: 'amplifiers' })).live.handmade).toBe(true);
     });
+
+    it('keeps link text but drops every link from the Reverb description', () => {
+        const body_html = '<p>It shaped the <a href="https://k7rhy.app/guitars/relay/voicings">Relay voicings</a> and its <a href="/sn/PRS26001">record</a>.</p>';
+        const { live } = buildReverbListing(product({ body_html }), fields());
+        expect(live.description).toBe('<p>It shaped the Relay voicings and its record.</p>');
+    });
+});
+
+describe('reverbDescription', () => {
+    it('unwraps links with any attributes, quotes, or nested markup', () => {
+        expect(reverbDescription("<p><a target='_blank' href='https://example.com'><strong>Go</strong></a> <A HREF=\"x\">here</A></p>")).toBe('<p><strong>Go</strong> here</p>');
+    });
 });
 
 describe('handleShopifyProduct', () => {
@@ -126,6 +138,12 @@ describe('handleShopifyProduct', () => {
         const d = deps({ listing: { price: 845 } });
         await handleShopifyProduct(product({ variants: [{ price: '799.00', inventory_quantity: 1 }] }), d);
         expect(d.updateListing).toHaveBeenCalledWith('103882256', expect.objectContaining({ price: { amount: '840.00', currency: 'USD' } }));
+    });
+
+    it('sends an edited description to Reverb without its links', async () => {
+        const d = deps();
+        await handleShopifyProduct(product({ body_html: '<p>See the <a href="https://k7rhy.app/guitars/relay/voicings">Relay voicings</a>.</p>' }), d);
+        expect(d.updateListing).toHaveBeenCalledWith('103882256', expect.objectContaining({ description: '<p>See the Relay voicings.</p>' }));
     });
 
     it('stays quiet when Reverb already matches', async () => {

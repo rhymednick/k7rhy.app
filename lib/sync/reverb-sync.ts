@@ -18,7 +18,7 @@ import { classifyProduct } from '@/lib/shop/catalog';
 import { canReadMetafields, storefrontQuery } from '@/lib/shop/storefront';
 import { sendSalesAlert } from './alert';
 import { reverbPriceFor } from './price-rule';
-import { buildReverbListing, cannotListReason, descriptionText, shopifyPrice, shopifyStock, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
+import { buildReverbListing, cannotListReason, descriptionText, reverbDescription, shopifyPrice, shopifyStock, skuForProduct, type ReverbFields, type ShopifyProductPayload } from './reverb-listing';
 
 export interface SyncDeps {
     /** The product's Reverb fields from Shopify, or null when Shopify won't show the product (Draft, Archived, unpublished). */
@@ -257,7 +257,7 @@ export async function handleShopifyProduct(product: ShopifyProductPayload, deps:
             changes.push('title');
         }
         if (product.body_html && listing.description !== undefined && descriptionText(product.body_html) !== descriptionText(listing.description)) {
-            update.description = product.body_html;
+            update.description = reverbDescription(product.body_html);
             changes.push('description');
         }
         if (Object.keys(update).length > 0) {
