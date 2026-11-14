@@ -40,5 +40,6 @@ This closes if Reverb grants OAuth access with the `orders/paid` webhook (ask in
 
 ## Unresolved
 
+- **Reverb blocks unsigned reads from Netlify:** on the PR #144 preview, Reverb returned 403 to the page check's public read. The same request works from a home connection, so the block is likely on cloud-server addresses. The client now signs reads with `REVERB_API_TOKEN` when it is set. Re-test the page check after the token is in Netlify. If Reverb still returns 403, the page check can't run from Netlify, but the Shopify webhooks may still work, since they use signed calls.
 - **End reason:** confirm Reverb accepts `{"reason": "not_sold"}` on `PUT /api/my/listings/{id}/state/end`. If the first real end fails, the alert says to end it by hand.
 - **STR26001's Reverb price:** it is $845. The rule gives $840, so the first product update will move it to $840 unless the rule changes.

@@ -33,11 +33,12 @@ function headers(withAuth: boolean): Record<string, string> {
         'Accept-Version': '3.0',
         'Content-Type': 'application/hal+json',
     };
-    if (withAuth) {
-        const token = process.env.REVERB_API_TOKEN;
-        if (!token) {
-            throw new ReverbError('REVERB_API_TOKEN is not set');
-        }
+    const token = process.env.REVERB_API_TOKEN;
+    if (withAuth && !token) {
+        throw new ReverbError('REVERB_API_TOKEN is not set');
+    }
+    // Reads are public, but Reverb answered unsigned reads from Netlify with 403 (2026-11-13), so sign whenever a token exists.
+    if (token) {
         base.Authorization = `Bearer ${token}`;
     }
     return base;
