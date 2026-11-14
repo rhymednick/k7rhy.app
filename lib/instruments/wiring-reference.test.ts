@@ -24,10 +24,17 @@ describe('instrument wiring references', () => {
         expect(instrumentWiringReferences.STR26001.benchChecks?.length).toBeGreaterThan(0);
     });
 
-    it('describes the treble bleed in the same order on both instruments', () => {
-        for (const reference of references) {
+    it('describes the treble bleed in the same order on both S-types', () => {
+        for (const reference of references.filter((r) => r.serial.startsWith('STR'))) {
             expect(reference.parts.join(' ')).toContain('1,200 pF capacitor in parallel with a 150 kΩ resistor, from the volume input, then a 20 kΩ resistor to the volume wiper');
         }
+    });
+
+    it('matches the PRS26001 operating states and contacts to its netlist', async () => {
+        const netlist = await import('../../docs/engineering/prs26001/netlist.mjs');
+        const reference = instrumentWiringReferences.PRS26001;
+        expect(reference.positions).toEqual(netlist.operatingStates);
+        expect(reference.contacts).toEqual(netlist.superSwitch.map((p: { pole: string; common: string; throws: string[] }) => [`${p.pole} / ${p.common}`, ...p.throws]));
     });
 
     it('returns undefined for a serial without a wiring reference', () => {

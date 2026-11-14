@@ -20,6 +20,16 @@ describe('PRS26001 permanent record', () => {
         expect(source).toContain('platform-reference instrument');
     });
 
+    it('records the split coils and links the wiring reference', () => {
+        const source = readFileSync(path, 'utf8');
+
+        expect(source).toContain('four-pole five-way super switch');
+        expect(source).toContain('1.8 kΩ');
+        expect(source).toContain('bridge slug coil');
+        expect(source).toContain('neck screw coil');
+        expect(source).toContain('(/sn/PRS26001/wiring)');
+    });
+
     it('contains no sale, condition, or personal-owner narrative', () => {
         const source = readFileSync(path, 'utf8').toLowerCase();
 

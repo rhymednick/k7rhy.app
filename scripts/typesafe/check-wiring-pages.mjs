@@ -55,6 +55,15 @@ const PAIRS = [
         ],
     },
     {
+        name: 'PRS26001',
+        page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'PRS26001' },
+        source: 'docs/engineering/prs26001/PRS26001-wiring-reference.md',
+        tables: [
+            { name: 'Operating states', kind: 'states', page: 'positions', source: /Tone pulled up/, options: { pickups: { bridge: /bridge|both/i, neck: /neck|both/i }, mods: [SPLIT, { name: 'parallel', re: /parallel/i, scope: 'cell' }] } },
+            { name: 'Super-switch contacts', kind: 'contacts', page: 'contacts', source: /Pole\/common \| P1/ },
+        ],
+    },
+    {
         name: 'STR26001',
         page: { kind: 'instrument', file: 'lib/instruments/wiring-reference.ts', serial: 'STR26001' },
         source: 'docs/engineering/strat-cunife/STR26001-wiring-reference.md',
