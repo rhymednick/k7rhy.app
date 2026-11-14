@@ -1,9 +1,10 @@
 # Handoff
 
-Updated 2026-10-10. Brief working state only; durable decisions live in the linked records.
+Updated 2026-10-25. Brief working state only; durable decisions live in the linked records.
 
 ## Current state
 
+- **DIY alternatives principle, first application: dummy-load stripboard.** The owner decided (2026-10-25) that K7RHY publishes free build-it-yourself alternatives with stripboard layouts alongside its kits ([decision record](../docs/decisions/2026-10-25-diy-alternative-builds.md)). The 20W dummy load stripboard is **designed and modeled, not built or measured**; the owner delegated the diode (BAT46) and the power limits (10 W continuous, 20 W bursts with 3 W resistors, recommended pending a thermal test). See [the reference](../docs/engineering/dummy-load-stripboard/reference.md) and its builder sheet. Next: decide where DIY alternatives live on the site (in discussion), get the kit's resistor wattage and diode part number, build one board, then NanoVNA and thermal tests before publishing any numbers.
 - **STR26001 Tomatillo revision:** the owner approved a cream pickguard, Fender tremolo bridge, complete Fender Custom Shop Tomatillo pickup set, and the name Tomatillo S-Type. The record and Rev 2.0 wiring reference are updated in the local change; the replacement pickup installation and lead mapping are not yet owner-reported. See [the dated STR26001 revision](../docs/engineering/strat-cunife/README.md) and [Rev 2.0 netlist](../docs/engineering/strat-cunife/STR26001-wiring-reference.md). Next: merge and verify production deploy, then record physical lead/phase findings when available.
 - **TypeSafe pilots: done.** Ledger triage and the wiring-page check both run; see [the TypeSafe decision record](../docs/decisions/2026-10-01-typesafe-skill.md). No open questions.
 - **Wiring pages:** every published wiring page has a netlist document and passes `scripts/typesafe/check-wiring-pages.mjs` (0 priority-1 items, 0 table mismatches). The check is required before a wiring page is published or changed ([workflow](../docs/engineering/wiring-diagrams.md)).
