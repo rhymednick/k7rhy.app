@@ -29,6 +29,7 @@ describe('PRS26001 permanent record', () => {
         expect(source).toContain('voice="Tone bypass"');
         expect(source).not.toMatch(/parallel|inside coil|eight voices/i);
         expect(source).toContain('(/sn/PRS26001/wiring)');
+        expect(source).toContain('[Relay voicings](/guitars/relay/voicings)');
     });
 
     it('contains no sale, condition, or personal-owner narrative', () => {
