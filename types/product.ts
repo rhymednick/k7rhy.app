@@ -1,16 +1,9 @@
 /**
- * Product type definitions for the guitar product system
+ * Guitar specification vocabulary (pickups, switches, controls, materials).
+ *
+ * Shop listings no longer live here: Shopify owns them, and lib/shop/ reads
+ * them. See docs/decisions/2026-11-13-shopify-driven-shop.md.
  */
-
-import type React from 'react';
-
-export enum ProductCategory {
-    GUITARS = 'guitars',
-    HAM_RADIO_KITS = 'ham-radio-kits',
-    COUPEVILLE = 'coupeville',
-    // Future categories will be added here:
-    // GUITAR_KITS = 'guitar-kits',
-}
 
 export enum PickupType {
     HUMBUCKER = 'humbucker',
@@ -91,34 +84,4 @@ export interface Control {
     switchPositions?: SwitchPosition[]; // For switches
     isPushPull?: boolean; // For push-pull knobs
     isPushPush?: boolean; // For push-push knobs
-}
-
-export interface ProductImage {
-    src: string;
-    description?: string;
-    alt?: string;
-}
-
-export interface Product {
-    slug: string;
-    name: string;
-    category: ProductCategory;
-    description: string; // Sales-focused (used for teasers and fallback)
-    images: string[] | ProductImage[]; // Support both string array (backward compat) and ProductImage array
-    price?: number;
-    purchaseLink?: string;
-}
-
-// Product config structure for TSX components
-// Configs export both product metadata and an optional Description component
-export interface ProductConfig {
-    product: Product;
-    Description?: React.ComponentType; // Optional React component for rich description formatting
-}
-
-export interface Guitar extends Product {
-    bodyCore: Material | Material[]; // Single material or array of materials
-    bodyShell: Material | Material[]; // Single material or array of materials
-    pickups: Pickup[];
-    controls: Control[];
 }

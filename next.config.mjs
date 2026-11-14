@@ -99,6 +99,12 @@ export const nextConfig = {
                 destination: '/guitars/relay/parts',
                 permanent: true,
             },
+            // The 20W dummy load page now uses its Shopify handle.
+            {
+                source: '/shop/ham-radio-kits/dummy-load-20w-bnc',
+                destination: '/shop/ham-radio-kits/20w-dummy-load-kit',
+                permanent: true,
+            },
             {
                 source: '/products',
                 destination: '/shop',
