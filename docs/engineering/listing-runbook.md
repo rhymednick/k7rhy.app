@@ -29,7 +29,7 @@ How to list an item for sale across channels. Follow this every time; don't re-d
 - Clean up only lightly (small crop or brightness). Never make photos look AI-generated.
 - If you change a photo's look, show the owner before using it.
 - Keep a per-item folder in the scratchpad. Order the photos: front first, then details, then case/box photos.
-- **Reverb uses Shopify's photos as they are when the listing is created.** Photo changes made later in Shopify don't sync; change them on Reverb by hand.
+- **Reverb uses Shopify's photos as they are when the listing is created.** Later photo changes don't sync; see "Changing photos" below.
 
 ## 2. Shopify product (the hub)
 
@@ -83,9 +83,21 @@ All in Shopify; the site follows within seconds and posts to Discord.
 | Set to Draft or Archived, set the quantity to 0, or switch **List on Reverb** off | Listing ended (no-fee "not sold") 🛑 |
 | Make it Active again (with stock and **List on Reverb** not off) | Ended listing relisted 🔄 |
 | Delete the product | Listing ended 🛑 |
-| Change photos | **Not synced.** Change them on Reverb by hand. |
+| Change photos | **Not synced.** The owner asks the agent, who changes both sites (see below). |
 
 A product whose **List on Reverb** was never set keeps any existing Reverb listing in sync, but the site never creates one for it.
+
+## Changing photos (agent does both sites)
+
+Shopify fires Product update when photos change, but the sync doesn't send photos to an existing Reverb listing. Reverb's API doesn't document whether sent photos replace or add to the existing ones, so automating it risks duplicates on a live listing. The owner decided (2026-11-13) that photo changes go through the agent, who:
+
+1. Prepares the photos (step 1).
+2. Changes them in Shopify. Remember the duplicate-upload quirk in step 2.6.
+3. Changes them on the Reverb listing in its editor (Photos & Description → upload, remove, reorder → Publish changes).
+4. Updates Facebook by hand if the item is listed there, within its 10-photo limit.
+5. Checks all three afterwards:
+   - same photos, in the same order, with no duplicates;
+   - the k7rhy.app product page shows the new set within 5 minutes.
 
 ## When something sells
 
