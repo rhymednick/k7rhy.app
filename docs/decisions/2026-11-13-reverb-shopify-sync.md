@@ -19,7 +19,9 @@ Keep Reverb and Shopify consistent for one-off items using only event-driven che
    - If it has, the page shows "Sold" instead of the buy button.
    - It also posts an alert (at most hourly) asking the owner to zero the item in Shopify.
    - The check fails open after 4 seconds so a Reverb outage never blocks a sale.
-4. **Price:** the Shopify "Product update" webhook sets the Reverb price to Shopify × 1.05, rounded up to the next $5. This applies only to single-price products whose Reverb listing is live. Price never flows from Reverb to Shopify.
+4. **Price: Reverb leads, one direction only** (owner, 2026-11-13). The owner sets Reverb prices. The Shopify price is the Reverb price less 5%, rounded down to $5 (`lib/sync/price-rule.ts`). Nothing ever changes a Reverb price.
+   - This supersedes an earlier version of this PR that pushed Shopify prices to Reverb from a "Product update" webhook. That code was removed before any webhook was created.
+   - Applying the rule to Shopify automatically isn't built yet; it needs Shopify Admin API write access. Until then, the Shopify price is set by hand.
 5. **Alerts:** posted to a private Discord channel by the site's existing bot.
 
 ## Why
@@ -42,4 +44,5 @@ This closes if Reverb grants OAuth access with the `orders/paid` webhook (ask in
 
 - **Reverb blocks unsigned reads from Netlify:** on the PR #144 preview, Reverb returned 403 to the page check's public read. The same request works from a home connection, so the block is likely on cloud-server addresses. The client now signs reads with `REVERB_API_TOKEN` when it is set. Re-test the page check after the token is in Netlify. If Reverb still returns 403, the page check can't run from Netlify, but the Shopify webhooks may still work, since they use signed calls.
 - **End reason:** confirm Reverb accepts `{"reason": "not_sold"}` on `PUT /api/my/listings/{id}/state/end`. If the first real end fails, the alert says to end it by hand.
-- **STR26001's Reverb price:** it is $845. The rule gives $840, so the first product update will move it to $840 unless the rule changes.
+- **STR26001's Shopify price:** it is $799. The rule gives $800 from its $845 Reverb price. Nothing changes it automatically; the owner decides whether to keep $799.
+- **Automatic Reverb → Shopify price sync:** not built. It needs a Shopify Admin token (a Dev Dashboard app using client credentials) and a trigger. A product page opening is the natural no-polling trigger, since that check already reads the Reverb listing.

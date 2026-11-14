@@ -1,17 +1,16 @@
 /**
  * Shopify ↔ Reverb sync rules.
  *
- * Shopify is the source of truth for price. Each Shopify product that is also
+ * Reverb leads on price; this sync never changes a Reverb price. Each Shopify product that is also
  * listed on Reverb carries the Reverb listing number in the custom field
  * custom.reverb_listing_id. Nothing here polls: every action is triggered by a
  * Shopify webhook or by someone opening the product page on k7rhy.app.
  * See docs/decisions/2026-11-13-reverb-shopify-sync.md.
  */
 
-import { getReverbListing, endReverbListing, updateReverbPrice, reverbListingUrl, isReverbListingId, hasReverbToken, type ReverbListing } from '@/lib/reverb/client';
+import { getReverbListing, endReverbListing, reverbListingUrl, isReverbListingId, hasReverbToken, type ReverbListing } from '@/lib/reverb/client';
 import { canReadMetafields, storefrontQuery } from '@/lib/shop/storefront';
 import { sendSalesAlert } from './alert';
-import { reverbPriceFor } from './price-rule';
 
 export interface ReverbLink {
     handle: string;
@@ -24,7 +23,6 @@ export interface SyncDeps {
     lookupByHandle(handle: string): Promise<ReverbLink | null>;
     getListing(id: string): Promise<ReverbListing>;
     endListing(id: string): Promise<void>;
-    updatePrice(id: string, amount: number): Promise<void>;
     canWriteReverb(): boolean;
     alert(message: string): Promise<void>;
 }
@@ -48,7 +46,6 @@ export const liveDeps: SyncDeps = {
     lookupByHandle: (handle) => lookup(`query ($handle: String!) { product(handle: $handle) { ${LINK_FIELDS} } }`, { handle }),
     getListing: getReverbListing,
     endListing: endReverbListing,
-    updatePrice: (id, amount) => updateReverbPrice(id, amount),
     canWriteReverb: hasReverbToken,
     alert: sendSalesAlert,
 };
@@ -95,45 +92,6 @@ export async function handleShopifyOrder(order: ShopifyOrder, deps: SyncDeps = l
         }
     }
     return results;
-}
-
-interface ShopifyProductUpdate {
-    id?: number | string;
-    title?: string;
-    status?: string;
-    variants?: { price?: string | number }[];
-}
-
-/** A Shopify product changed: keep the Reverb price on the markup rule. */
-export async function handleShopifyProductUpdate(product: ShopifyProductUpdate, deps: SyncDeps = liveDeps): Promise<string | null> {
-    if (product.id === undefined || product.status === 'draft' || product.status === 'archived') {
-        return null;
-    }
-    const prices = (product.variants ?? []).map((variant) => Number(variant.price)).filter((price) => Number.isFinite(price) && price > 0);
-    // Only single-price items (one-off instruments) sync; multi-variant kits keep their own Reverb pricing.
-    if (prices.length === 0 || new Set(prices).size !== 1) {
-        return null;
-    }
-    const link = await deps.lookupByProductId(String(product.id));
-    if (!link?.reverbListingId || !deps.canWriteReverb()) {
-        return null;
-    }
-    const id = link.reverbListingId;
-    const target = reverbPriceFor(prices[0]);
-    try {
-        const listing = await deps.getListing(id);
-        if (listing.state !== 'live' || listing.price === target) {
-            return null;
-        }
-        await deps.updatePrice(id, target);
-        const message = `💲 "${link.title}": Shopify price $${prices[0]} → Reverb price set to $${target} (was $${listing.price}).`;
-        await deps.alert(message);
-        return message;
-    } catch (error) {
-        const message = `⚠️ Couldn't update the Reverb price for "${link.title}" to $${target}: ${error instanceof Error ? error.message : 'unknown error'}. ${reverbListingUrl(id)}`;
-        await deps.alert(message);
-        return message;
-    }
 }
 
 export type PageAvailability = { status: 'available' } | { status: 'sold-elsewhere'; title: string; reverbListingId: string };

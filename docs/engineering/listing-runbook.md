@@ -10,8 +10,8 @@ How to list an item for sale and link it across channels. Follow this every time
 ## Standing rules (owner decisions)
 
 - **Every item listed on Reverb also goes on Shopify.** Assume this unless the owner says otherwise (2026-11-13).
-- **Shopify is the source of truth.** It owns price, photos, description, and stock. The website shows whatever Shopify has; never hard-code a price or description on the site.
-- **Reverb price** is derived from the Shopify price: Shopify × 1.05, rounded up to the next $5 (`lib/sync/price-rule.ts`). Set the Shopify price first; the sync keeps Reverb in line for single-price items.
+- **The website reads Shopify.** It shows Shopify's photos, description, stock, and price; never hard-code any of them on the site.
+- **Reverb leads on price** (owner, 2026-11-13). Set the Reverb price first. The Shopify price is the Reverb price less 5%, rounded down to the next $5 (`shopifyPriceFor` in `lib/sync/price-rule.ts`), because Shopify carries no marketplace fee. Prices only ever flow Reverb → Shopify; nothing changes a Reverb price automatically. Until a Reverb → Shopify price sync exists, set the Shopify price by hand when the Reverb price changes.
 - **Wording:**
   - Guitars on factory-made bodies and necks are **"Custom-Assembled"**, never "Hand-Built", and are **not** marked Handmade on Reverb.
   - Their listings include: "The body and neck are factory-made; I chose the parts, wired the electronics, and assembled it here in Coupeville."
@@ -63,7 +63,7 @@ How to list an item for sale and link it across channels. Follow this every time
    - The media file input is inside a shadow DOM. Upload through a light-DOM proxy `<input type=file>`, copy its files to the shadow input with a `DataTransfer`, and dispatch `change`.
    - This reliably uploads every photo **twice**. Remove the duplicates (media checkboxes → Remove) before saving.
 6. Set the status to **Active** only with the owner's OK.
-7. **Pricing:** Shopify prices have been about 5% under Reverb. Confirm the Shopify price with the owner if it isn't given.
+7. **Pricing:** Shopify price = `shopifyPriceFor(Reverb price)`. If the owner gives a different Shopify price, use theirs.
 
 ## 4. Facebook Marketplace (by hand)
 
@@ -76,7 +76,6 @@ Keep to 10 photos. If the case photos push the count over, drop the least inform
 ## 5. Check the link
 
 - **Website:** within 5 minutes, the item appears at `https://k7rhy.app/shop/<category>/<shopify-handle>` with the Shopify price.
-- **Reverb price:** if the Shopify price × 1.05 (rounded up to $5) differs from the Reverb price, saving the Shopify product triggers the price sync, and a 💲 message appears in the sales-alert Discord channel.
 
 ## When something sells
 
@@ -98,8 +97,7 @@ These live in the Netlify site environment. The owner creates and pastes all sec
 | `DISCORD_SALES_CHANNEL_ID` | Private Discord channel for sales alerts; the existing `DISCORD_BOT_TOKEN` posts there | Discord → right-click the channel → Copy Channel ID. The bot needs View Channel and Send Messages there. |
 
 Shopify webhooks (Settings → Notifications → Webhooks → Create webhook, format JSON, URL `https://k7rhy.app/api/shopify/webhooks`):
-- **Order creation**
-- **Product update**
+- **Order creation** only. Don't add a Product update webhook; prices never flow from Shopify to Reverb.
 
 Without a variable, its feature degrades safely:
 - **No Storefront token:** no Reverb linking at all.
@@ -110,7 +108,7 @@ Without a variable, its feature degrades safely:
 
 - `lib/shop/catalog.ts`: Shopify catalog for `/shop`.
 - `lib/shop/storefront.ts`: Storefront API client (token optional).
-- `lib/reverb/client.ts`: Reverb API (read listing, end listing, update price).
-- `lib/sync/reverb-sync.ts`: sync rules. `lib/sync/price-rule.ts`: the markup.
+- `lib/reverb/client.ts`: Reverb API (read listing, end listing).
+- `lib/sync/reverb-sync.ts`: sync rules. `lib/sync/price-rule.ts`: the Reverb → Shopify price rule.
 - `app/api/shopify/webhooks/route.ts`: Shopify webhooks.
 - `app/api/shop/availability/route.ts` and `components/shop/shop-buy-button.tsx`: the check when a product page opens.

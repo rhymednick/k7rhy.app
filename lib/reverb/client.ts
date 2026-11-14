@@ -1,7 +1,7 @@
 /**
  * Small Reverb API client for the Shopify ↔ Reverb sync.
  *
- * Reading a listing is public. Ending a listing or changing its price needs a
+ * Reading a listing is public. Ending a listing needs a
  * Reverb personal access token in REVERB_API_TOKEN (server-only, never logged).
  * See docs/engineering/listing-runbook.md.
  */
@@ -89,18 +89,6 @@ export async function endReverbListing(id: string): Promise<void> {
     });
     if (!response.ok) {
         throw new ReverbError(`Reverb refused to end listing ${id} (${response.status}): ${(await response.text()).slice(0, 300)}`, response.status);
-    }
-}
-
-export async function updateReverbPrice(id: string, amount: number, currency = 'USD'): Promise<void> {
-    const response = await fetch(`${REVERB_API}/listings/${id}`, {
-        method: 'PUT',
-        headers: headers(true),
-        body: JSON.stringify({ price: { amount: amount.toFixed(2), currency } }),
-        cache: 'no-store',
-    });
-    if (!response.ok) {
-        throw new ReverbError(`Reverb refused the price change for listing ${id} (${response.status}): ${(await response.text()).slice(0, 300)}`, response.status);
     }
 }
 

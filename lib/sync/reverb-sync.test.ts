@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { ReverbListing } from '@/lib/reverb/client';
-import { reverbPriceFor } from './price-rule';
-import { checkProductAvailability, handleShopifyOrder, handleShopifyProductUpdate, type SyncDeps } from './reverb-sync';
+import { shopifyPriceFor } from './price-rule';
+import { checkProductAvailability, handleShopifyOrder, type SyncDeps } from './reverb-sync';
 import { verifyShopifyWebhook } from './shopify-webhook';
 import { createHmac } from 'node:crypto';
 
@@ -15,7 +15,6 @@ function deps(overrides: Partial<SyncDeps> & { listing?: Partial<ReverbListing> 
         lookupByHandle: vi.fn(async () => link),
         getListing: vi.fn(async () => listing),
         endListing: vi.fn(async () => {}),
-        updatePrice: vi.fn(async () => {}),
         canWriteReverb: () => true,
         alert: vi.fn(async (message: string) => {
             alerts.push(message);
@@ -24,16 +23,16 @@ function deps(overrides: Partial<SyncDeps> & { listing?: Partial<ReverbListing> 
     };
 }
 
-describe('reverbPriceFor', () => {
-    it('adds 5% and rounds up to the next $5', () => {
-        expect(reverbPriceFor(735)).toBe(775);
-        expect(reverbPriceFor(799)).toBe(840);
-        expect(reverbPriceFor(1020)).toBe(1075);
-        expect(reverbPriceFor(100)).toBe(105);
+describe('shopifyPriceFor', () => {
+    it('takes 5% off the Reverb price and rounds down to $5', () => {
+        expect(shopifyPriceFor(775)).toBe(735);
+        expect(shopifyPriceFor(1075)).toBe(1020);
+        expect(shopifyPriceFor(845)).toBe(800);
+        expect(shopifyPriceFor(100)).toBe(95);
     });
 
     it('rejects nonsense prices', () => {
-        expect(() => reverbPriceFor(0)).toThrow();
+        expect(() => shopifyPriceFor(0)).toThrow();
     });
 });
 
@@ -64,27 +63,6 @@ describe('handleShopifyOrder', () => {
         const d = deps({ lookupByProductId: vi.fn(async () => ({ handle: 'kit', title: 'Kit', reverbListingId: null })) });
         expect(await handleShopifyOrder(order, d)).toEqual([]);
         expect(d.getListing).not.toHaveBeenCalled();
-    });
-});
-
-describe('handleShopifyProductUpdate', () => {
-    it('moves the Reverb price to the rule when Shopify changes', async () => {
-        const d = deps({ listing: { price: 845 } });
-        await handleShopifyProductUpdate({ id: 1, status: 'active', variants: [{ price: '799.00' }] }, d);
-        expect(d.updatePrice).toHaveBeenCalledWith('103882256', 840);
-    });
-
-    it('leaves Reverb alone when it already matches', async () => {
-        const d = deps({ listing: { price: 775 } });
-        expect(await handleShopifyProductUpdate({ id: 1, status: 'active', variants: [{ price: '735.00' }] }, d)).toBeNull();
-        expect(d.updatePrice).not.toHaveBeenCalled();
-    });
-
-    it('skips multi-price products and drafts', async () => {
-        const d = deps();
-        await handleShopifyProductUpdate({ id: 1, status: 'active', variants: [{ price: '12.95' }, { price: '99.00' }] }, d);
-        await handleShopifyProductUpdate({ id: 1, status: 'draft', variants: [{ price: '735.00' }] }, d);
-        expect(d.updatePrice).not.toHaveBeenCalled();
     });
 });
 

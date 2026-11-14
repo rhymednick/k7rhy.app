@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { handleShopifyOrder, handleShopifyProductUpdate } from '@/lib/sync/reverb-sync';
+import { handleShopifyOrder } from '@/lib/sync/reverb-sync';
 import { verifyShopifyWebhook } from '@/lib/sync/shopify-webhook';
 
 export const dynamic = 'force-dynamic';
@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 /**
  * Shopify webhooks (Settings → Notifications → Webhooks, JSON format):
  * - Order creation → end the Reverb listing, or flag a double sale.
- * - Product update → keep the Reverb price on the markup rule.
+ * Prices are never synced from Shopify to Reverb: Reverb leads on price.
  * See docs/engineering/listing-runbook.md.
  */
 export async function POST(request: Request) {
@@ -27,8 +27,6 @@ export async function POST(request: Request) {
     try {
         if (topic === 'orders/create') {
             await handleShopifyOrder(payload as Parameters<typeof handleShopifyOrder>[0]);
-        } else if (topic === 'products/update') {
-            await handleShopifyProductUpdate(payload as Parameters<typeof handleShopifyProductUpdate>[0]);
         }
     } catch (error) {
         // Answer 200 anyway: the handlers already alert on failures, and a Shopify retry won't fix them.
