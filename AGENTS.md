@@ -19,6 +19,10 @@ Shared guidance for coding agents working in this repository. Update this file f
 
 Before changing navigation, routes, publishing, commerce boundaries, or serialized instruments, read and follow `docs/architecture/site-organization.md`.
 
+## Listing items for sale
+
+Anything listed on Reverb also goes on Shopify, linked by the Shopify custom field `custom.reverb_listing_id`. Before listing or changing a listing, follow `docs/engineering/listing-runbook.md`.
+
 ## Guitar wiring diagrams
 
 Before creating or publishing a builder-facing guitar wiring diagram, follow `docs/engineering/wiring-diagrams.md`. Before publishing or changing a wiring page, run `scripts/typesafe/check-wiring-pages.mjs`. Resolve every priority-2 item yourself against the netlist (fix it, clear it, or escalate it), and bring the owner only what you can't settle.
@@ -77,7 +81,8 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 
 - `DISCORD_BOT_TOKEN` — server-only access for Community announcements and Relay pinned messages
 - `SHOPIFY_STORE_DOMAIN` — optional; defaults to `k7rhy.myshopify.com`
-- `SHOPIFY_STOREFRONT_ACCESS_TOKEN` — optional server-only Storefront token; the shop works without it
+- `SHOPIFY_STOREFRONT_ACCESS_TOKEN` — Headless Storefront token; the shop works without it, but the Reverb link needs it
+- `REVERB_API_TOKEN`, `SHOPIFY_WEBHOOK_SECRET`, `DISCORD_SALES_CHANNEL_ID` — Reverb ↔ Shopify sync; see `docs/engineering/listing-runbook.md`
 - Build-time auto-injected: `NEXT_PUBLIC_GIT_COMMIT_SHA`, `NEXT_PUBLIC_BUILD_TIMESTAMP`, `NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC`
 
 ## Code Style

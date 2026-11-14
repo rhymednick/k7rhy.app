@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { ChevronLeft, ExternalLink } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { siteConfig } from '@/config/site';
 import { formatPrice, formatPriceRange, type ShopProduct } from '@/lib/shop/catalog';
 import { shopCategories } from '@/lib/shop/categories';
+import { ShopBuyButton } from './shop-buy-button';
 import { ShopGallery } from './shop-gallery';
 
 export function ShopProductPage({ product }: { product: ShopProduct }) {
@@ -41,13 +42,7 @@ export function ShopProductPage({ product }: { product: ShopProduct }) {
                     )}
 
                     {product.available ? (
-                        <div className="space-y-2">
-                            <a href={product.url} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-sky-600 px-5 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 sm:w-auto">
-                                Buy on my Shopify store
-                                <ExternalLink className="h-4 w-4" aria-hidden="true" />
-                            </a>
-                            <p className="text-sm text-muted-foreground">Checkout, shipping, and payment are handled at shop.k7rhy.app.</p>
-                        </div>
+                        <ShopBuyButton handle={product.handle} url={product.url} categoryHref={`/shop/${product.category}`} />
                     ) : (
                         <p className="text-muted-foreground">
                             This one has sold.{' '}
