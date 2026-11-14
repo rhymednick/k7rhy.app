@@ -58,26 +58,26 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 
 **UI layer:** Shadcn UI components in `components/ui/` (Radix primitives + Tailwind). RSC-enabled. Tailwind with class-based dark mode and HSL CSS variable theming. Fonts: Inter (sans), JetBrains Mono (mono).
 
-**Shopify integration:** `lib/shopify.ts` creates a Storefront API client. Requires `NEXT_PUBLIC_SHOPIFY_PUBLIC_STOREFRONT_ACCESS_TOKEN` and `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` env vars.
+**Shopify integration:** `/shop` is generated from Shopify. `lib/shop/catalog.ts` reads public product data from the Storefront API (no token needed) and refreshes every 5 minutes; price, photos, descriptions, and availability are never hard-coded on the site. A product's Shopify category places it under Guitars, Amplifiers, or Ham Radio Kits; tag it `hide-from-k7rhy-app` to keep it off the site. See `docs/decisions/2026-11-13-shopify-driven-shop.md`.
 
 **Custom documentation components:** DocSection (auto-formats heading levels by nesting depth), DocImage (click-to-expand), DocProcedure (renders structured procedure data), DocBreadcrumb, DocIndexCard, PageNavigation (auto-generates floating nav from page headings), PowerCalculator (voltage-to-power conversion flyout).
 
 ## Key Directories
 
 - `app/` — pages and layouts (subject landing pages, community, docs, shop, and private serial records)
-- `components/` — organized by domain: `community/`, `doc/`, `features/`, `navigation/`, `product/`, `shared/`, `ui/`
+- `components/` — organized by domain: `community/`, `doc/`, `features/`, `navigation/`, `shared/`, `shop/`, `ui/`
 - `content/instruments/` — private serial-number instrument MDX records
 - `content/relay/` — Relay guitar platform MDX content
 - `content/docs/` — MDX documentation
-- `config/` — site config (`site.ts`), navigation, product catalogs, doc section styling
+- `config/` — site config (`site.ts`), navigation, doc section styling
 - `lib/` — utilities (utils.ts, shopify.ts, toc.ts, version.ts, fonts.ts)
 - `types/` — TypeScript type definitions (content, nav, product, shopify)
 
 ## Environment Variables
 
 - `DISCORD_BOT_TOKEN` — server-only access for Community announcements and Relay pinned messages
-- `NEXT_PUBLIC_SHOPIFY_PUBLIC_STOREFRONT_ACCESS_TOKEN` — Shopify Storefront API
-- `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` — Shopify store domain
+- `SHOPIFY_STORE_DOMAIN` — optional; defaults to `k7rhy.myshopify.com`
+- `SHOPIFY_STOREFRONT_ACCESS_TOKEN` — optional server-only Storefront token; the shop works without it
 - Build-time auto-injected: `NEXT_PUBLIC_GIT_COMMIT_SHA`, `NEXT_PUBLIC_BUILD_TIMESTAMP`, `NEXT_PUBLIC_GIT_COMMIT_IS_PUBLIC`
 
 ## Code Style

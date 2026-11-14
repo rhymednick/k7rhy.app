@@ -68,3 +68,38 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* Product descriptions pulled from Shopify (components/shop/shop-product-page.tsx). */
+@layer components {
+    .shop-description {
+        @apply space-y-4 text-base leading-relaxed text-muted-foreground;
+    }
+
+    .shop-description h1,
+    .shop-description h2,
+    .shop-description h3,
+    .shop-description h4 {
+        @apply pt-4 text-xl font-semibold tracking-tight text-foreground;
+    }
+
+    .shop-description strong,
+    .shop-description b {
+        @apply font-semibold text-foreground;
+    }
+
+    .shop-description ul {
+        @apply ml-6 list-disc space-y-2;
+    }
+
+    .shop-description ol {
+        @apply ml-6 list-decimal space-y-2;
+    }
+
+    .shop-description a {
+        @apply font-medium text-sky-700 underline-offset-4 hover:underline dark:text-sky-300;
+    }
+
+    .shop-description img {
+        @apply h-auto max-w-full rounded-lg;
+    }
+}

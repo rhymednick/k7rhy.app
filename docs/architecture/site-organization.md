@@ -15,6 +15,7 @@ This file is the canonical organizational policy for K7RHY.app. Agents must pres
 
 - Discord announcements replace Lab Notes; do not recreate a local blog without an explicit new decision.
 - K7RHY.app explains and presents. Shopify owns price, availability, inventory, orders, payment, and checkout.
+- `/shop` is generated from Shopify; never hard-code a price, description, or availability on the site. See `docs/decisions/2026-11-13-shopify-driven-shop.md`.
 - A future Shopify storefront may use `shop.k7rhy.app`; the current `/shop` route must remain a stable navigation concept.
 
 ## Serialized instruments

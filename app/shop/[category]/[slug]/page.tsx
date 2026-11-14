@@ -1,47 +1,57 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
-import { ProductPage } from '@/components/product/product-page';
-import { ProductCategory } from '@/types/product';
-import { getProduct, getAllProducts, getProductDescription } from '@/config/products';
+import type { Metadata } from 'next';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { ShopProductPage } from '@/components/shop/shop-product-page';
+import { fetchCatalog, getShopProduct, type ShopProduct } from '@/lib/shop/catalog';
+import { isShopifyCategorySlug } from '@/lib/shop/categories';
 
-type ProductPageRouteProps = {
-    params: Promise<{
-        category: string;
-        slug: string;
-    }>;
+export const revalidate = 300;
+
+type ProductRouteProps = {
+    params: Promise<{ category: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
-    // Generate static params for all products
-    const allProducts = getAllProducts();
-    return allProducts.map((product) => ({
-        category: product.category,
-        slug: product.slug,
-    }));
+    try {
+        const products = await fetchCatalog();
+        return products.filter((product) => product.available).map((product) => ({ category: product.category, slug: product.handle }));
+    } catch {
+        // Shopify unreachable at build time: pages render on first request instead.
+        return [];
+    }
 }
 
-export default async function Page({ params }: ProductPageRouteProps) {
-    const { category, slug } = await params;
-
-    // Validate category
-    if (!Object.values(ProductCategory).includes(category as ProductCategory)) {
-        notFound();
+async function loadProduct(category: string, slug: string): Promise<ShopProduct | null> {
+    if (!isShopifyCategorySlug(category)) {
+        return null;
     }
+    return getShopProduct(slug);
+}
 
-    // Load product config
-    const product = getProduct(category as ProductCategory, slug);
+export async function generateMetadata({ params }: ProductRouteProps): Promise<Metadata> {
+    const { category, slug } = await params;
+    const product = await loadProduct(category, slug);
+    if (!product) {
+        return {};
+    }
+    return {
+        title: `${product.title} | Shop`,
+        openGraph: product.image ? { images: [{ url: product.image.url, alt: product.image.alt }] } : undefined,
+        // Sold one-offs stay reachable for old links but drop out of search.
+        robots: product.available ? undefined : { index: false, follow: true },
+    };
+}
+
+export default async function ProductRoute({ params }: ProductRouteProps) {
+    const { category, slug } = await params;
+    const product = await loadProduct(category, slug);
 
     if (!product) {
         notFound();
     }
-
-    // Ensure the product matches the category
     if (product.category !== category) {
-        notFound();
+        permanentRedirect(`/shop/${product.category}/${product.handle}`);
     }
 
-    // Load Description component if available
-    const Description = getProductDescription(category as ProductCategory, slug);
-
-    return <ProductPage product={product} Description={Description} />;
+    return <ShopProductPage product={product} />;
 }
