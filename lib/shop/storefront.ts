@@ -1,9 +1,10 @@
 /**
  * Minimal Shopify Storefront API client.
  *
- * Product listings are public, so the Storefront API answers these queries
- * without a token. If SHOPIFY_STOREFRONT_ACCESS_TOKEN is set, it is sent as
- * well (server-side only; never NEXT_PUBLIC_ and never logged).
+ * Product listings are public, so the Storefront API answers catalog queries
+ * without a token. Custom fields (metafields), such as the Reverb listing ID,
+ * need the Headless channel's Storefront token in SHOPIFY_STOREFRONT_ACCESS_TOKEN.
+ * The token is sent from the server only and never logged.
  */
 
 export const SHOPIFY_API_VERSION = '2025-01';
@@ -18,9 +19,24 @@ export function storefrontEndpoint(domain = process.env.SHOPIFY_STORE_DOMAIN || 
 
 export class StorefrontError extends Error {}
 
-export async function storefrontQuery<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
+function storefrontToken(): string | undefined {
+    // The older NEXT_PUBLIC_ name still exists in the Netlify environment; accept it so the token isn't needed twice.
+    return process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || process.env.NEXT_PUBLIC_SHOPIFY_PUBLIC_STOREFRONT_ACCESS_TOKEN || undefined;
+}
+
+/** Custom fields (metafields) can only be read with a Storefront token. */
+export function canReadMetafields(): boolean {
+    return Boolean(storefrontToken());
+}
+
+interface StorefrontQueryOptions {
+    /** Skip the 5-minute cache, for webhook handlers that need the current state. */
+    fresh?: boolean;
+}
+
+export async function storefrontQuery<T>(query: string, variables: Record<string, unknown> = {}, options: StorefrontQueryOptions = {}): Promise<T> {
     const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-    const token = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
+    const token = storefrontToken();
     if (token) {
         headers['X-Shopify-Storefront-Access-Token'] = token;
     }
@@ -29,7 +45,7 @@ export async function storefrontQuery<T>(query: string, variables: Record<string
         method: 'POST',
         headers,
         body: JSON.stringify({ query, variables }),
-        next: { revalidate: SHOP_REVALIDATE_SECONDS, tags: ['shopify'] },
+        ...(options.fresh ? { cache: 'no-store' as const } : { next: { revalidate: SHOP_REVALIDATE_SECONDS, tags: ['shopify'] } }),
     });
 
     if (!response.ok) {

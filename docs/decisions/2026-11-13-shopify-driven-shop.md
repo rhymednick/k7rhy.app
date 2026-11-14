@@ -38,4 +38,4 @@ The owner asked for prices and descriptions to show whatever is on Shopify, so t
 
 - The Netlify environment may still define `NEXT_PUBLIC_SHOPIFY_PUBLIC_STOREFRONT_ACCESS_TOKEN` and `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN`. Nothing reads them now.
 - The old `lib/shopify.ts` printed the token to the build log. It has been removed. Rotating that token is optional, since it was a public Storefront token.
-- Instant updates on sale (a Shopify webhook calling `revalidateTag('shopify')`) are not built. The 5-minute refresh is the current behavior.
+- Instant page refresh on sale (a Shopify webhook calling `revalidateTag('shopify')`) is not built. The 5-minute refresh is the current behavior. The Reverb ↔ Shopify sync is in `docs/decisions/2026-11-13-reverb-shopify-sync.md`.
