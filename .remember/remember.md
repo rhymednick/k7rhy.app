@@ -4,6 +4,8 @@ Updated 2026-10-25. Brief working state only; durable decisions live in the link
 
 ## Current state
 
+- **RLY26002 (Torch – Production Prototype): serial reserved, unpublished.** Owner-reported as tester-validated and unchanged; GFS pickups per spec. Only the [engineering record](../docs/engineering/rly26002/README.md) exists. Note the allocator does not see engineering-record reservations (RLY26001 is held by the Harmonic Triad). Next: owner confirms wiring and supplies photos, then author the record.
+
 - **RLY26001 (prototype Relay-body guitar, "Harmonic Triad"): on hold for a wiring repair.** Serial reserved 2026-11-15; built 2026-03-19; some selector positions do not work. Only the [engineering record](../docs/engineering/rly26001/README.md) exists; no instrument record yet. Next: owner repairs and supplies lug-by-lug wiring, then author the record.
 
 - **DIY alternatives principle, first application: dummy-load stripboard.** The owner decided (2026-10-25) that K7RHY publishes free build-it-yourself alternatives with stripboard layouts alongside its kits ([decision record](../docs/decisions/2026-10-25-diy-alternative-builds.md)). The 20W dummy load stripboard is **designed and modeled, not built or measured**; the owner delegated the diode (BAT46) and the power limits (10 W continuous, 20 W bursts with 3 W resistors, recommended pending a thermal test). See [the reference](../docs/engineering/dummy-load-stripboard/reference.md) and its builder sheet. Next: decide where DIY alternatives live on the site (in discussion), get the kit's resistor wattage and diode part number, build one board, then NanoVNA and thermal tests before publishing any numbers.
