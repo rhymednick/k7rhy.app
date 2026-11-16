@@ -25,6 +25,7 @@ Owner-reported on 2026-11-15 unless noted.
 - **Scale length:** 24.75", the same as all Relay models.
 - **Hardware:** Guyker locking tuners; hardtail bridge.
 - **Controls:** the designed control layout, i.e. the [Torch reference circuit](../relay-torch-reference.md) (owner-reported; not measured).
+- **Strings:** 9–42, as on all the printed guitars.
 - **Neck:** maple with a rosewood fingerboard.
 - **Body:** PET-CF. Matte paint finish. Visible joins where the body sections meet and some roughness, which is why it is a prototype; the owner says it is close to retail quality. It uses the two-chamber design the owner reports was validated as effective in [RLY26001](../rly26001/README.md). That validation is owner-reported only: the RLY26001 record holds just the case card's intent ("dual side chambers add resonance without compromising the load path") and no test results, and RLY26001 itself is awaiting a wiring repair.
 - **Testing:** over the last few months a local Seattle musician, stage name **Sputnik Monroe Jr.**, played and checked it. The owner reports the tester validated that it meets the target spec, so the design stays as built. The owner has not supplied test notes, dates, or measurements, so this is an owner-reported validation, not a documented test result.
@@ -36,7 +37,7 @@ Owner-reported on 2026-11-15 unless noted.
 - Whether any physical measurement has been taken. The Torch reference says its circuit is a specification, not evidence that a harness was measured. Jack DC resistance in each position, with the tone down and up, would verify it, as was done for PRS26001.
 - Which pickup lead versions are installed.
 - Whether the chamber layout is identical to RLY26001's, and the evidence behind the chamber validation.
-- Completion date, photographs, and the print/case-card wording.
+- Completion date, photographs, neck profile and nut details, and the print/case-card wording. The owner is not providing more detail for now (2026-11-15); the instrument record resumes when they do.
 
 ## Next actions
 
