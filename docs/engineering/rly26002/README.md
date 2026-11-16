@@ -22,7 +22,8 @@ Owner-reported on 2026-11-15 unless noted.
 - **Model:** Relay Torch, with a P90-type pickup in the middle position.
 - **Completed:** 2026. The exact date is not recorded yet; the serial year `26` is confirmed.
 - **Pickups:** the specified GFS pickups from the [Torch reference](../relay-torch-reference.md): bridge GFS VEH, middle GFS Mean 90 (P90-type), neck GFS Professional Series Alnico II. The owner has not yet confirmed lead versions.
-- **Body:** not a polished body, which is why it is a prototype.
+- **Neck:** maple with a rosewood fingerboard.
+- **Body:** PET-CF (carbon-fiber-filled PET, printed). Not a polished body, which is why it is a prototype. It uses the two-chamber design the owner reports was validated as effective in [RLY26001](../rly26001/README.md). That validation is owner-reported only: the RLY26001 record holds just the case card's intent ("dual side chambers add resonance without compromising the load path") and no test results, and RLY26001 itself is awaiting a wiring repair.
 - **Testing:** over the last few months a local Seattle musician, stage name **Sputnik Monroe Jr.**, played and checked it. The owner reports the tester validated that it meets the target spec, so the design stays as built. The owner has not supplied test notes, dates, or measurements, so this is an owner-reported validation, not a documented test result.
 - **Privacy:** keep the tester's name out of the permanent owner-facing record unless the owner approves it.
 
@@ -31,7 +32,7 @@ Owner-reported on 2026-11-15 unless noted.
 - Whether the wiring matches the [Torch reference circuit](../relay-torch-reference.md) exactly: A500K volume with no treble bleed, A500K push-pull tone, 22 nF tone capacitor, Edge Contour network (2.2 nF in parallel with 150 kΩ), five-way blade. The owner said the pickups match but has not yet confirmed the controls and wiring.
 - Whether any physical measurement has been taken. The Torch reference says its circuit is a specification, not evidence that a harness was measured. Jack DC resistance in each position, with the tone down and up, would verify it, as was done for PRS26001.
 - Which pickup lead versions are installed.
-- Body, neck, finish, hardware, and what exactly is "not polished".
+- Finish, hardware, scale length, and what exactly is "not polished". Whether the chamber layout is identical to RLY26001's, and the evidence behind the chamber validation.
 - Completion date, photographs, and the print/case-card wording.
 
 ## Next actions
