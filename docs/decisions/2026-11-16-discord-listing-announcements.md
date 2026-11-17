@@ -181,3 +181,14 @@ preview writes blocked. Discord channel permissions were corrected by the owner.
 See `docs/engineering/discord-announcement-launch-receipt.json` for delivery
 evidence and remaining subscription-verification work. No live price drop or
 sale was manufactured as a test, and no absent page-2 measurements are claimed.
+
+## Compact messages without preview cards (2026-11-16)
+
+Owner decision: link previews made each product announcement look like a flood
+of separate attachments/posts. The owner removed Embed Links permission and
+manually suppressed the existing previews. Keep clickable URLs, but suppress
+Discord preview embeds for all listing creates/edits and price-drop notices.
+The delivery client now sets message flag 4 explicitly. This supersedes relying
+on default Discord unfurling or bot permissions to determine presentation.
+Status: implemented and tested in a PR, awaiting merge/deployment. The four
+existing messages remain as the owner cleaned them.

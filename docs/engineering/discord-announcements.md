@@ -230,3 +230,17 @@ Additional Admin Notifications subscriptions for paid orders and inventory event
 still need verification in Shopify Admin. Product-update and order-creation
 subscriptions are existing live hooks; no real sale or price change was made to
 exercise the update paths during launch.
+
+## Link previews suppressed (2026-11-16)
+
+The owner found Discord's automatic preview cards overwhelming: one message with
+several URLs appeared to be many separate posts. The owner removed the bot's
+Embed Links permission and manually removed the existing previews. The intended
+presentation is a compact text message with clickable links and no preview cards.
+
+The delivery client now sends Discord's `SUPPRESS_EMBEDS` flag (4) on every
+create and edit, including price-drop notices. This preserves the behavior if
+Embed Links permission is later restored, and keeps future sold/price edits from
+reintroducing previews. Existing cleaned messages are not reposted or rewritten.
+The code change is prepared in a PR; production currently relies on the owner's
+permission setting and manual cleanup until it is deployed.
