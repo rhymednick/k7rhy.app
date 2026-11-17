@@ -136,3 +136,14 @@ This is the owner's explicitly chosen file-based design for a tiny, infrequently
 updated tracker, not a claim that Blobs is a general-purpose transactional database.
 
 JSON-file validation: all 336 tests in 61 files and the production build pass under Node 20 in CI/preview context. File tests cover conditional first creation, concurrent writers, expired leases, pending recovery, invalid files, read-only export, and production/preview isolation. Live Blobs/Discord posting is still pending activation.
+
+## Approved announcement style and first description (2026-11-16)
+
+After merging PR #155, the owner approved a factual newsfeed format rather than
+first-person or personal promotional copy. Use a concise product/serial headline,
+two factual description sentences, current price, and related links. The Tomatillo
+S-Type description was explicitly approved; other descriptions remain unapproved.
+Exact copy and the presentation follow-up are in
+[the announcement copy record](../engineering/discord-announcement-copy.md).
+
+Editorial preparation: the copy record now includes drafts for the remaining CuNiFe S-Type, PRS SE Custom 24, and 5E3 amplifier, plus a structured Shopify metadata snapshot. Only Tomatillo copy is approved. The owner raised an existing amp SN record; current main contains no matching source and the current serial parser rejects the 5E3 prefix. Its page link is unresolved, not evidence that the record/paperwork does not exist. Live HTTP validation was blocked by the execution proxy; no Shopify values or Discord posts were changed during preparation.
