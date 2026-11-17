@@ -170,3 +170,14 @@ Status: prepared in PR #156; dry-run rendering and local checks pass. Production
 publication, per-product readiness triggers, Discord delivery evidence, and the
 extra paid-order/inventory subscriptions are still pending. Do not confuse the
 saved editorial preview with the runtime `announcements.json` delivery state.
+
+
+## Launch completed (2026-11-16 local)
+
+All four available music listings are announced, and the owner confirmed all
+four posts in Discord. The amp record and four upright source images are saved
+and deployed. PR #157 fixes the build/runtime context distinction while keeping
+preview writes blocked. Discord channel permissions were corrected by the owner.
+See `docs/engineering/discord-announcement-launch-receipt.json` for delivery
+evidence and remaining subscription-verification work. No live price drop or
+sale was manufactured as a test, and no absent page-2 measurements are claimed.
