@@ -1,5 +1,8 @@
 import type { Action } from './model';
 
+// Discord MessageFlags.SuppressEmbeds: keep links clickable without preview cards.
+const SUPPRESS_EMBEDS = 1 << 2;
+
 export class DiscordRejection extends Error {}
 /** Failed edits are safely repeatable. Ambiguous creates require operator reconciliation. */
 export async function deliver(channel: string, action: Action): Promise<string> {
@@ -9,7 +12,7 @@ export async function deliver(channel: string, action: Action): Promise<string> 
     const response = await fetch(`https://discord.com/api/v10/channels/${channel}/messages${action.kind === 'edit' ? `/${action.target}` : ''}`, {
         method: action.kind === 'edit' ? 'PATCH' : 'POST',
         headers: { Authorization: `Bot ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: action.content, allowed_mentions: { parse: [] }, ...(action.kind === 'create' ? { nonce: action.nonce, enforce_nonce: true } : {}) }),
+        body: JSON.stringify({ content: action.content, flags: SUPPRESS_EMBEDS, allowed_mentions: { parse: [] }, ...(action.kind === 'create' ? { nonce: action.nonce, enforce_nonce: true } : {}) }),
         cache: 'no-store',
         signal: AbortSignal.timeout(4000),
     });

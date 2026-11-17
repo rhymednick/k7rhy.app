@@ -30,3 +30,17 @@ it('distinguishes a definite rejection from an uncertain server response', async
     await expect(deliver('789', job)).rejects.toBeInstanceOf(DiscordRejection);
     await expect(deliver('789', job)).rejects.not.toBeInstanceOf(DiscordRejection);
 });
+it.each([
+    ['create', 'listing'],
+    ['create', 'drop'],
+    ['edit', 'listing'],
+] as const)('suppresses link previews for %s %s messages without changing the links', async (kind, purpose) => {
+    vi.stubEnv('DISCORD_BOT_TOKEN', 'test-token');
+    const fetcher = vi.fn().mockResolvedValue(Response.json({ id: '456' }));
+    vi.stubGlobal('fetch', fetcher);
+    const content = 'Purchase: https://shop.k7rhy.app/products/example\nRecord: https://k7rhy.app/sn/STR26001';
+    await deliver('789', action('123:2', kind, content, purpose, kind === 'edit' ? '456' : undefined));
+    const body = JSON.parse(fetcher.mock.calls[0][1].body);
+    expect(body.flags).toBe(4);
+    expect(body.content).toBe(content);
+});
