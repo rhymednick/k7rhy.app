@@ -41,6 +41,17 @@ describe('InstrumentRecordPage', () => {
         expect(screen.getByText('Structured specification')).toBeInTheDocument();
     });
 
+    it('identifies amplifier records and links their control card', () => {
+        render(
+            <InstrumentRecordPage record={{ ...record, kind: 'amplifier', serial: '5E326001', name: '5E3 Tweed-Style Tube Combo' }}>
+                <div>Amplifier map</div>
+            </InstrumentRecordPage>
+        );
+        expect(screen.getByText('Individual amplifier')).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: 'Print control card' })).toHaveAttribute('href', '/sn/5E326001/print');
+        expect(screen.queryByText('Individual instrument')).not.toBeInTheDocument();
+    });
+
     it('shows additional exact-instrument photographs after the hero image', () => {
         const images = [
             { src: '/images/instruments/REX26001/front.jpg', alt: 'REX26001 front view' },

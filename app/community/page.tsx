@@ -4,11 +4,10 @@ import { PageHero } from '@/components/shared/page-hero';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
 import { fetchRecentAnnouncements } from '@/lib/discord';
-
-const ANNOUNCEMENT_CHANNEL_ID = '1432603806704603248';
+import { announcementChannelId } from '@/config/community';
 
 export default async function CommunityPage() {
-    const announcements = await fetchRecentAnnouncements(ANNOUNCEMENT_CHANNEL_ID, 10);
+    const announcements = await fetchRecentAnnouncements(announcementChannelId, 10);
 
     return (
         <main className="flex min-h-screen flex-col gap-10 px-4 pb-24 pt-8 md:px-12 lg:px-20">

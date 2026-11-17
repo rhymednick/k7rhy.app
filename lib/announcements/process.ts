@@ -2,6 +2,7 @@ import { DiscordRejection, deliver } from './discord';
 import { plan, type ItemState, type Listing, type Action } from './model';
 import { readListing } from './shopify';
 import { acquireItem, type ItemSession } from './store';
+import { announcementChannelId, productAnnouncementsEnabled } from '@/config/community';
 
 export interface AnnouncementDeps {
     acquire(id: string): Promise<ItemSession>;
@@ -10,10 +11,11 @@ export interface AnnouncementDeps {
 }
 export const announcementDeps: AnnouncementDeps = { acquire: acquireItem, read: readListing, send: deliver };
 export function announcementChannel(): string | null {
-    if (process.env.DISCORD_ANNOUNCEMENTS_ENABLED !== 'true') return null;
     // Preview builds must never post to the production server.
     if (process.env.CONTEXT !== 'production') return null;
-    const channel = process.env.DISCORD_ANNOUNCEMENTS_CHANNEL_ID;
+    const enabled = process.env.DISCORD_ANNOUNCEMENTS_ENABLED;
+    if (enabled !== undefined ? enabled !== 'true' : !productAnnouncementsEnabled) return null;
+    const channel = process.env.DISCORD_ANNOUNCEMENTS_CHANNEL_ID ?? announcementChannelId;
     if (!channel || !/^\d+$/.test(channel)) throw new Error('Configure DISCORD_ANNOUNCEMENTS_CHANNEL_ID');
     return channel;
 }
@@ -50,6 +52,7 @@ export async function processItem(id: string, channel: string, options: { sold?:
                 state.currency = state.nextCurrency;
             }
             await session.save(state);
+            console.info('[discord-announcement]', JSON.stringify({ productId: id, messageId, channelId: channel, kind: job.kind, purpose: job.purpose }));
         }
     }
     try {

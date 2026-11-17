@@ -17,6 +17,7 @@ export interface InstrumentRelatedLink {
 }
 
 export interface InstrumentFrontmatter {
+    kind?: 'guitar' | 'amplifier';
     publish: boolean;
     name: string;
     started?: string;

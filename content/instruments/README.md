@@ -5,7 +5,7 @@ Use `$author-instrument-record` as the primary method for creating or updating a
 ## Manual procedure
 
 1. Read `docs/architecture/site-organization.md`, the instrument schema in `content-collections.ts`, and the live component contracts under `components/instrument/`.
-2. Choose the registered family code and an honest completion value in `YYYY` or `YYYY-MM-DD` form. Request explicit approval before adding a code to `config/instrument-model-codes.ts`.
+2. Choose the registered three-character alphanumeric family code (letters or digits, for example `5E3`) and an honest completion value in `YYYY` or `YYYY-MM-DD` form. Request explicit approval before adding a code to `config/instrument-model-codes.ts`.
 3. Determine the serial with `node .agents/skills/author-instrument-record/scripts/allocate-serial.mjs --root . --family <MMM> --completed <YYYY|YYYY-MM-DD>`. Use the emitted `MMMYYNNN` exactly. If it reports a gap, create or restore the missing permanent record before continuing; never skip a number.
 4. Copy the closest current record to `content/instruments/<SERIAL>.mdx`. Keep `publish: false` while replacing every identity field, image, pickup, selector, control state, narrative section, and print-specific description.
 5. Put exact-instrument photographs under `public/images/instruments/<SERIAL>/` and give every image useful alt text. Keep photographs off the printable card.
@@ -17,3 +17,13 @@ Use `$author-instrument-record` as the primary method for creating or updating a
 11. Set `publish: true` only after explicit approval, then repeat the full test, build, rendered, print, and QR checks before deployment.
 
 `REX` means Relay Example. Reserve `RLY` for real Relay prototypes that are sold. `CVL` sequences every Coupeville instrument completed in the same year regardless of submodel. If an issued instrument is destroyed or unavailable, retain a permanent record for its serial so the sequence remains complete.
+
+## Amplifiers
+
+Use `kind: amplifier` and an `AmplifierSpec` map of labeled sections/details for
+inputs, controls, speaker/electrical facts, and operating cautions. Both web and
+print render that same map. Keep guitar records on the existing `InstrumentSpec`
+contract; a speaker is not a pickup. Existing exact-store HTTPS Shopify photos
+may be referenced when local originals are unavailable; review them before
+publication. Never infer tube types, transformer models, test voltages, fuse
+characteristics, or mains ratings from a generic circuit name.

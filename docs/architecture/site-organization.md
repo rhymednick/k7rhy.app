@@ -20,6 +20,8 @@ This file is the canonical organizational policy for K7RHY.app. Agents must pres
 
 ## Serialized instruments
 
+- Serials use `MMMYYNNN`: a registered three-character uppercase alphanumeric prefix, two-digit year, and three-digit sequence. Digits are valid in the prefix, including `5E3`.
+
 - Serial pages are unlisted permanent records reached by exact URL or case-card QR code. The owner approved linking an individual item’s serial record from its Discord product announcement (2026-11-16); the Community announcement feed may display that link. This does not permit a serial index or serial links from catalog pages.
 - Never expose a serial index, link records from public navigation or catalog pages, or include `/sn/...` in sitemaps.
 - Emit `noindex, nofollow` for both record and print routes.

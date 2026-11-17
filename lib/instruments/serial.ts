@@ -1,7 +1,7 @@
 import { INSTRUMENT_MODEL_CODES } from '@/config/instrument-model-codes';
 import type { InstrumentSerial } from '@/types/instrument';
 
-const SERIAL_PATTERN = /^([A-Z]{3})(\d{2})(\d{3})$/;
+const SERIAL_PATTERN = /^([A-Z0-9]{3})(\d{2})(\d{3})$/;
 
 export function normalizeInstrumentSerial(input: string): string {
     return input.trim().toUpperCase();

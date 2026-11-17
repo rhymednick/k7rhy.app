@@ -1,0 +1,30 @@
+{
+  "status": "dry run; no messages sent",
+  "source": "Fresh Shopify Admin data plus saved approved copy; production Storefront access remains a live check",
+  "messages": [
+    {
+      "productId": "9035797790877",
+      "serial": "5E326001",
+      "length": 542,
+      "content": "**Available: Hand-Built 5E3 Tweed Deluxe-Style 12W 1x12 Tube Combo Amp**\n\n$1,020\n\nA hand-built, approximately 12-watt tube combo based on the 5E3 circuit, with an Electro-Harmonix 12-inch speaker. Supplied with an amplifier-specific build verification record, baseline operating measurements, and operating and safety guides.\n\nPurchase: https://shop.k7rhy.app/products/newly-built-5e3-tweed-deluxe-clone-2026\n\nDetails: https://k7rhy.app/shop/amplifiers/newly-built-5e3-tweed-deluxe-clone-2026\n\nInstrument record: https://k7rhy.app/sn/5E326001"
+    },
+    {
+      "productId": "15437135675549",
+      "serial": "STR26001",
+      "length": 724,
+      "content": "**Available: Custom-Assembled S-Type with Fender Custom Shop Tomatillo Pickups, Series Switch & Pro Setup - Gloss White**\n\n$799\n\nA custom-assembled S-type with Fender Custom Shop Tomatillo pickups, a series switch for the paired-pickup positions, and a professional setup by Stage Left Custom Guitar Works. Includes a tweed hardshell case.\n\nPurchase: https://shop.k7rhy.app/products/custom-assembled-s-type-with-fender-custom-shop-tomatillo-pickups-series-switch-pro-setup-gloss-white\n\nDetails: https://k7rhy.app/shop/guitars/custom-assembled-s-type-with-fender-custom-shop-tomatillo-pickups-series-switch-pro-setup-gloss-white\n\nInstrument record: https://k7rhy.app/sn/STR26001\n\nRelated: https://k7rhy.app/sn/STR26001/wiring"
+    },
+    {
+      "productId": "15437136035997",
+      "serial": "STR26002",
+      "length": 625,
+      "content": "**Available: Custom-Assembled S-Type with Fender CuNiFe Pickups & Neck-Add Switch - Gloss White**\n\n$735\n\nA custom-assembled S-type with Fender CuNiFe pickups and a neck-add switch for bridge-and-neck and all-three-pickup combinations. Includes locking tuners and a tweed hardshell case.\n\nPurchase: https://shop.k7rhy.app/products/custom-assembled-s-type-with-fender-cunife-pickups-neck-add-switch-gloss-white\n\nDetails: https://k7rhy.app/shop/guitars/custom-assembled-s-type-with-fender-cunife-pickups-neck-add-switch-gloss-white\n\nInstrument record: https://k7rhy.app/sn/STR26002\n\nRelated: https://k7rhy.app/sn/STR26002/wiring"
+    },
+    {
+      "productId": "15437296697501",
+      "serial": "PRS26001",
+      "length": 925,
+      "content": "**Available: PRS SE Custom 24 Burled Ash Limited Edition with Seymour Duncan Alnico II Pros, Partial Splits & TKL Hardshell Case - Natural**\n\n$875\n\nA 2024 PRS SE Custom 24 Burled Ash Limited Edition upgraded with Seymour Duncan Alnico II Pro pickups, partial coil splits, a tone bypass, and PRS locking tuners. It served as the reference guitar for Relay voicing development and includes a TKL hardshell case.\n\nPurchase: https://shop.k7rhy.app/products/prs-se-custom-24-burled-ash-limited-edition-with-seymour-duncan-alnico-ii-pros-partial-splits-tkl-hardshell-case-natural\n\nDetails: https://k7rhy.app/shop/guitars/prs-se-custom-24-burled-ash-limited-edition-with-seymour-duncan-alnico-ii-pros-partial-splits-tkl-hardshell-case-natural\n\nInstrument record: https://k7rhy.app/sn/PRS26001\n\nRelated: https://k7rhy.app/sn/PRS26001/wiring\n\nRelated: https://k7rhy.app/guitars/relay\n\nRelated: https://k7rhy.app/guitars/relay/voicings"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "source": "Owner-supplied Archive.zip, received November 16, 2026 (local time)",
+  "processing": "EXIF orientation normalized, then visually corrected upright; resized and JPEG encoded; metadata stripped; no generative edits",
+  "files": [
+    {
+      "source_file": "IMG_2334.jpeg",
+      "saved_path": "public/images/instruments/5E326001/front.jpg",
+      "rotation_degrees_after_exif": -90,
+      "sha256": "8ab0da93be0bcb3992be2c40deeb992cf332faeab7b0f766f635dcde62ec6b93"
+    },
+    {
+      "source_file": "IMG_2316.jpeg",
+      "saved_path": "public/images/instruments/5E326001/controls.jpg",
+      "rotation_degrees_after_exif": 90,
+      "sha256": "026ccae24e98a7a4227d4cdc78c647c63e45543cee1426e4fb66d806fe8a31ce"
+    },
+    {
+      "source_file": "IMG_2319.jpeg",
+      "saved_path": "public/images/instruments/5E326001/chassis-interior.jpg",
+      "rotation_degrees_after_exif": 90,
+      "sha256": "3735821d9b49285c934919e40229ac4e567c2da84d9ff2f20b040be0b1adfdd8"
+    },
+    {
+      "source_file": "IMG_2321.jpeg",
+      "saved_path": "public/images/instruments/5E326001/build-verification-page-1.jpg",
+      "rotation_degrees_after_exif": 90,
+      "sha256": "f2863b0bbf2279cabb615409a1b7e3e36635022cc9cc93eb462da4981a0bcdbd"
+    }
+  ]
+}

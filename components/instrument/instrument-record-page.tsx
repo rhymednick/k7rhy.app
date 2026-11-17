@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, FileText, Guitar, Printer } from 'lucide-react';
+import { ArrowRight, FileText, Guitar, Printer, Speaker } from 'lucide-react';
 import { formatInstrumentDate, instrumentDateLabel } from '@/lib/instruments/date';
 import type { InstrumentRecord } from '@/types/instrument';
 
@@ -11,6 +11,7 @@ export interface InstrumentRecordPageProps {
 }
 
 export function InstrumentRecordPage({ record, children }: InstrumentRecordPageProps) {
+    const IdentityIcon = record.kind === 'amplifier' ? Speaker : Guitar;
     const [primaryImage, ...galleryImages] = record.images;
     const dateLabel = record.completed ? instrumentDateLabel(record.dateLabel) : record.dateLabel?.trim() || 'Build started';
     const displayDate = record.completed ?? record.started;
@@ -24,8 +25,8 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                     <div className="flex flex-col justify-center space-y-5 p-7 md:p-10 lg:p-12">
                         <div className="flex flex-wrap items-center gap-3">
                             <span className="inline-flex items-center gap-2 rounded-full border border-slate-300/70 bg-white/80 px-3 py-1.5 font-mono text-xs font-semibold uppercase tracking-[0.16em] text-slate-700 backdrop-blur dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-300">
-                                <Guitar className="h-3.5 w-3.5" aria-hidden="true" />
-                                Individual instrument
+                                <IdentityIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                                {record.kind === 'amplifier' ? 'Individual amplifier' : 'Individual instrument'}
                             </span>
                             <span className="font-mono text-sm font-semibold tracking-[0.16em] text-sky-700 dark:text-sky-300">{record.serial}</span>
                         </div>
@@ -50,13 +51,13 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                             <div>
                                 <Link href={`/sn/${record.serial}/print`} className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 shadow-sm transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800">
                                     <Printer className="h-4 w-4" aria-hidden="true" />
-                                    Print case card
+                                    {record.kind === 'amplifier' ? 'Print control card' : 'Print case card'}
                                 </Link>
                             </div>
                         )}
                     </div>
                     <div className="relative min-h-80 overflow-hidden border-t border-border/60 bg-slate-100 dark:bg-slate-900 lg:min-h-[36rem] lg:border-l lg:border-t-0">
-                        <Image src={primaryImage.src} alt={primaryImage.alt} fill priority className="object-cover" sizes="(min-width: 1024px) 42vw, 100vw" />
+                        <Image src={primaryImage.src} alt={primaryImage.alt} fill priority className={record.kind === 'amplifier' ? 'object-contain' : 'object-cover'} sizes="(min-width: 1024px) 42vw, 100vw" />
                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/45 to-transparent" />
                         <div className="absolute bottom-4 right-4 rounded-md border border-white/30 bg-slate-950/60 px-3 py-1.5 font-mono text-xs tracking-[0.14em] text-white backdrop-blur">{record.serial}</div>
                     </div>
@@ -74,8 +75,10 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                     </h2>
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
                         {galleryImages.map((image) => (
-                            <figure key={image.src} className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border/60 bg-slate-100 dark:bg-slate-900">
-                                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="(min-width: 768px) 33vw, 50vw" />
+                            <figure key={image.src} className={`relative ${record.kind === 'amplifier' ? 'aspect-video' : 'aspect-[3/4]'} overflow-hidden rounded-2xl border border-border/60 bg-slate-100 dark:bg-slate-900`}>
+                                <a href={image.src} aria-label={`View full photograph: ${image.alt}`}>
+                                    <Image src={image.src} alt={image.alt} fill className={record.kind === 'amplifier' ? 'object-contain' : 'object-cover'} sizes="(min-width: 768px) 33vw, 50vw" />
+                                </a>
                             </figure>
                         ))}
                     </div>

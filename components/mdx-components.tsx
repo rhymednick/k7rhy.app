@@ -1,3 +1,4 @@
+import { AmplifierSpec, AmplifierSection, AmplifierDetail } from '@/components/instrument/amplifier-spec';
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -208,6 +209,9 @@ const components: MDXComponents = {
     ComponentLabel,
     WiringConnections,
     WireConnection,
+    AmplifierSpec,
+    AmplifierSection,
+    AmplifierDetail,
     InstrumentSpec,
     PickupConfiguration,
     Pickup,
