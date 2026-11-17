@@ -37,6 +37,12 @@ describe('announcement deliveries', () => {
         expect(f.send).toHaveBeenCalledTimes(1);
         expect(f.state().messageId).toBe('456');
     });
+    it('blocks publication when approved copy is missing, even if marked ready', async () => {
+        const f = fixture();
+        f.read.mockResolvedValue({ ...listing, description: '' });
+        await expect(processItem('123', '789', {}, f.deps)).rejects.toThrow('approved Discord description');
+        expect(f.send).not.toHaveBeenCalled();
+    });
     it.each([{ ready: false }, { available: false }])('does not announce an ineligible product %j', async (change) => {
         const f = fixture();
         f.read.mockResolvedValue({ ...listing, ...change });

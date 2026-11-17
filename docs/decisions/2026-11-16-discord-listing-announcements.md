@@ -14,6 +14,11 @@ activation, subscription setup, and the requested historical posts are pending.
 - Exclude the dummy load and existing zero-inventory items from the backfill.
 - Current music listings are one-of-a-kind items with a single variant.
 - Include a description, purchase page, existing serial record, and related pages.
+- **Approved description required** (owner, 2026-11-16): use the explicitly
+  approved `custom.discord_description` text. Missing/blank copy prevents
+  announcement and backfill. Never generate copy or fall back to the Shopify
+  description. Overlong copy must be shortened and approved; never silently
+  truncate it. This supersedes the initial optional-summary fallback.
 - Announce price drops and mark the original post sold when the item sells.
 - Individual serial-record links may appear in these announcements and the
   site's Community feed; catalog serial-indexing restrictions remain in force.
@@ -30,14 +35,14 @@ its signature verification, test filters, Storefront token, and Discord bot.
 Readiness is the **`discord-ready` product tag**, replacing the proposed boolean
 metafield. Shopify's verified `WebhookSubscriptionTopic` enum has definition
 change events but no metafield-value change topic. A product tag edit supplies
-a supported Product update trigger, without another app or a timer. Optional
-summary, serial-record URL, and related URLs remain Storefront-readable product
+a supported Product update trigger, without another app or a timer. The required
+approved summary and optional serial-record/related URLs remain Storefront-readable product
 metafields, defined before use in Shopify Admin.
 
 `lib/announcements/` contains product reads, deterministic eligibility and message
 rendering, database state/leases, Discord delivery, and webhook routing. Music
 category, single variant, positive stock, public purchase page, and ready tag
-are required for an initial announcement. Ham radio products are excluded.
+and an approved Discord description are required for an initial announcement. Ham radio products are excluded.
 Read current state on each product event so delayed updates do not replay old
 prices or old product status. Paid orders establish Sold; withdrawals and unpaid
 reservations establish Unavailable. Known sales stay sold until explicit operator
@@ -88,3 +93,5 @@ Related records: [listing runbook](../engineering/listing-runbook.md),
 No natural-language classification step is introduced. Readiness, prices, and
 stock transitions use explicit fields and deterministic code; no Jev opportunity
 is proposed for these exact comparisons.
+
+Follow-up validation: announcement tests verify missing/blank descriptions block publication, approved paragraph text is retained, and overlong copy fails instead of being truncated.

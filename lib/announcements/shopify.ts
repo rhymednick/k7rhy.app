@@ -1,9 +1,9 @@
 import { classifyProduct } from '@/lib/shop/catalog';
 import { canReadMetafields, storefrontQuery } from '@/lib/shop/storefront';
-import type { Listing } from './model';
+import { plain, type Listing } from './model';
 
 export const ANNOUNCEMENT_FIELDS = `
-    id handle title description onlineStoreUrl availableForSale tags
+    id handle title onlineStoreUrl availableForSale tags
     category { name ancestors { name } }
     variants(first: 2) { nodes { quantityAvailable price { amount currencyCode } } }
     summary: metafield(namespace: "custom", key: "discord_description") { value }
@@ -14,7 +14,6 @@ interface Node {
     id: string;
     handle: string;
     title: string;
-    description: string;
     onlineStoreUrl: string | null;
     availableForSale: boolean;
     tags: string[];
@@ -33,6 +32,10 @@ export function normalizeListing(node: Node): Listing | null {
     const category = classifyProduct(node);
     if (category !== 'guitars' && category !== 'amplifiers') return null;
     if (node.variants.nodes.length !== 1) return null;
+    // Missing approval copy is an eligibility failure, never an invitation to generate it.
+    const description = node.summary?.value.trim();
+    if (!description || !plain(description)) return null;
+    if (plain(description).length > 650) throw new Error('Approved Discord description exceeds 650 characters; shorten and approve it before posting');
     const variant = node.variants.nodes[0];
     const price = Number(variant.price.amount);
     if (!Number.isFinite(price) || price <= 0) throw new Error('Invalid announcement price');
@@ -48,7 +51,7 @@ export function normalizeListing(node: Node): Listing | null {
         links.push({ label: 'Instrument record', url: record });
     }
     links.push(...related.map((url) => ({ label: 'Related', url: safeUrl(url) })));
-    const listing = { id: node.id.split('/').pop()!, title: node.title, description: node.summary?.value.trim() || node.description.slice(0, 600), price, currency: variant.price.currencyCode, available: node.availableForSale && variant.quantityAvailable !== null && variant.quantityAvailable > 0 && !!node.onlineStoreUrl, ready: node.tags.includes('discord-ready'), links };
+    const listing = { id: node.id.split('/').pop()!, title: node.title, description, price, currency: variant.price.currencyCode, available: node.availableForSale && variant.quantityAvailable !== null && variant.quantityAvailable > 0 && !!node.onlineStoreUrl, ready: node.tags.includes('discord-ready'), links };
     // Never truncate links to fit Discord's limit: request a shorter description instead.
     if (links.reduce((length, link) => length + link.url.length + link.label.length + 5, 0) > 950) throw new Error('Announcement links are too long; use fewer related URLs');
     return listing;

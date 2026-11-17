@@ -10,7 +10,8 @@ There is no timer, scheduled job, or recurring catalog scan.
 
 1. Finish the product in Shopify, publish it to Online Store and Headless, and
    verify its stock and category. Only guitars and amplifiers are eligible.
-2. Optionally populate the announcement fields below. Verify every linked page.
+2. Write and approve the required **Discord description** below. Populate any
+   optional record/related links and verify every linked page.
 3. Add the product tag **`discord-ready`** and save. This product edit triggers
    the existing Product update webhook. Draft/unpublished/out-of-stock items
    cannot receive an initial announcement. A missing inventory permission or
@@ -35,7 +36,7 @@ Archival alone cannot prove a sale. Returns/cancellations deliberately require
 checking that the physical item is actually back before running `restore` and
 then `replay`; a delayed product event never silently reverses Sold.
 
-## Optional product fields
+## Product fields
 
 Create merchant-owned product metafield definitions under **Settings → Custom
 Data → Products**, with Storefront read access. This matches the existing Reverb
@@ -44,9 +45,15 @@ the definitions; the integration reads them on the next product event.
 
 | Name | Namespace/key | Type | Meaning |
 |---|---|---|---|
-| Discord description | `custom.discord_description` | Multi-line text | Short owner-written introduction; otherwise the product's plain-text description is shortened |
+| Discord description | `custom.discord_description` | Multi-line text | Required approved announcement copy; no product-description fallback |
 | Discord record URL | `custom.discord_record_url` | URL | Existing exact `https://k7rhy.app/sn/SERIAL` record; blank when no record exists |
 | Discord related URLs | `custom.discord_related_urls` | List of URLs | Up to three related pages, such as wiring references |
+
+A missing or blank Discord description excludes the item from announcements and
+backfill, even if it is tagged ready. The approved text is not rewritten or
+truncated: after Markdown escaping it must fit within 650 characters, otherwise
+the delivery is blocked with an error asking for shorter approved copy.
+Paragraph breaks are preserved.
 
 Every post also links the Shopify purchase page and the k7rhy.app product page.
 No serial number is guessed or turned into a URL automatically. Discord posts
@@ -144,7 +151,7 @@ npm run announcements -- resolve --product 15437135675549 --message not-sent --a
 npm run announcements -- replay --product 15437135675549 --apply
 ```
 
-Before the initial backfill, set the optional record/related fields and tag each
+Before the initial backfill, approve and set each Discord description, set the optional record/related fields and tag each
 intended listing ready. Keep posting disabled until the dry run is reviewed;
 then enable and run the one-time backfill. Products that have since sold are
 excluded by a fresh read immediately before processing.

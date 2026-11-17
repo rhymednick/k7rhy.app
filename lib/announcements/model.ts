@@ -44,7 +44,9 @@ export function plain(text: string): string {
         .trim();
 }
 export function renderListing(listing: Listing, status: Availability): string {
-    return [`**${status}: ${plain(listing.title).slice(0, 250)}**`, `${formatPrice(listing.price, listing.currency)}`, plain(listing.description).slice(0, 650), ...listing.links.map(({ label, url }) => `${label}: ${url}`)].filter(Boolean).join('\n\n');
+    const description = plain(listing.description);
+    if (!description || description.length > 650) throw new Error('An approved Discord description of 1–650 characters is required');
+    return [`**${status}: ${plain(listing.title).slice(0, 250)}**`, `${formatPrice(listing.price, listing.currency)}`, description, ...listing.links.map(({ label, url }) => `${label}: ${url}`)].filter(Boolean).join('\n\n');
 }
 export function action(key: string, kind: Action['kind'], content: string, purpose: Action['purpose'], target?: string): Action {
     return { key, kind, content, purpose, target, nonce: createHash('sha256').update(key).digest('hex').slice(0, 24) };
