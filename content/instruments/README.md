@@ -17,3 +17,13 @@ Use `$author-instrument-record` as the primary method for creating or updating a
 11. Set `publish: true` only after explicit approval, then repeat the full test, build, rendered, print, and QR checks before deployment.
 
 `REX` means Relay Example. Reserve `RLY` for real Relay prototypes that are sold. `CVL` sequences every Coupeville instrument completed in the same year regardless of submodel. If an issued instrument is destroyed or unavailable, retain a permanent record for its serial so the sequence remains complete.
+
+## Amplifiers
+
+Use `kind: amplifier` and an `AmplifierSpec` map of labeled sections/details for
+inputs, controls, speaker/electrical facts, and operating cautions. Both web and
+print render that same map. Keep guitar records on the existing `InstrumentSpec`
+contract; a speaker is not a pickup. Existing exact-store HTTPS Shopify photos
+may be referenced when local originals are unavailable; review them before
+publication. Never infer tube types, transformer models, test voltages, fuse
+characteristics, or mains ratings from a generic circuit name.

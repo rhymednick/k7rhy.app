@@ -113,11 +113,11 @@ Recorded listing data:
 - Category: Guitar Amplifiers; status: Active; quantity: 1; one variant.
 - Public purchase URL: returned by Shopify; published 2026-08-31T16:24:12Z.
 - Description target: custom.discord_description; currently unset.
-- Serial-record target: custom.discord_record_url; leave unset until the amplifier record is located.
+- Serial-record target: custom.discord_record_url; planned URL https://k7rhy.app/sn/5E326001; leave the live field unset until the draft record is approved and published.
 - Related-link target: custom.discord_related_urls; no additional public guide URL identified.
 - Ready tag: not set.
 - Evidence: live Shopify product description, which names serial 5E326001 and the supplied verification/operating/safety records.
-- **Unresolved SN link:** the owner expects an amplifier SN record. No corresponding file was found in current main. The owner clarified that prefixes are three characters, including digits. The parser/allocator correction is implemented in the working branch; it does not create or locate the amp record. This does not establish that the record or paperwork does not exist elsewhere. Locate it before finalizing the serial link; do not invent a URL.
+- **SN draft now created:** [5E326001.mdx](../../content/instruments/5E326001.mdx), using verified Shopify facts. The canonical URL will be https://k7rhy.app/sn/5E326001 after approval and publication. Do not announce that link while the record remains unpublished.
 
 ## Publication checks and remaining data
 

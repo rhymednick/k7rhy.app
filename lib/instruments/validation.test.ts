@@ -30,6 +30,20 @@ describe('validateInstrumentDocument', () => {
         expect(() => validateInstrumentDocument('REX26001', { ...valid, images: [{ src: '/images/instruments/missing.jpg', alt: 'Missing image' }] })).toThrow('REX26001 image does not exist: /images/instruments/missing.jpg');
     });
 
+    it('accepts a completed amplifier with its own control map and rejects a guitar map in its place', () => {
+        expect(validateInstrumentDocument('5E326001', { ...valid, kind: 'amplifier', content: '<AmplifierSpec />' })).toMatchObject({ modelCode: '5E3' });
+        expect(() => validateInstrumentDocument('5E326001', { ...valid, kind: 'amplifier' })).toThrow('requires an AmplifierSpec');
+        expect(() => validateInstrumentDocument('REX26001', { ...valid, content: '<AmplifierSpec />' })).toThrow('requires an InstrumentSpec');
+    });
+
+    it('accepts exact-store Shopify photographs while rejecting other remote URLs', () => {
+        const photo = { src: 'https://cdn.shopify.com/s/files/1/0663/5293/9165/files/amp.jpg', alt: 'The amplifier' };
+        expect(validateInstrumentDocument('5E326001', { ...valid, kind: 'amplifier', content: '<AmplifierSpec />', images: [photo] })).toMatchObject({ serial: '5E326001' });
+        for (const src of ['https://example.com/amp.jpg', 'http://cdn.shopify.com/s/files/1/0663/5293/9165/files/amp.jpg', 'https://cdn.shopify.com/s/files/other-store/amp.jpg']) {
+            expect(() => validateInstrumentDocument('REX26001', { ...valid, images: [{ ...photo, src }] })).toThrow('invalid instrument image');
+        }
+    });
+
     it('requires the serial year to match the completion date', () => {
         expect(() => validateInstrumentDocument('REX26001', { ...valid, completed: '2025-12-31' })).toThrow('REX26001 year does not match completion date 2025-12-31');
     });

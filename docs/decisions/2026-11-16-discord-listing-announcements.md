@@ -147,3 +147,5 @@ Exact copy and the presentation follow-up are in
 [the announcement copy record](../engineering/discord-announcement-copy.md).
 
 Editorial preparation: the copy record now includes drafts for the remaining CuNiFe S-Type, PRS SE Custom 24, and 5E3 amplifier, plus a structured Shopify metadata snapshot. Only Tomatillo copy is approved. The owner raised an existing amp SN record; current main contains no matching source and the current serial parser rejects the 5E3 prefix. Its page link is unresolved, not evidence that the record/paperwork does not exist. Live HTTP validation was blocked by the execution proxy; no Shopify values or Discord posts were changed during preparation.
+
+Amp record follow-up: the owner authorized creating a record from available sources. `content/instruments/5E326001.mdx` now exists as an unpublished amplifier record, using the existing serial and verified Shopify facts. Its planned canonical URL remains out of live announcement fields until review/publication. Sources, unknowns, photo-access limitations, and validation are in [the amplifier engineering record](../engineering/5e326001/README.md).

@@ -1,3 +1,4 @@
+import { PrintAmplifierSpec, PrintAmplifierSection, PrintAmplifierDetail } from './amplifier-spec';
 import baseComponents from '@/components/mdx-components';
 import { PrintHarmonicShaper, PrintPositionControl, PrintPositionControlPosition } from './instrument-print-position-control';
 import { PrintControlLayout, PrintInstrumentSpec, PrintPickup, PrintPickupConfiguration, PrintPickupDetail, PrintPot, PrintPotPosition, PrintSelector, PrintSelectorPosition, PrintToggle, PrintToggleState } from './instrument-print-spec';
@@ -7,6 +8,9 @@ export const instrumentMdxComponents = baseComponents;
 export const instrumentPrintMdxComponents = {
     ...baseComponents,
     InstrumentSpec: PrintInstrumentSpec,
+    AmplifierSpec: PrintAmplifierSpec,
+    AmplifierSection: PrintAmplifierSection,
+    AmplifierDetail: PrintAmplifierDetail,
     PickupConfiguration: PrintPickupConfiguration,
     Pickup: PrintPickup,
     PickupDetail: PrintPickupDetail,

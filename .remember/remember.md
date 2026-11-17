@@ -49,3 +49,7 @@ Remaining drafts and live Shopify metadata are collected in `docs/engineering/di
 Owner correction (2026-11-16): serial prefixes are three characters, not three letters. Parser, registry for the already-issued 5E3 prefix, allocator, and QR script now support numeric prefix characters. No amp record has been created or serial allocated. See the three-character prefix decision.
 
 Prefix correction validation: 338 tests/62 files and the production build pass under Node 20; six allocator scenarios pass separately. The amp source/page remains unresolved despite the format correction.
+
+Amp record: no existing source was found, so an unpublished `content/instruments/5E326001.mdx` draft now uses verified listing facts and the existing serial. The shared web/print amplifier map covers inputs, controls, essentials and safe use without guitar pickups. Exact-store Shopify photo URL is retained because the environment blocks downloading it. No tube/transformer/test-value assumptions were added. Source and pending checks: `docs/engineering/5e326001/README.md`.
+
+Amp validation: 347 tests/64 files and production build pass; six allocator tests pass. Browser layout checks cover mobile/desktop and light/dark; Letter/A4 cards are one page and their QR decodes correctly. Photo appearance and actual measurement sheets remain unverified. Record stays unpublished pending review; preview PDFs are under `/workspace/scratch/5E326001-preview/`.

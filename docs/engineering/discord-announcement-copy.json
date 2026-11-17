@@ -26,8 +26,8 @@
       },
       "purchase_url": "https://shop.k7rhy.app/products/newly-built-5e3-tweed-deluxe-clone-2026",
       "details_url": "https://k7rhy.app/shop/amplifiers/newly-built-5e3-tweed-deluxe-clone-2026",
-      "record_url": null,
-      "record_status": "unresolved; owner expects record; not found in current main; three-character prefix correction implemented in working branch",
+      "record_url": "https://k7rhy.app/sn/5E326001",
+      "record_status": "unpublished draft source now exists; do not announce this URL until publication approval and deployment",
       "related_urls": [],
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/D590ADBF-D3A6-4054-87F5-1A9C9DFC5F98.jpg?v=1788193410",
       "reverb_listing_id_field": "101259462",
@@ -37,7 +37,10 @@
         "related_urls": null
       },
       "discord_ready_tag_current": false,
-      "source_paths": []
+      "source_paths": [
+        "content/instruments/5E326001.mdx",
+        "docs/engineering/5e326001/README.md"
+      ]
     },
     {
       "product_name": "Tomatillo S-Type",

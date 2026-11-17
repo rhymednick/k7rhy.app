@@ -18,16 +18,32 @@ export function InstrumentCaseCard({ record, children }: { record: InstrumentRec
                     <Image src="/images/k7rhy_logo.png" alt="K7RHY Resonance Lab logo" width={42} height={42} className="h-10 w-10 object-contain" />
                     <div>
                         <p className="text-base font-bold tracking-tight">K7RHY Resonance Lab</p>
-                        <p className="font-mono text-[7.5pt] uppercase tracking-[0.16em] text-slate-500">Crafted instrument record</p>
+                        <p className="font-mono text-[7.5pt] uppercase tracking-[0.16em] text-slate-500">{record.kind === 'amplifier' ? 'Crafted amplifier record' : 'Crafted instrument record'}</p>
                     </div>
                 </div>
-                <span className="text-right font-mono text-[8pt] font-semibold uppercase tracking-[0.16em] text-slate-500">Voice &amp;<br />control card</span>
+                <span className="text-right font-mono text-[8pt] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    {record.kind === 'amplifier' ? (
+                        <>
+                            Controls &amp;
+                            <br />
+                            care card
+                        </>
+                    ) : (
+                        <>
+                            Voice &amp;
+                            <br />
+                            control card
+                        </>
+                    )}
+                </span>
             </header>
 
             <section className="relative overflow-hidden py-4">
                 <div className="pointer-events-none absolute -right-16 -top-28 h-52 w-52 rounded-full border border-sky-200 shadow-[0_0_0_18px_#f0f9ff,0_0_0_36px_#f8fafc]" />
                 <div className="relative">
-                    <div className="font-mono text-[8.5pt] font-semibold tracking-[0.14em] text-sky-700">{record.serial} · {dateLabel.toUpperCase()} {record.year}</div>
+                    <div className="font-mono text-[8.5pt] font-semibold tracking-[0.14em] text-sky-700">
+                        {record.serial} · {dateLabel.toUpperCase()} {record.year}
+                    </div>
                     <h1 className="mt-1 text-[23pt] font-semibold leading-none tracking-tight">{record.name}</h1>
                     <p className="mt-2 max-w-[6.3in] text-[9pt] leading-relaxed text-slate-600">{record.theme}</p>
                 </div>

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { validateInstrumentDocument } from './lib/instruments/validation';
 
 const instrumentSchema = z.object({
+    kind: z.enum(['guitar', 'amplifier']).optional(),
     publish: z.boolean().optional().default(false),
     name: z.string().min(1),
     started: z.string().date('Invalid build start date.').optional(),

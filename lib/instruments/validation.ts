@@ -13,8 +13,9 @@ export function validateInstrumentDocument(path: string, data: InstrumentFrontma
     if (!data.completed && data.publish) throw new Error(`${serialData.serial} cannot publish before completion`);
     if (!data.completed && !data.started) throw new Error(`${serialData.serial} requires a completion or build start date`);
 
-    if (data.completed && !/<InstrumentSpec[\s>/]/.test(data.content)) {
-        throw new Error(`${serialData.serial} requires an InstrumentSpec voice and control map once completed`);
+    const spec = data.kind === 'amplifier' ? 'AmplifierSpec' : 'InstrumentSpec';
+    if (data.completed && !new RegExp(`<${spec}[\\s>/]`).test(data.content)) {
+        throw new Error(`${serialData.serial} requires an ${spec} voice and control map once completed`);
     }
 
     if (data.started && Number(data.started.slice(0, 4)) !== serialData.year) {
@@ -26,10 +27,18 @@ export function validateInstrumentDocument(path: string, data: InstrumentFrontma
     }
 
     for (const image of data.images) {
-        if (!image.src.startsWith('/') || image.alt.trim().length === 0) {
+        let remote = false;
+        try {
+            const url = new URL(image.src);
+            remote = url.protocol === 'https:' && url.hostname === 'cdn.shopify.com' && !url.username && !url.password && url.pathname.startsWith('/s/files/1/0663/5293/9165/files/');
+        } catch {
+            /* Local photographs have no URL scheme. */
+        }
+        if ((!image.src.startsWith('/') && !remote) || image.alt.trim().length === 0) {
             throw new Error(`${serialData.serial} has an invalid instrument image`);
         }
 
+        if (remote) continue;
         const absolutePath = join(process.cwd(), 'public', image.src.replace(/^\//, ''));
         if (!existsSync(absolutePath)) {
             throw new Error(`${serialData.serial} image does not exist: ${image.src}`);

@@ -1,0 +1,49 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "title": "5E3 Tweed-Style Tube Combo",
+      "horizontalOverflow": false
+    },
+    {
+      "name": "mobile",
+      "title": "5E3 Tweed-Style Tube Combo",
+      "horizontalOverflow": false
+    },
+    {
+      "name": "desktop-dark",
+      "title": "5E3 Tweed-Style Tube Combo",
+      "horizontalOverflow": false
+    },
+    {
+      "name": "mobile-dark",
+      "title": "5E3 Tweed-Style Tube Combo",
+      "horizontalOverflow": false
+    },
+    {
+      "print": {
+        "scrollHeight": 987,
+        "clientHeight": 987,
+        "hasAllControls": true,
+        "hasPhoto": false
+      }
+    }
+  ],
+  "errors": [],
+  "photo": "Original Shopify image request deliberately blocked during layout checks; network retrieval is unavailable.",
+  "automated_tests": {
+    "passed": 347,
+    "files": 64,
+    "build": "passed under Node 20 in CI/preview mode"
+  },
+  "print_pdfs": {
+    "Letter": {
+      "pages": 1
+    },
+    "A4": {
+      "pages": 1
+    }
+  },
+  "decoded_qr": "https://k7rhy.app/sn/5E326001",
+  "record_publish": false
+}
