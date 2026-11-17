@@ -74,7 +74,7 @@ has no instrument photo, and its rendered QR code decodes to
 ## Owner-supplied front photograph (2026-11-16)
 
 The owner attached a front photograph in this chat. It visibly shows the tweed
-cabinet covering, dark grille cloth, and four grille mounting screws. The photo
+cabinet covering, dark grille cloth, and four visible front screws. The photo
 appears sideways and needs orientation checking before final use. No internal
 components, rear-panel ratings, serial label, or measurement values are visible.
 The image alt text now uses only these visible front-view details.
