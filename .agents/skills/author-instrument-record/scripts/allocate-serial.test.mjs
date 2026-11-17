@@ -11,7 +11,7 @@ async function repository(files = []) {
     const root = await mkdtemp(join(tmpdir(), 'instrument-serial-'));
     await mkdir(join(root, 'config'), { recursive: true });
     await mkdir(join(root, 'content/instruments'), { recursive: true });
-    await writeFile(join(root, 'config/instrument-model-codes.ts'), "export const INSTRUMENT_MODEL_CODES = { RLY: 'Relay', REX: 'Relay Example', CVL: 'Coupeville' };\n");
+    await writeFile(join(root, 'config/instrument-model-codes.ts'), "export const INSTRUMENT_MODEL_CODES = { RLY: 'Relay', REX: 'Relay Example', CVL: 'Coupeville', '5E3': '5E3-style tube amplifier' };\n");
     await Promise.all(files.map((name) => writeFile(join(root, 'content/instruments', name), '---\npublish: false\n---\n')));
     return root;
 }
@@ -47,4 +47,16 @@ test('rejects unknown families and malformed completion values', async () => {
     const malformed = allocate(root, 'CVL', 'July 2026');
     assert.notEqual(malformed.status, 0);
     assert.match(malformed.stderr, /expected YYYY or YYYY-MM-DD/i);
+});
+
+test('allocates numeric family prefixes from quoted registry keys and counts their records', async () => {
+    const result = allocate(await repository(['5E326001.mdx', '5E326002.mdx']), '5E3', '2026');
+    assert.equal(result.status, 0, result.stderr);
+    assert.equal(result.stdout.trim(), '5E326003');
+});
+
+test('preserves gap detection for numeric family prefixes', async () => {
+    const result = allocate(await repository(['5E326002.mdx']), '5E3', '2026');
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /missing 5E326001/i);
 });

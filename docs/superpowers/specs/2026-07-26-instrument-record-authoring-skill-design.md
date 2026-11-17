@@ -10,7 +10,7 @@ The skill may create or update `content/instruments/<SERIAL>.mdx`, `public/image
 
 ## Serial allocation
 
-The user supplies or confirms the family and completion date or year; the skill determines the serial. A bundled Node script accepts a registered three-letter family and a `YYYY` or `YYYY-MM-DD` completion value. It scans instrument filenames, validates all matching serials, requires their `NNN` values to be exactly `001` through the current maximum without gaps, and emits the next number.
+The user supplies or confirms the family and completion date or year; the skill determines the serial. A bundled Node script accepts a registered three-character alphanumeric family and a `YYYY` or `YYYY-MM-DD` completion value. It scans instrument filenames, validates all matching serials, requires their `NNN` values to be exactly `001` through the current maximum without gaps, and emits the next number.
 
 Allocation fails for malformed family codes, unregistered codes, malformed dates, years outside the supported serial range, or gaps. Canonical filenames make each serial unique. The allocator never guesses around a gap. If an issued instrument was destroyed or is unavailable, its serial must still have a record before allocation can continue.
 
@@ -51,3 +51,5 @@ Automated verification covers allocator behavior, skill structure validation, se
 Rendered verification covers desktop/mobile and light/dark record presentation, one-page Letter/A4 print at 100% scale, unclipped content, exact-image presentation on the web only, and a scanned canonical QR destination.
 
 The skill must report unresolved inputs or failed verification plainly and must not publish or claim readiness while any gate is incomplete.
+
+Prefix correction (owner, 2026-11-16): MMM is three characters, including digits, not three letters. See [the current decision](../../decisions/2026-11-16-three-character-instrument-prefixes.md).

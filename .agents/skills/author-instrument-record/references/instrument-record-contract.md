@@ -16,7 +16,7 @@ Read live source before authoring; do not copy an old plan’s component API.
 
 ## Record contract
 
-- Filename: uppercase `MMMYYNNN.mdx`; frontmatter does not duplicate the serial.
+- Filename: uppercase `MMMYYNNN.mdx`; `MMM` is a registered three-character alphanumeric prefix, such as `5E3`; frontmatter does not duplicate the serial.
 - Completion: honest `YYYY` or `YYYY-MM-DD`; its year must match `YY`. An unpublished build in progress may instead use an honest `started: YYYY-MM-DD` matching `YY`, with no `completed` value. It cannot publish or expose a print card until completion is recorded. A completed record must contain an `InstrumentSpec`; `lib/instruments/validation.ts` rejects one without it, because the case card renders only the structured map.
 - Images: at least one exact-instrument image under `/images/instruments/<SERIAL>/` with useful alt text. A clearly marked placeholder is acceptable only when explicitly approved.
 - Drafting: new records remain `publish: false` until explicit publication approval. If wiring, parts, or voice are undecided, keep that status in the engineering record and omit uncertain owner-facing claims; defer the structured control map until the design is decided. An approved design is still distinct from an installed or physically verified circuit.

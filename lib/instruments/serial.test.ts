@@ -22,15 +22,22 @@ describe('instrument serials', () => {
         });
     });
 
+    it('parses the existing amplifier prefix as three characters, not three letters', () => {
+        expect(parseInstrumentSerial('5e326001')).toEqual({ serial: '5E326001', modelCode: '5E3', modelDescription: '5E3-style tube amplifier', year: 2026, index: 1 });
+        expect(instrumentPath('5e326001')).toBe('/sn/5E326001');
+        expect(instrumentUrl('5E326001')).toBe('https://k7rhy.app/sn/5E326001');
+    });
+
     it('normalizes lowercase input before routing', () => {
         expect(normalizeInstrumentSerial('rex26001')).toBe('REX26001');
     });
 
-    it.each(['RLY-26001', 'RLY2601', 'R1Y26001', 'RLY26ABC'])('rejects malformed serial %s', (serial) => {
+    it.each(['RLY-26001', 'RLY2601', 'RL-26001', 'RLY26ABC'])('rejects malformed serial %s', (serial) => {
         expect(() => parseInstrumentSerial(serial)).toThrow(`Invalid instrument serial: ${serial}`);
     });
 
     it('rejects an unknown model code', () => {
+        expect(() => parseInstrumentSerial('R1Y26001')).toThrow('Unknown instrument model code: R1Y');
         expect(() => parseInstrumentSerial('ZZZ26001')).toThrow('Unknown instrument model code: ZZZ');
         expect(() => parseInstrumentSerial('CPC26001')).toThrow('Unknown instrument model code: CPC');
     });

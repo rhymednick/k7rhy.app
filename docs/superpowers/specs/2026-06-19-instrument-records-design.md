@@ -12,7 +12,7 @@ The experience must do more than expose technical data. It should make the owner
 
 Serial numbers use eight uppercase characters in the format `MMMYYNNN`:
 
-- `MMM`: a three-letter model, manufacturer, or platform code
+- `MMM`: a three-character alphanumeric model, manufacturer, or platform code
 - `YY`: two-digit completion year
 - `NNN`: three-digit sequence number
 
@@ -170,7 +170,7 @@ No QR image is authored or stored per instrument. The web and print presentation
 ## Failure Behavior
 
 - Invalid serial filenames fail content validation.
-- Unknown three-letter codes fail content validation.
+- Unknown three-character alphanumeric codes fail content validation.
 - Missing required frontmatter fails content validation.
 - Missing images fail the build.
 - Invalid compound MDX structures fail rendering during the build with instrument-specific messages.
@@ -215,3 +215,5 @@ Out of scope for the first version:
 - Generated PDF downloads
 - Service-management or maintenance-history system
 - Separate visual brand for instrument records
+
+Prefix correction (owner, 2026-11-16): MMM is three characters, including digits, not three letters. See [the current decision](../../decisions/2026-11-16-three-character-instrument-prefixes.md).

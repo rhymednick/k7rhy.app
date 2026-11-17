@@ -12,7 +12,7 @@ const outputDirectory = join(root, 'docs/engineering/strat-cunife');
 await mkdir(outputDirectory, { recursive: true });
 
 for (const serial of process.argv.slice(2)) {
-    if (!/^[A-Z]{3}\d{5}$/.test(serial)) throw new Error(`Invalid serial: ${serial}`);
+    if (!/^[A-Z0-9]{3}\d{5}$/.test(serial)) throw new Error(`Invalid serial: ${serial}`);
     await access(join(root, 'content/instruments', `${serial}.mdx`));
 
     const url = `https://k7rhy.app/sn/${serial}`;

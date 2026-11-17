@@ -97,7 +97,7 @@ The Rainbow Telecaster has been sold. Remove it from the catalog and remove its 
 
 ## Instrument serial namespaces
 
-The serial format remains `MMMYYNNN`, where `MMM` is a three-letter family code, `YY` is the completion year, and `NNN` is a year-scoped sequence within that family.
+The serial format remains `MMMYYNNN`, where `MMM` is a three-character alphanumeric family code, `YY` is the completion year, and `NNN` is a year-scoped sequence within that family.
 
 ### Relay
 
@@ -161,3 +161,5 @@ Run focused tests during implementation, then the full Vitest suite, lint, and a
 - Building a serial-number lookup form.
 - Publishing any serial-number index or discoverable instrument-record list.
 - Rendering Discord reactions, embeds, or an interactive Discord client.
+
+Prefix correction (owner, 2026-11-16): MMM is three characters, including digits, not three letters. See [the current decision](../../decisions/2026-11-16-three-character-instrument-prefixes.md).

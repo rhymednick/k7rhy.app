@@ -1,4 +1,5 @@
 export const INSTRUMENT_MODEL_CODES: Readonly<Record<string, string>> = {
+    '5E3': '5E3-style tube amplifier',
     REX: 'Relay Example',
     RLY: 'Relay',
     CVL: 'Coupeville',

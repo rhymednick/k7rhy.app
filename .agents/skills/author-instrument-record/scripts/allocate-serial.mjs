@@ -30,12 +30,12 @@ function completionYear(completed) {
 
 async function registeredFamilies(root) {
     const source = await readFile(resolve(root, 'config/instrument-model-codes.ts'), 'utf8');
-    return new Set([...source.matchAll(/\b([A-Z]{3})\s*:\s*['"]/g)].map((match) => match[1]));
+    return new Set([...source.matchAll(/(?:^|[,{])\s*['"]?([A-Z0-9]{3})['"]?\s*:\s*['"]/g)].map((match) => match[1]));
 }
 
 async function allocate() {
     const { root = process.cwd(), family, completed } = namedArguments(process.argv.slice(2));
-    if (!/^[A-Z]{3}$/.test(family ?? '')) throw new Error(`Invalid family code: ${family ?? ''}. Expected three uppercase letters.`);
+    if (!/^[A-Z0-9]{3}$/.test(family ?? '')) throw new Error(`Invalid family code: ${family ?? ''}. Expected three uppercase alphanumeric characters.`);
 
     const families = await registeredFamilies(root);
     if (!families.has(family)) throw new Error(`Unregistered family code: ${family}`);
@@ -47,7 +47,7 @@ async function allocate() {
     const indexes = [];
 
     for (const entry of entries) {
-        const match = /^([A-Z]{3})(\d{2})(\d{3})\.mdx$/i.exec(entry);
+        const match = /^([A-Z0-9]{3})(\d{2})(\d{3})\.mdx$/i.exec(entry);
         if (!match || `${match[1].toUpperCase()}${match[2]}` !== prefix) continue;
         indexes.push(Number(match[3]));
     }
