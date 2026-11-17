@@ -37,7 +37,7 @@ export function AnnouncementFeed({ result }: AnnouncementFeedProps) {
                         {splitDiscordMessageContent(message.content).map((segment, index) =>
                             segment.kind === 'link' ? (
                                 <a key={`${message.id}-${index}`} href={segment.value} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4">
-                                    {segment.value}
+                                    {segment.label ?? segment.value}
                                 </a>
                             ) : (
                                 segment.value

@@ -55,6 +55,16 @@ describe('fetchRecentAnnouncements', () => {
 });
 
 describe('splitDiscordMessageContent', () => {
+    it('renders named Discord links as words rather than Markdown or exposed destinations', () => {
+        expect(splitDiscordMessageContent('See the [instrument record](https://k7rhy.app/sn/STR26001) and [wiring](<https://k7rhy.app/sn/STR26001/wiring>).')).toEqual([
+            { kind: 'text', value: 'See the ' },
+            { kind: 'link', value: 'https://k7rhy.app/sn/STR26001', label: 'instrument record' },
+            { kind: 'text', value: ' and ' },
+            { kind: 'link', value: 'https://k7rhy.app/sn/STR26001/wiring', label: 'wiring' },
+            { kind: 'text', value: '.' },
+        ]);
+        expect(splitDiscordMessageContent('[unsafe](javascript:alert(1))')).toEqual([{ kind: 'text', value: '[unsafe](javascript:alert(1))' }]);
+    });
     it('recognizes only http and https links', () => {
         expect(splitDiscordMessageContent('See https://k7rhy.app and javascript:alert(1)')).toEqual([
             { kind: 'text', value: 'See ' },

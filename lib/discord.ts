@@ -12,7 +12,7 @@ export interface DiscordAnnouncement extends DiscordPinnedMessage {}
 
 export type DiscordAnnouncementsResult = { status: 'available'; messages: DiscordAnnouncement[] } | { status: 'unavailable'; messages: [] };
 
-export type DiscordMessageSegment = { kind: 'text' | 'link'; value: string };
+export type DiscordMessageSegment = { kind: 'text' | 'link'; value: string; label?: string };
 
 export async function fetchRecentAnnouncements(channelId: string, limit = 10): Promise<DiscordAnnouncementsResult> {
     const token = process.env.DISCORD_BOT_TOKEN;
@@ -37,13 +37,13 @@ export async function fetchRecentAnnouncements(channelId: string, limit = 10): P
 
 export function splitDiscordMessageContent(content: string): DiscordMessageSegment[] {
     const segments: DiscordMessageSegment[] = [];
-    const linkPattern = /https?:\/\/[^\s]+/g;
+    const linkPattern = /\[([^\]\n]+)\]\((?:<(https?:\/\/[^>\s]+)>|(https?:\/\/[^)\s]+))\)|https?:\/\/[^\s]+/g;
     let cursor = 0;
 
     for (const match of content.matchAll(linkPattern)) {
         const index = match.index ?? 0;
         if (index > cursor) segments.push({ kind: 'text', value: content.slice(cursor, index) });
-        segments.push({ kind: 'link', value: match[0] });
+        segments.push(match[1] ? { kind: 'link', value: match[2] ?? match[3], label: match[1].replace(/\\([\\`*_~|>\[\]])/g, '$1') } : { kind: 'link', value: match[0] });
         cursor = index + match[0].length;
     }
 

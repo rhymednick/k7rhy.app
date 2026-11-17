@@ -192,3 +192,15 @@ The delivery client now sets message flag 4 explicitly. This supersedes relying
 on default Discord unfurling or bot permissions to determine presentation.
 Status: implemented and tested in a PR, awaiting merge/deployment. The four
 existing messages remain as the owner cleaned them.
+
+## Descriptive inline links (2026-11-16)
+
+Owner requested clickable words in descriptions rather than extra raw URL lines,
+then explicitly authorized changing the algorithm and updating existing bot posts.
+The renderer now links existing approved phrases to the provided related pages
+where the relationship is known. Other supplied links appear as named words in
+a short sentence within the description. Purchase/details and price-drop targets
+also use named links. This supersedes the initial raw-URL presentation.
+The approved source description remains unchanged; formatting is deterministic,
+not generated copy. Community rendering recognizes these same named links.
+Status: implemented and tested; production deployment and in-place refresh follow.

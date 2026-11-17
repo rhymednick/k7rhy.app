@@ -33,6 +33,11 @@ describe('AnnouncementFeed', () => {
         render(<AnnouncementFeed result={{ status: 'unavailable', messages: [] }} />);
         expect(screen.getByText('Announcements are temporarily unavailable.')).toBeInTheDocument();
     });
+    it('preserves descriptive link labels from Discord announcements', () => {
+        render(<AnnouncementFeed result={{ status: 'available', messages: [{ id: 'named', content: 'See the [instrument record](https://k7rhy.app/sn/STR26001).', author: { username: 'Bot', global_name: null }, timestamp: '2026-11-17T00:00:00Z' }] }} />);
+        expect(screen.getByRole('link', { name: 'instrument record' })).toHaveAttribute('href', 'https://k7rhy.app/sn/STR26001');
+        expect(screen.queryByText('https://k7rhy.app/sn/STR26001')).not.toBeInTheDocument();
+    });
 
     it('renders an empty available state', () => {
         render(<AnnouncementFeed result={{ status: 'available', messages: [] }} />);
