@@ -74,13 +74,19 @@ Shopify signing secret, Storefront token, and Discord bot token.
 - `CONTEXT=production`: supplied by Netlify; previews never send public posts.
 - Storefront token: enable `unauthenticated_read_product_inventory` to read
   `quantityAvailable`, in addition to the existing product/metafield access.
-- Runtime: Netlify Database requires Node 22.12 or newer. This change aligns
-  `.nvmrc`, the package engine, and Netlify build settings on Node 22.
-- Netlify Database: this change installs `@netlify/database` and adds an additive
-  migration under `netlify/database/migrations/`. Verify the site's credit-plan
-  eligibility and database cost before deploying. Deployment provisions/applies
-  the migration; do not apply hosted DDL manually. This feature needs durable
-  database state even though it runs only on events.
+- `DISCORD_ANNOUNCEMENTS_DATABASE_URL`: a standard Postgres connection string,
+  supplied by the owner and scoped to production Functions only. Use the
+  provider's TLS settings. No connection is opened while building the site or
+  while announcements are disabled.
+- Database schema: the additive migration is under
+  `db/discord-announcements/migrations/`. Choose/configure a supported Postgres
+  service and review its cost before activation. Run the explicit migration
+  command against the intended database before enabling posting. Site builds
+  never provision a database or run announcement migrations.
+- This Netlify account rejects `createSiteDatabase` with HTTP 403:
+  **database feature not available for this account**. The Netlify Database SDK
+  and automatic migration directory have been removed. No account upgrade is
+  performed; the site's original Node 20 runtime is retained.
 
 Keep the existing Shopify Admin Notifications subscriptions. Add the following
 JSON subscriptions to the same receiver URL:
@@ -123,12 +129,16 @@ it never starts a recurring scan.
 
 ## Commands
 
-Run with the configured Netlify database and Storefront environment (for local
-validation, use Netlify Dev's isolated database). Do not paste secret values into
+Run with the intended Postgres database and Storefront environment (use an
+isolated database for local validation). Do not paste secret values into
 commands or logs. A live apply additionally requires the production context and
 enabled/channel variables above. All commands omit `--apply` by default.
 
 ```sh
+# Review the schema without opening a database connection.
+npm run announcements:migrate
+# Explicitly apply it once to the configured database, before enabling posts.
+npm run announcements:migrate -- --apply
 # Review currently ready, published, in-stock music listings; no Discord writes.
 npm run announcements -- backfill
 # Once reviewed, create missing posts through the normal duplicate protection.

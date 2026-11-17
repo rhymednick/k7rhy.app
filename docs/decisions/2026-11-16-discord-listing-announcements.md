@@ -65,10 +65,27 @@ The small inventory-ID map comes from REST product deliveries. An unmatched
 inventory event refreshes tracked products once to cover backfilled products
 whose first REST delivery has not happened yet.
 
-New Netlify Database migration stores item state and inventory mappings.
-Production posting is gated by an enable flag, channel ID, and production deploy
-context. Previews cannot send announcements. Database plan eligibility/cost must
-be verified before deployment. Do not read secret values: the owner supplies them.
+Standard Postgres stores item state and inventory mappings. Production posting
+is gated by an enable flag, channel ID, and production deploy context. Previews
+cannot send announcements. The owner supplies secrets.
+
+### Build correction: Netlify Database unavailable (2026-11-16)
+
+Preview deploy [6afbddd18212162085c07f34](https://app.netlify.com/projects/k7rhy/deploys/6afbddd18212162085c07f34)
+failed before `npm run build`, while Netlify tried to provision a database:
+`createSiteDatabase` returned HTTP 403, **database feature not available for this account**.
+The owner supplied the detailed build log. This supersedes the Netlify Database
+SDK/automatic-provisioning design, which was not verified against this account.
+
+Remove `@netlify/database` and its automatic migration directory. Use the standard
+`pg` client with an explicitly supplied `DISCORD_ANNOUNCEMENTS_DATABASE_URL`.
+Connections are lazy; disabled announcements and builds need no database. Apply
+the same additive schema explicitly through `npm run announcements:migrate -- --apply`
+after selecting a supported Postgres service. The migration command is dry-run by
+default and records its checksum to prevent accidental reapplication. Retain the
+existing site Node 20 runtime; the removed SDK was the only reason to require 22.
+No external database has been provisioned, no secrets have been retrieved, and no
+account plan has been changed. Production posting/backfill remain pending setup.
 
 ## Validation and remaining launch work
 
@@ -79,7 +96,7 @@ failure isolation, and Discord request behavior. Production build validation is
 complete under Node 22: `npm run build` passed with 328 tests in 61 files, Next.js compilation/type/lint checks, static generation, and sitemap generation. The local build exercised the existing Shopify-unreachable fallback; live Storefront/Discord end-to-end validation remains pending. No live posts have been sent.
 
 See [the setup and recovery runbook](../engineering/discord-announcements.md).
-Before launch, verify the Netlify database plan, public text-channel permissions,
+Before launch, configure a supported Postgres database and apply its migration, then verify public text-channel permissions,
 Storefront inventory scope, optional product-field definitions/values, and
 additional paid-order/inventory subscriptions. Dry-run the ready listings, then
 perform the requested one-time backfill. Live end-to-end delivery is not yet
@@ -95,3 +112,5 @@ stock transitions use explicit fields and deterministic code; no Jev opportunity
 is proposed for these exact comparisons.
 
 Follow-up validation: announcement tests verify missing/blank descriptions block publication, approved paragraph text is retained, and overlong copy fails instead of being truncated.
+
+Build-correction validation: all 333 tests in 62 files and the production build pass under Node 20 with `CI=true` and `CONTEXT=deploy-preview`. The schema dry run also succeeds without a database connection. Netlify preview confirmation is pending.

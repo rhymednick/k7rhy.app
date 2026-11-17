@@ -1,23 +1,26 @@
 // @vitest-environment node
-import { NetlifyDB } from '@netlify/database-dev';
+import { PGlite } from '@electric-sql/pglite';
 import { readFile } from 'node:fs/promises';
 import { beforeAll, afterAll, describe, expect, it, vi } from 'vitest';
-const local = new NetlifyDB({ logger: () => {} });
-vi.mock('@netlify/database', () => ({
-    getDatabase: () => ({
-        sql: async (parts: TemplateStringsArray, ...values: unknown[]) => {
-            const query = parts.reduce((sql, part, index) => sql + (index ? `$${index}` : '') + part, '');
-            return (await local.query(query, values)).rows;
-        },
-    }),
+const local = new PGlite();
+vi.mock('pg', () => ({
+    Pool: class {
+        async query(sql: string, values?: unknown[]) {
+            return local.query(sql, values);
+        }
+        on() {
+            return this;
+        }
+    },
 }));
 import { acquireItem, inventoryProduct, mapInventory, trackedProducts } from './store';
 beforeAll(async () => {
-    await local.start();
-    await local.exec(await readFile('netlify/database/migrations/20261117040000_discord_announcements.sql', 'utf8'));
+    vi.stubEnv('DISCORD_ANNOUNCEMENTS_DATABASE_URL', 'postgresql://localhost/isolated-test');
+    await local.exec(await readFile('db/discord-announcements/migrations/20261117040000_discord_announcements.sql', 'utf8'));
 }, 30000);
 afterAll(async () => {
-    await local.stop();
+    await local.close();
+    vi.unstubAllEnvs();
 });
 describe('persistent announcement state', () => {
     it('allows only one owner, persists write-ahead state, and releases the lease', async () => {

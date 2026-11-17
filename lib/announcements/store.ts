@@ -1,14 +1,11 @@
 import { randomUUID } from 'node:crypto';
-import { getDatabase } from '@netlify/database';
+import { database } from './database';
 import type { ItemState } from './model';
 
 export interface ItemSession {
     state: ItemState;
     save(state: ItemState): Promise<void>;
     release(): Promise<void>;
-}
-function database() {
-    return getDatabase(process.env.NETLIFY_DB_URL ? { connectionString: process.env.NETLIFY_DB_URL } : undefined);
 }
 /** A bounded lease serializes each product. Every write checks ownership. */
 export async function acquireItem(id: string): Promise<ItemSession> {

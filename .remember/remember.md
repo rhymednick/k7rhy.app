@@ -43,3 +43,7 @@ Implemented locally on top of the refreshed Shopify webhook/Reverb sync. Uses a 
 Validation: 328 tests across 61 files and production build pass under Node 22. Runtime settings move to Node 22 because `@netlify/database` requires >=22.12. Public posting remains disabled; live Storefront/Discord and historical backfill are pending setup.
 
 Owner-approved restriction (2026-11-16): `custom.discord_description` is required approved copy. Missing/blank copy blocks initial announcements and backfill; the product-description fallback is removed, and overlong copy is rejected rather than truncated. See the same decision record/runbook.
+
+Build correction (2026-11-16): Netlify preview failed before application build because `createSiteDatabase` returned 403, "database feature not available for this account". Removed automatic Netlify Database provisioning and its SDK; storage now uses standard `pg` with owner-supplied `DISCORD_ANNOUNCEMENTS_DATABASE_URL`. Schema lives under `db/discord-announcements/migrations/` and is applied only through the explicit dry-run-first migration command. Node 20 is retained. No database or account upgrade has been provisioned; live announcement activation still needs a supported database.
+
+Build-correction validation: 333 tests/62 files and the production build pass under Node 20 in CI/preview mode; migration dry run requires no connection. Replacement Netlify preview is the remaining deployment check.
