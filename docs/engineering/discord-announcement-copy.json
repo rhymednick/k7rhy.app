@@ -2,7 +2,7 @@
   "checked_at_utc": "2026-11-17T05:26:11Z",
   "checked_local_date": "2026-11-16",
   "source": "Live Shopify Admin API plus origin/main at afa8845",
-  "purpose": "Owner authorized publication and sending all four announcements on November 16, 2026. Descriptions and links saved to Shopify and read back; readiness tags and Discord delivery pending deployment.",
+  "purpose": "All four announcements sent through Shopify webhooks and visually confirmed by the owner on November 16, 2026. See discord-announcement-launch-receipt.json.",
   "pricing": "Snapshot only; read current Shopify price, publication, and inventory again immediately before posting.",
   "link_verification": "Purchase URLs returned by live Shopify. Record/wiring routes checked against repository sources. Direct HTTP verification was blocked by the execution network proxy (CONNECT 403), which is not evidence of a site 403 or missing page.",
   "records": [
@@ -27,7 +27,7 @@
       "purchase_url": "https://shop.k7rhy.app/products/newly-built-5e3-tweed-deluxe-clone-2026",
       "details_url": "https://k7rhy.app/shop/amplifiers/newly-built-5e3-tweed-deluxe-clone-2026",
       "record_url": "https://k7rhy.app/sn/5E326001",
-      "record_status": "publication approved by owner; publish:true prepared in PR #156; production deployment pending",
+      "record_status": "published in production",
       "related_urls": [],
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/D590ADBF-D3A6-4054-87F5-1A9C9DFC5F98.jpg?v=1788193410",
       "reverb_listing_id_field": "101259462",
@@ -36,11 +36,13 @@
         "record_url": "https://k7rhy.app/sn/5E326001",
         "related_urls": []
       },
-      "discord_ready_tag_current": false,
+      "discord_ready_tag_current": true,
       "source_paths": [
         "content/instruments/5E326001.mdx",
         "docs/engineering/5e326001/README.md"
-      ]
+      ],
+      "announcement_status": "posted; visually confirmed by owner",
+      "discord_message_id": "1572145012316176504"
     },
     {
       "product_name": "Tomatillo S-Type",
@@ -63,7 +65,7 @@
       "purchase_url": "https://shop.k7rhy.app/products/custom-assembled-s-type-with-fender-custom-shop-tomatillo-pickups-series-switch-pro-setup-gloss-white",
       "details_url": "https://k7rhy.app/shop/guitars/custom-assembled-s-type-with-fender-custom-shop-tomatillo-pickups-series-switch-pro-setup-gloss-white",
       "record_url": "https://k7rhy.app/sn/STR26001",
-      "record_status": "source exists in current main; live HTTP check blocked",
+      "record_status": "published in production",
       "related_urls": [
         "https://k7rhy.app/sn/STR26001/wiring"
       ],
@@ -76,11 +78,13 @@
           "https://k7rhy.app/sn/STR26001/wiring"
         ]
       },
-      "discord_ready_tag_current": false,
+      "discord_ready_tag_current": true,
       "source_paths": [
         "content/instruments/STR26001.mdx",
         "lib/instruments/wiring-reference.ts"
-      ]
+      ],
+      "announcement_status": "posted; visually confirmed by owner",
+      "discord_message_id": "1572145658704564274"
     },
     {
       "product_name": "CuNiFe S-Type",
@@ -103,7 +107,7 @@
       "purchase_url": "https://shop.k7rhy.app/products/custom-assembled-s-type-with-fender-cunife-pickups-neck-add-switch-gloss-white",
       "details_url": "https://k7rhy.app/shop/guitars/custom-assembled-s-type-with-fender-cunife-pickups-neck-add-switch-gloss-white",
       "record_url": "https://k7rhy.app/sn/STR26002",
-      "record_status": "source exists in current main; live HTTP check blocked",
+      "record_status": "published in production",
       "related_urls": [
         "https://k7rhy.app/sn/STR26002/wiring"
       ],
@@ -116,11 +120,13 @@
           "https://k7rhy.app/sn/STR26002/wiring"
         ]
       },
-      "discord_ready_tag_current": false,
+      "discord_ready_tag_current": true,
       "source_paths": [
         "content/instruments/STR26002.mdx",
         "lib/instruments/wiring-reference.ts"
-      ]
+      ],
+      "announcement_status": "posted; visually confirmed by owner",
+      "discord_message_id": null
     },
     {
       "product_name": "PRS SE Custom 24 Burled Ash Limited Edition",
@@ -143,7 +149,7 @@
       "purchase_url": "https://shop.k7rhy.app/products/prs-se-custom-24-burled-ash-limited-edition-with-seymour-duncan-alnico-ii-pros-partial-splits-tkl-hardshell-case-natural",
       "details_url": "https://k7rhy.app/shop/guitars/prs-se-custom-24-burled-ash-limited-edition-with-seymour-duncan-alnico-ii-pros-partial-splits-tkl-hardshell-case-natural",
       "record_url": "https://k7rhy.app/sn/PRS26001",
-      "record_status": "source exists in current main; live HTTP check blocked",
+      "record_status": "published in production",
       "related_urls": [
         "https://k7rhy.app/sn/PRS26001/wiring",
         "https://k7rhy.app/guitars/relay",
@@ -160,11 +166,13 @@
           "https://k7rhy.app/guitars/relay/voicings"
         ]
       },
-      "discord_ready_tag_current": false,
+      "discord_ready_tag_current": true,
       "source_paths": [
         "content/instruments/PRS26001.mdx",
         "lib/instruments/wiring-reference.ts"
-      ]
+      ],
+      "announcement_status": "posted; visually confirmed by owner",
+      "discord_message_id": null
     }
   ]
 }

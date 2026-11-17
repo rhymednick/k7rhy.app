@@ -1,0 +1,70 @@
+{
+  "status": "all four posts visually confirmed by owner",
+  "confirmed_local_date": "2026-11-16",
+  "confirmed_at_utc": "2026-11-17T07:12:45.546Z",
+  "guild_id": "1432214244459417693",
+  "channel_id": "1432603806704603248",
+  "channel_url": "https://discord.com/channels/1432214244459417693/1432603806704603248",
+  "production_deploy": "6afbf99bf4b422ff9d1133e6",
+  "production_commit": "be66f0847b4f9be9c657ab02ff7c16b9cd973926",
+  "records": [
+    {
+      "productId": "9035797790877",
+      "serial": "5E326001",
+      "owner_visually_confirmed": true,
+      "message_id": "1572145012316176504",
+      "discord_url": "https://discord.com/channels/1432214244459417693/1432603806704603248/1572145012316176504",
+      "server_receipt": {
+        "productId": "9035797790877",
+        "messageId": "1572145012316176504",
+        "channelId": "1432603806704603248",
+        "kind": "create",
+        "purpose": "listing",
+        "timestamp": "2026-11-17T07:03:00.317Z",
+        "requestId": "01M7M51TFR13T8GNZC80WQ6HKS",
+        "statusCode": 200
+      }
+    },
+    {
+      "productId": "15437135675549",
+      "serial": "STR26001",
+      "owner_visually_confirmed": true,
+      "message_id": "1572145658704564274",
+      "discord_url": "https://discord.com/channels/1432214244459417693/1432603806704603248/1572145658704564274",
+      "server_receipt": {
+        "productId": "15437135675549",
+        "messageId": "1572145658704564274",
+        "channelId": "1432603806704603248",
+        "kind": "create",
+        "purpose": "listing",
+        "timestamp": "2026-11-17T07:05:34.254Z",
+        "requestId": "01M7M56GQ9VEW9DQKPY5PYB3V1",
+        "statusCode": 200
+      }
+    },
+    {
+      "productId": "15437136035997",
+      "serial": "STR26002",
+      "owner_visually_confirmed": true,
+      "message_id": null,
+      "discord_url": null,
+      "server_receipt": "Webhook HTTP 200; no message ID exposed in observability logs at closeout. Owner confirmed the post visually."
+    },
+    {
+      "productId": "15437296697501",
+      "serial": "PRS26001",
+      "owner_visually_confirmed": true,
+      "message_id": null,
+      "discord_url": null,
+      "server_receipt": "Webhook HTTP 200; no message ID exposed in observability logs at closeout. Owner confirmed the post visually."
+    }
+  ],
+  "notes": [
+    "Only the four available music items were announced. Dummy load and zero-stock products excluded.",
+    "All four retain discord-ready; temporary backfill tags removed.",
+    "The bot permission correction resolved Discord 403 failures.",
+    "Original photos, control panel, and verification sheet page 1 are preserved upright in the deployed amplifier record.",
+    "Additional Shopify Admin Notifications subscriptions for paid orders and inventory events remain unverified; do not claim a live sale or price-drop test occurred.",
+    "Verification sheet page 2 remains unavailable; no missing measurement values inferred."
+  ]
+}

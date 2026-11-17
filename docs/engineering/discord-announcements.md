@@ -1,6 +1,6 @@
 # Discord product announcements
 
-Status: owner authorized launch on November 16, 2026. Shopify definitions and all four descriptions/links are saved and verified. Production deployment, readiness triggers, and live delivery validation remain pending.
+Status: initial production launch complete on November 16, 2026. All four available music listings posted and visually confirmed by the owner. See [delivery receipt](discord-announcement-launch-receipt.json).
 
 Shopify remains the source for the single-variant music listings. The existing
 `/api/shopify/webhooks` receiver also drives public Discord announcements.
@@ -208,3 +208,25 @@ public product/message IDs. No secrets are logged or retrieved.
 The amp is tagged ready but still has no confirmed public message. After the
 correction deploys, trigger a fresh product tag edit without clearing readiness;
 then inspect confirmed message IDs before processing the remaining products.
+
+
+## Verified launch result
+
+The runtime-context fix was merged in PR #157 and deployed as
+`6afbf99bf4b422ff9d1133e6`, commit `be66f08`. Discord initially rejected creates
+with 403; the owner corrected the bot's channel permissions. All four readiness
+triggers then completed with HTTP 200, and the owner explicitly confirmed that
+all four posts were visible. The amp and Tomatillo also have confirmed message
+IDs in the available function logs. Missing log receipts for the other two are
+not fabricated; the owner confirmation is preserved in the delivery receipt.
+
+All four retain `discord-ready`; temporary `discord-backfill` tags were removed.
+The dummy load and zero-stock items were excluded. The normal private Blobs state
+tracker was used throughout, so future events edit these same posts; no manual
+Discord sends or polling were introduced. Do not rerun the initial backfill as
+if these products had never been posted.
+
+Additional Admin Notifications subscriptions for paid orders and inventory events
+still need verification in Shopify Admin. Product-update and order-creation
+subscriptions are existing live hooks; no real sale or price change was made to
+exercise the update paths during launch.

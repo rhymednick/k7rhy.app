@@ -50,7 +50,15 @@
     "build_verification_page_1": "owner-supplied photograph transcribed; installed devices, mains rating, grounding/isolation values added",
     "page_2": "not supplied"
   },
-  "production_deployment": "pending",
+  "production_deployment": {
+    "id": "6afbf99bf4b422ff9d1133e6",
+    "commit": "be66f0847b4f9be9c657ab02ff7c16b9cd973926",
+    "state": "ready"
+  },
   "rendered_tables": 2,
-  "full_size_photo_and_document_links": 3
+  "full_size_photo_and_document_links": 3,
+  "discord_announcement": {
+    "message_id": "1572145012316176504",
+    "owner_visually_confirmed": true
+  }
 }

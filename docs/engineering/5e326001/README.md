@@ -1,6 +1,6 @@
 # 5E326001 — 5E3 tweed-style tube combo
 
-Status: publication approved by the owner on November 16, 2026; `publish: true` is prepared in PR #156, awaiting production deployment. This is an existing issued
+Status: publication approved by the owner on November 16, 2026; `publish: true` is deployed in production. This is an existing issued
 serial, not a new allocation. The owner authorized creation from available
 information on November 16, 2026.
 
@@ -132,3 +132,13 @@ The owner's instruction authorizes publishing this record with the established
 facts. Verification page 2 remains absent; no missing operating measurements or
 shop-release result is asserted. Publication and Discord delivery must still be
 verified after deployment; photo preservation itself is complete.
+
+
+## Published result
+
+PRs #156 and #157 are merged and the record with local images is deployed.
+The amp announcement is visible in Discord, confirmed by both a successful
+message receipt (`1572145012316176504`) and the owner. See
+[the launch receipt](../discord-announcement-launch-receipt.json). Page 2 remains
+the only missing inspection-sheet page; this does not undo the recorded facts
+or imply measurements that have not been supplied.
