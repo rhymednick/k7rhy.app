@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { InstrumentRecordPage } from '@/components/instrument/instrument-record-page';
 import { instrumentMdxComponents } from '@/components/instrument/instrument-mdx-components';
 import { getInstrument, getInstrumentStaticParams } from '@/lib/instruments/records';
@@ -42,7 +43,7 @@ export default async function InstrumentPage({ params }: Props) {
 
     return (
         <InstrumentRecordPage record={record}>
-            <MDXRemote source={record.content} components={instrumentMdxComponents} />
+            <MDXRemote source={record.content} components={instrumentMdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </InstrumentRecordPage>
     );
 }

@@ -6,7 +6,7 @@ Checked: November 16, 2026 (America/Los_Angeles); Shopify snapshot at 2026-11-17
 
 Brief, factual newsfeed items introducing a product: concise product/serial headline, distinguishing features, current price, and links. Avoid first-person statements, personal introductions, and sales pitches. Typically use two factual description sentences.
 
-The owner approved the Tomatillo wording and this style. The three remaining descriptions below are drafts awaiting approval. Nothing has been posted or written to Shopify. Prices and stock below are snapshots, not permanent announcement copy.
+The owner authorized sending all four announcements on November 16, 2026. All descriptions, record URLs, and related URLs have been saved to Shopify and read back successfully. Readiness tags and delivery remain pending production deployment. Prices and stock below are snapshots, not permanent announcement copy.
 
 Structured IDs, URLs, image URLs, current fields, and source references are saved in [the companion JSON packet](discord-announcement-copy.json). This is editorial source data, not the runtime announcements.json state file.
 

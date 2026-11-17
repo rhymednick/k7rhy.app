@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { InstrumentCaseCard } from '@/components/instrument/instrument-case-card';
 import { instrumentPrintMdxComponents } from '@/components/instrument/instrument-mdx-components';
 import { PrintCaseCardControls } from '@/components/instrument/print-case-card-controls';
@@ -45,7 +46,7 @@ export default async function InstrumentPrintPage({ params }: Props) {
             <PrintCaseCardControls />
             <InstrumentCaseCard record={record}>
                 <div className="instrument-print-mdx">
-                    <MDXRemote source={record.content} components={instrumentPrintMdxComponents} />
+                    <MDXRemote source={record.content} components={instrumentPrintMdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
                 </div>
             </InstrumentCaseCard>
         </main>

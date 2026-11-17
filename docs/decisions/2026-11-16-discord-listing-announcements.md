@@ -149,3 +149,24 @@ Exact copy and the presentation follow-up are in
 Editorial preparation: the copy record now includes drafts for the remaining CuNiFe S-Type, PRS SE Custom 24, and 5E3 amplifier, plus a structured Shopify metadata snapshot. Only Tomatillo copy is approved. The owner raised an existing amp SN record; current main contains no matching source and the current serial parser rejects the 5E3 prefix. Its page link is unresolved, not evidence that the record/paperwork does not exist. Live HTTP validation was blocked by the execution proxy; no Shopify values or Discord posts were changed during preparation.
 
 Amp record follow-up: the owner authorized creating a record from available sources. `content/instruments/5E326001.mdx` now exists as an unpublished amplifier record, using the existing serial and verified Shopify facts. Its planned canonical URL remains out of live announcement fields until review/publication. Sources, unknowns, photo-access limitations, and validation are in [the amplifier engineering record](../engineering/5e326001/README.md).
+
+## Launch authorization and public defaults (2026-11-16)
+
+Owner instruction: finish saving the records and send the Discord announcements.
+This authorizes the four prepared descriptions and publication of the completed
+amp record with established facts; it does not establish the absent page-2
+measurements. All twelve product field values and their three Storefront-readable
+definitions have now been saved and read back in Shopify.
+
+Public production defaults now live in `config/community.ts`, shared with the
+Community feed: enabled, channel `1432603806704603248`. The runtime's production
+context guard is retained; optional Netlify Functions environment variables can
+override the channel or disable posting. This replaces the requirement to create
+two additional runtime variables before launch. Netlify's connector denied those
+writes with 403, and TOML build variables do not reach Functions at runtime.
+Existing bot and Storefront secrets remain managed on Netlify and were not read.
+
+Status: prepared in PR #156; dry-run rendering and local checks pass. Production
+publication, per-product readiness triggers, Discord delivery evidence, and the
+extra paid-order/inventory subscriptions are still pending. Do not confuse the
+saved editorial preview with the runtime `announcements.json` delivery state.

@@ -1,6 +1,6 @@
 # Discord product announcements
 
-Status: implemented locally; production setup and live validation pending.
+Status: owner authorized launch on November 16, 2026. Shopify definitions and all four descriptions/links are saved and verified. Production deployment, readiness triggers, and live delivery validation remain pending.
 
 Shopify remains the source for the single-variant music listings. The existing
 `/api/shopify/webhooks` receiver also drives public Discord announcements.
@@ -66,11 +66,11 @@ The dummy load is excluded by category even if accidentally tagged ready.
 The owner supplies secrets; agents do not retrieve their values. Use the existing
 Shopify signing secret, Storefront token, and Discord bot token.
 
-- `DISCORD_ANNOUNCEMENTS_CHANNEL_ID`: a regular public text/announcement channel.
+- The versioned public defaults in `config/community.ts` enable product announcements in the existing Community announcement channel (`1432603806704603248`). `DISCORD_ANNOUNCEMENTS_CHANNEL_ID` optionally overrides that destination with a regular public text/announcement channel.
   The bot needs View Channel, Send Messages and Read Message History. This first
   version uses status text in the post, not forum tags. Forum channels require a
   different create-thread API and are not supported by this client.
-- `DISCORD_ANNOUNCEMENTS_ENABLED=true`: enable only after setup and dry-run review.
+- `DISCORD_ANNOUNCEMENTS_ENABLED` optionally overrides the owner-approved versioned setting. Set it to `false` in the Functions scope for an emergency stop. A production-context check still prevents preview/dev writes. Public defaults are source configuration because TOML build environment variables do not reach function runtimes; secrets remain in Netlify.
 - `CONTEXT=production`: supplied by Netlify; previews never send public posts.
 - Storefront token: enable `unauthenticated_read_product_inventory` to read
   `quantityAvailable`, in addition to the existing product/metafield access.
@@ -165,3 +165,27 @@ Before the initial backfill, approve and set each Discord description, set the o
 intended listing ready. Keep posting disabled until the dry run is reviewed;
 then enable and run the one-time backfill. Products that have since sold are
 excluded by a fresh read immediately before processing.
+
+
+## November 16 launch preparation
+
+Shopify definitions `844072157341`, `844072190109`, and `844072222877` were
+created with Storefront read access. All twelve field values for the four
+in-stock music products were saved and read back. The dummy load and two
+zero-stock products were excluded. The owner authorized the previously drafted
+copy and amp-record publication in the instruction to finish and send.
+
+[Launch preview](discord-announcement-launch-preview.json) records dry-run
+messages rendered by the actual normalizer/renderer using fresh Admin product
+and inventory data. This validates content and lengths, not production
+Storefront inventory scope or Discord delivery. Headless access-scope inspection
+was denied to the connected Shopify app. Netlify environment writes returned
+403 on both connected links; no secret values were requested or retrieved.
+
+After PR #156 is deployed, add `discord-ready` to each eligible product, one at
+a time, through Shopify. These product edits are the webhook triggers; do not
+use Send test, post manually outside the state tracker, or add a timer. Check
+server delivery/Discord results and the saved mapping before retrying an
+ambiguous create. Additional Admin Notifications subscriptions for paid orders
+and inventory events still require setup/verification in Shopify Admin; the
+connector's app subscriptions cannot establish their state.

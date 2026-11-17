@@ -2,15 +2,15 @@
   "checked_at_utc": "2026-11-17T05:26:11Z",
   "checked_local_date": "2026-11-16",
   "source": "Live Shopify Admin API plus origin/main at afa8845",
-  "purpose": "Editorial drafts and verified listing snapshot; not the runtime announcement-state file. No values have been written to Shopify or Discord.",
+  "purpose": "Owner authorized publication and sending all four announcements on November 16, 2026. Descriptions and links saved to Shopify and read back; readiness tags and Discord delivery pending deployment.",
   "pricing": "Snapshot only; read current Shopify price, publication, and inventory again immediately before posting.",
   "link_verification": "Purchase URLs returned by live Shopify. Record/wiring routes checked against repository sources. Direct HTTP verification was blocked by the execution network proxy (CONNECT 403), which is not evidence of a site 403 or missing page.",
   "records": [
     {
       "product_name": "5E3 tweed-style tube combo",
-      "headline": "Now available: 5E3 tweed-style tube combo — 5E326001",
+      "headline": "Now available: 5E3 tweed-style tube combo \u2014 5E326001",
       "description": "A hand-built, approximately 12-watt tube combo based on the 5E3 circuit, with an Electro-Harmonix 12-inch speaker. Supplied with an amplifier-specific build verification record, baseline operating measurements, and operating and safety guides.",
-      "copy_approval": "draft",
+      "copy_approval": "approved for sending by owner, 2026-11-16",
       "serial": "5E326001",
       "shopify_product_gid": "gid://shopify/Product/9035797790877",
       "shopify_product_id": "9035797790877",
@@ -27,14 +27,14 @@
       "purchase_url": "https://shop.k7rhy.app/products/newly-built-5e3-tweed-deluxe-clone-2026",
       "details_url": "https://k7rhy.app/shop/amplifiers/newly-built-5e3-tweed-deluxe-clone-2026",
       "record_url": "https://k7rhy.app/sn/5E326001",
-      "record_status": "unpublished draft source now exists; do not announce this URL until publication approval and deployment",
+      "record_status": "publication approved by owner; publish:true prepared in PR #156; production deployment pending",
       "related_urls": [],
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/D590ADBF-D3A6-4054-87F5-1A9C9DFC5F98.jpg?v=1788193410",
       "reverb_listing_id_field": "101259462",
       "discord_fields_current": {
-        "description": null,
-        "record_url": null,
-        "related_urls": null
+        "description": "A hand-built, approximately 12-watt tube combo based on the 5E3 circuit, with an Electro-Harmonix 12-inch speaker. Supplied with an amplifier-specific build verification record, baseline operating measurements, and operating and safety guides.",
+        "record_url": "https://k7rhy.app/sn/5E326001",
+        "related_urls": []
       },
       "discord_ready_tag_current": false,
       "source_paths": [
@@ -44,9 +44,9 @@
     },
     {
       "product_name": "Tomatillo S-Type",
-      "headline": "Now available: Tomatillo S-Type — STR26001",
+      "headline": "Now available: Tomatillo S-Type \u2014 STR26001",
       "description": "A custom-assembled S-type with Fender Custom Shop Tomatillo pickups, a series switch for the paired-pickup positions, and a professional setup by Stage Left Custom Guitar Works. Includes a tweed hardshell case.",
-      "copy_approval": "approved",
+      "copy_approval": "approved for sending by owner, 2026-11-16",
       "serial": "STR26001",
       "shopify_product_gid": "gid://shopify/Product/15437135675549",
       "shopify_product_id": "15437135675549",
@@ -70,9 +70,11 @@
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/01-front.jpg?v=1794609296",
       "reverb_listing_id_field": "103882214",
       "discord_fields_current": {
-        "description": null,
-        "record_url": null,
-        "related_urls": null
+        "description": "A custom-assembled S-type with Fender Custom Shop Tomatillo pickups, a series switch for the paired-pickup positions, and a professional setup by Stage Left Custom Guitar Works. Includes a tweed hardshell case.",
+        "record_url": "https://k7rhy.app/sn/STR26001",
+        "related_urls": [
+          "https://k7rhy.app/sn/STR26001/wiring"
+        ]
       },
       "discord_ready_tag_current": false,
       "source_paths": [
@@ -82,9 +84,9 @@
     },
     {
       "product_name": "CuNiFe S-Type",
-      "headline": "Now available: CuNiFe S-Type — STR26002",
+      "headline": "Now available: CuNiFe S-Type \u2014 STR26002",
       "description": "A custom-assembled S-type with Fender CuNiFe pickups and a neck-add switch for bridge-and-neck and all-three-pickup combinations. Includes locking tuners and a tweed hardshell case.",
-      "copy_approval": "draft",
+      "copy_approval": "approved for sending by owner, 2026-11-16",
       "serial": "STR26002",
       "shopify_product_gid": "gid://shopify/Product/15437136035997",
       "shopify_product_id": "15437136035997",
@@ -108,9 +110,11 @@
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/01-front_87e77dce-d451-4468-9325-958d9ef82724.jpg?v=1794609451",
       "reverb_listing_id_field": "103882256",
       "discord_fields_current": {
-        "description": null,
-        "record_url": null,
-        "related_urls": null
+        "description": "A custom-assembled S-type with Fender CuNiFe pickups and a neck-add switch for bridge-and-neck and all-three-pickup combinations. Includes locking tuners and a tweed hardshell case.",
+        "record_url": "https://k7rhy.app/sn/STR26002",
+        "related_urls": [
+          "https://k7rhy.app/sn/STR26002/wiring"
+        ]
       },
       "discord_ready_tag_current": false,
       "source_paths": [
@@ -120,9 +124,9 @@
     },
     {
       "product_name": "PRS SE Custom 24 Burled Ash Limited Edition",
-      "headline": "Now available: PRS SE Custom 24 Burled Ash Limited Edition — PRS26001",
+      "headline": "Now available: PRS SE Custom 24 Burled Ash Limited Edition \u2014 PRS26001",
       "description": "A 2024 PRS SE Custom 24 Burled Ash Limited Edition upgraded with Seymour Duncan Alnico II Pro pickups, partial coil splits, a tone bypass, and PRS locking tuners. It served as the reference guitar for Relay voicing development and includes a TKL hardshell case.",
-      "copy_approval": "draft",
+      "copy_approval": "approved for sending by owner, 2026-11-16",
       "serial": "PRS26001",
       "shopify_product_gid": "gid://shopify/Product/15437296697501",
       "shopify_product_id": "15437296697501",
@@ -148,9 +152,13 @@
       "primary_image_url": "https://cdn.shopify.com/s/files/1/0663/5293/9165/files/01-front_2c17d523-f639-485b-aa69-13a921e6c925.jpg?v=1794640120",
       "reverb_listing_id_field": null,
       "discord_fields_current": {
-        "description": null,
-        "record_url": null,
-        "related_urls": null
+        "description": "A 2024 PRS SE Custom 24 Burled Ash Limited Edition upgraded with Seymour Duncan Alnico II Pro pickups, partial coil splits, a tone bypass, and PRS locking tuners. It served as the reference guitar for Relay voicing development and includes a TKL hardshell case.",
+        "record_url": "https://k7rhy.app/sn/PRS26001",
+        "related_urls": [
+          "https://k7rhy.app/sn/PRS26001/wiring",
+          "https://k7rhy.app/guitars/relay",
+          "https://k7rhy.app/guitars/relay/voicings"
+        ]
       },
       "discord_ready_tag_current": false,
       "source_paths": [

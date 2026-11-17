@@ -2,8 +2,8 @@
 
 Source: owner-supplied inline photograph, received November 16, 2026 (local time).
 The visible document is **K7RHY-BVR-5E3-R1**, serial **5E326001**, test date
-**August 15, 2026**. The image is visually readable but no original image file
-was exposed to the cloud workspace. This is a transcription, not a new test or
+**August 15, 2026**. The original JPEG was subsequently supplied in Archive.zip and saved upright
+at `public/images/instruments/5E326001/build-verification-page-1.jpg`. This is a transcription, not a new test or
 an independent safety certification. Preserve the original sheet with the amp.
 
 ## Identification

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 const source = readFileSync('content/instruments/5E326001.mdx', 'utf8');
 describe('5E326001 amplifier record', () => {
     it('records the existing serial, verified completion, speaker and operating controls', () => {
-        expect(source).toContain('publish: false');
+        expect(source).toContain('publish: true');
         expect(source).toContain("kind: 'amplifier'");
         expect(source).toContain("completed: '2026-08-15'");
         expect(source).toContain('<AmplifierSpec>');
@@ -16,7 +16,7 @@ describe('5E326001 amplifier record', () => {
         expect(source).not.toMatch(/T2A|F2A|250V|6V6S|Sovtek|Tung-Sol/);
     });
     it('preserves exact-listing photo provenance and permanent-record boundaries', () => {
-        expect(source).toContain('https://cdn.shopify.com/s/files/1/0663/5293/9165/files/D590ADBF-D3A6-4054-87F5-1A9C9DFC5F98.jpg');
+        for (const name of ['front', 'controls', 'chassis-interior', 'build-verification-page-1']) expect(source).toContain(`/images/instruments/5E326001/${name}.jpg`);
         expect(source).toContain('Build Verification Record');
         expect(source).not.toMatch(/\$\d|for sale|checkout|shipping|return policy|asking price/i);
         expect(source).not.toMatch(/UL.certified|ETL.certified|B\+\s*[:=]/i);

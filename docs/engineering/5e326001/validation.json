@@ -30,9 +30,9 @@
     }
   ],
   "errors": [],
-  "photo": "Original Shopify image request deliberately blocked during layout checks; network retrieval is unavailable.",
+  "photo": "Four owner-supplied original JPEGs saved upright with metadata stripped. All local page photographs loaded during desktop/mobile light/dark checks.",
   "automated_tests": {
-    "passed": 348,
+    "passed": 349,
     "files": 64,
     "build": "passed under Node 20; Shopify requests unavailable in execution network"
   },
@@ -45,9 +45,12 @@
     }
   },
   "decoded_qr": "https://k7rhy.app/sn/5E326001",
-  "record_publish": false,
+  "record_publish": true,
   "source_review": {
     "build_verification_page_1": "owner-supplied photograph transcribed; installed devices, mains rating, grounding/isolation values added",
     "page_2": "not supplied"
-  }
+  },
+  "production_deployment": "pending",
+  "rendered_tables": 2,
+  "full_size_photo_and_document_links": 3
 }

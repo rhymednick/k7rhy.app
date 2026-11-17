@@ -57,7 +57,7 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                         )}
                     </div>
                     <div className="relative min-h-80 overflow-hidden border-t border-border/60 bg-slate-100 dark:bg-slate-900 lg:min-h-[36rem] lg:border-l lg:border-t-0">
-                        <Image src={primaryImage.src} alt={primaryImage.alt} fill priority className="object-cover" sizes="(min-width: 1024px) 42vw, 100vw" />
+                        <Image src={primaryImage.src} alt={primaryImage.alt} fill priority className={record.kind === 'amplifier' ? 'object-contain' : 'object-cover'} sizes="(min-width: 1024px) 42vw, 100vw" />
                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/45 to-transparent" />
                         <div className="absolute bottom-4 right-4 rounded-md border border-white/30 bg-slate-950/60 px-3 py-1.5 font-mono text-xs tracking-[0.14em] text-white backdrop-blur">{record.serial}</div>
                     </div>
@@ -75,8 +75,10 @@ export function InstrumentRecordPage({ record, children }: InstrumentRecordPageP
                     </h2>
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
                         {galleryImages.map((image) => (
-                            <figure key={image.src} className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-border/60 bg-slate-100 dark:bg-slate-900">
-                                <Image src={image.src} alt={image.alt} fill className="object-cover" sizes="(min-width: 768px) 33vw, 50vw" />
+                            <figure key={image.src} className={`relative ${record.kind === 'amplifier' ? 'aspect-video' : 'aspect-[3/4]'} overflow-hidden rounded-2xl border border-border/60 bg-slate-100 dark:bg-slate-900`}>
+                                <a href={image.src} aria-label={`View full photograph: ${image.alt}`}>
+                                    <Image src={image.src} alt={image.alt} fill className={record.kind === 'amplifier' ? 'object-contain' : 'object-cover'} sizes="(min-width: 768px) 33vw, 50vw" />
+                                </a>
                             </figure>
                         ))}
                     </div>

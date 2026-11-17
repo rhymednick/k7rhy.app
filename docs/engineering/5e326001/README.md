@@ -1,6 +1,6 @@
 # 5E326001 — 5E3 tweed-style tube combo
 
-Status: record created as an unpublished draft. This is an existing issued
+Status: publication approved by the owner on November 16, 2026; `publish: true` is prepared in PR #156, awaiting production deployment. This is an existing issued
 serial, not a new allocation. The owner authorized creation from available
 information on November 16, 2026.
 
@@ -67,7 +67,7 @@ for layout checks, so those checks do not validate the photo's appearance.
 Letter and A4 PDFs are each one page. All controls are present, the control card
 has no instrument photo, and its rendered QR code decodes to
 `https://k7rhy.app/sn/5E326001`. Preview artifacts are under
-`/workspace/scratch/5E326001-preview/` for this execution session. All 348 tests in 64 files and the production build pass under Node 20. Shopify requests were unavailable in this execution network during the build. The six allocator scenarios also pass. Structured results are in [validation.json](validation.json).
+`/workspace/scratch/5E326001-preview/` for this execution session. All 349 tests in 64 files and the production build pass under Node 20. Shopify requests were unavailable in this execution network during the build. The six allocator scenarios also pass. Structured results are in [validation.json](validation.json).
 
 ## Owner-supplied front photograph (2026-11-16)
 
@@ -115,3 +115,20 @@ As with the front photograph, the inline image is visually available but has no
 exposed original file ID or local path. No image asset or gallery entry has been
 created from it. The source photograph should be retained with the instrument's
 service documentation when its original file becomes available.
+
+
+## Original files saved and release authorization (2026-11-16)
+
+This section supersedes earlier missing-image and unpublished-draft notes above.
+The owner supplied Archive.zip containing four original JPEGs and instructed us
+to finish the records and send the announcements. Upright, metadata-stripped
+copies are saved under `public/images/instruments/5E326001/`: front, controls,
+chassis interior, and verification page 1. All four orientations were reviewed
+visually. [photo-manifest.json](photo-manifest.json) records source names,
+processing, and checksums. The record now uses local photographs and links the
+original verification sheet, so it no longer depends on the remote Shopify image.
+
+The owner's instruction authorizes publishing this record with the established
+facts. Verification page 2 remains absent; no missing operating measurements or
+shop-release result is asserted. Publication and Discord delivery must still be
+verified after deployment; photo preservation itself is complete.
