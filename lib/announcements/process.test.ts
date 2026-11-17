@@ -133,4 +133,13 @@ describe('announcement deliveries', () => {
         expect(announcementChannel()).toBeNull();
         vi.unstubAllEnvs();
     });
+    it('uses the configured community channel only in production and honors an emergency disable', () => {
+        vi.stubEnv('CONTEXT', 'production');
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_ENABLED', undefined);
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_CHANNEL_ID', undefined);
+        expect(announcementChannel()).toBe('1432603806704603248');
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_ENABLED', 'false');
+        expect(announcementChannel()).toBeNull();
+        vi.unstubAllEnvs();
+    });
 });
