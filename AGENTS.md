@@ -54,7 +54,7 @@ K7RHY Resonance Lab (https://k7rhy.app) — a Next.js content-driven site for ha
 
 ## Architecture
 
-**Framework:** Next.js 15 with App Router (TypeScript strict mode, React 19). Node 20 (.nvmrc).
+**Framework:** Next.js 15 with App Router (TypeScript strict mode, React 19). Node 22 (.nvmrc), minimum 22.12 for Netlify Database.
 
 **Routing:** Primarily App Router (`app/`). A legacy `pages/` directory still exists (contact page, some API routes) during migration.
 

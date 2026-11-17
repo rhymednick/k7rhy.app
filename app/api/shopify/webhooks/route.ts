@@ -1,3 +1,4 @@
+import { handleAnnouncementWebhook } from '@/lib/announcements/webhook';
 import { NextResponse } from 'next/server';
 import { handleShopifyOrder, handleShopifyProduct, handleShopifyProductDelete, type ShopifyOrder } from '@/lib/sync/reverb-sync';
 import type { ShopifyProductPayload } from '@/lib/sync/reverb-listing';
@@ -27,6 +28,14 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'invalid JSON' }, { status: 400 });
     }
 
+    let announcementFailed = false;
+    try {
+        await handleAnnouncementWebhook(topic, payload, request.headers.get('x-shopify-test'));
+    } catch (error) {
+        announcementFailed = true;
+        console.error('[discord-announcement] Delivery failed; Shopify should retry:', error instanceof Error ? error.message : 'Unknown failure');
+    }
+
     try {
         if (topic === 'orders/create') {
             const order = payload as ShopifyOrder;
@@ -46,5 +55,6 @@ export async function POST(request: Request) {
         // Answer 200 anyway: the handlers already alert on failures, and a Shopify retry won't fix them.
         console.error(`[shopify-webhook] ${topic} failed:`, error instanceof Error ? error.message : error);
     }
+    if (announcementFailed) return NextResponse.json({ error: 'announcement delivery pending' }, { status: 503 });
     return NextResponse.json({ ok: true });
 }

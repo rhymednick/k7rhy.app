@@ -35,3 +35,9 @@ Done 2026-10-01: Relay Velvet Rev 1.0 diagram and page; guitar documentation sta
     The skill loads in the **next** session. The scripts in `scripts/typesafe/` do not need the plugin, only `TYPESAFE_API_KEY`, which the cloud environment sets (with network access to `api.typesafe.ai`, verified 2026-10-08); without the key, `check-wiring-pages.mjs --dry-run` still runs the exact checks.
 
 - **Dependencies.** `node_modules` is not installed by default in cloud sessions; run `npm ci` before `npm run build` or the tests.
+
+## Discord listing integration (2026-11-16)
+
+Implemented locally on top of the refreshed Shopify webhook/Reverb sync. Uses a `discord-ready` product tag (no metafield-value webhook exists), optional description/record/related URL fields, Netlify Database delivery state and leases, initial posts, price-drop notices, and Sold/Unavailable edits. No polling. The dummy load and zero-stock items are excluded from initial posts. See [the decision record](../docs/decisions/2026-11-16-discord-listing-announcements.md) and [setup/backfill/recovery runbook](../docs/engineering/discord-announcements.md). Production enable/channel, database plan, Storefront inventory scope, fields, and extra paid-order/inventory subscriptions need setup before the one-time backfill. No public messages have been sent. The owner supplies secrets; agents do not retrieve their values.
+
+Validation: 328 tests across 61 files and production build pass under Node 22. Runtime settings move to Node 22 because `@netlify/database` requires >=22.12. Public posting remains disabled; live Storefront/Discord and historical backfill are pending setup.

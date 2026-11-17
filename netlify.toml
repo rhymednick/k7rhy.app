@@ -6,7 +6,7 @@
     ignore = '[ "$CACHED_COMMIT_REF" != "$COMMIT_REF" ] && git diff --quiet "$CACHED_COMMIT_REF" "$COMMIT_REF" -- . ":(exclude)docs/"'
 
 [build.environment]
-    NODE_VERSION = "20"
+    NODE_VERSION = "22"
 
 [[plugins]]
     package = "@netlify/plugin-nextjs"

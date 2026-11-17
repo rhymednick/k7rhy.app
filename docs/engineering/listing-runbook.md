@@ -69,6 +69,10 @@ How to list an item for sale across channels. Follow this every time; don't re-d
    - The media file input is inside a shadow DOM. Upload through a light-DOM proxy `<input type=file>`, copy its files to the shadow input with a `DataTransfer`, and dispatch `change`.
    - This reliably uploads every photo **twice**. Remove the duplicates (media checkboxes → Remove) before saving.
 
+## Discord product announcements
+
+Public listing announcements extend the existing webhook receiver. Prepare the optional description/record/related-link fields, then add the `discord-ready` product tag. Price drops and paid Shopify orders update public posts; the dummy load is excluded. See [setup, backfill, and recovery instructions](discord-announcements.md). Production activation and live validation are pending; this does not change the private Reverb alerts.
+
 ## 3. Facebook Marketplace (by hand)
 
 Edit flow:

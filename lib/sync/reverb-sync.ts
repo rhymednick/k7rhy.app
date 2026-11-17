@@ -373,6 +373,17 @@ export async function checkProductAvailability(handle: string, deps: SyncDeps = 
         return { status: 'available' };
     }
     const listing = await deps.getListing(id);
+    if (listing.state === 'sold' && deps === liveDeps) {
+        // This is the existing page-triggered check, never a periodic job.
+        // Public-post failures must not change the known sold availability result.
+        try {
+            const { announcementChannel, processItem } = await import('@/lib/announcements/process');
+            const channel = announcementChannel();
+            if (channel) await processItem(fields.productId, channel, { sold: true });
+        } catch (error) {
+            console.error('[discord-announcement] Reverb sale update pending:', error instanceof Error ? error.message : 'Unknown failure');
+        }
+    }
     // Only a Reverb sale blocks the page. An ended listing (taken down by hand, or by this sync) doesn't mean it sold.
     return listing.state === 'sold' ? { status: 'sold-elsewhere', title: fields.title, reverbListingId: id } : { status: 'available' };
 }
