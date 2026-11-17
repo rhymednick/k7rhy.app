@@ -96,3 +96,22 @@ section with explicit attribution, without presenting them as new measurements.
 Manufacturer handwriting for the output and rectifier tubes is not promoted to
 a maker claim. Page 2 operating measurements and release information are still
 unavailable. The inline photograph itself remains unavailable as a local file.
+
+## Owner-supplied chassis-interior photograph (2026-11-16)
+
+The owner supplied a view into the open chassis. It shows a hand-wired component
+board with raised terminal posts, axial resistors and capacitors, point-to-point
+connections to the panel controls and tube sockets, and a twisted red wire pair
+routed along the socket side. The cabinet covering and part of the speaker are
+also visible. This is useful construction-reference evidence for future service.
+
+Do not infer a complete netlist, operating voltages, component tolerances,
+transformer specifications, or a safety/release result from the photograph. Some
+component markings are visible, but no position-specific value inventory has
+been verified; the existing electrical-rating and measurement claims continue
+to rely on the verification sheet. The photograph's capture date is unknown.
+
+As with the front photograph, the inline image is visually available but has no
+exposed original file ID or local path. No image asset or gallery entry has been
+created from it. The source photograph should be retained with the instrument's
+service documentation when its original file becomes available.
