@@ -10,11 +10,16 @@ describe('5E326001 amplifier record', () => {
         for (const label of ['Normal 1', 'Normal 2', 'Bright 1', 'Bright 2', 'Normal Volume', 'Bright Volume', 'Tone', 'Standby', 'Power']) expect(source).toContain(`label="${label}"`);
         for (const value of ['approximately 12 watts', 'Electro-Harmonix', '75 watts', '8 ohms', '2A', 'speaker disconnected']) expect(source).toContain(value);
     });
+    it('attributes the supplied inspection sheet and preserves its device and measurement values', () => {
+        for (const value of ['K7RHY-BVR-5E3-R1', '12AX7 / ECC83S', '6V6GT pair', '5Y3GT', '120 VAC, 60 Hz', '116 VAC', '0.05 ohms', '0.003 VAC / 0 VDC', 'L open / N open']) expect(source).toContain(value);
+        expect(source).toContain('not measurements taken for this web page');
+        expect(source).not.toMatch(/T2A|F2A|250V|6V6S|Sovtek|Tung-Sol/);
+    });
     it('preserves exact-listing photo provenance and permanent-record boundaries', () => {
         expect(source).toContain('https://cdn.shopify.com/s/files/1/0663/5293/9165/files/D590ADBF-D3A6-4054-87F5-1A9C9DFC5F98.jpg');
         expect(source).toContain('Build Verification Record');
         expect(source).not.toMatch(/\$\d|for sale|checkout|shipping|return policy|asking price/i);
-        expect(source).not.toMatch(/6V6|12AX7|5Y3|UL.certified|ETL.certified|B\+\s*[:=]/i);
+        expect(source).not.toMatch(/UL.certified|ETL.certified|B\+\s*[:=]/i);
         expect(source).not.toContain('<Pickup');
     });
 });

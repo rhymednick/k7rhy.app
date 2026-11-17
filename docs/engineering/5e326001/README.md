@@ -47,10 +47,8 @@ store's HTTPS Shopify CDN path, already supported by Next's image configuration.
 
 ## Unknowns and remaining checks
 
-- No tube types/count, transformer models, internal component values, or mains
-  voltage are established by the accessible source. Omit them until verified.
-- The listing says the measurement/test documents exist, but the actual sheets
-  have not been read. Do not invent operating voltages or test results.
+- Page 1 of the owner-supplied verification sheet now establishes the installed tube types/count and 120 VAC / 60 Hz mains rating. Transformer maker/model, internal component values, fuse characteristic, and fuse voltage rating remain unestablished.
+- The supplied first page has been transcribed with grounding/isolation results. The operating-measurement/shop-release page is still absent; do not invent those values or a release result.
 - The Standby control's circuit topology, exact panel markings/orientation, and
   switching sequence are not established. The owner record refers to the supplied
   Quick Start guide instead of inventing a startup procedure.
@@ -69,7 +67,7 @@ for layout checks, so those checks do not validate the photo's appearance.
 Letter and A4 PDFs are each one page. All controls are present, the control card
 has no instrument photo, and its rendered QR code decodes to
 `https://k7rhy.app/sn/5E326001`. Preview artifacts are under
-`/workspace/scratch/5E326001-preview/` for this execution session. All 347 tests in 64 files and the production build pass under Node 20 in CI/preview mode. The six allocator scenarios also pass. Structured results are in [validation.json](validation.json).
+`/workspace/scratch/5E326001-preview/` for this execution session. All 348 tests in 64 files and the production build pass under Node 20. Shopify requests were unavailable in this execution network during the build. The six allocator scenarios also pass. Structured results are in [validation.json](validation.json).
 
 ## Owner-supplied front photograph (2026-11-16)
 
@@ -86,3 +84,15 @@ created, and the attachment has not been byte-matched to that remote source.
 An original JPEG supplied as a downloadable file/ZIP, or made available in the
 local project, would allow saving and orientation verification. Do not use a
 generative reconstruction as a substitute for the actual product photograph.
+
+## Owner-supplied verification sheet (2026-11-16)
+
+Page 1 of K7RHY-BVR-5E3-R1 is now available for visual reading. The
+[transcription](build-verification-page-1.md) records the clearly legible installed
+devices, nominal mains/fuse information, and builder-recorded grounding/isolation
+checks. The permanent record now includes those facts in a lower technical
+section with explicit attribution, without presenting them as new measurements.
+
+Manufacturer handwriting for the output and rectifier tubes is not promoted to
+a maker claim. Page 2 operating measurements and release information are still
+unavailable. The inline photograph itself remains unavailable as a local file.
