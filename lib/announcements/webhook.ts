@@ -7,7 +7,11 @@ function id(value: unknown): string | null {
 }
 export async function handleAnnouncementWebhook(topic: string | null, payload: unknown, testHeader: string | null): Promise<void> {
     const channel = announcementChannel();
-    if (!channel || testHeader?.toLowerCase() === 'true') return;
+    if (!channel) {
+        console.info('[discord-announcement] Posting disabled', JSON.stringify({ topic, context: process.env.K7RHY_DEPLOY_CONTEXT ?? process.env.CONTEXT ?? 'unknown', enabledOverride: process.env.DISCORD_ANNOUNCEMENTS_ENABLED ?? 'source default' }));
+        return;
+    }
+    if (testHeader?.toLowerCase() === 'true') return;
     if (!payload || typeof payload !== 'object' || Array.isArray(payload)) throw new Error('Invalid webhook payload');
     const data = payload as Record<string, unknown>;
     if (topic === 'products/create' || topic === 'products/update' || topic === 'products/delete') {

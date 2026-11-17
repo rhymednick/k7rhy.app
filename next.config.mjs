@@ -150,6 +150,8 @@ export const nextConfig = {
 
     // Optionally, add any other Next.js config below
     env: {
+        // Netlify CONTEXT is a build variable, not a Functions runtime variable.
+        K7RHY_DEPLOY_CONTEXT: process.env.CONTEXT ?? 'dev',
         NEXT_PUBLIC_GITHUB_REPO_URL: normalizeRepoUrl(repositoryUrl),
         NEXT_PUBLIC_GIT_COMMIT_SHA: commitHash,
         NEXT_PUBLIC_GIT_COMMIT_SHORT_SHA: shortCommitHash,
