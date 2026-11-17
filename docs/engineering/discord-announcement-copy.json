@@ -41,8 +41,9 @@
         "content/instruments/5E326001.mdx",
         "docs/engineering/5e326001/README.md"
       ],
-      "announcement_status": "posted; visually confirmed by owner",
-      "discord_message_id": "1572145012316176504"
+      "announcement_status": "posted and updated in place; confirmed Discord edit receipt",
+      "discord_message_id": "1572145012316176504",
+      "announcement_format": "descriptive inline links; previews suppressed"
     },
     {
       "product_name": "Tomatillo S-Type",
@@ -83,8 +84,9 @@
         "content/instruments/STR26001.mdx",
         "lib/instruments/wiring-reference.ts"
       ],
-      "announcement_status": "posted; visually confirmed by owner",
-      "discord_message_id": "1572145658704564274"
+      "announcement_status": "posted and updated in place; confirmed Discord edit receipt",
+      "discord_message_id": "1572145658704564274",
+      "announcement_format": "descriptive inline links; previews suppressed"
     },
     {
       "product_name": "CuNiFe S-Type",
@@ -125,8 +127,9 @@
         "content/instruments/STR26002.mdx",
         "lib/instruments/wiring-reference.ts"
       ],
-      "announcement_status": "posted; visually confirmed by owner",
-      "discord_message_id": null
+      "announcement_status": "posted and updated in place; confirmed Discord edit receipt",
+      "discord_message_id": "1572145843635486720",
+      "announcement_format": "descriptive inline links; previews suppressed"
     },
     {
       "product_name": "PRS SE Custom 24 Burled Ash Limited Edition",
@@ -171,8 +174,9 @@
         "content/instruments/PRS26001.mdx",
         "lib/instruments/wiring-reference.ts"
       ],
-      "announcement_status": "posted; visually confirmed by owner",
-      "discord_message_id": null
+      "announcement_status": "posted and updated in place; confirmed Discord edit receipt",
+      "discord_message_id": "1572145999185575966",
+      "announcement_format": "descriptive inline links; previews suppressed"
     }
   ]
 }

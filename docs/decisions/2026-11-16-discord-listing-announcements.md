@@ -203,4 +203,6 @@ a short sentence within the description. Purchase/details and price-drop targets
 also use named links. This supersedes the initial raw-URL presentation.
 The approved source description remains unchanged; formatting is deterministic,
 not generated copy. Community rendering recognizes these same named links.
-Status: implemented and tested; production deployment and in-place refresh follow.
+Status: deployed in PR #160 and verified. All four original message IDs were
+edited in place; receipts are saved in
+`docs/engineering/discord-announcement-inline-receipt.json`.

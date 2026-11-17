@@ -129,4 +129,10 @@ Recorded listing data:
 
 ## Actual posted presentation
 
-The live renderer uses full Shopify product titles, Available/Sold/Unavailable status headings, the approved description text, current price, and separate URL lines. The saved launch preview records this actual format; the earlier compact editorial mockups are not exact rendered screenshots. The owner authorized sending and confirmed all four posts in Discord.
+The renderer uses full Shopify titles and Available/Sold/Unavailable headings.
+Related pages are linked through descriptive words within the approved text;
+remaining record/related links use a short sentence in that same paragraph.
+Purchase and Product details are compact named links below it. Link previews
+are explicitly suppressed. All four existing messages were updated in place;
+see [the current preview](discord-announcement-inline-preview.json) and
+[confirmed edit receipts](discord-announcement-inline-receipt.json).

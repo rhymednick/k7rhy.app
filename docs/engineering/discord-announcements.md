@@ -242,8 +242,8 @@ The delivery client now sends Discord's `SUPPRESS_EMBEDS` flag (4) on every
 create and edit, including price-drop notices. This preserves the behavior if
 Embed Links permission is later restored, and keeps future sold/price edits from
 reintroducing previews. Existing cleaned messages are not reposted or rewritten.
-The code change is prepared in a PR; production currently relies on the owner's
-permission setting and manual cleanup until it is deployed.
+The explicit suppression is deployed via merged PR #159 and is retained on the
+subsequent inline-link updates; it no longer relies solely on channel permissions.
 
 ## Clickable words within the description (2026-11-16)
 
@@ -270,3 +270,15 @@ post. The current-data preview is saved in
 [discord-announcement-inline-preview.json](discord-announcement-inline-preview.json).
 After deployment, a temporary product tag edit will replay each of the four
 existing state mappings; remove that temporary tag after confirming the edits.
+
+
+### Inline-link update completed
+
+PR #160 is merged and deployed as `6afc02de05e8b7df8a9704a2`, commit `db3f0ea`.
+All four existing messages were edited successfully, confirmed by HTTP 200 and
+Discord message IDs matching the original saved mappings. No replacement listing
+or price-drop posts were created. See
+[the update receipt](discord-announcement-inline-receipt.json) and the saved
+rendered preview. All temporary `discord-format-refresh` tags were removed;
+`discord-ready` remains. Shopify's approved description values were not changed.
+The same renderer and preview-suppression flag apply to future automated updates.
