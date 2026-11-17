@@ -35,3 +35,9 @@ Done 2026-10-01: Relay Velvet Rev 1.0 diagram and page; guitar documentation sta
     The skill loads in the **next** session. The scripts in `scripts/typesafe/` do not need the plugin, only `TYPESAFE_API_KEY`, which the cloud environment sets (with network access to `api.typesafe.ai`, verified 2026-10-08); without the key, `check-wiring-pages.mjs --dry-run` still runs the exact checks.
 
 - **Dependencies.** `node_modules` is not installed by default in cloud sessions; run `npm ci` before `npm run build` or the tests.
+
+## Discord listing integration (2026-11-16)
+
+Current owner decision: use one small JSON file, not a database (100 announcements would already be a lot). State is `announcements.json` in the existing Netlify Blobs service, with separate production/preview stores and conditional writes. Postgres, migrations, and connection settings are removed. Webhooks drive individual opted-in music listing posts, price drops, and Sold/Unavailable edits; nothing polls. A `discord-ready` product tag and explicitly approved `custom.discord_description` are required. Missing copy blocks publication; no Shopify-description fallback or silent truncation. The dummy load and zero-stock items are excluded from initial posts. See [the decision record](../docs/decisions/2026-11-16-discord-listing-announcements.md) and [setup/backfill/recovery runbook](../docs/engineering/discord-announcements.md). No public messages have been sent. Remaining launch work is channel/Blobs access, product fields, inventory scope, subscriptions, and the reviewed one-time backfill. The owner supplies secrets; agents do not retrieve their values.
+
+JSON storage validation: 336 tests/61 files and the production build pass under Node 20 in CI/preview mode. No public posts have been sent.
