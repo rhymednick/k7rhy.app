@@ -1,0 +1,51 @@
+{
+  "status": "all four original messages updated in place",
+  "verified_at_utc": "2026-11-17T07:40:31.133Z",
+  "production_deploy": "6afc02de05e8b7df8a9704a2",
+  "production_commit": "db3f0ea5498d286a17d7a069681e6aa3753da1f6",
+  "link_previews_suppressed": true,
+  "approved_shopify_description_values_changed": false,
+  "temporary_refresh_tags_removed": true,
+  "edits": [
+    {
+      "productId": "15437296697501",
+      "messageId": "1572145999185575966",
+      "channelId": "1432603806704603248",
+      "kind": "edit",
+      "purpose": "listing",
+      "timestamp": "2026-11-17T07:37:45.364Z",
+      "requestId": "01M7M71EQAXNGHD1FD7SKC3YKX",
+      "statusCode": 200
+    },
+    {
+      "productId": "15437136035997",
+      "messageId": "1572145843635486720",
+      "channelId": "1432603806704603248",
+      "kind": "edit",
+      "purpose": "listing",
+      "timestamp": "2026-11-17T07:36:51.967Z",
+      "requestId": "01M7M6ZTVMTRTHA082DZZM4QBC",
+      "statusCode": 200
+    },
+    {
+      "productId": "15437135675549",
+      "messageId": "1572145658704564274",
+      "channelId": "1432603806704603248",
+      "kind": "edit",
+      "purpose": "listing",
+      "timestamp": "2026-11-17T07:36:28.563Z",
+      "requestId": "01M7M6Z3T0DSN1A2ZGXJ5AH67Q",
+      "statusCode": 200
+    },
+    {
+      "productId": "9035797790877",
+      "messageId": "1572145012316176504",
+      "channelId": "1432603806704603248",
+      "kind": "edit",
+      "purpose": "listing",
+      "timestamp": "2026-11-17T07:35:56.395Z",
+      "requestId": "01M7M6Y2SN6T7612Y99E5J379Y",
+      "statusCode": 200
+    }
+  ]
+}
