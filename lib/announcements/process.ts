@@ -52,6 +52,7 @@ export async function processItem(id: string, channel: string, options: { sold?:
                 state.currency = state.nextCurrency;
             }
             await session.save(state);
+            console.info('[discord-announcement]', JSON.stringify({ productId: id, messageId, channelId: channel, kind: job.kind, purpose: job.purpose }));
         }
     }
     try {
