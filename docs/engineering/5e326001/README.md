@@ -70,3 +70,19 @@ Letter and A4 PDFs are each one page. All controls are present, the control card
 has no instrument photo, and its rendered QR code decodes to
 `https://k7rhy.app/sn/5E326001`. Preview artifacts are under
 `/workspace/scratch/5E326001-preview/` for this execution session. All 347 tests in 64 files and the production build pass under Node 20 in CI/preview mode. The six allocator scenarios also pass. Structured results are in [validation.json](validation.json).
+
+## Owner-supplied front photograph (2026-11-16)
+
+The owner attached a front photograph in this chat. It visibly shows the tweed
+cabinet covering, dark grille cloth, and four grille mounting screws. The photo
+appears sideways and needs orientation checking before final use. No internal
+components, rear-panel ratings, serial label, or measurement values are visible.
+The image alt text now uses only these visible front-view details.
+
+The chat attachment is available to visual inspection but no file ID, local
+path, or download bytes were exposed to this cloud session. The record therefore
+still references the original Shopify CDN image; no local photo asset has been
+created, and the attachment has not been byte-matched to that remote source.
+An original JPEG supplied as a downloadable file/ZIP, or made available in the
+local project, would allow saving and orientation verification. Do not use a
+generative reconstruction as a substitute for the actual product photograph.
