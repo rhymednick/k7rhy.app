@@ -40,7 +40,7 @@ approved summary and optional serial-record/related URLs remain Storefront-reada
 metafields, defined before use in Shopify Admin.
 
 `lib/announcements/` contains product reads, deterministic eligibility and message
-rendering, database state/leases, Discord delivery, and webhook routing. Music
+rendering, JSON file state/leases, Discord delivery, and webhook routing. Music
 category, single variant, positive stock, public purchase page, and ready tag
 and an approved Discord description are required for an initial announcement. Ham radio products are excluded.
 Read current state on each product event so delayed updates do not replay old
@@ -65,11 +65,11 @@ The small inventory-ID map comes from REST product deliveries. An unmatched
 inventory event refreshes tracked products once to cover backfilled products
 whose first REST delivery has not happened yet.
 
-Standard Postgres stores item state and inventory mappings. Production posting
+A single private JSON file in Netlify Blobs stores item state and inventory mappings. Production posting
 is gated by an enable flag, channel ID, and production deploy context. Previews
 cannot send announcements. The owner supplies secrets.
 
-### Build correction: Netlify Database unavailable (2026-11-16)
+### Historical build correction: Netlify Database unavailable (2026-11-16; superseded storage choice)
 
 Preview deploy [6afbddd18212162085c07f34](https://app.netlify.com/projects/k7rhy/deploys/6afbddd18212162085c07f34)
 failed before `npm run build`, while Netlify tried to provision a database:
@@ -96,7 +96,7 @@ failure isolation, and Discord request behavior. Production build validation is
 complete under Node 22: `npm run build` passed with 328 tests in 61 files, Next.js compilation/type/lint checks, static generation, and sitemap generation. The local build exercised the existing Shopify-unreachable fallback; live Storefront/Discord end-to-end validation remains pending. No live posts have been sent.
 
 See [the setup and recovery runbook](../engineering/discord-announcements.md).
-Before launch, configure a supported Postgres database and apply its migration, then verify public text-channel permissions,
+Before launch, verify Netlify Blobs runtime access and public text-channel permissions,
 Storefront inventory scope, optional product-field definitions/values, and
 additional paid-order/inventory subscriptions. Dry-run the ready listings, then
 perform the requested one-time backfill. Live end-to-end delivery is not yet
@@ -114,3 +114,25 @@ is proposed for these exact comparisons.
 Follow-up validation: announcement tests verify missing/blank descriptions block publication, approved paragraph text is retained, and overlong copy fails instead of being truncated.
 
 Build-correction validation: all 333 tests in 62 files and the production build pass under Node 20 with `CI=true` and `CONTEXT=deploy-preview`. The schema dry run also succeeds without a database connection. Netlify preview confirmation is pending.
+
+## Current storage decision: one JSON file (owner, 2026-11-16)
+
+The owner rejected the database requirement: even 100 announcements would be a
+large volume for this site, so JSON or YAML is sufficient. This supersedes both
+the original Netlify Database design and the subsequent standard-Postgres design.
+
+Use a single private `announcements.json` object in the existing Netlify Blobs
+service. Its versioned contents include product states, inventory mappings, and a
+short file-wide lease. Strong reads plus ETag-conditional creation/replacement
+prevent a stale writer from overwriting newer data; conflicts return a retryable
+error. Pending Discord creates still survive crashes and require inspection when
+uncertain. Production and preview use different store names. No file is served as
+a public asset. A read-only export command produces a normal JSON backup.
+
+The Postgres client, test database, connection variable, schema migration, and
+migration command are removed. The existing Netlify Blobs SDK provides runtime
+access; site builds make no storage calls. No separate service needs provisioning.
+This is the owner's explicitly chosen file-based design for a tiny, infrequently
+updated tracker, not a claim that Blobs is a general-purpose transactional database.
+
+JSON-file validation: all 336 tests in 61 files and the production build pass under Node 20 in CI/preview context. File tests cover conditional first creation, concurrent writers, expired leases, pending recovery, invalid files, read-only export, and production/preview isolation. Live Blobs/Discord posting is still pending activation.

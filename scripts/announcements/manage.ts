@@ -1,7 +1,7 @@
 /** Run with `npx tsx scripts/announcements/manage.ts ...` in a configured Netlify environment. */
 import { announcementChannel, processItem } from '../../lib/announcements/process';
 import { backfillListings, readListing } from '../../lib/announcements/shopify';
-import { acquireItem } from '../../lib/announcements/store';
+import { acquireItem, exportState } from '../../lib/announcements/store';
 import { renderListing } from '../../lib/announcements/model';
 
 const args = process.argv.slice(2);
@@ -12,8 +12,10 @@ const value = (name: string) => {
 };
 const apply = args.includes('--apply');
 const productId = value('--product');
-if (!['backfill', 'replay', 'inspect', 'resolve', 'sold', 'restore'].includes(command)) throw new Error('Use backfill [--apply], replay/inspect --product ID, or resolve --product ID --message ID|not-sent [--apply]');
-if (command === 'backfill') {
+if (!['backfill', 'replay', 'inspect', 'resolve', 'sold', 'restore', 'export'].includes(command)) throw new Error('Use backfill [--apply], replay/inspect --product ID, or resolve --product ID --message ID|not-sent [--apply]');
+if (command === 'export') {
+    console.log(JSON.stringify(await exportState(), null, 2));
+} else if (command === 'backfill') {
     const listings = await backfillListings();
     for (const listing of listings) {
         console.log(renderListing(listing, 'Available'));
@@ -34,7 +36,7 @@ if (command === 'backfill') {
             await processItem(productId, channel, { sold: command === 'sold' });
         }
     } else {
-        // Inspection and resolution require the configured database, never a secret printed to the terminal.
+        // Inspection and resolution use the persistent JSON file, never a secret printed to the terminal.
         const session = await acquireItem(productId);
         try {
             if (command === 'restore') {

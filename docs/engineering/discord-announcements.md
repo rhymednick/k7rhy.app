@@ -74,19 +74,15 @@ Shopify signing secret, Storefront token, and Discord bot token.
 - `CONTEXT=production`: supplied by Netlify; previews never send public posts.
 - Storefront token: enable `unauthenticated_read_product_inventory` to read
   `quantityAvailable`, in addition to the existing product/metafield access.
-- `DISCORD_ANNOUNCEMENTS_DATABASE_URL`: a standard Postgres connection string,
-  supplied by the owner and scoped to production Functions only. Use the
-  provider's TLS settings. No connection is opened while building the site or
-  while announcements are disabled.
-- Database schema: the additive migration is under
-  `db/discord-announcements/migrations/`. Choose/configure a supported Postgres
-  service and review its cost before activation. Run the explicit migration
-  command against the intended database before enabling posting. Site builds
-  never provision a database or run announcement migrations.
-- This Netlify account rejects `createSiteDatabase` with HTTP 403:
-  **database feature not available for this account**. The Netlify Database SDK
-  and automatic migration directory have been removed. No account upgrade is
-  performed; the site's original Node 20 runtime is retained.
+- Storage: one private **`announcements.json`** file in Netlify Blobs, using the
+  existing `@netlify/blobs` package. The production store is named
+  `discord-announcements-production`; non-production uses
+  `discord-announcements-preview`. Production data survives site deploys.
+  No database, connection string, schema migration, or additional service is
+  required. Netlify supplies Blobs access to the server at runtime; builds do
+  not access it. Netlify Dev uses isolated local storage.
+- Browse or download the JSON file in Netlify's **Data & Storage → Blobs** UI.
+  It is not a website asset and has no public download endpoint.
 
 Keep the existing Shopify Admin Notifications subscriptions. Add the following
 JSON subscriptions to the same receiver URL:
@@ -104,10 +100,16 @@ validation. Do not point production Shopify subscriptions at a public preview.
 
 ## Delivery and recovery
 
-A database lease serializes each product. Its state records the complete next
+A short lease in the JSON file serializes its updates. The file records the complete next
 action before contacting Discord. The receiver returns 503 if announcement work
 fails, allowing Shopify delivery retries. Reverb still runs independently.
-There is no claim of exactly-once delivery across two external systems.
+The file is read with strong consistency. Every write either creates it only if
+absent or replaces exactly the revision that was read, using its ETag. A
+conflicting writer gets a retryable error; it never overwrites newer state. An
+expired worker cannot release a newer worker's lease. Invalid/unknown file
+versions are rejected rather than replaced with an empty file. This is a small,
+low-frequency file tracker, not a general transaction system. There is no claim
+of exactly-once delivery across Shopify and Discord.
 
 Discord edits can be repeated safely. A definite rejected create (such as 429)
 can be retried. A timeout, a server error, or a process crash around a create is
@@ -115,7 +117,7 @@ ambiguous: it might have posted. The pending action remains blocked until the
 operator inspects the channel. The nonce helps with short-term duplicate
 suppression but is not relied on as permanent deduplication.
 
-Failure details and pending actions persist in the database; the webhook also
+Failure details and pending actions persist in the JSON file; the webhook also
 logs a safe error. Shopify retries are finite: inspect failed deliveries and
 replay explicitly after correcting configuration. No cron silently retries them.
 If a public post was deleted, do not automatically replace it; inspect and
@@ -129,16 +131,14 @@ it never starts a recurring scan.
 
 ## Commands
 
-Run with the intended Postgres database and Storefront environment (use an
-isolated database for local validation). Do not paste secret values into
+Run in a configured Netlify runtime with Storefront access (use Netlify Dev
+for isolated local storage). Do not paste secret values into
 commands or logs. A live apply additionally requires the production context and
 enabled/channel variables above. All commands omit `--apply` by default.
 
 ```sh
-# Review the schema without opening a database connection.
-npm run announcements:migrate
-# Explicitly apply it once to the configured database, before enabling posts.
-npm run announcements:migrate -- --apply
+# Export a readable JSON copy without changing state.
+npm run --silent announcements -- export > announcements.json
 # Review currently ready, published, in-stock music listings; no Discord writes.
 npm run announcements -- backfill
 # Once reviewed, create missing posts through the normal duplicate protection.
