@@ -244,3 +244,29 @@ Embed Links permission is later restored, and keeps future sold/price edits from
 reintroducing previews. Existing cleaned messages are not reposted or rewritten.
 The code change is prepared in a PR; production currently relies on the owner's
 permission setting and manual cleanup until it is deployed.
+
+## Clickable words within the description (2026-11-16)
+
+The owner requested descriptive clickable words instead of raw URL lines, and
+explicitly authorized updating the four existing bot messages. The renderer
+preserves the approved description text and deterministically wraps recognizable
+phrases in links to the supplied related pages: series/neck-add switches and
+partial coil splits link to wiring references; Relay and voicing development
+link to the corresponding Relay pages. Remaining record/related links appear
+in a short "See the ..." sentence in that same description paragraph. Unknown
+related pages still receive a named link rather than an invented description.
+Purchase and Product details use compact named links below the paragraph.
+Price-drop notices use a named View listing link.
+
+This formatting uses only explicitly supplied URLs; it does not generate new
+marketing copy, accept arbitrary owner Markdown, guess a serial link, or mutate
+Shopify's approved description. Link previews remain suppressed on creates and
+edits. The Community feed parses the same safe named links so it shows their
+labels rather than exposing Markdown or destination URLs.
+
+Render fixtures and an existing-message transition test verify that a formatting
+refresh edits the saved message ID and produces no new listing or price-drop
+post. The current-data preview is saved in
+[discord-announcement-inline-preview.json](discord-announcement-inline-preview.json).
+After deployment, a temporary product tag edit will replay each of the four
+existing state mappings; remove that temporary tag after confirming the edits.
