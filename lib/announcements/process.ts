@@ -12,7 +12,7 @@ export interface AnnouncementDeps {
 export const announcementDeps: AnnouncementDeps = { acquire: acquireItem, read: readListing, send: deliver };
 export function announcementChannel(): string | null {
     // Preview builds must never post to the production server.
-    if (process.env.CONTEXT !== 'production') return null;
+    if ((process.env.K7RHY_DEPLOY_CONTEXT ?? process.env.CONTEXT) !== 'production') return null;
     const enabled = process.env.DISCORD_ANNOUNCEMENTS_ENABLED;
     if (enabled !== undefined ? enabled !== 'true' : !productAnnouncementsEnabled) return null;
     const channel = process.env.DISCORD_ANNOUNCEMENTS_CHANNEL_ID ?? announcementChannelId;
@@ -71,6 +71,7 @@ export async function processItem(id: string, channel: string, options: { sold?:
         await flush();
         const listing = options.unavailable || options.sold ? null : await deps.read(id);
         const result = plan(id, state, listing, options.sold ?? false, channel);
+        if (!result.actions.length) console.info('[discord-announcement] No delivery required', JSON.stringify({ productId: id, ready: listing?.ready ?? false, available: listing?.available ?? false, hasApprovedListing: !!listing, existingMessageId: state.messageId ?? null }));
         state = { ...result.state, channelId: state.channelId ?? channel, queue: result.actions, nextPrice: listing?.price ?? state.price, nextCurrency: listing?.currency ?? state.currency };
         await session.save(state);
         await flush();

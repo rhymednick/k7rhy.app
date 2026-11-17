@@ -189,3 +189,22 @@ server delivery/Discord results and the saved mapping before retrying an
 ambiguous create. Additional Admin Notifications subscriptions for paid orders
 and inventory events still require setup/verification in Shopify Admin; the
 connector's app subscriptions cannot establish their state.
+
+## First production trigger and runtime-context correction
+
+PR #156 was merged with the owner's explicit permission and deployed as
+`6afbf6f36e4c41e113fbac5f` (commit `fbe0f81`). Adding `discord-ready` to the amp
+produced a signed Shopify webhook with HTTP 200 on November 17 at 06:47:42 UTC,
+but no confirmed Discord message ID. Do not treat HTTP 200 alone as delivery.
+
+Netlify's `CONTEXT` is a build variable. The production guard now uses
+`K7RHY_DEPLOY_CONTEXT`, captured in Next's non-secret build configuration, with
+`CONTEXT` as a fallback for the local management command. A preview's compiled
+context takes precedence over runtime values, so it cannot be promoted to
+production by a runtime override. Tests cover omitted runtime CONTEXT and preview
+isolation. No-delivery diagnostics expose only readiness/availability flags and
+public product/message IDs. No secrets are logged or retrieved.
+
+The amp is tagged ready but still has no confirmed public message. After the
+correction deploys, trigger a fresh product tag edit without clearing readiness;
+then inspect confirmed message IDs before processing the remaining products.

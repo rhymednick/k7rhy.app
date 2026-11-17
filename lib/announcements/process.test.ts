@@ -133,6 +133,21 @@ describe('announcement deliveries', () => {
         expect(announcementChannel()).toBeNull();
         vi.unstubAllEnvs();
     });
+    it('uses the built deploy context when Netlify omits CONTEXT at runtime', () => {
+        vi.stubEnv('CONTEXT', undefined);
+        vi.stubEnv('K7RHY_DEPLOY_CONTEXT', 'production');
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_ENABLED', undefined);
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_CHANNEL_ID', undefined);
+        expect(announcementChannel()).toBe('1432603806704603248');
+        vi.unstubAllEnvs();
+    });
+    it('does not allow a runtime context override to turn a preview into production', () => {
+        vi.stubEnv('CONTEXT', 'production');
+        vi.stubEnv('K7RHY_DEPLOY_CONTEXT', 'deploy-preview');
+        vi.stubEnv('DISCORD_ANNOUNCEMENTS_ENABLED', 'true');
+        expect(announcementChannel()).toBeNull();
+        vi.unstubAllEnvs();
+    });
     it('uses the configured community channel only in production and honors an emergency disable', () => {
         vi.stubEnv('CONTEXT', 'production');
         vi.stubEnv('DISCORD_ANNOUNCEMENTS_ENABLED', undefined);
