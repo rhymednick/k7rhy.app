@@ -109,7 +109,7 @@ function volumeDrawing(withCap) {
     parts.push(text('Sleeve (ground)', 1052, 426, { anchor: 'start', size: 18, weight: 600 }), text('Tip (to the amp)', 1052, 476, { anchor: 'start', size: 18, weight: 600 }), text('Output jack', 980, 392, { size: 18, weight: 600 }));
     parts.push(netLabel('BUS', 340, 170), netLabel('OUT', 800, 470), netLabel('GND', 800, 420));
     const title = withCap ? 'The volume pot with a capacitor bleed' : 'The volume pot with no bleed';
-    const lines = withCap ? ["A capacitor from the pot's input to its wiper gives the highs a way around the track.", 'Turn the knob down and the highs still get through. Blue is the signal in, red is the signal out, gray is ground.'] : ["The signal comes in at one end of the pot. The wiper takes the part I've asked for and sends it to the jack.", 'The other end goes to ground. Blue is the signal in, red is the signal out, gray is ground.'];
+    const lines = withCap ? ["A capacitor from the pot's input to its wiper gives the highs a way around the track.", 'Turn the knob down and the highs still get through. Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'] : ["The signal comes in at one end of the pot. The wiper takes the part I've asked for and sends it to the jack.", 'The other end goes to ground. Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'];
     const description = withCap ? 'A pickup feeds the input lug of a rear-view volume pot. The wiper goes to the output jack tip and the far lug goes to ground. A capacitor is connected from the pot input to the wiper, bypassing the pot track.' : 'A pickup feeds the input lug of a rear-view volume pot. The wiper goes to the output jack tip and the far lug goes to ground. There is no bleed.';
     const body = parts.join('');
     return { name: withCap ? '06-capacitor-bleed' : '05-stock-volume', svg: doc(720, title, description, heading(title) + body + caption(lines, 650)), checks: [{ svg: svgDoc(WIDTH, 720, title, body), opts: { terminals, nets } }] };
@@ -296,201 +296,257 @@ const STOCK_NETS = {
     OPEN: ['TONE.CW'],
 };
 
-const BLEED_PATH = {
+// Where a wire has to cross another, it hops over it with a small bump so it cannot be read as a join. The bump is part of
+// the same polyline, so the verifier still sees one wire; a crossing without a dot is never a connection.
+function hopped(pts, hops) {
+    const out = [pts[0]];
+    for (let i = 0; i < pts.length - 1; i++) {
+        const [ax, ay] = pts[i];
+        const [bx, by] = pts[i + 1];
+        const s = Math.sign(bx - ax);
+        const here = ay === by ? hops.filter(([hx, hy]) => hy === ay && (hx - ax) * (hx - bx) < 0).sort((p, q) => s * (p[0] - q[0])) : [];
+        for (const [hx, hy] of here) out.push([hx - s * 10, hy], [hx - s * 5, hy - 7], [hx, hy - 10], [hx + s * 5, hy - 7], [hx + s * 10, hy]);
+        out.push([bx, by]);
+    }
+    return out;
+}
+
+const distToSegment = ([px, py], [x1, y1], [x2, y2]) => {
+    const len2 = (x2 - x1) ** 2 + (y2 - y1) ** 2;
+    const t = len2 === 0 ? 0 : Math.max(0, Math.min(1, ((px - x1) * (x2 - x1) + (py - y1) * (y2 - y1)) / len2));
+    return Math.hypot(px - (x1 + t * (x2 - x1)), py - (y1 + t * (y2 - y1)));
+};
+
+// Collected while drawing: glow vertices that do not sit on a drawn wire or a terminal.
+const geometryProblems = [];
+
+// Glow pieces (lists of vertices in local coordinates). Every vertex must lie on a drawn wire or a terminal; circuit() checks it.
+const GLOW_TAP = [
+    [290, 290],
+    [324, 290],
+];
+const BLEED_GLOW_PIECES = {
     DIRECT: [
-        [290, 290],
-        [610, 290],
-        [610, 190],
-        [550, 100],
-        [490, 100],
-        [490, 0],
+        GLOW_TAP,
+        [
+            [344, 290],
+            [610, 290],
+            [610, 190],
+            [550, 100],
+            [490, 100],
+            [490, 0],
+        ],
     ],
+    // Ends on the tone wiper, which is on BUS.
     REACTIVE: [
-        [290, 290],
-        [610, 290],
-        [610, 190],
-        [670, 100],
-        [730, 100],
-        [730, 230],
-        [856, 230],
-        [856, 180],
-        [900, 180],
-        [900, 280],
-        [800, 280],
-        [800, 0],
+        GLOW_TAP,
+        [
+            [344, 290],
+            [610, 290],
+            [610, 190],
+            [670, 100],
+            [730, 100],
+            [730, 230],
+            [790, 230],
+        ],
+        [
+            [810, 230],
+            [856, 230],
+            [856, 180],
+            [900, 180],
+        ],
     ],
 };
-const TONE_PATH = [
-    [800, 0],
-    [800, 280],
-    [900, 280],
-    [900, 180],
-    [944, 180],
-    [944, 340],
-    [944, 350],
+const TONE_GLOW_PIECES = [
+    [
+        [800, 0],
+        [800, 280],
+        [900, 280],
+        [900, 180],
+        [944, 180],
+        [944, 340],
+        [944, 350],
+    ],
 ];
+const CHANGE_GLOW_PIECES = {
+    new: [
+        [
+            [800, 0],
+            [800, 280],
+            [900, 280],
+            [900, 180],
+        ],
+        [
+            [944, 180],
+            [944, 340],
+        ],
+        [
+            [856, 180],
+            [856, 230],
+            [810, 230],
+        ],
+        [
+            [790, 230],
+            [730, 230],
+            [730, 100],
+            [670, 100],
+        ],
+        [
+            [610, 290],
+            [610, 190],
+        ],
+        [
+            [490, 0],
+            [490, 100],
+            [550, 100],
+        ],
+    ],
+    stock: [
+        [
+            [1010, 0],
+            [1010, 230],
+            [944, 230],
+            [944, 180],
+        ],
+        [
+            [900, 180],
+            [900, 340],
+        ],
+        [
+            [610, 290],
+            [610, 0],
+        ],
+    ],
+};
 
-function circuit({ oy, kind, mode = null, glowMode = null, changes = false }) {
+function circuit({ oy, kind, mode = null, glowMode = null, changes = false, label = kind }) {
     const P = (pts) => pts.map(([x, y]) => [x, y + oy]);
     const Y = (y) => y + oy;
     const stock = kind === 'stock';
+    const capX = stock ? 900 : 944;
     const under = [];
     const wires = [];
     const parts = [];
     const marks = [];
+    const geo = [];
+    const w = (net, pts, opts = {}) => {
+        geo.push(pts);
+        wires.push(wire(net, P(pts), { ...opts, dot: opts.dot ? P(opts.dot) : undefined }));
+    };
 
     // Signal rail (BUS) and its branches.
     if (stock) {
-        wires.push(
-            wire(
-                'BUS',
-                P([
-                    [70, 0],
-                    [1010, 0],
-                    [1010, 230],
-                    [944, 230],
-                    [944, 180],
-                ]),
-                {
-                    dot: P([
-                        [190, 0],
-                        [610, 0],
-                    ]),
-                }
-            )
-        );
-        wires.push(
-            wire(
-                'BUS',
-                P([
-                    [610, 290],
+        w(
+            'BUS',
+            [
+                [70, 0],
+                [1010, 0],
+                [1010, 230],
+                [944, 230],
+                [944, 180],
+            ],
+            {
+                dot: [
+                    [190, 0],
                     [610, 0],
-                ])
-            )
+                ],
+            }
         );
+        w('BUS', [
+            [610, 290],
+            [610, 0],
+        ]);
     } else {
-        wires.push(
-            wire(
-                'BUS',
-                P([
-                    [70, 0],
-                    [800, 0],
-                    [800, 280],
-                    [900, 280],
-                    [900, 180],
-                ]),
-                {
-                    dot: P([
-                        [190, 0],
-                        [490, 0],
-                    ]),
-                }
-            )
-        );
-        wires.push(
-            wire(
-                'BUS',
-                P([
+        w(
+            'BUS',
+            [
+                [70, 0],
+                [800, 0],
+            ],
+            {
+                dot: [
+                    [190, 0],
                     [490, 0],
-                    [490, 100],
-                    [550, 100],
-                ])
-            )
+                ],
+            }
         );
-        wires.push(
-            wire(
-                'REACT',
-                P([
+        w('BUS', [
+            [800, 0],
+            [800, 280],
+            [900, 280],
+            [900, 180],
+        ]);
+        w('BUS', [
+            [490, 0],
+            [490, 100],
+            [550, 100],
+        ]);
+        w(
+            'REACT',
+            hopped(
+                [
                     [856, 180],
                     [856, 230],
                     [730, 230],
                     [730, 100],
                     [670, 100],
-                ])
+                ],
+                [[800, 230]]
             )
         );
-        wires.push(
-            wire(
-                'TB-SW',
-                P([
-                    [610, 290],
-                    [610, 190],
-                ])
-            )
-        );
+        w('TB-SW', [
+            [610, 290],
+            [610, 190],
+        ]);
     }
-    wires.push(
-        wire(
-            'BUS',
-            P([
-                [190, 0],
-                [190, 260],
-                [246, 260],
-                [246, 180],
-            ])
-        )
-    );
+    w('BUS', [
+        [190, 0],
+        [190, 260],
+        [246, 260],
+        [246, 180],
+    ]);
 
-    // Volume output, bleed chain, tone capacitor, ground.
-    wires.push(
-        wire(
-            'OUT',
-            P([
-                [290, 180],
-                [290, 400],
-                [1100, 400],
-            ]),
-            { dot: P([[290, 290]]) }
-        )
+    // Volume output, bleed chain, tone capacitor, ground. The bleed chain hops over the volume pot's ground wire.
+    w(
+        'OUT',
+        [
+            [290, 180],
+            [290, 400],
+            [1100, 400],
+        ],
+        { dot: [[290, 290]] }
     );
-    wires.push(
-        wire(
-            'OUT',
-            P([
+    w(
+        'OUT',
+        hopped(
+            [
                 [290, 290],
                 [380, 290],
-            ])
+            ],
+            [[334, 290]]
         )
     );
-    wires.push(
-        wire(
-            'TB-MID',
-            P([
-                [480, 290],
-                [510, 290],
-            ])
-        )
+    w('TB-MID', [
+        [480, 290],
+        [510, 290],
+    ]);
+    w('TONE-CAP', [
+        [capX, 180],
+        [capX, 240],
+    ]);
+    w(
+        'GND',
+        [
+            [334, 180],
+            [334, 350],
+            [1100, 350],
+        ],
+        { dot: [[capX, 350]] }
     );
-    const capX = stock ? 900 : 944;
-    wires.push(
-        wire(
-            'TONE-CAP',
-            P([
-                [capX, 180],
-                [capX, 240],
-            ])
-        )
-    );
-    wires.push(
-        wire(
-            'GND',
-            P([
-                [334, 180],
-                [334, 350],
-                [1100, 350],
-            ]),
-            { dot: P([[capX, 350]]) }
-        )
-    );
-    wires.push(
-        wire(
-            'GND',
-            P([
-                [capX, 340],
-                [capX, 350],
-            ])
-        )
-    );
+    w('GND', [
+        [capX, 340],
+        [capX, 350],
+    ]);
 
     parts.push(resistor('RB', 430, Y(290), { ends: ['RB.1', 'RB.2'], label: '150 kΩ' }));
     parts.push(capacitor('CB', 560, Y(290), { ends: ['CB.1', 'CB.2'], label: '1 nF' }));
@@ -507,82 +563,41 @@ function circuit({ oy, kind, mode = null, glowMode = null, changes = false }) {
     marks.push(netLabel('BUS', 330, Y(0)), netLabel('OUT', 1000, Y(400)), netLabel('GND', 1000, Y(350)));
     if (!stock) marks.push(netLabel('REACT', 730, Y(160)));
 
-    // Highlights.
-    if (glowMode === 'bleed') under.push(glow(P(BLEED_PATH[mode])));
-    if (glowMode === 'tone') under.push(glow(P(TONE_PATH), TONE_GLOW));
-    if (changes && !stock) {
-        under.push(
-            glow(
-                P([
-                    [800, 0],
-                    [800, 280],
-                    [900, 280],
-                    [900, 180],
-                ]),
-                CHANGE,
-                0.35
-            ),
-            glow(
-                P([
-                    [944, 180],
-                    [944, 340],
-                ]),
-                CHANGE,
-                0.35
-            ),
-            glow(
-                P([
-                    [856, 180],
-                    [856, 230],
-                    [730, 230],
-                    [730, 100],
-                    [670, 100],
-                ]),
-                CHANGE,
-                0.35
-            ),
-            glow(
-                P([
-                    [610, 290],
-                    [610, 190],
-                ]),
-                CHANGE,
-                0.35
-            )
-        );
-        marks.push(badge(1, 800, Y(140)), badge(2, 990, Y(210)), badge(3, 730, Y(118)), badge(4, 610, Y(240)));
+    // Highlights. Each piece is checked against the drawn wires and terminals.
+    const terminalPoints = [
+        [246, 180],
+        [290, 180],
+        [334, 180],
+        [856, 180],
+        [900, 180],
+        [944, 180],
+        [550, 100],
+        [610, 100],
+        [670, 100],
+        [610, 190],
+        [380, 290],
+        [480, 290],
+        [510, 290],
+        [610, 290],
+        [capX, 240],
+        [capX, 340],
+    ];
+    const pieces = [];
+    if (glowMode === 'bleed') pieces.push([BLEED_GLOW_PIECES[mode], BLEED_GLOW, 0.5]);
+    if (glowMode === 'tone') pieces.push([TONE_GLOW_PIECES, TONE_GLOW, 0.5]);
+    if (changes) pieces.push([CHANGE_GLOW_PIECES[stock ? 'stock' : 'new'], CHANGE, 0.35]);
+    for (const [list, color, opacity] of pieces) {
+        for (const piece of list) {
+            for (const v of piece) {
+                const onWire = geo.some((pts) => pts.some((p, i) => i > 0 && distToSegment(v, pts[i - 1], p) <= 0.6));
+                const atTerminal = terminalPoints.some(([x, y]) => Math.hypot(x - v[0], y - v[1]) <= 0.6);
+                if (!onWire && !atTerminal) geometryProblems.push(`${label}: glow vertex ${v} is not on a drawn wire or terminal`);
+            }
+            under.push(glow(P(piece), color, opacity));
+        }
     }
-    if (changes && stock) {
-        under.push(
-            glow(
-                P([
-                    [1010, 0],
-                    [1010, 230],
-                    [944, 230],
-                    [944, 180],
-                ]),
-                CHANGE,
-                0.35
-            ),
-            glow(
-                P([
-                    [900, 180],
-                    [900, 340],
-                ]),
-                CHANGE,
-                0.35
-            ),
-            glow(
-                P([
-                    [610, 290],
-                    [610, 0],
-                ]),
-                CHANGE,
-                0.35
-            )
-        );
-        marks.push(badge(1, 1010, Y(115)), badge(2, 850, Y(300)), badge(3, 800, Y(215)), badge(4, 610, Y(120)));
-    }
+    if (changes && !stock) marks.push(badge(1, 800, Y(140)), badge(2, 990, Y(210)), badge(3, 730, Y(118)), badge(4, 610, Y(240)), badge(5, 490, Y(55)));
+    if (changes && stock) marks.push(badge(1, 1010, Y(115)), badge(2, 850, Y(300)), badge(3, 800, Y(215)), badge(4, 610, Y(120)));
     const body = under.join('') + wires.join('') + parts.join('') + marks.join('');
     return { body, terminals: stock ? STOCK_TERMINALS : ALL_TERMINALS };
 }
@@ -591,7 +606,7 @@ function verifyCircuit(c, title, height, opts) {
     return { svg: svgDoc(WIDTH, height, title, c.body), opts: { terminals: c.terminals, ...opts } };
 }
 
-const TONE_NOTE = ['Tone pot from the back: the CW end is the Reactive feed (the wiper reaches it at full tone), the wiper rides on BUS,', 'and the CCW end goes through the 22 nF capacitor to ground (the wiper reaches it at tone 0).'];
+const TONE_NOTE = ['Tone pot from the back: the CW end is the Reactive feed (the wiper reaches it at full tone),', 'the wiper rides on the signal rail (BUS), and the CCW end goes through the 22 nF capacitor', 'to ground (the wiper reaches it at tone 0).'];
 
 // ---- Diagram 9 ----
 function reactiveDrawing() {
@@ -637,12 +652,12 @@ function beforeDrawing() {
 function afterDrawing() {
     const title = 'After: the same circuit with the switch';
     const c = circuit({ oy: 110, kind: 'new', mode: 'REACTIVE', changes: true });
-    const lines = ['Four wires change, marked in orange:', '1. the signal feed moves to the tone wiper.   2. the 22 nF capacitor moves to the old hot end (CCW).', "3. a new wire runs from the unused CW end to the switch's Reactive lug.   4. the bleed's input end moves to the switch common."];
-    const description = 'The Lipstick volume and tone circuit after the retrofit, drawn at the same scale and positions as the before drawing. The tone wiper is on BUS, the 22 nF capacitor is on the tone CCW end, the tone CW end runs to the switch Reactive lug, and the bleed capacitor connects to the switch common. The four changed wires are highlighted and numbered.';
+    const lines = ['Orange marks every wire that moves or is new:', '1. The signal feed moves to the tone wiper.', '2. The 22 nF capacitor moves to the old hot end (CCW).', "3. A new wire runs from the unused CW end to the switch's Reactive lug.", "4. The bleed's input end moves to the switch common.", "5. A new wire runs from the signal rail to the switch's Direct lug."];
+    const description = 'The Lipstick volume and tone circuit after the retrofit, drawn at the same scale and positions as the before drawing. The tone wiper is on BUS, the 22 nF capacitor is on the tone CCW end, the tone CW end runs to the switch Reactive lug, and the bleed capacitor connects to the switch common. The five changed or new wires are highlighted and numbered.';
     const doRevisit = circuit({ oy: 110, kind: 'new', mode: 'DIRECT', changes: true });
     return {
         name: '12-after',
-        svg: doc(700, title, description, heading(title) + c.body + caption(lines, 590)),
+        svg: doc(800, title, description, heading(title) + c.body + caption(lines, 590)),
         checks: [verifyCircuit(c, title, 700, { expectedMode: 'REACTIVE' }), verifyCircuit(doRevisit, title, 700, { expectedMode: 'DIRECT' })],
     };
 }
@@ -650,6 +665,7 @@ function afterDrawing() {
 export async function generateAll() {
     const written = [];
     const problems = [];
+    geometryProblems.length = 0;
     const drawings = [volumeDrawing(false), volumeDrawing(true), variantsDrawing(), reactiveDrawing(), threeModesDrawing(), beforeDrawing(), afterDrawing()];
     mkdirSync(outDir, { recursive: true });
     for (const d of drawings) {
@@ -664,6 +680,7 @@ export async function generateAll() {
         await sharp(Buffer.from(d.svg), { density: 144 }).png().toFile(pngPath);
         written.push(svgPath, pngPath);
     }
+    problems.push(...geometryProblems);
     return { written, problems };
 }
 
