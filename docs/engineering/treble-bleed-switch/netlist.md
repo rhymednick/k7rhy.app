@@ -22,6 +22,8 @@ The circuit is general: any guitar with a master volume and a master tone can us
 | 250k       | 68 kΩ  | 1 nF | 22 nF |
 | 1M         | 330 kΩ | 1 nF | 22 nF |
 
+These are the validated starting values. Tuning alternatives (owner-approved in the [design spec](../../superpowers/specs/2026-11-23-relay-customize-treble-bleed-design.md), section 3a): `CB` 470 pF to 680 pF for a subtler bleed, 1.5 nF to 2.2 nF for a brighter one, and `RB` one standard value up or down. The circuit and its nets are the same for every value.
+
 ## Lug naming
 
 Pot ends are named by behavior, not by printed lug number, because manufacturers number lugs differently. Identify the lugs by continuity.

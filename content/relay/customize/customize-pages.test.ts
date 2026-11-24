@@ -10,7 +10,7 @@ const pageSlugs = fs
     .filter((file) => file.endsWith('.mdx'))
     .map((file) => file.replace(/\.mdx$/, ''))
     .sort();
-const requiredSlugs = ['index', 'how-treble-bleeds-work'];
+const requiredSlugs = ['index', 'how-treble-bleeds-work', 'direct-off-reactive-switch'];
 const hedgingPattern = /unvalidated|\bpending\b|experimental|not yet tested|to be determined|\bTBD\b/i;
 const pluralFirstPersonPattern = /\bwe\b|\bour\b|\bus\b/i;
 
@@ -79,5 +79,49 @@ describe('Relay Customize content pages', () => {
 
     it('the explainer links to the switch retrofit guide', () => {
         expect(readPage('how-treble-bleeds-work')).toContain('](/guitars/relay/customize/direct-off-reactive-switch)');
+    });
+
+    describe('the switch retrofit guide', () => {
+        const slug = 'direct-off-reactive-switch';
+        const source = fs.existsSync(path.join(customizeDir, `${slug}.mdx`)) ? readPage(slug) : '';
+
+        it('loads with a title and description', () => {
+            const { frontmatter } = loadRelayPlatformSectionPage(['customize', slug]);
+            expect(frontmatter.title).toBe('Direct / Off / Reactive switch');
+            expect(frontmatter.description.length).toBeGreaterThan(0);
+        });
+
+        it.each(['Direct', 'Off', 'Reactive'])('names the %s mode', (mode) => {
+            expect(source).toMatch(new RegExp(`\\b${mode}\\b`));
+        });
+
+        it('links the suggested switch and gives the 6 mm hole size', () => {
+            expect(source).toContain('https://www.amazon.com/dp/B0799JK458');
+            expect(source).toContain('6 mm');
+        });
+
+        it.each([
+            ['500k', '150 kΩ'],
+            ['250k', '68 kΩ'],
+            ['1M', '330 kΩ'],
+        ])('pairs a %s volume pot with %s and 1 nF in the value table', (pot, resistor) => {
+            const row = source.split('\n').find((line) => line.trim().startsWith('|') && line.includes(` ${pot} `) && line.includes(resistor));
+            expect(row, `a table row with ${pot} and ${resistor}`).toBeDefined();
+            expect(row).toContain('1 nF');
+        });
+
+        it.each(['11-before', '12-after', '13-pot-lugs', '14-switch-contacts'])('shows diagram %s', (name) => {
+            expect(source).toContain(`src="/circuits/treble-bleed/${name}.png"`);
+        });
+
+        it('shows the builder sheet and links both print pages', () => {
+            expect(source).toContain('src="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png"');
+            expect(source).toContain('/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-a.png');
+            expect(source).toContain('/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-b.png');
+        });
+
+        it('never uses "we", "our" or "us" outside code', () => {
+            expect(stripCode(source)).not.toMatch(pluralFirstPersonPattern);
+        });
     });
 });

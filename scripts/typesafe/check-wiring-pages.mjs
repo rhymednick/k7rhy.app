@@ -111,6 +111,12 @@ const PAIRS = [
             { name: 'Blade contacts', kind: 'contacts', page: /Throw 1/, source: /Throw 1/ },
         ],
     },
+    {
+        name: 'Treble bleed switch',
+        page: { kind: 'mdx', file: 'content/relay/customize/direct-off-reactive-switch.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [{ name: 'Switch contacts', kind: 'contacts', page: /Contact \| Net/, source: /Contact \| Net/ }],
+    },
 ];
 
 const RELATION = {

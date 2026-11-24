@@ -1,0 +1,343 @@
+---
+title: 'Direct / Off / Reactive switch'
+description: 'Add a three-position treble bleed switch to a guitar with one master volume and one master tone: fit check, parts, the switch hole, lug-by-lug wiring and bench checks.'
+---
+
+This is an alternative tone wiring. It adds one small three-position switch that changes what the treble bleed on your volume pot does: **Direct** gives an ordinary treble bleed, **Off** gives no bleed at all, and **Reactive** gives a bleed that follows the tone knob. It suits any guitar wired with one master volume and one master tone, and it needs one new hole for the switch.
+
+I have built this circuit and validated it on Relay Lipstick. If the ideas behind it are new to you (what a bleed is, why turning down makes a guitar dull, and how a bleed can follow the tone knob), [How treble bleeds work](/guitars/relay/customize/how-treble-bleeds-work) explains them with pictures. This page is the hands-on part. If you have done this kind of work before, [the reference sheet](#the-reference-sheet) has the whole circuit on one page.
+
+## What you get
+
+| Mode     | What you hear as you turn the volume down                                                            |
+| -------- | ---------------------------------------------------------------------------------------------------- |
+| Direct   | An ordinary treble bleed. The highs stay as you turn down, wherever the tone knob is.                |
+| Off      | No bleed. The guitar gets darker as you turn down, and the tone knob works as usual.                 |
+| Reactive | A bleed that follows the tone knob. At full tone it matches Direct; roll the tone back and it eases. |
+
+Two settings make the switch easy to check by ear. With the volume all the way up, all three modes sound the same, because the bleed has nothing to skip past. With the tone all the way up, Direct and Reactive sound the same, because the tone pot then passes the signal straight to the bleed. The bench checks near the end of this page use both.
+
+## Is your guitar a fit?
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 11 · Before: a guitar that fits</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/11-before.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/11-before.png" download="treble-bleed-11-before.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/11-before.png" target="_blank" rel="noopener noreferrer" aria-label="Open the before diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/11-before.png" alt="Lipstick's stock volume and tone wiring seen from the back: BUS on the volume CW lug and the tone CCW lug, the tone wiper through 22 nF to ground, and a 150 kΩ and 1 nF bleed from BUS to OUT." width="2400" height="1400" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+Diagram 11 is the circuit your guitar needs to have before you start. It is Relay Lipstick's stock wiring, and the orange marks show the four places the retrofit changes. The colored tags name the wires:
+
+- **BUS** (blue) is the main signal wire from the pickup selector. It lands on the volume pot's input end.
+- **OUT** (red) runs from the volume pot's wiper to the tip of the output jack, the connection that carries the signal to the amp.
+- **GND** (gray) is ground, the shared return wire. It joins the volume pot's ground end, the tone capacitor and the jack's sleeve.
+
+Your guitar is a fit when all of these are true:
+
+- **One master volume and one master tone.** The pickup selector feeds both, and nothing else sits between them and the jack.
+- **The tone pot hangs off the volume pot's input side.** One tone pot lug is on BUS, another goes through one capacitor to ground, and the third is unused. Lipstick has BUS on an end lug and the capacitor on the wiper, as in Diagram 11, but it doesn't matter which lug has which now: the retrofit rewires the tone pot anyway.
+- **The volume pot is 250k, 500k or 1M.** All three work. The value table below gives the bleed parts for each.
+- **The volume pot has no bleed, or a series bleed.** A series bleed is a resistor and a capacitor joined end to end in a chain from the volume pot's input lug to its wiper, like Lipstick's. If yours has one, you reuse its two parts. If it has none, this page adds one.
+
+It is **not a fit** when any of these is true:
+
+- The tone pot is fed from the volume pot's wiper instead of its input, or the tone circuit carries extra parts beyond its one capacitor.
+- The bleed is some other kind: a capacitor alone, or a resistor and capacitor side by side (in parallel, sharing both ends).
+- The guitar has two independent volume knobs whose signals meet at one output. This includes Relay Reef and Reef Plus. With two volumes sharing an output, a bleed on one volume can pull highs from the other.
+
+To confirm the fit, unplug the guitar and set your meter to continuity (the setting that beeps when two points are connected). Seen from the back, with the shaft pointing away and the lugs at the bottom:
+
+1. Touch one probe to the volume pot's left lug, its input end. Touch the other probe to each tone pot lug in turn. Exactly one tone lug should beep. That tone lug is on BUS.
+2. Set the volume knob to about 5, so its wiper sits away from both ends. Move the first probe to the volume pot's middle lug, its wiper, and touch each tone pot lug again. None should beep. If one does, the tone pot is fed from the wiper, and the guitar is not a fit.
+3. Look at the other two tone pot lugs. One should carry a single capacitor whose other lead goes to ground (to the back of a pot or to the ground wire). The other should have nothing on it.
+4. Look at the volume pot. Between its left lug and its middle lug there should be nothing, or one resistor and one capacitor joined end to end, with nothing else at the joint where they meet.
+
+## Parts and tools
+
+- **A three-position on–off–on mini toggle (SPDT).** It has three lugs: a **common** lug and two **throw** lugs, the lugs the common can be joined to. In the middle lever position the common touches nothing. The one I use is [this mini toggle](https://www.amazon.com/dp/B0799JK458). Any SPDT on–off–on mini toggle works, as long as you drill the hole to match its bushing (the threaded sleeve the lever comes out of).
+- **A bleed resistor and a bleed capacitor**, from the value table below. If your volume pot already has a series bleed, reuse those two parts.
+- **The 22 nF tone capacitor** already in the guitar.
+- **Hookup wire** for the two new wires and the run to the switch common.
+- **Soldering tools:** iron, solder, a desoldering pump or wick, wire strippers and a little heat-shrink tubing.
+- **A multimeter** with continuity and resistance (ohms) settings.
+- **Drilling tools for the switch hole:** masking tape, a pencil, a sharp point to mark the center, a small pilot bit, a final bit or step bit sized to your switch, and something to measure the bushing (calipers are best).
+- **A wrench or nut driver** that fits the switch's mounting nut.
+
+### Choose your bleed values
+
+The bleed parts are chosen by the value of the volume pot. The 22 nF tone capacitor stays the same for all three.
+
+| Volume pot | Bleed resistor | Bleed capacitor | Tone capacitor |
+| ---------- | -------------- | --------------- | -------------- |
+| 500k       | 150 kΩ         | 1 nF            | 22 nF          |
+| 250k       | 68 kΩ          | 1 nF            | 22 nF          |
+| 1M         | 330 kΩ         | 1 nF            | 22 nF          |
+
+The 500k pair is the one on Relay Lipstick. The 250k and 1M pairs are scaled from it to suit the smaller and larger pots, and rounded to standard values. These are the validated starting values. Every bleed is tuned by ear from where it starts, because pickups and cables differ, so treat these as the place to begin:
+
+- For a **subtler** bleed, use a smaller capacitor, 470–680 pF. Fewer highs get past the volume pot.
+- For a **brighter** bleed, use a larger capacitor, 1.5–2.2 nF. More highs get past.
+- To fine-tune, move the **resistor** one standard value up or down. A larger resistor trims the bleed back a little; a smaller one lets a little more through.
+
+The same two parts serve both Direct and Reactive, so whatever you choose for Direct also sets Reactive. [Tuning by ear](#tuning-by-ear) explains how to try the alternatives.
+
+## Make room for the switch
+
+No stock body has a hole for this switch, so the retrofit starts with drilling one. Fit the switch before you do any wiring: it is much easier to wire a switch that is already in its final place.
+
+**Choose the spot.** Put the switch near the tone pot, wherever there is room. Check all of these before you mark it:
+
+- Your fingers can reach the lever easily, without bumping the knobs.
+- The spot is clear of the pickguard's edge and of the other controls, with enough space around the switch for its nut and washer.
+- The switch's body lands inside the control cavity, clear of the cavity walls, with room behind it for the body, its lugs and the wires that will go on them. Measure the switch from the bottom of its bushing to the tips of its lugs, then check the cavity depth at that spot.
+
+**Measure your bushing.** The hole has to match the switch you bought. A common mini toggle needs a 6 mm hole, and the one I link needs 6 mm. Measure the outside of your own switch's threaded bushing anyway, and size the hole to that measurement rather than to this page.
+
+**Mark and drill.**
+
+1. Take the strings off or slacken them, and protect the guitar's top with a soft cloth around the work area.
+2. Put masking tape over the spot. The tape protects the finish and keeps the bit from wandering. Mark the center on the tape with a pencil, then press a small dent there with the sharp point.
+3. Drill a small pilot hole straight down. Go slowly and let the bit do the work.
+4. Open the hole to its final size with the right bit for the material: a sharp brad-point bit for wood, a step bit or sharp twist bit for a plastic pickguard or a metal control plate. Ease off just before the bit breaks through, so the far side doesn't chip.
+5. Peel the tape off slowly, and smooth any rough edge with a fine file or a little sandpaper wrapped around a pencil.
+
+**Mount the switch.** Push the switch up through the hole from inside the cavity, put on the washer and nut, and tighten the nut snugly without forcing it. Then turn the switch so its lugs face where the wires will come from.
+
+## Understand what changes
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 12 · After: the same circuit with the switch</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/12-after.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/12-after.png" download="treble-bleed-12-after.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/12-after.png" target="_blank" rel="noopener noreferrer" aria-label="Open the after diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/12-after.png" alt="The same volume and tone circuit after the retrofit, with five numbered orange marks: BUS on the tone wiper, 22 nF on the tone CCW lug, REACT from the tone CW lug to the switch, the bleed to the switch common, and BUS to Direct." width="2400" height="1600" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+This retrofit rewires the tone control as well as adding the switch. That's the honest summary, and it's worth knowing before you pick up the iron. Orange marks the five wires that move or are new:
+
+1. The BUS wire moves to the tone pot's wiper.
+2. The 22 nF tone capacitor moves to the tone pot's CCW end, the end the wiper reaches at tone 0.
+3. A new wire runs from the tone pot's CW end, the end the wiper reaches at tone 10, to the switch's Reactive lug.
+4. The bleed's input end moves from BUS to the switch's common lug. Its other end stays on the volume wiper.
+5. A new wire runs from BUS to the switch's Direct lug.
+
+Everything else stays as it is, including the volume pot's three lugs, the jack and the ground wiring.
+
+Why rewire the tone pot? The Reactive mode needs the tone pot's spare end, and that end only follows the tone knob when the signal comes in at the wiper. With the signal on the wiper and the capacitor on the CCW end, the tone knob still works exactly as it did: the stretch of track between the wiper and the capacitor grows and shrinks the same way it did before. The difference is that the far end of the track, which used to do nothing, now carries a signal that weakens as you roll the tone back. That end feeds the bleed in Reactive.
+
+## Identify your lugs
+
+Pot makers number lugs differently, and switch makers put the common lug in different places, so this page names every lug by what it does and finds it with a meter. Do this with the parts out of the circuit, or with their wires lifted, so nothing else changes the readings.
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 13 · Finding a pot's wiper and ends</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/13-pot-lugs.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/13-pot-lugs.png" download="treble-bleed-13-pot-lugs.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/13-pot-lugs.png" target="_blank" rel="noopener noreferrer" aria-label="Open the pot lugs diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/13-pot-lugs.png" alt="A tone pot seen from the back with its CW, wiper and CCW lugs labeled, beside three numbered meter steps: find the wiper, find the CW end at full tone, and check the other end." width="2400" height="1580" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+**The tone pot.** Set the meter to resistance (ohms).
+
+1. **Find the wiper.** With the knob near the middle, read each pair of lugs. The pair with the highest reading is the two ends; the lug left over is the wiper.
+2. **Find the CW end.** Turn the knob fully clockwise, to tone 10 as seen from the front. Read from the wiper to each end. The end that reads close to zero is the **CW end**. It will feed the Reactive mode.
+3. **Check the other end.** The wiper to the other end now reads the pot's full value. That is the **CCW end**, the one that will go to the 22 nF capacitor. Turn the knob fully back and the two readings swap.
+
+On most pots, seen from the back with the shaft pointing away and the lugs at the bottom, the left lug is the CW end, the middle lug is the wiper and the right lug is the CCW end. The meter has the final word.
+
+**The volume pot.** The same test works. Its CW end is the input, on BUS; its CCW end goes to ground; its wiper is on OUT. You won't change any of the volume pot's wiring, but you need to know which lug is the wiper, because the bleed stays there.
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 14 · The switch's three positions</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/14-switch-contacts.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/14-switch-contacts.png" download="treble-bleed-14-switch-contacts.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/14-switch-contacts.png" target="_blank" rel="noopener noreferrer" aria-label="Open the switch contacts diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/14-switch-contacts.png" alt="Three panels of the switch's contact map: in Direct the common joins the Direct lug, in Off the lever rests on no lug, and in Reactive the common joins the Reactive lug." width="2400" height="1360" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+**The switch.** Diagram 14 shows the idea, not the layout of your switch's lugs. Set the meter to continuity and flip the lever to each position in turn, noting which pair of lugs beeps:
+
+- The **common** is the lug that beeps with one throw lug in one end position, and with the other throw lug in the other end position. On many mini toggles it is the middle lug of the row.
+- In the middle position, nothing beeps.
+- Decide which lever position you want for Direct. Flip the lever there; the throw lug that beeps with the common is your **Direct lug**. The other throw lug is your **Reactive lug**.
+
+Go by the meter, not by which way the lever points. On many toggles the lever joins the common to the lug on the opposite side from where the lever points. A small piece of tape marked D and R on the two throw lugs saves confusion later.
+
+## Step-by-step wiring
+
+Before you start, take a clear photo of the wiring as it is now. If anything goes wrong, the photo shows you how it was. Unplug the guitar, and keep each new wire just long enough to reach without strain.
+
+The steps use the wire names from the diagrams. You've met three of them. The other four are new, and each one names a single connection:
+
+- `BUS`: the main signal wire from the pickup selector.
+- `OUT`: the volume pot's wiper to the jack tip.
+- `GND`: ground.
+- `TB-MID`: the joint between the bleed resistor and the bleed capacitor (TB is short for treble bleed).
+- `TB-SW`: the bleed capacitor's free end to the switch's common lug.
+- `TONE-CAP`: the tone pot's CCW end to the 22 nF capacitor.
+- `REACT`: the tone pot's CW end to the switch's Reactive lug.
+
+Each step names the wire it makes, and the number in brackets is its orange mark in Diagram 12.
+
+1. **Free the tone pot.** Desolder the BUS wire and the 22 nF capacitor's lead from the tone pot. Leave the capacitor's other lead on ground.
+2. **`BUS` to the tone wiper (mark 1).** Solder the BUS wire to the tone pot's middle lug, the wiper.
+3. **`TONE-CAP` (mark 2).** Solder the 22 nF capacitor's free lead to the tone pot's CCW end, the end the wiper reaches at tone 0. Its other lead stays on `GND`.
+4. **`REACT` (mark 3).** Run a new wire from the tone pot's CW end, the end the wiper reaches at tone 10, to the switch's Reactive lug.
+5. **The bleed (mark 4).** One end of the bleed stays on the volume wiper, `OUT`, and the other end goes to the switch:
+    - **If your volume pot already has a series bleed,** desolder the end that is on the volume pot's input lug and leave the end on the wiper in place. On Lipstick, that means the 1 nF capacitor comes off the input lug and the 150 kΩ resistor stays on the wiper. In a series pair the order of the two parts makes no difference to the sound, so whichever part is on your wiper can stay there.
+    - **If it has no bleed,** solder one lead of the bleed resistor to the volume wiper, `OUT`. Twist the resistor's other lead together with one lead of the bleed capacitor, solder the joint, and cover it with heat-shrink tubing. That joint is `TB-MID`.
+6. **`TB-SW` (mark 4).** Solder the bleed capacitor's free lead to the switch's common lug, adding a short wire if it doesn't reach. Sleeve the bare lead so it can't touch a pot or the cavity shielding.
+7. **`BUS` to Direct (mark 5).** Run a new wire from the volume pot's input lug, which is on BUS, to the switch's Direct lug.
+8. **Check what didn't move.** The volume pot's input lug is still on BUS, its wiper on OUT and the jack tip, and its CCW end on ground. The switch's middle position connects to nothing, so nothing else goes on the switch.
+
+## The reference sheet
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Direct / Off / Reactive treble bleed wiring reference · Rev 1.0 · November 23, 2026</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png" download="relay-treble-bleed-switch-rev-1.0.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+            <a href="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-a.png" download="relay-treble-bleed-switch-rev-1.0-page-a.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Print page A
+            </a>
+            <a href="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-b.png" download="relay-treble-bleed-switch-rev-1.0-page-b.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Print page B
+            </a>
+        </span>
+    </figcaption>
+    <a href="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png" target="_blank" rel="noopener noreferrer" aria-label="Open the Direct / Off / Reactive wiring reference at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png" alt="Direct / Off / Reactive treble bleed wiring reference sheet: wire labels, the stock and finished circuits with rear-view pots, tone pot lugs, the switch contact map, the three operating states, values by volume pot, and bench checks." width="2400" height="7096" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+The sheet puts the whole retrofit on one tall page, drawn with the 500k values from Lipstick. To print it, use page A (panels 1 to 3) and page B (panels 4 to 8). The sheet uses a **functional contact map** for the switch: it shows what each lever position joins, not where the lugs sit on a particular switch, so find your own switch's lugs with a meter as described above. The text below repeats what the sheet shows, so you can search it.
+
+### Switch contacts
+
+| Mode     | Contact                                                 | Net     |
+| -------- | ------------------------------------------------------- | ------- |
+| Direct   | Common to the Direct lug (`SW.C` to `SW.DIRECT`)        | `BUS`   |
+| Off      | Common to nothing, the middle rest (`SW.C` to `SW.OFF`) | open    |
+| Reactive | Common to the Reactive lug (`SW.C` to `SW.REACTIVE`)    | `REACT` |
+
+`SW.C` is the switch's common lug. `SW.OFF` is the middle lever position: it is not a lug, and it connects to nothing.
+
+### Connection map
+
+Seen from the back, with the shafts pointing away and the lugs at the bottom, the volume pot's left, middle and right lugs are on `BUS`, `OUT` and `GND`. The tone pot's left, middle and right lugs are on `REACT`, `BUS` and `TONE-CAP`.
+
+| Wire       | Connects                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| `BUS`      | Pickup selector common, volume pot input end (CW), tone pot wiper, switch Direct lug       |
+| `OUT`      | Volume pot wiper, output jack tip, one end of the bleed resistor                           |
+| `TB-MID`   | The other end of the bleed resistor, one end of the bleed capacitor                        |
+| `TB-SW`    | The other end of the bleed capacitor, switch common                                        |
+| `TONE-CAP` | Tone pot CCW end, one end of the 22 nF tone capacitor                                      |
+| `REACT`    | Tone pot CW end, switch Reactive lug                                                       |
+| `GND`      | Volume pot ground end (CCW), the other end of the 22 nF tone capacitor, output jack sleeve |
+
+The rest of the guitar's ground wiring stays as it is. The switch's middle position connects to nothing.
+
+### What each mode does
+
+| Mode     | Where the bleed goes                                                                                             |
+| -------- | ---------------------------------------------------------------------------------------------------------------- |
+| Direct   | From the volume wiper (`OUT`) through the resistor and capacitor to the switch common, then to `BUS`.            |
+| Off      | The switch common lands on the middle position, which connects to nothing. The bleed is disconnected.            |
+| Reactive | From `OUT` through the resistor and capacitor to the switch common, then along `REACT` to the tone pot's CW end. |
+
+In every mode the tone knob works the same way, because the tone pot's wiper stays on BUS and the capacitor stays on its CCW end. At tone 10 the tone wiper reaches the CW end, so Reactive joins BUS directly and matches Direct. At volume 10 the volume wiper reaches the input end, so `OUT` is joined to `BUS` and all three modes are the same.
+
+## Bench checks
+
+Do the meter checks with the guitar unplugged, then the listening checks through an amp at a modest volume.
+
+1. **Meter all three positions.** On continuity: in Direct, the common beeps with the Direct lug; in Reactive, the common beeps with the Reactive lug; in Off, the common beeps with nothing. This proves the switch is wired to the lugs you think it is.
+2. **Tone 10: Direct and Reactive match.** Set the tone to 10 and the volume to about halfway. Flip between Direct and Reactive. They should sound the same. If they don't, the Reactive wire is on the wrong tone pot lug.
+3. **Volume 10: all three match.** Set the volume to 10 and flip through all three modes, at any tone setting. They should sound the same, because at full volume there is nothing for a bleed to skip past.
+4. **The switch is quiet.** Flipping between modes should make no pop or crackle. Noise here usually means a poor solder joint or a stray wire strand touching something.
+5. **The switch still clears the cavity.** With the control cover or pickguard back on, check that nothing presses on the switch's lugs or wires and that the lever moves freely.
+6. **Match the loudness, then compare.** Set the amp to a comfortable level with the guitar at full volume, where all three modes sound the same, and leave it there. Then compare the three modes with the volume and tone both at 5, then both at 8. Listen for the pattern the modes are built for: Direct keeps its highs as you turn down, Off gets darker, and Reactive eases off as the tone comes down, so it sits closer to Direct at 8/8 than at 5/5.
+7. **Sweep both controls.** In each mode, turn the volume slowly from 10 to 0 and back, then the tone. Both should move smoothly, with no dead spots or sudden jumps.
+
+## Worked example: Relay Lipstick
+
+Relay Lipstick is the guitar I validated this on, and Diagrams 11 and 12 are drawn from its circuit. It has 500k volume and tone pots, so it uses the 500k row of the value table, and its stock series bleed (a 1 nF capacitor and a 150 kΩ resistor) is reused as it is.
+
+**The lugs, seen from the back.** On the volume pot, the left lug is on BUS, the middle lug is on OUT and the right lug is on ground; none of them change. On the stock tone pot, the left lug is unused, the middle lug goes to the 22 nF capacitor and the right lug is on BUS. After the retrofit, the left lug is on `REACT`, the middle lug is on `BUS` and the right lug is on `TONE-CAP`.
+
+**The bleed.** Lipstick's 150 kΩ resistor sits on the volume wiper and its 1 nF capacitor sits on the volume pot's input lug. Only the capacitor's lead moves: off the input lug and onto the switch common.
+
+**The volume push-push.** Lipstick's volume knob is a push-push switch that adds the lipstick pickup and partially splits the bridge. That switch is a separate set of lugs on the volume pot, and the retrofit doesn't touch it. One of its lugs is wired to BUS; leave it exactly where it is when you add the wire to the Direct lug, and the push-push keeps working as before.
+
+**The hole.** The switch goes near the tone knob, where there is room for the lever and for the switch body inside the control cavity. Choose the exact spot on your own guitar using the checks in [Make room for the switch](#make-room-for-the-switch).
+
+The stock Lipstick circuit, with its pickups and push-push, is on the [Lipstick wiring page](/guitars/relay/wiring?voicing=lipstick).
+
+## Tuning by ear
+
+The values in the table are where every bleed starts, not where every bleed ends. How bright a bleed sounds depends on the pickups (how strong they are and how much treble they have to begin with) and on the cable, since a longer cable drains more highs away. The same parts can sound just right on one guitar and a little bright on another.
+
+Tune in Direct, because it is the plainest bleed and Reactive uses the same parts. A good routine:
+
+1. Pick one volume setting where you most often play, such as 6 or 7, and keep the tone at 10.
+2. Listen in Direct, then in Off. Direct should sound clearer than Off without sounding thin or harsh.
+3. If Direct sounds too bright or thin, try a smaller capacitor (470–680 pF). If it still sounds dull, try a larger one (1.5–2.2 nF).
+4. Once the capacitor is close, move the resistor one standard value up to calm the bleed a little, or down to open it up.
+5. Change one part at a time, and listen again at the same settings with the same cable and amp each time.
+
+You can tack a part in with a quick solder joint while you listen and solder it properly once you've chosen. When Direct sounds right, check Reactive with the tone rolled back: it will follow along, because it uses the same parts.
+
+## Troubleshooting
+
+- **The tone knob works backwards** (darkest at 10). The `REACT` wire and the 22 nF capacitor are on swapped tone pot ends. Swap the two end wires.
+- **Direct and Reactive sound different at tone 10.** The Reactive wire is on the wrong tone pot lug. Recheck the CW end with the meter (Diagram 13) and move `REACT` there.
+- **Reactive sounds just like Direct at every tone setting.** The Reactive wire is on the tone wiper or on BUS, or both throw lugs are joined to BUS. It belongs on the tone pot's CW end.
+- **Off still sounds bright, or one mode sounds like another.** The switch common is probably misidentified. Repeat the switch test with the meter and move the wires to match.
+- **The modes are in the wrong lever positions.** Swap the wires on the Direct and Reactive lugs.
+- **No mode changes the sound as you turn down.** The bleed isn't connected: check that one end is on the volume wiper (`OUT`), the joint between the two parts (`TB-MID`) is solid, and the other end is on the switch common (`TB-SW`).
+- **The modes differ at volume 10.** In a correct harness the switch can't change anything at full volume, so something is on the wrong lug or touching ground. Check that the bleed's near end is on the volume wiper (`OUT`) and that no switch lug or bleed lead touches a pot body or the shielding.
+- **Pops or crackle when you flip the switch.** Reflow any dull or lumpy solder joints, and check that no stray wire strand or bare lead touches a pot body, the shielding or a neighboring lug.
+- **The switch won't sit flat, or the cover won't go back on.** The switch body or its wires are hitting the cavity wall or another part. Turn the switch so its lugs face open space, shorten the wires, or route them around the obstacle.
