@@ -4,6 +4,9 @@
 // stock circuit and the volume-only explainers, against the permanent wiring written out below) before it is written.
 //
 //   node docs/engineering/treble-bleed-switch/generate-diagrams.mjs
+//
+// Only this CLI entry writes the committed files. Tests call generateAll({ outDir, sheetDir }) with a temp directory, so a
+// deploy build (which runs the tests) never replaces the reviewed renders.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,7 +16,8 @@ import { NET_COLORS, capacitor, netLabel, pot, resistor, svgDoc, terminal, text,
 import { verifyDrawing } from './verify-drawings.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const outDir = join(here, '../../../public/circuits/treble-bleed');
+const OUT_DIR = join(here, '../../../public/circuits/treble-bleed');
+const SHEET_DIR = join(here, '../../../public/wiring-diagrams');
 
 const WIDTH = 1200;
 const BLEED_GLOW = '#ffb020';
@@ -925,7 +929,6 @@ function switchContactsDrawing() {
 
 const PANEL_BORDER = '#465c70';
 const PANEL_BAND = '#e6f0f8';
-const repoRoot = join(here, '../../..');
 
 const wrap = (s, n) => {
     const out = [];
@@ -1251,11 +1254,10 @@ function referenceSheet() {
         name: 'relay-treble-bleed-switch-rev-1.0',
         svg: doc(height, title, description, body),
         checks,
-        svgPath: join(here, 'relay-treble-bleed-switch-rev-1.0.svg'),
-        pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png'),
+        sheet: true,
         pages: [
-            { svg: pageA, pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-a.png') },
-            { svg: pageB, pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-b.png') },
+            { svg: pageA, suffix: '-page-a' },
+            { svg: pageB, suffix: '-page-b' },
         ],
     };
 }
@@ -1287,13 +1289,18 @@ export function textExtentProblems(name, svg) {
     return problems;
 }
 
-export async function generateAll() {
+// outDir takes diagrams 1-14; sheetDir takes the reference sheet PNG and its print pages. The sheet's source SVG goes
+// beside this file by default, or into sheetDir when a sheetDir is given.
+/** @param {{ outDir?: string, sheetDir?: string, sheetSvgDir?: string }} [options] */
+export async function generateAll({ outDir = OUT_DIR, sheetDir, sheetSvgDir } = {}) {
+    const sheetPngDir = sheetDir ?? SHEET_DIR;
+    const sheetSourceDir = sheetSvgDir ?? sheetDir ?? here;
     const written = [];
     const problems = [];
     const checked = [];
     geometryProblems.length = 0;
     const drawings = [signalChainDrawing(), volumePotDrawing(), potAndCableDrawing(), brightnessSketchDrawing(), volumeDrawing(false), volumeDrawing(true), variantsDrawing(), tonePotDrawing(), reactiveDrawing(), threeModesDrawing(), beforeDrawing(), afterDrawing(), potLugsDrawing(), switchContactsDrawing(), referenceSheet()];
-    mkdirSync(outDir, { recursive: true });
+    for (const dir of [outDir, sheetPngDir, sheetSourceDir]) mkdirSync(dir, { recursive: true });
     for (const d of drawings) {
         d.checks.forEach((check, i) => {
             const result = verifyDrawing(check.svg, check.opts);
@@ -1302,14 +1309,15 @@ export async function generateAll() {
         });
         if (/unvalidated|pending|experimental|not yet tested|to be determined|TBD|\bwe\b|\bour\b/i.test(d.svg.replace(/<[^>]+>/g, ' '))) problems.push(`${d.name}: caption wording breaks the style rules`);
         for (const doc of [d.svg, ...(d.pages ?? []).map((pg) => pg.svg)]) problems.push(...textExtentProblems(d.name, doc));
-        const svgPath = d.svgPath ?? join(outDir, `${d.name}.svg`);
-        const pngPath = d.pngPath ?? join(outDir, `${d.name}.png`);
+        const svgPath = join(d.sheet ? sheetSourceDir : outDir, `${d.name}.svg`);
+        const pngPath = join(d.sheet ? sheetPngDir : outDir, `${d.name}.png`);
         writeFileSync(svgPath, d.svg);
         await sharp(Buffer.from(d.svg), { density: 144 }).png().toFile(pngPath);
         written.push(svgPath, pngPath);
         for (const page of d.pages ?? []) {
-            await sharp(Buffer.from(page.svg), { density: 144 }).png().toFile(page.pngPath);
-            written.push(page.pngPath);
+            const pagePath = join(sheetPngDir, `${d.name}${page.suffix}.png`);
+            await sharp(Buffer.from(page.svg), { density: 144 }).png().toFile(pagePath);
+            written.push(pagePath);
         }
     }
     problems.push(...geometryProblems);
@@ -1322,5 +1330,5 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     if (failures.length) console.error(`Netlist check failed (${failures.length} of ${checks}):\n  - ${failures.join('\n  - ')}`);
     if (problems.length) console.error(`Drawing problems (${problems.length}):\n  - ${problems.join('\n  - ')}`);
     if (failures.length || problems.length) process.exit(1);
-    console.log(`Wrote ${written.length} files to ${outDir}; ${checks} netlist checks passed.`);
+    console.log(`Wrote ${written.length} files to ${OUT_DIR}, ${SHEET_DIR} and ${here}; ${checks} netlist checks passed.`);
 }

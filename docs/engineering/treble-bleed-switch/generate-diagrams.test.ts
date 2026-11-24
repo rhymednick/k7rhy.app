@@ -1,16 +1,50 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { describe, expect, it } from 'vitest';
-// @ts-expect-error plain ES module without type declarations
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { generateAll, textExtentProblems } from './generate-diagrams.mjs';
 
 const names = ['05-stock-volume', '06-capacitor-bleed', '07-bleed-variants', '09-reactive-bleed', '10-three-modes', '11-before', '12-after'];
 const conceptNames = ['01-signal-chain', '02-volume-pot', '03-pot-and-cable', '04-brightness-sketch', '08-tone-pot', '13-pot-lugs', '14-switch-contacts'];
-const outDir = join(process.cwd(), 'public/circuits/treble-bleed');
+const committedDir = join(process.cwd(), 'public/circuits/treble-bleed');
+const committedSheetDir = join(process.cwd(), 'public/wiring-diagrams');
+const committedSheetSvg = join(process.cwd(), 'docs/engineering/treble-bleed-switch/relay-treble-bleed-switch-rev-1.0.svg');
+const sheet = 'relay-treble-bleed-switch-rev-1.0';
+type Result = { written: string[]; problems: string[]; checked: string[] };
+
+// Tests render into a temp directory: only the CLI (node generate-diagrams.mjs) writes the committed, reviewed files.
+let tmp: string;
+let outDir: string;
+let sheetDir: string;
+let result: Result;
+const committed = [...[...names, ...conceptNames].flatMap((n) => [join(committedDir, `${n}.svg`), join(committedDir, `${n}.png`)]), ...['', '-page-a', '-page-b'].map((s) => join(committedSheetDir, `${sheet}${s}.png`)), committedSheetSvg];
+let before: Map<string, number>;
+
+beforeAll(async () => {
+    before = new Map(committed.map((f) => [f, statSync(f).mtimeMs]));
+    tmp = mkdtempSync(join(tmpdir(), 'treble-bleed-'));
+    outDir = join(tmp, 'circuits');
+    sheetDir = join(tmp, 'wiring');
+    result = (await generateAll({ outDir, sheetDir })) as Result;
+}, 120000);
+
+afterAll(() => {
+    if (tmp) rmSync(tmp, { recursive: true, force: true });
+});
 
 describe('treble bleed explainer schematics', () => {
-    it('writes every drawing as SVG and PNG, with a title and net tags, and reports no problems', async () => {
-        const result = (await generateAll()) as { written: string[]; problems: string[] };
+    it('writes only into the directories it is given and leaves the committed files untouched', () => {
+        expect(result.written.length).toBeGreaterThan(0);
+        for (const file of result.written) expect(file.startsWith(tmp)).toBe(true);
+        for (const [file, mtime] of before) expect(statSync(file).mtimeMs).toBe(mtime);
+    });
+
+    it('renders the same SVG text as the committed drawings', () => {
+        for (const name of [...names, ...conceptNames]) expect(readFileSync(join(outDir, `${name}.svg`), 'utf8')).toBe(readFileSync(join(committedDir, `${name}.svg`), 'utf8'));
+        expect(readFileSync(join(sheetDir, `${sheet}.svg`), 'utf8')).toBe(readFileSync(committedSheetSvg, 'utf8'));
+    });
+
+    it('writes every drawing as SVG and PNG, with a title and net tags, and reports no problems', () => {
         expect(result.problems).toEqual([]);
         for (const name of names) {
             expect(existsSync(join(outDir, `${name}.png`))).toBe(true);
@@ -23,7 +57,7 @@ describe('treble bleed explainer schematics', () => {
             const svg = readFileSync(join(outDir, `${name}.svg`), 'utf8');
             expect(svg).toMatch(/<title>[^<]+<\/title>/);
         }
-    }, 120000);
+    });
 
     it('draws the brightness sketch as an illustration with no numbers on it', () => {
         const svg = readFileSync(join(outDir, '04-brightness-sketch.svg'), 'utf8');
@@ -34,12 +68,10 @@ describe('treble bleed explainer schematics', () => {
     });
 
     it('writes the builder reference sheet, its two print pages, and checks panels 3 and 6', async () => {
-        const result = (await generateAll()) as { written: string[]; problems: string[]; checked: string[] };
         expect(result.problems).toEqual([]);
-        const sheet = 'relay-treble-bleed-switch-rev-1.0';
         for (const label of ['panel 3 OFF', 'panel 6 DIRECT', 'panel 6 OFF', 'panel 6 REACTIVE']) expect(result.checked).toContain(`${sheet}: ${label}`);
-        const base = join(process.cwd(), 'public/wiring-diagrams', sheet);
-        const svgPath = join(process.cwd(), 'docs/engineering/treble-bleed-switch', `${sheet}.svg`);
+        const base = join(sheetDir, sheet);
+        const svgPath = join(sheetDir, `${sheet}.svg`);
         for (const file of [`${base}.png`, `${base}-page-a.png`, `${base}-page-b.png`, svgPath]) expect(result.written).toContain(file);
         const { default: sharp } = await import('sharp');
         expect((await sharp(`${base}.png`).metadata()).width).toBe(2400);

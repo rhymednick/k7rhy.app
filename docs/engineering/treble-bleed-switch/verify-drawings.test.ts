@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error plain ES module without type declarations
 import { svgDoc, wire, terminal, toggle3, pot, netLabel } from './draw.mjs';
-// @ts-expect-error plain ES module without type declarations
 import { verifyDrawing } from './verify-drawings.mjs';
 
 type Result = { ok: boolean; problems: string[] };

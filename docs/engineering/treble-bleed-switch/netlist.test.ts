@@ -1,5 +1,4 @@
 import { describe, expect, it } from 'vitest';
-// @ts-expect-error plain ES module without type declarations
 import { runChecks } from './check-netlist.mjs';
 
 describe('switchable treble bleed netlist', () => {
