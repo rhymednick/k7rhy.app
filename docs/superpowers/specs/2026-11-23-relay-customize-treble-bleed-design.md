@@ -39,7 +39,7 @@ The owner wants two things from it:
 - Making the switch a standard build on any guitar, or changing any voicing's published build or wiring page. It is offered only as an alternative tone wiring.
 - Reef and Reef Plus. The record excludes them, and the pages say so in plain words as a fit rule (two volumes summing at one output), not as a pending item.
 - Per-model value tables. Values are keyed to the pot value, not the model.
-- Other stock layouts (for example a tone control fed from the volume wiper, a tone circuit with extra parts, or an existing bleed). The page marks them out of fit and does not draw variants.
+- Other stock layouts (for example a tone control fed from the volume wiper, a tone circuit with extra parts, or a bleed that isn't a fixed series resistor and capacitor). The page marks them out of fit and does not draw variants.
 - Measurements, frequency-response plots of real data, or recordings.
 - Building the platform-neutral circuits section (route, navigation, landing page). This work only avoids making that move hard.
 - Selling or listing parts.
@@ -98,7 +98,7 @@ Outline, with the diagrams each part needs:
 ### Page 2: Add a Direct / Off / Reactive switch
 
 1. **What you get.** The three modes in one short table, plus the "full volume and full tone equivalences" in plain words.
-2. **Is your guitar a fit?** It must be wired like Lipstick: a master volume and a master tone, with the tone pot's hot end on the volume pot's input side. Give a short continuity test to confirm it, with a diagram. Pots of 250k, 500k or 1M are all fine. Not a fit: a tone control fed from the volume wiper or carrying extra parts, an existing bleed, or two independent volumes summing at one output (this includes Reef and Reef Plus). Present these as fit rules.
+2. **Is your guitar a fit?** It must be wired like Lipstick: a master volume and a master tone, with the tone pot's hot end on the volume pot's input side. Give a short continuity test to confirm it, with a diagram. Pots of 250k, 500k or 1M are all fine. The volume pot may have no bleed (the page adds one) or a fixed series resistor-and-capacitor bleed like Lipstick's (the page reuses its parts, moving the input end to the switch). Not a fit: a tone control fed from the volume wiper or carrying extra parts, a bleed of any other kind (capacitor alone, or a parallel resistor and capacitor), or two independent volumes summing at one output (this includes Reef and Reef Plus). Present these as fit rules.
 3. **Parts and tools.** SPDT on–off–on mini toggle (link the owner's chosen switch, with a note that any switch with a matching hole works), a bleed resistor and capacitor chosen from the value table below, the existing 22 nF tone cap, hookup wire, soldering tools, meter, and drilling tools for the switch hole.
 3a. **Choose your bleed values.** A table keyed to the volume pot:
 
