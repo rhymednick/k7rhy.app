@@ -22,7 +22,8 @@ export function svgDoc(width, height, title, body) {
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${esc(title)}"><title>${esc(title)}</title><rect width="${width}" height="${height}" fill="#ffffff"/>${body}</svg>`;
 }
 
-const text = (s, x, y, { size = 16, weight = 400, anchor = 'middle', fill = INK } = {}) => `<text x="${x}" y="${y}" font-size="${size}" font-weight="${weight}" text-anchor="${anchor}" fill="${fill}" ${FONT}>${esc(s)}</text>`;
+// halo puts a white outline behind the letters so a wire can pass under a label and the label stays readable.
+export const text = (s, x, y, { size = 16, weight = 400, anchor = 'middle', fill = INK, halo = false } = {}) => `<text x="${x}" y="${y}" font-size="${size}" font-weight="${weight}" text-anchor="${anchor}" fill="${fill}" ${halo ? 'stroke="#ffffff" stroke-width="5" stroke-linejoin="round" paint-order="stroke" ' : ''}${FONT}>${esc(s)}</text>`;
 
 // A wire on one net. Each vertex is a place where this wire may join another; a dot marks a deliberate junction.
 export function wire(net, points, opts = {}) {
@@ -48,9 +49,9 @@ export function pot(id, x, y, opts) {
             [wiper, x, 'Wiper'],
             [right, x + 44, 'CCW'],
         ]
-            .map(([name, lx, label]) => `<rect x="${lx - 8}" y="${y - 8}" width="16" height="20" fill="#d4d4d4" stroke="${INK}" stroke-width="2"/>${terminal(name, lx, y)}${text(label, lx, y + 36, { size: 16, weight: 600 })}`)
+            .map(([name, lx, label]) => `<rect x="${lx - 8}" y="${y - 8}" width="16" height="20" fill="#d4d4d4" stroke="${INK}" stroke-width="2"/>${terminal(name, lx, y)}${text(label, lx, y + 36, { size: 14, weight: 600, halo: true })}`)
             .join('');
-        return `<g data-pot="${esc(id)}" data-view="rear">${body}${lugs}${text(id, x, y - 66, { size: 18, weight: 700 })}</g>`;
+        return `<g data-pot="${esc(id)}" data-view="rear">${body}${lugs}${text(id, x, y - 26, { size: 18, weight: 700 })}</g>`;
     }
     const track = `<polyline points="${x - 60},${y} ${x - 50},${y - 12} ${x - 30},${y + 12} ${x - 10},${y - 12} ${x + 10},${y + 12} ${x + 30},${y - 12} ${x + 50},${y + 12} ${x + 60},${y}" fill="none" stroke="${INK}" stroke-width="3"/>`;
     const arrow = `<line x1="${x}" y1="${y - 56}" x2="${x}" y2="${y - 16}" stroke="${INK}" stroke-width="3"/><polygon points="${x - 7},${y - 26} ${x + 7},${y - 26} ${x},${y - 12}" fill="${INK}"/>`;
@@ -81,7 +82,7 @@ function twoTerminal(kind, id, x, y, opts) {
         shape = lead(-50, -7) + lead(7, 50) + plate(-7) + plate(7);
     }
     const [lx, ly] = vertical ? [x + 26, y + 5] : [x, y - 26];
-    const label = opts.label ? text(opts.label, lx, ly, { size: 16, weight: 600, anchor: vertical ? 'start' : 'middle' }) : '';
+    const label = opts.label ? text(opts.label, lx, ly, { size: 16, weight: 600, anchor: vertical ? 'start' : 'middle', halo: true }) : '';
     return `<g data-part="${esc(id)}">${shape}${terminal(a, ax, ay)}${terminal(b, bx, by)}${label}</g>`;
 }
 
@@ -94,10 +95,10 @@ export function toggle3(id, x, y, mode) {
     const throws = { DIRECT: [x - 60, y, 'Direct'], OFF: [x, y, 'Off'], REACTIVE: [x + 60, y, 'Reactive'] };
     const common = [x, y + 90];
     const lugs = Object.entries(throws)
-        .map(([m, [tx, ty, label]]) => `${terminal(`${id}.${m}`, tx, ty)}${text(label, tx, ty - 20, { size: 16, weight: 600 })}`)
+        .map(([m, [tx, ty, label]]) => `${terminal(`${id}.${m}`, tx, ty)}${text(label, tx, ty - 20, { size: 16, weight: 600, halo: true })}`)
         .join('');
     const blade = mode ? `<line data-blade="1" x1="${common[0]}" y1="${common[1]}" x2="${throws[mode][0]}" y2="${throws[mode][1]}" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>` : '';
-    return `<g data-switch="${esc(id)}">${blade}${lugs}${terminal(`${id}.C`, common[0], common[1])}${text('Common', common[0], common[1] + 30, { size: 16, weight: 600 })}</g>`;
+    return `<g data-switch="${esc(id)}">${blade}${lugs}${terminal(`${id}.C`, common[0], common[1])}${text('Common', common[0] + 16, common[1] + 6, { size: 16, weight: 600, anchor: 'start', halo: true })}</g>`;
 }
 
 // Colored boxed net name.
