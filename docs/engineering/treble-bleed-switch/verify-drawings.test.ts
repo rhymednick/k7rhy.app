@@ -155,6 +155,16 @@ describe('drawing verifier', () => {
         });
     });
 
+    it('checks against a supplied netlist when one is given', () => {
+        const svg = crossing(false);
+        const nets = { BUS: ['SEL.C', 'VOL.IN'], OUT: ['VOL.W', 'JACK.TIP'] };
+        expect(verify(svg, { terminals: crossingTerminals, nets } as never).ok).toBe(true);
+        const joined = { BUS: ['SEL.C', 'VOL.IN', 'JACK.TIP'], OUT: ['VOL.W'] };
+        const result = verify(svg, { terminals: crossingTerminals, nets: joined } as never);
+        expect(result.ok).toBe(false);
+        expect(result.problems.join('\n')).toContain('JACK.TIP');
+    });
+
     it('rejects a net label whose net does not exist', () => {
         const svg = svgDoc(400, 300, 'Label', netLabel('NOPE', 100, 100));
         expect(verify(svg, { terminals: [] }).ok).toBe(false);

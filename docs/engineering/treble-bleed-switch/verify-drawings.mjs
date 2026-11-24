@@ -6,7 +6,7 @@
 // junction dot sits; crossings without a dot are not connections; a terminal joins the nearest wire vertex within
 // 9 px; a lever joins the two terminals at its ends. The permanent wiring is always checked; the lever state is
 // checked against the netlist when expectedMode is given.
-import { connectivity, netOf, wires as netlistWires } from './netlist.mjs';
+import { connectivity, wires as netlistWires } from './netlist.mjs';
 
 const attrs = (s) => Object.fromEntries([...s.matchAll(/([\w-]+)="([^"]*)"/g)].map((m) => [m[1], m[2]]));
 const key = (x, y) => `${Math.round(x * 10) / 10},${Math.round(y * 10) / 10}`;
@@ -32,10 +32,18 @@ function makeUnionFind() {
     return { find, union: (a, b) => parent.set(find(a), find(b)) };
 }
 
+// opts.nets (optional) replaces the netlist's permanent wiring, for drawings of circuits the netlist does not describe
+// (the stock circuit, the volume-only explainers). A lever state can only be checked against the real netlist.
 export function verifyDrawing(svg, opts) {
     const problems = [];
+    const permanent = opts.nets ?? netlistWires;
+    const netOf = (terminal) => {
+        const hit = Object.entries(permanent).find(([, terminals]) => terminals.includes(terminal));
+        if (!hit) throw new Error(`terminal ${terminal} is not on any net`);
+        return hit[0];
+    };
     const tags = [...svg.matchAll(/<(polyline|circle|line|text|g)\b([^>]*?)\/?>/g)].map((m) => ({ tag: m[1], a: attrs(m[2]) }));
-    const nets = new Set(Object.keys(netlistWires));
+    const nets = new Set(Object.keys(permanent));
 
     const wires = tags
         .filter((e) => e.tag === 'polyline' && e.a['data-wire'])
@@ -141,7 +149,7 @@ export function verifyDrawing(svg, opts) {
     });
 
     // Drawn connectivity versus the netlist, for every pair of drawn terminals that the netlist knows.
-    const known = terminals.filter((t) => Object.values(netlistWires).some((list) => list.includes(t.name)));
+    const known = terminals.filter((t) => Object.values(permanent).some((list) => list.includes(t.name)));
     const lever = opts.expectedMode ? connectivity(opts.expectedMode, 5, 5) : null;
     for (let i = 0; i < known.length; i++) {
         for (let j = i + 1; j < known.length; j++) {
