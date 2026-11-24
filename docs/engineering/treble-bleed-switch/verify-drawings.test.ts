@@ -134,6 +134,27 @@ describe('drawing verifier', () => {
         expect(xs[1]).toBeLessThan(xs[2]);
     });
 
+    describe('rear-view pot lug roles', () => {
+        const rear = (ends: { left: string; wiper: string; right: string }) => svgDoc(600, 400, 'Pot', pot('TONE', 300, 200, { view: 'rear', ends }));
+        const terminals = ['TONE.CW', 'TONE.W', 'TONE.CCW'];
+
+        it('accepts CW, wiper and CCW lugs in left, center, right order', () => {
+            expect(verify(rear({ left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' }), { terminals }).problems.filter((p) => /lug/.test(p))).toEqual([]);
+        });
+
+        it('fails when the lug labelled CW is wired to the CCW terminal', () => {
+            const result = verify(rear({ left: 'TONE.CCW', wiper: 'TONE.W', right: 'TONE.CW' }), { terminals });
+            expect(result.ok).toBe(false);
+            expect(result.problems.join('\n')).toMatch(/lug.*TONE\.CCW/);
+        });
+
+        it('fails when the lugs are out of left, center, right order', () => {
+            const svg = rear({ left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' });
+            const swapped = svg.replace(/(data-terminal="TONE\.W" cx=")[\d.]+/, '$1400');
+            expect(verify(swapped, { terminals }).problems.join('\n')).toMatch(/order|lug/);
+        });
+    });
+
     it('rejects a net label whose net does not exist', () => {
         const svg = svgDoc(400, 300, 'Label', netLabel('NOPE', 100, 100));
         expect(verify(svg, { terminals: [] }).ok).toBe(false);

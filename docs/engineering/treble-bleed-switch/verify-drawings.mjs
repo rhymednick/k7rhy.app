@@ -62,6 +62,22 @@ export function verifyDrawing(svg, opts) {
         if (!(size >= 14)) problems.push(`text with font-size ${e.a['font-size'] ?? 'unset'} is under 14 px`);
     }
 
+    // Rear-view pots: each lug's printed label (CW / Wiper / CCW) must match the role in its terminal name, and the
+    // lugs must run left, center, right = CW, wiper, CCW. The name suffix IN counts as CW and GND as CCW (volume pot).
+    const roleOf = { CW: 'CW', IN: 'CW', W: 'Wiper', CCW: 'CCW', GND: 'CCW' };
+    for (const [, id, body] of svg.matchAll(/<g data-pot="([^"]*)" data-view="rear">(.*?)<\/g>/g)) {
+        const inner = [...body.matchAll(/<(circle|text)\b([^>]*?)>(?:([^<]*)<\/text>)?/g)].map((m) => ({ tag: m[1], a: attrs(m[2]), content: m[3] }));
+        const lugs = inner.filter((e) => e.tag === 'circle' && e.a['data-terminal']).map((e) => ({ name: e.a['data-terminal'], x: Number(e.a.cx) }));
+        const labels = inner.filter((e) => e.tag === 'text' && ['CW', 'Wiper', 'CCW'].includes(e.content)).map((e) => ({ role: e.content, x: Number(e.a.x) }));
+        for (const lug of lugs) {
+            const printed = labels.find((l) => Math.abs(l.x - lug.x) < 1)?.role;
+            const wired = roleOf[lug.name.split('.').pop()];
+            if (printed !== wired) problems.push(`pot ${id}: lug ${lug.name} is wired as ${wired ?? 'unknown'} but its printed label is ${printed ?? 'missing'}`);
+        }
+        const order = [...lugs].sort((p, q) => p.x - q.x).map((l) => roleOf[l.name.split('.').pop()]);
+        if (order.join(',') !== 'CW,Wiper,CCW') problems.push(`pot ${id}: lugs run ${order.join(', ')} left to right, not CW, Wiper, CCW (lug order)`);
+    }
+
     // Net names must exist in the netlist.
     for (const w of wires) if (!nets.has(w.net)) problems.push(`wire carries unknown net ${w.net}`);
     for (const l of labels) if (!nets.has(l)) problems.push(`net label ${l} is not a net in the netlist`);
