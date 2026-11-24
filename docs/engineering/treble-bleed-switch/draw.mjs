@@ -91,12 +91,16 @@ export const capacitor = (id, x, y, opts = {}) => twoTerminal('capacitor', id, x
 
 // Three-position toggle with its common at the bottom. Throws left to right: Direct, Off, Reactive.
 // mode null draws the lugs only; otherwise a lever (data-blade) joins the common to that throw.
-export function toggle3(id, x, y, mode) {
+export function toggle3(id, x, y, mode, opts = {}) {
     const throws = { DIRECT: [x - 60, y, 'Direct'], OFF: [x, y, 'Off'], REACTIVE: [x + 60, y, 'Reactive'] };
     const common = [x, y + 90];
-    const lugs = Object.entries(throws)
-        .map(([m, [tx, ty, label]]) => `${terminal(`${id}.${m}`, tx, ty)}${text(label, tx, ty - 20, { size: 16, weight: 600, halo: true })}`)
-        .join('');
+    // opts.rest draws the Off point as a dashed hollow rest marker, not a lug: a real on-off-on switch has no lug there.
+    // It keeps its terminal tag so the verifier can still check the lever.
+    const lug = ([m, [tx, ty, label]]) => {
+        if (opts.rest && m === 'OFF') return `<circle data-terminal="${id}.${m}" cx="${tx}" cy="${ty}" r="9" fill="none" stroke="${INK}" stroke-width="2" stroke-dasharray="4 3"/>${text('Rest position,', tx, ty - 74, { size: 16, weight: 600, fill: '#4a5560', halo: true })}${text('no lug', tx, ty - 54, { size: 16, weight: 600, fill: '#4a5560', halo: true })}`;
+        return `${terminal(`${id}.${m}`, tx, ty)}${text(label, tx, ty - 20, { size: 16, weight: 600, halo: true })}`;
+    };
+    const lugs = Object.entries(throws).map(lug).join('');
     const blade = mode ? `<line data-blade="1" x1="${common[0]}" y1="${common[1]}" x2="${throws[mode][0]}" y2="${throws[mode][1]}" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>` : '';
     return `<g data-switch="${esc(id)}">${blade}${lugs}${terminal(`${id}.C`, common[0], common[1])}${text('Common', common[0] + 16, common[1] + 6, { size: 16, weight: 600, anchor: 'start', halo: true })}</g>`;
 }

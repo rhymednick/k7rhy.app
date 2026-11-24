@@ -752,12 +752,12 @@ function potAndCableDrawing() {
     );
     parts.push(pickup(40, y - 40), resistor('RES', 400, y, { label: 'Volume pot' }), capacitor('CAB', 680, 400, { orient: 'v', label: 'Cable' }), groundSymbol(680, 486));
     parts.push(`<rect x="960" y="${y - 40}" width="190" height="80" rx="16" fill="#f6e3e0" stroke="#1a1a1a" stroke-width="3"/>${text('Amp', 1055, y + 10, { size: 26, weight: 700 })}`);
-    parts.push(text('Resistance', 400, 150, { size: 22, weight: 700 }), lines(['The part of the track the', 'signal has to push through.', 'Turned down, there is more.'], 400, 176, { gap: 24, size: 18 }));
+    parts.push(text('Resistance', 400, 150, { size: 22, weight: 700 }), lines(['The part of the track the', 'signal has to push through.', 'Turning down from full adds more.'], 400, 176, { gap: 24, size: 18 }));
     parts.push(arrow(800, 360, 800, 440, CHANGE), text('Highs drain away here', 830, 396, { size: 20, anchor: 'start', weight: 700, fill: CHANGE }), text('The cable acts like a tiny', 830, 424, { size: 18, anchor: 'start' }), text('capacitor to ground.', 830, 448, { size: 18, anchor: 'start' }));
     parts.push(arrow(740, 250, 930, 250, '#16803c'), text('Lows carry on to the amp', 835, 230, { size: 20, weight: 700, fill: '#16803c' }));
-    const cap = ['Together the pot and the cable act as a filter: lows get through, highs drain away to ground.', 'The more I turn down, the more resistance sits ahead of the cable and the more highs drain away.'];
+    const cap = ['Together the pot and the cable act as a filter: lows get through, highs drain away to ground.', 'As I turn down from full, more resistance sits ahead of the cable, and more of the highs drain away.', 'Here the pot is drawn as the resistance the signal passes through before it reaches the cable.'];
     const description = 'A pickup feeds a resistor labelled Volume pot. After the resistor the signal wire continues to an amp, and a capacitor labelled Cable connects from that wire to ground. Highs drain away through the capacitor and lows carry on to the amp.';
-    return { name: '03-pot-and-cable', svg: doc(660, title, description, heading(title) + parts.join('') + caption(cap, 580)), checks: [] };
+    return { name: '03-pot-and-cable', svg: doc(690, title, description, heading(title) + parts.join('') + caption(cap, 580)), checks: [] };
 }
 
 // Diagram 4: a sketch of brightness against volume position. The only non-circuit drawing: no numbers, no data.
@@ -865,25 +865,24 @@ function potLugsDrawing() {
     const title = "Finding a pot's wiper and ends";
     const rear = pot('Tone', 280, 270, { view: 'rear', ends: { left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' } });
     const key = [
-        ['CW end', 'The wiper reaches it at full tone.', 'It is the Reactive feed.'],
+        ['CW end', 'The wiper reaches it at full tone.', 'It feeds the bleed (the Reactive feed).'],
         ['Wiper', 'Always the middle lug,', 'seen from the back.'],
         ['CCW end', 'The wiper reaches it at tone 0.', 'It goes to the 22 nF capacitor.'],
     ]
         .map(([a, b, c], i) => text(a, 70, 380 + i * 76, { size: 22, weight: 700, anchor: 'start' }) + text(b, 70, 406 + i * 76, { size: 18, anchor: 'start' }) + text(c, 70, 428 + i * 76, { size: 18, anchor: 'start' }))
         .join('');
     const steps = [
-        ['Find the wiper', ['Set the meter to ohms, with the knob near the middle.', 'Read each pair of lugs. The pair that reads highest is the', 'two ends. The lug left over is the wiper.']],
-        ['Find the CW end', ['Turn the knob fully clockwise (tone 10, seen from the front).', 'Read the wiper to each end. The end that reads close to', 'zero is the CW end, the Reactive feed.']],
+        ['Find the wiper', ['Read with the pot not wired in (out of the circuit).', 'Set the meter to ohms, knob near the middle, and read', 'each pair of lugs. The highest pair is the two ends;', 'the lug left over is the wiper.']],
+        ['Find the CW end', ['Turn the knob fully clockwise (tone 10, seen from the front).', 'Read the wiper to each end. The end that reads close to', 'zero is the CW end, which will feed the bleed.']],
         ['Check the other end', ['The wiper to the other end now reads the full value.', 'That is the CCW end, the one that goes to the capacitor.', 'Turn the knob fully back and the two readings swap.']],
     ];
-    const stepBody = steps.map(([head, ls], i) => frame(560, 100 + i * 190, 600, 170) + badge(i + 1, 596, 136 + i * 190) + text(head, 626, 144 + i * 190, { size: 24, weight: 700, anchor: 'start' }) + lines(ls, 590, 186 + i * 190, { anchor: 'start', gap: 28 })).join('');
-    const body = rear;
+    const stepBody = steps.map(([head, ls], i) => frame(560, 100 + i * 190, 600, 170) + badge(i + 1, 596, 136 + i * 190) + text(head, 626, 144 + i * 190, { size: 24, weight: 700, anchor: 'start' }) + lines(ls, 590, 176 + i * 190, { anchor: 'start', gap: 26 })).join('');
     const cap = ['Makers number pot lugs differently, so I name them by what they do and find them with a meter.', 'Seen from the back with the shaft pointing away and the lugs down, left, center and right are CW, wiper and CCW.', 'The same test works for the volume pot: its CW end is the input and its CCW end goes to ground.'];
     const description = 'A tone pot seen from the back with its three lugs labelled CW, Wiper and CCW, a key saying what each lug does, and three numbered meter steps: find the wiper, find the CW end, check the other end.';
     return {
         name: '13-pot-lugs',
-        svg: doc(790, title, description, heading(title) + frame(40, 100, 480, 520) + body + key + stepBody + caption(cap, 695)),
-        checks: [{ svg: svgDoc(WIDTH, 790, title, body), opts: { terminals: ['TONE.CW', 'TONE.W', 'TONE.CCW'] } }],
+        svg: doc(790, title, description, heading(title) + frame(40, 100, 480, 520) + rear + key + stepBody + caption(cap, 695)),
+        checks: [{ svg: svgDoc(WIDTH, 790, title, rear), opts: { terminals: ['TONE.CW', 'TONE.W', 'TONE.CCW'] } }],
     };
 }
 
@@ -892,20 +891,21 @@ function switchContactsDrawing() {
     const title = "The switch's three positions";
     const modes = [
         ['DIRECT', 'Direct', ['Common is joined to the Direct lug.', 'The bleed goes straight to the', 'main signal wire.']],
-        ['OFF', 'Off', ['The lever rests in the middle', 'and touches no lug.', 'The bleed is disconnected.']],
+        ['OFF', 'Off', ['The lever rests in the middle,', 'on no lug.', 'The bleed is disconnected.']],
         ['REACTIVE', 'Reactive', ['Common is joined to the Reactive lug.', "The bleed is fed from the tone pot's", 'CW end.']],
     ];
     const checks = [];
     const panels = modes.map(([mode, name, ls], i) => {
         const px = 20 + 392 * i;
         const py = 100;
-        const sw = toggle3('SW', px + 188, py + 160, mode);
-        checks.push({ svg: svgDoc(WIDTH, 630, `${name} position`, sw), opts: { terminals: ['SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'], expectedMode: mode } });
-        return frame(px, py, 376, 390) + text(name, px + 188, py + 38, { size: 26, weight: 700 }) + text('The middle spot is a rest position', px + 188, py + 78, { size: 16, fill: MUTED }) + text('with no lug of its own', px + 188, py + 98, { size: 16, fill: MUTED }) + sw + lines(ls, px + 188, py + 310, { size: 20, gap: 28 });
+        const sw = toggle3('SW', px + 188, py + 170, mode, { rest: true });
+        checks.push({ svg: svgDoc(WIDTH, 680, `${name} position`, sw), opts: { terminals: ['SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'], expectedMode: mode } });
+        return frame(px, py, 376, 390) + text(name, px + 188, py + 38, { size: 26, weight: 700 }) + sw + lines(ls, px + 188, py + 310, { size: 20, gap: 28 });
     });
-    const cap = ['This is the idea, not a lug layout. Switches put the common on different lugs, so confirm with a meter:', 'set it to continuity, flip to each position and note which lugs beep.', 'The lug that beeps with each end lug, one in each end position, is the common. In the middle position nothing beeps.'];
+    const capLines = ['This is the idea, not a lug layout. Switches put the common on different lugs, so confirm with a meter:', 'set it to continuity, flip to each position and note which lugs beep. The common is the lug that beeps', 'with one end lug in one position and with the other end lug in the other. In the middle nothing beeps.'];
+    const cap = text('The switch has three lugs: Common and two ends. The middle is a rest position, not a lug.', 40, 540, { size: 22, weight: 700, anchor: 'start' }) + caption(capLines, 576);
     const description = 'Three small switch drawings: Direct, Off and Reactive. Each shows the lever from the common to the throw it touches. In Off the lever touches no lug.';
-    return { name: '14-switch-contacts', svg: doc(630, title, description, heading(title) + panels.join('') + caption(cap, 540)), checks };
+    return { name: '14-switch-contacts', svg: doc(680, title, description, heading(title) + panels.join('') + cap), checks };
 }
 
 export async function generateAll() {
