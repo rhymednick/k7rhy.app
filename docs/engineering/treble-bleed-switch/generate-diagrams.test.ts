@@ -33,21 +33,37 @@ describe('treble bleed explainer schematics', () => {
         for (const label of labels) expect(label).not.toMatch(/\d/);
     });
 
-    it('writes the builder reference sheet as a 2400 px PNG and a source SVG with large type', async () => {
-        const png = join(process.cwd(), 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png');
-        const svgPath = join(process.cwd(), 'docs/engineering/treble-bleed-switch/relay-treble-bleed-switch-rev-1.0.svg');
-        expect(existsSync(png)).toBe(true);
-        expect(existsSync(svgPath)).toBe(true);
+    it('writes the builder reference sheet, its two print pages, and checks panels 3 and 6', async () => {
+        const result = (await generateAll()) as { written: string[]; problems: string[]; checked: string[] };
+        expect(result.problems).toEqual([]);
+        const sheet = 'relay-treble-bleed-switch-rev-1.0';
+        for (const label of ['panel 3 OFF', 'panel 6 DIRECT', 'panel 6 OFF', 'panel 6 REACTIVE']) expect(result.checked).toContain(`${sheet}: ${label}`);
+        const base = join(process.cwd(), 'public/wiring-diagrams', sheet);
+        const svgPath = join(process.cwd(), 'docs/engineering/treble-bleed-switch', `${sheet}.svg`);
+        for (const file of [`${base}.png`, `${base}-page-a.png`, `${base}-page-b.png`, svgPath]) expect(result.written).toContain(file);
         const { default: sharp } = await import('sharp');
-        expect((await sharp(png).metadata()).width).toBe(2400);
+        expect((await sharp(`${base}.png`).metadata()).width).toBe(2400);
+        for (const page of ['a', 'b']) {
+            const { width, height } = await sharp(`${base}-page-${page}.png`).metadata();
+            expect(width).toBe(2400);
+            expect(height! / width!).toBeGreaterThan(1.2);
+            expect(height! / width!).toBeLessThan(1.6);
+        }
         const svg = readFileSync(svgPath, 'utf8');
         expect(svg).toContain('<title>Direct / Off / Reactive treble bleed</title>');
         expect(svg).toContain('Rev 1.0 • 2026-11-23');
         expect(svg).toContain('data-net');
         for (const n of [1, 2, 3, 4, 5, 6, 7, 8]) expect(svg).toMatch(new RegExp(`>${n}\\. [A-Z]`));
         for (const m of svg.matchAll(/font-size="([\d.]+)"/g)) expect(Number(m[1])).toBeGreaterThanOrEqual(14);
-        for (const v of ['150 kΩ', '68 kΩ', '330 kΩ', '22 nF', '470–680 pF', '1.5–2.2 nF', '6 mm']) expect(svg).toContain(v);
-    });
+        const labels = [...svg.matchAll(/<text\b[^>]*>([^<]*)<\/text>/g)].map((m) => m[1]);
+        const row = (pot: string) => labels.slice(labels.indexOf(pot), labels.indexOf(pot) + 4);
+        expect(row('500k')).toEqual(['500k', '150 kΩ', '1 nF', '22 nF']);
+        expect(row('250k')).toEqual(['250k', '68 kΩ', '1 nF', '22 nF']);
+        expect(row('1M')).toEqual(['1M', '330 kΩ', '1 nF', '22 nF']);
+        for (const v of ['470–680 pF', '1.5–2.2 nF']) expect(svg).toContain(v);
+        expect(labels.join(' ')).toContain('a common mini toggle needs 6 mm; measure yours first');
+        expect(svg).not.toContain('switch I link');
+    }, 120000);
 
     it('puts the exact meter reminder on the switch contact map', () => {
         expect(readFileSync(join(outDir, '14-switch-contacts.svg'), 'utf8')).toContain('confirm with a meter');

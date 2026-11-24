@@ -1,5 +1,6 @@
 // Generates the explainer drawings for the treble bleed pages (diagrams 1-14) as SVG and PNG into
-// public/circuits/treble-bleed/. Every circuit drawing is checked with verifyDrawing against netlist.mjs (or, for the
+// public/circuits/treble-bleed/, and the builder reference sheet (diagram 15) with its two print pages into
+// public/wiring-diagrams/ (source SVG beside this file). Every circuit drawing is checked with verifyDrawing against netlist.mjs (or, for the
 // stock circuit and the volume-only explainers, against the permanent wiring written out below) before it is written.
 //
 //   node docs/engineering/treble-bleed-switch/generate-diagrams.mjs
@@ -23,7 +24,7 @@ const MUTED = '#4a5560';
 const heading = (s) => text(s, 40, 54, { size: 32, weight: 700, anchor: 'start' });
 const caption = (lines, y) => lines.map((s, i) => text(s, 40, y + i * 28, { size: 20, anchor: 'start' })).join('');
 const glow = (pts, color = BLEED_GLOW, opacity = 0.5) => `<polyline points="${pts.map(([x, y]) => `${x},${y}`).join(' ')}" fill="none" stroke="${color}" stroke-opacity="${opacity}" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>`;
-const badge = (n, x, y) => `<circle cx="${x}" cy="${y}" r="17" fill="${CHANGE}"/>${text(String(n), x, y + 7, { size: 20, weight: 700, fill: '#ffffff' })}`;
+const badge = (n, x, y, fill = CHANGE) => `<circle cx="${x}" cy="${y}" r="17" fill="${fill}"/>${text(String(n), x, y + 7, { size: 20, weight: 700, fill: '#ffffff' })}`;
 const groundSymbol = (x, y) => [0, 1, 2].map((i) => `<line x1="${x - 18 + i * 6}" y1="${y + i * 7}" x2="${x + 18 - i * 6}" y2="${y + i * 7}" stroke="${NET_COLORS.GND}" stroke-width="4" stroke-linecap="round"/>`).join('');
 
 function pickup(x, y) {
@@ -430,7 +431,7 @@ const CHANGE_GLOW_PIECES = {
     ],
 };
 
-function circuit({ oy, kind, mode = null, glowMode = null, changes = false, badges = false, rest = false, label = kind }) {
+function circuit({ oy, kind, mode = null, glowMode = null, changes = false, badges = false, badgeColor = CHANGE, rest = false, label = kind }) {
     const P = (pts) => pts.map(([x, y]) => [x, y + oy]);
     const Y = (y) => y + oy;
     const stock = kind === 'stock';
@@ -541,10 +542,15 @@ function circuit({ oy, kind, mode = null, glowMode = null, changes = false, badg
         [480, 290],
         [510, 290],
     ]);
-    w('TONE-CAP', [
-        [capX, 180],
-        [capX, 240],
-    ]);
+    // On the stock circuit this wire runs from the tone wiper, not the CCW end, so it is drawn neutral, not in the TONE-CAP color.
+    w(
+        'TONE-CAP',
+        [
+            [capX, 180],
+            [capX, 240],
+        ],
+        stock ? { color: '#1a1a1a' } : {}
+    );
     w(
         'GND',
         [
@@ -568,7 +574,7 @@ function circuit({ oy, kind, mode = null, glowMode = null, changes = false, badg
     parts.push(terminal('SEL.C', 70, Y(0)), terminal('JACK.SLV', 1100, Y(350)), terminal('JACK.TIP', 1100, Y(400)));
     parts.push(text('Pickup selector', 30, Y(-26), { anchor: 'start', size: 18, weight: 600 }), text('Output jack', 1100, Y(318), { size: 18, weight: 600 }));
     parts.push(text('Sleeve', 1116, Y(356), { anchor: 'start', size: 16, weight: 600 }), text('Tip', 1116, Y(406), { anchor: 'start', size: 16, weight: 600 }));
-    if (stock) parts.push(text('not used', 856, Y(252), { size: 16, weight: 600, fill: MUTED }));
+    if (stock) parts.push(text('not used', 872, Y(240), { size: 15, weight: 600, fill: MUTED, anchor: 'end' }));
 
     // Net labels.
     marks.push(netLabel('BUS', 330, Y(0)), netLabel('OUT', 1000, Y(400)), netLabel('GND', 1000, Y(350)));
@@ -601,8 +607,8 @@ function circuit({ oy, kind, mode = null, glowMode = null, changes = false, badg
         checkGlow(label, list, geo, terminalPoints);
         for (const piece of list) under.push(glow(P(piece), color, opacity));
     }
-    if ((changes || badges) && !stock) marks.push(badge(1, 800, Y(140)), badge(2, 990, Y(210)), badge(3, 730, Y(118)), badge(4, 610, Y(240)), badge(5, 490, Y(55)));
-    if (changes && stock) marks.push(badge(1, 1010, Y(115)), badge(2, 850, Y(300)), badge(3, 800, Y(215)), badge(4, 610, Y(120)));
+    if ((changes || badges) && !stock) marks.push(badge(1, 800, Y(140), badgeColor), badge(2, 990, Y(210), badgeColor), badge(3, 730, Y(118), badgeColor), badge(4, 610, Y(240), badgeColor), badge(5, 490, Y(55), badgeColor));
+    if (changes && stock) marks.push(badge(1, 1010, Y(115)), badge(2, 850, Y(300)), badge(3, 790, Y(198)), badge(4, 610, Y(120)));
     const body = under.join('') + wires.join('') + parts.join('') + marks.join('');
     return { body, terminals: stock ? STOCK_TERMINALS : ALL_TERMINALS };
 }
@@ -939,11 +945,13 @@ function card(x, y, w, h, heading, sub = '') {
     return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="#ffffff" stroke="${PANEL_BORDER}" stroke-width="2"/><rect x="${x + 2}" y="${y + 2}" width="${w - 4}" height="34" rx="6" fill="${PANEL_BAND}"/>${text(heading, x + 16, y + 26, { size: 19, weight: 800, anchor: 'start' })}${sub ? text(sub, x + w - 14, y + 25, { size: 14, weight: 600, anchor: 'end', fill: MUTED }) : ''}`;
 }
 
-// Panel 6: the switch end of the bleed in one mode, from OUT through the resistor and capacitor to the switch.
+// Panel 6: how the switch connects the bleed in one mode, from OUT through the resistor and capacitor to the switch.
+// Solid dots mark where a wire meets a part lead, so a joint does not read as two separate terminals.
 function modeMini(mode, ox, oy) {
     const X = (x) => ox + x;
     const Y = (y) => oy + y;
     const P = (pts) => pts.map(([x, y]) => [X(x), Y(y)]);
+    const T = 86;
     const geo = [];
     const wires = [];
     const w = (net, pts) => {
@@ -951,52 +959,65 @@ function modeMini(mode, ox, oy) {
         wires.push(wire(net, P(pts)));
     };
     w('BUS', [
-        [130, 130],
-        [55, 130],
+        [130, T],
+        [55, T],
     ]);
     w('REACT', [
-        [250, 130],
-        [330, 130],
+        [250, T],
+        [330, T],
     ]);
     w('TB-SW', [
-        [190, 220],
-        [190, 240],
+        [190, T + 90],
+        [190, T + 150],
     ]);
     w('TB-MID', [
-        [190, 340],
-        [190, 360],
+        [190, T + 250],
+        [190, T + 310],
     ]);
     w('OUT', [
-        [190, 460],
-        [190, 510],
+        [190, T + 410],
+        [190, T + 460],
     ]);
-    const parts = [toggle3('SW', X(190), Y(130), mode, { rest: true }), capacitor('CB', X(190), Y(290), { orient: 'v', ends: ['CB.2', 'CB.1'], label: 'Bleed capacitor' }), resistor('RB', X(190), Y(410), { orient: 'v', ends: ['RB.2', 'RB.1'], label: 'Bleed resistor' })];
-    const marks = [netLabel('BUS', X(55), Y(130)), netLabel('REACT', X(330), Y(130)), netLabel('OUT', X(190), Y(510)), text('main signal', X(55), Y(170), { size: 14, weight: 600, fill: MUTED }), text('tone CW end', X(330), Y(170), { size: 14, weight: 600, fill: MUTED }), text('from the volume wiper', X(226), Y(515), { size: 14, weight: 600, fill: MUTED, anchor: 'start' })];
+    const parts = [toggle3('SW', X(190), Y(T), mode, { rest: true, restLabel: false }), capacitor('CB', X(190), Y(T + 200), { orient: 'v', ends: ['CB.2', 'CB.1'], label: 'Bleed capacitor' }), resistor('RB', X(190), Y(T + 360), { orient: 'v', ends: ['RB.2', 'RB.1'], label: 'Bleed resistor' })];
+    const joints = [
+        [T + 150, 'TB-SW'],
+        [T + 250, 'TB-MID'],
+        [T + 310, 'TB-MID'],
+        [T + 410, 'OUT'],
+    ]
+        .map(([y, net]) => `<circle cx="${X(190)}" cy="${Y(y)}" r="7" fill="${NET_COLORS[net]}"/>`)
+        .join('');
+    const note = { size: 14, weight: 600, fill: MUTED };
+    const marks = [netLabel('BUS', X(55), Y(T)), netLabel('REACT', X(330), Y(T)), netLabel('TB-SW', X(190), Y(T + 120)), netLabel('TB-MID', X(190), Y(T + 280)), netLabel('OUT', X(190), Y(T + 460)), text('main signal', X(55), Y(T + 40), note), text('tone CW end', X(375), Y(T + 40), { ...note, anchor: 'end' }), text('→ track → wiper (BUS)', X(375), Y(T + 58), { ...note, anchor: 'end' }), text('from the volume wiper', X(226), Y(T + 465), { ...note, anchor: 'start' })];
     const terminalPoints = P([
-        [130, 130],
-        [190, 130],
-        [250, 130],
-        [190, 220],
-        [190, 240],
-        [190, 340],
-        [190, 360],
-        [190, 460],
+        [130, T],
+        [190, T],
+        [250, T],
+        [190, T + 90],
+        [190, T + 150],
+        [190, T + 250],
+        [190, T + 310],
+        [190, T + 410],
     ]);
-    const end = { DIRECT: [130, 130, 83], REACTIVE: [250, 130, 292] }[mode];
+    const end = { DIRECT: [130, 83], REACTIVE: [250, 292] }[mode];
     let under = '';
     if (end) {
         const piece = P([
-            [190, 494],
-            [190, 220],
-            [end[0], end[1]],
-            [end[2], 130],
+            [190, T + 444],
+            [190, T + 90],
+            [end[0], T],
+            [end[1], T],
         ]);
         checkGlow(`sheet ${mode} mode`, [piece], geo, terminalPoints);
         under = glow(piece);
     }
-    const body = under + wires.join('') + parts.join('') + marks.join('');
+    const body = under + wires.join('') + parts.join('') + joints + marks.join('');
     return { body, terminals: ['RB.1', 'RB.2', 'CB.1', 'CB.2', 'SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'] };
 }
+
+const SHEET_TITLE = 'DIRECT / OFF / REACTIVE TREBLE BLEED • WIRING REFERENCE';
+const SHEET_REV = 'Rev 1.0 • 2026-11-23';
+const SLATE = '#2f3b48';
 
 function referenceSheet() {
     const out = [];
@@ -1008,15 +1029,22 @@ function referenceSheet() {
     const HALF_L = 580;
     const HALF_R = FULL - HALF_L - GAP;
     const RX = L + HALF_L + GAP;
+    const table = (x0, x1, top, headH, rowH, rows, colXs) => {
+        const bottom = top + headH + rows * rowH;
+        let s = `<rect x="${x0}" y="${top}" width="${x1 - x0}" height="${headH}" fill="${PANEL_BAND}"/><rect x="${x0}" y="${top}" width="${x1 - x0}" height="${bottom - top}" fill="none" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`;
+        for (const x of colXs) s += `<line x1="${x}" y1="${top}" x2="${x}" y2="${bottom}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`;
+        for (let i = 0; i < rows; i++) s += `<line x1="${x0}" y1="${top + headH + i * rowH}" x2="${x1}" y2="${top + headH + i * rowH}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`;
+        return { s, bottom };
+    };
 
     // Header.
-    add(text('DIRECT / OFF / REACTIVE TREBLE BLEED • WIRING REFERENCE', 600, 48, { size: 28, weight: 800 }));
+    add(text(SHEET_TITLE, 600, 48, { size: 28, weight: 800 }));
     add(text('MATCH IDENTICAL BOXED WIRE LABELS • CONFIRM POT AND SWITCH LUGS WITH A METER', 600, 74, { size: 15, weight: 700 }));
-    add(text('Rev 1.0 • 2026-11-23', 1188, 18, { size: 14, anchor: 'end', fill: MUTED }));
+    add(text(SHEET_REV, 1188, 18, { size: 14, anchor: 'end', fill: MUTED }));
 
     // 1. What you're building.
     let y = 88;
-    const h1 = 432;
+    const h1 = 472;
     add(card(L, y, FULL, h1, "1. WHAT YOU'RE BUILDING", 'Shown on Relay Lipstick; fits any guitar with one master volume and one master tone wired this way'));
     add(text('THREE MODES ON ONE SWITCH', 30, y + 64, { size: 16, weight: 800, anchor: 'start' }));
     let cy = y + 90;
@@ -1039,7 +1067,7 @@ function referenceSheet() {
     }
     add(text('THE JOB', 400, y + 64, { size: 16, weight: 800, anchor: 'start' }));
     cy = y + 90;
-    for (const step of ['1. Drill one 6 mm hole near the tone pot and mount the switch (6 mm suits the switch I link to; check yours).', '2. Rewire the tone pot: the signal moves to the wiper, and the 22 nF capacitor moves to the CCW end (panel 4).', "3. Move the bleed's input end to the switch's Common lug.", '4. Add two wires: BUS to Direct, and the tone CW end to Reactive.']) {
+    for (const step of ['1. Find a spot near the tone pot where the switch body clears the cavity, the pots and the wiring, then drill one hole sized for your switch (a common mini toggle needs 6 mm; measure yours first).', '2. Rewire the tone pot: the BUS wire moves to the wiper, and the 22 nF capacitor moves to the CCW end (panel 4).', "3. Move the bleed's input end to the switch's Common lug.", '4. Add two wires: BUS to Direct, and the tone CW end to Reactive.']) {
         wrap(step, 47).forEach((s, i) => {
             add(text(s, i ? 420 : 400, cy, { size: 15, anchor: 'start' }));
             cy += 21;
@@ -1063,77 +1091,81 @@ function referenceSheet() {
         const bw = Math.max(56, net.length * 11 + 20);
         add(netLabel(net, 888 - bw / 2, ly), text(desc, 902, ly + 5, { size: 14, anchor: 'start' }));
     });
-    add(text("Each wire in the drawings has its label's color.", 780, y + 96 + 7 * 38 + 2, { size: 14, anchor: 'start', fill: MUTED, weight: 600 }));
+    add(para(["Colored wires carry their label's color;", 'black lines are part leads.'], 780, y + 96 + 7 * 38 + 2, { size: 14, weight: 600, fill: MUTED, gap: 20 }));
 
     // 2. Stock circuit.
     y += h1 + GAP;
     const h2 = 600;
-    add(card(L, y, FULL, h2, '2. STOCK CIRCUIT (BEFORE)', 'Values shown are for a 500k volume pot'));
+    add(card(L, y, FULL, h2, '2. STOCK CIRCUIT (BEFORE)', 'Pots seen from the back, lugs down • values for a 500k volume pot'));
     const stock = circuit({ oy: y + 100, kind: 'stock', label: 'sheet stock' });
     add(stock.body);
-    checks.push({ svg: svgDoc(WIDTH, 4000, 'stock', stock.body), opts: { terminals: stock.terminals, nets: STOCK_NETS } });
+    checks.push({ label: 'panel 2 stock', svg: svgDoc(WIDTH, 4000, 'stock', stock.body), opts: { terminals: stock.terminals, nets: STOCK_NETS } });
     add(para(["As it comes: the signal (BUS) reaches the tone pot at its CCW end, the tone wiper goes to the 22 nF capacitor, and the CW end isn't used.", 'The bleed, a resistor and a capacitor in series, runs from BUS to OUT. If your volume pot has no bleed, add one (panel 7).'], 30, y + 540, { gap: 24 }));
 
     // 3. Finished circuit.
     y += h2 + GAP;
     const h3 = 650;
-    add(card(L, y, FULL, h3, '3. FINISHED CIRCUIT', 'Switch drawn in the middle (Off) position'));
-    const fin = circuit({ oy: y + 100, kind: 'new', mode: 'OFF', rest: true, badges: true, label: 'sheet finished' });
+    add(card(L, y, FULL, h3, '3. FINISHED CIRCUIT', 'Pots seen from the back, lugs down • switch in the middle (Off) position'));
+    const fin = circuit({ oy: y + 100, kind: 'new', mode: 'OFF', rest: true, badges: true, badgeColor: SLATE, label: 'sheet finished' });
     add(fin.body);
-    checks.push({ svg: svgDoc(WIDTH, 4000, 'finished', fin.body), opts: { terminals: fin.terminals, expectedMode: 'OFF' } });
-    add(para(['The numbers mark the wires that move or are new:', '1. The signal feed moves to the tone wiper.', '2. The 22 nF capacitor moves to the CCW end.'], 30, y + 548, { gap: 24 }));
+    checks.push({ label: 'panel 3 OFF', svg: svgDoc(WIDTH, 4000, 'finished', fin.body), opts: { terminals: fin.terminals, expectedMode: 'OFF' } });
+    add(para(['Functional contact map:', 'find Common with a meter', '(panel 5)'], 590, y + 250, { anchor: 'end', weight: 600, fill: MUTED, gap: 20 }));
+    add(para(['The numbers mark the wires that move or are new:', '1. The BUS wire moves to the tone wiper.', '2. The 22 nF capacitor moves to the CCW end.'], 30, y + 548, { gap: 24 }));
     add(para(['3. A new wire runs from the tone CW end to the Reactive lug.', "4. The bleed's input end moves to the switch's Common lug.", "5. A new wire runs from BUS to the switch's Direct lug."], 600, y + 548, { gap: 24 }));
     add(text('Everything else stays as it was.', 30, y + 628, { size: 15, anchor: 'start', weight: 600 }));
+    const pageBreak = y + h3 + GAP / 2;
 
     // 4. Tone pot lugs and 5. switch contacts.
     y += h3 + GAP;
-    const h4 = 470;
+    const h4 = 510;
     add(card(L, y, HALF_L, h4, '4. TONE POT LUGS', 'Seen from the back'));
     const tx = L + 400;
     const ty = y + 200;
     const toneParts = [
         wire('REACT', [
             [tx - 44, ty],
-            [tx - 44, ty + 80],
-            [tx - 110, ty + 80],
+            [tx - 44, ty + 120],
+            [tx - 110, ty + 120],
         ]),
         wire('BUS', [
             [tx, ty],
-            [tx, ty + 120],
+            [tx, ty + 150],
         ]),
         wire('TONE-CAP', [
             [tx + 44, ty],
-            [tx + 44, ty + 50],
-            [tx + 100, ty + 50],
-            [tx + 100, ty + 70],
+            [tx + 44, ty + 56],
+            [tx + 110, ty + 56],
+            [tx + 110, ty + 116],
         ]),
         wire('GND', [
-            [tx + 100, ty + 170],
-            [tx + 100, ty + 184],
+            [tx + 110, ty + 216],
+            [tx + 110, ty + 228],
         ]),
         pot('Tone', tx, ty, { view: 'rear', ends: { left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' } }),
-        capacitor('C22', tx + 100, ty + 120, { orient: 'v', ends: ['C22.HOT', 'C22.GND'], label: '22 nF' }),
-        groundSymbol(tx + 100, ty + 190),
-        netLabel('REACT', tx - 110, ty + 80),
-        netLabel('BUS', tx, ty + 120),
+        capacitor('C22', tx + 110, ty + 166, { orient: 'v', ends: ['C22.HOT', 'C22.GND'] }),
+        groundSymbol(tx + 110, ty + 234),
+        netLabel('REACT', tx - 110, ty + 120),
+        netLabel('BUS', tx, ty + 150),
+        netLabel('TONE-CAP', tx + 110, ty + 86),
     ].join('');
-    add(toneParts);
-    checks.push({ svg: svgDoc(WIDTH, 4000, 'tone lugs', toneParts), opts: { terminals: ['TONE.CW', 'TONE.W', 'TONE.CCW', 'C22.HOT', 'C22.GND'] } });
+    add(toneParts, text('22 nF', tx + 84, ty + 172, { size: 16, weight: 600, anchor: 'end' }));
+    checks.push({ label: 'panel 4 tone pot', svg: svgDoc(WIDTH, 4000, 'tone lugs', toneParts), opts: { terminals: ['TONE.CW', 'TONE.W', 'TONE.CCW', 'C22.HOT', 'C22.GND'] } });
     add(text('REAR VIEW • shaft away • lugs down', 30, y + 66, { size: 15, weight: 700, anchor: 'start', fill: MUTED }));
-    add(text('LEFT / CW → REACT', 30, y + 102, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS.REACT }), para(["to the switch's Reactive lug", '(the wiper reaches it at tone 10)'], 30, y + 124));
-    add(text('CENTER / WIPER → BUS', 30, y + 182, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS.BUS }), para(['the main signal wire'], 30, y + 204));
-    add(text('RIGHT / CCW → 22 nF → GND', 30, y + 240, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS['TONE-CAP'] }), para(['(the wiper reaches it at tone 0)'], 30, y + 262));
-    add(text('Clockwise at the knob = brighter', 30, y + 330, { size: 16, weight: 700, anchor: 'start' }));
-    add(para(['Makers number lugs differently: find the wiper and the', "ends with a meter. The volume pot's wiring doesn't change."], 30, y + 426, { gap: 22 }));
+    add(para(['CW = clockwise end', 'CCW = counter-clockwise end'], 30, y + 90, { weight: 600, fill: MUTED, gap: 20 }));
+    add(text('LEFT / CW → REACT', 30, y + 142, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS.REACT }), para(["to the switch's Reactive lug", '(the wiper reaches it at tone 10)'], 30, y + 164));
+    add(text('CENTER / WIPER → BUS', 30, y + 222, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS.BUS }), para(['the main signal wire'], 30, y + 244));
+    add(text('RIGHT / CCW → 22 nF → GND', 30, y + 278, { size: 17, weight: 800, anchor: 'start', fill: NET_COLORS['TONE-CAP'] }), para(['(the wiper reaches it at tone 0)'], 30, y + 300));
+    add(text('Clockwise at the knob = brighter', 30, y + 392, { size: 16, weight: 700, anchor: 'start' }));
+    add(para(['Makers number lugs differently: find the wiper and the', "ends with a meter. The volume pot's wiring doesn't change."], 30, y + 470, { gap: 22 }));
 
     add(card(RX, y, HALF_R, h4, '5. SWITCH CONTACTS', 'Functional contact map'));
-    const sx = RX + 130;
-    const sw = toggle3('SW', sx, y + 150, null, { rest: true });
+    const sw = toggle3('SW', RX + 130, y + 150, null, { rest: true });
     add(sw);
-    checks.push({ svg: svgDoc(WIDTH, 4000, 'switch', sw), opts: { terminals: ['SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'] } });
+    checks.push({ label: 'panel 5 switch', svg: svgDoc(WIDTH, 4000, 'switch', sw), opts: { terminals: ['SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'] } });
     const cols = [RX + 250, RX + 350, RX + 490, HALF_R + RX - 14];
     const top = y + 60;
-    add(`<rect x="${cols[0]}" y="${top}" width="${cols[3] - cols[0]}" height="38" fill="${PANEL_BAND}"/>`);
+    const sTable = table(cols[0], cols[3], top, 38, 46, 3, cols.slice(1, 3));
+    add(sTable.s);
     [
         ['LEVER', cols[0]],
         ['COMMON JOINS', cols[1]],
@@ -1148,16 +1180,17 @@ function referenceSheet() {
         add(text(pos, cols[0] + 10, ry + 29, { size: 16, weight: 700, anchor: 'start' }), text(joins, cols[1] + 10, ry + 29, { size: 15, anchor: 'start' }));
         add(net ? netLabel(net, (cols[2] + cols[3]) / 2, ry + 23) : text('open', (cols[2] + cols[3]) / 2, ry + 29, { size: 15, weight: 700, fill: MUTED }));
     });
-    const tableBottom = top + 38 + 3 * 46;
-    add(`<rect x="${cols[0]}" y="${top}" width="${cols[3] - cols[0]}" height="${tableBottom - top}" fill="none" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
-    for (const x of cols.slice(1, 3)) add(`<line x1="${x}" y1="${top}" x2="${x}" y2="${tableBottom}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
-    for (let i = 0; i <= 2; i++) add(`<line x1="${cols[0]}" y1="${top + 38 + i * 46}" x2="${cols[3]}" y2="${top + 38 + i * 46}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
-    add(para(wrap('An on–off–on mini toggle (SPDT) has three lugs: Common and two ends. The middle lever position touches no lug.', 70), RX + 20, y + 318, { gap: 22 }), para(wrap('This is the idea, not the lug layout. Switches put Common on different lugs, so confirm with a meter on continuity: Common beeps to the Direct lug in Direct, to the Reactive lug in Reactive, and to nothing in Off.', 70), RX + 20, y + 374, { gap: 22 }));
+    cy = y + 296;
+    for (const p of ['An on–off–on mini toggle (SPDT) has three lugs: Common and two ends. On many mini toggles, Common is the middle lug of the row.', 'The dashed circle shows where the lever rests in the middle position. It is not a place on the part, and it touches nothing.', 'This is the idea, not the lug layout, so confirm with a meter on continuity: Common beeps to the Direct lug in Direct, to the Reactive lug in Reactive, and to nothing in Off.']) {
+        const ls = wrap(p, 70);
+        add(para(ls, RX + 20, cy, { gap: 22 }));
+        cy += ls.length * 22 + 12;
+    }
 
     // 6. The three modes.
     y += h4 + GAP;
-    const h6 = 712;
-    add(card(L, y, FULL, h6, '6. THREE MODES • OPERATING STATES', 'The switch end of the bleed; the glow marks the bleed path'));
+    const h6 = 768;
+    add(card(L, y, FULL, h6, '6. THREE MODES • OPERATING STATES', 'How the switch connects the bleed; the glow shows its path'));
     const modes = [
         ['DIRECT', 'Direct', 'The lever joins Common to the Direct lug, so the bleed meets the main signal wire (BUS). An ordinary treble bleed.'],
         ['OFF', 'Off', 'The lever rests on no lug, so the bleed is disconnected. The tone knob works as usual.'],
@@ -1166,39 +1199,37 @@ function referenceSheet() {
     modes.forEach(([mode, name, desc], i) => {
         const ox = L + i * (FULL / 3);
         const oy = y + 40;
-        if (i) add(`<line x1="${ox}" y1="${y + 50}" x2="${ox}" y2="${y + h6 - 60}" stroke="#c9d3de" stroke-width="2"/>`);
+        if (i) add(`<line x1="${ox}" y1="${y + 50}" x2="${ox}" y2="${y + h6 - 80}" stroke="#c9d3de" stroke-width="2"/>`);
         const m = modeMini(mode, ox, oy);
         add(text(name, ox + 20, oy + 36, { size: 22, weight: 800, anchor: 'start' }), m.body);
-        checks.push({ svg: svgDoc(WIDTH, 4000, `${name} mode`, m.body), opts: { terminals: m.terminals, expectedMode: mode } });
-        add(para(wrap(desc, 46), ox + 20, oy + 565));
+        checks.push({ label: `panel 6 ${mode}`, svg: svgDoc(WIDTH, 4000, `${name} mode`, m.body), opts: { terminals: m.terminals, expectedMode: mode } });
+        add(para(wrap(desc, 46), ox + 20, oy + 596));
     });
-    add(text('At tone 10, Reactive and Direct are the same circuit. At volume 10, all three modes are the same.', 30, y + h6 - 20, { size: 16, weight: 700, anchor: 'start' }));
+    add(para(['The dashed circle is the middle rest position: no lug, so nothing is joined.', 'At tone 10, Reactive and Direct are the same circuit. At volume 10, all three modes are the same.'], 30, y + h6 - 44, { size: 16, weight: 700, gap: 24 }));
 
     // 7. Values and 8. ground and bench checks.
     y += h6 + GAP;
-    const h7 = 350;
+    const h7 = 390;
     add(card(L, y, HALF_L, h7, '7. VALUES BY VOLUME POT'));
     const vc = [30, 150, 290, 430, 570];
     const vt = y + 50;
-    add(`<rect x="${vc[0]}" y="${vt}" width="${vc[4] - vc[0]}" height="38" fill="${PANEL_BAND}"/>`);
+    const vTable = table(vc[0], vc[4], vt, 38, 40, 3, vc.slice(1, 4));
+    add(vTable.s);
     ['VOLUME POT', 'BLEED RESISTOR', 'BLEED CAPACITOR', 'TONE CAPACITOR'].forEach((h, i) => add(text(h, (vc[i] + vc[i + 1]) / 2, vt + 25, { size: 14, weight: 800 })));
     [
         ['500k', '150 kΩ', '1 nF', '22 nF'],
         ['250k', '68 kΩ', '1 nF', '22 nF'],
         ['1M', '330 kΩ', '1 nF', '22 nF'],
     ].forEach((row, r) => row.forEach((v, i) => add(text(v, (vc[i] + vc[i + 1]) / 2, vt + 38 + r * 40 + 27, { size: 17, weight: i === 0 ? 800 : 600 }))));
-    const vBottom = vt + 38 + 3 * 40;
-    add(`<rect x="${vc[0]}" y="${vt}" width="${vc[4] - vc[0]}" height="${vBottom - vt}" fill="none" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
-    for (const x of vc.slice(1, 4)) add(`<line x1="${x}" y1="${vt}" x2="${x}" y2="${vBottom}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
-    for (let i = 0; i <= 2; i++) add(`<line x1="${vc[0]}" y1="${vt + 38 + i * 40}" x2="${vc[4]}" y2="${vt + 38 + i * 40}" stroke="${PANEL_BORDER}" stroke-width="1.5"/>`);
+    const vBottom = vTable.bottom;
     add(text('The drawings show the 500k values (Lipstick).', 30, vBottom + 28, { size: 15, anchor: 'start' }));
     add(text('Tuning by ear', 30, vBottom + 60, { size: 16, weight: 800, anchor: 'start' }));
-    add(para(['• Subtler: a smaller capacitor, 470–680 pF', '• Brighter: a larger capacitor, 1.5–2.2 nF', '• Resistor: one standard step either way'], 30, vBottom + 84, { gap: 22 }));
+    add(para(['• Subtler: a smaller capacitor, 470–680 pF', '• Brighter: a larger capacitor, 1.5–2.2 nF', '• Resistor: one standard step either way, meaning the next'], 30, vBottom + 84, { gap: 22 }), text('value up or down in the usual resistor series', 42, vBottom + 150, { size: 15, anchor: 'start' }));
 
     add(card(RX, y, HALF_R, h7, '8. COMMON GROUND & BENCH CHECKS'));
     add(para(wrap("GND (ground) joins the volume pot's CCW lug, the 22 nF capacitor's free end and the jack sleeve. The rest of the guitar's ground stays as it is.", 74), RX + 20, y + 64, { gap: 22 }));
     add(text('BENCH CHECKS', RX + 20, y + 126, { size: 16, weight: 800, anchor: 'start' }));
-    const bench = ['1. Tone at 10: Direct and Reactive sound the same.', '2. Volume at 10: all three modes sound the same.', '3. The switch is quiet when I change modes.', '4. The switch body clears the cavity, the pots and the wiring.', '5. Match the loudness, then compare the modes at volume 5, tone 5 and at volume 8, tone 8.', '6. Sweep both knobs in each mode.'];
+    const bench = ['1. Meter all three positions: Common to Direct in Direct, Common to Reactive in Reactive, Common to nothing in Off.', '2. Tone at 10: Direct and Reactive sound the same.', '3. Volume at 10: all three modes sound the same.', '4. The switch is quiet when I change modes.', '5. The switch still clears the cavity, the pots and the wiring.', '6. Match the loudness, then compare the modes at volume 5, tone 5 and at volume 8, tone 8.', '7. Sweep both knobs in each mode.'];
     cy = y + 152;
     for (const b of bench) {
         wrap(b, 66).forEach((s, i) => {
@@ -1210,35 +1241,51 @@ function referenceSheet() {
     const height = y + h7 + 10;
     const title = 'Direct / Off / Reactive treble bleed';
     const description = 'Builder wiring reference for the Direct / Off / Reactive treble bleed switch, revision 1.0, 2026-11-23, in eight numbered panels: what you are building, the stock volume and tone circuit, the finished circuit with the five changed wires numbered, the tone pot lugs from the rear, the switch contact map, the three modes, the bleed values by volume pot, and common ground with bench checks.';
+    const body = out.join('');
+    // Two print pages cut between panels 3 and 4. Page B repeats the title and revision above panels 4 to 8.
+    const pageA = svgDoc(WIDTH, pageBreak, `${title}, page 1 of 2`, body + text('Page 1 of 2 • panels 1–3', 12, 18, { size: 14, anchor: 'start', fill: MUTED }));
+    const headB = 86;
+    const pageBHeight = headB + height - pageBreak;
+    const pageB = svgDoc(WIDTH, pageBHeight, `${title}, page 2 of 2`, `${text(SHEET_TITLE, 600, 48, { size: 28, weight: 800 })}${text(SHEET_REV, 1188, 18, { size: 14, anchor: 'end', fill: MUTED })}${text('Page 2 of 2 • panels 4–8', 12, 18, { size: 14, anchor: 'start', fill: MUTED })}<clipPath id="pageb"><rect x="0" y="${pageBreak}" width="${WIDTH}" height="${height - pageBreak}"/></clipPath><g clip-path="url(#pageb)" transform="translate(0 ${headB - pageBreak})">${body}</g>`);
     return {
         name: 'relay-treble-bleed-switch-rev-1.0',
-        svg: doc(height, title, description, out.join('')),
+        svg: doc(height, title, description, body),
         checks,
         svgPath: join(here, 'relay-treble-bleed-switch-rev-1.0.svg'),
         pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png'),
+        pages: [
+            { svg: pageA, pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-a.png') },
+            { svg: pageB, pngPath: join(repoRoot, 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-b.png') },
+        ],
     };
 }
 
 export async function generateAll() {
     const written = [];
     const problems = [];
+    const checked = [];
     geometryProblems.length = 0;
     const drawings = [signalChainDrawing(), volumePotDrawing(), potAndCableDrawing(), brightnessSketchDrawing(), volumeDrawing(false), volumeDrawing(true), variantsDrawing(), tonePotDrawing(), reactiveDrawing(), threeModesDrawing(), beforeDrawing(), afterDrawing(), potLugsDrawing(), switchContactsDrawing(), referenceSheet()];
     mkdirSync(outDir, { recursive: true });
     for (const d of drawings) {
-        for (const check of d.checks) {
+        d.checks.forEach((check, i) => {
             const result = verifyDrawing(check.svg, check.opts);
+            checked.push(`${d.name}: ${check.label ?? `check ${i + 1}`}`);
             for (const p of result.problems) problems.push(`${d.name}: ${p}`);
-        }
+        });
         if (/unvalidated|pending|experimental|not yet tested|to be determined|TBD|\bwe\b|\bour\b/i.test(d.svg.replace(/<[^>]+>/g, ' '))) problems.push(`${d.name}: caption wording breaks the style rules`);
         const svgPath = d.svgPath ?? join(outDir, `${d.name}.svg`);
         const pngPath = d.pngPath ?? join(outDir, `${d.name}.png`);
         writeFileSync(svgPath, d.svg);
         await sharp(Buffer.from(d.svg), { density: 144 }).png().toFile(pngPath);
         written.push(svgPath, pngPath);
+        for (const page of d.pages ?? []) {
+            await sharp(Buffer.from(page.svg), { density: 144 }).png().toFile(page.pngPath);
+            written.push(page.pngPath);
+        }
     }
     problems.push(...geometryProblems);
-    return { written, problems };
+    return { written, problems, checked };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -90,3 +90,4 @@ Lipstick's stock tone pot has `BUS` on its `CCW` lug and the 22 nF capacitor on 
 - `TB-MID`, `TB-SW`, `TONE-CAP` and `REACT` are labels added here for the netlist.
 - The push-push switch functions on Lipstick are unchanged and are not modeled here.
 - Some switches have the common on a different lug; identify the common, and the two throws, by continuity in all three positions.
+- Switch hole: a common mini toggle needs a 6 mm hole (owner-provided, 2026-11-23). The hole is sized for the switch actually bought, so measure it first.

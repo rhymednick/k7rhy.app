@@ -7,9 +7,9 @@ export const NET_COLORS = {
     BUS: '#1f5fbf',
     OUT: '#c0392b',
     'TB-MID': '#8e44ad',
-    'TB-SW': '#d35400',
+    'TB-SW': '#0b7285',
     'TONE-CAP': '#16803c',
-    REACT: '#b8860b',
+    REACT: '#8a6508',
     GND: '#444444',
     OPEN: '#888888',
 };
@@ -95,9 +95,9 @@ export function toggle3(id, x, y, mode, opts = {}) {
     const throws = { DIRECT: [x - 60, y, 'Direct'], OFF: [x, y, 'Off'], REACTIVE: [x + 60, y, 'Reactive'] };
     const common = [x, y + 90];
     // opts.rest draws the Off point as a dashed hollow rest marker, not a lug: a real on-off-on switch has no lug there.
-    // It keeps its terminal tag so the verifier can still check the lever.
+    // It keeps its terminal tag so the verifier can still check the lever. opts.restLabel false leaves off its caption.
     const lug = ([m, [tx, ty, label]]) => {
-        if (opts.rest && m === 'OFF') return `<circle data-terminal="${id}.${m}" cx="${tx}" cy="${ty}" r="9" fill="none" stroke="${INK}" stroke-width="2" stroke-dasharray="4 3"/>${text('Rest position,', tx, ty - 74, { size: 16, weight: 600, fill: '#4a5560', halo: true })}${text('no lug', tx, ty - 54, { size: 16, weight: 600, fill: '#4a5560', halo: true })}`;
+        if (opts.rest && m === 'OFF') return `<circle data-terminal="${id}.${m}" cx="${tx}" cy="${ty}" r="9" fill="none" stroke="${INK}" stroke-width="2" stroke-dasharray="4 3"/>${opts.restLabel === false ? '' : `${text('Rest position,', tx, ty - 74, { size: 16, weight: 600, fill: '#4a5560', halo: true })}${text('no lug', tx, ty - 54, { size: 16, weight: 600, fill: '#4a5560', halo: true })}`}`;
         return `${terminal(`${id}.${m}`, tx, ty)}${text(label, tx, ty - 20, { size: 16, weight: 600, halo: true })}`;
     };
     const lugs = Object.entries(throws).map(lug).join('');
