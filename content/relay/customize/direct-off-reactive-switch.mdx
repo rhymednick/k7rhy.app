@@ -57,7 +57,7 @@ It is **not a fit** when any of these is true:
 
 To confirm the fit, unplug the guitar and set your meter to continuity (the setting that beeps when two points are connected). Seen from the back, with the shaft pointing away and the lugs at the bottom:
 
-1. Touch one probe to the volume pot's left lug, its input end. Touch the other probe to each tone pot lug in turn. Exactly one tone lug should beep. That tone lug is on BUS.
+1. Set the tone knob to about 5, so its wiper sits away from both ends. Touch one probe to the volume pot's left lug, its input end (if you're unsure which lug that is, confirm it with the meter as in [Identify your lugs](#identify-your-lugs)). Touch the other probe to each tone pot lug in turn. Exactly one tone lug should beep. That tone lug is on BUS. The other two only reach BUS through part of the tone pot's track, which is far too much resistance to beep.
 2. Set the volume knob to about 5, so its wiper sits away from both ends. Move the first probe to the volume pot's middle lug, its wiper, and touch each tone pot lug again. None should beep. If one does, the tone pot is fed from the wiper, and the guitar is not a fit.
 3. Look at the other two tone pot lugs. One should carry a single capacitor whose other lead goes to ground (to the back of a pot or to the ground wire). The other should have nothing on it.
 4. Look at the volume pot. Between its left lug and its middle lug there should be nothing, or one resistor and one capacitor joined end to end, with nothing else at the joint where they meet.
@@ -100,12 +100,13 @@ No stock body has a hole for this switch, so the retrofit starts with drilling o
 - Your fingers can reach the lever easily, without bumping the knobs.
 - The spot is clear of the pickguard's edge and of the other controls, with enough space around the switch for its nut and washer.
 - The switch's body lands inside the control cavity, clear of the cavity walls, with room behind it for the body, its lugs and the wires that will go on them. Measure the switch from the bottom of its bushing to the tips of its lugs, then check the cavity depth at that spot.
+- The bushing can reach through. A mini toggle has only a few millimeters of thread, and the washer and nut need some of it. Measure how thick the material is at the spot (the pickguard, the control plate, or the wood above the cavity), and make sure it is thinner than the threaded length of the bushing with room left over for the washer and nut. If it isn't, choose another spot: a hole that is too deep for the switch can't be undone.
 
-**Measure your bushing.** The hole has to match the switch you bought. A common mini toggle needs a 6 mm hole, and the one I link needs 6 mm. Measure the outside of your own switch's threaded bushing anyway, and size the hole to that measurement rather than to this page.
+**Measure your bushing.** The hole has to match the switch you bought. A common mini toggle needs a 6 mm hole, and the one I link needs 6 mm. Measure the outside of your own switch's threaded bushing anyway, and drill the hole just over that measurement, so the bushing slides through without forcing. Go by your switch, not by this page.
 
 **Mark and drill.**
 
-1. Take the strings off or slacken them, and protect the guitar's top with a soft cloth around the work area.
+1. Wear eye protection. If the switch goes through a pickguard or a control plate, take that part off the guitar and drill it on the bench, supported on a scrap of wood. If it goes into the body, take the strings off or slacken them, and protect the guitar's top with a soft cloth around the work area.
 2. Put masking tape over the spot. The tape protects the finish and keeps the bit from wandering. Mark the center on the tape with a pencil, then press a small dent there with the sharp point.
 3. Drill a small pilot hole straight down. Go slowly and let the bit do the work.
 4. Open the hole to its final size with the right bit for the material: a sharp brad-point bit for wood, a step bit or sharp twist bit for a plastic pickguard or a metal control plate. Ease off just before the bit breaks through, so the far side doesn't chip.
@@ -214,7 +215,7 @@ The steps use the wire names from the diagrams. You've met three of them. The ot
 - `TONE-CAP`: the tone pot's CCW end to the 22 nF capacitor.
 - `REACT`: the tone pot's CW end to the switch's Reactive lug.
 
-Each step names the wire it makes, and the number in brackets is its orange mark in Diagram 12.
+Each step names the wire it makes, and the number in parentheses is its orange mark in Diagram 12.
 
 1. **Free the tone pot.** Desolder the BUS wire and the 22 nF capacitor's lead from the tone pot. Leave the capacitor's other lead on ground.
 2. **`BUS` to the tone wiper (mark 1).** Solder the BUS wire to the tone pot's middle lug, the wiper.
@@ -223,7 +224,7 @@ Each step names the wire it makes, and the number in brackets is its orange mark
 5. **The bleed (mark 4).** One end of the bleed stays on the volume wiper, `OUT`, and the other end goes to the switch:
     - **If your volume pot already has a series bleed,** desolder the end that is on the volume pot's input lug and leave the end on the wiper in place. On Lipstick, that means the 1 nF capacitor comes off the input lug and the 150 kΩ resistor stays on the wiper. In a series pair the order of the two parts makes no difference to the sound, so whichever part is on your wiper can stay there.
     - **If it has no bleed,** solder one lead of the bleed resistor to the volume wiper, `OUT`. Twist the resistor's other lead together with one lead of the bleed capacitor, solder the joint, and cover it with heat-shrink tubing. That joint is `TB-MID`.
-6. **`TB-SW` (mark 4).** Solder the bleed capacitor's free lead to the switch's common lug, adding a short wire if it doesn't reach. Sleeve the bare lead so it can't touch a pot or the cavity shielding.
+6. **`TB-SW` (mark 4).** Solder the bleed's free end to the switch's common lug (on Lipstick, and when you build a new bleed as above, that is the capacitor's free lead), adding a short wire if it doesn't reach. Sleeve the bare lead so it can't touch a pot or the cavity shielding.
 7. **`BUS` to Direct (mark 5).** Run a new wire from the volume pot's input lug, which is on BUS, to the switch's Direct lug.
 8. **Check what didn't move.** The volume pot's input lug is still on BUS, its wiper on OUT and the jack tip, and its CCW end on ground. The switch's middle position connects to nothing, so nothing else goes on the switch.
 
@@ -294,7 +295,7 @@ In every mode the tone knob works the same way, because the tone pot's wiper sta
 
 Do the meter checks with the guitar unplugged, then the listening checks through an amp at a modest volume.
 
-1. **Meter all three positions.** On continuity: in Direct, the common beeps with the Direct lug; in Reactive, the common beeps with the Reactive lug; in Off, the common beeps with nothing. This proves the switch is wired to the lugs you think it is.
+1. **Meter all three positions.** Set the tone knob to 0 first. At tone 10 the tone pot joins the Direct and Reactive lugs to each other, so the meter can't tell them apart; at tone 0 the whole tone track sits between them. Then, on continuity: in Direct, the common beeps with the Direct lug and not with the Reactive lug; in Reactive, the common beeps with the Reactive lug and not with the Direct lug; in Off, the common beeps with nothing. This proves the switch is wired to the lugs you think it is.
 2. **Tone 10: Direct and Reactive match.** Set the tone to 10 and the volume to about halfway. Flip between Direct and Reactive. They should sound the same. If they don't, the Reactive wire is on the wrong tone pot lug.
 3. **Volume 10: all three match.** Set the volume to 10 and flip through all three modes, at any tone setting. They should sound the same, because at full volume there is nothing for a bleed to skip past.
 4. **The switch is quiet.** Flipping between modes should make no pop or crackle. Noise here usually means a poor solder joint or a stray wire strand touching something.

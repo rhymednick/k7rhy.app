@@ -104,20 +104,25 @@ describe('Relay Customize content pages', () => {
             ['500k', '150 kΩ'],
             ['250k', '68 kΩ'],
             ['1M', '330 kΩ'],
-        ])('pairs a %s volume pot with %s and 1 nF in the value table', (pot, resistor) => {
+        ])('pairs a %s volume pot with %s, 1 nF and the 22 nF tone capacitor in the value table', (pot, resistor) => {
             const row = source.split('\n').find((line) => line.trim().startsWith('|') && line.includes(` ${pot} `) && line.includes(resistor));
             expect(row, `a table row with ${pot} and ${resistor}`).toBeDefined();
-            expect(row).toContain('1 nF');
+            expect(row).toMatch(/(?<![\d.])1 nF/);
+            expect(row).toMatch(/(?<![\d.])22 nF/);
         });
 
         it.each(['11-before', '12-after', '13-pot-lugs', '14-switch-contacts'])('shows diagram %s', (name) => {
             expect(source).toContain(`src="/circuits/treble-bleed/${name}.png"`);
+            expect(fs.existsSync(path.join(publicDir, 'circuits', 'treble-bleed', `${name}.png`)), `${name}.png should exist under public/`).toBe(true);
         });
 
         it('shows the builder sheet and links both print pages', () => {
             expect(source).toContain('src="/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png"');
             expect(source).toContain('/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-a.png');
             expect(source).toContain('/wiring-diagrams/relay-treble-bleed-switch-rev-1.0-page-b.png');
+            for (const file of ['relay-treble-bleed-switch-rev-1.0.png', 'relay-treble-bleed-switch-rev-1.0-page-a.png', 'relay-treble-bleed-switch-rev-1.0-page-b.png']) {
+                expect(fs.existsSync(path.join(publicDir, 'wiring-diagrams', file)), `${file} should exist under public/`).toBe(true);
+            }
         });
 
         it('never uses "we", "our" or "us" outside code', () => {
