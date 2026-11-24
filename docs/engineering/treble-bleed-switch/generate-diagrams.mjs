@@ -1184,7 +1184,7 @@ function referenceSheet() {
         add(net ? netLabel(net, (cols[2] + cols[3]) / 2, ry + 23) : text('open', (cols[2] + cols[3]) / 2, ry + 29, { size: 15, weight: 700, fill: MUTED }));
     });
     cy = y + 296;
-    for (const p of ['An on–off–on mini toggle (SPDT) has three lugs: Common and two ends. On many mini toggles, Common is the middle lug of the row.', 'The dashed circle shows where the lever rests in the middle position. It is not a place on the part, and it touches nothing.', 'This is the idea, not the lug layout, so confirm with a meter on continuity: Common beeps to the Direct lug in Direct, to the Reactive lug in Reactive, and to nothing in Off.']) {
+    for (const p of ['An on–off–on mini toggle (SPDT) has three lugs: Common and two ends. On many mini toggles, Common is the middle lug of the row.', 'The dashed circle shows where the lever rests in the middle position. It is not a place on the part, and it touches nothing.', 'This is the idea, not the lug layout, so confirm with a meter on continuity, with the tone at 0: Common beeps to the Direct lug in Direct, to the Reactive lug in Reactive, and to nothing in Off.']) {
         const ls = wrap(p, 70);
         add(para(ls, RX + 20, cy, { gap: 22 }));
         cy += ls.length * 22 + 12;
@@ -1232,7 +1232,7 @@ function referenceSheet() {
     add(card(RX, y, HALF_R, h7, '8. COMMON GROUND & BENCH CHECKS'));
     add(para(wrap("GND (ground) joins the volume pot's CCW lug, the 22 nF capacitor's free end and the jack sleeve. The rest of the guitar's ground stays as it is.", 74), RX + 20, y + 64, { gap: 22 }));
     add(text('BENCH CHECKS', RX + 20, y + 126, { size: 16, weight: 800, anchor: 'start' }));
-    const bench = ['1. Meter all three positions: Common to Direct in Direct, Common to Reactive in Reactive, Common to nothing in Off.', '2. Tone at 10: Direct and Reactive sound the same.', '3. Volume at 10: all three modes sound the same.', '4. The switch is quiet when I change modes.', '5. The switch still clears the cavity, the pots and the wiring.', '6. Match the loudness, then compare the modes at volume 5, tone 5 and at volume 8, tone 8.', '7. Sweep both knobs in each mode.'];
+    const bench = ['1. With the tone at 0, meter all three positions: Common to Direct in Direct, Common to Reactive in Reactive, Common to nothing in Off, and not to the other throw.', '2. Tone at 10: Direct and Reactive sound the same.', '3. Volume at 10: all three modes sound the same.', '4. The switch is quiet when you change modes.', '5. The switch still clears the cavity, the pots and the wiring.', '6. Match the loudness, then compare the modes at volume 5, tone 5 and at volume 8, tone 8.', '7. Sweep both knobs in each mode.'];
     cy = y + 152;
     for (const b of bench) {
         wrap(b, 66).forEach((s, i) => {

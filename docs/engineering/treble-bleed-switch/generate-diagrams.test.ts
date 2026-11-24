@@ -95,6 +95,12 @@ describe('treble bleed explainer schematics', () => {
         for (const v of ['470–680 pF', '1.5–2.2 nF']) expect(svg).toContain(v);
         expect(labels.join(' ')).toContain('a common mini toggle needs 6 mm; measure yours first');
         expect(svg).not.toContain('switch I link');
+        const prose = labels.join(' ');
+        expect(prose).toContain('1. With the tone at 0, meter all three positions');
+        expect(prose).toContain('and not to the other throw');
+        expect(prose).toContain('with the tone at 0: Common beeps');
+        expect(prose).toContain('quiet when you change modes');
+        expect(prose).not.toMatch(/when I change modes/);
     }, 120000);
 
     it('puts the exact meter reminder on the switch contact map', () => {
