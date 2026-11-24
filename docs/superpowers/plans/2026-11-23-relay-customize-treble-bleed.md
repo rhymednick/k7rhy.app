@@ -22,7 +22,7 @@
 - Fit rule: wired like Lipstick, with the tone pot's hot end on the volume input (`BUS`); no bleed, or a fixed series R and C bleed (reused). Out of fit: tone fed from the volume wiper or with extra parts; any other bleed; summed volumes (Reef, Reef Plus).
 - Switch link: `https://www.amazon.com/dp/B0799JK458`. Check the listing's bushing size when writing the page.
 - Diagram assets: explainers in `public/circuits/treble-bleed/NN-slug.svg` plus `.png`; the builder sheet in `public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png`. Every `<img>` has a descriptive `alt`.
-- No spawning of subagents (including diagram reviewers) without asking the owner first.
+- Execution is subagent-driven, approved by the owner on 2026-11-23. That approval covers the per-task implementers, the per-task reviewers and the two diagram reviewers in Task 5. Any other subagent use still needs a question first.
 - Before touching a wiring page run `scripts/typesafe/check-wiring-pages.mjs` (see Task 8).
 
 ## Review Focus
@@ -149,7 +149,7 @@ Match [relay-arc-rev-1.0.png](../../engineering/references/relay-arc-rev-1.0.png
 - [ ] **Step 1: Extend the test** to expect the sheet's files and a `problems` list of `[]`.
 - [ ] **Step 2: Run it.** Expected: FAIL.
 - [ ] **Step 3: Implement the sheet.** Render at full size and compare layout with the Arc reference image.
-- [ ] **Step 4: Ask the owner for permission to spawn two reviewer subagents** (the wiring workflow requires two independent reviews: one tracing electrical connectivity and all three modes; one checking lug orientation, readability and whether a builder can follow it). On yes, give each the netlist and the exported PNG, ask for specific pass/fail findings, fix, regenerate and re-review the changed export. On no, ask the owner how to review.
+- [ ] **Step 4: Run the two independent reviews with reviewer subagents** (approved by the owner; the wiring workflow requires them: one tracing electrical connectivity and all three modes; one checking lug orientation, readability and whether a builder can follow it). Give each the netlist and the exported PNG, ask for specific pass/fail findings, fix, regenerate and re-review the changed export.
 - [ ] **Step 5: Commit** `Add treble bleed switch reference sheet`.
 
 ### Task 6: Sidebar group and routes
@@ -186,7 +186,7 @@ Match [relay-arc-rev-1.0.png](../../engineering/references/relay-arc-rev-1.0.png
 - Create: `content/relay/customize/direct-off-reactive-switch.mdx`
 - Modify: `scripts/typesafe/check-wiring-pages.mjs` (add to `PAIRS`)
 
-- [ ] **Step 1: Ask the owner to confirm the scaled values** (250k: 68 kΩ + 1 nF; 1M: 330 kΩ + 1 nF) and whether the switch has an affiliate short link to use. Do not write the value table until the owner answers. Use the answers verbatim.
+- [ ] **Step 1: Values and link are settled.** The owner confirmed 250k: 68 kΩ + 1 nF and 1M: 330 kΩ + 1 nF on 2026-11-23, and has no affiliate link (use the plain `amazon.com/dp/B0799JK458` address). Nothing to ask.
 - [ ] **Step 2: Extend `customize-pages.test.ts`** to expect the retrofit page: it contains the three mode names `Direct`, `Off`, `Reactive`; the exact link `https://www.amazon.com/dp/B0799JK458` (or the owner's affiliate link); the text `6 mm`; the value table rows for 250k, 500k and 1M; and references diagrams 11–14 and the builder sheet.
 - [ ] **Step 3: Run it.** Expected: FAIL.
 - [ ] **Step 4: Write the page** following "Page 2" in the spec, sections 1–11 in order, with the value table as in Global Constraints, the fit rules and continuity test, the hole section (choose a spot near the tone pot where there is room, measure your own switch's bushing because the right hole depends on the switch bought, drill with tape and pilot hole, protect the finish, mount before wiring), numbered wiring steps tied to net labels from the netlist, bench checks from the spec, the Lipstick worked example (drawings only), tuning by ear, and troubleshooting. Net labels in the text use the netlist's names exactly. Confirm the switch bushing size on the Amazon listing; if the listing says otherwise than 6 mm, tell the owner before publishing.

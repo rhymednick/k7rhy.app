@@ -156,8 +156,9 @@ Resolved by the owner on 2026-11-23: no guitar adopts the switch as a standard b
 
 Resolved on 2026-11-23: the stock wiring is Lipstick's; the hole is drilled, 6 mm for the linked switch, near the tone pot where there is room; the switch is linked as the suggested part.
 
-1. **Affiliate link.** Does the linked switch have an affiliate short link to use instead of the plain product address? Not blocking.
-2. **Scaled bleed values.** The owner confirms 68 kΩ with 1 nF for a 250k volume pot and 330 kΩ with 1 nF for a 1M pot, or substitutes values. Blocks drafting the value table, not the other work.
+Also resolved on 2026-11-23: the scaled bleed values (68 kΩ with 1 nF for a 250k volume pot, 330 kΩ with 1 nF for a 1M pot) are confirmed by the owner. The owner has no Amazon affiliate link (removed from the program), so the switch links to the plain product address. The owner approved subagent-driven execution, including the two diagram reviewers.
+
+No open questions remain.
 
 ## Delivery
 
