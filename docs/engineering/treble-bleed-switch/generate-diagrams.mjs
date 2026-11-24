@@ -1,4 +1,4 @@
-// Generates the explainer schematics for the treble bleed pages (diagrams 5-7 and 9-12) as SVG and PNG into
+// Generates the explainer drawings for the treble bleed pages (diagrams 1-14) as SVG and PNG into
 // public/circuits/treble-bleed/. Every circuit drawing is checked with verifyDrawing against netlist.mjs (or, for the
 // stock circuit and the volume-only explainers, against the permanent wiring written out below) before it is written.
 //
@@ -662,11 +662,257 @@ function afterDrawing() {
     };
 }
 
+// ---- Diagrams 1 to 4, 8, 13 and 14: concept and reference drawings ----
+
+const frame = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="14" fill="#ffffff" stroke="#c9d3de" stroke-width="2"/>`;
+function arrow(x1, y1, x2, y2, color = '#1a1a1a', width = 4) {
+    const a = Math.atan2(y2 - y1, x2 - x1);
+    const head = [
+        [x2, y2],
+        [x2 - 16 * Math.cos(a - 0.45), y2 - 16 * Math.sin(a - 0.45)],
+        [x2 - 16 * Math.cos(a + 0.45), y2 - 16 * Math.sin(a + 0.45)],
+    ];
+    const tip = [x2 - 10 * Math.cos(a), y2 - 10 * Math.sin(a)];
+    return `<line x1="${x1}" y1="${y1}" x2="${tip[0]}" y2="${tip[1]}" stroke="${color}" stroke-width="${width}" stroke-linecap="round"/><polygon points="${head.map((p) => p.join(',')).join(' ')}" fill="${color}"/>`;
+}
+const lines = (list, x, y, opts = {}) => list.map((s, i) => text(s, x, y + i * (opts.gap ?? 26), { size: 20, ...opts })).join('');
+
+// Diagram 1: the signal chain.
+function signalChainDrawing() {
+    const title = 'The signal chain';
+    const stages = [
+        ['Pickup', '#f6ecd6', ['Turns string motion', 'into a tiny electrical', 'signal.']],
+        ['Volume pot', '#e8ecf0', ['Lets through as much', 'of that signal as', 'I ask for.']],
+        ['Cable', '#e3f0e6', ['Carries the signal', 'to the amp.']],
+        ['Amp', '#f6e3e0', ['Makes it loud', 'enough to hear.']],
+    ];
+    const parts = stages.map(([name, fill, job], i) => {
+        const x = 40 + i * 296;
+        const box = `<rect x="${x}" y="140" width="230" height="110" rx="16" fill="${fill}" stroke="#1a1a1a" stroke-width="3"/>${text(name, x + 115, 205, { size: 28, weight: 700 })}`;
+        const link = i < 3 ? arrow(x + 238, 195, x + 288, 195, NET_COLORS.BUS) : '';
+        return box + link + lines(job, x + 115, 292);
+    });
+    const caption1 = ['The signal runs one way: from the pickup, through the volume pot, along the cable and into the amp.', 'Everything on the next pages happens in two places: the volume pot and the cable.'];
+    const description = 'Four labelled boxes joined by arrows: Pickup, Volume pot, Cable, Amp. Under each box is one line about its job.';
+    return { name: '01-signal-chain', svg: doc(480, title, description, heading(title) + parts.join('') + caption(caption1, 410)), checks: [] };
+}
+
+// Diagram 2: the volume pot, from the back and as a track with a wiper.
+function volumePotDrawing() {
+    const title = 'What the volume pot is';
+    const rear = pot('Volume', 300, 330, { view: 'rear', ends: { left: 'VOL.IN', wiper: 'VOL.W', right: 'VOL.GND' } });
+    const rows = [
+        ['CW (left): the input end,', 'where the signal comes in'],
+        ['Wiper (center): the output,', 'which goes to the amp'],
+        ['CCW (right): the ground end,', 'which goes to ground'],
+    ];
+    const key = rows.map(([a, b], i) => text(a, 300, 410 + i * 54, { size: 20, weight: 700 }) + text(b, 300, 436 + i * 54, { size: 20 })).join('');
+    const zig = [];
+    for (let i = 0; i <= 12; i++) zig.push(`${700 + i * 30},${330 + (i === 0 || i === 12 ? 0 : i % 2 ? -14 : 14)}`);
+    const track = `<polyline points="${zig.join(' ')}" fill="none" stroke="#1a1a1a" stroke-width="4" stroke-linejoin="round"/>` + [700, 1060].map((x) => `<circle cx="${x}" cy="330" r="7" fill="#ffffff" stroke="#1a1a1a" stroke-width="3"/>`).join('');
+    const wiper = arrow(880, 250, 880, 314) + text('Wiper', 880, 200, { size: 22, weight: 700 }) + text('to the amp', 880, 228, { size: 20 });
+    const ends = text('Input end', 650, 392, { size: 20, weight: 700, anchor: 'start' }) + text('signal from the pickups', 650, 418, { size: 20, anchor: 'start' }) + text('Ground end', 1130, 392, { size: 20, weight: 700, anchor: 'end' }) + text('to ground', 1130, 418, { size: 20, anchor: 'end' });
+    const trackLabel = text('The track', 880, 470, { size: 22, weight: 700 }) + lines(['A strip of resistive material.', 'The wiper slides along it as I turn the knob.'], 880, 498);
+    const body = frame(40, 90, 520, 490) + text('The pot from the back', 300, 124, { size: 22, weight: 700 }) + rear + key + frame(620, 90, 540, 490) + text('The same pot as a picture', 890, 124, { size: 22, weight: 700 }) + track + wiper + ends + trackLabel;
+    const cap = ['A volume pot is a track with a sliding contact on it, the wiper. The signal comes in at one end and the other end goes to ground.', 'The wiper hands the amp the share I have chosen: toward the input end is louder, toward the ground end is quieter.'];
+    const description = 'Left, a volume pot seen from the back with three lugs labelled CW, Wiper and CCW. Right, the same pot as a resistive track with a wiper arrow, the input end on the left and the ground end on the right.';
+    return {
+        name: '02-volume-pot',
+        svg: doc(700, title, description, heading(title) + body + caption(cap, 630)),
+        checks: [{ svg: svgDoc(WIDTH, 700, title, rear), opts: { terminals: ['VOL.IN', 'VOL.W', 'VOL.GND'] } }],
+    };
+}
+
+// Diagram 3: pot resistance and cable capacitance as a filter.
+function potAndCableDrawing() {
+    const title = 'Why turning down dulls the sound';
+    const y = 300;
+    const parts = [];
+    parts.push(
+        wire('BUS', [
+            [210, y],
+            [350, y],
+        ]),
+        wire(
+            'BUS',
+            [
+                [450, y],
+                [960, y],
+            ],
+            { dot: [[680, y]] }
+        ),
+        wire('BUS', [
+            [680, y],
+            [680, 350],
+        ]),
+        wire('GND', [
+            [680, 450],
+            [680, 480],
+        ])
+    );
+    parts.push(pickup(40, y - 40), resistor('RES', 400, y, { label: 'Volume pot' }), capacitor('CAB', 680, 400, { orient: 'v', label: 'Cable' }), groundSymbol(680, 486));
+    parts.push(`<rect x="960" y="${y - 40}" width="190" height="80" rx="16" fill="#f6e3e0" stroke="#1a1a1a" stroke-width="3"/>${text('Amp', 1055, y + 10, { size: 26, weight: 700 })}`);
+    parts.push(text('Resistance', 400, 150, { size: 22, weight: 700 }), lines(['The part of the track the', 'signal has to push through.', 'Turned down, there is more.'], 400, 176, { gap: 24, size: 18 }));
+    parts.push(arrow(800, 360, 800, 440, CHANGE), text('Highs drain away here', 830, 396, { size: 20, anchor: 'start', weight: 700, fill: CHANGE }), text('The cable acts like a tiny', 830, 424, { size: 18, anchor: 'start' }), text('capacitor to ground.', 830, 448, { size: 18, anchor: 'start' }));
+    parts.push(arrow(740, 250, 930, 250, '#16803c'), text('Lows carry on to the amp', 835, 230, { size: 20, weight: 700, fill: '#16803c' }));
+    const cap = ['Together the pot and the cable act as a filter: lows get through, highs drain away to ground.', 'The more I turn down, the more resistance sits ahead of the cable and the more highs drain away.'];
+    const description = 'A pickup feeds a resistor labelled Volume pot. After the resistor the signal wire continues to an amp, and a capacitor labelled Cable connects from that wire to ground. Highs drain away through the capacitor and lows carry on to the amp.';
+    return { name: '03-pot-and-cable', svg: doc(660, title, description, heading(title) + parts.join('') + caption(cap, 580)), checks: [] };
+}
+
+// Diagram 4: a sketch of brightness against volume position. The only non-circuit drawing: no numbers, no data.
+function brightnessSketchDrawing() {
+    const title = 'How a bleed changes the sound as I turn down';
+    const curves = [
+        {
+            name: 'No bleed',
+            color: '#4a5560',
+            p: [
+                [160, 500],
+                [520, 495],
+                [780, 420],
+                [960, 170],
+            ],
+            t: 0.42,
+            dy: 34,
+        },
+        {
+            name: 'Reactive bleed',
+            color: '#16803c',
+            p: [
+                [160, 415],
+                [470, 395],
+                [760, 320],
+                [960, 170],
+            ],
+            t: 0.45,
+            dy: 46,
+        },
+        {
+            name: 'Fixed bleed',
+            color: CHANGE,
+            p: [
+                [160, 330],
+                [420, 300],
+                [740, 230],
+                [960, 170],
+            ],
+            t: 0.42,
+            dy: -18,
+        },
+    ];
+    const at = ([[x0, y0], [x1, y1], [x2, y2], [x3, y3]], t) => {
+        const u = 1 - t;
+        return [u ** 3 * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t ** 3 * x3, u ** 3 * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t ** 3 * y3];
+    };
+    const paths = curves
+        .map(({ name, color, p, t, dy }) => {
+            const [x, y] = at(p, t);
+            return `<path d="M${p[0].join(',')} C${p[1].join(',')} ${p[2].join(',')} ${p[3].join(',')}" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"/>${text(name, x, y + dy, { size: 22, weight: 700, fill: color, halo: true })}`;
+        })
+        .join('');
+    const axes = arrow(160, 520, 990, 520, '#1a1a1a', 3) + arrow(160, 520, 160, 130, '#1a1a1a', 3);
+    const labels = text('Turned down', 160, 556, { size: 20, anchor: 'start' }) + text('Volume knob position', 575, 556, { size: 20, weight: 700 }) + text('Full up', 990, 556, { size: 20, anchor: 'end' }) + text('Brighter', 146, 150, { size: 20, anchor: 'end' }) + text('Duller', 146, 524, { size: 20, anchor: 'end' }) + `<text x="52" y="337" font-size="20" font-weight="700" text-anchor="middle" transform="rotate(-90 52 337)" font-family="Inter, Helvetica, Arial, sans-serif" fill="#1a1a1a">Brightness</text>`;
+    const note = text('Illustration, not a measurement', 40, 92, { size: 24, weight: 700, anchor: 'start', fill: CHANGE });
+    const cap = ['Without a bleed, the highs fade fast as I turn the volume down.', 'A fixed bleed keeps more of them, but it behaves the same wherever the tone knob is.', 'A reactive bleed keeps the highs too, and then follows the tone knob: roll the tone back and the bleed eases off.', 'The shapes only show the idea.'];
+    const description = 'A hand-drawn style sketch with no numbers. The horizontal axis is volume knob position from turned down to full up and the vertical axis is brightness from duller to brighter. Three curves, no bleed, reactive bleed and fixed bleed, all meet at full volume. The no bleed curve is lowest at low volume, the fixed bleed curve is highest and the reactive bleed curve sits between. The drawing is labelled Illustration, not a measurement.';
+    return { name: '04-brightness-sketch', svg: doc(730, title, description, heading(title) + note + axes + paths + labels + caption(cap, 610)), checks: [] };
+}
+
+// Diagram 8: the tone pot's three lugs and what each does in the new circuit.
+function tonePotDrawing() {
+    const title = "The tone pot's three lugs";
+    const parts = [];
+    parts.push(
+        wire('REACT', [
+            [556, 260],
+            [556, 380],
+            [240, 380],
+        ]),
+        wire('BUS', [
+            [600, 260],
+            [600, 520],
+        ]),
+        wire('TONE-CAP', [
+            [644, 260],
+            [644, 320],
+            [850, 320],
+            [850, 350],
+        ]),
+        wire('GND', [
+            [850, 450],
+            [850, 490],
+        ])
+    );
+    parts.push(pot('Tone', 600, 260, { view: 'rear', ends: { left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' } }));
+    parts.push(terminal('SW.REACTIVE', 240, 380), terminal('SEL.C', 600, 520));
+    parts.push(capacitor('C22', 850, 400, { orient: 'v', ends: ['C22.HOT', 'C22.GND'], label: '22 nF' }), groundSymbol(850, 496));
+    parts.push(netLabel('REACT', 330, 380), netLabel('BUS', 600, 440));
+    parts.push(text('CW end: the Reactive feed', 520, 290, { size: 20, weight: 700, anchor: 'end', halo: true }), lines(['The wiper reaches it at full tone.', "It goes to the switch's Reactive lug."], 520, 318, { anchor: 'end', size: 18, halo: true, gap: 24 }));
+    parts.push(text("Switch's Reactive lug", 240, 420, { size: 20, weight: 700 }), text('(leads on to the bleed)', 240, 446, { size: 18 }));
+    parts.push(text('Wiper: rides on the main', 570, 480, { size: 20, weight: 700, anchor: 'end' }), text('signal wire from the pickups.', 570, 506, { size: 20, anchor: 'end' }));
+    parts.push(text('From the pickups', 600, 556, { size: 20, weight: 700 }));
+    parts.push(text('CCW end: goes through the', 890, 250, { size: 20, weight: 700, anchor: 'start' }), lines(['22 nF capacitor to ground.', 'The wiper reaches it at tone 0.'], 890, 276, { anchor: 'start', size: 18, gap: 24 }));
+    const cap = ['Seen from the back, with the shaft pointing away. The wiper rides on the main signal wire from the pickups.', 'The CCW end goes through the capacitor to ground.', 'The CW end goes to the Reactive lug of the switch, and from there to the bleed.', 'The colored tags name the wires: BUS is the main signal wire from the pickups, and REACT is the wire to the Reactive lug.'];
+    const description = 'A tone pot seen from the back. The wiper lug goes to the pickup selector on the main signal wire. The CCW lug goes through a 22 nF capacitor to ground. The CW lug goes to the Reactive lug of the switch.';
+    const terminals = ['TONE.CW', 'TONE.W', 'TONE.CCW', 'SW.REACTIVE', 'SEL.C', 'C22.HOT', 'C22.GND'];
+    const body = parts.join('');
+    return { name: '08-tone-pot', svg: doc(730, title, description, heading(title) + body + caption(cap, 610)), checks: [{ svg: svgDoc(WIDTH, 700, title, body), opts: { terminals } }] };
+}
+
+// Diagram 13: finding a pot's wiper and ends with a meter.
+function potLugsDrawing() {
+    const title = "Finding a pot's wiper and ends";
+    const rear = pot('Tone', 280, 270, { view: 'rear', ends: { left: 'TONE.CW', wiper: 'TONE.W', right: 'TONE.CCW' } });
+    const key = [
+        ['CW end', 'The wiper reaches it at full tone.', 'It is the Reactive feed.'],
+        ['Wiper', 'Always the middle lug,', 'seen from the back.'],
+        ['CCW end', 'The wiper reaches it at tone 0.', 'It goes to the 22 nF capacitor.'],
+    ]
+        .map(([a, b, c], i) => text(a, 70, 380 + i * 76, { size: 22, weight: 700, anchor: 'start' }) + text(b, 70, 406 + i * 76, { size: 18, anchor: 'start' }) + text(c, 70, 428 + i * 76, { size: 18, anchor: 'start' }))
+        .join('');
+    const steps = [
+        ['Find the wiper', ['Set the meter to ohms, with the knob near the middle.', 'Read each pair of lugs. The pair that reads highest is the', 'two ends. The lug left over is the wiper.']],
+        ['Find the CW end', ['Turn the knob fully clockwise (tone 10, seen from the front).', 'Read the wiper to each end. The end that reads close to', 'zero is the CW end, the Reactive feed.']],
+        ['Check the other end', ['The wiper to the other end now reads the full value.', 'That is the CCW end, the one that goes to the capacitor.', 'Turn the knob fully back and the two readings swap.']],
+    ];
+    const stepBody = steps.map(([head, ls], i) => frame(560, 100 + i * 190, 600, 170) + badge(i + 1, 596, 136 + i * 190) + text(head, 626, 144 + i * 190, { size: 24, weight: 700, anchor: 'start' }) + lines(ls, 590, 186 + i * 190, { anchor: 'start', gap: 28 })).join('');
+    const body = rear;
+    const cap = ['Makers number pot lugs differently, so I name them by what they do and find them with a meter.', 'Seen from the back with the shaft pointing away and the lugs down, left, center and right are CW, wiper and CCW.', 'The same test works for the volume pot: its CW end is the input and its CCW end goes to ground.'];
+    const description = 'A tone pot seen from the back with its three lugs labelled CW, Wiper and CCW, a key saying what each lug does, and three numbered meter steps: find the wiper, find the CW end, check the other end.';
+    return {
+        name: '13-pot-lugs',
+        svg: doc(790, title, description, heading(title) + frame(40, 100, 480, 520) + body + key + stepBody + caption(cap, 695)),
+        checks: [{ svg: svgDoc(WIDTH, 790, title, body), opts: { terminals: ['TONE.CW', 'TONE.W', 'TONE.CCW'] } }],
+    };
+}
+
+// Diagram 14: the toggle's contact map.
+function switchContactsDrawing() {
+    const title = "The switch's three positions";
+    const modes = [
+        ['DIRECT', 'Direct', ['Common is joined to the Direct lug.', 'The bleed goes straight to the', 'main signal wire.']],
+        ['OFF', 'Off', ['The lever rests in the middle', 'and touches no lug.', 'The bleed is disconnected.']],
+        ['REACTIVE', 'Reactive', ['Common is joined to the Reactive lug.', "The bleed is fed from the tone pot's", 'CW end.']],
+    ];
+    const checks = [];
+    const panels = modes.map(([mode, name, ls], i) => {
+        const px = 20 + 392 * i;
+        const py = 100;
+        const sw = toggle3('SW', px + 188, py + 160, mode);
+        checks.push({ svg: svgDoc(WIDTH, 630, `${name} position`, sw), opts: { terminals: ['SW.C', 'SW.DIRECT', 'SW.OFF', 'SW.REACTIVE'], expectedMode: mode } });
+        return frame(px, py, 376, 390) + text(name, px + 188, py + 38, { size: 26, weight: 700 }) + text('The middle spot is a rest position', px + 188, py + 78, { size: 16, fill: MUTED }) + text('with no lug of its own', px + 188, py + 98, { size: 16, fill: MUTED }) + sw + lines(ls, px + 188, py + 310, { size: 20, gap: 28 });
+    });
+    const cap = ['This is the idea, not a lug layout. Switches put the common on different lugs, so confirm with a meter:', 'set it to continuity, flip to each position and note which lugs beep.', 'The lug that beeps with each end lug, one in each end position, is the common. In the middle position nothing beeps.'];
+    const description = 'Three small switch drawings: Direct, Off and Reactive. Each shows the lever from the common to the throw it touches. In Off the lever touches no lug.';
+    return { name: '14-switch-contacts', svg: doc(630, title, description, heading(title) + panels.join('') + caption(cap, 540)), checks };
+}
+
 export async function generateAll() {
     const written = [];
     const problems = [];
     geometryProblems.length = 0;
-    const drawings = [volumeDrawing(false), volumeDrawing(true), variantsDrawing(), reactiveDrawing(), threeModesDrawing(), beforeDrawing(), afterDrawing()];
+    const drawings = [signalChainDrawing(), volumePotDrawing(), potAndCableDrawing(), brightnessSketchDrawing(), volumeDrawing(false), volumeDrawing(true), variantsDrawing(), tonePotDrawing(), reactiveDrawing(), threeModesDrawing(), beforeDrawing(), afterDrawing(), potLugsDrawing(), switchContactsDrawing()];
     mkdirSync(outDir, { recursive: true });
     for (const d of drawings) {
         for (const check of d.checks) {
