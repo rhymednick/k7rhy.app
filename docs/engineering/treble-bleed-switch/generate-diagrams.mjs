@@ -107,13 +107,13 @@ function volumeDrawing(withCap) {
     parts.push(pot('Volume', 560, 330, { view: 'rear', ends: { left: 'VOL.IN', wiper: 'VOL.W', right: 'VOL.GND' } }));
     if (withCap) parts.push(capacitor('CAP', 500, 540, { ends: ['CAP.1', 'CAP.2'], label: 'Capacitor' }));
     parts.push(terminal('JACK.SLV', 980, 420), terminal('JACK.TIP', 980, 470));
-    parts.push(text('Sleeve (ground)', 1052, 426, { anchor: 'start', size: 18, weight: 600 }), text('Tip (to the amp)', 1052, 476, { anchor: 'start', size: 18, weight: 600 }), text('Output jack', 980, 392, { size: 18, weight: 600 }));
+    parts.push(text('Sleeve', 1052, 426, { anchor: 'start', size: 18, weight: 600 }), text('Tip', 1052, 476, { anchor: 'start', size: 18, weight: 600 }), text('Output jack', 980, 392, { size: 18, weight: 600 }));
     parts.push(netLabel('BUS', 340, 170), netLabel('OUT', 800, 470), netLabel('GND', 800, 420));
     const title = withCap ? 'The volume pot with a capacitor bleed' : 'The volume pot with no bleed';
-    const lines = withCap ? ["A capacitor from the pot's input to its wiper gives the highs a way around the track.", 'Turn the knob down and the highs still get through. Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'] : ["The signal comes in at one end of the pot. The wiper takes the part I've asked for and sends it to the jack.", 'The other end goes to ground. Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'];
+    const lines = withCap ? ["A capacitor from the pot's input to its wiper gives the highs a way around the track.", 'Turn the knob down and the highs still get through.', 'Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'] : ["The signal comes in at one end of the pot. The wiper takes the part I've asked for", 'and sends it to the jack. The other end goes to ground.', 'Blue is the signal rail from the pickups (labelled BUS), red is the output (OUT), gray is ground (GND).'];
     const description = withCap ? 'A pickup feeds the input lug of a rear-view volume pot. The wiper goes to the output jack tip and the far lug goes to ground. A capacitor is connected from the pot input to the wiper, bypassing the pot track.' : 'A pickup feeds the input lug of a rear-view volume pot. The wiper goes to the output jack tip and the far lug goes to ground. There is no bleed.';
     const body = parts.join('');
-    return { name: withCap ? '06-capacitor-bleed' : '05-stock-volume', svg: doc(720, title, description, heading(title) + body + caption(lines, 650)), checks: [{ svg: svgDoc(WIDTH, 720, title, body), opts: { terminals, nets } }] };
+    return { name: withCap ? '06-capacitor-bleed' : '05-stock-volume', svg: doc(740, title, description, heading(title) + body + caption(lines, 650)), checks: [{ svg: svgDoc(WIDTH, 740, title, body), opts: { terminals, nets } }] };
 }
 
 // ---- Diagram 7: three bleed variants side by side ----
@@ -126,8 +126,8 @@ function variantsDrawing() {
     const terminals = [];
     const notes = [
         ['Capacitor only', ['Highs skip past the pot at every', 'volume, so the sound stays bright', 'as I turn down.']],
-        ['Capacitor with a parallel resistor', ['The resistor lets some of the lows', 'through too, so the sound stays', 'fuller as I turn down.']],
-        ['Capacitor with a series resistor', ['The resistor trims how much of the', 'highs skip past. Lipstick uses', 'this kind.']],
+        ['With a parallel resistor', ['The resistor lets some of the lows', 'through too, so the sound stays', 'fuller as I turn down.']],
+        ['With a series resistor', ['The resistor trims how much of the', 'highs skip past. Lipstick uses', 'this kind.']],
     ];
     const H = 530;
     notes.forEach(([label, lines], i) => {
@@ -725,12 +725,12 @@ function volumePotDrawing() {
     const ends = text('Input end', 650, 392, { size: 20, weight: 700, anchor: 'start' }) + text('signal from the pickups', 650, 418, { size: 20, anchor: 'start' }) + text('Ground end', 1130, 392, { size: 20, weight: 700, anchor: 'end' }) + text('to ground', 1130, 418, { size: 20, anchor: 'end' });
     const trackLabel = text('The track', 880, 470, { size: 22, weight: 700 }) + lines(['A strip of resistive material.', 'The wiper slides along it as I turn the knob.'], 880, 498);
     const body = frame(40, 90, 520, 490) + text('The pot from the back', 300, 124, { size: 22, weight: 700 }) + rear + key + frame(620, 90, 540, 490) + text('The same pot as a picture', 890, 124, { size: 22, weight: 700 }) + track + wiper + ends + trackLabel;
-    const cap = ['A volume pot is a track with a sliding contact on it, the wiper. The signal comes in at one end and the other end goes to ground.', 'The wiper hands the amp the share I have chosen: toward the input end is louder, toward the ground end is quieter.'];
+    const cap = ['A volume pot is a track with a sliding contact on it, the wiper. The signal comes in at one end', 'and the other end goes to ground. The wiper hands the amp the share I have chosen:', 'toward the input end is louder, toward the ground end is quieter.'];
     const description = 'Left, a volume pot seen from the back with three lugs labelled CW, Wiper and CCW. Right, the same pot as a resistive track with a wiper arrow, the input end on the left and the ground end on the right.';
     return {
         name: '02-volume-pot',
-        svg: doc(700, title, description, heading(title) + body + caption(cap, 630)),
-        checks: [{ svg: svgDoc(WIDTH, 700, title, rear), opts: { terminals: ['VOL.IN', 'VOL.W', 'VOL.GND'] } }],
+        svg: doc(720, title, description, heading(title) + body + caption(cap, 630)),
+        checks: [{ svg: svgDoc(WIDTH, 720, title, rear), opts: { terminals: ['VOL.IN', 'VOL.W', 'VOL.GND'] } }],
     };
 }
 
@@ -864,11 +864,11 @@ function tonePotDrawing() {
     parts.push(text('Wiper: rides on the main', 570, 480, { size: 20, weight: 700, anchor: 'end' }), text('signal wire from the pickups.', 570, 506, { size: 20, anchor: 'end' }));
     parts.push(text('From the pickups', 600, 556, { size: 20, weight: 700 }));
     parts.push(text('CCW end: goes through the', 890, 250, { size: 20, weight: 700, anchor: 'start' }), lines(['22 nF capacitor to ground.', 'The wiper reaches it at tone 0.'], 890, 276, { anchor: 'start', size: 18, gap: 24 }));
-    const cap = ['Seen from the back, with the shaft pointing away. The wiper rides on the main signal wire from the pickups.', 'The CCW end goes through the capacitor to ground.', 'The CW end goes to the Reactive lug of the switch, and from there to the bleed.', 'The colored tags name the wires: BUS is the main signal wire from the pickups, and REACT is the wire to the Reactive lug.'];
+    const cap = ['Seen from the back, with the shaft pointing away. The wiper rides on the main signal wire from the pickups.', 'The CCW end goes through the capacitor to ground.', 'The CW end goes to the Reactive lug of the switch, and from there to the bleed.', 'The colored tags name the wires: BUS is the main signal wire from the pickups,', 'and REACT is the wire to the Reactive lug.'];
     const description = 'A tone pot seen from the back. The wiper lug goes to the pickup selector on the main signal wire. The CCW lug goes through a 22 nF capacitor to ground. The CW lug goes to the Reactive lug of the switch.';
     const terminals = ['TONE.CW', 'TONE.W', 'TONE.CCW', 'SW.REACTIVE', 'SEL.C', 'C22.HOT', 'C22.GND'];
     const body = parts.join('');
-    return { name: '08-tone-pot', svg: doc(730, title, description, heading(title) + body + caption(cap, 610)), checks: [{ svg: svgDoc(WIDTH, 700, title, body), opts: { terminals } }] };
+    return { name: '08-tone-pot', svg: doc(750, title, description, heading(title) + body + caption(cap, 610)), checks: [{ svg: svgDoc(WIDTH, 700, title, body), opts: { terminals } }] };
 }
 
 // Diagram 13: finding a pot's wiper and ends with a meter.
@@ -884,7 +884,7 @@ function potLugsDrawing() {
         .join('');
     const steps = [
         ['Find the wiper', ['Read with the pot not wired in (out of the circuit).', 'Set the meter to ohms, knob near the middle, and read', 'each pair of lugs. The highest pair is the two ends;', 'the lug left over is the wiper.']],
-        ['Find the CW end', ['Turn the knob fully clockwise (tone 10, seen from the front).', 'Read the wiper to each end. The end that reads close to', 'zero is the CW end, which will feed the bleed.']],
+        ['Find the CW end', ['Turn the knob fully clockwise (tone 10, from the front).', 'Read the wiper to each end. The end that reads close to', 'zero is the CW end, which will feed the bleed.']],
         ['Check the other end', ['The wiper to the other end now reads the full value.', 'That is the CCW end, the one that goes to the capacitor.', 'Turn the knob fully back and the two readings swap.']],
     ];
     const stepBody = steps.map(([head, ls], i) => frame(560, 100 + i * 190, 600, 170) + badge(i + 1, 596, 136 + i * 190) + text(head, 626, 144 + i * 190, { size: 24, weight: 700, anchor: 'start' }) + lines(ls, 590, 176 + i * 190, { anchor: 'start', gap: 26 })).join('');
@@ -903,7 +903,7 @@ function switchContactsDrawing() {
     const modes = [
         ['DIRECT', 'Direct', ['Common is joined to the Direct lug.', 'The bleed goes straight to the', 'main signal wire.']],
         ['OFF', 'Off', ['The lever rests in the middle,', 'on no lug.', 'The bleed is disconnected.']],
-        ['REACTIVE', 'Reactive', ['Common is joined to the Reactive lug.', "The bleed is fed from the tone pot's", 'CW end.']],
+        ['REACTIVE', 'Reactive', ['Common joins the Reactive lug.', "The bleed is fed from the tone pot's", 'CW end.']],
     ];
     const checks = [];
     const panels = modes.map(([mode, name, ls], i) => {
@@ -1260,6 +1260,33 @@ function referenceSheet() {
     };
 }
 
+// Estimated rendered extent of every <text>, checked against the canvas and against the panel frame (a large rect) that
+// holds it. The per-character width is deliberately generous (0.5 em, 0.55 em bold) so a caption that is close to the edge
+// is flagged, not clipped. Exported for the test.
+export function textExtentProblems(name, svg) {
+    const problems = [];
+    const attr = (a, k) => new RegExp(`(?:^|\\s)${k}="([^"]*)"`).exec(a)?.[1];
+    const canvas = Number(/viewBox="0 0 ([\d.]+) /.exec(svg)?.[1]);
+    const frames = [...svg.matchAll(/<rect\b([^>]*?)\/?>/g)].map((m) => ({ x: Number(attr(m[1], 'x')), y: Number(attr(m[1], 'y')), w: Number(attr(m[1], 'width')), h: Number(attr(m[1], 'height')) })).filter((r) => r.w >= 150 && r.h >= 150 && r.w < canvas - 10);
+    for (const m of svg.matchAll(/<text\b([^>]*)>([^<]*)<\/text>/g)) {
+        const content = m[2].replace(/&amp;|&lt;|&gt;|&quot;/g, '_');
+        const size = Number(attr(m[1], 'font-size'));
+        const x = Number(attr(m[1], 'x'));
+        const y = Number(attr(m[1], 'y'));
+        const anchor = attr(m[1], 'text-anchor') ?? 'start';
+        const width = content.length * size * (Number(attr(m[1], 'font-weight')) >= 600 ? 0.55 : 0.5);
+        const left = anchor === 'middle' ? x - width / 2 : anchor === 'end' ? x - width : x;
+        const right = left + width;
+        const shown = content.length > 40 ? `${content.slice(0, 40)}...` : content;
+        if (/\btransform=/.test(m[1])) continue;
+        if (left < 4) problems.push(`${name}: text "${shown}" may cross the left edge (starts near ${Math.round(left)})`);
+        if (right > canvas - 4) problems.push(`${name}: text "${shown}" may cross the right edge (ends near ${Math.round(right)} of ${canvas})`);
+        const frame = frames.find((r) => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h);
+        if (frame && right > frame.x + frame.w - 4) problems.push(`${name}: text "${shown}" may cross the right edge of its panel (ends near ${Math.round(right)}, panel ends at ${frame.x + frame.w})`);
+    }
+    return problems;
+}
+
 export async function generateAll() {
     const written = [];
     const problems = [];
@@ -1274,6 +1301,7 @@ export async function generateAll() {
             for (const p of result.problems) problems.push(`${d.name}: ${p}`);
         });
         if (/unvalidated|pending|experimental|not yet tested|to be determined|TBD|\bwe\b|\bour\b/i.test(d.svg.replace(/<[^>]+>/g, ' '))) problems.push(`${d.name}: caption wording breaks the style rules`);
+        for (const doc of [d.svg, ...(d.pages ?? []).map((pg) => pg.svg)]) problems.push(...textExtentProblems(d.name, doc));
         const svgPath = d.svgPath ?? join(outDir, `${d.name}.svg`);
         const pngPath = d.pngPath ?? join(outDir, `${d.name}.png`);
         writeFileSync(svgPath, d.svg);

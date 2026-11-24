@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 // @ts-expect-error plain ES module without type declarations
-import { generateAll } from './generate-diagrams.mjs';
+import { generateAll, textExtentProblems } from './generate-diagrams.mjs';
 
 const names = ['05-stock-volume', '06-capacitor-bleed', '07-bleed-variants', '09-reactive-bleed', '10-three-modes', '11-before', '12-after'];
 const conceptNames = ['01-signal-chain', '02-volume-pot', '03-pot-and-cable', '04-brightness-sketch', '08-tone-pot', '13-pot-lugs', '14-switch-contacts'];
@@ -67,5 +67,22 @@ describe('treble bleed explainer schematics', () => {
 
     it('puts the exact meter reminder on the switch contact map', () => {
         expect(readFileSync(join(outDir, '14-switch-contacts.svg'), 'utf8')).toContain('confirm with a meter');
+    });
+});
+
+describe('text extent check', () => {
+    const svg = (body: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300">${body}</svg>`;
+    const line = (anchor: string, x: number, s: string) => `<text x="${x}" y="40" font-size="20" font-weight="400" text-anchor="${anchor}">${s}</text>`;
+
+    it('flags a caption that runs past the right edge and one that starts left of the canvas', () => {
+        const long = 'A caption that is much too long to fit in the width of this canvas and so it would be cut off at the edge. '.repeat(2);
+        expect(textExtentProblems('t', svg(line('start', 40, long))).join('\n')).toMatch(/right edge/);
+        expect(textExtentProblems('t', svg(line('middle', 10, 'Centered label that sticks out to the left'))).join('\n')).toMatch(/left edge/);
+    });
+
+    it('flags text that crosses the right edge of the panel frame that holds it', () => {
+        const frame = '<rect x="20" y="10" width="200" height="200" rx="14" fill="#fff" stroke="#ccc"/>';
+        expect(textExtentProblems('t', svg(frame + line('start', 30, 'This line is wider than its panel'))).join('\n')).toMatch(/panel/);
+        expect(textExtentProblems('t', svg(frame + line('start', 30, 'Fits fine'))).join('\n')).toBe('');
     });
 });
