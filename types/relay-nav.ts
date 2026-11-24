@@ -27,3 +27,17 @@ export interface RelayBuildStage {
 export interface RelayBuildProcess {
     stages: RelayBuildStage[];
 }
+
+/** A page in the Relay Customize section (optional changes to a finished or in-progress guitar). */
+export interface RelayCustomizePage {
+    slug: string;
+    title: string;
+    summary: string;
+    href: string;
+}
+
+export interface RelayCustomize {
+    title: 'Customize';
+    href: '/guitars/relay/customize';
+    pages: RelayCustomizePage[];
+}

@@ -34,4 +34,27 @@ describe('RelayLayoutSidebar', () => {
         // Body is inactive → its print/bond/finish sub-links are hidden
         expect(screen.queryByRole('link', { name: 'Print' })).not.toBeInTheDocument();
     });
+
+    it('shows a Customize group with a landing link and keeps the five build steps', () => {
+        pathnameMock.mockReturnValue('/guitars/relay');
+        render(<RelayLayoutSidebar />);
+        expect(screen.getByRole('heading', { name: 'Customize' })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: 'Customize' })).toHaveAttribute('href', '/guitars/relay/customize');
+        for (const step of ['Body', 'Voicing', 'Parts', 'Wiring', 'Assembly']) {
+            expect(screen.getByRole('link', { name: new RegExp(`^${step}`) })).toBeInTheDocument();
+        }
+        expect(screen.queryByRole('link', { name: 'How treble bleeds work' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('link', { name: 'Direct / Off / Reactive switch' })).not.toBeInTheDocument();
+    });
+
+    it('shows the Customize pages under /guitars/relay/customize and marks the current one', () => {
+        pathnameMock.mockReturnValue('/guitars/relay/customize/how-treble-bleeds-work');
+        render(<RelayLayoutSidebar />);
+        const current = screen.getByRole('link', { name: 'How treble bleeds work' });
+        expect(current).toHaveAttribute('href', '/guitars/relay/customize/how-treble-bleeds-work');
+        expect(current).toHaveClass('font-medium');
+        const other = screen.getByRole('link', { name: 'Direct / Off / Reactive switch' });
+        expect(other).toHaveAttribute('href', '/guitars/relay/customize/direct-off-reactive-switch');
+        expect(other).not.toHaveClass('font-medium');
+    });
 });
