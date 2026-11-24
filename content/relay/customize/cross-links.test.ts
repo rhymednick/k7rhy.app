@@ -18,6 +18,15 @@ describe('Relay customize cross-links', () => {
         expect(text).toContain('/guitars/relay/customize/direct-off-reactive-switch');
     });
 
+    it('the Parts item and Lipstick say plainly what each link is for', () => {
+        const item = read('content/relay/components/items/treble-bleed.mdx');
+        expect(item).not.toMatch(/explained in \[how treble bleeds work\]/i);
+        expect(item).toContain('for an optional switch that changes how the bleed behaves');
+        const lipstick = read('content/relay/wiring/lipstick.mdx');
+        expect(lipstick).not.toContain('covers the bleed side');
+        expect(lipstick.split(phrase).length - 1).toBe(1);
+    });
+
     // Each file may link the explainer and the retrofit guide in one sentence, so assert each link appears exactly once.
     it.each(['content/relay/components/items/treble-bleed.mdx', 'content/relay/wiring/lipstick.mdx', 'content/relay/wiring/torch.mdx', 'content/relay/wiring/velvet.mdx'])('%s links the retrofit guide exactly once', (path) => {
         expect(read(path).split(retrofit).length - 1).toBe(1);

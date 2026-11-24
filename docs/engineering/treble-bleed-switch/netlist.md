@@ -22,7 +22,7 @@ The circuit is general: any guitar with a master volume and a master tone can us
 | 250k       | 68 kΩ  | 1 nF | 22 nF |
 | 1M         | 330 kΩ | 1 nF | 22 nF |
 
-These are the validated starting values. Tuning alternatives (owner-approved in the [design spec](../../superpowers/specs/2026-11-23-relay-customize-treble-bleed-design.md), section 3a): `CB` 470 pF to 680 pF for a subtler bleed, 1.5 nF to 2.2 nF for a brighter one, and `RB` one standard value up or down. The circuit and its nets are the same for every value.
+These are the validated starting values. Source facts: 500k built and validated on Lipstick; 250k and 1M scaled from it by the pot ratio and confirmed by the owner 2026-11-23. Tuning alternatives (owner-approved in the [design spec](../../superpowers/specs/2026-11-23-relay-customize-treble-bleed-design.md), section 3a): `CB` 470 pF to 680 pF for a subtler bleed, 1.5 nF to 2.2 nF for a brighter one, and `RB` one standard value up or down. The circuit and its nets are the same for every value.
 
 ## Lug naming
 
@@ -90,6 +90,7 @@ Lipstick's stock tone pot has `BUS` on its `CCW` lug and the 22 nF capacitor on 
 ## Notes
 
 - `TB-MID`, `TB-SW`, `TONE-CAP` and `REACT` are labels added here for the netlist.
+- `TB-SW`: the bleed's free end (the capacitor's, on Lipstick or a new bleed) to the switch's common lug. The model puts the capacitor on that end (`CB.2`). If a reused bleed has the capacitor on the wiper, `RB` and `CB` swap places; the nets are the same.
 - The push-push switch functions on Lipstick are unchanged and are not modeled here.
 - Some switches have the common on a different lug; identify the common, and the two throws, by continuity in all three positions.
 - Switch hole: a common mini toggle needs a 6 mm hole (owner-provided, 2026-11-23). The hole is sized for the switch actually bought, so measure it first.

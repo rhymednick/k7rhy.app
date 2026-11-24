@@ -98,6 +98,17 @@ describe('Relay Customize content pages', () => {
         it('links the suggested switch and gives the 6 mm hole size', () => {
             expect(source).toContain('https://www.amazon.com/dp/B0799JK458');
             expect(source).toContain('6 mm');
+            expect(source).toContain('measure yours and drill to match');
+            expect(source).not.toContain('just over that measurement');
+        });
+
+        it('defines TB-SW by the bleed, not the capacitor, and notes a swapped reused bleed', () => {
+            expect(source).toContain("`TB-SW`: the bleed's free end (the capacitor's, on Lipstick or a new bleed) to the switch's common lug.");
+            expect(source).toContain('If your reused bleed has the capacitor on the wiper, the two parts swap places; the nets are the same.');
+        });
+
+        it('gives mark 4 to one step only', () => {
+            expect(source.split('(mark 4)').length - 1).toBe(1);
         });
 
         it.each([
