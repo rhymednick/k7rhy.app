@@ -11,7 +11,7 @@ const pageSlugs = fs
     .map((file) => file.replace(/\.mdx$/, ''))
     .sort();
 const requiredSlugs = ['index', 'how-treble-bleeds-work'];
-const hedgingPattern = /unvalidated|pending|experimental|not yet tested|to be determined|\bTBD\b/i;
+const hedgingPattern = /unvalidated|\bpending\b|experimental|not yet tested|to be determined|\bTBD\b/i;
 const pluralFirstPersonPattern = /\bwe\b|\bour\b|\bus\b/i;
 
 function readPage(slug: string): string {
@@ -47,7 +47,9 @@ describe('Relay Customize content pages', () => {
         });
 
         it('references only diagram files that exist under public/', () => {
-            const refs = [...source.matchAll(/(?:src|href)="(\/(?:circuits|wiring-diagrams)\/[^"]+)"/g)].map((match) => match[1]);
+            const htmlRefs = [...source.matchAll(/(?:src|href)="(\/(?:circuits|wiring-diagrams)\/[^"]+)"/g)].map((match) => match[1]);
+            const markdownRefs = [...source.matchAll(/\]\((\/(?:circuits|wiring-diagrams)\/[^)\s]+)/g)].map((match) => match[1]);
+            const refs = [...htmlRefs, ...markdownRefs];
             for (const ref of refs) {
                 expect(fs.existsSync(path.join(publicDir, ref)), `${ref} should exist under public/`).toBe(true);
             }
@@ -59,6 +61,12 @@ describe('Relay Customize content pages', () => {
                 const alt = img.match(/\balt="([^"]*)"/);
                 expect(alt, `${img} should have an alt`).not.toBeNull();
                 expect(alt![1].trim().length, `${img} alt is too short`).toBeGreaterThanOrEqual(20);
+            }
+        });
+
+        it('gives every Markdown image a descriptive alt of at least 20 characters', () => {
+            for (const match of source.matchAll(/!\[([^\]]*)\]\(([^)]*)\)/g)) {
+                expect(match[1].trim().length, `![${match[1]}](${match[2]}) alt is too short`).toBeGreaterThanOrEqual(20);
             }
         });
     });

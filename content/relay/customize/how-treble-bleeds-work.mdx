@@ -13,7 +13,7 @@ These six words come up on every page about guitar wiring. Each one is defined h
 
 - **Pickup:** the part under the strings that turns their motion into a small electrical signal.
 - **Pot:** short for potentiometer, the part behind a volume or tone knob; it has three solder tabs, called lugs, on its back.
-- **Wiper:** the sliding contact inside a pot, wired to the middle lug, that moves along the pot's track as you turn the knob.
+- **Wiper:** the sliding contact inside a pot, wired to the middle lug, that moves along the inside of the pot as you turn the knob.
 - **Capacitor:** a small part that lets the highs (the bright, sparkly part of the sound) pass easily and holds the lows (the warm, round part) back.
 - **Resistor:** a small part that holds back all frequencies by a fixed amount, like a narrow spot in a pipe.
 - **Ground:** the shared return wire that every part of the circuit connects to; signal sent to ground is gone from the sound.
@@ -52,7 +52,7 @@ The signal travels one way. It starts at the pickup, passes through the volume p
         </span>
     </figcaption>
     <a href="/circuits/treble-bleed/02-volume-pot.png" target="_blank" rel="noopener noreferrer" aria-label="Open the volume pot diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
-        <img src="/circuits/treble-bleed/02-volume-pot.png" alt="A volume pot seen from the back with its CW, wiper and CCW lugs labeled, beside the same pot drawn as a track with a sliding wiper between the input end and the ground end." width="2400" height="1400" className="m-0 h-auto w-full rounded-none" />
+        <img src="/circuits/treble-bleed/02-volume-pot.png" alt="A volume pot seen from the back with its CW, wiper and CCW lugs labeled, beside the same pot drawn as a track with a sliding wiper between the input end and the ground end." width="2400" height="1440" className="m-0 h-auto w-full rounded-none" />
     </a>
 </figure>
 
@@ -121,7 +121,7 @@ This sketch is an **illustration, not a measurement**. Its curves show the idea,
         </span>
     </figcaption>
     <a href="/circuits/treble-bleed/05-stock-volume.png" target="_blank" rel="noopener noreferrer" aria-label="Open the stock volume diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
-        <img src="/circuits/treble-bleed/05-stock-volume.png" alt="A volume pot with no bleed: the pickup's BUS wire on the CW lug, the wiper on OUT to the jack tip, and the CCW lug on GND to the jack sleeve." width="2400" height="1440" className="m-0 h-auto w-full rounded-none" />
+        <img src="/circuits/treble-bleed/05-stock-volume.png" alt="A volume pot with no bleed: the pickup's BUS wire on the CW lug, the wiper on OUT to the jack tip, and the CCW lug on GND to the jack sleeve." width="2400" height="1480" className="m-0 h-auto w-full rounded-none" />
     </a>
 </figure>
 
@@ -144,7 +144,7 @@ This is a volume pot with nothing added. The colored tags name the wires, and th
         </span>
     </figcaption>
     <a href="/circuits/treble-bleed/06-capacitor-bleed.png" target="_blank" rel="noopener noreferrer" aria-label="Open the capacitor bleed diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
-        <img src="/circuits/treble-bleed/06-capacitor-bleed.png" alt="The same volume pot with a capacitor added from the BUS wire on the input lug to the OUT wire on the wiper, giving the highs a way around the track." width="2400" height="1440" className="m-0 h-auto w-full rounded-none" />
+        <img src="/circuits/treble-bleed/06-capacitor-bleed.png" alt="The same volume pot with a capacitor added from the BUS wire on the input lug to the OUT wire on the wiper, giving the highs a way around the track." width="2400" height="1480" className="m-0 h-auto w-full rounded-none" />
     </a>
 </figure>
 
@@ -173,8 +173,8 @@ The result is that turning the volume knob still makes the guitar quieter, but t
 
 Treble bleeds come in three common shapes. All three sit across the volume pot, from the input end to the wiper.
 
-- **Capacitor only.** The highs skip past the pot at every volume setting, so the sound stays bright as you turn down.
-- **Capacitor with a parallel resistor.** The resistor sits beside the capacitor and lets some of the lows through as well, so the sound stays fuller as you turn down.
+- **Capacitor only.** The highs skip past the pot at every volume setting, so the sound stays bright as you turn down. Because only the highs skip past, this kind can leave the sound thin as you turn down.
+- **Capacitor with a parallel resistor.** The resistor sits beside the capacitor and lets some of the whole signal, lows included, skip past too, which keeps the sound from turning thin as you turn down. It also changes how quickly the knob turns the volume down.
 - **Capacitor with a series resistor.** The resistor sits in line with the capacitor and trims how much of the highs skip past. Relay Lipstick uses this kind: a 1 nF capacitor and a 150 kΩ resistor in series.
 
 The values of the parts set how strong each one is. They are chosen to suit the pot and tuned by ear.
@@ -185,7 +185,7 @@ Every bleed above is a **fixed bleed**. Its parts connect to the volume pot and 
 
 That matters when you use both knobs together. Rolling the tone knob back is a way of asking for a darker sound. Turn the volume down at the same time, and the fixed bleed keeps doing its job: it keeps passing highs around the volume pot, just as it would at full tone. The tone knob still works, but the bleed is still adding brightness, so rolling the tone back doesn't tame it the way you might expect.
 
-Look back at the sketch above. Its orange "Fixed bleed" line behaves the same way wherever the tone knob is.
+In the illustration above, the orange "Fixed bleed" line stands for every tone setting: the bleed does the same thing wherever the tone knob is.
 
 ## The reactive bleed
 
@@ -202,7 +202,7 @@ Look back at the sketch above. Its orange "Fixed bleed" line behaves the same wa
         </span>
     </figcaption>
     <a href="/circuits/treble-bleed/08-tone-pot.png" target="_blank" rel="noopener noreferrer" aria-label="Open the tone pot diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
-        <img src="/circuits/treble-bleed/08-tone-pot.png" alt="A tone pot seen from the back: the wiper on the BUS signal wire, the CCW end through a 22 nF capacitor to ground, and the CW end on the REACT wire to the switch's Reactive lug." width="2400" height="1460" className="m-0 h-auto w-full rounded-none" />
+        <img src="/circuits/treble-bleed/08-tone-pot.png" alt="A tone pot seen from the back: the wiper on the BUS signal wire, the CCW end through a 22 nF capacitor to ground, and the CW end on the REACT wire to the switch's Reactive lug." width="2400" height="1500" className="m-0 h-auto w-full rounded-none" />
     </a>
 </figure>
 
@@ -229,11 +229,11 @@ The reactive bleed starts at the tone pot, so it helps to look at that pot's thr
     </a>
 </figure>
 
-The reactive bleed takes its signal from that spare CW end instead of straight from BUS. The glow marks the bleed path: from the volume pot's wiper, through the 150 kΩ resistor and the 1 nF capacitor, through the switch, and along REACT to the tone pot's CW end.
+The reactive bleed takes its signal from that spare CW end instead of straight from BUS. The glow marks the bleed path. Follow it the way the signal goes: from the tone pot's CW end along REACT, through the switch, then through the 1 nF capacitor and the 150 kΩ resistor to the volume pot's wiper.
 
-At full tone, the tone wiper sits right on the CW end, so the bleed gets the same signal it would get from BUS and behaves like an ordinary bleed. As you roll the tone back, the wiper moves away from the CW end, more of the tone pot's track sits between the signal and the bleed, and the signal reaching the bleed fades. The bleed eases off as the tone comes down.
+At full tone, the tone wiper sits right on the CW end, so the bleed gets the same signal it would get from BUS and behaves like an ordinary bleed. As you roll the tone back, the wiper moves away from the CW end, more of the tone pot's track sits between the signal and the bleed, and the signal reaching the bleed fades. It works like the series resistor in the variants above, with that resistance growing as you roll the tone back, so the bleed eases off as the tone comes down.
 
-That is the whole idea. The bleed follows the tone knob instead of ignoring it. In the sketch earlier, the green "Reactive bleed" line sits between the other two to show that idea, not a measured result.
+That is the whole idea. The bleed follows the tone knob instead of ignoring it. In the illustration earlier, the green "Reactive bleed" line shows the reactive bleed with the tone rolled back; at full tone it would sit on the orange line. It is an illustration, not a measured result.
 
 ## The three modes together
 
@@ -257,7 +257,7 @@ That is the whole idea. The bleed follows the tone knob instead of ignoring it. 
 A three-position switch lets one guitar do all three. The switch's common lug connects to the far end of the bleed, and each position sends it somewhere different:
 
 - **Direct:** the bleed connects straight to BUS, like a regular treble bleed.
-- **Off:** the bleed connects to nothing, and the tone knob works like any tone knob. The green glow in the middle panel is the tone path, which works the same in every mode.
+- **Off:** the bleed connects to nothing, and the tone knob works like any tone knob. The green glow in the middle panel is the tone path. The tone control itself works the same in every mode.
 - **Reactive:** the bleed is fed through the tone pot, so rolling the tone back eases the bleed off.
 
 | Mode     | What it does                                                                                   | When you'd want it                                                                               |
