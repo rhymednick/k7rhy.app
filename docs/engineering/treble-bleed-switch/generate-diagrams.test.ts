@@ -33,6 +33,22 @@ describe('treble bleed explainer schematics', () => {
         for (const label of labels) expect(label).not.toMatch(/\d/);
     });
 
+    it('writes the builder reference sheet as a 2400 px PNG and a source SVG with large type', async () => {
+        const png = join(process.cwd(), 'public/wiring-diagrams/relay-treble-bleed-switch-rev-1.0.png');
+        const svgPath = join(process.cwd(), 'docs/engineering/treble-bleed-switch/relay-treble-bleed-switch-rev-1.0.svg');
+        expect(existsSync(png)).toBe(true);
+        expect(existsSync(svgPath)).toBe(true);
+        const { default: sharp } = await import('sharp');
+        expect((await sharp(png).metadata()).width).toBe(2400);
+        const svg = readFileSync(svgPath, 'utf8');
+        expect(svg).toContain('<title>Direct / Off / Reactive treble bleed</title>');
+        expect(svg).toContain('Rev 1.0 • 2026-11-23');
+        expect(svg).toContain('data-net');
+        for (const n of [1, 2, 3, 4, 5, 6, 7, 8]) expect(svg).toMatch(new RegExp(`>${n}\\. [A-Z]`));
+        for (const m of svg.matchAll(/font-size="([\d.]+)"/g)) expect(Number(m[1])).toBeGreaterThanOrEqual(14);
+        for (const v of ['150 kΩ', '68 kΩ', '330 kΩ', '22 nF', '470–680 pF', '1.5–2.2 nF', '6 mm']) expect(svg).toContain(v);
+    });
+
     it('puts the exact meter reminder on the switch contact map', () => {
         expect(readFileSync(join(outDir, '14-switch-contacts.svg'), 'utf8')).toContain('confirm with a meter');
     });
