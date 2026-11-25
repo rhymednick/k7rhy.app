@@ -43,18 +43,29 @@ describe('RelayLayoutSidebar', () => {
         for (const step of ['Body', 'Voicing', 'Parts', 'Wiring', 'Assembly']) {
             expect(screen.getByRole('link', { name: new RegExp(`^${step}`) })).toBeInTheDocument();
         }
-        expect(screen.queryByRole('link', { name: 'How treble bleeds work' })).not.toBeInTheDocument();
-        expect(screen.queryByRole('link', { name: 'Direct / Off / Reactive switch' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('heading', { name: 'Understand' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('link', { name: 'Why turning down makes it dull' })).not.toBeInTheDocument();
+        expect(screen.queryByRole('link', { name: 'Is your guitar a fit?' })).not.toBeInTheDocument();
     });
 
-    it('shows the Customize pages under /guitars/relay/customize and marks the current one', () => {
-        pathnameMock.mockReturnValue('/guitars/relay/customize/how-treble-bleeds-work');
+    it('shows both series with all eight parts under /guitars/relay/customize and marks the current part', () => {
+        pathnameMock.mockReturnValue('/guitars/relay/customize/treble-bleed/build/parts-and-hole');
         render(<RelayLayoutSidebar />);
-        const current = screen.getByRole('link', { name: 'How treble bleeds work' });
-        expect(current).toHaveAttribute('href', '/guitars/relay/customize/how-treble-bleeds-work');
+        expect(screen.getByRole('heading', { name: 'Understand' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { name: 'Build' })).toBeInTheDocument();
+        const titles = ['Why turning down makes it dull', 'What a bleed does', 'The reactive bleed', 'Is your guitar a fit?', 'Parts, values and the hole', 'What changes and finding your lugs', 'Wire it and check it', 'Reference sheet and troubleshooting'];
+        for (const title of titles) {
+            expect(screen.getByRole('link', { name: title })).toBeInTheDocument();
+        }
+        const current = screen.getByRole('link', { name: 'Parts, values and the hole' });
+        expect(current).toHaveAttribute('href', '/guitars/relay/customize/treble-bleed/build/parts-and-hole');
         expect(current).toHaveClass('font-medium');
-        const other = screen.getByRole('link', { name: 'Direct / Off / Reactive switch' });
-        expect(other).toHaveAttribute('href', '/guitars/relay/customize/direct-off-reactive-switch');
-        expect(other).not.toHaveClass('font-medium');
+        expect(screen.getByRole('link', { name: 'Is your guitar a fit?' })).not.toHaveClass('font-medium');
+    });
+
+    it('keeps the series collapsed for a lookalike path', () => {
+        pathnameMock.mockReturnValue('/guitars/relay/customized-x');
+        render(<RelayLayoutSidebar />);
+        expect(screen.queryByRole('heading', { name: 'Understand' })).not.toBeInTheDocument();
     });
 });
