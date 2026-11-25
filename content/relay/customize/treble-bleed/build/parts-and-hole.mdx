@@ -1,0 +1,58 @@
+---
+title: 'Parts, values and the hole'
+description: 'The parts you need, the bleed values for your volume pot, and how to make room for the switch.'
+---
+
+[Part 1](/guitars/relay/customize/treble-bleed/build/is-it-a-fit) checked that your guitar is wired the way the switch needs. This part gathers the parts, picks the bleed values for your volume pot, and makes room for the switch.
+
+## Parts and tools
+
+- **A three-position on–off–on mini toggle (SPDT).** It has three lugs: a **common** lug and two **throw** lugs, the lugs the common can be joined to. In the middle lever position the common touches nothing. The one I use is [this mini toggle](https://www.amazon.com/dp/B0799JK458). Any SPDT on–off–on mini toggle works, as long as you drill the hole to match its bushing (the threaded sleeve the lever comes out of).
+- **A bleed resistor and a bleed capacitor**, from the value table below. If your volume pot already has a series bleed, reuse those two parts.
+- **The 22 nF tone capacitor** already in the guitar.
+- **Hookup wire** for the two new wires and the run to the switch common.
+- **Soldering tools:** iron, solder, a desoldering pump or wick, wire strippers and a little heat-shrink tubing.
+- **A multimeter** with continuity and resistance (ohms) settings.
+- **Drilling tools for the switch hole:** masking tape, a pencil, a sharp point to mark the center, a small pilot bit, a final bit or step bit sized to your switch, and something to measure the bushing (calipers are best).
+- **A wrench or nut driver** that fits the switch's mounting nut.
+
+### Choose your bleed values
+
+The bleed parts are chosen by the value of the volume pot. The 22 nF tone capacitor stays the same for all three.
+
+| Volume pot | Bleed resistor | Bleed capacitor | Tone capacitor |
+| ---------- | -------------- | --------------- | -------------- |
+| 500k       | 150 kΩ         | 1 nF            | 22 nF          |
+| 250k       | 68 kΩ          | 1 nF            | 22 nF          |
+| 1M         | 330 kΩ         | 1 nF            | 22 nF          |
+
+The 500k pair is the one on Relay Lipstick. The 250k and 1M pairs are scaled from it to suit the smaller and larger pots, and rounded to standard values. These are the validated starting values. Every bleed is tuned by ear from where it starts, because pickups and cables differ, so treat these as the place to begin:
+
+- For a **subtler** bleed, use a smaller capacitor, 470–680 pF. Fewer highs get past the volume pot.
+- For a **brighter** bleed, use a larger capacitor, 1.5–2.2 nF. More highs get past.
+- To fine-tune, move the **resistor** one standard value up or down. A larger resistor trims the bleed back a little; a smaller one lets a little more through.
+
+The same two parts serve both Direct and Reactive, so whatever you choose for Direct also sets Reactive. [Tuning by ear](/guitars/relay/customize/treble-bleed/build/reference-and-troubleshooting#tuning-by-ear) explains how to try the alternatives.
+
+## Make room for the switch
+
+No stock body has a hole for this switch, so the retrofit starts with drilling one. Fit the switch before you do any wiring: it is much easier to wire a switch that is already in its final place.
+
+**Choose the spot.** Put the switch near the tone pot, wherever there is room. Check all of these before you mark it:
+
+- Your fingers can reach the lever easily, without bumping the knobs.
+- The spot is clear of the pickguard's edge and of the other controls, with enough space around the switch for its nut and washer.
+- The switch's body lands inside the control cavity, clear of the cavity walls, with room behind it for the body, its lugs and the wires that will go on them. Measure the switch from the bottom of its bushing to the tips of its lugs, then check the cavity depth at that spot.
+- The bushing can reach through. A mini toggle has only a few millimeters of thread, and the washer and nut need some of it. Measure how thick the material is at the spot (the pickguard, the control plate, or the wood above the cavity), and make sure it is thinner than the threaded length of the bushing with room left over for the washer and nut. If it isn't, choose another spot: once the hole is drilled where the bushing can't reach through, it can't be undone.
+
+**Measure your bushing.** The hole has to match the switch you bought. A common mini toggle has a 6 mm bushing and goes in a 6 mm hole (a hair over is easier); measure yours and drill to match. The one I link needs 6 mm. Go by your switch, not by this page.
+
+**Mark and drill.**
+
+1. Wear eye protection. If the switch goes through a pickguard or a control plate, take that part off the guitar and drill it on the bench, supported on a scrap of wood. If it goes into the body, take the strings off or slacken them, and protect the guitar's top with a soft cloth around the work area.
+2. Put masking tape over the spot. The tape protects the finish and keeps the bit from wandering. Mark the center on the tape with a pencil, then press a small dent there with the sharp point.
+3. Drill a small pilot hole straight down. Go slowly and let the bit do the work.
+4. Open the hole to its final size with the right bit for the material: a sharp brad-point bit for wood, a step bit or sharp twist bit for a plastic pickguard or a metal control plate. Ease off just before the bit breaks through, so the far side doesn't chip.
+5. Peel the tape off slowly, and smooth any rough edge with a fine file or a little sandpaper wrapped around a pencil.
+
+**Mount the switch.** Push the switch up through the hole from inside the cavity, put on the washer and nut, and tighten the nut snugly without forcing it. Then turn the switch so its lugs face where the wires will come from.

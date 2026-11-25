@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { relayBuildProcess } from '@/config/relay-build-process';
+import { relayCustomize } from '@/config/relay-customize';
 import { relayVoicings } from '@/config/relay-voicings';
 import type { RelayBreadcrumb } from '@/lib/relay';
 import type { RelayBuildStage, RelayStageStatus } from '@/types/relay-nav';
@@ -62,6 +63,41 @@ function BuildStageRow({ stage, pathname }: { stage: RelayBuildStage; pathname: 
     );
 }
 
+function CustomizeGroup({ pathname }: { pathname: string }) {
+    const active = pathname === relayCustomize.href || pathname.startsWith(`${relayCustomize.href}/`);
+
+    return (
+        <div className="mt-4">
+            <h4 className="mb-1 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{relayCustomize.title}</h4>
+            <ul className="grid grid-flow-row auto-rows-max">
+                <li>
+                    <Link href={relayCustomize.href} className={cn('flex w-full items-center rounded-md border border-transparent px-2 py-1 text-sm font-medium hover:underline', active ? 'text-foreground' : 'text-foreground/70')}>
+                        {relayCustomize.title}
+                    </Link>
+                    {active && (
+                        <div className="ml-4 mt-0.5 border-l border-border/50">
+                            {relayCustomize.series.map((series) => (
+                                <div key={series.slug} className="pb-1">
+                                    <h5 className="px-3 pb-0.5 pt-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">{series.title}</h5>
+                                    <ul className="grid grid-flow-row auto-rows-max">
+                                        {series.parts.map((part) => (
+                                            <li key={part.href}>
+                                                <Link href={part.href} className={cn('flex w-full items-center rounded-md border border-transparent py-1 pl-3 pr-2 text-sm hover:underline', pathname === part.href ? 'font-medium text-foreground' : 'text-muted-foreground')}>
+                                                    {part.title}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </li>
+            </ul>
+        </div>
+    );
+}
+
 export function RelayLayoutSidebar() {
     const pathname = usePathname() ?? '';
 
@@ -84,6 +120,8 @@ export function RelayLayoutSidebar() {
                     ))}
                 </ul>
             </div>
+
+            <CustomizeGroup pathname={pathname} />
         </nav>
     );
 }

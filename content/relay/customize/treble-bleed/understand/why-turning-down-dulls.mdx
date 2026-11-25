@@ -1,0 +1,107 @@
+---
+title: 'Why turning down makes it dull'
+description: 'What the volume knob does to the signal, and why turning it down makes a guitar sound dull as well as quiet.'
+---
+
+Turn the volume knob down on most guitars and the sound gets darker as well as quieter. A **treble bleed** is a small part, or a pair of parts, on the volume pot that keeps the highs from fading so fast. This series builds the picture one step at a time, in three short parts. This first part covers what the volume knob actually does and why turning it down loses the highs. The second covers what a bleed changes, and the third covers a version called a **reactive bleed** that works together with the tone knob.
+
+You don't need to read a schematic to follow along. Every idea starts with a picture, and the words come after it.
+
+## A few words first
+
+These six words come up on every page about guitar wiring. Each one is defined here once, in plain words.
+
+- **Pickup:** the part under the strings that turns their motion into a small electrical signal.
+- **Pot:** short for potentiometer, the part behind a volume or tone knob; it has three solder tabs, called lugs, on its back.
+- **Wiper:** the sliding contact inside a pot, wired to the middle lug, that moves along the inside of the pot as you turn the knob.
+- **Capacitor:** a small part that lets the highs (the bright, sparkly part of the sound) pass easily and holds the lows (the warm, round part) back.
+- **Resistor:** a small part that holds back all frequencies by a fixed amount, like a narrow spot in a pipe.
+- **Ground:** the shared return wire that every part of the circuit connects to; signal sent to ground is gone from the sound.
+
+## What the volume knob really does
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 1 · The signal chain</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/01-signal-chain.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/01-signal-chain.png" download="treble-bleed-01-signal-chain.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/01-signal-chain.png" target="_blank" rel="noopener noreferrer" aria-label="Open the signal chain diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/01-signal-chain.png" alt="Block diagram of the signal chain: pickup, then volume pot, then cable, then amp, with arrows showing the signal running one way." width="2400" height="960" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+The signal travels one way. It starts at the pickup, passes through the volume pot, runs along the cable and ends up at the amp. Everything in this part happens in two places on that path: the volume pot and the cable.
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 2 · The volume pot</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/02-volume-pot.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/02-volume-pot.png" download="treble-bleed-02-volume-pot.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/02-volume-pot.png" target="_blank" rel="noopener noreferrer" aria-label="Open the volume pot diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/02-volume-pot.png" alt="A volume pot seen from the back with its CW, wiper and CCW lugs labeled, beside the same pot drawn as a track with a sliding wiper between the input end and the ground end." width="2400" height="1440" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+Inside the pot is a **track**, a strip of resistive material, with the wiper riding on it. One end of the track is the input end, where the signal from the pickups comes in. The other end goes to ground. The wiper is the output, and it goes on toward the amp.
+
+Seen from the back, with the shaft pointing away and the lugs at the bottom, the left lug is the input end, the middle lug is the wiper and the right lug is the ground end. The diagrams call the ends **CW** and **CCW** (clockwise and counterclockwise) because the wiper reaches the CW end when the knob is turned all the way up and the CCW end when it is turned all the way down.
+
+So the volume pot is an adjustable divider. Move the wiper toward the input end and more of the signal reaches the amp; move it toward the ground end and less does. Turned all the way up, the wiper sits right on the input end and the signal goes straight through.
+
+## Why turning down makes it dull
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 3 · The pot and the cable</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/03-pot-and-cable.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/03-pot-and-cable.png" download="treble-bleed-03-pot-and-cable.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/03-pot-and-cable.png" target="_blank" rel="noopener noreferrer" aria-label="Open the pot and cable diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/03-pot-and-cable.png" alt="The volume pot drawn as a resistance between the pickup and the amp, with the cable drawn as a capacitor to ground where the highs drain away while the lows carry on to the amp." width="2400" height="1380" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+Here the volume pot is drawn as the part of its track the signal has to push through on its way to the cable. At full volume there is none of it. As you turn down, more of the track sits between the pickup and the cable.
+
+The cable matters here too. A guitar cable acts like a tiny capacitor from the signal to ground. A capacitor lets highs through easily, so this one gives the highs a path to drain away to ground before they reach the amp.
+
+Put the two together and you have a filter. The lows carry on to the amp. The highs drain away through the cable. The more resistance sits ahead of the cable, the more of the highs drain away, which is why turning down from full makes the guitar dull and not just quiet.
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 4 · Illustration, not a measurement</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/04-brightness-sketch.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/04-brightness-sketch.png" download="treble-bleed-04-brightness-sketch.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/04-brightness-sketch.png" target="_blank" rel="noopener noreferrer" aria-label="Open the brightness sketch at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/04-brightness-sketch.png" alt="Illustrative sketch, not measured data, of brightness against volume knob position for no bleed, a fixed bleed and a reactive bleed; all three meet at full volume." width="2400" height="1460" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+This sketch is an **illustration, not a measurement**. Its curves show the idea, not data from any guitar. Follow the gray "No bleed" line from right to left: as the volume goes from full up to turned down, the highs fade quickly. The other two lines are where this series is headed.

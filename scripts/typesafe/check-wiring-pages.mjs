@@ -111,6 +111,36 @@ const PAIRS = [
             { name: 'Blade contacts', kind: 'contacts', page: /Throw 1/, source: /Throw 1/ },
         ],
     },
+    {
+        name: 'Treble bleed switch: part 1',
+        page: { kind: 'mdx', file: 'content/relay/customize/treble-bleed/build/is-it-a-fit.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [],
+    },
+    {
+        name: 'Treble bleed switch: part 2',
+        page: { kind: 'mdx', file: 'content/relay/customize/treble-bleed/build/parts-and-hole.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [],
+    },
+    {
+        name: 'Treble bleed switch: part 3',
+        page: { kind: 'mdx', file: 'content/relay/customize/treble-bleed/build/what-changes-and-lugs.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [],
+    },
+    {
+        name: 'Treble bleed switch: part 4',
+        page: { kind: 'mdx', file: 'content/relay/customize/treble-bleed/build/wire-it-and-check.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [],
+    },
+    {
+        name: 'Treble bleed switch: part 5',
+        page: { kind: 'mdx', file: 'content/relay/customize/treble-bleed/build/reference-and-troubleshooting.mdx' },
+        source: 'docs/engineering/treble-bleed-switch/netlist.md',
+        tables: [{ name: 'Switch contacts', kind: 'contacts', page: /Contact \| Net/, source: /Contact \| Net/ }],
+    },
 ];
 
 const RELATION = {

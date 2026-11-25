@@ -27,3 +27,27 @@ export interface RelayBuildStage {
 export interface RelayBuildProcess {
     stages: RelayBuildStage[];
 }
+
+/** One short page in a Customize series (for example "Is your guitar a fit?"). */
+export interface RelayCustomizePart {
+    slug: string;
+    title: string;
+    summary: string;
+    href: string;
+}
+
+/** A short series of pages on one topic: Understand (how it works) or Build (how to add it). */
+export interface RelayCustomizeSeries {
+    slug: 'understand' | 'build';
+    title: string;
+    summary: string;
+    parts: RelayCustomizePart[];
+}
+
+/** The Relay Customize section: optional changes to a finished or in-progress guitar. */
+export interface RelayCustomize {
+    title: 'Customize';
+    href: '/guitars/relay/customize';
+    topic: { slug: 'treble-bleed'; title: 'Treble bleed' };
+    series: RelayCustomizeSeries[];
+}
