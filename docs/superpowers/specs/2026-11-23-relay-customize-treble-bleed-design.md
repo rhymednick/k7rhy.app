@@ -1,7 +1,7 @@
 # Relay "Customize" section: treble bleed (design)
 
 **Date:** 2026-11-23
-**Status:** Approved by the owner 2026-11-23, with the changes folded in below.
+**Status:** Implemented 2026-11-24 on branch `claude/relay-customize-treble-bleed` (PR link below once opened). Approved by the owner 2026-11-23, with the changes folded in below; restructured into two series on 2026-11-24 (see the last section).
 **Builds on:** [Relay switchable treble bleed](../../engineering/relay-switchable-treble-bleed.md) (v1 of the circuit, 2026-11-22).
 **Supersedes:** nothing. The switchable-bleed record's status line ("bench validation pending") is out of date and is corrected as part of this work (see Records and checks).
 
@@ -166,7 +166,7 @@ Branch off `main`, one PR (not a draft). Phases in the plan: records and netlist
 
 ## Update 2026-11-24: two series of short pages (owner decision)
 
-**Status:** Approved by the owner 2026-11-24 ("split both the same way"). **Supersedes** the "two pages" structure in "Navigation and routes" and "Page 1 / Page 2" above; the section outlines, voice, diagrams, values and every other decision stand. The pages were unmerged, so the old URLs (`/guitars/relay/customize/how-treble-bleeds-work` and `/direct-off-reactive-switch`) are retired with no redirects.
+**Status:** Implemented 2026-11-24. Approved by the owner the same day ("split both the same way"). **Supersedes** the "two pages" structure in "Navigation and routes" and "Page 1 / Page 2" above; the section outlines, voice, diagrams, values and every other decision stand. The pages were unmerged, so the old URLs (`/guitars/relay/customize/how-treble-bleeds-work` and `/direct-off-reactive-switch`) are retired with no redirects.
 
 **Why:** the retrofit guide was about 5,600 words in 14 sections and the explainer about 3,100 words in 8, too long to read as one page.
 
