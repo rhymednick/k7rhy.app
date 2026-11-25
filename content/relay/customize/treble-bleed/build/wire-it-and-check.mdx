@@ -1,0 +1,45 @@
+---
+title: 'Wire it and check it'
+description: 'The numbered wiring steps for the switch, and the bench checks that prove the three modes work.'
+---
+
+You know what changes, and you've found every lug. [The last part](/guitars/relay/customize/treble-bleed/build/reference-and-troubleshooting) has the reference sheet to keep open at the bench; this part is the soldering and the checks that follow it.
+
+## Step-by-step wiring
+
+Before you start, take a clear photo of the wiring as it is now. If anything goes wrong, the photo shows you how it was. Unplug the guitar, and keep each new wire just long enough to reach without strain.
+
+The steps use the wire names from the diagrams. You've met three of them. The other four are new, and each one names a single connection:
+
+- `BUS`: the main signal wire from the pickup selector.
+- `OUT`: the volume pot's wiper to the jack tip.
+- `GND`: ground.
+- `TB-MID`: the joint between the bleed resistor and the bleed capacitor (TB is short for treble bleed).
+- `TB-SW`: the bleed's free end (the capacitor's, on Lipstick or a new bleed) to the switch's common lug.
+- `TONE-CAP`: the tone pot's CCW end to the 22 nF capacitor.
+- `REACT`: the tone pot's CW end to the switch's Reactive lug.
+
+Each step names the wire it makes, and the number in parentheses is its orange mark in Diagram 12.
+
+1. **Free the tone pot.** Desolder the BUS wire and the 22 nF capacitor's lead from the tone pot. Leave the capacitor's other lead on ground.
+2. **`BUS` to the tone wiper (mark 1).** Solder the BUS wire to the tone pot's middle lug, the wiper.
+3. **`TONE-CAP` (mark 2).** Solder the 22 nF capacitor's free lead to the tone pot's CCW end, the end the wiper reaches at tone 0. Its other lead stays on `GND`.
+4. **`REACT` (mark 3).** Run a new wire from the tone pot's CW end, the end the wiper reaches at tone 10, to the switch's Reactive lug.
+5. **The bleed.** One end of the bleed stays on the volume wiper, `OUT`, and the other end goes to the switch:
+    - **If your volume pot already has a series bleed,** desolder the end that is on the volume pot's input lug and leave the end on the wiper in place. On Lipstick, that means the 1 nF capacitor comes off the input lug and the 150 kΩ resistor stays on the wiper. In a series pair the order of the two parts makes no difference to the sound, so whichever part is on your wiper can stay there.
+    - **If it has no bleed,** solder one lead of the bleed resistor to the volume wiper, `OUT`. Twist the resistor's other lead together with one lead of the bleed capacitor, solder the joint, and cover it with heat-shrink tubing. That joint is `TB-MID`.
+6. **`TB-SW` (mark 4).** Solder the bleed's free end to the switch's common lug (on Lipstick, and when you build a new bleed as above, that is the capacitor's free lead), adding a short wire if it doesn't reach. Sleeve the bare lead so it can't touch a pot or the cavity shielding.
+7. **`BUS` to Direct (mark 5).** Run a new wire from the volume pot's input lug, which is on BUS, to the switch's Direct lug.
+8. **Check what didn't move.** The volume pot's input lug is still on BUS, its wiper on OUT and the jack tip, and its CCW end on ground. The switch's middle position connects to nothing, so nothing else goes on the switch.
+
+## Bench checks
+
+Do the meter checks with the guitar unplugged, then the listening checks through an amp at a modest volume.
+
+1. **Meter all three positions.** Set the tone knob to 0 first. At tone 10 the tone pot joins the Direct and Reactive lugs to each other, so the meter can't tell them apart; at tone 0 the whole tone track sits between them. Then, on continuity: in Direct, the common beeps with the Direct lug and not with the Reactive lug; in Reactive, the common beeps with the Reactive lug and not with the Direct lug; in Off, the common beeps with nothing. This proves the switch is wired to the lugs you think it is.
+2. **Tone 10: Direct and Reactive match.** Set the tone to 10 and the volume to about halfway. Flip between Direct and Reactive. They should sound the same. If they don't, the Reactive wire is on the wrong tone pot lug.
+3. **Volume 10: all three match.** Set the volume to 10 and flip through all three modes, at any tone setting. They should sound the same, because at full volume there is nothing for a bleed to skip past.
+4. **The switch is quiet.** Flipping between modes should make no pop or crackle. Noise here usually means a poor solder joint or a stray wire strand touching something.
+5. **The switch still clears the cavity.** With the control cover or pickguard back on, check that nothing presses on the switch's lugs or wires and that the lever moves freely.
+6. **Match the loudness, then compare.** Set the amp to a comfortable level with the guitar at full volume, where all three modes sound the same, and leave it there. Then compare the three modes with the volume and tone both at 5, then both at 8. Listen for the pattern the modes are built for: Direct keeps its highs as you turn down, Off gets darker, and Reactive eases off as the tone comes down, so it sits closer to Direct at 8/8 than at 5/5.
+7. **Sweep both controls.** In each mode, turn the volume slowly from 10 to 0 and back, then the tone. Both should move smoothly, with no dead spots or sudden jumps.

@@ -1,0 +1,93 @@
+---
+title: 'The reactive bleed'
+description: 'How a reactive bleed follows the tone knob, and how Direct, Off and Reactive compare.'
+---
+
+Every bleed in [the last part](/guitars/relay/customize/treble-bleed/understand/what-a-bleed-does) was a fixed part. This part shows the version that follows the tone knob, then puts all three modes of the switch side by side.
+
+## The reactive bleed
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 8 · The tone pot's three lugs</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/08-tone-pot.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/08-tone-pot.png" download="treble-bleed-08-tone-pot.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/08-tone-pot.png" target="_blank" rel="noopener noreferrer" aria-label="Open the tone pot diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/08-tone-pot.png" alt="A tone pot seen from the back: the wiper on the BUS signal wire, the CCW end through a 22 nF capacitor to ground, and the CW end on the REACT wire to the switch's Reactive lug." width="2400" height="1500" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+The reactive bleed starts at the tone pot, so it helps to look at that pot's three lugs first. Seen from the back, with the shaft pointing away:
+
+- The **wiper** rides on the main signal wire from the pickups (BUS).
+- The **CCW end** goes through the tone capacitor (22 nF on Relay Lipstick) to ground. The wiper reaches it at tone 0, all the way down.
+- The **CW end** is the spare end. The wiper reaches it at full tone. A standard tone circuit leaves one end of the pot unused. Here that spare end feeds the bleed, through a wire tagged REACT.
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 9 · The reactive bleed</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/09-reactive-bleed.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/09-reactive-bleed.png" download="treble-bleed-09-reactive-bleed.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/09-reactive-bleed.png" target="_blank" rel="noopener noreferrer" aria-label="Open the reactive bleed diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/09-reactive-bleed.png" alt="Volume and tone pots with the switch in Reactive; a glow marks the bleed path from the volume wiper through 150 kΩ and 1 nF, the switch and the REACT wire to the tone pot's CW lug." width="2400" height="1480" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+The reactive bleed takes its signal from that spare CW end instead of straight from BUS. The glow marks the bleed path. Follow it the way the signal goes: from the tone pot's CW end along REACT, through the switch, then through the 1 nF capacitor and the 150 kΩ resistor to the volume pot's wiper.
+
+At full tone, the tone wiper sits right on the CW end, so the bleed gets the same signal it would get from BUS and behaves like an ordinary bleed. As you roll the tone back, the wiper moves away from the CW end, more of the tone pot's track sits between the signal and the bleed, and the signal reaching the bleed fades. It works like the series resistor in [the variants](/guitars/relay/customize/treble-bleed/understand/what-a-bleed-does), with that resistance growing as you roll the tone back, so the bleed eases off as the tone comes down.
+
+That is the whole idea. The bleed follows the tone knob instead of ignoring it. In the illustration in [the first part](/guitars/relay/customize/treble-bleed/understand/why-turning-down-dulls), the green "Reactive bleed" line shows the reactive bleed with the tone rolled back; at full tone it would sit on the orange line. It is an illustration, not a measured result.
+
+## The three modes together
+
+<figure className="my-6 overflow-hidden rounded-lg border bg-white shadow-sm dark:border-slate-700">
+    <figcaption className="flex flex-wrap items-center justify-between gap-x-5 gap-y-2 border-b bg-muted/30 px-4 py-3 text-sm dark:bg-slate-900">
+        <span className="text-muted-foreground">Diagram 10 · Direct, Off and Reactive</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+            <a href="/circuits/treble-bleed/10-three-modes.png" target="_blank" rel="noopener noreferrer" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Open full size
+            </a>
+            <a href="/circuits/treble-bleed/10-three-modes.png" download="treble-bleed-10-three-modes.png" className="font-semibold text-sky-700 underline underline-offset-4 dark:text-sky-300">
+                Download PNG
+            </a>
+        </span>
+    </figcaption>
+    <a href="/circuits/treble-bleed/10-three-modes.png" target="_blank" rel="noopener noreferrer" aria-label="Open the three modes diagram at full resolution" className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-sky-500">
+        <img src="/circuits/treble-bleed/10-three-modes.png" alt="Three stacked panels of the same circuit with the switch in Direct, Off and Reactive; glows mark the bleed path to BUS, the tone path with the bleed open, and the bleed path through the tone pot." width="2400" height="3640" className="m-0 h-auto w-full rounded-none" />
+    </a>
+</figure>
+
+A three-position switch lets one guitar do all three. The switch's common lug connects to the far end of the bleed, and each position sends it somewhere different:
+
+- **Direct:** the bleed connects straight to BUS, like a regular treble bleed.
+- **Off:** the bleed connects to nothing, and the tone knob works like any tone knob. The green glow in the middle panel is the tone path. The tone control itself works the same in every mode.
+- **Reactive:** the bleed is fed through the tone pot, so rolling the tone back eases the bleed off.
+
+| Mode     | What it does                                                                                   | When you'd want it                                                                               |
+| -------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Direct   | A normal treble bleed. The highs fade less as you turn down, wherever the tone knob is.        | You turn the volume down to clean up and want the guitar to stay bright while you do.            |
+| Off      | A normal volume and tone circuit with no bleed. The guitar gets darker as you turn down.       | You like the classic darkening as you roll back, or you want the plainest sound to compare with. |
+| Reactive | A bleed that follows the tone knob. At full tone it matches Direct; rolled back, it eases off. | You use the volume and tone knobs together and want the darker setting to stay dark.             |
+
+Two settings make the modes easy to check by ear. At full volume all three sound the same, because the wiper sits on the input end and there is nothing for a bleed to skip past. At full tone, Direct and Reactive sound the same, because the tone wiper sits on the CW end and the Reactive feed is the same as BUS.
+
+I have built this circuit and validated it on Relay Lipstick, with the 1 nF and 150 kΩ pair in series as its bleed. Nothing about it is specific to Lipstick, though: it suits any guitar wired with one master volume and one master tone.
+
+## Where to go next
+
+If you want this switch on your own guitar, [the Build series](/guitars/relay/customize/treble-bleed/build/is-it-a-fit) walks through the parts, the wiring change from a stock circuit, how to find each lug with a meter, and the bench checks that confirm all three modes.
