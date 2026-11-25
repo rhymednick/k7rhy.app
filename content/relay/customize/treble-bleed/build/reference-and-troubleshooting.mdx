@@ -3,7 +3,7 @@ title: 'Reference sheet and troubleshooting'
 description: 'The one-page reference sheet, the switch contacts and connection map, a Lipstick worked example, tuning by ear, and troubleshooting.'
 ---
 
-The wiring is done and checked. This is the part to keep open at the bench: the one-page reference sheet, the switch contacts and connection map, a worked example on Relay Lipstick, how to tune the values by ear, and what to do when something is off.
+This is the part to keep open at the bench, whether you've just finished the wiring or you're working straight from the sheet: the one-page reference sheet, the switch contacts and connection map, a worked example on Relay Lipstick, how to tune the values by ear, and what to do when something is off.
 
 ## The reference sheet
 
@@ -30,7 +30,7 @@ The wiring is done and checked. This is the part to keep open at the bench: the 
     </a>
 </figure>
 
-The sheet puts the whole retrofit on one tall page, drawn with the 500k values from Lipstick. To print it, use page A (panels 1 to 3) and page B (panels 4 to 8). The sheet uses a **functional contact map** for the switch: it shows what each lever position joins, not where the lugs sit on a particular switch, so find your own switch's lugs with a meter as described above. The text below repeats what the sheet shows, so you can search it.
+The sheet puts the whole retrofit on one tall page, drawn with the 500k values from Lipstick. To print it, use page A (panels 1 to 3) and page B (panels 4 to 8). The sheet uses a **functional contact map** for the switch: it shows what each lever position joins, not where the lugs sit on a particular switch, so find your own switch's lugs with a meter, as in [Identify your lugs](/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs#identify-your-lugs). The text below repeats what the sheet shows, so you can search it.
 
 ### Switch contacts
 
@@ -72,7 +72,7 @@ In every mode the tone knob works the same way, because the tone pot's wiper sta
 
 ## Worked example: Relay Lipstick
 
-Relay Lipstick is the guitar I validated this on, and Diagrams 11 and 12 are drawn from its circuit. It has 500k volume and tone pots, so it uses the 500k row of the value table, and its stock series bleed (a 1 nF capacitor and a 150 kΩ resistor) is reused as it is.
+Relay Lipstick is the guitar I validated this on, and Diagrams [11](/guitars/relay/customize/treble-bleed/build/is-it-a-fit) and [12](/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs) are drawn from its circuit. It has 500k volume and tone pots, so it uses the 500k row of the [value table](/guitars/relay/customize/treble-bleed/build/parts-and-hole#choose-your-bleed-values), and its stock series bleed (a 1 nF capacitor and a 150 kΩ resistor) is reused as it is.
 
 **The lugs, seen from the back.** On the volume pot, the left lug is on BUS, the middle lug is on OUT and the right lug is on ground; none of them change. On the stock tone pot, the left lug is unused, the middle lug goes to the 22 nF capacitor and the right lug is on BUS. After the retrofit, the left lug is on `REACT`, the middle lug is on `BUS` and the right lug is on `TONE-CAP`.
 
@@ -86,7 +86,7 @@ The stock Lipstick circuit, with its pickups and push-push, is on the [Lipstick 
 
 ## Tuning by ear
 
-The values in the table are where every bleed starts, not where every bleed ends. How bright a bleed sounds depends on the pickups (how strong they are and how much treble they have to begin with) and on the cable, since a longer cable drains more highs away. The same parts can sound just right on one guitar and a little bright on another.
+The values in the [value table](/guitars/relay/customize/treble-bleed/build/parts-and-hole#choose-your-bleed-values) are where every bleed starts, not where every bleed ends. How bright a bleed sounds depends on the pickups (how strong they are and how much treble they have to begin with) and on the cable, since a longer cable drains more highs away. The same parts can sound just right on one guitar and a little bright on another.
 
 Tune in Direct, because it is the plainest bleed and Reactive uses the same parts. A good routine:
 
@@ -101,9 +101,9 @@ You can tack a part in with a quick solder joint while you listen and solder it 
 ## Troubleshooting
 
 - **The tone knob works backwards** (darkest at 10). The `REACT` wire and the 22 nF capacitor are on swapped tone pot ends. Swap the two end wires.
-- **Direct and Reactive sound different at tone 10.** The Reactive wire is on the wrong tone pot lug. Recheck the CW end with the meter (Diagram 13) and move `REACT` there.
+- **Direct and Reactive sound different at tone 10.** The Reactive wire is on the wrong tone pot lug. Recheck the CW end with the meter ([Diagram 13](/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs#identify-your-lugs)) and move `REACT` there.
 - **Reactive sounds just like Direct at every tone setting.** The Reactive wire is on the tone wiper or on BUS, or both throw lugs are joined to BUS. It belongs on the tone pot's CW end.
-- **Off still sounds bright, or one mode sounds like another.** The switch common is probably misidentified. Repeat the switch test with the meter and move the wires to match.
+- **Off still sounds bright, or one mode sounds like another.** The switch common is probably misidentified. Repeat the [switch test](/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs#identify-your-lugs) with the meter and move the wires to match.
 - **The modes are in the wrong lever positions.** Swap the wires on the Direct and Reactive lugs.
 - **No mode changes the sound as you turn down.** The bleed isn't connected: check that one end is on the volume wiper (`OUT`), the joint between the two parts (`TB-MID`) is solid, and the other end is on the switch common (`TB-SW`).
 - **The modes differ at volume 10.** In a correct harness the switch can't change anything at full volume, so something is on the wrong lug or touching ground. Check that the bleed's near end is on the volume wiper (`OUT`) and that no switch lug or bleed lead touches a pot body or the shielding.

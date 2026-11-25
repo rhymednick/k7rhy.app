@@ -176,6 +176,26 @@ describe('Relay Customize content pages', () => {
             }
         });
 
+        it('points every reference to another part at that part (steps, diagrams, tables)', () => {
+            const owner = '/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs';
+            const wiring = readPage(buildSlugs[3]);
+            expect(wiring).toContain(`[Diagram 12](${owner})`);
+            expect(wiring).toContain(`](${owner})`);
+            const reference = readPage(buildSlugs[4]);
+            expect(reference).not.toContain('as described above');
+            expect(reference).toContain(`as in [Identify your lugs](${owner}#identify-your-lugs)`);
+            expect(reference).toContain('[value table](/guitars/relay/customize/treble-bleed/build/parts-and-hole#choose-your-bleed-values)');
+            expect(reference.split('/build/parts-and-hole#choose-your-bleed-values').length - 1).toBeGreaterThanOrEqual(2);
+            expect(reference).toContain(`[Diagram 13](${owner}#identify-your-lugs)`);
+            expect(reference).toContain(`[switch test](${owner}#identify-your-lugs)`);
+        });
+
+        it('opens the reference part for readers who arrive straight from the sheet, not only those who just finished wiring', () => {
+            const reference = readPage(buildSlugs[4]);
+            expect(reference).not.toContain('The wiring is done and checked');
+            expect(reference).toContain('working straight from the sheet');
+        });
+
         it('keeps the in-series links pointing at the part that now holds each section', () => {
             expect(readPage(buildSlugs[0])).toContain('/guitars/relay/customize/treble-bleed/build/what-changes-and-lugs#identify-your-lugs');
             expect(readPage(buildSlugs[1])).toContain('/guitars/relay/customize/treble-bleed/build/reference-and-troubleshooting#tuning-by-ear');

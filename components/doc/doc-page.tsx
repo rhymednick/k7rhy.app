@@ -55,6 +55,12 @@ export function DocPage(props: DocPageProps) {
                         .replace(/[^\w\-]+/g, '') || '';
             }
         });
+        // The ids above only exist after hydration, so the browser could not scroll to a #fragment on load. Scroll there now.
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+            const target = document.getElementById(decodeURIComponent(hash));
+            if (target) target.scrollIntoView();
+        }
     }, []);
 
     return (
