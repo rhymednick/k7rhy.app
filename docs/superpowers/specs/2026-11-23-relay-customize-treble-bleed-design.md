@@ -163,3 +163,17 @@ No open questions remain.
 ## Delivery
 
 Branch off `main`, one PR (not a draft). Phases in the plan: records and netlist; diagrams and generator; explainer page; retrofit page; sidebar and cross-links; checks, rendered review at desktop and phone widths, `npm run build`. The wiring workflow's requirement for two independent diagram reviews applies to the builder sheet.
+
+## Update 2026-11-24: two series of short pages (owner decision)
+
+**Status:** Approved by the owner 2026-11-24 ("split both the same way"). **Supersedes** the "two pages" structure in "Navigation and routes" and "Page 1 / Page 2" above; the section outlines, voice, diagrams, values and every other decision stand. The pages were unmerged, so the old URLs (`/guitars/relay/customize/how-treble-bleeds-work` and `/direct-off-reactive-switch`) are retired with no redirects.
+
+**Why:** the retrofit guide was about 5,600 words in 14 sections and the explainer about 3,100 words in 8, too long to read as one page.
+
+**Design:**
+- Two series under the topic `treble-bleed`, at `/guitars/relay/customize/treble-bleed/<series>/<part>`, each part its own page with a "Part n of N" lead-in and previous/next links at the bottom (rendered by the route, not in the MDX).
+- **Understand** (3 parts): `why-turning-down-dulls` (intro, glossary, what the volume knob does, why turning down is dull; diagrams 01–04), `what-a-bleed-does` (what a bleed does, the variants, where fixed bleeds disappoint; 05–07), `the-reactive-bleed` (the reactive bleed, the three modes together, where to go next; 08–10).
+- **Build** (5 parts): `is-it-a-fit` (what you get, fit rules and continuity test), `parts-and-hole` (parts and tools, bleed values, make room for the switch), `what-changes-and-lugs` (what changes with diagrams 11 and 12, identify your lugs), `wire-it-and-check` (step-by-step wiring, bench checks), `reference-and-troubleshooting` (the reference sheet, switch contacts, connection map, what each mode does, worked example, tuning by ear, troubleshooting).
+- The sidebar's Customize group lists the topic's two series with their parts. The landing page links to part 1 of each series. Cross-links from the Parts item and the Lipstick, Torch and Velvet pages point to `understand/why-turning-down-dulls` and `build/is-it-a-fit`.
+- Wording moves with its section unchanged except: in-page anchors between sections that now sit on different parts become links to the part, and "above/below" references are reworded. No circuit, value or diagram changes.
+- The wiring check (`check-wiring-pages.mjs`) gets one pair per build part; the contacts table comparison stays on `reference-and-troubleshooting`.
