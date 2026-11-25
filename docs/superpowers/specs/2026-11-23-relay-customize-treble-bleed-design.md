@@ -1,7 +1,7 @@
 # Relay "Customize" section: treble bleed (design)
 
 **Date:** 2026-11-23
-**Status:** Implemented 2026-11-24 on branch `claude/relay-customize-treble-bleed` (PR link below once opened). Approved by the owner 2026-11-23, with the changes folded in below; restructured into two series on 2026-11-24 (see the last section).
+**Status:** Implemented 2026-11-24 on branch `claude/relay-customize-treble-bleed` ([PR 163](https://github.com/rhymednick/k7rhy.app/pull/163)). Approved by the owner 2026-11-23, with the changes folded in below; restructured into two series on 2026-11-24 (see the last section).
 **Builds on:** [Relay switchable treble bleed](../../engineering/relay-switchable-treble-bleed.md) (v1 of the circuit, 2026-11-22).
 **Supersedes:** nothing. The switchable-bleed record's status line ("bench validation pending") is out of date and is corrected as part of this work (see Records and checks).
 
