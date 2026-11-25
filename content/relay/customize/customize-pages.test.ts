@@ -23,7 +23,7 @@ const pageSlugs = listPageSlugs(customizeDir);
 const requiredSlugs = ['index', ...understandSlugs, ...buildSlugs];
 const hedgingPattern = /unvalidated|\bpending\b|experimental|not yet tested|to be determined|\bTBD\b/i;
 const pluralFirstPersonPattern = /\bwe\b|\bour\b|\bus\b/i;
-const retiredUrls = ['/guitars/relay/customize/how-treble-bleeds-work', '/guitars/relay/customize/direct-off-reactive-switch'];
+const retiredUrls = [['/guitars/relay/customize/', 'how-treble-bleeds-work'].join(''), ['/guitars/relay/customize/', 'direct-off-reactive-switch'].join('')];
 
 function readPage(slug: string): string {
     return fs.readFileSync(path.join(customizeDir, ...slug.split('/')) + '.mdx', 'utf-8');

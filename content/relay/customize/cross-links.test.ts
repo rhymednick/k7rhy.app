@@ -1,10 +1,12 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const read = (path: string) => readFileSync(join(process.cwd(), path), 'utf8');
-const explainer = '/guitars/relay/customize/how-treble-bleeds-work';
-const retrofit = '/guitars/relay/customize/direct-off-reactive-switch';
+const explainer = '/guitars/relay/customize/treble-bleed/understand/why-turning-down-dulls';
+const retrofit = '/guitars/relay/customize/treble-bleed/build/is-it-a-fit';
+// Built from pieces so this file does not match itself. The two pages these addressed were split into series before merge.
+const retiredTokens = [['customize/', 'how-treble-bleeds-work'].join(''), ['customize/', 'direct-off-reactive-switch'].join('')];
 const phrase = 'alternative tone wiring that adds a switch';
 
 describe('Relay customize cross-links', () => {
@@ -12,10 +14,10 @@ describe('Relay customize cross-links', () => {
         expect(read(path)).toContain('/guitars/relay/customize/');
     });
 
-    it('the Parts item links both pages', () => {
+    it('the Parts item links the first part of each series', () => {
         const text = read('content/relay/components/items/treble-bleed.mdx');
-        expect(text).toContain('/guitars/relay/customize/how-treble-bleeds-work');
-        expect(text).toContain('/guitars/relay/customize/direct-off-reactive-switch');
+        expect(text).toContain(explainer);
+        expect(text).toContain(retrofit);
     });
 
     it('the Parts item and Lipstick say plainly what each link is for', () => {
@@ -44,5 +46,19 @@ describe('Relay customize cross-links', () => {
         expect(text.indexOf(phrase)).toBeGreaterThan(bleed);
         expect(text.indexOf(explainer)).toBeGreaterThan(bleed);
         expect(text.indexOf(retrofit)).toBeGreaterThan(bleed);
+    });
+
+    it('no content, engineering doc or script still links a retired two-page URL', () => {
+        const files: string[] = [];
+        const walk = (dir: string) => {
+            for (const entry of readdirSync(join(process.cwd(), dir), { withFileTypes: true })) {
+                const rel = join(dir, entry.name);
+                if (entry.isDirectory()) walk(rel);
+                else if (/\.(md|mdx|ts|tsx|mjs|json)$/.test(entry.name)) files.push(rel);
+            }
+        };
+        for (const dir of ['content', 'docs/engineering', 'scripts/typesafe', 'config', 'components', 'app']) walk(dir);
+        const hits = files.filter((file) => retiredTokens.some((token) => read(file).includes(token)));
+        expect(hits).toEqual([]);
     });
 });

@@ -4,7 +4,7 @@
 **Status:** Validated 2026-11-23 (owner-reported; no measurements recorded). Offered as an alternative tone wiring, not a standard build, because it needs a switch hole.  
 **Supersedes:** The 2026-11-22 direction to standardize the switch across Relay models with a master volume. The linked reference circuits document the current revisions.
 
-**See also:** [netlist, switch contacts and checks](treble-bleed-switch/netlist.md); published pages [how treble bleeds work](https://k7rhy.app/guitars/relay/customize/how-treble-bleeds-work) and [the Direct / Off / Reactive switch retrofit](https://k7rhy.app/guitars/relay/customize/direct-off-reactive-switch).
+**See also:** [netlist, switch contacts and checks](treble-bleed-switch/netlist.md); published pages [how treble bleeds work](https://k7rhy.app/guitars/relay/customize/treble-bleed/understand/why-turning-down-dulls) and [the Direct / Off / Reactive switch retrofit](https://k7rhy.app/guitars/relay/customize/treble-bleed/build/is-it-a-fit).
 
 ## Decision
 
